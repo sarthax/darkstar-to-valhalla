@@ -12,6 +12,7 @@ require("scripts/globals/missions");
 require("scripts/globals/quests");
 require("scripts/globals/status");
 require("scripts/globals/titles");
+local questCommon = require("scripts/zones/Aht_Urhgan_Whitegate/npcs/lance_corporal_common")
 
 -----------------------------------
 -- onInitialize
@@ -49,6 +50,19 @@ function onZoneIn(player,prevZone)
     if (player:getCurrentMission(TOAU) == STIRRINGS_OF_WAR and player:getVar("AhtUrganStatus") == 0 and
             player:getVar("TOAUM38_STARTDAY") ~= VanadielDayOfTheYear() and player:needToZone() == false) then
         cs = 3220;
+    end
+
+    -- 2026-09-14, backport gap found (Zone.lua wasn't actually ported with Naja_Salaheem.lua/the
+    -- rest of the Lance Corporal quest -- this block was missing entirely). 2026-08-31 real
+    -- "Promotion: Lance Corporal" mechanic -- user-confirmed real sequence: wait a game day, zone
+    -- OUT of Whitegate, THEN return to Abquhbah for the completion cutscene. This codebase has no
+    -- "has the player physically left this zone" flag, so track it directly here -- prevZone ~=
+    -- this zone is exactly that signal (onZoneIn only ever fires on a genuine inter-zone
+    -- transition). Only set while the quest is actually at the WAIT stage, to avoid charVar noise
+    -- for players not on this quest. See npcs/Abquhbah.lua for the actual completion trigger
+    -- (direct dialogue, not this zone-in itself).
+    if player:getVar("PromotionLC") == questCommon.stage.WAIT and prevZone ~= 50 then
+        player:setVar("LCZonedBack", 1);
     end
 
     return cs;

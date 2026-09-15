@@ -229,6 +229,48 @@ int32 CLuaBaseEntity::gotoPlayer(lua_State* L)
     return 1;
 }
 
+/************************************************************************
+*  Function: goToEntity()
+*  Purpose : Transports PC to a Mob or NPC; works across multiple zone servers
+*  Example : player:goToEntity(ID, spawnedOnly)
+*  Notes   : Ported from Topaz (lua_baseentity.cpp) -- real cross-process gap this codebase had:
+*            MSG_SEND_TO_ENTITY didn't exist in MSGSERVTYPE (see mmo.h), so the first hop (asking
+*            the target entity's own zone server for its position) had nowhere to go. Adds that
+*            message type end-to-end (mmo.h enum, message_server.cpp login-side routing by target
+*            zoneid, message.cpp map-side two-hop handler) mirroring the exact real Topaz protocol
+*            byte-for-byte, then adapted to this codebase's raw lua_State pointer + WBUF-macro
+*            binding convention instead of Topaz's sol2 style. spawnedOnly mirrors Topaz's Option:
+*            0/nil = fall back to the entity's mob_spawn_points row if not currently spawned,
+*            1 = do nothing if the entity isn't spawned right now.
+************************************************************************/
+
+int32 CLuaBaseEntity::goToEntity(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+    uint32 targetID   = (uint32)lua_tointeger(L, 1);
+    bool spawnedOnly  = (!lua_isnil(L, 2) && lua_isboolean(L, 2)) ? (lua_toboolean(L, 2) != 0) : false;
+
+    uint16 targetZone = (targetID >> 12) & 0x0FFF;
+    uint16 playerID   = (uint16)m_PBaseEntity->id;
+    uint16 playerZone = m_PBaseEntity->getZone();
+
+    char buf[12];
+    memset(&buf[0], 0, sizeof(buf));
+
+    WBUFB(&buf, 0)  = true;        // Toggle for message routing; goes to entity server first
+    WBUFB(&buf, 1)  = spawnedOnly; // Specification for Spawned Only or Any
+    WBUFW(&buf, 2)  = targetZone;
+    WBUFW(&buf, 4)  = playerZone;
+    WBUFL(&buf, 6)  = targetID;
+    WBUFW(&buf, 10) = playerID;
+
+    message::send(MSG_SEND_TO_ENTITY, &buf[0], sizeof(buf), nullptr);
+    return 0;
+}
+
 //==========================================================//
 
 inline int32 CLuaBaseEntity::ChangeMusic(lua_State *L)
@@ -3098,6 +3140,39 @@ inline int32 CLuaBaseEntity::openSendBox(lua_State *L)
 }
 
 /************************************************************************
+*  Function: forceRespawn()
+*  Purpose : DSP-PORT: forces the client to redraw an entity that's already been
+*            spawned/rendering for a while -- a plain animation/model update packet alone doesn't
+*            reliably force this, same class of problem hideNPC() above already works around via
+*            a delayed despawn+respawn packet pair.
+*  Example : npc:forceRespawn()
+*  Notes   : Ported from Topaz's own CLuaBaseEntity::forceRespawn() (src/map/lua/lua_baseentity.cpp:
+*            4145) -- same real despawn/QueueAction/respawn pattern this file's own hideNPC()
+*            already uses (immediate ENTITY_DESPAWN packet, then a delayed follow-up via
+*            PAI->QueueAction -- confirmed both ENTITY_SPAWN and UPDATE_ALL_MOB are real, already-
+*            used constants in this codebase, not invented for this port).
+************************************************************************/
+
+inline int32 CLuaBaseEntity::forceRespawn(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+
+    if (m_PBaseEntity->loc.zone)
+    {
+        m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity, CHAR_INRANGE, new CEntityUpdatePacket(m_PBaseEntity, ENTITY_DESPAWN, UPDATE_NONE));
+
+        m_PBaseEntity->PAI->QueueAction(queueAction_t(std::chrono::milliseconds(1000), false, [](CBaseEntity* PEntity)
+        {
+            if (PEntity->loc.zone)
+            {
+                PEntity->loc.zone->PushPacket(PEntity, CHAR_INRANGE, new CEntityUpdatePacket(PEntity, ENTITY_SPAWN, UPDATE_ALL_MOB));
+            }
+        }));
+    }
+    return 0;
+}
+
+/************************************************************************
 *                                                                       *
 *  Отображаем статичный текст от лица NPC                               *
 *                                                                       *
@@ -3143,13 +3218,20 @@ inline int32 CLuaBaseEntity::showText(lua_State *L)
         if (!lua_isnil(L, 6) && lua_isnumber(L, 6))
             param3 = (uint32)lua_tointeger(L, 6);
 
+        // DSP-PORT (2026-09-13): optional 7th arg mirrors Topaz's own messageSpecialFrom() 5th
+        // param -- CMessageSpecialPacket (src/map/packets/message_special.h) already accepts a
+        // trailing ShowName bool, this binding just never exposed it to Lua.
+        bool showName = false;
+        if (!lua_isnil(L, 7) && lua_isboolean(L, 7))
+            showName = (lua_toboolean(L, 7) != 0);
+
         if (m_PBaseEntity->objtype == TYPE_PC)
         {
-            ((CCharEntity*)m_PBaseEntity)->pushPacket(new CMessageSpecialPacket(PBaseEntity, messageID, param0, param1, param2, param3));
+            ((CCharEntity*)m_PBaseEntity)->pushPacket(new CMessageSpecialPacket(PBaseEntity, messageID, param0, param1, param2, param3, showName));
         }
         else
         {
-            m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity, CHAR_INRANGE, new CMessageSpecialPacket(PBaseEntity, messageID, param0, param1, param3));
+            m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity, CHAR_INRANGE, new CMessageSpecialPacket(PBaseEntity, messageID, param0, param1, param3, 0, showName));
         }
     }
     return 0;
@@ -3986,6 +4068,64 @@ inline int32 CLuaBaseEntity::messageSpecial(lua_State *L)
     ((CCharEntity*)m_PBaseEntity)->pushPacket(
         new CMessageSpecialPacket(
             m_PBaseEntity,
+            messageID,
+            param0,
+            param1,
+            param2,
+            param3,
+            showName));
+    return 0;
+}
+
+/************************************************************************
+*  Function: messageSpecialFrom()
+*  Purpose : DSP-PORT: same packet as messageSpecial(), but the embedded
+*            source/speaker entity (id/targid/name shown when showName is
+*            true) is a different entity (PSource) than the player this
+*            packet is pushed to (self) -- e.g. an NPC handing the player
+*            an item with real dialogue and a resolved item name. Ported
+*            from Topaz's own CLuaBaseEntity::messageSpecialFrom()
+*            (src/map/lua/lua_baseentity.cpp:425) -- messageSpecial() above
+*            always uses the calling entity (self) as both the packet's
+*            push-target and its embedded source entity, so it can't
+*            produce this shape at all.
+*  Example : player:messageSpecialFrom(npc, ID.text.SOME_LINE, itemID, 0, 0, 0, true)
+************************************************************************/
+
+inline int32 CLuaBaseEntity::messageSpecialFrom(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isuserdata(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+
+    CLuaBaseEntity* PSource = Lunar<CLuaBaseEntity>::check(L, 1);
+
+    uint16 messageID = (uint16)lua_tointeger(L, 2);
+
+    uint32 param0 = 0;
+    uint32 param1 = 0;
+    uint32 param2 = 0;
+    uint32 param3 = 0;
+
+    bool showName = 0;
+
+    if (!lua_isnil(L, 3) && lua_isnumber(L, 3))
+        param0 = (uint32)lua_tointeger(L, 3);
+    if (!lua_isnil(L, 4) && lua_isnumber(L, 4))
+        param1 = (uint32)lua_tointeger(L, 4);
+    if (!lua_isnil(L, 5) && lua_isnumber(L, 5))
+        param2 = (uint32)lua_tointeger(L, 5);
+    if (!lua_isnil(L, 6) && lua_isnumber(L, 6))
+        param3 = (uint32)lua_tointeger(L, 6);
+
+    if (!lua_isnil(L, 7) && lua_isboolean(L, 7))
+        showName = (lua_toboolean(L, 7) == 0 ? false : true);
+
+    ((CCharEntity*)m_PBaseEntity)->pushPacket(
+        new CMessageSpecialPacket(
+            PSource->GetBaseEntity(),
             messageID,
             param0,
             param1,
@@ -7066,6 +7206,35 @@ inline int32 CLuaBaseEntity::getName(lua_State *L)
     return 1;
 }
 
+/************************************************************************
+*  Function: setName()
+*  Purpose : DSP-PORT: overrides the live display name (nameplate/dialogue speaker) of an NPC
+*            or mob, independent of the npc_list/mob_pools name column that drives onTrigger
+*            script lookup (that lookup happens once at load, so a runtime rename here never
+*            breaks it). Ported from Topaz's own CLuaBaseEntity::setName()
+*            (src/map/lua/lua_baseentity.cpp:4090) -- old-dsp-reference had no binding of any
+*            kind for this (confirmed absent: only getName/setPetName/getAutomatonName/
+*            hideName/checkNameFlags existed). Adapted to this codebase's raw lua_State/Lunar
+*            binding style (Topaz's original is sol2-based) and its real CBaseEntity::name
+*            (string_t, baseentity.h:214) / updatemask (UPDATE_NAME, baseentity.h:123) fields,
+*            which are the same shape as Topaz's own m_PBaseEntity->name/updatemask.
+*  Example : npc:setName("Ryaaf")
+*  Notes   : NPC/Mob only.
+************************************************************************/
+
+inline int32 CLuaBaseEntity::setName(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isstring(L, 1));
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB && m_PBaseEntity->objtype != TYPE_NPC);
+
+    const int8* name = (const int8*)lua_tostring(L, 1);
+
+    m_PBaseEntity->name = name;
+    m_PBaseEntity->updatemask |= UPDATE_NAME;
+    return 0;
+}
+
 inline int32 CLuaBaseEntity::getModelSize(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
@@ -8567,6 +8736,15 @@ inline int32 CLuaBaseEntity::getAssaultPoint(lua_State *L)
         case 4:
             lua_pushinteger(L, charutils::GetPoints(PChar, "ilrusi_assault_point"));
             break;
+        // 2026-09-15, real gap found live (user-reported: Nyzul tokens always show 0 -- Sorrowful
+        // Sage, the vending chest, and Rune of Transfer all read this same value). NYZUL_ISLE_
+        // ASSAULT_POINT = 5 (besieged.lua) had no case here at all -- fell through to default,
+        // which always returns 0. Column already exists in char_points.sql
+        // (nyzul_isle_assault_point) -- this was purely a missing C++ case, ported from Topaz's
+        // identical switch (lua_baseentity.cpp:6872-6874 there).
+        case 5:
+            lua_pushinteger(L, charutils::GetPoints(PChar, "nyzul_isle_assault_point"));
+            break;
         default:
             lua_pushinteger(L, 0);
     }
@@ -8604,6 +8782,10 @@ inline int32 CLuaBaseEntity::addAssaultPoint(lua_State *L)
         case 4:
             charutils::AddPoints(PChar, "ilrusi_assault_point", points);
             break;
+        // 2026-09-15, see getAssaultPoint's matching comment -- same missing case, same real gap.
+        case 5:
+            charutils::AddPoints(PChar, "nyzul_isle_assault_point", points);
+            break;
         default:
             break;
     }
@@ -8621,8 +8803,19 @@ inline int32 CLuaBaseEntity::delAssaultPoint(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
 
-    int32 points = lua_tointeger(L, 1);
-    uint32 region = lua_tointeger(L, 2);
+    // 2026-09-15, real bug found live while adding the missing Nyzul case (region 5) here: this
+    // read its two args as (points, region) -- backwards from getAssaultPoint/addAssaultPoint
+    // (region, points) AND from Topaz's identical C++ (lua_baseentity.cpp:6927, also
+    // (region, points)) AND from every actual Lua call site in this codebase
+    // (player:delAssaultPoint(NYZUL_ISLE_ASSAULT_POINT, cost), vending_box.lua/Rune_of_Transfer.lua
+    // -- region first, matching add/get's own convention). This silently broke point-spending for
+    // ALL 5 regions, not just Nyzul -- `region` was always whatever cost value got passed
+    // (virtually never a valid 0-4/5 case, so this almost always fell through to default and
+    // spent nothing), and `points` was always whatever region constant got passed (the wrong
+    // magnitude even on the rare case region did land 0-4). Corrected to match every other
+    // assault-point function's real calling convention.
+    uint32 region = lua_tointeger(L, 1);
+    int32 points = lua_tointeger(L, 2);
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
     switch (region)
@@ -8641,6 +8834,9 @@ inline int32 CLuaBaseEntity::delAssaultPoint(lua_State *L)
             break;
         case 4:
             charutils::AddPoints(PChar, "ilrusi_assault_point", -points);
+            break;
+        case 5:
+            charutils::AddPoints(PChar, "nyzul_isle_assault_point", -points);
             break;
         default:
             break;
@@ -10309,11 +10505,39 @@ inline int32 CLuaBaseEntity::setInstance(lua_State *L)
 
     CLuaInstance* PLuaInstance = Lunar<CLuaInstance>::check(L, 1);
     CInstance* PInstance = PLuaInstance->GetInstance();
+    CInstance* POldInstance = m_PBaseEntity->PInstance;
+    CCharEntity* PChar = dynamic_cast<CCharEntity*>(m_PBaseEntity);
+
+    // 2026-09-14, ported from Topaz's own !warpassault fix chain (2026-08-18, "stale
+    // double-registered char entity"): this used to unconditionally overwrite PInstance without
+    // ever detaching the character from whatever instance it was PREVIOUSLY attached to.
+    // RegisterChar() below only appends to a logical char-id list (CInstance::m_registeredChars)
+    // -- it never touches m_charList, the list the zone's periodic ZoneServer tick actually
+    // iterates (populated separately by InsertPC(), called later from
+    // CZoneInstance::IncreaseZoneCounter). Since the old instance's own
+    // DecreaseZoneCounter/DespawnPC never got a chance to run (by the time the real zone-out
+    // logic reads PChar->PInstance to figure out who to clean up, it was already pointing at the
+    // NEW instance), the character stayed double-registered: alive in the new instance's
+    // charList as expected, but ALSO forever stuck in the old, now-abandoned instance's
+    // charList, which never reaches CharListEmpty() and so never gets reaped. That instance keeps
+    // ticking the stale entry every server tick; once the underlying CCharEntity is eventually
+    // freed (e.g. on a later disconnect), that tick dereferences freed memory -- the access
+    // violation in PRecastContainer->Check() during CZoneEntities::ZoneServer. Only ever hit via
+    // a same-zone-id transition -- a GM instance-warp command is the first caller of setInstance()
+    // that can attach a character who's already got a live PInstance from the SAME physical zone.
+    if (POldInstance && POldInstance != PInstance && PChar && PChar->loc.zone == POldInstance->GetZone())
+    {
+        ShowWarning(CL_YELLOW "CLuaBaseEntity::setInstance: %s was still attached to instanceid %u (ptr %p) -- "
+                              "detaching before switching to instanceid %u (ptr %p) to avoid a stale charList entry\n" CL_RESET,
+                    PChar->GetName(), POldInstance->GetID(), (void*)POldInstance, PInstance ? PInstance->GetID() : 0, (void*)PInstance);
+        POldInstance->DecreaseZoneCounter(PChar);
+    }
+
     m_PBaseEntity->PInstance = PInstance;
 
     if (PInstance)
     {
-        PInstance->RegisterChar(dynamic_cast<CCharEntity*>(m_PBaseEntity));
+        PInstance->RegisterChar(PChar);
     }
 
     return 0;
@@ -10376,6 +10600,26 @@ inline int32 CLuaBaseEntity::isSpawned(lua_State* L)
     CMobEntity* PMob = (CMobEntity*)m_PBaseEntity;
     lua_pushboolean(L, static_cast<CMobEntity*>(m_PBaseEntity)->PAI->IsSpawned());
 
+    return 1;
+}
+
+/************************************************************************
+*  Function: isEngaged()
+*  Purpose : DSP-PORT: returns true if the entity is currently engaged in battle.
+*  Example : if target:isEngaged() then
+*  Notes   : Ported from Topaz's own CLuaBaseEntity::isEngaged() (src/map/lua/lua_baseentity.cpp:
+*            8880 -- `return m_PBaseEntity->PAI->IsEngaged();`). old-dsp-reference already has the
+*            identical underlying capability (CAIContainer::IsEngaged(), src/map/ai/
+*            ai_container.cpp:406, `PAI` declared directly on CBaseEntity at baseentity.h:226,
+*            no cast needed) -- it was just never exposed to Lua. Confirmed absent from this file
+*            before adding (case-insensitive grep for "engaged" across every src/map/lua/*.cpp
+*            found the real C++ method but no LUNAR_DECLARE_METHOD for it anywhere).
+************************************************************************/
+
+inline int32 CLuaBaseEntity::isEngaged(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    lua_pushboolean(L, m_PBaseEntity->PAI->IsEngaged());
     return 1;
 }
 
@@ -10615,9 +10859,23 @@ inline int32 CLuaBaseEntity::setAggressive(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    // 2026-09-14, real engine bug found live (crashed via DSP_DEBUG_BREAK_IF, exception
+    // 0x80000003, in Mining_Point.lua's qiqirn:setAggressive(true)): this required a NUMBER arg,
+    // but Topaz's own equivalent binding is setAggressive(bool aggressive) -- see its doc comment,
+    // which literally shows mob:setAggressive(true) as the canonical usage. Accept boolean or
+    // number so scripts written the correct/documented way don't crash the engine.
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !(lua_isboolean(L, 1) || lua_isnumber(L, 1)));
 
-    ((CMobEntity*)m_PBaseEntity)->m_Aggro = lua_tointeger(L, -1);
+    // Preserve exact numeric semantics for existing number-passing callers; only booleans get the
+    // 0/1 special-case conversion (lua_isnumber is false for a real boolean, so no ambiguity here).
+    if (lua_isboolean(L, 1))
+    {
+        ((CMobEntity*)m_PBaseEntity)->m_Aggro = lua_toboolean(L, -1) ? 1 : 0;
+    }
+    else
+    {
+        ((CMobEntity*)m_PBaseEntity)->m_Aggro = lua_tointeger(L, -1);
+    }
 
     return 0;
 }
@@ -11284,11 +11542,13 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,leavegame),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,gotoPlayer),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,bringPlayer),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,goToEntity),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getID),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getShortID),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getCursorTarget),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPool),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getName),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,setName),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getModelSize),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getHP),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getGender),
@@ -11414,6 +11674,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,messageBasic),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,messagePublic),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,messageSpecial),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,messageSpecialFrom),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,messageSystem),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,clearTargID),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,sendMenu),
@@ -11681,6 +11942,8 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,wait),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,pathTo),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isSpawned),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,isEngaged),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,forceRespawn),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setSpawn),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setRespawnTime),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getRespawnTime),

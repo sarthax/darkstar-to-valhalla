@@ -10,6 +10,7 @@ require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/besieged");
+require("scripts/globals/npc_util");
 
 -----------------------------------
 -- onTrade Action
@@ -24,10 +25,15 @@ end;
 
 function onTrigger(player,npc)
 
-    local currentday = tonumber(os.date("%j"));
+    -- 2026-09-14, reconciled against Topaz's current Rytaal.lua (this file had never been touched
+    -- by the backport project in either engine -- 0 dated fix comments on both sides -- and had
+    -- drifted onto a real-calendar-day cooldown instead of the rest of the codebase's real-time
+    -- convention). os.date("%j") is day-of-year (1-366) -- diffday wraps to a large NEGATIVE value
+    -- every Dec 31 -> Jan 1, silently breaking the Imperial Army ID Tag's daily-refill cooldown at
+    -- every year boundary. Matches Topaz's own real epoch-time-based calculation now.
     local lastIDtag = player:getVar("LAST_IMPERIAL_TAG");
     local tagCount = player:getCurrency("id_tags");
-    local diffday = currentday - lastIDtag ;
+    local diffday = math.floor((os.time() - lastIDtag) / (60 * 60 * 24));
     local currentAssault = player:getCurrentAssault();
     local haveimperialIDtag;
 
@@ -48,14 +54,14 @@ function onTrigger(player,npc)
         if (lastIDtag == 0) then -- first time you get the tag
             tagCount = 1;
             player:setCurrency("id_tags", tagCount);
-            player:setVar("LAST_IMPERIAL_TAG",currentday);
+            player:setVar("LAST_IMPERIAL_TAG", os.time());
         elseif (diffday > 0) then
             tagCount = tagCount + diffday ;
             if (tagCount > 3) then -- store 3 TAG max
                 tagCount = 3;
             end
             player:setCurrency("id_tags", tagCount);
-            player:setVar("LAST_IMPERIAL_TAG",currentday);
+            player:setVar("LAST_IMPERIAL_TAG", os.time());
         end
 
         if (player:hasKeyItem(IMPERIAL_ARMY_ID_TAG)) then
@@ -90,8 +96,7 @@ function onEventFinish(player,csid,option)
     if (csid == 269) then
         player:setVar("AhtUrganStatus",1);
     elseif (csid == 268 and option == 1 and player:hasKeyItem(IMPERIAL_ARMY_ID_TAG) == false and tagCount > 0) then
-        player:addKeyItem(IMPERIAL_ARMY_ID_TAG);
-        player:messageSpecial(KEYITEM_OBTAINED,IMPERIAL_ARMY_ID_TAG);
+        npcUtil.giveKeyItem(player, IMPERIAL_ARMY_ID_TAG);
         player:setCurrency("id_tags", tagCount - 1);
     elseif (csid == 268 and option == 2 and player:hasKeyItem(IMPERIAL_ARMY_ID_TAG) == false and hasAssaultOrders(player) ~= 0) then
         if (player:hasKeyItem(LEUJAOAM_ASSAULT_ORDERS)) then
@@ -107,8 +112,7 @@ function onEventFinish(player,csid,option)
         elseif (player:hasKeyItem(NYZUL_ISLE_ASSAULT_ORDERS)) then
             player:delKeyItem(NYZUL_ISLE_ASSAULT_ORDERS);
         end
-        player:addKeyItem(IMPERIAL_ARMY_ID_TAG);
-        player:messageSpecial(KEYITEM_OBTAINED,IMPERIAL_ARMY_ID_TAG);
+        npcUtil.giveKeyItem(player, IMPERIAL_ARMY_ID_TAG);
         player:delAssault(currentAssault);
     end
 
