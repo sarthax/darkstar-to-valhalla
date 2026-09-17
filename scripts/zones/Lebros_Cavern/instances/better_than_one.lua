@@ -2,13 +2,13 @@
 -- Assault: Better Than One
 -----------------------------------
 require("scripts/globals/instance")
+package.loaded["scripts/zones/Lebros_Cavern/TextIDs"] = nil;
+require("scripts/zones/Lebros_Cavern/TextIDs");
 require("scripts/globals/status")
 local ID = Lebros
 
------------------------------------
 -- Hardcoded mob groups for SpawnMob compatibility (see MOB_GROUP_21 pattern above)
 -- Boss + ambient Inferno obstacles
------------------------------------
 local MOB_GROUP_30 = {
     -- 1 Boss: Black Shuck
     17035470, -- BLACK_SHUCK

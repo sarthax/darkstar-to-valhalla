@@ -2,6 +2,8 @@
 -- Assault: Siegemaster Assassination
 -----------------------------------
 require("scripts/globals/instance")
+package.loaded["scripts/zones/Lebros_Cavern/TextIDs"] = nil;
+require("scripts/zones/Lebros_Cavern/TextIDs");
 require("scripts/globals/status")
 local ID = Lebros
 

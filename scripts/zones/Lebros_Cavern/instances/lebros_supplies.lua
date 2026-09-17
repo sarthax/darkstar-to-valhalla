@@ -25,6 +25,8 @@
 -- (wiki: "either 6 or 7", not disambiguated further) -- randomized per instance per Stormer.
 -----------------------------------
 require("scripts/globals/instance")
+package.loaded["scripts/zones/Lebros_Cavern/TextIDs"] = nil;
+require("scripts/zones/Lebros_Cavern/TextIDs");
 require("scripts/globals/status")
 local ID = Lebros
 -----------------------------------

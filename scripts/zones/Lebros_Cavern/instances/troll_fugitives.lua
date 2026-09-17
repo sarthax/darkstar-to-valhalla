@@ -7,6 +7,8 @@
 -- guess to the real 1100; Lockbox reward table validated, no changes needed.
 -----------------------------------
 require("scripts/globals/instance")
+package.loaded["scripts/zones/Lebros_Cavern/TextIDs"] = nil;
+require("scripts/zones/Lebros_Cavern/TextIDs");
 require("scripts/globals/status")
 local ID = Lebros
 -----------------------------------

@@ -2,13 +2,13 @@
 -- Assault: Operation: Black Pearl
 -----------------------------------
 require("scripts/globals/instance")
+package.loaded["scripts/zones/Lebros_Cavern/TextIDs"] = nil;
+require("scripts/zones/Lebros_Cavern/TextIDs");
 require("scripts/globals/status")
 local ID = Lebros
 
------------------------------------
 -- Hardcoded mob groups for SpawnMob compatibility (see MOB_GROUP_21 pattern above)
 -- Boss + trash mobs for the boss-kill mission
------------------------------------
 local MOB_GROUP_29 = {
     -- 1 Boss
     17035402, -- JORPORBOR_THE_HELLRAKER

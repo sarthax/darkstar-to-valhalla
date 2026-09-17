@@ -3,10 +3,11 @@
 --
 -----------------------------------
 require("scripts/globals/instance")
+package.loaded["scripts/zones/Lebros_Cavern/TextIDs"] = nil;
+require("scripts/zones/Lebros_Cavern/TextIDs");
 require("scripts/globals/status")
 local ID = Lebros
 
------------------------------------
 -- Hardcoded mob groups for SpawnMob compatibility (see MOB_GROUP_21/23/24 pattern above)
 -- 15 real RANCH_WAMOURA mobs + their level ranges match the capture's Thris data
 -----------------------------------
