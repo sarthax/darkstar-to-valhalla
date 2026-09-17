@@ -1,0 +1,89 @@
+-----------------------------------
+-- Assault: Excavation Duty
+-----------------------------------
+require("scripts/globals/instance")
+require("scripts/globals/status")
+local ID = Lebros
+-----------------------------------
+function afterInstanceRegister(player)
+    local instance = player:getInstance()
+    player:messageSpecial(ID.text.ASSAULT_21_START, 21)
+    player:messageSpecial(ID.text.TIME_TO_COMPLETE, instance:getTimeLimit())
+end
+
+-----------------------------------
+-- Hardcoded mob groups for SpawnMob compatibility.
+-- Mamool Ja instances use this pattern (hardcoded arrays), so Lebros follows the same.
+-- Previously using ID.mob[21] iteration caused SpawnMob to fail because it expects
+-- raw mob IDs, not table-key iterations. Converted to explicit ID arrays.
+-----------------------------------
+local MOB_GROUP_21 = {
+    17035265, 17035266, 17035267, 17035268, 17035269, 17035270, 17035271, 17035272,
+    17035273, 17035274, 17035275, 17035276, 17035277, 17035278, 17035279, 17035280,
+    17035281, 17035282, 17035284, 17035286, 17035288, 17035290,
+}
+
+-----------------------------------
+-- Assault: Excavation Duty (mission 21) - Brittle Rock wall breakers + Qiqirn Ceramist/Volcanist
+-----------------------------------
+function onInstanceCreated(instance)
+
+    for _, v in ipairs(MOB_GROUP_21) do
+        SpawnMob(v, instance)
+    end
+
+    instance:getEntity(bit.band(ID.npc.RUNE_OF_RELEASE, 0xFFF), TYPE_NPC):setPos(49.999, -40.837, 96.999, 0)
+    instance:getEntity(bit.band(ID.npc.ANCIENT_LOCKBOX, 0xFFF), TYPE_NPC):setPos(50.000, -40.070, 99.999, 0)
+
+    -- Rock-wall props default to hidden (npc_list status=0) and nothing was revealing them, so
+    -- the Brittle Rock mobs had no visible obstacle to be standing in front of. Show them now;
+    -- Brittle_Rock.lua's onMobDeath clears each one back to hidden once its rock is destroyed.
+    instance:getEntity(bit.band(ID.npc._1rx, 0xFFF), TYPE_NPC):setStatus(STATUS_NORMAL)
+    instance:getEntity(bit.band(ID.npc._1ry, 0xFFF), TYPE_NPC):setStatus(STATUS_NORMAL)
+    instance:getEntity(bit.band(ID.npc._1rz, 0xFFF), TYPE_NPC):setStatus(STATUS_NORMAL)
+    instance:getEntity(bit.band(ID.npc._ir0, 0xFFF), TYPE_NPC):setStatus(STATUS_NORMAL)
+    instance:getEntity(bit.band(ID.npc._ir1, 0xFFF), TYPE_NPC):setStatus(STATUS_NORMAL)
+end
+
+function onInstanceTimeUpdate(instance, elapsed)
+    updateInstanceTime(instance, elapsed, ID.text)
+end
+
+function onInstanceFailure(instance)
+
+    local chars = instance:getChars()
+
+    for i, v in pairs(chars) do
+        v:messageSpecial(ID.text.MISSION_FAILED, 10, 10)
+        v:startEvent(102)
+    end
+end
+
+function onInstanceProgressUpdate(instance, progress)
+
+    -- 2026-08-25: reverted to 5 (real mission threshold per FFXIclopedia/Korvana guide, "break
+    -- all 5 Brittle Rock walls"). 
+    if progress >= 5 then
+        instance:complete()
+    end
+
+end
+
+function onInstanceComplete(instance)
+
+    local chars = instance:getChars()
+
+    for i, v in pairs(chars) do
+        -- 2026-08-20: letter index confirmed 0-based (A=0) via the Lebros Supplies capture's own
+        -- decoded text ("H-8" rendered from Num1={7,8,...})
+        v:messageSpecial(ID.text.RUNE_UNLOCKED_POS, 5, 10) -- F-10
+    end
+
+    instance:getEntity(bit.band(ID.npc.RUNE_OF_RELEASE, 0xFFF), TYPE_NPC):setStatus(STATUS_NORMAL)
+    instance:getEntity(bit.band(ID.npc.ANCIENT_LOCKBOX, 0xFFF), TYPE_NPC):setStatus(STATUS_NORMAL)
+
+end
+
+function onEventUpdate(player, csid, option)
+end
+

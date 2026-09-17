@@ -1,10 +1,19 @@
 -----------------------------------
--- 
 -- Assault: Wamoura Farm Raid
--- 
+--
 -----------------------------------
+require("scripts/globals/instance")
+require("scripts/globals/status")
+local ID = Lebros
 
-require("scripts/zones/Lebros_Cavern/IDs");
+-----------------------------------
+-- Hardcoded mob groups for SpawnMob compatibility (see MOB_GROUP_21/23/24 pattern above)
+-- 15 real RANCH_WAMOURA mobs + their level ranges match the capture's Thris data
+-----------------------------------
+local MOB_GROUP_27 = {
+    17035359, 17035360, 17035361, 17035362, 17035363, 17035365, 17035367, 17035368,
+    17035369, 17035370, 17035371, 17035372, 17035376, 17035377, 17035378,
+}
 
 -----------------------------------
 -- afterInstanceRegister
@@ -12,9 +21,9 @@ require("scripts/zones/Lebros_Cavern/IDs");
 
 function afterInstanceRegister(player)
     local instance = player:getInstance();
-    player:messageSpecial(Lebros.text.ASSAULT_27_START, 27);
-    player:messageSpecial(Lebros.text.TIME_TO_COMPLETE, instance:getTimeLimit());
-end;    
+    player:messageSpecial(ID.text.ASSAULT_27_START, 27);
+    player:messageSpecial(ID.text.TIME_TO_COMPLETE, instance:getTimeLimit());
+end;
 
 -----------------------------------
 -- onInstanceCreated
@@ -22,7 +31,7 @@ end;
 
 function onInstanceCreated(instance)
 
-    for i,v in pairs(Lebros.mobs[27]) do
+    for _, v in ipairs(MOB_GROUP_27) do
         SpawnMob(v, instance);
     end
 
