@@ -302,7 +302,7 @@ INSERT INTO `mob_family_system` VALUES (232,'Snoll',3,'Arcana',0,40,89,140,6,3,6
 INSERT INTO `mob_family_system` VALUES (233,'Soulflayer',9,'Demon',0,40,100,140,6,3,3,3,1,5,4,3,3,3,3,1,1,1,1,0.875,0.875,1,1,1.125,1,1.125,0.5,6,418,0);
 INSERT INTO `mob_family_system` VALUES (234,'Spheroid',3,'Arcana',0,40,90,90,1,3,4,3,6,6,5,3,3,3,3,1,1,1,1,1,1,1,1,1.25,1,1,1,5,34,0);
 INSERT INTO `mob_family_system` VALUES (235,'Spider',20,'Vermin',0,40,87,130,1,3,5,3,2,6,5,3,3,3,3,1,1,1,1,1,1.25,1,1,1,1,1,1,4,2,1);
-INSERT INTO `mob_family_system` VALUES (236,'Structure',18,'Unclassified',0,64,100,120,3,3,3,3,3,3,3,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,0,2,0);
+INSERT INTO `mob_family_system` VALUES (236,'Structure',18,'Unclassified',3,64,100,120,3,3,3,3,3,3,3,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,0,2,0);
 INSERT INTO `mob_family_system` VALUES (237,'Structure',18,'Unclassified',3,255,100,120,3,3,3,3,3,3,3,3,3,3,3,1,1,1,1,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0,1,0);
 INSERT INTO `mob_family_system` VALUES (238,'Structure',18,'Unclassified',1,40,100,120,3,3,3,3,3,3,3,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0);
 INSERT INTO `mob_family_system` VALUES (239,'Structure',18,'Unclassified',2,40,100,120,3,3,3,3,3,3,3,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0);

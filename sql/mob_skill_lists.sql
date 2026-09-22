@@ -670,8 +670,9 @@ INSERT INTO `mob_skill_lists` VALUES ('Ladybug',170,2181);
 INSERT INTO `mob_skill_lists` VALUES ('Ladybug',170,2180);
 INSERT INTO `mob_skill_lists` VALUES ('Ladybug',170,2179);
 INSERT INTO `mob_skill_lists` VALUES ('Ladybug',170,2178);
--- INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1752);
+INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1752);
 INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1753);
+INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1762); -- belly_dance (2026-09-19)
 -- INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1929);
 -- INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1761);
 -- INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1930);
@@ -679,13 +680,13 @@ INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1753);
 -- INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1755,?);
 -- INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1756);
 -- INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1757,?);
--- INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1759);
+INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1759);
 -- INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1813);
 -- INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1814);
 -- INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1812);
 -- INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1809);
 -- INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1811);
--- INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1758);
+INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1758);
 INSERT INTO `mob_skill_lists` VALUES ('Leech',172,414);
 INSERT INTO `mob_skill_lists` VALUES ('Leech',172,415);
 INSERT INTO `mob_skill_lists` VALUES ('Leech',172,416);
@@ -3637,3 +3638,34 @@ INSERT INTO `mob_skill_lists` VALUES ('Flame_Skimmer',997,660); -- venom
 -- INSERT INTO `mob_skill_lists` VALUES ('Flame_Skimmer',997,1624); -- debilitating_drone
 
 INSERT INTO `mob_skill_lists` VALUES ('Hovering_Hotpot',998,521); -- spinning attack
+
+-- 2026-09-19 Topaz per-job Mamool Ja lists (subset: only skills that exist in DSP mob_skills; Topaz also has 1920 rushing_drub, 2361 stave_toss (1149) and 1736 axe_throw (1150) -> NOT PORTED, gap)
+INSERT INTO `mob_skill_lists` VALUES ('MamoolJaMage',1149,1922);
+INSERT INTO `mob_skill_lists` VALUES ('MamoolJaMage',1149,1923); -- mage Warder firespit (capture 17047560: 1923 anim 1267); Sagelord uses list 1151 (1733/1151)
+INSERT INTO `mob_skill_lists` VALUES ('MamoolJaMage',1149,1924);
+INSERT INTO `mob_skill_lists` VALUES ('MamoolJaAxe',1150,1731);
+INSERT INTO `mob_skill_lists` VALUES ('MamoolJaAxe',1150,1732);
+INSERT INTO `mob_skill_lists` VALUES ('MamoolJaAxe',1150,1733);
+INSERT INTO `mob_skill_lists` VALUES ('MamoolJaAxe',1150,1734);
+INSERT IGNORE INTO `mob_skill_lists` VALUES ('MamoolJaAxe',1150,1736);
+INSERT IGNORE INTO `mob_skill_lists` VALUES ('MamoolJaMage',1149,2361);
+INSERT IGNORE INTO `mob_skill_lists` VALUES ('MamoolJaMage',1149,1920);
+
+INSERT INTO `mob_skill_lists` VALUES ('SagelordMolaal',1151,1733);
+INSERT INTO `mob_skill_lists` VALUES ('SagelordMolaal',1151,1924);
+INSERT INTO `mob_skill_lists` VALUES ('SagelordMolaal',1151,1920);
+INSERT INTO `mob_skill_lists` VALUES ('SagelordMolaal',1151,1922);
+INSERT INTO `mob_skill_lists` VALUES ('SagelordMolaal',1151,2361);
+INSERT IGNORE INTO `mob_skill_lists` VALUES ('MamoolJaBlu',1153,1731);
+INSERT IGNORE INTO `mob_skill_lists` VALUES ('MamoolJaBlu',1153,1732);
+INSERT IGNORE INTO `mob_skill_lists` VALUES ('MamoolJaBlu',1153,1733);
+INSERT IGNORE INTO `mob_skill_lists` VALUES ('MamoolJaBlu',1153,1734);
+INSERT IGNORE INTO `mob_skill_lists` VALUES ('MamoolJaBlu',1153,1737);
+INSERT IGNORE INTO `mob_skill_lists` VALUES ('MamoolJaDrg',1152,1731);
+INSERT IGNORE INTO `mob_skill_lists` VALUES ('MamoolJaDrg',1152,1732);
+INSERT IGNORE INTO `mob_skill_lists` VALUES ('MamoolJaDrg',1152,1733);
+INSERT IGNORE INTO `mob_skill_lists` VALUES ('MamoolJaDrg',1152,1734);
+INSERT IGNORE INTO `mob_skill_lists` VALUES ('MamoolJaDrg',1152,1840);
+INSERT IGNORE INTO `mob_skill_lists` VALUES ('MamoolJaAxe',1150,1839);
+INSERT IGNORE INTO `mob_skill_lists` VALUES ('MamoolJaMage',1149,1921);
+INSERT IGNORE INTO `mob_skill_lists` VALUES ('SagelordMolaal',1151,1921);

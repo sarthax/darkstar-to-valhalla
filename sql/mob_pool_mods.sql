@@ -294,3 +294,9 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2013-09-20 13:54:52
+
+-- Merged from mission-packages/mamool_ja_training_grounds_missions_1-4/sql/mob_pool_mods.sql (2026-09-14) -- 4 rows confirmed missing from this file, SQL-gap sweep
+INSERT INTO `mob_pool_mods` VALUES (2531,31,250,1);
+INSERT INTO `mob_pool_mods` VALUES (2531,51,4,1);
+INSERT INTO `mob_pool_mods` VALUES (4815,31,250,1);
+INSERT INTO `mob_pool_mods` VALUES (4815,51,4,1);
