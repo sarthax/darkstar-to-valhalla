@@ -553,15 +553,27 @@ void HandleGroupListRequest(CTCPRequestPacket& PTCPRequest)
         uint32 linkshellid = linkshellid1 == 0 ? linkshellid2 : linkshellid1;
         std::list<SearchEntity*> LinkshellList = PDataLoader.GetLinkshellList(linkshellid);
 
-        CLinkshellListPacket PLinkshellPacket(linkshellid, LinkshellList.size());
+        const uint32 totalResults = (uint32)LinkshellList.size();
+        uint32 currentResult = 0;
+        std::list<SearchEntity*>::iterator it = LinkshellList.begin();
 
-        for (std::list<SearchEntity*>::iterator it = LinkshellList.begin(); it != LinkshellList.end(); ++it)
+        do // split into as many packets as needed; only the last is flagged final
         {
-            PLinkshellPacket.AddPlayer(*it);
-        }
+            CLinkshellListPacket PLinkshellPacket(linkshellid, totalResults);
 
-        PrintPacket((int8*)PLinkshellPacket.GetData(), PLinkshellPacket.GetSize());
-        PTCPRequest.SendToSocket(PLinkshellPacket.GetData(), PLinkshellPacket.GetSize());
+            while (currentResult < totalResults && PLinkshellPacket.AddPlayer(*it))
+            {
+                currentResult++;
+                ++it;
+            }
+            if (currentResult == totalResults)
+            {
+                PLinkshellPacket.SetFinal();
+            }
+
+            PrintPacket((int8*)PLinkshellPacket.GetData(), PLinkshellPacket.GetSize());
+            PTCPRequest.SendToSocket(PLinkshellPacket.GetData(), PLinkshellPacket.GetSize());
+        } while (currentResult < totalResults);
     }
 }
 
@@ -606,15 +618,26 @@ void HandleSearchRequest(CTCPRequestPacket& PTCPRequest)
     CDataLoader PDataLoader;
     std::list<SearchEntity*> SearchList = PDataLoader.GetPlayersList(sr, &totalCount);
     //PDataLoader->GetPlayersCount(sr)
-    CSearchListPacket PSearchPacket(totalCount);
+    const uint32 totalResults = (uint32)SearchList.size();
+    uint32 currentResult = 0;
+    std::list<SearchEntity*>::iterator it = SearchList.begin();
 
-    for (std::list<SearchEntity*>::iterator it = SearchList.begin(); it != SearchList.end(); ++it)
+    do // split into as many packets as needed; only the last is flagged final
     {
-        PSearchPacket.AddPlayer(*it);
-    }
+        CSearchListPacket PSearchPacket(totalCount);
 
-    //PrintPacket((int8*)PSearchPacket->GetData(), PSearchPacket->GetSize());
-    PTCPRequest.SendToSocket(PSearchPacket.GetData(), PSearchPacket.GetSize());
+        while (currentResult < totalResults && PSearchPacket.AddPlayer(*it))
+        {
+            currentResult++;
+            ++it;
+        }
+        if (currentResult == totalResults)
+        {
+            PSearchPacket.SetFinal();
+        }
+
+        PTCPRequest.SendToSocket(PSearchPacket.GetData(), PSearchPacket.GetSize());
+    } while (currentResult < totalResults);
 }
 
 /************************************************************************

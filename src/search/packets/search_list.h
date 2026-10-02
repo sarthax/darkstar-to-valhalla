@@ -47,13 +47,18 @@ enum SEARCHTYPE
 	SEARCH_LANGUAGE      = 0x15,    // 10101
 };
 
+// shared by CSearchListPacket and CLinkshellListPacket
+static const uint32 TRAILER_SIZE   = 0x14; // 0x10 + 0x04 bytes appended by SendToSocket
+static const uint32 ENTRY_MAX_SIZE = 67;   // worst-case bytes for one entity
+
 class CSearchListPacket
 {
 public:
 
     CSearchListPacket(uint32 Total);
 
-    void AddPlayer(SearchEntity* PPlayer);
+    bool AddPlayer(SearchEntity* PPlayer); // false = packet full, entity NOT consumed
+    void SetFinal();
 
     uint8* GetData();
     uint16 GetSize();

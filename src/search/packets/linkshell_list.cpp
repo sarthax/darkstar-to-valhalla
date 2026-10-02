@@ -47,11 +47,11 @@ CLinkshellListPacket::CLinkshellListPacket(uint32 linkshellid, uint32 Total)
 
     memset(m_data, 0, sizeof(m_data));
 
-    WBUFB(m_data, (0x0A)) = 0x80;
+    WBUFB(m_data, (0x0A)) = 0x00;                       // not final (SetFinal() sets 0x80)
     WBUFB(m_data, (0x0B)) = 0x82;                       // packet type
 
     // WBUFB(m_data,(0x0E)) = 0x00;                       // количество персонажей в пакете
-    WBUFB(m_data, (0x0E)) = Total;
+    WBUFW(m_data, (0x0E)) = Total;
 }
 
 CLinkshellListPacket::~CLinkshellListPacket()
@@ -65,16 +65,23 @@ CLinkshellListPacket::~CLinkshellListPacket()
 *																		*
 ************************************************************************/
 
-void CLinkshellListPacket::AddPlayer(SearchEntity* PPlayer)
+bool CLinkshellListPacket::AddPlayer(SearchEntity* PPlayer)
 {
     uint32 size_offset = m_offset / 8;
+    if ((sizeof(m_data) - size_offset) < (TRAILER_SIZE + ENTRY_MAX_SIZE))
+    {
+        return false; // full: caller sends this packet and starts a new one
+    }
     m_offset += 8;
+
+    uint32 namelen = strlen((const int8*)PPlayer->name);
+    if (namelen > 15) namelen = 15;
 
     m_offset = packBitsLE(m_data, SEARCH_NAME, m_offset, 5);
 
-    m_offset = packBitsLE(m_data, strlen((const int8*)PPlayer->name), m_offset, 4);
+    m_offset = packBitsLE(m_data, namelen, m_offset, 4);
 
-    for (uint8 c = 0; c < strlen((const int8*)PPlayer->name); ++c)
+    for (uint32 c = 0; c < namelen; ++c)
     {
         m_offset = packBitsLE(m_data, PPlayer->name[c], m_offset, 7);
     }
@@ -136,6 +143,12 @@ void CLinkshellListPacket::AddPlayer(SearchEntity* PPlayer)
     WBUFB(m_data, size_offset) = m_offset / 8 - size_offset - 1;      // размер данных сущности
     WBUFW(m_data, (0x08)) = m_offset / 8;                            // размер отправляемых данных
     delete PPlayer;
+    return true;
+}
+
+void CLinkshellListPacket::SetFinal()
+{
+    WBUFB(m_data, (0x0A)) = 0x80;
 }
 
 /************************************************************************
