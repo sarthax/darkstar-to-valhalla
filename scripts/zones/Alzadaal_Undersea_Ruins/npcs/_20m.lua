@@ -3,6 +3,13 @@
 -- Door: Runic Seal
 -- !pos 125 -2 20 72
 -----------------------------------
+-- DSP-PORT-MERGE: this is DSP's own real, already-working _20m.lua (kept as the base -- it's a
+-- mature, complete implementation, not a stub), with exactly 2 real bug fixes cherry-picked from
+-- Topaz's independently-rewritten version of the same file. Everything else in Topaz's rewrite was
+-- deliberately NOT ported -- see MERGE_DECISIONS.md for the full diff reasoning, including one
+-- place where Topaz's rewrite introduced a real operator-precedence regression that DSP's own
+-- original code gets right (`not (A and B)` vs `(not A) and B`) -- DSP's original stays.
+-----------------------------------
 
 package.loaded["scripts/zones/Alzadaal_Undersea_Ruins/TextIDs"] = nil;
 -----------------------------------
@@ -34,7 +41,7 @@ function onTrigger(player,npc)
     elseif (player:getCurrentMission(TOAU) == NASHMEIRAS_PLEA and player:hasKeyItem(MYTHRIL_MIRROR) and player:getVar("AhtUrganStatus") == 1) then
         player:setVar("NashmeirasPlea",1);
         player:startEvent(0x0195, 59, -10, 0, 99, 5, 0);
-    elseif (player:hasKeyItem(NYZUL_ISLE_ASSAULT_ORDERS)) then
+    elseif (player:hasKeyItem(NYZUL_ISLE_ASSAULT_ORDERS) and (player:getCurrentAssault() == 51 or player:getCurrentAssault() == 52)) then
         local assaultid = player:getCurrentAssault();
         local recommendedLevel = getRecommendedAssaultLevel(assaultid);
         local armband = 0;
@@ -42,6 +49,18 @@ function onTrigger(player,npc)
             armband = 1;
         end
         player:startEvent(0x0195, assaultid, -4, 0, recommendedLevel, 5, armband);
+    -- DSP-PORT-MERGE (real bug fix, ported from Topaz's rewrite): a character holding a stale
+    -- NYZUL_ISLE_ASSAULT_ORDERS (left over from an earlier run, with their real "current assault"
+    -- slot since overwritten/cleared by entering a DIFFERENT assault instance elsewhere -- only one
+    -- can be active on a character at a time) used to fall through to this branch unconditionally
+    -- and reach player:createInstance(0, 77) -- a real, invalid instance id with no matching
+    -- instance_list.sql row, landing the player at raw (0,0,0), out of bounds. The added
+    -- getCurrentAssault()==51-or-52 check above scopes that branch to real Nyzul Isle assault ids;
+    -- this new branch catches the stale-key-item case instead of falling through to "else" and
+    -- clears it, matching Topaz's confirmed live fix.
+    elseif (player:hasKeyItem(NYZUL_ISLE_ASSAULT_ORDERS)) then
+        player:delKeyItem(NYZUL_ISLE_ASSAULT_ORDERS);
+        player:messageSpecial(NOTHING_HAPPENS);
     else
         player:messageSpecial(NOTHING_HAPPENS);
     end
@@ -204,6 +223,12 @@ function onInstanceCreated(player,target,instance)
         player:setInstance(instance);
         player:instanceEntry(target,4);
 
+        -- DSP-PORT-MERGE (real bug fix, found while diffing against Topaz's rewrite): `party` was
+        -- referenced here without ever being declared in this function -- an undefined global reads
+        -- as nil in Lua, so `party ~= nil` was always false and this entire party-notification block
+        -- (moving party members into the instance, clearing their key items) never actually ran.
+        -- Confirmed as a real, currently-live bug in this exact file, not a Topaz-side invention.
+        local party = player:getParty();
         if (party ~= nil) then
             for i,v in ipairs(party) do
                 if v:getID() ~= player:getID() and v:getZone() == player:getZone() then
