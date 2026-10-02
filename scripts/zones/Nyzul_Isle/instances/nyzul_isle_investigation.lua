@@ -87,10 +87,7 @@ local function spawnRandomEnemyLayout(instance)
         return 0
     end
 
-    local points = {}
-    for i = 1, #roomPoints do
-        table.insert(points, roomPoints[i])
-    end
+    local points = Nyzul.getSpawnPoints(roomLayout)
 
     local layoutKeys = {}
     for k in pairs(NyzulIsle.mobs[51].ENEMY_LAYOUTS) do
@@ -159,7 +156,11 @@ local function spawnRandomLeader(instance)
     -- normal random pick. 0 (unset) falls through to real random behavior.
     local forcedLeader = instance:getLocalVar("Nyzul_Debug_ForceLeader")
     local leaderId = (forcedLeader and forcedLeader > 0) and forcedLeader or leaderPool[math.random(1, #leaderPool)]
-    local p = roomPoints[math.random(1, #roomPoints)]
+    local leaderPoints = Nyzul.getSpawnPoints(roomLayout)
+    if #leaderPoints == 0 then
+        return
+    end
+    local p = leaderPoints[math.random(1, #leaderPoints)]
 
     local mob = GetMobByID(leaderId, instance)
     if mob then
@@ -241,10 +242,7 @@ local function spawnRandomSpecifiedGroup(instance)
         return 0
     end
 
-    local points = {}
-    for i = 1, #roomPoints do
-        table.insert(points, roomPoints[i])
-    end
+    local points = Nyzul.getSpawnPoints(roomLayout)
 
     local group = NyzulIsle.mobs[51].SPECIFIED_GROUPS[math.random(1, #NyzulIsle.mobs[51].SPECIFIED_GROUPS)]
 
@@ -303,10 +301,7 @@ local function spawnGear(instance)
         return
     end
 
-    local points = {}
-    for i = 1, #roomPoints do
-        table.insert(points, roomPoints[i])
-    end
+    local points = Nyzul.getSpawnPoints(roomLayout)
 
     for i = NyzulIsle.mobs[51].GEAR_OFFSET + 2, NyzulIsle.mobs[51].GEAR_OFFSET + 7 do
         if #points == 0 then
@@ -365,10 +360,7 @@ local function spawnFloorNMs(instance)
         return
     end
 
-    local points = {}
-    for i = 1, #roomPoints do
-        table.insert(points, roomPoints[i])
-    end
+    local points = Nyzul.getSpawnPoints(roomLayout)
 
     local currentFloor = instance:getLocalVar("Nyzul_Current_Floor")
     local floorSection = math.min(5, math.floor((currentFloor - 1) / 20) + 1)
@@ -485,10 +477,7 @@ local function spawnSpecifiedEnemy(instance)
         return
     end
 
-    local points = {}
-    for i = 1, #roomPoints do
-        table.insert(points, roomPoints[i])
-    end
+    local points = Nyzul.getSpawnPoints(roomLayout)
 
     local layoutKeys = {}
     for k in pairs(NyzulIsle.mobs[51].ENEMY_LAYOUTS) do

@@ -41,10 +41,7 @@ Nyzul.lampsActivate = function(instance)
         return
     end
 
-    local dTableLampPoints = {}
-    for i = 1, #layoutPoints do
-        table.insert(dTableLampPoints, i, layoutPoints[i])
-    end
+    local dTableLampPoints = Nyzul.getLampPoints(floorLayout)
 
     if lampsObjective == Nyzul.lampsObjective.REGISTER then
         local spawnPoint = math.random(1, #dTableLampPoints)
