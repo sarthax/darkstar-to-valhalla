@@ -256,20 +256,34 @@ void CZoneInstance::IncreaseZoneCounter(CCharEntity* PChar)
         luautils::OnInstanceZoneIn(PChar, PChar->PInstance);
         CharZoneIn(PChar);
 
-        /* disabled until invalid packet error can be worked around (not sending all
-           level related stuff twice (before and after level sync)
-        if (PChar->PInstance->GetLevelCap() > 0)
+        // Re-enabled 2026-09-22: matched to CBattlefield::ApplyLevelRestrictions (battlefield.cpp),
+        // the proven-working reference. Prior "invalid packet" error traced to DelStatusEffectsByFlag
+        // being called unsilenced (silent=false default) with a broad EFFECTFLAG_DISPELABLE|EFFECTFLAG_ON_ZONE
+        // mask, flooding removal packets during the zone-in burst. Battlefield uses silent=true with the
+        // narrower EFFECTFLAG_DEATH mask and has no such issue. Ported from Topaz fix same date.
+        //
+        // Gated to firstEntry (2026-09-23): unlike CBattlefield::InsertEntity (fires once per BCNM
+        // attempt), IncreaseZoneCounter also fires on every same-zone-id floor transition inside a
+        // multi-floor Assault (Nyzul Isle). Unconditional application re-ran DelStatusEffectsByFlag on
+        // every floor change, stripping any live EFFECTFLAG_DEATH buff (e.g. GM /godmode's Mighty
+        // Strikes/Hundred Fists/Chainspell/Perfect Dodge/Invincible/Manafont/Regain/Refresh/Regen)
+        // applied mid-run. CheckFirstEntry() is a one-shot set-insert (instance.cpp:314), so capturing
+        // it once and reusing it below applies the level cap only on true first entry. Ported from
+        // Topaz fix same date.
+        bool firstEntry = PChar->PInstance->CheckFirstEntry(PChar->id);
+
+        if (firstEntry && PChar->PInstance->GetLevelCap() > 0)
         {
-            PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DISPELABLE | EFFECTFLAG_ON_ZONE);
+            PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DEATH, true);
             PChar->StatusEffectContainer->AddStatusEffect(new CStatusEffect(
                 EFFECT_LEVEL_RESTRICTION,
                 EFFECT_LEVEL_RESTRICTION,
                 PChar->PInstance->GetLevelCap(),
                 0, 0)
             );
-        }*/
+        }
 
-        if (PChar->PInstance->CheckFirstEntry(PChar->id))
+        if (firstEntry)
         {
             PChar->loc.p = PChar->PInstance->GetEntryLoc();
             PChar->PAI->QueueAction(queueAction_t(400ms, false, luautils::AfterInstanceRegister));
@@ -374,6 +388,16 @@ void CZoneInstance::ZoneServer(time_point tick, bool check_regions)
     while (it != instanceList.end())
     {
         CInstance* instance = *it;
+
+        // 2026-09-16: instance is visible here (pushed onto instanceList) before its background
+        // CInstanceLoader::LoadInstance thread has finished populating m_mobList/m_npcList --
+        // ticking it here would race that thread's unsynchronized map inserts. See IsLoading()'s
+        // declaration comment in instance.h for the full incident writeup.
+        if (instance->IsLoading())
+        {
+            ++it;
+            continue;
+        }
 
         instance->ZoneServer(tick, check_regions);
         instance->CheckTime(tick);

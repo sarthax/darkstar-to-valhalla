@@ -132,7 +132,7 @@ function onTrigger(player, npc)
     local isFull = npc:getLocalVar("full") == 1
 
     npc:lookAt(player:getPos())
-    npc:messageText(player, isFull and ID.text.IMPERIAL_STORMER_MORE or ID.text.IMPERIAL_STORMER_THANKS)
+    player:messageText(npc, isFull and ID.text.IMPERIAL_STORMER_MORE or ID.text.IMPERIAL_STORMER_THANKS)
 
     local heldItem = nil
     local isStewpot = false
@@ -150,8 +150,13 @@ function onTrigger(player, npc)
     end
 
     if not heldItem then
-        npc:timer(2000, function()
-            npc:messageText(player, isFull and ID.text.IMPERIAL_STORMER_FULL_BELLY or ID.text.IMPERIAL_STORMER_PROVISIONS)
+        local playerId = player:getID()
+        npc:timer(2000, function(n)
+            local p = nil
+            for _, v in pairs(instance:getChars()) do
+                if v:getID() == playerId then p = v end
+            end
+            if p then p:messageText(n, isFull and ID.text.IMPERIAL_STORMER_FULL_BELLY or ID.text.IMPERIAL_STORMER_PROVISIONS) end
         end)
         return
     end

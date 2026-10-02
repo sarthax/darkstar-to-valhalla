@@ -18,7 +18,7 @@ Lebros =
         CARRIED_OVER_POINTS        = 7000, -- You have carried over <number> login point[/s].
         LOGIN_CAMPAIGN_UNDERWAY    = 7001, -- The [/January/February/March/April/May/June/July/August/September/October/November/December] <number> Login Campaign is currently underway!<space>
         LOGIN_NUMBER               = 7002, -- In celebration of your most recent login (login no. <number>), we have provided you with <number> points! You currently have a total of <number> points.
-        TEMP_ITEM                  = 7211, -- Obtained temporary item: <item>!
+        TEMP_ITEM                  = 7210, -- Obtained temporary item: <item>! (dialog.yml 2026-09-19)
         -- Also off by +1, verified against this zone's own dialog table dump.
         ASSAULT_21_START           = 7367, -- Commencing <assault>! Objective: Remove the obstructions
         ASSAULT_22_START           = 7368, -- Commencing <assault>! Objective: Deliver the provisions
@@ -52,7 +52,7 @@ Lebros =
         YAZUHMA_DENT                = 7433, -- (2-3 left, unconfirmed) You've made a decent dent in my pile of rations.
         YAZUHMA_LEFTOVER            = 7434, -- (1 left, unconfirmed) That's strange, there are some rations left over.
         YAZUHMA_ALL_DONE            = 7435, -- Thanks to you, the advance unit is now completely provisioned. Excellent work!
-        YAZUHMA_TEMP_ITEM_OBTAINED  = 7211, -- Obtained temporary item: <item>!
+        YAZUHMA_TEMP_ITEM_OBTAINED  = 7209, -- <entity> obtains the temporary item: <item>! (needs showName=true for player name)
         IMPERIAL_STORMER_THANKS     = 7424, -- Thank Zahak you're here. I was about to start eating my boots!
         IMPERIAL_STORMER_MORE       = 7425, -- You brought more supplies? Well, you can never have too much...
         IMPERIAL_STORMER_PROVISIONS = 7426, -- Have you brought the provisions?

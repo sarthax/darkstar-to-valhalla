@@ -48,6 +48,14 @@ require("scripts/globals/status")
 -- abandoned and releases it, regardless of what caused it to stick.
 local RUNE_LOCK_TIMEOUT = 15
 
+-- 2026-09-15, DSP-only: how long (ms) after firing startEvent(95) to wait before repositioning the
+-- player/rune/mobs (pickSetPoint()). This engine has no real mid-cutscene callback for this event
+-- (onEventUpdate confirmed dead via live debug trace) -- this is a stand-in estimate, not a real
+-- captured value, meant to land the reposition roughly mid-fade instead of before the cutscene
+-- starts (instant unmasked teleport, confirmed regression) or after it fully finishes (visible
+-- snap-back, the original bug). Tune live against the actual fade duration.
+local RUNE_REPOSITION_DELAY = 3300
+
 local function isRuneLocked(instance)
     if instance:getLocalVar("runeHandler") == 0 then
         return false
@@ -204,27 +212,35 @@ function onEventFinish(player, csid, option, npc)
             end
             instance:setLocalVar("partySize", playerCount)
 
-            -- Fires from instance_object.onEventUpdate(csid 95), not directly here (see
-            -- nyzul_isle_investigation.lua), matching LSB -- user-reported live proof that
-            -- teleporting BEFORE the cutscene plays makes the client visibly warp the player, play
-            -- the arrival animation, then snap back to the pre-cutscene position, confirming the
-            -- compiled csid 95 event has its own real position-handling tied to update.
-            -- 2026-09-14, real bug found live (rune sends player back to lobby, csid 95 never
-            -- acknowledged by the client -- confirmed via debug trace: NEITHER this file's own
-            -- onEventFinish NOR the instance script's onEventUpdate/onEventFinish ever fire again
-            -- after this call, meaning the client silently never opens the event at all). This
-            -- file's own header comment already identified the root cause for a DIFFERENT
-            -- startEvent call (csid 201): startEvent() fired from a server-initiated :timer()
-            -- callback has no legitimate click/target context
-            -- (src/map/lua/lua_baseentity.cpp::startEvent's CEventPacket encodes PChar->m_TargID
-            -- into the wire packet, which a timer-fired call never meaningfully sets) -- that's
-            -- exactly why csid 201 is fired synchronously from onTrigger, never from a timer. This
-            -- call violated that same rule. Removed the 50ms timer wrapper -- now fires
-            -- synchronously, in the same real network-driven onEventFinish(csid 94) dispatch the
-            -- client just triggered, same as csid 201 already does safely.
+            -- 2026-09-15, DSP-only reposition-timing fix (v2 -- v1 reverted, see below).
+            -- v1 (pickSetPoint() BEFORE startEvent(95)) fixed the "snap after full animation" bug but
+            -- caused a NEW regression: an instant, unmasked teleport with zero fade -- confirmed live.
+            -- v2: restored the original real click-driven order (startEvent() fires first, synchronously,
+            -- matching Topaz's own working order and this file's header rule about startEvent() needing
+            -- real click/target context) -- then pickSetPoint() is fired from a short timer instead of
+            -- from either endpoint of the event, landing (approximately) mid-cutscene instead of before
+            -- it starts or after it fully finishes. Topaz's engine genuinely fires onEventUpdate(csid 95)
+            -- mid-cutscene and uses that for this same timing (see its own Rune_of_Transfer.lua) -- DSP's
+            -- onEventUpdate is confirmed dead for this csid (live debug trace, never fires at all), so
+            -- there's no real mid-event callback to hook here; this timer is an estimate standing in for
+            -- that missing callback, not a confirmed capture value -- tune RUNE_REPOSITION_DELAY live if
+            -- the old-rune snap-back is still visible (too short) or the teleport looks instant (too long
+            -- relative to the fade) or too late (visible on the new floor before fade-in completes).
             for _, players in pairs(chars) do
-                print(string.format("[NYZUL RUNE DEBUG] csid94 success: calling startEvent(95) synchronously for %s", players:getName()))
                 players:startEvent(95, 0, 0, 0, 0, 0, 0, 0, 0)
+            end
+
+            local anyChar94
+            for _, players in pairs(chars) do
+                anyChar94 = players
+                break
+            end
+            if anyChar94 then
+                anyChar94:timer(RUNE_REPOSITION_DELAY, function()
+                    pickSetPoint(instance)
+                end)
+            else
+                pickSetPoint(instance)
             end
         else
             -- Real id (Dialog Table Entry 7480: "Insufficient tokens.").
@@ -244,7 +260,19 @@ function onEventFinish(player, csid, option, npc)
         -- codebase's real API (player:addAssaultPoint instead of LSB's addCurrency string call) and
         -- this file's own lockRune/isRuneLocked scaffolding instead of LSB's npc-localvar
         -- cued/runCompleted flags (same real invariant: resolve once per menu open).
-        if option == 1 then
+        --
+        -- 2026-09-15, real bug found live (user-reported: "canceling out of the menu automatically
+        -- uses the option for travel to next floor"): confirmed via debug trace that canceling this
+        -- exact menu (the "Not yet / Exit / Next floor" 3-choice dialog) sends option=1073741824
+        -- (0x40000000, bit 30 set) -- a real, consistently-reproduced client sentinel for "menu
+        -- closed with no selection made," not junk/corruption. The old `option >= 2` catch-all had
+        -- no upper bound, so this sentinel fell straight into the "Travel to next floor" branch
+        -- below every time. Excluded explicitly -- treated the same as any other unrecognized
+        -- nonzero option (release the lock, no action), matching this same csid's existing
+        -- `elseif option ~= 0` fallback further down for any other unmapped value.
+        if option == 1073741824 then
+            instance:setLocalVar("runeHandler", 0)
+        elseif option == 1 then
             local currentFloor = math.max(1, math.min(100, Nyzul.getRelativeFloor(instance)))
             local startFloor = instance:getLocalVar("Nyzul_Isle_StartingFloor")
 
@@ -353,14 +381,23 @@ function onEventFinish(player, csid, option, npc)
                     Nyzul.queuePathos(instance)
                 end
 
-                -- 2026-09-14, real bug found live (rune sends player back to lobby, csid 95 never
-                -- acknowledged by client) -- removed the 50ms timer wrapper, same fix/reasoning as
-                -- the other startEvent(95) call site above (the initial floor-select success
-                -- path): startEvent() fired from a :timer() callback has no legitimate
-                -- click/target context, matching this file's own header warning about the exact
-                -- same issue for csid 201. Now fires synchronously.
+                -- 2026-09-15, same v2 timer-based reposition fix as the csid 94 success branch above
+                -- -- see that comment for the full reasoning.
                 for _, players in pairs(chars) do
                     players:startEvent(95, 0, 0, 0, 0, 0, 0, 0, 0)
+                end
+
+                local anyChar201
+                for _, players in pairs(chars) do
+                    anyChar201 = players
+                    break
+                end
+                if anyChar201 then
+                    anyChar201:timer(RUNE_REPOSITION_DELAY, function()
+                        pickSetPoint(instance)
+                    end)
+                else
+                    pickSetPoint(instance)
                 end
             else
                 instance:setLocalVar("runeHandler", 0)
@@ -383,23 +420,15 @@ function onEventFinish(player, csid, option, npc)
         -- pathos cleanup). Inlined the same logic that instance script's onEventFinish would have
         -- run, since engine dispatch will never actually reach it for this csid.
         --
-        -- 2026-09-14 FURTHER FOUND: the actual floor reposition (pickSetPoint(), in
-        -- nyzul_isle_investigation.lua) was wired to onEventUpdate(csid 95), not onEventFinish --
-        -- confirmed via a live debug trace that onEventUpdate NEVER fires at all for this event
-        -- (only onTrigger and onEventFinish do), in both failed live tests tonight. Whatever this
-        -- specific compiled client event actually does, it does not generate the mid-cutscene
-        -- update callback this engine's onEventUpdate hook depends on -- pickSetPoint() was
-        -- correctly-written dead code, never actually invoked by any path. Calling it here instead,
-        -- after the event has genuinely finished client-side (a strictly safer time to reposition
-        -- than mid-cutscene, not just a workaround). pickSetPoint is a bare global function
-        -- (defined in instances/nyzul_isle_investigation.lua, no local/module scoping in this
-        -- engine's convention) -- already loaded into the shared Lua state via that instance's own
-        -- onInstanceTimeUpdate ticking since instance creation, so it's safe to call directly here.
+        -- 2026-09-15: pickSetPoint() no longer fires here -- it now fires from a short timer started
+        -- right after startEvent(95) (see the csid 94/201 branches above, RUNE_REPOSITION_DELAY) so
+        -- it lands mid-cutscene instead of only once the client has ALREADY finished playing the
+        -- whole thing (which is when onEventFinish(95) itself fires -- too late to matter here).
+        -- Only post-event cleanup belongs in this branch now.
         if instance:getLocalVar("runeHandler") == player:getID() then
             Nyzul.removePathos(instance)
             Nyzul.addFloorPathos(instance)
             instance:setLocalVar("runeHandler", 0)
-            pickSetPoint(instance)
         end
     elseif csid == 94 or csid == 201 then
         -- Ignore a csid 94/201 call that didn't match the branches above (e.g. csid==94 with

@@ -606,8 +606,20 @@ void CZone::DecreaseZoneCounter(CCharEntity* PChar)
 void CZone::IncreaseZoneCounter(CCharEntity* PChar)
 {
     DSP_DEBUG_BREAK_IF(PChar == nullptr);
-    DSP_DEBUG_BREAK_IF(PChar->loc.zone != nullptr);
     DSP_DEBUG_BREAK_IF(PChar->PTreasurePool != nullptr);
+
+    // 2026-09-14, ported from Topaz's own !warpassault same-zone-id transition fix (2026-08-18):
+    // a GM instance-warp command's onInstanceCreated handler calls player:setPos() into the SAME
+    // zone the character is already standing in (needed because the ready callback only resolves
+    // via the character's current zone), so loc.zone isn't guaranteed to have been nulled out yet
+    // when the zone-in machinery re-enters. Recover instead of asserting/crashing.
+    if (PChar->loc.zone != nullptr)
+    {
+        ShowWarning(CL_YELLOW "CZone::IncreaseZoneCounter: %s still had loc.zone=%p set (likely a same-zone-id "
+                              "transition, e.g. a GM instance warp) -- clearing it instead of asserting\n" CL_RESET,
+                    PChar->GetName(), (void*)PChar->loc.zone);
+        PChar->loc.zone = nullptr;
+    }
 
     PChar->targid = m_zoneEntities->GetNewTargID();
 

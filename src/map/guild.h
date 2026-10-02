@@ -26,6 +26,7 @@ This file is part of DarkStar-server source code.
 
 #include "../common/cbasetypes.h"
 #include <array>
+#include <string>
 #include <vector>
 
 #define GP_ITEM_RANKS 7

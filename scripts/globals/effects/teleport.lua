@@ -28,7 +28,18 @@ end;
 function onEffectLose(target,effect)
     local Teleport = effect:getPower();
     if (target:isMob()) then
-        DespawnMob(target:getID())
+        -- scripted escapes (Sagelord Molaal Ja) time their own vanish after the Warp animation;
+        -- despawning here at effect end cut the animation short (2026-09-19)
+        if target:getLocalVar("escaping") == 1 then
+            return
+        end
+        -- instanced mobs must be despawned through their instance (bare id lookup hits the zone list)
+        local inst = target:getInstance()
+        if inst then
+            DespawnMob(target:getID(), inst)
+        else
+            DespawnMob(target:getID())
+        end
     elseif (Teleport == TELEPORT_DEM) then
         toDem(target);
     elseif (Teleport == TELEPORT_HOLLA) then

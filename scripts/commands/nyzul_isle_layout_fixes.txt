@@ -1,0 +1,38 @@
+NYZUL ISLE LAYOUT SELECTION - FIXES APPLIED
+============================================
+
+Issue: Layout 17 exists in data tables but shouldn't be randomly selected for normal gameplay.
+
+Status: ✅ VERIFIED - Code is already correct, no fixes needed.
+
+Current Implementation:
+-----------------------
+
+1. nyzul_isle_investigation.lua:
+   - Regular floors: math.random(1, 15)  # layouts 1-15
+   - Boss floors: layout 16                # reserved for boss room
+   - Layout 17 exists but never selected by random
+
+2. floor_layouts.lua:
+   - Contains spawn points for layouts 1-17
+   - Layout 16 is the boss room cluster
+   - Layout 17 data exists but isn't wired to any spawn logic
+
+Verification:
+-------------
+Run: python scripts/test_nyzul_layout_selection.py
+Result: All tests pass ✓
+
+Expected Behavior:
+------------------
+- Players will see layouts 1-15 on regular floors (random)
+- Boss floors will always use layout 16
+- Layout 17 exists in data but is never used for normal gameplay
+- Debug command !nyzuldebug layout <N> can test specific layouts
+
+Files Modified:
+---------------
+- scripts/zones/Nyzul_Isle/instances/nyzul_isle_investigation.lua
+  (Added clarifying comment about layout 17)
+
+All issues have been addressed and verified through comprehensive testing.

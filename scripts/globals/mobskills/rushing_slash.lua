@@ -15,6 +15,10 @@ require("scripts/globals/monstertpmoves");
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
+    -- Mamool Ja: needs its weapon; unavailable once thrown (AnimationSub 1)
+    if mob:getFamily() == 176 and mob:AnimationSub() ~= 0 then
+        return 1;
+    end
     return 0;
 end;
 

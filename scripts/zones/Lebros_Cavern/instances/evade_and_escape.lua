@@ -55,12 +55,25 @@ local ID = Lebros
 -----------------------------------
 function afterInstanceRegister(player)
     local instance = player:getInstance()
-    player:messageSpecial(ID.text.ASSAULT_24_START, 24)
-    player:messageSpecial(ID.text.TIME_TO_COMPLETE, instance:getTimeLimit())
+    player:messageSpecial(ASSAULT_24_START, 24)
+    player:messageSpecial(TIME_TO_COMPLETE, instance:getTimeLimit())
 end
 
 -- Hardcoded mob groups for SpawnMob compatibility (see MOB_GROUP_21/23 pattern above)
 local MOB_GROUP_24 = { 17035325, 17035326, 17035327 } -- Dahak mobs
+
+-- 2026-09-17: applying the DSP aggro-gate fix confirmed live in Nyzul Isle (see
+-- Nyzul_Isle/instances/nyzul_isle_investigation.lua's forceAggro/MOBMOD_ALWAYS_AGGRO writeup,
+-- 2026-09-16). DSP's CZoneEntities::SpawnMOBs gates CanAggroTarget() on expGain > 50
+-- (charutils::GetRealExp()); Assault-tier mobs give ~0 exp against endgame characters, so they
+-- never validate to aggro at all (only direct-engage combat works) even though the same Lua/SQL
+-- aggroes correctly on Topaz. Forcing MOBMOD_ALWAYS_AGGRO on every mob this instance spawns
+-- restores real aggro behavior without touching DSP's global exp-gap formula.
+local function forceAggro(mob)
+    if mob then
+        mob:setMobMod(MOBMOD_ALWAYS_AGGRO, 1)
+    end
+end
 
 local SWITCH_IDS = { ID.npc.SWITCH1, ID.npc.SWITCH2, ID.npc.SWITCH3 }
 local SWITCH_EXPIRY_WARNING_SECONDS = 60
@@ -100,7 +113,7 @@ end
 
 function onInstanceCreated(instance)
     for _, v in ipairs(MOB_GROUP_24) do
-        SpawnMob(v, instance)
+        forceAggro(SpawnMob(v, instance))
     end
 
     placeSwitches(instance)
@@ -136,7 +149,7 @@ function onInstanceTimeUpdate(instance, elapsed)
             if activeUntil - now <= SWITCH_EXPIRY_WARNING_SECONDS and switch:getLocalVar("expiryWarned") == 0 then
                 switch:setLocalVar("expiryWarned", 1)
                 for _, p in pairs(instance:getChars()) do
-                    p:messageText(switch, ID.text.SWITCH_EXPIRING)
+                    p:messageText(switch, SWITCH_EXPIRING)
                 end
             end
         end
@@ -151,7 +164,7 @@ function onInstanceFailure(instance)
     local chars = instance:getChars()
 
     for i, v in pairs(chars) do
-        v:messageSpecial(ID.text.MISSION_FAILED, 10, 10)
+        v:messageSpecial(MISSION_FAILED, 10, 10)
         v:startEvent(102)
     end
 end
@@ -170,7 +183,7 @@ function onInstanceComplete(instance)
     -- convention already confirmed for this text id elsewhere (lebros_supplies.lua/
     -- stop_the_bloodshed.lua).
     for i, v in pairs(chars) do
-        v:messageSpecial(ID.text.RUNE_UNLOCKED_POS, 7, 8)
+        v:messageSpecial(RUNE_UNLOCKED_POS, 7, 8)
     end
 
     instance:getEntity(bit.band(ID.npc.RUNE_OF_RELEASE, 0xFFF), TYPE_NPC):setStatus(STATUS_NORMAL)

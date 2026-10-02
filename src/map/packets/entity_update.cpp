@@ -95,6 +95,21 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
                 WBUFB(data, (0x27)) = ((CNpcEntity*)PEntity)->name_prefix;     // gender and something else
                 WBUFB(data, (0x29)) = PEntity->allegiance;
                 WBUFB(data, (0x2B)) = PEntity->namevis;
+
+                // 2026-09-15, temp debug: user-reported the Rune of Transfer/Runic Lamp NPCs lose
+                // their lit (animationsub) state on a despawn/respawn cycle (leaving then
+                // re-entering the 50y spawn radius) even though the underlying entity field was
+                // confirmed correctly set (lit while already in range). This traces exactly what
+                // gets written into the wire packet at the moment a newly-in-range player receives
+                // ENTITY_SPAWN, to confirm whether the server-side value itself is wrong at send
+                // time (this print) vs. a client-side rendering/reset issue (would show correct
+                // here but still render unlit) -- scoped to zone 77 (Nyzul Isle) only, remove once
+                // root-caused.
+                if (PEntity->loc.zone != nullptr && PEntity->loc.zone->GetID() == 77 && type == ENTITY_SPAWN)
+                {
+                    ShowDebug("[NYZUL ANIMSUB DEBUG] ENTITY_SPAWN npc id=%d name=%s animationsub=%d\n",
+                        PEntity->id, PEntity->GetName(), PEntity->animationsub);
+                }
             }
         }
         break;

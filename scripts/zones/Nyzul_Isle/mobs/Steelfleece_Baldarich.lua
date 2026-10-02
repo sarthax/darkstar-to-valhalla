@@ -1,21 +1,14 @@
 -----------------------------------
 -- Area: Nyzul Isle
---  NM:  Steelfleece_Baldarich
+--   NM: Steelfleece Baldarich
 -----------------------------------
-
-require("scripts/globals/titles");
-
+-- 2026-09-03: ALSO a real floor-section-4 random floor NM (BG Wiki/FFXIclopedia) -- added
+-- Nyzul.floorNMKill alongside the pre-existing real title reward rather than replacing it.
+require("scripts/globals/titles")
+require("scripts/globals/nyzul")
 -----------------------------------
--- onMobSpawn Action
------------------------------------
-
-function onMobSpawn(mob)
-end;
-
------------------------------------
--- onMobDeath
------------------------------------
-
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(THE_HORNSPLITTER);
-end;
+    player:addTitle(THE_HORNSPLITTER)
+    Nyzul.floorNMKill(mob, player)
+end
+

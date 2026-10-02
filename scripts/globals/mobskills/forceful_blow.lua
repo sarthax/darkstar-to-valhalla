@@ -13,6 +13,13 @@ require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------
 function onMobSkillCheck(target,mob,skill)
+    -- H2H only (Topaz parity): valid only once the weapon has been thrown (AnimationSub 1 = unarmed)
+    -- WHM/BLM/NIN Mamool Ja are always empty-handed (user-confirmed; captures show mage Warders using it)
+    local job = mob:getMainJob();
+    local unarmedJob = (job == JOBS.WHM or job == JOBS.BLM or job == JOBS.NIN);
+    if mob:getFamily() == 176 and not unarmedJob and mob:AnimationSub() ~= 1 then
+        return 1;
+    end
     return 0;
 end;
 

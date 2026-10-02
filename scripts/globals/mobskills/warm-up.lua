@@ -10,13 +10,13 @@ require("scripts/globals/status");
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    -- only brown-skinned mamool should use this move
-    local mobSkin = mob:getModelId();
-    if (mobSkin == 1639 or mobSkin == 1619) then
-        return 0;
-    else
+    -- All Mamool Ja with Warm-Up in their skill list may use it (LSB parity: returns 0 for every model).
+    -- Already buffed with Warm-Up's effect: don't use it again, so the mob picks another skill.
+    -- Sagelord Molaal Ja force-casts Warm-Up at each HP threshold (his flee trigger): never gate him.
+    if (mob:getName() ~= 'Sagelord_Molaal_Ja' and (mob:hasStatusEffect(EFFECT_ACCURACY_BOOST) or mob:hasStatusEffect(EFFECT_EVASION_BOOST))) then
         return 1;
     end
+    return 0;
 end;
 
 function onMobWeaponSkill(target, mob, skill)
@@ -31,7 +31,7 @@ function onMobWeaponSkill(target, mob, skill)
     if (mob:hasStatusEffect(EFFECT_ACCURACY_BOOST)) then
         skill:setMsg(MobBuffMove(mob, EFFECT_EVASION_BOOST, power, 0, 180));
         EFFECT = EFFECT_EVASION_BOOST;
-    elseif (mob:hasStatusEffect(EFFECT_ACCURACY_BOOST)) then
+    elseif (mob:hasStatusEffect(EFFECT_EVASION_BOOST)) then
         skill:setMsg(MobBuffMove(mob, EFFECT_ACCURACY_BOOST, power, 0, 180));
         EFFECT = EFFECT_ACCURACY_BOOST;
     else

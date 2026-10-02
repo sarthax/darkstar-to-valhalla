@@ -26,6 +26,9 @@ This file is part of DarkStar-server source code.
 
 #include "message.h"
 
+#include "../common/sql.h"
+#include "map.h"
+
 #include "party.h"
 #include "alliance.h"
 #include "linkshell.h"
@@ -432,6 +435,100 @@ namespace message
                 PChar->clearPacketList();
 
                 charutils::SendToZone(PChar, 2, zoneutils::GetZoneIPP(zoneId));
+            }
+            break;
+        }
+        case MSG_SEND_TO_ENTITY:
+        {
+            // Real cross-process gap this codebase had (see lua_baseentity.cpp's goToEntity()):
+            // two-hop message, ported byte-for-byte from Topaz's own MSG_SEND_TO_ENTITY handler.
+            // Hop 1 (toTargetServer == true): asks the TARGET entity's own zone server for its
+            // real position (or falls back to mob_spawn_points if not currently spawned and
+            // spawnedOnly wasn't requested), then re-sends the same message type back with
+            // toTargetServer == false and the resolved position, routed to the PLAYER's server.
+            bool toTargetServer = RBUFB(extra->data(), 0);
+            bool spawnedOnly    = RBUFB(extra->data(), 1);
+
+            if (toTargetServer) // This is going to the target's game server
+            {
+                CBaseEntity* Entity = zoneutils::GetEntity(RBUFL(extra->data(), 6));
+
+                if (Entity && Entity->loc.zone)
+                {
+                    char buf[22];
+                    memset(&buf[0], 0, sizeof(buf));
+
+                    uint16 targetZone = RBUFW(extra->data(), 2);
+                    uint16 playerZone = RBUFW(extra->data(), 4);
+                    uint16 playerID   = RBUFW(extra->data(), 10);
+
+                    float X = Entity->GetXPos();
+                    float Y = Entity->GetYPos();
+                    float Z = Entity->GetZPos();
+                    uint8 R = Entity->GetRotPos();
+
+                    WBUFB(&buf, 1) = true; // Found, so initiate warp back on the requesting server
+
+                    if (Entity->status == STATUS_DISAPPEAR)
+                    {
+                        if (spawnedOnly)
+                        {
+                            WBUFB(&buf, 1) = false; // Spawned only, so do not initiate warp
+                        }
+                        else
+                        {
+                            // If entity not spawned, go to default location as listed in database
+                            const char* query = "SELECT pos_x, pos_y, pos_z FROM mob_spawn_points WHERE mobid = %u;";
+                            int32 fetch = Sql_Query(SqlHandle, query, Entity->id);
+
+                            if (fetch != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+                            {
+                                while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+                                {
+                                    X = (float)Sql_GetFloatData(SqlHandle, 0);
+                                    Y = (float)Sql_GetFloatData(SqlHandle, 1);
+                                    Z = (float)Sql_GetFloatData(SqlHandle, 2);
+                                }
+                            }
+                        }
+                    }
+
+                    WBUFB(&buf, 0)  = false;
+                    WBUFW(&buf, 2)  = playerZone;
+                    WBUFW(&buf, 4)  = playerID;
+                    WBUFF(&buf, 6)  = X;
+                    WBUFF(&buf, 10) = Y;
+                    WBUFF(&buf, 14) = Z;
+                    WBUFB(&buf, 18) = R;
+                    WBUFW(&buf, 20) = targetZone;
+
+                    message::send(MSG_SEND_TO_ENTITY, &buf, sizeof(buf), nullptr);
+                    break;
+                }
+            }
+            else // This is going to the player's game server
+            {
+                CCharEntity* PChar = zoneutils::GetChar(RBUFW(extra->data(), 4));
+
+                if (PChar && PChar->loc.zone && RBUFB(extra->data(), 1))
+                {
+                    PChar->loc.p.x         = RBUFF(extra->data(), 6);
+                    PChar->loc.p.y         = RBUFF(extra->data(), 10);
+                    PChar->loc.p.z         = RBUFF(extra->data(), 14);
+                    PChar->loc.p.rotation  = RBUFB(extra->data(), 18);
+                    PChar->loc.destination = RBUFW(extra->data(), 20);
+
+                    PChar->m_moghouseID = 0;
+                    PChar->loc.boundary = 0;
+                    PChar->updatemask   = 0;
+
+                    PChar->status    = STATUS_DISAPPEAR;
+                    PChar->animation = ANIMATION_NONE;
+
+                    PChar->clearPacketList();
+
+                    charutils::SendToZone(PChar, 2, zoneutils::GetZoneIPP(PChar->loc.destination));
+                }
             }
             break;
         }

@@ -585,6 +585,14 @@ bool CCharEntity::CanAttack(CBattleEntity* PTarget, std::unique_ptr<CBasicPacket
 {
     float dist = distance(loc.p, PTarget->loc.p);
 
+    // Disguised script-controlled mobs (e.g. Ilrusi Atoll Cursed Chest) hold STATUS_NORMAL until
+    // their onTrigger reveals them; they must not be attackable while disguised (Topaz parity).
+    if (PTarget->objtype == TYPE_MOB && PTarget->status == STATUS_NORMAL && PTarget->allegiance == ALLEGIANCE_MOB)
+    {
+        PAI->Disengage();
+        return false;
+    }
+
     if (!IsMobOwner(PTarget))
     {
         errMsg = std::make_unique<CMessageBasicPacket>(this, PTarget, 0, 0, MSGBASIC_ALREADY_CLAIMED);

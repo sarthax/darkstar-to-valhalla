@@ -70,3 +70,20 @@ end;
 function onInstanceLoadFailed()
     return 72;
 end;
+
+-----------------------------------
+-- onInstanceCreated
+-----------------------------------
+-- 2026-09-16: live map-server error ("undefined procedure onInstanceCreated"): GM-command
+-- fallback for !warpassault -- createInstance()'s ready callback is normally resolved via
+-- PChar->m_event.Script, which is only ever set by a real NPC-triggered event; GM commands go
+-- through commandhandler.cpp and never set it, so luautils::OnInstanceCreated (luautils.cpp:3702)
+-- falls back to this zone's own Zone.lua instead, expecting a global onInstanceCreated(player,
+-- target, instance) here.
+
+function onInstanceCreated(player, target, instance)
+    if (instance) then
+        player:setInstance(instance);
+        player:setPos(0, 0, 0, 0, 72);
+    end
+end;

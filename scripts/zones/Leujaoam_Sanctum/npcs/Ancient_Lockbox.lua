@@ -105,6 +105,10 @@ function onTrigger(player, npc)
     -- opening -- contradicting the "stays visible forever" assumption. 15s is ample time for any
     -- reasonable sparkle animation to finish, so the earlier "cut short" symptom was very likely
     -- this same setAnimation(90)-isn't-a-real-clip bug, not a genuinely-too-early disappear.
+    -- TextIDs are shared Lua globals: another zone loaded later (e.g. Castle_Oztroja ITEM_OBTAINED=6571)
+    -- owns ITEM_OBTAINED etc. Re-run this zone's own TextIDs so npcUtil.giveItem uses the right ids.
+    package.loaded["scripts/zones/Leujaoam_Sanctum/TextIDs"] = nil
+    require("scripts/zones/Leujaoam_Sanctum/TextIDs")
     npc:entityAnimationPacket("open")
     npc:timer(15000, function(n)
         n:entityAnimationPacket("kesu")

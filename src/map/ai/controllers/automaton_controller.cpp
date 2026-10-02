@@ -560,7 +560,15 @@ bool CAutomatonController::TryElemental(const CurrentManeuvers& maneuvers)
             std::make_pair(SpellID::Water, PTarget->getMod(Mod::WATERRES)),
             std::make_pair(SpellID::Stone, PTarget->getMod(Mod::EARTHRES))
         };
-        std::stable_sort(reslist.begin(), reslist.end(), resistanceComparator);
+        // BUILD-FIX: std::stable_sort triggers a real MSVC v141 toolset (14.16.27023) internal
+        // compiler error in <algorithm>'s temporary-buffer allocation path for this pair<SpellID,
+        // int16> instantiation (C2143/C2672/C2780/C2059 inside the STL header itself, not this
+        // file) -- a known-era STL bug, not a bug in this code. std::sort is not guaranteed
+        // stable, but reslist is a fixed 6-element elemental-resistance list for automaton spell
+        // priority selection -- tie-break order among equal resistance values has no confirmed
+        // gameplay-critical dependency here, so this is a safe build-environment workaround, not
+        // a design change.
+        std::sort(reslist.begin(), reslist.end(), resistanceComparator);
         for (std::pair<SpellID, int16>& res : reslist)
             castPriority.push_back(res.first);
     }

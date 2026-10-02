@@ -29,8 +29,8 @@ function onTrigger(player,npc)
  player:messageSpecial(CHEST);
   local npcID = npc:getID();
   local correctcofferID = GetServerVariable("correctcoffer");
- print(npcID);
- print(correctcofferID);
+ -- DEBUG (disabled): print(npcID);
+ -- DEBUG (disabled): print(correctcofferID);
   if (npcID == correctcofferID) then --correct coffer ??
    player:messageSpecial( GOLDEN);
 

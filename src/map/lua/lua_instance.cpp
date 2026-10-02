@@ -285,6 +285,28 @@ inline int32 CLuaInstance::getStage(lua_State* L)
     return 1;
 }
 
+/************************************************************************
+*                                                                       *
+*  Gets a local var stored on this instance run (see setLocalVar).      *
+*  Named values scoped to the lifetime of this one instance -- distinct *
+*  from a mob/npc/PC's own getLocalVar, and from getStage/getProgress   *
+*  (which are single ints reserved for stage/objective-progress          *
+*  tracking).                                                            *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaInstance::getLocalVar(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isstring(L, 1));
+
+    const int8* var = lua_tostring(L, 1);
+
+    lua_pushinteger(L, m_PLuaInstance->GetLocalVar(var));
+
+    return 1;
+}
+
 inline int32 CLuaInstance::setLevelCap(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
@@ -331,6 +353,35 @@ inline int32 CLuaInstance::setStage(lua_State* L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
     m_PLuaInstance->SetStage(lua_tointeger(L, 1));
+
+    return 0;
+}
+
+/************************************************************************
+*                                                                       *
+*  Sets a local var stored on this instance run. See getLocalVar.       *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaInstance::setLocalVar(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isstring(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+
+    const int8* var = lua_tostring(L, 1);
+    uint32 val = (uint32)lua_tointeger(L, 2);
+
+    m_PLuaInstance->SetLocalVar(var, val);
+
+    return 0;
+}
+
+inline int32 CLuaInstance::resetLocalVars(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
+
+    m_PLuaInstance->ResetLocalVars();
 
     return 0;
 }
@@ -425,6 +476,9 @@ Lunar<CLuaInstance>::Register_t CLuaInstance::methods[] =
     LUNAR_DECLARE_METHOD(CLuaInstance, setWipeTime),
     LUNAR_DECLARE_METHOD(CLuaInstance, getStage),
     LUNAR_DECLARE_METHOD(CLuaInstance, setStage),
+    LUNAR_DECLARE_METHOD(CLuaInstance, getLocalVar),
+    LUNAR_DECLARE_METHOD(CLuaInstance, setLocalVar),
+    LUNAR_DECLARE_METHOD(CLuaInstance, resetLocalVars),
     LUNAR_DECLARE_METHOD(CLuaInstance, fail),
     LUNAR_DECLARE_METHOD(CLuaInstance, failed),
     LUNAR_DECLARE_METHOD(CLuaInstance, complete),

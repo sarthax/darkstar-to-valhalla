@@ -1,44 +1,62 @@
 ---------------------------------------------
---  Belly Dance
---
---  Description: Charms all targets in an area of effect, that are facing the Lamia.
---  Type: Enfeebling
---  Utsusemi/Blink absorb: Ignores shadows
---  Range: 15' radial
---  Notes: Used only by Lamia NM's, particularly in Besieged.
+-- Belly Dance (Lamia charm move) -- DSP port of the Topaz Ilrusi Atoll belly_dance.lua.
+-- Mission 42 (Lamia No.13): charms a player in range (or, if her hate target is one of the
+-- Fallen NPC allies, charms a live Fallen ally instead). Literal ids = Topaz IDs.lua ID.mob[42].
 ---------------------------------------------
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/msg");
----------------------------------------------
 
-function onMobSkillCheck(target,mob,skill)
-    return 0;
-end;
+local RANGE = 15
+local FALLEN_IDS = { 17002518, 17002519, 17002520 } -- Fallen Volunteer / Imperial Wizard / Imperial Trooper
+
+function onMobSkillCheck(target, mob, skill)
+    return 0
+end
 
 function onMobWeaponSkill(target, mob, skill)
+    local typeEffect = EFFECT_CHARM_I
+    local msg = msgBasic.MISS
 
-    --[[
-    power = 1;
-    tic = 0;
-    duration = 60;
-
-    isEnfeeble = true;
-    typeEffect = EFFECT_NAME;
-    statmod = MOD_INT;
-
-    resist = applyPlayerResistance(mob,typeEffect,target,isEnfeeble,typeEffect,statmod);
-    if (resist > 0.2) then
-        if (target:getStatusEffect(typeEffect) == nil) then
-            skill:setMsg(msgBasic.ENFEEB_IS);
-            target:addStatusEffect(typeEffect,power,tic,duration);
-        else
-            skill:setMsg(msgBasic.NO_EFFECT);
+    local instance = mob:getInstance()
+    if instance then
+        local hateTarget = mob:getTarget()
+        local hateIsFallen = false
+        if hateTarget then
+            for _, fallenId in ipairs(FALLEN_IDS) do
+                if hateTarget:getID() == fallenId then
+                    hateIsFallen = true
+                    break
+                end
+            end
         end
-    else
-        skill:setMsg(msgBasic.MISS);
+
+        local candidates = {}
+        if hateIsFallen then
+            for _, fallenId in ipairs(FALLEN_IDS) do
+                local fallen = GetMobByID(fallenId, instance)
+                if fallen and fallen:isAlive() and not fallen:hasStatusEffect(EFFECT_CHARM_I) then
+                    table.insert(candidates, fallen)
+                end
+            end
+        else
+            for _, player in pairs(instance:getChars()) do
+                table.insert(candidates, player)
+            end
+        end
+
+        for _, victim in ipairs(candidates) do
+            if mob:checkDistance(victim) <= RANGE then
+                msg = MobStatusEffectMove(mob, victim, typeEffect, 0, 3, 150)
+                if msg == msgBasic.ENFEEB_IS then
+                    mob:charm(victim, 150)
+                    break
+                end
+            end
+        end
     end
-    return typeEffect;
-    ]]
-end;
+
+    skill:setMsg(msg)
+    return typeEffect
+end

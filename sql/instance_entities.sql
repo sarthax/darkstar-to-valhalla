@@ -1857,6 +1857,19 @@ INSERT INTO `instance_entities` VALUES (51,17092995);
 INSERT INTO `instance_entities` VALUES (51,17092996);
 INSERT INTO `instance_entities` VALUES (51,17092997);
 INSERT INTO `instance_entities` VALUES (51,17092998);
+-- 2026-09-23: assault 52 (nyzul_isle_uncharted_area_survey.lua) references the exact same
+-- ID.npc.RUNE_OF_TRANSFER_ENTRANCE/VENDING_BOX/RUNE_OF_TRANSFER_OFFSET/RUNIC_LAMP_OFFSET
+-- constants as assault 51 but was never given instance_entities rows -- lobby was missing its
+-- Vending Box and Rune of Transfer entirely on live entry. Same real npc ids, ported from Topaz.
+INSERT INTO `instance_entities` VALUES (52,17093429); -- Rune of Transfer (lobby entrance)
+INSERT INTO `instance_entities` VALUES (52,17093430); -- Vending Box
+INSERT INTO `instance_entities` VALUES (52,17093330); -- Rune of Transfer (moving, slot A)
+INSERT INTO `instance_entities` VALUES (52,17093331); -- Rune of Transfer (moving, slot B)
+INSERT INTO `instance_entities` VALUES (52,17093332); -- Runic Lamp 1
+INSERT INTO `instance_entities` VALUES (52,17093333); -- Runic Lamp 2
+INSERT INTO `instance_entities` VALUES (52,17093334); -- Runic Lamp 3
+INSERT INTO `instance_entities` VALUES (52,17093335); -- Runic Lamp 4
+INSERT INTO `instance_entities` VALUES (52,17093336); -- Runic Lamp 5
 -- Merged 2026-09-14: instance_entities-verified npc_list gap closure, Leujaoam Sanctum missions 1-4
 INSERT INTO `instance_entities` VALUES (3,17060140);
 INSERT INTO `instance_entities` VALUES (1,17060150);

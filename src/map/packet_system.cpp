@@ -32,6 +32,10 @@ This file is part of DarkStar-server source code.
 
 #include <string.h>
 #include "alliance.h"
+#include "mob_modifier.h"  // BUILD-FIX: MOBMOD_CHECK_AS_NM (used below) was never declared visible
+                           // in this file -- check_as_nm's own patch added the enum value to
+                           // mob_modifier.h but never added this include, confirmed absent before
+                           // adding (grep found zero #include of mob_modifier.h in this file).
 #include "utils/blueutils.h"
 #include "party.h"
 #include "packet_system.h"
@@ -628,7 +632,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         }
 
         CBaseEntity* PNpc = nullptr;
-        PNpc = PChar->GetEntity(TargID, TYPE_NPC);
+        PNpc = PChar->GetEntity(TargID, TYPE_NPC | TYPE_MOB); // mobs too: Golden Salvage Cursed_Chest is a triggerable mob
 
         if (PNpc != nullptr && distance(PNpc->loc.p, PChar->loc.p) <= 10 && (PNpc->PAI->IsSpawned() || PChar->m_moghouseID != 0))
         {
@@ -4457,7 +4461,11 @@ void SmallPacket0x0DD(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         {
             CMobEntity* PTarget = (CMobEntity*)PEntity;
 
-            if (PTarget->m_Type & MOBTYPE_NOTORIOUS || PTarget->m_Type & MOBTYPE_BATTLEFIELD)
+            // Ported from Topaz (src/map/packet_system.cpp:5154) -- lets a script force a mob to
+            // check as an NM (message 249, "cannot be checked further") without it actually being
+            // MOBTYPE_NOTORIOUS/MOBTYPE_BATTLEFIELD. See mob_modifier.h's MOBMOD_CHECK_AS_NM.
+            if (PTarget->m_Type & MOBTYPE_NOTORIOUS || PTarget->m_Type & MOBTYPE_BATTLEFIELD ||
+                PTarget->getMobMod(MOBMOD_CHECK_AS_NM) > 0)
             {
                 PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0, 249));
             }

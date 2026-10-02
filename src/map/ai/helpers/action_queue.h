@@ -50,6 +50,10 @@ struct queueAction_t
 };
 
 inline bool operator< (const queueAction_t& lhs, const queueAction_t& rhs) { return lhs.start_time + lhs.delay < rhs.start_time + rhs.delay; }
+// 2026-09-14, needed for std::greater<queueAction_t> (see CAIActionQueue below) -- std::greater
+// calls operator> directly, it does not fall back to operator< -- matches Topaz's own
+// action_queue.h, which already defines this.
+inline bool operator> (const queueAction_t& lhs, const queueAction_t& rhs) { return rhs < lhs; }
 
 class CAIActionQueue
 {
@@ -64,8 +68,18 @@ public:
     bool isEmpty();
 private:
     CBaseEntity* PEntity;
-    std::priority_queue<queueAction_t> actionQueue;
-    std::priority_queue<queueAction_t> timerQueue;
+    // 2026-09-14, real engine bug found live (Mulwahah's dialogue timers fired out of order,
+    // stalled until a LATER, independent 9s timer also came due): std::priority_queue defaults to
+    // a max-heap, so with the natural "sooner is less" operator< below, top() returned the
+    // LATEST-due pending action, not the soonest. checkAction()'s loop only ever inspects top() and
+    // stops immediately if it isn't due yet, so a shorter timer queued alongside a longer one got
+    // starved behind it until the longer one's own deadline arrived -- then both fired in a burst,
+    // in the wrong order. std::greater<queueAction_t> flips the heap to a min-heap (it evaluates as
+    // rhs < lhs using the same operator<, unchanged), so top() is genuinely the soonest-due action.
+    // This affected any entity anywhere in the codebase with multiple simultaneously-pending timers
+    // of different lengths -- not specific to Mulwahah or this script.
+    std::priority_queue<queueAction_t, std::vector<queueAction_t>, std::greater<queueAction_t>> actionQueue;
+    std::priority_queue<queueAction_t, std::vector<queueAction_t>, std::greater<queueAction_t>> timerQueue;
 };
 
 #endif

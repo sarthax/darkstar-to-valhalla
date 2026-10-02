@@ -49,6 +49,8 @@ public:
     int32 getPlayers(lua_State*);
     int32 getID(lua_State*);
     int32 getRegionID(lua_State*);
+    int32 checkNavPath(lua_State*);      // DSP-PORT: navmesh path-existence diagnostic (ported from Topaz)
+    int32 checkNavPosition(lua_State*);  // DSP-PORT: navmesh single-point validity diagnostic (ported from Topaz)
 };
 
 #endif

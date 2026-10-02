@@ -144,6 +144,17 @@ void message_server_parse(MSGSERVTYPE type, zmq::message_t* extra, zmq::message_
         ret = Sql_Query(ChatSqlHandle, query, RBUFL(extra->data(), 0));
         break;
     }
+    case MSG_SEND_TO_ENTITY:
+    {
+        // Ported from Topaz -- offset 2 always holds "the zoneid this message needs to go to
+        // next" regardless of direction: targetZone on the first hop (to the entity's own zone
+        // server), reused as playerZone on the return hop (back to the requesting player's zone
+        // server) by message.cpp's own handler. One query works for both hops.
+        const char* query = "SELECT zoneip, zoneport FROM zone_settings WHERE zoneid = %d;";
+        ret = Sql_Query(ChatSqlHandle, query, RBUFW(extra->data(), 2));
+        ipstring = true;
+        break;
+    }
     }
 
     if (ret != SQL_ERROR)

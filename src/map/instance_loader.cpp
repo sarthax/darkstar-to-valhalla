@@ -71,6 +71,12 @@ bool CInstanceLoader::Check()
         if (task.wait_for(std::chrono::milliseconds(0)) == std::future_status::ready)
         {
             CInstance* instance = task.get();
+            // 2026-09-14, live-test debug: confirms whether the async LoadInstance() query
+            // (instance_entities INNER JOIN mob_spawn_points/npc_list) actually succeeded for
+            // this requester, and clears up whether the Loader singleton is really being reaped
+            // here every time (see instanceutils::LoadInstance's own debug line).
+            ShowDebug(CL_CYAN"CInstanceLoader::Check: async load finished for requester=%s -> instance=%s\n" CL_RESET,
+                requester ? requester->GetName() : "?", instance ? "VALID" : "NULL (failed)");
             if (!instance)
             {
                 //Instance failed to load
@@ -92,6 +98,11 @@ bool CInstanceLoader::Check()
                 }
                 luautils::OnInstanceCreated(requester, instance);
                 luautils::OnInstanceCreated(instance);
+
+                // background LoadInstance() thread is fully joined (task.get() above already
+                // returned) -- safe now for the main-thread ZoneServer tick to start touching
+                // m_mobList/m_npcList.
+                instance->SetLoading(false);
             }
             return true;
         }
@@ -293,6 +304,11 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
     else
     {
         instance->Cancel();
+        // still clear IsLoading() even on failure -- the CInstance object itself isn't deleted
+        // here (it stays in CZoneInstance::instanceList), so ZoneServer's own Failed()+
+        // CharListEmpty() sweep needs to be able to tick/reap it; leaving m_loading stuck true
+        // would make it invisible to that sweep forever.
+        instance->SetLoading(false);
         instance = nullptr;
     }
 

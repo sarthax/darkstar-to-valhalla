@@ -72,6 +72,28 @@ uint32 CInstance::GetStage()
     return m_stage;
 }
 
+uint32 CInstance::GetLocalVar(const char* var)
+{
+    try
+    {
+        return m_localVars.at(var);
+    }
+    catch (std::out_of_range e)
+    {
+        return 0;
+    }
+}
+
+void CInstance::SetLocalVar(const char* var, uint32 val)
+{
+    m_localVars[var] = val;
+}
+
+void CInstance::ResetLocalVars()
+{
+    m_localVars.clear();
+}
+
 /************************************************************************
 *                                                                       *
 *  Loads instances settings from instance_list                          *
@@ -277,6 +299,16 @@ bool CInstance::Completed()
 void CInstance::Cancel()
 {
     m_status = INSTANCE_FAILED;
+}
+
+bool CInstance::IsLoading()
+{
+    return m_loading;
+}
+
+void CInstance::SetLoading(bool loading)
+{
+    m_loading = loading;
 }
 
 bool CInstance::CheckFirstEntry(uint32 id)

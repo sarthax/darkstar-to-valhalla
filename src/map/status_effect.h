@@ -46,6 +46,13 @@ enum EFFECTFLAG
     EFFECTFLAG_DISPELABLE       = 0x0001,
     EFFECTFLAG_ERASABLE         = 0x0002,
     EFFECTFLAG_ATTACK           = 0x0004,   // исчезает при нанесении урона
+    EFFECTFLAG_EMPATHY          = 0x0008,   // effect can be copied to wyvern by use of merited
+                                             // Spirit Link. Ported from Topaz (src/map/status_effect.h:48)
+                                             // -- this bit value was unused/skipped in this DSP
+                                             // snapshot's enum (jumped straight from ATTACK=0x0004
+                                             // to DAMAGE=0x0010), confirmed by backport_map_confidence_check.py's
+                                             // full-usage sweep 2026-09-13. Real numeric+positional
+                                             // match to Topaz, unlike the high-bit INFLUENCE cluster below.
 
     EFFECTFLAG_DAMAGE           = 0x0010,   // исчезает при получении урона
     EFFECTFLAG_DEATH            = 0x0020,   // исчезает при смерти
@@ -66,7 +73,16 @@ enum EFFECTFLAG
     EFFECTFLAG_LOGOUT           = 0x100000,
     EFFECTFLAG_BLOODPACT        = 0x200000,
     EFFECTFLAG_ON_JOBCHANGE     = 0x400000, // Removes effect when you change jobs
-    EFFECTFLAG_NO_CANCEL        = 0x800000  // CAN NOT CLICK IT OFF IN CLIENT
+    EFFECTFLAG_NO_CANCEL        = 0x800000, // CAN NOT CLICK IT OFF IN CLIENT
+
+    // Ported from Topaz (src/map/status_effect.h:69-71) -- three bits genuinely absent from this
+    // DSP snapshot's enum, which stopped at NO_CANCEL=0x800000. Storage is already a plain uint32
+    // (GetFlag/SetFlag, DelStatusEffectsByFlag) with headroom, so this is a pure additive enum
+    // extension -- no other subsystem touched. Resolves dsp_namespace_map.json's
+    // engine_gaps.effectFlag_INFLUENCE entry (globals/besieged.lua needs INFLUENCE once ported).
+    EFFECTFLAG_INFLUENCE        = 0x1000000, // Influence effects -- e.g. Signet, Sanction, Sigil, Ionis
+    EFFECTFLAG_OFFLINE_TICK     = 0x2000000, // Duration elapses while offline
+    EFFECTFLAG_AURA             = 0x4000000  // Is an aura type effect
 };
 
 enum EFFECT

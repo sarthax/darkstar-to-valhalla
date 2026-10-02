@@ -47,6 +47,14 @@ namespace instanceutils
 	void LoadInstance(uint8 instanceid, uint16 zoneid, CCharEntity* PRequester)
 	{
         CZone* PZone = zoneutils::GetZone(zoneid);
+		// 2026-09-14, live-test debug: Loader is a module-level singleton -- if a previous
+		// LoadInstance() call's async task hasn't been reaped by CheckInstance() yet (or never got
+		// cleared for any reason), every call here falls straight into the nullptr branch below,
+		// SILENTLY (no error logged anywhere) -- suspected real cause of "instances silently not
+		// loading" during this session's live integration test.
+		ShowDebug(CL_CYAN"instanceutils::LoadInstance: instanceid=%u zoneid=%u requester=%s Loader=%s PZone=%s\n" CL_RESET,
+			instanceid, zoneid, PRequester ? PRequester->GetName() : "?",
+			Loader ? "BUSY (blocking this call)" : "free", PZone ? "valid" : "NULL");
 		if (!Loader && PZone)
 		{
 			Loader = new CInstanceLoader(instanceid, PZone, PRequester);

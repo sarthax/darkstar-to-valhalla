@@ -71,7 +71,11 @@ namespace conquest
 
         std::string Query = "SELECT sandoria_influence, bastok_influence, windurst_influence, beastmen_influence FROM conquest_system WHERE region_id = %d;";
 
-        int ret = Sql_Query(SqlHandle, Query.c_str(), region);
+        // 2026-09-14, real bug found via a fresh rebuild: REGIONTYPE is `enum REGIONTYPE : uint8`,
+        // and fmt::sprintf's %d formats a byte-sized enum's underlying value as a raw character,
+        // not a decimal number (garbled the query -- "region_id = <control char>" instead of a
+        // real digit, breaking SQL syntax). Cast to int explicitly so it formats as a number.
+        int ret = Sql_Query(SqlHandle, Query.c_str(), (int)region);
 
         if (ret == SQL_ERROR || Sql_NextRow(SqlHandle) != SQL_SUCCESS)
         {
@@ -239,7 +243,9 @@ namespace conquest
         const int8* Query = "SELECT sandoria_influence, bastok_influence, windurst_influence, beastmen_influence \
                              FROM conquest_system WHERE region_id = %d;";
 
-        int32 ret = Sql_Query(SqlHandle, Query, regionid);
+        // 2026-09-14, same REGIONTYPE-into-%d bug as UpdateInfluencePoints() above -- cast to int
+        // so fmt::sprintf formats it as a number instead of a raw character.
+        int32 ret = Sql_Query(SqlHandle, Query, (int)regionid);
 
         if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
         {
@@ -549,7 +555,9 @@ namespace conquest
     {
         const int8* Query = "SELECT region_control FROM conquest_system WHERE region_id = %d";
 
-        int32 ret = Sql_Query(SqlHandle, Query, RegionID);
+        // 2026-09-14, same REGIONTYPE-into-%d bug as UpdateInfluencePoints() above -- cast to int
+        // so fmt::sprintf formats it as a number instead of a raw character.
+        int32 ret = Sql_Query(SqlHandle, Query, (int)RegionID);
 
         if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
         {

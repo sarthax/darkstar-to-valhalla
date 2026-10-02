@@ -68899,7 +68899,6 @@ INSERT INTO `mob_spawn_points` VALUES (17961570,'Suzaku','Suzaku',14473,110.702,
 INSERT INTO `mob_spawn_points` VALUES (17961573,'Kirin','Kirin',14474,104.915,-40.605,-435.12,182);
 INSERT INTO `mob_spawn_points` VALUES (17961579,'Kouryu','Kouryu',14475,104.915,-40.605,-435.119,0);
 INSERT INTO `mob_spawn_points` VALUES (17961585,'Genbu','Genbu',14454,105.597,-40.605,-432.655,191);
-
 INSERT INTO `mob_spawn_points` VALUES (17961588,'Seiryu','Seiryu',14472,105.294,-40.605,-432.621,128);
 INSERT INTO `mob_spawn_points` VALUES (17961591,'Suzaku','Suzaku',14473,104.862,-40.605,-433.781,201);
 INSERT INTO `mob_spawn_points` VALUES (17961594,'ArkAngelHM','Ark Angel HM',14474,-568.685,-69.204,-185.461,23);

@@ -95,7 +95,17 @@ enum MOBMODIFIER : int
     MOBMOD_ATTACK_SKILL_LIST  = 63, // skill list to use in place of regular attacks
     MOBMOD_CHARMABLE          = 64, // mob is charmable
     MOBMOD_NO_MOVE            = 65, // Mob will not be able to move
-    MOBMOD_MULTI_HIT          = 66  // Mob will not be able to move
+    MOBMOD_MULTI_HIT          = 66, // Mob will not be able to move
+    MOBMOD_CHECK_AS_NM        = 67, // Forces the /check packet path to treat this mob as an NM
+                                     // (shows "cannot be checked further" instead of the normal
+                                     // acc/atk/eva/def breakdown), regardless of its real
+                                     // MOBTYPE_NOTORIOUS/MOBTYPE_BATTLEFIELD flags. Ported from
+                                     // Topaz's tpz.mobMod.CHECK_AS_NM (src/map/mob_modifier.h:80),
+                                     // which uses a different numeric value (49, already taken in
+                                     // this DSP snapshot by MOBMOD_SCRIPTED_2HOUR) -- this family
+                                     // is name-mapped, not numeric-mapped, so the new value only
+                                     // needs to be a free slot, not the same number Topaz uses.
+    MOBMOD_NO_REST            = 68  // Mob never rests (recovers HP) while idle. Ported from Topaz.
 };
 
 #endif

@@ -41,9 +41,22 @@ local DESTINATION_POS = {
     [2] = { x = -140.2350, y = -3.3098, z = -343.3171 }, -- reachable via J21 (leadsToDestination = 2)
 }
 
+-- 2026-09-17: applying the DSP aggro-gate fix confirmed live in Nyzul Isle (see
+-- Nyzul_Isle/instances/nyzul_isle_investigation.lua's forceAggro/MOBMOD_ALWAYS_AGGRO writeup,
+-- 2026-09-16). DSP's CZoneEntities::SpawnMOBs gates CanAggroTarget() on expGain > 50
+-- (charutils::GetRealExp()); Assault-tier mobs give ~0 exp against endgame characters, so they
+-- never validate to aggro at all (only direct-engage combat works) even though the same Lua/SQL
+-- aggroes correctly on Topaz. Forcing MOBMOD_ALWAYS_AGGRO on every mob this instance spawns
+-- restores real aggro behavior without touching DSP's global exp-gap formula.
+local function forceAggro(mob)
+    if mob then
+        mob:setMobMod(MOBMOD_ALWAYS_AGGRO, 1)
+    end
+end
+
 function onInstanceCreated(instance)
     for i, v in pairs(ID.mob[3]) do
-        SpawnMob(v, instance)
+        forceAggro(SpawnMob(v, instance))
     end
 
     instance:getEntity(bit.band(ID.npc.RUNE_OF_RELEASE, 0xFFF), TYPE_NPC):setStatus(STATUS_DISAPPEAR)
@@ -52,6 +65,20 @@ end
 
 function onInstanceTimeUpdate(instance, elapsed)
     updateInstanceTime(instance, elapsed, ID.text)
+
+    -- Chanoix's AI loop is driven from here (1s) instead of his own mob:timer() chain, so a
+    -- Sleep/Stun that skips his AI tick can't stop it. Also acts as the external push.
+    local chanoix = instance:getEntity(bit.band(ID.mob[3].CLAVAUERT_B_CHANOIX, 0xFFF), TYPE_MOB)
+    -- DEBUG: report lookup problems every 10s (not every tick) so a silent miss is visible.
+    if not chanoix or not chanoix:isAlive() or not ChanoixTick then
+        -- if math.floor(elapsed / 1000) % 10 == 0 then
+        --     print(string.format("[CHANOIX] instance tick: cannot drive AI -- entity=%s alive=%s ChanoixTick=%s (id %s, targid %s)",
+        --         tostring(chanoix ~= nil), tostring(chanoix and chanoix:isAlive()), tostring(ChanoixTick ~= nil),
+        --         tostring(ID.mob[3].CLAVAUERT_B_CHANOIX), tostring(bit.band(ID.mob[3].CLAVAUERT_B_CHANOIX, 0xFFF))))
+        -- end
+    else
+        ChanoixTick(chanoix)
+    end
 end
 
 function onInstanceFailure(instance)

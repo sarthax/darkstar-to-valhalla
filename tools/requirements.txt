@@ -1,0 +1,10 @@
+# DSP Database Management Tool Dependencies
+
+# Required packages
+PyMySQL>=1.0.3            # MySQL connector for Python
+gitpython>=3.1.0          # Git operations for version tracking
+PyYAML>=6.0               # YAML configuration parsing
+colorama>=0.4.6           # Colored terminal output
+
+# Optional dependencies
+mysqlclient>=2.1.0        # Alternative MySQL client (if PyMySQL doesn't work)

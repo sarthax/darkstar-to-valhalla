@@ -6,6 +6,24 @@
 
 
 -----------------------------------
+--  set()
+--  Returns a set that can be checked against
+-----------------------------------
+-- 2026-09-14, live map-server error: Aht_Urhgan_Whitegate/Shared.lua calls a bare `set{...}`
+-- global that didn't exist in this codebase at all -- confirmed real and present in Topaz's own
+-- scripts/globals/common.lua, ported verbatim (this is a generic utility, not tied to any one
+-- family of scripts, so it belongs in this codebase's own common.lua rather than duplicated
+-- per-caller).
+
+function set(list)
+    local set = {}
+    for _, item in pairs(list) do
+        set[item] = true
+    end
+    return set
+end
+
+-----------------------------------
 --  switch
 -----------------------------------
 

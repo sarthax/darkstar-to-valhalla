@@ -4703,6 +4703,34 @@ inline int32 CLuaBaseEntity::AnimationSub(lua_State *L)
 
 /************************************************************************
 *                                                                       *
+*  Force a re-broadcast of the entity's CURRENT animationsub to every  *
+*  player in the zone/instance, not just players already in range.     *
+*  AnimationSub()'s own broadcast (above) only pushes CHAR_INRANGE --   *
+*  2026-09-15, real bug found live (Nyzul Isle Rune of Transfer/Runic   *
+*  Lamp lit state lost on a despawn/respawn range cycle): a player who  *
+*  wasn't in range when a state change happened, or who leaves and      *
+*  re-enters range afterward, never receives that update and is stuck   *
+*  showing stale state. Modeled on Topaz's own updateToEntireZone()     *
+*  (lua_baseentity.cpp), whose doc comment confirms this exact same     *
+*  class of bug ("setAnimation() only updates for chars in range") --   *
+*  but that function only carries status/animation, not animationsub,   *
+*  so it doesn't cover this case. CHAR_INZONE is confirmed safely       *
+*  instance-scoped for an instanced entity (CZoneInstance::PushPacket   *
+*  redirects through PEntity->PInstance->PushPacket, zone_instance.cpp) *
+*  -- this will not broadcast across other parties' separate instances. *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::updateAnimationSub(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+
+    m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity, CHAR_INZONE, new CEntityUpdatePacket(m_PBaseEntity, ENTITY_UPDATE, UPDATE_COMBAT));
+    return 0;
+}
+
+/************************************************************************
+*                                                                       *
 *  Получаем/устанавливаем костюм персонажу                              *
 *                                                                       *
 ************************************************************************/
@@ -9125,7 +9153,9 @@ inline int32 CLuaBaseEntity::charm(lua_State* L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isuserdata(L, 1));
 
     CLuaBaseEntity* PTarget = Lunar<CLuaBaseEntity>::check(L, 1);
-    battleutils::applyCharm((CBattleEntity*)m_PBaseEntity, (CBattleEntity*)PTarget->GetBaseEntity());
+    // optional 2nd arg: charm duration in seconds (mob charmers need it -- CPetController despawns a charmed mob once charmTime passes)
+    uint32 charmSeconds = lua_isnumber(L, 2) ? (uint32)lua_tointeger(L, 2) : 0;
+    battleutils::applyCharm((CBattleEntity*)m_PBaseEntity, (CBattleEntity*)PTarget->GetBaseEntity(), std::chrono::seconds(charmSeconds));
 
     return 0;
 }
@@ -11704,6 +11734,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getAnimation),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setAnimation),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,AnimationSub),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateAnimationSub),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,speed),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,resetPlayer),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,costume),

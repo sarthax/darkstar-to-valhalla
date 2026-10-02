@@ -21,3 +21,14 @@ RESPONSE = 7327; -- There is no response...
 --chocobo digging
 DIG_THROW_AWAY = 7060; -- You dig up$, but your inventory is full. You regretfully throw the # away.
 FIND_NOTHING = 7062; -- You dig and you dig, but find nothing.
+
+-- Mercenary rank promotions / Assault backport additions (2026-09-13) -- confirmed absent from
+-- this file natively (grep-verified codebase-wide), needed by npcs/{Warhorse_Hoofprint,
+-- Mythralline_Wellspring,lance_corporal_common}.lua.
+FELLOW_MESSAGE_OFFSET       = 6418; -- I'm ready. I suppose.
+CARRIED_OVER_POINTS         = 7000; -- You have carried over <number> login point[/s].
+LOGIN_CAMPAIGN_UNDERWAY     = 7001; -- The [/January/February/March/April/May/June/July/August/September/October/November/December] <number> Login Campaign is currently underway!<space>
+LOGIN_NUMBER                = 7002; -- In celebration of your most recent login (login no. <number>), we have provided you with <number> points! You currently have a total of <number> points.
+HARVESTING_IS_POSSIBLE_HERE = 7562; -- Harvesting is possible here if you have <item>.
+WELLSPRING                  = 7645;
+HOOFPRINT_FOUND             = 6398;

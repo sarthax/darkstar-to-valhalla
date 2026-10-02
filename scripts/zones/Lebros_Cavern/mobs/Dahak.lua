@@ -114,7 +114,7 @@ function onMobSpawn(mob)
     -- spawn), now actually applied.
     mob:setMobMod(MOBMOD_DRAW_IN, 1)
     mob:setMod(MOD_REGEN, 54)
-    mob:setTrueDetection(true)
+    mob:setTrueDetection(1)
     mob:speed(32)
 end
 

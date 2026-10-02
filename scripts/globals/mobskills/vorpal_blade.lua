@@ -16,7 +16,9 @@ function onMobSkillCheck(target,mob,skill)
     -- if not in Paladin form, then ignore.
     if ((mob:getFamily() == 122 or mob:getFamily() == 123 or mob:getFamily() == 124) and mob:AnimationSub() ~= 1) then
         return 1;
-    elseif (mob:getPool() ~= 4249) then
+    elseif (mob:getFamily() == 176 and mob:AnimationSub() ~= 0) then
+        return 1; -- Mamool Ja: weapon thrown, no Vorpal Blade
+    elseif (mob:getPool() ~= 4249 and mob:getFamily() ~= 176) then
         mob:messageBasic(43, 0, 40);
     end
 

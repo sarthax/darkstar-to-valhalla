@@ -1,3 +1,4 @@
+require("scripts/globals/teleports")
 -----------------------------------
 -- Area: Lebros Cavern
 -----------------------------------
@@ -99,7 +100,7 @@ function onEventFinish(player, csid, option)
     end
     if (csid == 102) then
         for i, v in pairs(chars) do
-            v:setPos(0, 0, 0, 0, 61)
+            HalvungStagingPoint(v) -- real staging point (globals/teleports.lua), was setPos(0,0,0) = zone default arrival
         end
     end
 end

@@ -6,7 +6,13 @@ local ID = Lebros
 require("scripts/globals/status")
 -----------------------------------
 function onMobSpawn(mob)
-    mob:addMod(MOD_DMG, -98)
+    -- 2026-09-19: was addMod(MOD_DMG, -98). DSP's PhysicalDmgTaken clamps (1 + DMGPHYS + DMG) to
+    -- [0.5, 1.5], so MOD_DMG could never take more than 50% off -- live test showed 57-89 per hit
+    -- instead of ~20. UDMG* mods are applied as a separate uncapped multiplier (floored at 0).
+    mob:setMod(MOD_UDMGPHYS, -87)
+    mob:setMod(MOD_UDMGMAGIC, -87)
+    mob:setMod(MOD_UDMGRANGE, -87)
+    mob:setMod(MOD_UDMGBREATH, -87)
     mob:setMobMod(MOBMOD_NO_MOVE, 1)
     mob:SetAutoAttackEnabled(false)
     -- Tuning pass 2026-08-18: live testing at DEF 1500/MDEF 900 showed melee 24-28, crits ~45,

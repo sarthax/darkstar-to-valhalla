@@ -46,7 +46,7 @@ local AGGRO_SCAN_RANGE = 15.0 -- not capture-confirmed -- a plausible sight/soun
 
 local function aggroNearbyThreats(mob, instance)
     for _, threatId in ipairs(THREAT_IDS) do
-        local threat = threatId and GetMobByID(threatId, instance)
+        local threat = threatId and instance:getEntity(bit.band(threatId, 0xFFF), TYPE_MOB)
         if threat and threat:isAlive() and not threat:isEngaged() and mob:checkDistance(threat) <= AGGRO_SCAN_RANGE then
             threat:updateEnmity(mob) -- real binding: threat aggros mob, unclaimed until it actually engages
         end
@@ -210,7 +210,51 @@ local STATE_BACKTRACKING = 3
 -- Per-instance runtime state, keyed by instance:getID() -- can't live in setLocalVar (numeric
 -- only). { destIndex, currentJunction, targetJunction, history = {visited junction ids, most
 -- recent last}, state, pauseUntil }
-local runtime = {}
+-- MUST be a global: DSP re-executes this whole file on every mob hook call, so a plain
+-- `local runtime = {}` is a brand-new empty table per load. The 20s start timer (loaded at spawn)
+-- and ChanoixTick (the newest load) would then each see a DIFFERENT runtime table -- confirmed via
+-- debug trace: startMoving set runtime[3].started but tick saw runtime[3] == nil.
+CHANOIX_RUNTIME = CHANOIX_RUNTIME or {}
+local runtime = CHANOIX_RUNTIME
+
+-----------------------------------
+-- DEBUG TRACING -- set CHANOIX_DEBUG = false to silence. Every line is prefixed [CHANOIX], so
+-- grep the map-server console for it.
+-----------------------------------
+-- Debug output is DISABLED: the print() below is commented out. To debug again, uncomment it (and
+-- the matching block in instances/escort_professor_chanoix.lua's onInstanceTimeUpdate) and set
+-- CHANOIX_DEBUG = true.
+CHANOIX_DEBUG = false
+CHANOIX_DBG_GATE = CHANOIX_DBG_GATE or {}
+local dbgLastGate = CHANOIX_DBG_GATE
+local function dbg(fmt, ...)
+    if CHANOIX_DEBUG then
+        local ok, msg = pcall(string.format, fmt, ...)
+        -- print("[CHANOIX] " .. (ok and msg or ("fmt-error: " .. tostring(fmt))))
+    end
+end
+
+-- Logs a gate/early-return reason only when it CHANGES for that instance, so a tick that bails
+-- every second doesn't spam, but you still see exactly which gate is blocking and when.
+local function dbgGate(instId, reason)
+    if dbgLastGate[instId] ~= reason then
+        dbgLastGate[instId] = reason
+        dbg("tick gate [inst %s]: %s", tostring(instId), reason)
+    end
+end
+
+local function dbgPos(mob)
+    return string.format("(%.1f,%.1f,%.1f)", mob:getXPos(), mob:getYPos(), mob:getZPos())
+end
+
+-- Every pathTo() in this file goes through here so the engine's return value (did FindPath accept
+-- the leg?) and the flags used are always logged.
+local function tracedPath(mob, x, y, z, flags)
+    local ok = mob:pathTo(x, y, z, flags)
+    dbg("pathTo target=(%.1f,%.1f,%.1f) flags=%s from=%s -> returned %s, isFollowingPath now=%s",
+        x, y, z, tostring(flags), dbgPos(mob), tostring(ok), tostring(mob:isFollowingPath()))
+    return ok
+end
 
 local function pickWeighted(options)
     -- options: { {value=..., weight=...}, ... }
@@ -462,7 +506,7 @@ local function combatRoamStep(mob, instance, homeX, homeY, homeZ)
     local angle = math.random() * 2 * math.pi
     local rx = homeX + math.cos(angle) * COMBAT_ROAM_RADIUS
     local rz = homeZ + math.sin(angle) * COMBAT_ROAM_RADIUS
-    mob:pathTo(rx, homeY, rz, PATHFLAG_RUN_SCRIPT)
+    tracedPath(mob, rx, homeY, rz, PATHFLAG_RUN_SCRIPT)
     mob:timer(COMBAT_ROAM_STEP_MS, function(mob)
         if mob then
             combatRoamStep(mob, instance, homeX, homeY, homeZ)
@@ -476,32 +520,75 @@ end
 local START_DELAY_MS = 20000
 
 local function startMoving(mob)
+    dbg("startMoving: called")
     local instance = mob:getInstance()
     if not instance or instance:completed() then
+        dbg("startMoving: ABORT instance=%s", tostring(instance))
         return
     end
     if not mob:isAlive() then
-        return
-    end
-
-    local st = runtime[instance:getID()]
-    st.startTime = os.time() -- clock starts when he actually begins, not at raw spawn
-    chooseDestination(mob, instance)
-    mob:timer(TICK_MS, tick)
-end
-
-tick = function(mob)
-    local instance = mob:getInstance()
-    if not instance or instance:completed() then
-        return
-    end
-    if not mob:isAlive() then
+        dbg("startMoving: ABORT mob not alive")
         return
     end
 
     local st = runtime[instance:getID()]
     if not st then
+        dbg("startMoving: runtime[%s] is NIL -- onMobSpawn state was cleared or never set", tostring(instance:getID()))
         return
+    end
+    st.startTime = os.time() -- clock starts when he actually begins, not at raw spawn
+    chooseDestination(mob, instance)
+    dbg("startMoving: OK inst=%s dest=%s pos=%s mobId=%s -- st.started=true, waiting for instance tick",
+        tostring(instance:getID()), tostring(st.destIndex), dbgPos(mob), tostring(mob:getID()))
+    st.started = true -- instance onInstanceTimeUpdate now calls ChanoixTick() every second
+end
+
+-- Incapacitating effects that stop the mob AI / freeze pathing. Stripped every tick as a
+-- belt-and-braces backup to the "immuneToIncapacitate" localVar (which needs the C++ side).
+local INCAPACITATE_EFFECTS =
+{
+    EFFECT_SLEEP_I, EFFECT_SLEEP_II, EFFECT_LULLABY, EFFECT_STUN, EFFECT_PETRIFICATION,
+    EFFECT_TERROR, EFFECT_PENALTY, EFFECT_BIND, EFFECT_PARALYSIS, EFFECT_CHARM_I, EFFECT_CHARM_II,
+}
+
+tick = function(mob)
+    local instance = mob:getInstance()
+    if not instance then
+        dbg("tick gate: mob:getInstance() is nil")
+        return
+    end
+    local instId = instance:getID()
+    if instance:completed() then
+        dbgGate(instId, "instance completed")
+        return
+    end
+    if not mob:isAlive() then
+        dbgGate(instId, "mob not alive")
+        return
+    end
+
+    local st = runtime[instId]
+    if not st then
+        dbgGate(instId, "runtime[inst] is nil (onMobSpawn never ran for this instance id, or cleared)")
+        return
+    end
+    if not st.started then
+        dbgGate(instId, "st.started is false -- the 20s START_DELAY timer has not fired startMoving yet (or never fired)")
+        return
+    end
+    dbgGate(instId, "PASSED all entry gates")
+
+    -- Per-tick heartbeat: everything needed to see why he isn't moving.
+    dbg("tick: pos=%s state=%s curJ=%s dest=%s following=%s legIssuedAt=%s pausedHere=%s pauseUntil=%s hist=%d action=%s",
+        dbgPos(mob), tostring(st.state), tostring(st.currentJunction), tostring(st.destIndex),
+        tostring(mob:isFollowingPath()), tostring(st.legIssuedAt), tostring(st.pausedHere),
+        tostring(st.pauseUntil), #st.history, tostring(mob:getCurrentAction()))
+
+    for _, eff in ipairs(INCAPACITATE_EFFECTS) do
+        if eff and mob:hasStatusEffect(eff) then
+            dbg("tick: stripping incapacitating effect id %s", tostring(eff))
+            mob:delStatusEffect(eff)
+        end
     end
 
     aggroNearbyThreats(mob, instance)
@@ -530,22 +617,26 @@ tick = function(mob)
         local claimedNode = JUNCTIONS[st.currentJunction]
         if claimedNode then
             st.stallRetries = (st.stallRetries or 0) + 1
+            dbg("STALL WATCHDOG fired: leg to J%s issued %ss ago, retry #%d", tostring(st.currentJunction),
+                tostring(os.time() - st.legIssuedAt), st.stallRetries)
             if st.stallRetries > STALL_HARD_HOP_AFTER then
                 -- Given up trying to path this leg -- place him directly at the junction.
                 mob:setPos(claimedNode.x, claimedNode.y, claimedNode.z, 0)
                 st.stallRetries = 0
                 st.legIssuedAt = nil
             else
-                mob:pathTo(claimedNode.x, claimedNode.y, claimedNode.z, st.currentLegFlags or PATHFLAG_RUN_SCRIPT)
+                tracedPath(mob, claimedNode.x, claimedNode.y, claimedNode.z, st.currentLegFlags or PATHFLAG_RUN_SCRIPT)
                 st.legIssuedAt = os.time()
             end
         end
-        mob:timer(TICK_MS, tick)
+        -- (next tick driven by instance onInstanceTimeUpdate)
         return
     end
 
     if st.state == STATE_PAUSED then
+        dbg("tick: PAUSED kind=%s remaining=%ss", tostring(st.pauseKind), tostring(st.pauseUntil - os.time()))
         if os.time() >= st.pauseUntil then
+            dbg("tick: pause ENDED (kind=%s) -> ADVANCING", tostring(st.pauseKind))
             st.state = STATE_ADVANCING
             if st.pauseKind == "ordinary" then
                 -- Plays specifically when an ordinary junction pause ENDS, not the dwell/combat
@@ -554,11 +645,12 @@ tick = function(mob)
             end
             st.pauseKind = nil
         end
-        mob:timer(TICK_MS, tick)
+        -- (next tick driven by instance onInstanceTimeUpdate)
         return
     end
 
     if not mob:isFollowingPath() then
+        dbg("tick: not following a path -> decision branch at curJ=%s", tostring(st.currentJunction))
         -- st.currentJunction is set to the TARGET the moment a leg is ISSUED, not when it's
         -- actually confirmed complete. If a leg doesn't finish cleanly, isFollowingPath() can go
         -- false while he's still physically partway there -- verify real proximity before trusting
@@ -569,6 +661,8 @@ tick = function(mob)
                 local ddx = mob:getXPos() - claimedNode.x
                 local ddz = mob:getZPos() - claimedNode.z
                 if (ddx * ddx + ddz * ddz) > (JUNCTION_ARRIVE_RADIUS * JUNCTION_ARRIVE_RADIUS) then
+                    dbg("tick: leg to J%s not complete (dist=%.1f > %.1f) -> re-issuing same leg",
+                        tostring(st.currentJunction), math.sqrt(ddx * ddx + ddz * ddz), JUNCTION_ARRIVE_RADIUS)
                     -- Not actually there yet -- retry the SAME leg from his real current position.
                     -- Reuses whatever flags that leg was originally issued with (st.currentLegFlags)
                     -- -- a wallhack leg that needs a retry must stay wallhack, or it fails outright
@@ -576,8 +670,8 @@ tick = function(mob)
                     -- branch can re-fire every tick when strict FindPath() fails outright, and
                     -- resetting the clock on every retry would hide that from the stall watchdog
                     -- above (a leg failing immediately forever needs to escalate past this loop).
-                    mob:pathTo(claimedNode.x, claimedNode.y, claimedNode.z, st.currentLegFlags or PATHFLAG_RUN_SCRIPT)
-                    mob:timer(TICK_MS, tick)
+                    tracedPath(mob, claimedNode.x, claimedNode.y, claimedNode.z, st.currentLegFlags or PATHFLAG_RUN_SCRIPT)
+                    -- (next tick driven by instance onInstanceTimeUpdate)
                     return
                 end
             end
@@ -587,22 +681,24 @@ tick = function(mob)
         if node and node.isDestination == st.destIndex then
             -- Reached the last known junction toward the chosen destination; hand off to a direct
             -- pathTo() for the final stretch (still strict, no wallhack).
-            mob:pathTo(dest.x, dest.y, dest.z, PATHFLAG_RUN_SCRIPT)
+            tracedPath(mob, dest.x, dest.y, dest.z, PATHFLAG_RUN_SCRIPT)
             st.currentJunction = -1 -- sentinel: "heading to destination directly"
             st.legIssuedAt = nil -- stall watchdog only watches mid-leg (currentJunction ~= -1)
-            mob:timer(TICK_MS, tick)
+            -- (next tick driven by instance onInstanceTimeUpdate)
             return
         end
 
         if st.currentJunction == -1 then
             -- Already issued the final pathTo() toward the destination; just wait for arrival
             -- (checked above).
-            mob:timer(TICK_MS, tick)
+            -- (next tick driven by instance onInstanceTimeUpdate)
             return
         end
 
         -- Arrived at st.currentJunction (or just spawned). Decide what to do.
         local arrivedNode = JUNCTIONS[st.currentJunction]
+        dbg("tick: ARRIVED/decide at J%s (node found=%s, edges=%s)", tostring(st.currentJunction),
+            tostring(arrivedNode ~= nil), arrivedNode and arrivedNode.edges and table.concat(arrivedNode.edges, ",") or "none")
 
         -- 2026-09-14, user-reported: J17/J18 (the northern dead-end spur off J6/J7, e.g. LOGPOS
         -- confirmed at J18: -19.4427,0.4220,-67.6332) were almost never actually visited across
@@ -634,10 +730,10 @@ tick = function(mob)
         -- he came). st.pausedHere gates this on "we already did the fight here", so this only fires
         -- on the second arrival-tick at this node, after combat.
         if st.pausedHere and arrivedNode and arrivedNode.leadsToDestination == st.destIndex then
-            mob:pathTo(dest.x, dest.y, dest.z, PATHFLAG_RUN_SCRIPT)
+            tracedPath(mob, dest.x, dest.y, dest.z, PATHFLAG_RUN_SCRIPT)
             st.currentJunction = -1 -- sentinel: heading to destination directly, same as J13->100
             st.legIssuedAt = nil -- stall watchdog only watches mid-leg (currentJunction ~= -1)
-            mob:timer(TICK_MS, tick)
+            -- (next tick driven by instance onInstanceTimeUpdate)
             return
         end
 
@@ -652,7 +748,7 @@ tick = function(mob)
             table.insert(st.history, st.currentJunction)
             local tj = JUNCTIONS[target]
             local legFlags = pathFlagsFor(st.currentJunction, target)
-            mob:pathTo(tj.x, tj.y, tj.z, legFlags)
+            tracedPath(mob, tj.x, tj.y, tj.z, legFlags)
             st.currentJunction = target
             st.currentLegFlags = legFlags
             st.legIssuedAt = os.time()
@@ -660,7 +756,7 @@ tick = function(mob)
             st.pausedHere = false
             st.deadEndAnnounced = false
             st.state = STATE_ADVANCING
-            mob:timer(TICK_MS, tick)
+            -- (next tick driven by instance onInstanceTimeUpdate)
             return
         end
 
@@ -690,7 +786,7 @@ tick = function(mob)
             else
                 speakExchange(mob, "dwell @ J" .. tostring(st.currentJunction))
             end
-            mob:timer(TICK_MS, tick)
+            -- (next tick driven by instance onInstanceTimeUpdate)
             return
         end
 
@@ -713,7 +809,7 @@ tick = function(mob)
             else
                 mob:messageText(mob, PAUSE_START_LINE)
             end
-            mob:timer(TICK_MS, tick)
+            -- (next tick driven by instance onInstanceTimeUpdate)
             return
         end
 
@@ -751,6 +847,8 @@ tick = function(mob)
             end
         end
 
+        dbg("tick: decision -> target=%s backtracking=%s beelining=%s forwardBias=%.1f elapsed=%ss",
+            tostring(target), tostring(backtracking), tostring(beelining), forwardBias, tostring(elapsed))
         if target then
             if isPlainDeadEnd then
                 -- Dedicated line for LEAVING a dead end, distinct from the generic lost-pool
@@ -769,7 +867,7 @@ tick = function(mob)
             -- real line has a dedicated home, there's no leftover ambient pool to fall back on.
             local tj = JUNCTIONS[target]
             local legFlags = pathFlagsFor(st.currentJunction, target)
-            mob:pathTo(tj.x, tj.y, tj.z, legFlags)
+            tracedPath(mob, tj.x, tj.y, tj.z, legFlags)
             st.currentJunction = target
             -- Remembered so a retry (above) reuses the SAME flags, not a hardcoded default -- a
             -- wallhack leg that needs another attempt must stay wallhack.
@@ -779,15 +877,34 @@ tick = function(mob)
             st.pausedHere = false -- fresh arrival, can pause again next time
             st.deadEndAnnounced = false
         end
+        if not target then
+            dbg("tick: NO TARGET chosen at J%s -- standing still", tostring(st.currentJunction))
+        end
         -- else: no target chosen this tick -- he'll stand still until the next tick re-evaluates.
         -- If this happens repeatedly at the same junction, that junction's edges/nextJunctionFrom
         -- logic is the real bug to check.
     end
 
-    mob:timer(TICK_MS, tick)
+    -- (next tick driven by instance onInstanceTimeUpdate)
+end
+
+-- Driven from instances/escort_professor_chanoix.lua's onInstanceTimeUpdate (1s, independent of
+-- the mob's own AI tick, so Sleep/Stun can't stall it). Global so the instance script can call it
+-- while the `runtime` table stays in this chunk.
+CHANOIX_TICK_COUNT = CHANOIX_TICK_COUNT or 0
+function ChanoixTick(mob)
+    CHANOIX_TICK_COUNT = CHANOIX_TICK_COUNT + 1
+    if CHANOIX_TICK_COUNT == 1 or CHANOIX_TICK_COUNT % 30 == 0 then
+        dbg("ChanoixTick invoked from instance (call #%d)", CHANOIX_TICK_COUNT)
+    end
+    local ok, err = pcall(tick, mob)
+    if not ok then
+        dbg("!!! tick() THREW A LUA ERROR: %s", tostring(err))
+    end
 end
 
 function onMobSpawn(mob)
+    dbg("onMobSpawn: fired for mobId=%s pos=%s", tostring(mob:getID()), dbgPos(mob))
     mob:SetAutoAttackEnabled(false)
     -- He wanders the whole maze by design and can end up far from his own spawn point, so he's
     -- exempt from the engine's default leash-despawn (a real live regression was a leash despawn
@@ -805,8 +922,10 @@ function onMobSpawn(mob)
     mob:setAllegiance(1)
     local instance = mob:getInstance()
     if not instance then
+        dbg("onMobSpawn: mob:getInstance() is NIL -- runtime never created, AI can never start")
         return
     end
+    dbg("onMobSpawn: creating runtime[%s], scheduling startMoving in %dms", tostring(instance:getID()), START_DELAY_MS)
     runtime[instance:getID()] = {
         destIndex = 1,
         currentJunction = SPAWN_JUNCTION,
@@ -821,13 +940,18 @@ function onMobSpawn(mob)
     -- crashes. Use mob:timer()'s own fresh callback argument instead of the stale outer-scope
     -- capture, and bail cleanly if he's gone.
     mob:timer(START_DELAY_MS, function(mob)
+        dbg("START_DELAY timer fired (mob arg present=%s)", tostring(mob ~= nil))
         if mob then
-            startMoving(mob)
+            local ok, err = pcall(startMoving, mob)
+            if not ok then
+                dbg("!!! startMoving THREW A LUA ERROR: %s", tostring(err))
+            end
         end
     end)
 end
 
 function onMobDeath(mob, player, isKiller)
+    dbg("onMobDeath: fired -- instance will FAIL")
     local instance = mob:getInstance()
     if instance and not instance:completed() then
         instance:fail()
@@ -838,6 +962,7 @@ function onMobDeath(mob, player, isKiller)
 end
 
 function onMobDespawn(mob)
+    dbg("onMobDespawn: fired -- runtime cleared")
     local instance = mob:getInstance()
     if instance then
         runtime[instance:getID()] = nil

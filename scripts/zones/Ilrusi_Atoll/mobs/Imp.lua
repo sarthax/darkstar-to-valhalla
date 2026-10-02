@@ -1,45 +1,16 @@
 -----------------------------------
 -- Area: Ilrusi Atoll
---  MOB: Imp
+--  Mob: Imp
 -----------------------------------
-
-require("scripts/globals/status");
-    
+-- 2026-09-14: `mixins = {...}` (Topaz's auto-apply table) is dead code in old-dsp-reference --
+-- confirmed nothing in this codebase's C++ reads it. Wired to ImpMix.onCriticalHit via the real
+-- onCriticalHit(mob) engine callback instead -- see scripts/mixins/families/imp.lua's own header.
+require("scripts/mixins/families/imp")
 -----------------------------------
--- onMobInitialize Action
------------------------------------
-
-function onMobInitialize(mob)
-end;
-
------------------------------------
--- onMobSpawn Action
------------------------------------
-
-function onMobSpawn(mob)
-end;
-
------------------------------------
--- onMobFight Action
------------------------------------
-
-function onMobFight(mob, target)
-end;
-
------------------------------------
--- onCriticalHit
------------------------------------
-
-function onCriticalHit(mob)   
- 
-    if (math.random(100) < 20 and mob:AnimationSub() == 0) then  -- 20% change to break that horn on crit   
-        mob:AnimationSub(1);
-    end
-end;
-
------------------------------------
--- onMobDeath
------------------------------------
+function onCriticalHit(mob)
+    ImpMix.onCriticalHit(mob)
+end
 
 function onMobDeath(mob, player, isKiller)
-end;
+end
+

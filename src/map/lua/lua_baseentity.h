@@ -52,11 +52,13 @@ public:
     int32 leavegame(lua_State*);            // Character leaving game
     int32 bringPlayer(lua_State*);          // warps target to self
     int32 gotoPlayer(lua_State*);           // warps self to target player
+    int32 goToEntity(lua_State*);           // warps self to a mob/npc, possibly in another zone
     int32 getID(lua_State *L);              // Gets Entity Id
     int32 getShortID(lua_State *L);
     int32 getCursorTarget(lua_State *L);    // Returns the ID any object under players in game cursor.
     int32 getPool(lua_State *L);            // Returns a mobs pool ID. If entity is not a mob, returns nil.
     int32 getName(lua_State *L);            // Gets Entity Name
+    int32 setName(lua_State *L);            // DSP-PORT: overrides an NPC/mob's live display name (ported from Topaz)
     int32 getModelSize(lua_State *L);       // Gets model size
 
     int32 getHPP(lua_State*);               // Returns Entity Health %
@@ -115,6 +117,7 @@ public:
     int32 getAnimation(lua_State*);         // Get Entity Animation
     int32 setAnimation(lua_State*);         // Set Entity Animation
     int32 AnimationSub(lua_State*);         // get or set animationsub
+    int32 updateAnimationSub(lua_State*);   // re-broadcast current animationsub to the whole zone/instance, not just in-range players
     int32 costume(lua_State*);              // get or set user costume
     int32 costume2(lua_State*);             // set monstrosity costume
     int32 canUseCostume(lua_State*);        // check to see if character can use costume, 0 if so
@@ -199,6 +202,7 @@ public:
 
     int32 showText(lua_State*);             // Displays Dialog for npc
     int32 messageSpecial(lua_State*);       // Sends Special Message
+    int32 messageSpecialFrom(lua_State*);   // DSP-PORT: Special Message pushed to self, sourced from a different entity (e.g. NPC dialogue with a resolved item name)
     int32 messageSystem(lua_State*);        // Sends System Message
     int32 messageBasic(lua_State*);         // Sends Basic Message
     int32 messagePublic(lua_State*);        // Sends a public Basic Message
@@ -233,6 +237,8 @@ public:
     int32 addPlayerToSpecialBattlefield(lua_State*); //for limbus
 
     int32 isSpawned(lua_State*);
+    int32 isEngaged(lua_State*);  // DSP-PORT: ported from Topaz's own isEngaged()
+    int32 forceRespawn(lua_State*);  // DSP-PORT: ported from Topaz's own forceRespawn()
     int32 setSpawn(lua_State*);                // Sets spawn point
     int32 setRespawnTime(lua_State*);          // set respawn time
     int32 getRespawnTime(lua_State*);

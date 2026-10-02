@@ -312,3 +312,107 @@ function getISPItem(i)
     local item = IS_item[i];
     return item.id, item.price;
 end;
+
+------------------------------------------------------------------
+-- DSP-PORT (2026-09-13): mercenary-rank promotion + Warhorse Hoofprint functions, ported from
+-- Topaz's own real scripts/globals/besieged.lua (tpz.besieged.canPromote/promoteRank/
+-- capPromotionPoints/warhorseHoofprintTrigger). Previously flagged as a real gap by
+-- mission_toolkit's namespace_family_index_2026-09-13, but genuinely blocked on getCharVar/
+-- setCharVar appearing entirely absent from a "charvar" substring grep -- that grep was checking
+-- the wrong name. The real mechanism exists under a different name: getVar/setVar/addVar
+-- (lua_baseentity.cpp:3344/3364/3396, backed by the same real char_vars SQL table Topaz's
+-- getCharVar/setCharVar use). Rewritten to bare globals (this codebase predates tpz.*
+-- namespacing entirely) -- confirmed zero collisions against every existing name in this
+-- codebase's scripts/ tree before adding. getMercenaryRank/badges already existed above in this
+-- same file (line 97-ish); ASSAULT_RANK_BADGES/MERCENARY_RANK are new bare-global exports of the
+-- same real badge ids so promoteRank can look up "what's the next badge" the way Topaz's own
+-- promoteRank does, not duplicated logic.
+------------------------------------------------------------------
+
+ASSAULT_RANK_BADGES = { 780, 783, 784, 794, 795, 825, 826, 827, 894, 900, 909 }
+
+MERCENARY_RANK =
+{
+    PSC = 1, PFC = 2, SP = 3, LC = 4, C = 5, S = 6, SM = 7, CS = 8, SL = 9, FL = 10, CAPTAIN = 11,
+}
+
+PROMOTION_POINTS_REQUIRED = 25
+PROMOTION_POINTS_CAP = 25
+
+-- Check if player is eligible for next rank promotion and can claim it
+function canPromote(player)
+    local currentRank = getMercenaryRank(player)
+    local promotionPoints = player:getVar("AssaultPromotion") or 0
+
+    if currentRank >= MERCENARY_RANK.CAPTAIN then
+        return false
+    end
+
+    if promotionPoints < PROMOTION_POINTS_REQUIRED then
+        return false
+    end
+
+    -- Captain requires all 50 assaults completed (special requirement)
+    if currentRank == MERCENARY_RANK.FL then
+        local assaultsCompleted = player:getVar("AssaultsCompleted") or 0
+        if assaultsCompleted < 50 then
+            return false
+        end
+    end
+
+    return true
+end;
+
+-- Award the next rank badge and reset promotion points
+function promoteRank(player)
+    local currentRank = getMercenaryRank(player)
+
+    if currentRank >= MERCENARY_RANK.CAPTAIN then
+        return false
+    end
+
+    local nextRankIndex = currentRank + 1
+    local nextBadge = ASSAULT_RANK_BADGES[nextRankIndex]
+
+    if not nextBadge then
+        return false
+    end
+
+    npcUtil.giveKeyItem(player, nextBadge)
+    player:setVar("AssaultPromotion", 0)
+
+    return true
+end;
+
+-- Cap AssaultPromotion points at the maximum (25)
+function capPromotionPoints(player, points)
+    points = math.min(points, PROMOTION_POINTS_CAP)
+    player:setVar("AssaultPromotion", points)
+    return points
+end;
+
+-- Real BG Wiki-sourced mechanic ("Warhorse Hoofprint"): examining a Warhorse_Hoofprint object
+-- grants Dark Rider hoofprint (Promotion: Superior Private) or Quartz Transmitter (Promotion:
+-- Corporal) depending which promotion quest is active. Deliberately simplified per the original
+-- Topaz-side design decision (see Topaz's own comment on this function) -- all real hoofprint
+-- spots are simultaneously/permanently active, no spawn timing modeled.
+-- DSP-PORT adaptation: Topaz's own version resolves its own zone's text table internally via
+-- `zones[player:getZoneID()].text` -- a runtime numeric-indexed zones[] lookup table that does
+-- NOT exist in this codebase (confirmed: this codebase's own real per-zone id files are each a
+-- single bare zone-name global, e.g. Periqia/IDs.lua's `Periqia = {...}`, with no separate
+-- zones[N]=... registration anywhere). Adapted to take the caller's own zone text table as an
+-- explicit parameter instead -- every real caller (each zone's own Warhorse_Hoofprint.lua) already
+-- knows its own zone's bare-global table directly (e.g. Wajaom_Woodlands.text), so this needs no
+-- runtime zone-id lookup at all. KEYITEM_OBTAINED messaging is handled by npcUtil.giveKeyItem
+-- itself (npc_util.lua:61), so this doesn't need its own messageSpecial call for that part.
+function warhorseHoofprintTrigger(player, npc, hoofprintTextId)
+    if player:getVar("PromotionSP") == 1 and not player:hasKeyItem(DARK_RIDER_HOOFPRINT) then
+        player:messageText(player, hoofprintTextId)
+        npcUtil.giveKeyItem(player, DARK_RIDER_HOOFPRINT)
+    elseif player:getVar("PromotionCorporal") == 1 and not player:hasKeyItem(QUARTZ_TRANSMITTER) then
+        player:messageText(player, hoofprintTextId)
+        npcUtil.giveKeyItem(player, QUARTZ_TRANSMITTER)
+    else
+        player:messageText(player, hoofprintTextId)
+    end
+end;

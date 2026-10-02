@@ -28,16 +28,30 @@ local FOOD_POINTS =
 local STEWPOT_ITEM = 5238 -- seafood_stewpot -- feeds every Stormer in one group to full
 local ALL_FOOD_ITEMS = { 4356, 4416, 5207, 5166, 5142, STEWPOT_ITEM }
 
+
+-- timer callbacks must not trust a captured player (stale-pointer crash): re-resolve by id
+local function liveChar(instance, id)
+    if instance then
+        for _, v in pairs(instance:getChars()) do
+            if v:getID() == id then
+                return v
+            end
+        end
+    end
+    return nil
+end
+
 function onTrigger(player, npc)
     npc:lookAt(player:getPos())
     local instance = npc:getInstance()
+    local playerId = player:getID()
 
     -- "Only the food items will feed the soldiers" -- and the wiki confirms re-asking Yazuhma while
     -- still holding one (even after dropping/Antacid-ing it, tracked via the localvar below) just
     -- repeats this line instead of granting a second item.
     for _, itemId in ipairs(ALL_FOOD_ITEMS) do
         if player:hasItem(itemId) then
-            npc:messageText(player, ID.text.YAZUHMA_ALREADY_HAVE_RATION)
+            player:messageText(npc, ID.text.YAZUHMA_ALREADY_HAVE_RATION)
             return
         end
     end
@@ -50,24 +64,29 @@ function onTrigger(player, npc)
 
     player:addTempItem(itemId)
 
-    npc:messageText(player, ID.text.YAZUHMA_GRANT_1)
-    npc:timer(2000, function()
-        npc:messageText(player, ID.text.YAZUHMA_GRANT_2)
+    player:messageText(npc, ID.text.YAZUHMA_GRANT_1)
+    npc:timer(2000, function(n)
+        local player = liveChar(instance, playerId)
+        if player then player:messageText(n, ID.text.YAZUHMA_GRANT_2) end
     end)
-    npc:timer(4000, function()
-        player:messageSpecial(ID.text.YAZUHMA_TEMP_ITEM_OBTAINED, itemId)
+    npc:timer(4000, function(n)
+        local player = liveChar(instance, playerId)
+        if not player then return end
+        player:messageSpecial(ID.text.YAZUHMA_TEMP_ITEM_OBTAINED, itemId, 0, 0, 0, true)
     end)
 
-    npc:timer(7000, function()
+    npc:timer(7000, function(npc)
+        local player = liveChar(instance, playerId)
+        if not player then return end
         local remaining = 12 - instance:getProgress()
         if remaining >= 7 then
-            npc:messageText(player, ID.text.YAZUHMA_STILL_STARVING)
+            player:messageText(npc, ID.text.YAZUHMA_STILL_STARVING)
         elseif remaining >= 4 then
-            npc:messageText(player, ID.text.YAZUHMA_HALFWAY)
+            player:messageText(npc, ID.text.YAZUHMA_HALFWAY)
         elseif remaining >= 2 then
-            npc:messageText(player, ID.text.YAZUHMA_DENT)
+            player:messageText(npc, ID.text.YAZUHMA_DENT)
         elseif remaining == 1 then
-            npc:messageText(player, ID.text.YAZUHMA_LEFTOVER)
+            player:messageText(npc, ID.text.YAZUHMA_LEFTOVER)
         end
     end)
 end

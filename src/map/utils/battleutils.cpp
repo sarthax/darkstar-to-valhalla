@@ -4001,10 +4001,14 @@ namespace battleutils
             PCharmer->PPet->animation = ANIMATION_NONE;
             PCharmer->updatemask |= UPDATE_HP;
 
-            charutils::BuildingCharAbilityTable((CCharEntity*)PCharmer);
-            charutils::BuildingCharPetAbilityTable((CCharEntity*)PCharmer, (CPetEntity*)PVictim, PVictim->id);
-            ((CCharEntity*)PCharmer)->pushPacket(new CCharUpdatePacket((CCharEntity*)PCharmer));
-            ((CCharEntity*)PCharmer)->pushPacket(new CPetSyncPacket((CCharEntity*)PCharmer));
+            // Player-only client sync; a MOB charmer (Lamia No.13 charming her Fallen) is not a CCharEntity -- casting it crashed (Ilrusi 42).
+            if (PCharmer->objtype == TYPE_PC)
+            {
+                charutils::BuildingCharAbilityTable((CCharEntity*)PCharmer);
+                charutils::BuildingCharPetAbilityTable((CCharEntity*)PCharmer, (CPetEntity*)PVictim, PVictim->id);
+                ((CCharEntity*)PCharmer)->pushPacket(new CCharUpdatePacket((CCharEntity*)PCharmer));
+                ((CCharEntity*)PCharmer)->pushPacket(new CPetSyncPacket((CCharEntity*)PCharmer));
+            }
             ((CMobEntity*)PVictim)->m_OwnerID.clean();
             PVictim->updatemask |= UPDATE_STATUS;
         }

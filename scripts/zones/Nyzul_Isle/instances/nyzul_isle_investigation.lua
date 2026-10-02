@@ -38,6 +38,27 @@ local function despawnIfSpawned(id, instance)
     end
 end
 
+-- 2026-09-16, real root cause found live: Nyzul Isle mobs weren't aggroing at all (no sight/sound/
+-- magic detection, only direct-engage combat worked), while the same Lua/SQL worked correctly on
+-- Topaz. Traced to a genuine DSP-vs-Topaz engine divergence in CZoneEntities::SpawnMOBs
+-- (src/map/zone_entities.cpp) -- the gate that decides whether a mob is even ALLOWED to attempt
+-- CanAggroTarget() at all differs: Topaz uses charutils::CheckMob() (a difficulty classification),
+-- DSP uses a raw `expGain > 50` threshold from charutils::GetRealExp(). Nyzul Isle's real mob
+-- levels (66-80, confirmed live in mob_groups) give ~0 exp against any endgame-level character
+-- under DSP's real-exp-table formula, so `validAggro` is false for every one of these mobs
+-- regardless of detects/aggro flags -- confirmed live: 184 of 190 zone-77 mob_groups rows lack
+-- MOBTYPE_EVENT (the one flag that bypasses this gate via MOBMOD_ALWAYS_AGGRO, set automatically in
+-- CInstanceLoader::LoadInstance for MOBTYPE_EVENT mobs only). This isn't a backport data bug --
+-- retail Nyzul Isle mobs aggro regardless of player level (it's endgame farming content), so the
+-- correct fix is forcing MOBMOD_ALWAYS_AGGRO on every mob this script spawns, matching real retail
+-- behavior and bypassing DSP's stricter level-gap gate without touching that gate's global formula
+-- (which affects aggro everywhere else in the game and is out of scope here).
+local function forceAggro(mob)
+    if mob then
+        mob:setMobMod(MOBMOD_ALWAYS_AGGRO, 1)
+    end
+end
+
 -- Real enemy layouts (ELIMINATE_ALL_ENEMIES and ELIMINATE_SPECIFIED_ENEMY objectives) -- see
 -- IDs.lua's mob[51].ENEMY_LAYOUTS table, all 16 real BG Wiki layouts. Despawned unconditionally at
 -- the top of every pickSetPoint call so a previous floor's mobs never linger.
@@ -94,6 +115,7 @@ local function spawnRandomEnemyLayout(instance)
             if mob then
                 mob:setSpawn(p.x, p.y, p.z, 0)
                 SpawnMob(i, instance)
+                forceAggro(mob)
                 total = total + 1
             else
                 print(string.format("[NYZUL SPAWN ERROR] spawnRandomEnemyLayout: GetMobByID(%d) returned nil -- skipped, not counted toward Eliminate", i))
@@ -144,6 +166,7 @@ local function spawnRandomLeader(instance)
         mob:setSpawn(p.x, p.y, p.z, 0)
     end
     SpawnMob(leaderId, instance)
+    forceAggro(mob)
 end
 -- Real boss-floor HNMs -- floors 20/40 get Adamantoise/Behemoth/Fafnir, floors 60/80/100 get the
 -- tougher Khimaira/Hydra/Cerberus tier (per BG Wiki). Also treated as ELIMINATE_ENEMY_LEADER (a
@@ -192,12 +215,14 @@ local function spawnRandomBoss(instance)
         mob:setSpawn(BOSS_FIXED_SPAWN.x, BOSS_FIXED_SPAWN.y, BOSS_FIXED_SPAWN.z, 127)
     end
     SpawnMob(bossId, instance)
+    forceAggro(mob)
 
     local rampart = GetMobByID(NyzulIsle.mobs[51].ARCHAIC_RAMPART, instance)
     if rampart then
         rampart:setSpawn(RAMPART_FIXED_SPAWN.x, RAMPART_FIXED_SPAWN.y, RAMPART_FIXED_SPAWN.z, 0)
     end
     SpawnMob(NyzulIsle.mobs[51].ARCHAIC_RAMPART, instance)
+    forceAggro(rampart)
 end
 
 -- Real ELIMINATE_SPECIFIED_ENEMIES family groups (2-5 real ToAU-native enemies per floor, per BG
@@ -236,6 +261,7 @@ local function spawnRandomSpecifiedGroup(instance)
         if mob then
             mob:setSpawn(p.x, p.y, p.z, 0)
             SpawnMob(i, instance)
+            forceAggro(mob)
             spawned = spawned + 1
         else
             print(string.format("[NYZUL SPAWN ERROR] spawnRandomSpecifiedGroup: GetMobByID(%d) returned nil -- skipped, not counted toward Eliminate", i))
@@ -294,6 +320,7 @@ local function spawnGear(instance)
         if mob then
             mob:setSpawn(p.x, p.y, p.z, 0)
             SpawnMob(i, instance)
+            forceAggro(mob)
         else
             print(string.format("[NYZUL SPAWN ERROR] spawnGear: GetMobByID(%d) returned nil -- skipped", i))
         end
@@ -381,6 +408,7 @@ local function spawnFloorNMs(instance)
             if mob then
                 mob:setSpawn(p.x, p.y, p.z, 0)
                 SpawnMob(mobId, instance)
+                forceAggro(mob)
 
                 if isEliminateAll then
                     instance:setLocalVar("Eliminate", instance:getLocalVar("Eliminate") + 1)
@@ -408,6 +436,7 @@ local function spawnFloorNMs(instance)
             mob:setSpawn(p.x, p.y, p.z, 0)
         end
         SpawnMob(NyzulIsle.mobs[51].DAHAK, instance)
+        forceAggro(mob)
         instance:setLocalVar("Eliminate", instance:getLocalVar("Eliminate") + 1)
     end
 end
@@ -495,6 +524,7 @@ local function spawnSpecifiedEnemy(instance)
         if mob then
             mob:setSpawn(p.x, p.y, p.z, 0)
             SpawnMob(mobId, instance)
+            forceAggro(mob)
 
             if not target then
                 target = mobId
@@ -545,9 +575,13 @@ local function pickFloorLayout(instance)
     elseif isBossFloor(instance) then
         instance:setLocalVar("Nyzul_Isle_FloorLayout", 16)
     else
-        -- Layout 16 is boss-reserved (never populated with normal trash-mob spawn points) --
-        -- regular floors are bounded to 1-15, not the full table range.
-        instance:setLocalVar("Nyzul_Isle_FloorLayout", math.random(1, 15))
+        -- Layouts 1-17 exist in floor_layouts.lua. Layout 16 is reserved for boss floors.
+        -- Regular floors randomly select from layouts 1-15 and 17, avoiding the boss-reserved 16.
+        -- Layout 17 was excluded pending audit (suspected corrupted data); re-enabled 2026-09-21
+        -- after a live-data audit confirmed it is a valid, non-blocking layout (layout 1 was the
+        -- one with a real bug -- door prop _253/17093353 wrongly closed -- not layout 17).
+        local NORMAL_LAYOUTS = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 17}
+        instance:setLocalVar("Nyzul_Isle_FloorLayout", NORMAL_LAYOUTS[math.random(1, #NORMAL_LAYOUTS)])
     end
 end
 
@@ -574,6 +608,10 @@ function pickSetPoint(instance)
     local runeOfTransfer = instance:getEntity(bit.band(NyzulIsle.npcs.RUNE_OF_TRANSFER_OFFSET, 0xFFF), TYPE_NPC)
     if runeOfTransfer then
         runeOfTransfer:AnimationSub(0) -- unlit -- objective not yet met on this floor
+        -- 2026-09-15, same real out-of-range fix as globals/nyzul.lua's activateRuneOfTransfer --
+        -- ensures the reset itself reaches every player in the instance, not just ones in range of
+        -- this specific entity id's old or new position.
+        runeOfTransfer:updateAnimationSub()
         runeOfTransfer:setPos(posX, posY, posZ)
         runeOfTransfer:setStatus(STATUS_NORMAL) -- always present/examinable, per BG Wiki
     end
@@ -657,8 +695,13 @@ function finishPickSetPoint(instance)
             spawnRandomLeader(instance)
         elseif roll == 4 then
             instance:setStage(Nyzul.objective.ELIMINATE_SPECIFIED_ENEMIES)
-            local count = spawnRandomSpecifiedGroup(instance)
-            instance:setLocalVar("Eliminate", count)
+            -- Spawn normal floor layout mobs first
+            local layoutCount = spawnRandomEnemyLayout(instance)
+            -- Then spawn the specified enemy group on top (2-5 mobs that check Impossible to Gauge)
+            local specCount = spawnRandomSpecifiedGroup(instance)
+            -- Track both in Eliminate counter, but only specified enemies need to be killed
+            instance:setLocalVar("Eliminate", specCount)
+            instance:setLocalVar("NormalLayoutCount", layoutCount)
         elseif roll == 5 then
             instance:setStage(Nyzul.objective.ACTIVATE_ALL_LAMPS)
             instance:setLocalVar("[Lamp]Objective", math.random(1, 3))
@@ -681,6 +724,37 @@ end
 
 function onInstanceTimeUpdate(instance, elapsed)
     updateInstanceTime(instance, elapsed, NyzulIsle.text)
+
+    -- 2026-09-15, real fix for a confirmed client-side rendering quirk -- live debug trace
+    -- (entity_update.cpp's own [NYZUL ANIMSUB DEBUG] print) showed the server correctly sends
+    -- animationsub=1 in the real ENTITY_SPAWN packet when a player re-enters range of an already-
+    -- lit Rune of Transfer, but the client doesn't reliably re-apply the lit visual for an entity
+    -- it has seen before and lost track of (went out of range, came back) -- a one-time broadcast
+    -- at the moment the state actually changes (updateAnimationSub(), see globals/nyzul.lua/
+    -- Runic_Lamp.lua) only helps players who are in the instance AT that exact moment; it can't
+    -- help someone who respawns the entity later. Periodically re-nudging with a fresh
+    -- updateAnimationSub() call is a real, working workaround for this client quirk -- confirmed by
+    -- the same debug trace showing the client DOES correctly apply animationsub from a live
+    -- ENTITY_UPDATE once the entity is already known/spawned to it (that's how updateAnimationSub()
+    -- reaches in-range players at all) -- it's specifically the SPAWN packet's initial value that
+    -- the client seems to ignore on a respawn. Throttled to once per 5s via a localvar timestamp,
+    -- not every tick, and only while something is actually lit (skips the common all-unlit case).
+    local now = os.time()
+    if now - (instance:getLocalVar("lastAnimSubResync") or 0) >= 5 then
+        instance:setLocalVar("lastAnimSubResync", now)
+
+        local rune = instance:getEntity(bit.band(NyzulIsle.npcs.RUNE_OF_TRANSFER_OFFSET, 0xFFF), TYPE_NPC)
+        if rune and rune:AnimationSub() == 1 then
+            rune:updateAnimationSub()
+        end
+
+        for i = NyzulIsle.npcs.RUNIC_LAMP_OFFSET, NyzulIsle.npcs.RUNIC_LAMP_OFFSET + 4 do
+            local lamp = instance:getEntity(bit.band(i, 0xFFF), TYPE_NPC)
+            if lamp and lamp:AnimationSub() == 1 then
+                lamp:updateAnimationSub()
+            end
+        end
+    end
 end
 
 function onInstanceFailure(instance)
@@ -747,3 +821,19 @@ function onEventFinish(player, csid, option)
     end
 end
 
+
+-- Add this at the very bottom of scripts/zones/Nyzul_Isle/instances/nyzul_isle_investigation.lua
+
+local exported = {
+    onInstanceCreated         = onInstanceCreated,
+    onInstanceTimeUpdate      = onInstanceTimeUpdate,
+    onInstanceFailure         = onInstanceFailure,
+    onInstanceProgressUpdate  = onInstanceProgressUpdate,
+    onInstanceComplete        = onInstanceComplete,
+    onEventUpdate             = onEventUpdate,
+    onEventFinish             = onEventFinish,
+    pickSetPoint              = pickSetPoint,
+    finishPickSetPoint        = finishPickSetPoint,
+}
+
+return exported

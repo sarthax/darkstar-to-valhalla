@@ -15,7 +15,12 @@ require("scripts/globals/monstertpmoves");
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    return 0;
+    -- Topaz gate: only COR/BRD/RDM lamias, and only while armed (animationsub 0)
+    local job = mob:getMainJob()
+    if mob:AnimationSub() == 0 and (job == JOBS.COR or job == JOBS.BRD or job == JOBS.RDM) then
+        return 0
+    end
+    return 1
 end;
 
 function onMobWeaponSkill(target, mob, skill)

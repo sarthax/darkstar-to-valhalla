@@ -155,6 +155,73 @@ inline int32 CLuaZone::getRegionID(lua_State* L)
 }
 
 /************************************************************************
+*  Function: checkNavPath()
+*  Purpose : DSP-PORT: diagnostic -- queries this zone's real navmesh directly for whether a
+*            path exists between two points, bypassing any visual/animation state entirely.
+*            Ported from Topaz's own CLuaZone::checkNavPath()
+*            (src/map/lua/lua_zone.cpp:81) -- old-dsp-reference's underlying navmesh engine
+*            (src/map/navmesh.h/.cpp, CNavMesh::findPath()/validPosition()) already exists and
+*            matches Topaz's own shape (same CZone::m_navMesh field, same CNavMesh API), so
+*            this is a Lua-binding-only addition, not new engine work.
+*  Example : local found, waypoints = zone:checkNavPath(x1,y1,z1,x2,y2,z2)
+************************************************************************/
+
+inline int32 CLuaZone::checkNavPath(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_pLuaZone == nullptr);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 3) || !lua_isnumber(L, 3));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 4) || !lua_isnumber(L, 4));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 5) || !lua_isnumber(L, 5));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 6) || !lua_isnumber(L, 6));
+
+    if (m_pLuaZone->m_navMesh == nullptr)
+    {
+        lua_pushboolean(L, false);
+        lua_pushinteger(L, 0);
+        return 2;
+    }
+
+    position_t start{}; start.x = (float)lua_tonumber(L, 1); start.y = (float)lua_tonumber(L, 2); start.z = (float)lua_tonumber(L, 3); // DSP position_t order is rotation,x,y,z,moving -- brace-init mis-assigned
+    position_t end{}; end.x = (float)lua_tonumber(L, 4); end.y = (float)lua_tonumber(L, 5); end.z = (float)lua_tonumber(L, 6);
+
+    auto path = m_pLuaZone->m_navMesh->findPath(start, end);
+
+    lua_pushboolean(L, !path.empty());
+    lua_pushinteger(L, (lua_Integer)path.size());
+    return 2;
+}
+
+/************************************************************************
+*  Function: checkNavPosition()
+*  Purpose : DSP-PORT: diagnostic -- checks whether a single point is close enough to any
+*            navmesh polygon to be a valid reference point at all. Ported from Topaz's own
+*            CLuaZone::checkNavPosition() (src/map/lua/lua_zone.cpp:111), wraps
+*            CNavMesh::validPosition() (already implemented in old-dsp-reference's
+*            navmesh.cpp, just not previously exposed to Lua).
+*  Example : local valid = zone:checkNavPosition(x,y,z)
+************************************************************************/
+
+inline int32 CLuaZone::checkNavPosition(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_pLuaZone == nullptr);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 3) || !lua_isnumber(L, 3));
+
+    if (m_pLuaZone->m_navMesh == nullptr)
+    {
+        lua_pushboolean(L, false);
+        return 1;
+    }
+
+    position_t pos{}; pos.x = (float)lua_tonumber(L, 1); pos.y = (float)lua_tonumber(L, 2); pos.z = (float)lua_tonumber(L, 3);
+    lua_pushboolean(L, m_pLuaZone->m_navMesh->validPosition(pos));
+    return 1;
+}
+
+/************************************************************************
 *																		*
 *  Инициализация методов в lua											*
 *																		*
@@ -168,5 +235,7 @@ Lunar<CLuaZone>::Register_t CLuaZone::methods[] =
     LUNAR_DECLARE_METHOD(CLuaZone,getPlayers),
     LUNAR_DECLARE_METHOD(CLuaZone,getID),
     LUNAR_DECLARE_METHOD(CLuaZone,getRegionID),
+    LUNAR_DECLARE_METHOD(CLuaZone,checkNavPath),
+    LUNAR_DECLARE_METHOD(CLuaZone,checkNavPosition),
     {nullptr,nullptr}
 };

@@ -258,13 +258,18 @@ int32 Sql_QueryStr(Sql_t* self, const char* query)
 	self->buf += query;
 	if( mysql_real_query(&self->handle, self->buf.c_str(), self->buf.length()) )
 	{
+		// 2026-09-14, temporary diagnostic: print the actual failing query text alongside
+		// MariaDB's own truncated "near '...'" fragment, to pin down which query is malformed
+		// instead of guessing from the fragment alone. Safe to remove once root-caused.
 		ShowSQL("DB error - %s\n", mysql_error(&self->handle));
+		ShowSQL("DB error query text - %s\n", self->buf.c_str());
 		return SQL_ERROR;
 	}
 	self->result = mysql_store_result(&self->handle);
 	if( mysql_errno(&self->handle) != 0 )
 	{
 		ShowSQL("DB error - %s\n", mysql_error(&self->handle));
+		ShowSQL("DB error query text - %s\n", self->buf.c_str());
 		return SQL_ERROR;
 	}
 	return SQL_SUCCESS;

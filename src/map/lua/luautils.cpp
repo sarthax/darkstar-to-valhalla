@@ -398,7 +398,14 @@ namespace luautils
             }
             if (PInstance)
             {
-                PInstance->GetEntity(mobid & 0xFFF, TYPE_MOB | TYPE_PET);
+                // 2026-09-14, live map-server bug: this found entity was never assigned to PMob,
+                // so GetMobByID(id, instance) always silently returned nil for every real
+                // instance-scoped mob lookup (fell through to the "Mob doesn't exist" warning
+                // below regardless of whether the mob was actually found) -- real engine bug, not
+                // a Lua-side mistake (confirmed the Lua-side call shape, GetMobByID(id, instance),
+                // is otherwise correct -- CLuaInstance is the right type for arg 2 here, unlike
+                // GetNPCByID's separate, different real bug).
+                PMob = PInstance->GetEntity(mobid & 0xFFF, TYPE_MOB | TYPE_PET);
             }
             else
             {
@@ -1474,7 +1481,8 @@ namespace luautils
 
     int32 OnTrigger(CCharEntity* PChar, CBaseEntity* PNpc)
     {
-        lua_prepscript("scripts/zones/%s/npcs/%s.lua", PChar->loc.zone->GetName(), PNpc->GetName());
+        // triggerable TYPE_MOB entities (Golden Salvage Cursed_Chest) keep their script in mobs/, not npcs/
+        lua_prepscript("scripts/zones/%s/%s/%s.lua", PChar->loc.zone->GetName(), (PNpc->objtype == TYPE_MOB) ? "mobs" : "npcs", PNpc->GetName());
 
         PChar->m_event.reset();
         PChar->m_event.Target = PNpc;
@@ -3702,6 +3710,23 @@ namespace luautils
         int8 File[255];
         if (luaL_loadfile(LuaHandle, PChar->m_event.Script.c_str()) || lua_pcall(LuaHandle, 0, 0, 0))
         {
+            // 2026-09-14, live map-server bug: when PChar->m_event.Script is empty/invalid (always
+            // true for a GM-command-created instance, e.g. !warpassault -- never set outside a
+            // real NPC-triggered event), luaL_loadfile() itself fails AND pushes an error string
+            // onto the Lua stack before returning non-zero. Because the condition above is
+            // `luaL_loadfile(...) || lua_pcall(...)`, a failing loadfile short-circuits past
+            // lua_pcall entirely -- so that pushed error string is never popped. The fallback load
+            // below (Zone.lua) then succeeds with its own net-zero stack effect, but the earlier
+            // stray value is still sitting on the shared Lua stack, corrupting the later
+            // `returns = lua_gettop(LuaHandle) - oldtop` accounting ("0 returns expected, got 1")
+            // and, confirmed via a real live integration test, actually blocking instance entry
+            // (not just a cosmetic log line) -- a leftover value on the shared interpreter stack
+            // persists into whatever Lua work runs next. Real fix: reset to the stack depth this
+            // function started with before attempting the fallback load, so a failed first attempt
+            // can never leak anything past this point, regardless of whether loadfile or pcall is
+            // what failed.
+            lua_settop(LuaHandle, oldtop);
+
             memset(File, 0, sizeof(File));
             snprintf(File, sizeof(File), "scripts/zones/%s/Zone.lua", PChar->loc.zone->GetName());
 
@@ -3714,6 +3739,23 @@ namespace luautils
         }
 
         lua_getglobal(LuaHandle, "onInstanceCreated");
+        if (lua_isnil(LuaHandle, -1))
+        {
+            // Sticky m_event.Script: may point at the last-clicked NPC file (loads, no onInstanceCreated).
+            // Fall back to the zone Zone.lua before giving up.
+            lua_settop(LuaHandle, oldtop);
+            memset(File, 0, sizeof(File));
+            snprintf(File, sizeof(File), "scripts/zones/%s/Zone.lua", PChar->loc.zone->GetName());
+            if (!(luaL_loadfile(LuaHandle, File) || lua_pcall(LuaHandle, 0, 0, 0)))
+            {
+                lua_getglobal(LuaHandle, "onInstanceCreated");
+            }
+            else
+            {
+                lua_settop(LuaHandle, oldtop);
+                lua_pushnil(LuaHandle);
+            }
+        }
         if (lua_isnil(LuaHandle, -1))
         {
             ShowError("luautils::onInstanceCreated: undefined procedure onInstanceCreated\n");

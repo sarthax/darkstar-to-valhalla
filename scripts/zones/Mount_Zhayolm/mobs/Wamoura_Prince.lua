@@ -3,8 +3,13 @@
 -- MOB:  Wamoura Prince
 -----------------------------------
 require("scripts/globals/status");
+require("scripts/mixins/families/wamoura")
 
--- TODO: Damage resistances in streched and curled stances. Halting movement during stance change. Morph into Wamoura.
+-- TODO: Damage resistances in streched and curled stances. Halting movement during stance change.
+-- 2026-09-14: "Morph into Wamoura" -- was an unimplemented TODO on both Topaz and this codebase
+-- (confirmed identical stub on both, same as Halvung's own Wamouracampa.lua), never a
+-- DSP-specific regression. Wired to WamouraMix (scripts/mixins/families/wamoura.lua) below -- see
+-- that file's header for the full real mechanic/model-id/duration sourcing.
 
 -----------------------------------
 -- OnMobSpawn Action
@@ -12,11 +17,15 @@ require("scripts/globals/status");
 
 function onMobSpawn(mob)
     mob:setLocalVar("formTime", os.time() + math.random(43,47));
+    -- real level range for this zone's Wamoura_Prince group is 79-81 (sql/mob_groups.sql,
+    -- groupid 2074/poolid 4282) -- only a spawn assigned the top of that range (81) is eligible
+    -- to mature at all, per user direction.
+    WamouraMix.onSpawn(mob, 81)
 end;
 
 -----------------------------------
 -- onMobRoam Action
--- Autochange stance
+-- Autochange stance + check for maturation into Wamoura
 -----------------------------------
 
 function onMobRoam(mob)
@@ -28,11 +37,12 @@ function onMobRoam(mob)
         mob:AnimationSub(0);
         mob:setLocalVar("formTime", os.time() + math.random(43,47));
     end
+    WamouraMix.onRoam(mob)
 end;
 
 -----------------------------------
 -- OnMobFight Action
--- Stance change in battle
+-- Stance change in battle + delay maturation while engaged
 -----------------------------------
 function onMobFight(mob,target)
     local fightTime = mob:getLocalVar("formTime");
@@ -43,6 +53,7 @@ function onMobFight(mob,target)
         mob:AnimationSub(0);
         mob:setLocalVar("formTime", os.time() + math.random(43,47));
     end
+    WamouraMix.onFight(mob, target)
 end;
 
 function onMobDeath(mob)
