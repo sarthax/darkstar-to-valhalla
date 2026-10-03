@@ -101,7 +101,7 @@ public:
 	virtual ~CItemFurnishing();
 
 	uint8	getStorage();
-	uint8	getMoghancement();
+	uint16	getMoghancement();
 	uint8	getElement();
 	uint8	getAura();
 
@@ -113,7 +113,7 @@ public:
 
     void    setInstalled(bool installed);
 	void	setStorage(uint8 storage);
-	void	setMoghancement(uint8 moghancement);
+	void	setMoghancement(uint16 moghancement);
 	void	setElement(uint8 element);
 	void	setAura(uint8 aura);
 
@@ -125,7 +125,7 @@ public:
 private:
 
 	uint8	m_storage;
-	uint8	m_moghancement;
+	uint16	m_moghancement;
 	uint8	m_element;
 	uint8	m_aura;
 };

@@ -61,12 +61,12 @@ uint8 CItemFurnishing::getStorage()
 	return m_storage;
 }
 
-void CItemFurnishing::setMoghancement(uint8 moghancement)
+void CItemFurnishing::setMoghancement(uint16 moghancement)
 {
 	m_moghancement = moghancement;
 }
 
-uint8 CItemFurnishing::getMoghancement()
+uint16 CItemFurnishing::getMoghancement()
 {
 	return m_moghancement;
 }
