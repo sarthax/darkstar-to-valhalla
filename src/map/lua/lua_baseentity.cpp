@@ -41,6 +41,7 @@
 #include "../packets/char.h"
 #include "../packets/char_abilities.h"
 #include "../packets/char_appearance.h"
+#include "../packets/char_emotion.h"
 #include "../packets/char_jobs.h"
 #include "../packets/char_job_extra.h"
 #include "../packets/char_equip.h"
@@ -88,6 +89,7 @@
 #include "../utils/battleutils.h"
 #include "../utils/blueutils.h"
 #include "../utils/charutils.h"
+#include "../utils/gardenutils.h"
 #include "../utils/instanceutils.h"
 #include "../utils/itemutils.h"
 #include "../guild.h"
@@ -666,6 +668,24 @@ inline int32 CLuaBaseEntity::getYPos(lua_State *L)
 
 //======================================================//
 
+inline int32 CLuaBaseEntity::sendEntityEmote(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 2));
+
+    CLuaBaseEntity* PTarget = Lunar<CLuaBaseEntity>::check(L, 1);
+    CBaseEntity* PTargetEnt = PTarget ? PTarget->GetBaseEntity() : m_PBaseEntity;
+    uint8 emoteId = (uint8)lua_tointeger(L, 2);
+    uint8 mode    = lua_isnumber(L, 3) ? (uint8)lua_tointeger(L, 3) : 2;
+
+    if (PTargetEnt && m_PBaseEntity->loc.zone)
+    {
+        m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity, CHAR_INRANGE,
+            new CCharEmotionPacket(m_PBaseEntity, PTargetEnt->id, PTargetEnt->targid, emoteId, mode));
+    }
+    return 0;
+}
+
 inline int32 CLuaBaseEntity::getZPos(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
@@ -926,7 +946,7 @@ inline int32 CLuaBaseEntity::addItem(lua_State *L)
         {
             PItem->setQuantity(quantity);
 
-            if (PItem->isType(ITEM_ARMOR))
+            if (PItem->isType(ITEM_ARMOR) || PItem->isType(ITEM_WEAPON))
             {
                 if (augment0 != 0) ((CItemArmor*)PItem)->setAugment(0, augment0, augment0val);
                 if (augment1 != 0) ((CItemArmor*)PItem)->setAugment(1, augment1, augment1val);
@@ -7109,6 +7129,26 @@ inline int32 CLuaBaseEntity::needToZone(lua_State *L)
 *                                                                       *
 ************************************************************************/
 
+/************************************************************************
+*                                                                       *
+*  GM debug: player:gardenDebug(action, value, slot)                    *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::gardenDebug(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    std::string action = lua_isstring(L, 1) ? lua_tostring(L, 1) : "info";
+    int32       value  = lua_isnumber(L, 2) ? (int32)lua_tointeger(L, 2) : 0;
+    int32       slot   = lua_isnumber(L, 3) ? (int32)lua_tointeger(L, 3) : -1;
+
+    std::string result = gardenutils::DebugCommand((CCharEntity*)m_PBaseEntity, action, value, slot);
+    lua_pushstring(L, result.c_str());
+    return 1;
+}
+
 inline int32 CLuaBaseEntity::getContainerSize(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
@@ -10203,6 +10243,23 @@ inline int32 CLuaBaseEntity::hideName(lua_State* L)
     return 0;
 }
 
+/************************************************************************
+*  Function: setNpcFlags()                                              *
+*  Purpose : DSP-PORT: set an NPC's entityFlags and push an update      *
+*  Example : npc:setNpcFlags(3)                                         *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::setNpcFlags(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_NPC);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+    ((CNpcEntity*)m_PBaseEntity)->setEntityFlags((uint32)lua_tointeger(L, 1));
+    m_PBaseEntity->updatemask |= UPDATE_HP;
+    return 0;
+}
+
 inline int32 CLuaBaseEntity::untargetable(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
@@ -11610,6 +11667,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getXPos),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getYPos),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getZPos),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,sendEntityEmote),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getRotPos),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getZone),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getZoneID),
@@ -11820,6 +11878,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getCharmChance),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,needToZone),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getContainerSize),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,gardenDebug),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,changeContainerSize),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPartyMember),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPartySize),
@@ -11928,6 +11987,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isPet),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isAlly),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,injectActionPacket),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,setNpcFlags),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setMobFlags),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasTrait),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getTrickAttackChar),

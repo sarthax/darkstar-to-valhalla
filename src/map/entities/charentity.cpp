@@ -55,6 +55,7 @@
 #include "automatonentity.h"
 #include "../ability.h"
 #include "../conquest_system.h"
+#include "../utils/gardenutils.h"
 #include "../spell.h"
 #include "../attack.h"
 #include "../utils/attackutils.h"
@@ -464,6 +465,10 @@ bool CCharEntity::ReloadParty()
 void CCharEntity::PostTick()
 {
     CBattleEntity::PostTick();
+    if (m_moghouseID != 0)
+    {
+        gardenutils::UpdateGardening(this, true);
+    }
     if (m_EquipSwap)
     {
         pushPacket(new CCharAppearancePacket(this));

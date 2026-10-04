@@ -122,3 +122,11 @@ INSERT INTO `instance_list` VALUES (50,'bellerophons_bliss',54,30,-464.000,0.717
 INSERT INTO `instance_list` VALUES (51,'nyzul_isle_investigation',72,30,-20.172,-4.000,-19.928,193,-1,-1,-1,-1);
 
 -- Merged remainder of C:	opaz\sql\instance_list.sql (2026-09-14, per user direction: bring over the whole table) -- zoneid column dropped, same as above
+
+-- Nyzul 52 (Uncharted Area Survey) backport import, applied 2026-10-03
+-- Nyzul 52
+INSERT IGNORE INTO `instance_list` VALUES (52,'nyzul_isle_uncharted_area_survey',72,30,-20.172,-4.000,-19.928,193,-1,-1,-1,-1);
+
+-- HEROINES HOLDFAST BACKPORT (instance 80) 2026-10-03
+-- Holdfast
+INSERT IGNORE INTO `instance_list` VALUES (80,'heroines_holdfast',72,15,460.000,0.000,-610.000,59,-1,-1,-1,-1);

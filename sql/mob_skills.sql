@@ -1,4 +1,4 @@
--- phpMyAdmin SQL Dump
+﻿-- phpMyAdmin SQL Dump
 -- version 3.3.8
 -- http://www.phpmyadmin.net
 --
@@ -1616,11 +1616,11 @@ INSERT INTO `mob_skills` VALUES (1793,62,'vampiric_root',0,7.0,2000,1500,4,0,0,0
 -- INSERT INTO `mob_skills` VALUES (1794,1538,'perdition',0,7.0,2000,1500,4,0,0,0,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1795,1539,'malediction',0,7.0,2000,1500,4,0,0,0,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1796,1540,'piercing_shriek',0,7.0,2000,1500,4,0,0,0,0,0,0);
-INSERT INTO `mob_skills` VALUES (1797,1147,'pw_rushing_slash',0,7.0,2000,1500,4,0,0,0,0,0,0);
-INSERT INTO `mob_skills` VALUES (1798,1147,'pw_decussate',1,16.0,2000,1500,4,0,0,0,0,0,0);
-INSERT INTO `mob_skills` VALUES (1799,1156,'pw_tyranic_blare',1,10.0,2000,1500,4,0,0,0,0,0,0);
--- INSERT INTO `mob_skills` VALUES (1800,1544,'miasma',0,7.0,2000,1500,4,0,0,0,0,0,0);
--- INSERT INTO `mob_skills` VALUES (1801,1545,'vorpal_wheel',0,7.0,2000,1500,4,0,0,0,0,0,0);
+INSERT INTO `mob_skills` VALUES (1797,1320,'pw_rushing_slash',0,7.0,2000,1500,4,0,0,0,0,0,0);
+INSERT INTO `mob_skills` VALUES (1798,1321,'pw_decussate',1,16.0,2000,1500,4,0,0,0,0,0,0);
+INSERT INTO `mob_skills` VALUES (1799,1322,'pw_tyrranic_blare',1,10.0,2000,1500,4,0,0,0,0,0,0);
+INSERT INTO `mob_skills` VALUES (1800,1323,'miasma',0,7.0,2000,1500,4,0,0,0,0,0,0);
+INSERT INTO `mob_skills` VALUES (1801,1324,'vorpal_wheel',0,7.0,2000,1500,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (1802,1351,'sledgehammer',4,12,2000,0,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (1803,1352,'head_snatch',0,7,2000,0,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (1804,1353,'haymaker',4,12,2000,0,4,0,0,0,0,0,0);
@@ -2944,10 +2944,10 @@ INSERT INTO `mob_skills` VALUES (3102,2176,'infaunal_flop',1,18.0,2000,1000,4,0,
 -- INSERT INTO `mob_skills` VALUES (3120,2864,'.',0,7.0,2000,1500,4,0,0,0,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (3121,2865,'.',0,7.0,2000,1500,4,0,0,0,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (3122,2866,'.',0,7.0,2000,1500,4,0,0,0,0,0,0);
--- INSERT INTO `mob_skills` VALUES (3123,2867,'fighting_stance_α',0,7.0,2000,1500,4,0,0,0,0,0,0);
--- INSERT INTO `mob_skills` VALUES (3124,2868,'fighting_stance_β',0,7.0,2000,1500,4,0,0,0,0,0,0);
--- INSERT INTO `mob_skills` VALUES (3125,2869,'fighting_stance_γ',0,7.0,2000,1500,4,0,0,0,0,0,0);
--- INSERT INTO `mob_skills` VALUES (3126,2870,'fighting_stance_δ',0,7.0,2000,1500,4,0,0,0,0,0,0);
+-- INSERT INTO `mob_skills` VALUES (3123,2867,'fighting_stance_Î±',0,7.0,2000,1500,4,0,0,0,0,0,0);
+-- INSERT INTO `mob_skills` VALUES (3124,2868,'fighting_stance_Î²',0,7.0,2000,1500,4,0,0,0,0,0,0);
+-- INSERT INTO `mob_skills` VALUES (3125,2869,'fighting_stance_Î³',0,7.0,2000,1500,4,0,0,0,0,0,0);
+-- INSERT INTO `mob_skills` VALUES (3126,2870,'fighting_stance_Î´',0,7.0,2000,1500,4,0,0,0,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (3127,2267,'frizz',0,10.0,2000,1500,4,0,0,0,0,0,0); -- basically a spell
 -- INSERT INTO `mob_skills` VALUES (3128,2268,'astoltian_slime_hit',0,5.0,2000,0,4,0,0,0,0,0,0); -- not a melee sub exactly, rather a mobskill with no message
 -- INSERT INTO `mob_skills` VALUES (3129,2269,'astoltian_slime_run',0,7.0,2000,0,4,0,0,0,0,0,0); -- depops mob
@@ -3905,3 +3905,24 @@ INSERT INTO `mob_skills` VALUES (3867,3611,'questionmarks_needles',1,10.0,2000,1
 INSERT IGNORE INTO `mob_skills` VALUES (1736,1154,'axe_throw',0,15.0,2000,1500,4,0,0,0,0,0,0);
 INSERT IGNORE INTO `mob_skills` VALUES (2361,1269,'stave_toss',0,15.0,2000,1500,4,0,0,0,0,0,0);
 INSERT IGNORE INTO `mob_skills` VALUES (1920,1264,'rushing_drub',0,7.0,2000,1500,4,0,0,0,0,0,0);
+
+
+-- HEROINES HOLDFAST BACKPORT (instance 80) 2026-10-03
+-- skills used by the Holdfast lists but absent from DSP mob_skills: [762, 764, 2899, 2900, 2901, 2902, 2903, 2904, 3198, 3199, 3200, 3201, 3234, 3235, 3236, 3243, 3244]
+INSERT IGNORE INTO `mob_skills` VALUES (762,354,'howl',1,20.000,2000,1500,1,0,0,0,0,0,0);
+INSERT IGNORE INTO `mob_skills` VALUES (764,354,'howl',1,20.000,2000,1500,1,0,0,0,0,0,0);
+INSERT IGNORE INTO `mob_skills` VALUES (2899,2037,'shining_summer_samba',1,18.000,2000,1000,4,0,0,0,0,0,0);
+INSERT IGNORE INTO `mob_skills` VALUES (2900,2038,'lovely_miracle_waltz',1,18.000,2000,1000,4,0,0,3,0,0,0);
+INSERT IGNORE INTO `mob_skills` VALUES (2901,2039,'neo_crystal_jig',1,18.000,2000,1000,4,0,0,4,0,0,0);
+INSERT IGNORE INTO `mob_skills` VALUES (2902,2040,'super_crusher_jig',1,18.000,2000,1000,4,0,0,3,0,0,0);
+INSERT IGNORE INTO `mob_skills` VALUES (2903,2041,'eternal_vana_illusion',1,18.000,2000,1000,4,0,0,0,0,0,0);
+INSERT IGNORE INTO `mob_skills` VALUES (2904,2042,'final_eternal_heart',1,50.000,2000,1000,4,0,0,0,0,0,0);
+INSERT IGNORE INTO `mob_skills` VALUES (3198,2029,'grapeshot',0,7.000,2000,1500,4,0,0,0,0,0,0);
+INSERT IGNORE INTO `mob_skills` VALUES (3199,2030,'pirate_pummel',0,7.000,2000,1500,4,0,0,0,0,0,0);
+INSERT IGNORE INTO `mob_skills` VALUES (3200,2031,'powder_keg',0,7.000,2000,1500,4,0,0,0,0,0,0);
+INSERT IGNORE INTO `mob_skills` VALUES (3201,2032,'walk_the_plank',0,7.000,2000,1500,4,0,0,4,0,0,0);
+INSERT IGNORE INTO `mob_skills` VALUES (3234,1095,'nullifying_dropkick',0,7.000,2000,1500,4,0,0,3,7,6,8);
+INSERT IGNORE INTO `mob_skills` VALUES (3235,1343,'auroral_uppercut',0,7.000,2000,1500,4,0,0,0,13,12,0);
+INSERT IGNORE INTO `mob_skills` VALUES (3236,2033,'knuckle_sandwich',0,7.000,2000,1500,4,0,0,0,11,2,8);
+INSERT IGNORE INTO `mob_skills` VALUES (3243,2034,'imperial_authority',0,7.000,2000,1500,4,0,0,3,0,0,0);
+INSERT IGNORE INTO `mob_skills` VALUES (3244,2035,'sixth_element',0,7.000,2000,1500,4,0,0,0,0,0,0);

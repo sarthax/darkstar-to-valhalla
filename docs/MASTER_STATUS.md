@@ -20,3 +20,8 @@ NOT merged, needs a source-of-truth decision (compare against the live DB):
 - _20m.lua taken from the backport package (adds Assault 51/52 check).
 - Still unmerged: the 3 Armoury Crate NPCs (17093609-11), mob_group 78, and the Reserve_Draugar z change that exist only in dspdb_fresh
   (their SQL is in the package: sql-dsp/armoury_crate_17093610_2026-09-20.sql).
+
+### ID provenance (2026-10-02, per user)
+Backport mob_groups / mob_spawn_points ids were allocated from free ID ranges supplied by Valhalla
+(groups 17000+ Assault, 18000+ Nyzul; mobids in verified-free blocks, see INCIDENT_REPORT 2026-09-15).
+Never renumber them toward upstream/fresh values; fresh-only rows are only added if they do not collide.

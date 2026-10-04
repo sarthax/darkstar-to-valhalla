@@ -548,3 +548,8 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2016-04-08 19:41:32
+
+-- HEROINES HOLDFAST BACKPORT (instance 80) 2026-10-03
+-- Holdfast families: Mnejing 364/Ovjang 366 detects=2, Lilisette 484 detects=1 (match Topaz)
+UPDATE `mob_family_system` SET `detects`=2 WHERE `familyid` IN (364,366);
+UPDATE `mob_family_system` SET `detects`=1 WHERE `familyid`=484;

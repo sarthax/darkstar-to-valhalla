@@ -7,12 +7,22 @@ require("scripts/globals/conquest");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
 require("scripts/globals/status");
+require("scripts/globals/abyssea_lights");
+require("scripts/globals/abyssea_pyxis");
 
 -----------------------------------
 -- onMobDeathEx
 -----------------------------------
 
-function onMobDeathEx(mob, player, isKiller, isWeaponSkillKill)
+function onMobDeathEx(mob, player, isKiller, isWeaponSkillKill, killKind, killId)
+
+    -- Abyssea lights: only the killer rolls; the drop is then shared with the alliance
+    if (isKiller == true and isAbysseaLightZone(player:getZoneID())) then
+        onAbysseaMobDeath(mob, player, killKind or 0, killId or 0);
+        if (not mob:isNM()) then
+            spawnPyxis(mob, player);
+        end
+    end
 
     -- Things that happen only to the person who landed killing blow
     if (isKiller == true) then

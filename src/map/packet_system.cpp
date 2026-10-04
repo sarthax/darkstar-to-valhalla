@@ -31,6 +31,8 @@ This file is part of DarkStar-server source code.
 #include "../common/utils.h"
 
 #include <string.h>
+#include <tuple>
+#include <cmath>
 #include "alliance.h"
 #include "mob_modifier.h"  // BUILD-FIX: MOBMOD_CHECK_AS_NM (used below) was never declared visible
                            // in this file -- check_as_nm's own patch added the enum value to
@@ -47,6 +49,8 @@ This file is part of DarkStar-server source code.
 #include "utils/puppetutils.h"
 #include "utils/fishingutils.h"
 #include "utils/itemutils.h"
+#include "utils/gardenutils.h"
+#include "items/item_flowerpot.h"
 #include "utils/jailutils.h"
 #include "linkshell.h"
 #include "map.h"
@@ -63,6 +67,7 @@ This file is part of DarkStar-server source code.
 #include "latent_effect_container.h"
 #include "treasure_pool.h"
 #include "item_container.h"
+#include "vana_time.h"
 #include "universal_container.h"
 #include "recast_container.h"
 
@@ -113,6 +118,7 @@ This file is part of DarkStar-server source code.
 #include "packets/guild_menu_sell_update.h"
 #include "packets/inventory_assign.h"
 #include "packets/inventory_finish.h"
+#include "packets/furniture_interact.h"
 #include "packets/inventory_item.h"
 #include "packets/inventory_modify.h"
 #include "packets/inventory_size.h"
@@ -319,6 +325,11 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
 void SmallPacket0x00C(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
+    if (PChar->m_moghouseID != 0)
+    {
+        gardenutils::UpdateGardening(PChar, false);
+    }
+
     PChar->pushPacket(new CInventorySizePacket(PChar));
     PChar->pushPacket(new CMenuConfigPacket(PChar));
     PChar->pushPacket(new CCharJobsPacket(PChar));
@@ -2138,6 +2149,18 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 *                                                                       *
 ************************************************************************/
 
+// The AH only stores an item id, so a purchased item is recreated with full charges.
+// Like retail, refuse to list a charged item that has been partially used.
+static bool IsPartiallyUsedChargedItem(CItem* PItem)
+{
+    if (PItem->isSubType(ITEM_CHARGED) && PItem->isType(ITEM_USABLE))
+    {
+        CItemUsable* PCharged = (CItemUsable*)PItem;
+        return PCharged->getCurrentCharges() < PCharged->getMaxCharges();
+    }
+    return false;
+}
+
 void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
     uint8  action = RBUFB(data, (0x04));
@@ -2168,6 +2191,11 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             !(PItem->isSubType(ITEM_LOCKED)) &&
             !(PItem->getFlag() & ITEM_FLAG_NOAUCTION))
         {
+            if (IsPartiallyUsedChargedItem(PItem))
+            {
+                PChar->pushPacket(new CAuctionHousePacket(action, 197, 0, 0)); // Failed to place up
+                break;
+            }
             PItem->setCharPrice(price); // not sure setCharPrice is right
             PChar->pushPacket(new CAuctionHousePacket(action, PItem, quantity, price));
         }
@@ -2226,6 +2254,12 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             !(PItem->isSubType(ITEM_LOCKED)) &&
             !(PItem->getFlag() & ITEM_FLAG_NOAUCTION))
         {
+            if (IsPartiallyUsedChargedItem(PItem))
+            {
+                PChar->pushPacket(new CAuctionHousePacket(action, 197, 0, 0)); // Failed to place up
+                return;
+            }
+
             uint32 auctionFee = 0;
             if (quantity == 0)
             {
@@ -2669,6 +2703,7 @@ void SmallPacket0x05D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     }
 
     PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CCharEmotionPacket(PChar, data));
+    luautils::OnPlayerEmote(PChar, RBUFB(data, (0x0A)), RBUFL(data, (0x04)), RBUFW(data, (0x08)));
     return;
 }
 
@@ -5134,6 +5169,289 @@ void SmallPacket0x0FB(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
 /************************************************************************
 *                                                                       *
+*  Mog House Flowerpot: save the pot's extra data                       *
+*                                                                       *
+************************************************************************/
+
+static void SaveFlowerpotExtra(CCharEntity* PChar, CItemFlowerpot* PPotItem, uint8 containerID, uint8 slotID)
+{
+    int8 extra[sizeof(PPotItem->m_extra) * 2 + 1];
+    Sql_EscapeStringLen(SqlHandle, extra, (const int8*)PPotItem->m_extra, sizeof(PPotItem->m_extra));
+
+    const int8* Query = "UPDATE char_inventory SET extra = '%s' WHERE charid = %u AND location = %u AND slot = %u";
+    Sql_Query(SqlHandle, Query, extra, PChar->id, containerID, slotID);
+}
+
+/************************************************************************
+*                                                                       *
+*  Mog House Plant Flowerpot                                            *
+*                                                                       *
+************************************************************************/
+
+void SmallPacket0x0FC(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
+{
+    uint16 potItemID = RBUFW(data, (0x04));
+    uint16 itemID = RBUFW(data, (0x06));
+
+    if (potItemID == 0 || itemID == 0)
+    {
+        return;
+    }
+
+    uint8 potSlotID = RBUFB(data, (0x08));
+    uint8 slotID = RBUFB(data, (0x09));
+    uint8 potContainerID = RBUFB(data, (0x0A));
+    uint8 containerID = RBUFB(data, (0x0B));
+
+    if ((potContainerID != LOC_MOGSAFE && potContainerID != LOC_MOGSAFE2) || (containerID != LOC_MOGSAFE && containerID != LOC_MOGSAFE2))
+    {
+        return;
+    }
+
+    CItem* PPotBase = PChar->getStorage(potContainerID)->GetItem(potSlotID);
+    if (PPotBase == nullptr || PPotBase->getID() != potItemID || !PPotBase->isType(ITEM_FURNISHING))
+    {
+        return;
+    }
+    CItemFlowerpot* PPotItem = (CItemFlowerpot*)PPotBase;
+
+    CItem* PItem = PChar->getStorage(containerID)->GetItem(slotID);
+    if (PItem == nullptr || PItem->getID() != itemID || PItem->getQuantity() < 1)
+    {
+        return;
+    }
+
+    if (CItemFlowerpot::getPlantFromSeed(itemID) != FLOWERPOT_PLANT_NONE)
+    {
+        // Planting a seed in the flowerpot
+        PChar->pushPacket(new CMessageStandardPacket(itemID, 132)); // "Your moogle plants the <seed> in the flowerpot."
+        PPotItem->cleanPot();
+        PPotItem->setPlant(CItemFlowerpot::getPlantFromSeed(itemID));
+        PPotItem->setPlantTimestamp(CVanaTime::getInstance()->getVanaTime());
+        PPotItem->setStrength(dsprand::GetRandomNumber(32));
+        gardenutils::GrowToNextStage(PPotItem);
+    }
+    else if (itemID >= 4096 && itemID <= 4111)
+    {
+        // Feeding the plant a crystal
+        PChar->pushPacket(new CMessageStandardPacket(itemID, 136)); // "Your moogle uses the <item> on the plant."
+        if (PPotItem->getStage() == FLOWERPOT_STAGE_FIRST_SPROUTS_CRYSTAL)
+        {
+            PPotItem->setFirstCrystalFeed(CItemFlowerpot::getElementFromItem(itemID));
+        }
+        else if (PPotItem->getStage() == FLOWERPOT_STAGE_SECOND_SPROUTS_CRYSTAL)
+        {
+            PPotItem->setSecondCrystalFeed(CItemFlowerpot::getElementFromItem(itemID));
+        }
+        gardenutils::GrowToNextStage(PPotItem, true);
+        PPotItem->markExamined();
+    }
+    else
+    {
+        return;
+    }
+
+    SaveFlowerpotExtra(PChar, PPotItem, potContainerID, potSlotID);
+
+    PChar->pushPacket(new CFurnitureInteractPacket(PPotItem, potContainerID, potSlotID));
+    PChar->pushPacket(new CInventoryItemPacket(PPotItem, potContainerID, potSlotID));
+
+    charutils::UpdateItem(PChar, containerID, slotID, -1);
+    PChar->pushPacket(new CInventoryFinishPacket());
+    return;
+}
+
+/************************************************************************
+*                                                                       *
+*  Mog House Examine Flowerpot                                          *
+*                                                                       *
+************************************************************************/
+
+void SmallPacket0x0FD(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
+{
+    uint16 itemID = RBUFW(data, (0x04));
+    if (itemID == 0)
+    {
+        return;
+    }
+
+    uint8 slotID = RBUFB(data, (0x06));
+    uint8 containerID = RBUFB(data, (0x07));
+    if (containerID != LOC_MOGSAFE && containerID != LOC_MOGSAFE2)
+    {
+        return;
+    }
+
+    CItem* PBase = PChar->getStorage(containerID)->GetItem(slotID);
+    if (PBase == nullptr || PBase->getID() != itemID || !PBase->isType(ITEM_FURNISHING))
+    {
+        return;
+    }
+    CItemFlowerpot* PItem = (CItemFlowerpot*)PBase;
+
+    if (PItem->isPlanted())
+    {
+        PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, CItemFlowerpot::getSeedID(PItem->getPlant()), 0, MSGBASIC_GARDENING_SEED_SOWN));
+        if (PItem->isTree())
+        {
+            if (PItem->getStage() > FLOWERPOT_STAGE_FIRST_SPROUTS_CRYSTAL)
+            {
+                if (PItem->getExtraCrystalFeed() != FLOWERPOT_ELEMENT_NONE)
+                {
+                    PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, CItemFlowerpot::getItemFromElement(PItem->getExtraCrystalFeed()), 0,
+                        MSGBASIC_GARDENING_CRYSTAL_USED));
+                }
+                else
+                {
+                    PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_GARDENING_CRYSTAL_NONE));
+                }
+            }
+        }
+        if (PItem->getStage() > FLOWERPOT_STAGE_SECOND_SPROUTS_CRYSTAL)
+        {
+            if (PItem->getCommonCrystalFeed() != FLOWERPOT_ELEMENT_NONE)
+            {
+                PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, CItemFlowerpot::getItemFromElement(PItem->getCommonCrystalFeed()), 0,
+                    MSGBASIC_GARDENING_CRYSTAL_USED));
+            }
+            else
+            {
+                PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_GARDENING_CRYSTAL_NONE));
+            }
+        }
+
+        if (!PItem->wasExamined())
+        {
+            PItem->markExamined();
+            SaveFlowerpotExtra(PChar, PItem, containerID, slotID);
+        }
+    }
+
+    PChar->pushPacket(new CFurnitureInteractPacket(PItem, containerID, slotID));
+    return;
+}
+
+/************************************************************************
+*                                                                       *
+*  Mog House Harvest / Uproot Flowerpot                                 *
+*                                                                       *
+************************************************************************/
+
+void SmallPacket0x0FE(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
+{
+    uint16 itemID = RBUFW(data, (0x04));
+    if (itemID == 0)
+    {
+        return;
+    }
+
+    uint8 slotID = RBUFB(data, (0x06));
+    uint8 containerID = RBUFB(data, (0x07));
+    if (containerID != LOC_MOGSAFE && containerID != LOC_MOGSAFE2)
+    {
+        return;
+    }
+
+    CItem* PBase = PChar->getStorage(containerID)->GetItem(slotID);
+    if (PBase == nullptr || PBase->getID() != itemID || !PBase->isType(ITEM_FURNISHING))
+    {
+        return;
+    }
+    CItemFlowerpot* PItem = (CItemFlowerpot*)PBase;
+
+    uint8 isEmptyingPot = RBUFB(data, (0x08));
+
+    if (PItem->isPlanted())
+    {
+        if (isEmptyingPot == 0 && PItem->getStage() == FLOWERPOT_STAGE_MATURE_PLANT)
+        {
+            // Harvesting plant
+            uint16 resultID;
+            uint8  totalQuantity;
+            std::tie(resultID, totalQuantity) = gardenutils::CalculateResults(PChar, PItem);
+
+            CItem* PResult = (resultID != 0) ? itemutils::GetItemPointer(resultID) : nullptr;
+            if (PResult == nullptr || totalQuantity == 0 || PResult->getStackSize() == 0)
+            {
+                PChar->pushPacket(new CMessageStandardPacket(137)); // Kupo... I can't pick anything right now, kupo.
+                return;
+            }
+            uint8 stackSize = PResult->getStackSize();
+            uint8 requiredSlots = (uint8)ceil(float(totalQuantity) / stackSize);
+            uint8 totalFreeSlots = PChar->getStorage(LOC_MOGSAFE)->GetFreeSlotsCount() + PChar->getStorage(LOC_MOGSAFE2)->GetFreeSlotsCount();
+            if (requiredSlots > totalFreeSlots)
+            {
+                PChar->pushPacket(new CMessageStandardPacket(137)); // Kupo... I can't pick anything right now, kupo.
+                return;
+            }
+            uint8 remainingQuantity = totalQuantity;
+            for (uint8 slot = 0; slot < requiredSlots; ++slot)
+            {
+                uint8 quantity = dsp_min(remainingQuantity, stackSize);
+                if (charutils::AddItem(PChar, LOC_MOGSAFE, resultID, quantity) == ERROR_SLOTID)
+                {
+                    charutils::AddItem(PChar, LOC_MOGSAFE2, resultID, quantity);
+                }
+                remainingQuantity -= quantity;
+            }
+            PChar->pushPacket(new CMessageStandardPacket(resultID, totalQuantity, 134)); // Your moogle <quantity> <item> from the plant!
+        }
+
+        PChar->pushPacket(new CFurnitureInteractPacket(PItem, containerID, slotID));
+        PItem->cleanPot();
+
+        SaveFlowerpotExtra(PChar, PItem, containerID, slotID);
+
+        PChar->pushPacket(new CInventoryItemPacket(PItem, containerID, slotID));
+        PChar->pushPacket(new CInventoryFinishPacket());
+    }
+    return;
+}
+
+/************************************************************************
+*                                                                       *
+*  Mog House Dry Flowerpot                                              *
+*                                                                       *
+************************************************************************/
+
+void SmallPacket0x0FF(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
+{
+    uint16 itemID = RBUFW(data, (0x04));
+    if (itemID == 0)
+    {
+        return;
+    }
+
+    uint8 slotID = RBUFB(data, (0x06));
+    uint8 containerID = RBUFB(data, (0x07));
+    if (containerID != LOC_MOGSAFE && containerID != LOC_MOGSAFE2)
+    {
+        return;
+    }
+
+    CItem* PBase = PChar->getStorage(containerID)->GetItem(slotID);
+    if (PBase == nullptr || PBase->getID() != itemID || !PBase->isType(ITEM_FURNISHING))
+    {
+        return;
+    }
+    CItemFlowerpot* PItem = (CItemFlowerpot*)PBase;
+
+    if (PItem->isPlanted() && PItem->getStage() > FLOWERPOT_STAGE_INITIAL && PItem->getStage() < FLOWERPOT_STAGE_WILTED && !PItem->isDried())
+    {
+        PChar->pushPacket(new CMessageStandardPacket(itemID, 133)); // Your moogle dries the plant in the <item>.
+        PChar->pushPacket(new CFurnitureInteractPacket(PItem, containerID, slotID));
+        PItem->setDried(true);
+
+        SaveFlowerpotExtra(PChar, PItem, containerID, slotID);
+
+        PChar->pushPacket(new CInventoryItemPacket(PItem, containerID, slotID));
+        PChar->pushPacket(new CInventoryFinishPacket());
+    }
+    return;
+}
+
+/************************************************************************
+*                                                                       *
 *  Job Change                                                           *
 *                                                                       *
 ************************************************************************/
@@ -5761,6 +6079,10 @@ void PacketParserInitialize()
     PacketSize[0x0F6] = 0x00; PacketParser[0x0F6] = &SmallPacket0x0F6;
     PacketSize[0x0FA] = 0x00; PacketParser[0x0FA] = &SmallPacket0x0FA;
     PacketSize[0x0FB] = 0x00; PacketParser[0x0FB] = &SmallPacket0x0FB;
+    PacketSize[0x0FC] = 0x00; PacketParser[0x0FC] = &SmallPacket0x0FC;
+    PacketSize[0x0FD] = 0x00; PacketParser[0x0FD] = &SmallPacket0x0FD;
+    PacketSize[0x0FE] = 0x00; PacketParser[0x0FE] = &SmallPacket0x0FE;
+    PacketSize[0x0FF] = 0x00; PacketParser[0x0FF] = &SmallPacket0x0FF;
     PacketSize[0x100] = 0x04; PacketParser[0x100] = &SmallPacket0x100;
     PacketSize[0x102] = 0x52; PacketParser[0x102] = &SmallPacket0x102;
     PacketSize[0x104] = 0x02; PacketParser[0x104] = &SmallPacket0x104;

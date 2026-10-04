@@ -137,7 +137,13 @@ bool CAbilityState::CanUseAbility()
             PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_WAIT_LONGER));
             return false;
         }
-        if (PChar->StatusEffectContainer->HasStatusEffect({EFFECT_AMNESIA, EFFECT_IMPAIRMENT}))
+        // IMPAIRMENT (Nyzul pathos): power bit 0x01 = job abilities restricted, 0x02 = weapon skills (see player_controller.cpp)
+        bool impairmentBlocksAbility = false;
+        if (auto* PImpairment = PChar->StatusEffectContainer->GetStatusEffect(EFFECT_IMPAIRMENT))
+        {
+            impairmentBlocksAbility = (PImpairment->GetPower() & 0x01) != 0;
+        }
+        if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_AMNESIA) || impairmentBlocksAbility)
         {
             PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_UNABLE_TO_USE_JA2));
             return false;

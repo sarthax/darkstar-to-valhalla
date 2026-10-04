@@ -3669,3 +3669,73 @@ INSERT IGNORE INTO `mob_skill_lists` VALUES ('MamoolJaDrg',1152,1840);
 INSERT IGNORE INTO `mob_skill_lists` VALUES ('MamoolJaAxe',1150,1839);
 INSERT IGNORE INTO `mob_skill_lists` VALUES ('MamoolJaMage',1149,1921);
 INSERT IGNORE INTO `mob_skill_lists` VALUES ('SagelordMolaal',1151,1921);
+
+
+-- Nyzul 52 (Uncharted Area Survey) backport import, applied 2026-10-03
+-- skill_list 285 (Gulool; used by pool 6998 Stealthlord_Haraal_Ja) absent in DSP. Skipped (skill missing in DSP mob_skills): [('Gulool', 285, 1800), ('Gulool', 285, 1801)]
+INSERT IGNORE INTO `mob_skill_lists` (`skill_list_name`,`skill_list_id`,`mob_skill_id`) VALUES ('Gulool',285,1731);
+INSERT IGNORE INTO `mob_skill_lists` (`skill_list_name`,`skill_list_id`,`mob_skill_id`) VALUES ('Gulool',285,1732);
+INSERT IGNORE INTO `mob_skill_lists` (`skill_list_name`,`skill_list_id`,`mob_skill_id`) VALUES ('Gulool',285,1733);
+INSERT IGNORE INTO `mob_skill_lists` (`skill_list_name`,`skill_list_id`,`mob_skill_id`) VALUES ('Gulool',285,1734);
+INSERT IGNORE INTO `mob_skill_lists` (`skill_list_name`,`skill_list_id`,`mob_skill_id`) VALUES ('Gulool',285,1738);
+INSERT IGNORE INTO `mob_skill_lists` (`skill_list_name`,`skill_list_id`,`mob_skill_id`) VALUES ('Gulool',285,1797);
+INSERT IGNORE INTO `mob_skill_lists` (`skill_list_name`,`skill_list_id`,`mob_skill_id`) VALUES ('Gulool',285,1798);
+INSERT IGNORE INTO `mob_skill_lists` (`skill_list_name`,`skill_list_id`,`mob_skill_id`) VALUES ('Gulool',285,1799);
+
+-- Haraal_Ja list 1158 (Nyzul 52, pool 6998): skills 1797-1801
+INSERT IGNORE INTO `mob_skill_lists` VALUES ('Haraal_Ja',1158,1797);
+INSERT IGNORE INTO `mob_skill_lists` VALUES ('Haraal_Ja',1158,1798);
+INSERT IGNORE INTO `mob_skill_lists` VALUES ('Haraal_Ja',1158,1799);
+INSERT IGNORE INTO `mob_skill_lists` VALUES ('Haraal_Ja',1158,1800);
+INSERT IGNORE INTO `mob_skill_lists` VALUES ('Haraal_Ja',1158,1801);
+
+-- HEROINES HOLDFAST BACKPORT (instance 80) 2026-10-03
+-- list 334 (WarlordRojgnojOrc): DSP already has a DIFFERENT list 334 (WarlordRojgnojOrc) -> dedicated copy as 1154
+-- list 337 (QuadavNM): DSP already has a DIFFERENT list 337 (QuadavNM) -> dedicated copy as 1155
+-- list 360 (YagudoNM): DSP already has a DIFFERENT list 360 (YagudoNM) -> dedicated copy as 1156
+-- list 1022 (TRUST_Lion): absent in DSP, id kept
+-- list 1028 (TRUST_Prishe): absent in DSP, id kept
+-- list 1038 (TRUST_Nashmeira): absent in DSP, id kept
+-- list 1040 (TRUST_Ovjang): absent in DSP, id kept
+-- list 1061 (Mumor_HH): absent in DSP, id kept
+-- list 1151 (Mnejing_HH): DSP already has a DIFFERENT list 1151 (SagelordMolaal) -> dedicated copy as 1157
+INSERT IGNORE INTO `mob_skill_lists` (`skill_list_name`,`skill_list_id`,`mob_skill_id`) VALUES ('WarlordRojgnojOrc',1154,605);
+INSERT IGNORE INTO `mob_skill_lists` (`skill_list_name`,`skill_list_id`,`mob_skill_id`) VALUES ('WarlordRojgnojOrc',1154,606);
+INSERT IGNORE INTO `mob_skill_lists` (`skill_list_name`,`skill_list_id`,`mob_skill_id`) VALUES ('WarlordRojgnojOrc',1154,607);
+INSERT IGNORE INTO `mob_skill_lists` (`skill_list_name`,`skill_list_id`,`mob_skill_id`) VALUES ('WarlordRojgnojOrc',1154,608);
+INSERT IGNORE INTO `mob_skill_lists` (`skill_list_name`,`skill_list_id`,`mob_skill_id`) VALUES ('WarlordRojgnojOrc',1154,609);
+INSERT IGNORE INTO `mob_skill_lists` (`skill_list_name`,`skill_list_id`,`mob_skill_id`) VALUES ('WarlordRojgnojOrc',1154,1066);
+INSERT IGNORE INTO `mob_skill_lists` (`skill_list_name`,`skill_list_id`,`mob_skill_id`) VALUES ('QuadavNM',1155,611);
+INSERT IGNORE INTO `mob_skill_lists` (`skill_list_name`,`skill_list_id`,`mob_skill_id`) VALUES ('QuadavNM',1155,612);
+INSERT IGNORE INTO `mob_skill_lists` (`skill_list_name`,`skill_list_id`,`mob_skill_id`) VALUES ('QuadavNM',1155,613);
+INSERT IGNORE INTO `mob_skill_lists` (`skill_list_name`,`skill_list_id`,`mob_skill_id`) VALUES ('QuadavNM',1155,614);
+INSERT IGNORE INTO `mob_skill_lists` (`skill_list_name`,`skill_list_id`,`mob_skill_id`) VALUES ('QuadavNM',1155,762);
+INSERT IGNORE INTO `mob_skill_lists` (`skill_list_name`,`skill_list_id`,`mob_skill_id`) VALUES ('YagudoNM',1156,617);
+INSERT IGNORE INTO `mob_skill_lists` (`skill_list_name`,`skill_list_id`,`mob_skill_id`) VALUES ('YagudoNM',1156,618);
+INSERT IGNORE INTO `mob_skill_lists` (`skill_list_name`,`skill_list_id`,`mob_skill_id`) VALUES ('YagudoNM',1156,619);
+INSERT IGNORE INTO `mob_skill_lists` (`skill_list_name`,`skill_list_id`,`mob_skill_id`) VALUES ('YagudoNM',1156,620);
+INSERT IGNORE INTO `mob_skill_lists` (`skill_list_name`,`skill_list_id`,`mob_skill_id`) VALUES ('YagudoNM',1156,764);
+INSERT IGNORE INTO `mob_skill_lists` (`skill_list_name`,`skill_list_id`,`mob_skill_id`) VALUES ('TRUST_Lion',1022,3198);
+INSERT IGNORE INTO `mob_skill_lists` (`skill_list_name`,`skill_list_id`,`mob_skill_id`) VALUES ('TRUST_Lion',1022,3199);
+INSERT IGNORE INTO `mob_skill_lists` (`skill_list_name`,`skill_list_id`,`mob_skill_id`) VALUES ('TRUST_Lion',1022,3200);
+INSERT IGNORE INTO `mob_skill_lists` (`skill_list_name`,`skill_list_id`,`mob_skill_id`) VALUES ('TRUST_Lion',1022,3201);
+INSERT IGNORE INTO `mob_skill_lists` (`skill_list_name`,`skill_list_id`,`mob_skill_id`) VALUES ('TRUST_Prishe',1028,3234);
+INSERT IGNORE INTO `mob_skill_lists` (`skill_list_name`,`skill_list_id`,`mob_skill_id`) VALUES ('TRUST_Prishe',1028,3235);
+INSERT IGNORE INTO `mob_skill_lists` (`skill_list_name`,`skill_list_id`,`mob_skill_id`) VALUES ('TRUST_Prishe',1028,3236);
+INSERT IGNORE INTO `mob_skill_lists` (`skill_list_name`,`skill_list_id`,`mob_skill_id`) VALUES ('TRUST_Nashmeira',1038,3243);
+INSERT IGNORE INTO `mob_skill_lists` (`skill_list_name`,`skill_list_id`,`mob_skill_id`) VALUES ('TRUST_Ovjang',1040,1943);
+INSERT IGNORE INTO `mob_skill_lists` (`skill_list_name`,`skill_list_id`,`mob_skill_id`) VALUES ('TRUST_Ovjang',1040,2067);
+INSERT IGNORE INTO `mob_skill_lists` (`skill_list_name`,`skill_list_id`,`mob_skill_id`) VALUES ('TRUST_Ovjang',1040,3244);
+INSERT IGNORE INTO `mob_skill_lists` (`skill_list_name`,`skill_list_id`,`mob_skill_id`) VALUES ('Mumor_HH',1061,2899);
+INSERT IGNORE INTO `mob_skill_lists` (`skill_list_name`,`skill_list_id`,`mob_skill_id`) VALUES ('Mumor_HH',1061,2900);
+INSERT IGNORE INTO `mob_skill_lists` (`skill_list_name`,`skill_list_id`,`mob_skill_id`) VALUES ('Mumor_HH',1061,2901);
+INSERT IGNORE INTO `mob_skill_lists` (`skill_list_name`,`skill_list_id`,`mob_skill_id`) VALUES ('Mumor_HH',1061,2902);
+INSERT IGNORE INTO `mob_skill_lists` (`skill_list_name`,`skill_list_id`,`mob_skill_id`) VALUES ('Mumor_HH',1061,2903);
+INSERT IGNORE INTO `mob_skill_lists` (`skill_list_name`,`skill_list_id`,`mob_skill_id`) VALUES ('Mumor_HH',1061,2904);
+INSERT IGNORE INTO `mob_skill_lists` (`skill_list_name`,`skill_list_id`,`mob_skill_id`) VALUES ('Mnejing_HH',1157,1940);
+INSERT IGNORE INTO `mob_skill_lists` (`skill_list_name`,`skill_list_id`,`mob_skill_id`) VALUES ('Mnejing_HH',1157,1941);
+INSERT IGNORE INTO `mob_skill_lists` (`skill_list_name`,`skill_list_id`,`mob_skill_id`) VALUES ('Mnejing_HH',1157,1944);
+INSERT IGNORE INTO `mob_skill_lists` (`skill_list_name`,`skill_list_id`,`mob_skill_id`) VALUES ('Mnejing_HH',1157,1945);
+INSERT IGNORE INTO `mob_skill_lists` (`skill_list_name`,`skill_list_id`,`mob_skill_id`) VALUES ('Mnejing_HH',1157,1947);
+INSERT IGNORE INTO `mob_skill_lists` (`skill_list_name`,`skill_list_id`,`mob_skill_id`) VALUES ('Mnejing_HH',1157,2743);
+INSERT IGNORE INTO `mob_skill_lists` (`skill_list_name`,`skill_list_id`,`mob_skill_id`) VALUES ('Mnejing_HH',1157,2747);

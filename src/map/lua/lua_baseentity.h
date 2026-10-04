@@ -103,6 +103,7 @@ public:
     int32 getPos(lua_State*);               // Get Entity position (x,y,z)
     int32 getSpawnPos(lua_State*);          // Get Mob spawn position (x,y,z)
     int32 getZone(lua_State*);              // Get Entity zone
+    int32 sendEntityEmote(lua_State*);      // Any entity (NPC/mob) is the emote actor: sendEntityEmote(target, emoteId, mode)
     int32 getZoneID(lua_State*);            // Get Entity zone ID
     int32 getZoneName(lua_State*);          // Get Entity zone name
     int32 isInMogHouse(lua_State*);         // Check if entity inside a mog house
@@ -405,7 +406,8 @@ public:
     int32 showPosition(lua_State*);          // Display current position of character
     int32 injectPacket(lua_State*);          // Send the character a packet kept in a file
 
-    int32 getContainerSize(lua_State*);      // Gets the current capacity of a container
+    int32 getContainerSize(lua_State*);
+    int32 gardenDebug(lua_State*);           // GM debug for Mog House flowerpots (!garden)      // Gets the current capacity of a container
     int32 changeContainerSize(lua_State*);   // Increase/Decreases container size
     int32 resetPlayer(lua_State*);           // if player is stuck, GM command @resetPlayer name
     int32 setLevel(lua_State*);              // sets the character's level
@@ -480,6 +482,7 @@ public:
     int32 isAlly(lua_State*);
 
     int32 injectActionPacket(lua_State*);   // ONLY FOR DEBUGGING. Injects an action packet with the specified params.
+    int32 setNpcFlags(lua_State*);          // DSP-PORT: set an NPC's entityFlags (Abyssea Sturdy Pyxis)
     int32 setMobFlags(lua_State*);          // Used to manipulate the mob's flags for testing.
 
     int32 setDelay(lua_State*);             // sets a mobs weapon delay

@@ -26,6 +26,7 @@
 #include <string.h>
 
 #include "char_emotion.h"
+#include "../entities/baseentity.h"
 #include "../entities/charentity.h"
 #include "../item_container.h"
 #include "../items/item_weapon.h"
@@ -58,4 +59,18 @@ CCharEmotionPacket::CCharEmotionPacket(CCharEntity* PChar, uint8* buff)
 	}
 
 	WBUFB(data,(0x16)) = motion;					// motion
+}
+
+// Any entity (NPC/mob) as the 0x5A actor; retail captures show Heroines' Holdfast cheerleaders this way.
+CCharEmotionPacket::CCharEmotionPacket(CBaseEntity* PActor, uint32 TargetID, uint16 TargetIndex, uint8 EmoteID, uint8 Motion)
+{
+	this->type = 0x5a;
+	this->size = 0x1C;
+
+	WBUFL(data,(0x04)) = PActor->id;
+	WBUFL(data,(0x08)) = TargetID;
+	WBUFW(data,(0x0C)) = PActor->targid;
+	WBUFW(data,(0x0E)) = TargetIndex;
+	WBUFB(data,(0x10)) = EmoteID;
+	WBUFB(data,(0x16)) = Motion;
 }

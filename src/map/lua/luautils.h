@@ -166,6 +166,8 @@ namespace luautils
     int32 StartElevator(lua_State*);
     int32 GetServerVariable(lua_State*);
     int32 SetServerVariable(lua_State *);
+    int32 GetCampaignValue(lua_State*);
+    int32 SetCampaignValue(lua_State*);
     int32 clearVarFromAll(lua_State *);                                         // Deletes a specific player variable from all players
     int32 terminate(lua_State*);                                                // Logs off all characters and terminates the server
 
@@ -270,6 +272,7 @@ namespace luautils
 
     int32 OnPlayerLevelUp(CCharEntity* PChar);
     int32 OnPlayerLevelDown(CCharEntity* PChar);
+    int32 OnPlayerEmote(CCharEntity* PChar, uint8 emoteId, uint32 targetId, uint16 targetIndex);
 
     bool OnChocoboDig(CCharEntity* PChar, bool pre);                           // chocobo digging, pre = check
     bool LoadEventScript(CCharEntity* PChar, const char* functionName);    // Utility method: checks for and loads a lua function for events

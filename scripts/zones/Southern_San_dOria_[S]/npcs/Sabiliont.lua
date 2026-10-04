@@ -25,7 +25,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-player:showText(npc, 6999); -- (Couldn't find default dialogue) What are you doing here? This is no place for civillians
+player:showText(npc, 7054); -- (Couldn't find default dialogue) What are you doing here? This is no place for civillians
 end;
 
 -----------------------------------

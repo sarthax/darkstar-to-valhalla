@@ -137,6 +137,8 @@ namespace luautils
         lua_register(LuaHandle, "RunElevator", luautils::StartElevator);
         lua_register(LuaHandle, "GetServerVariable", luautils::GetServerVariable);
         lua_register(LuaHandle, "SetServerVariable", luautils::SetServerVariable);
+        lua_register(LuaHandle, "GetCampaignValue", luautils::GetCampaignValue);
+        lua_register(LuaHandle, "SetCampaignValue", luautils::SetCampaignValue);
         lua_register(LuaHandle, "clearVarFromAll", luautils::clearVarFromAll);
         lua_register(LuaHandle, "SendEntityVisualPacket", luautils::SendEntityVisualPacket);
         lua_register(LuaHandle, "UpdateServerMessage", luautils::UpdateServerMessage);
@@ -2696,11 +2698,14 @@ namespace luautils
                     lua_pushboolean(LuaHandle, isKiller);
 
                     lua_pushboolean(LuaHandle, isWeaponSkillKill);
+                    // DSP-PORT: args 5/6 = how the mob's last hit landed (0 melee/none, 1 spell, 2 weaponskill) + its id
+                    lua_pushinteger(LuaHandle, static_cast<CMobEntity*>(PMob)->m_lastKillKind);
+                    lua_pushinteger(LuaHandle, static_cast<CMobEntity*>(PMob)->m_lastKillId);
                     // lua_pushboolean(LuaHandle, isMagicKill);
                     // lua_pushboolean(LuaHandle, isPetKill);
                     // Todo: look at better way do do these than additional bools...
 
-                    if (lua_pcall(LuaHandle, 4, 0, 0))
+                    if (lua_pcall(LuaHandle, 6, 0, 0))
                     {
                         ShowError("luautils::onMobDeathEx: %s\n", lua_tostring(LuaHandle, -1));
                         lua_pop(LuaHandle, 1);
@@ -3977,6 +3982,60 @@ namespace luautils
     }
 
     /************************************************************************
+    *  Campaign state accessors (campaign_nation / campaign_map tables).    *
+    *  GetCampaignValue(table, id, column) / SetCampaignValue(t, id, c, v)  *
+    *  table: "nation" or "map". Column names are whitelisted.              *
+    ************************************************************************/
+
+    static const int8* CampaignTable(const int8* t, const int8* col)
+    {
+        static const char* nationCols[] = { "reconnaissance", "morale", "prosperity", nullptr };
+        static const char* mapCols[] = { "nation", "heroism", "influence_sandoria", "influence_bastok", "influence_windurst", "influence_beastman",
+            "current_fortifications", "current_resources", "max_fortifications", "max_resources", nullptr };
+        const char** cols = nullptr;
+        const int8* table = nullptr;
+        if (strcmp(t, "nation") == 0) { cols = nationCols; table = "campaign_nation"; }
+        else if (strcmp(t, "map") == 0) { cols = mapCols; table = "campaign_map"; }
+        if (cols)
+        {
+            for (int i = 0; cols[i]; ++i)
+            {
+                if (strcmp(cols[i], col) == 0) return table;
+            }
+        }
+        return nullptr;
+    }
+
+    int32 GetCampaignValue(lua_State *L)
+    {
+        int32 value = 0;
+        if (lua_isstring(L, 1) && lua_isnumber(L, 2) && lua_isstring(L, 3))
+        {
+            const int8* table = CampaignTable(lua_tostring(L, 1), lua_tostring(L, 3));
+            if (table && Sql_Query(SqlHandle, "SELECT %s FROM %s WHERE id = %u LIMIT 1;", lua_tostring(L, 3), table, (uint32)lua_tointeger(L, 2)) != SQL_ERROR &&
+                Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+            {
+                value = (int32)Sql_GetIntData(SqlHandle, 0);
+            }
+        }
+        lua_pushinteger(L, value);
+        return 1;
+    }
+
+    int32 SetCampaignValue(lua_State *L)
+    {
+        if (lua_isstring(L, 1) && lua_isnumber(L, 2) && lua_isstring(L, 3) && lua_isnumber(L, 4))
+        {
+            const int8* table = CampaignTable(lua_tostring(L, 1), lua_tostring(L, 3));
+            if (table)
+            {
+                Sql_Query(SqlHandle, "UPDATE %s SET %s = %i WHERE id = %u;", table, lua_tostring(L, 3), (int32)lua_tointeger(L, 4), (uint32)lua_tointeger(L, 2));
+            }
+        }
+        return 0;
+    }
+
+    /************************************************************************
     *                                                                       *
     *                                                                       *
     *                                                                       *
@@ -4508,6 +4567,37 @@ namespace luautils
         if (returns > 0)
         {
             ShowError("luautils::onPlayerLevelUp (%s): 0 returns expected, got %d\n", File, returns);
+            lua_pop(LuaHandle, returns);
+        }
+
+        return 0;
+    }
+
+    // onPlayerEmote(player, emoteId, targetId, targetIndex) -- scripts/globals/player.lua.
+    // Fired after the emote has been rebroadcast; emoteId is the raw 0x05D id (e.g. /cheer, /clap, /danceN).
+    int32 OnPlayerEmote(CCharEntity* PChar, uint8 emoteId, uint32 targetId, uint16 targetIndex)
+    {
+        lua_prepscript("scripts/globals/player.lua");
+        if (prepFile(File, "onPlayerEmote"))
+            return -1;
+
+        CLuaBaseEntity LuaBaseEntity(PChar);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+        lua_pushinteger(LuaHandle, emoteId);
+        lua_pushinteger(LuaHandle, targetId);
+        lua_pushinteger(LuaHandle, targetIndex);
+
+        if (lua_pcall(LuaHandle, 4, LUA_MULTRET, 0))
+        {
+            ShowError("luautils::onPlayerEmote: %s\n", lua_tostring(LuaHandle, -1));
+            lua_pop(LuaHandle, 1);
+            return -1;
+        }
+
+        int32 returns = lua_gettop(LuaHandle) - oldtop;
+        if (returns > 0)
+        {
+            ShowError("luautils::onPlayerEmote (%s): 0 returns expected, got %d\n", File, returns);
             lua_pop(LuaHandle, returns);
         }
 

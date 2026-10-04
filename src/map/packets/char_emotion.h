@@ -35,12 +35,14 @@
 ************************************************************************/
 
 class CCharEntity;
+class CBaseEntity;
 
 class CCharEmotionPacket : public CBasicPacket
 {
 public:
 
 	CCharEmotionPacket(CCharEntity* PChar, uint8* buff);
+	CCharEmotionPacket(CBaseEntity* PActor, uint32 TargetID, uint16 TargetIndex, uint8 EmoteID, uint8 Motion); // any entity as actor (NPC/mob)
 };
 
 #endif

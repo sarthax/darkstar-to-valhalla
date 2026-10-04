@@ -2448,3 +2448,28 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2013-10-07 20:12:54
+
+-- HEROINES HOLDFAST BACKPORT (instance 80) 2026-10-03
+-- Holdfast mob spell lists 436/437/438 (Prishe/Ovjang/Mumor); absent from DSP
+REPLACE INTO `mob_spell_lists` VALUES ('Prishe_HH',436,21,1,255);
+REPLACE INTO `mob_spell_lists` VALUES ('Prishe_HH',436,30,1,255);
+REPLACE INTO `mob_spell_lists` VALUES ('Prishe_HH',436,40,1,255);
+REPLACE INTO `mob_spell_lists` VALUES ('Ovjang_HH',437,148,1,255);
+REPLACE INTO `mob_spell_lists` VALUES ('Ovjang_HH',437,153,1,255);
+REPLACE INTO `mob_spell_lists` VALUES ('Ovjang_HH',437,158,1,255);
+REPLACE INTO `mob_spell_lists` VALUES ('Ovjang_HH',437,359,1,255);
+REPLACE INTO `mob_spell_lists` VALUES ('Ovjang_HH',437,360,1,255);
+REPLACE INTO `mob_spell_lists` VALUES ('Mumor_HH',438,22,1,255);
+REPLACE INTO `mob_spell_lists` VALUES ('Mumor_HH',438,148,1,255);
+REPLACE INTO `mob_spell_lists` VALUES ('Mumor_HH',438,153,1,255);
+REPLACE INTO `mob_spell_lists` VALUES ('Mumor_HH',438,158,1,255);
+REPLACE INTO `mob_spell_lists` VALUES ('Mumor_HH',438,163,1,255);
+REPLACE INTO `mob_spell_lists` VALUES ('Mumor_HH',438,173,1,255);
+REPLACE INTO `mob_spell_lists` VALUES ('Mumor_HH',438,177,1,255);
+REPLACE INTO `mob_spell_lists` VALUES ('Mumor_HH',438,182,1,255);
+REPLACE INTO `mob_spell_lists` VALUES ('Mumor_HH',438,187,1,255);
+REPLACE INTO `mob_spell_lists` VALUES ('Mumor_HH',438,202,1,255);
+REPLACE INTO `mob_spell_lists` VALUES ('Mumor_HH',438,498,1,255);
+REPLACE INTO `mob_spell_lists` VALUES ('Mumor_HH',438,499,1,255);
+REPLACE INTO `mob_spell_lists` VALUES ('Mumor_HH',438,500,1,255);
+REPLACE INTO `mob_spell_lists` VALUES ('Mumor_HH',438,501,1,255);

@@ -9,6 +9,6 @@ require("scripts/globals/nyzul")
 -----------------------------------
 function onMobDeath(mob, player, isKiller)
     player:addTitle(THE_HORNSPLITTER)
-    Nyzul.floorNMKill(mob, player)
+    Nyzul.floorNMKillShared(mob, player)
 end
 
