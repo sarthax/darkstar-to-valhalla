@@ -72,7 +72,7 @@ struct event_t
 struct profile_t
 {
     uint8	   nation;			// принадлежность к государству
-    uint8	   mhflag;			// флаг выхода из MogHouse
+    uint16	   mhflag;			// флаг выхода из MogHouse
     uint16	   title;			// звание
     uint16     fame[15];		// известность
     uint8 	   rank[3];			// рагн в трех государствах
