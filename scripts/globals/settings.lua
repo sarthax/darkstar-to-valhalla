@@ -22,6 +22,7 @@ ENABLE_WOTG    = 0;
 ENABLE_ACP     = 0;
 ENABLE_AMK     = 0;
 ENABLE_ASA     = 0;
+ENABLE_MOG_HOUSE_2F = 1; -- Mog House 2F unlock + remodel + Mog Patio
 ENABLE_ABYSSEA = 0;
 ENABLE_SOA     = 0;
 ENABLE_ROV     = 0;

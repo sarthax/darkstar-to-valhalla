@@ -6283,7 +6283,7 @@ inline int32 CLuaBaseEntity::moghouseFlag(lua_State *L)
 
     if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
     {
-        PChar->profile.mhflag |= (uint8)lua_tointeger(L, 1);
+        PChar->profile.mhflag |= (uint16)lua_tointeger(L, 1);
         charutils::SaveCharStats(PChar);
         return 0;
     }

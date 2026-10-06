@@ -661,7 +661,7 @@ namespace charutils
             HP = Sql_GetIntData(SqlHandle, 3);
             MP = Sql_GetIntData(SqlHandle, 4);
 
-            PChar->profile.mhflag = (uint8)Sql_GetIntData(SqlHandle, 5);
+            PChar->profile.mhflag = (uint16)Sql_GetIntData(SqlHandle, 5);
             PChar->profile.title = (uint16)Sql_GetIntData(SqlHandle, 6);
 
             int8* bazaarMessage = Sql_GetData(SqlHandle, 7);

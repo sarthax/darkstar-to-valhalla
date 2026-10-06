@@ -2857,3 +2857,4 @@ DENARY_NAZAR                             = 2985;
 PRIMAL_NAZAR                             = 2986;
 FEARED_ONE_PHANTOM_GEM                   = 2987;
 DAWN_PHANTOM_GEM                         = 2988;
+MOG_PATIO_DESIGN_DOCUMENT                = 3051;

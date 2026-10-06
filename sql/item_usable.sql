@@ -43,6 +43,7 @@ CREATE TABLE `item_usable` (
 -- ORDER BY:  `itemid`
 
 INSERT INTO `item_usable` VALUES (4096,'fire_crystal',1,0,0,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (6499,'patio_design_plan_document',1,1,117,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4097,'ice_crystal',1,0,0,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4098,'wind_crystal',1,0,0,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4099,'earth_crystal',1,0,0,0,0,0,0,0);

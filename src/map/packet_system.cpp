@@ -2732,9 +2732,33 @@ void SmallPacket0x05E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         PChar->status = STATUS_DISAPPEAR;
         PChar->loc.boundary = 0;
 
-        // Exiting Mog House..
-        if (zoneLineID == 1903324538)
+        // Mog House floor change (zone byte 125 = go to 2F, 126 = go to 1F)
+        if (zoneLineID == 1903324538 && PChar->m_moghouseID != 0 && (zone == 125 || zone == 126))
         {
+            if (!(PChar->profile.mhflag & 0x20))
+            {
+                ShowWarning(CL_YELLOW"SmallPacket0x5E: Mog House 2F requested without it being unlocked: %s\n" CL_RESET, PChar->GetName());
+                PChar->pushPacket(new CMessageSystemPacket(0, 0, 2));
+                PChar->pushPacket(new CCSPositionPacket(PChar));
+                PChar->status = STATUS_NORMAL;
+                return;
+            }
+            if (zone == 125)
+            {
+                PChar->profile.mhflag |= 0x40;
+            }
+            else
+            {
+                PChar->profile.mhflag &= ~0x40;
+            }
+            charutils::SaveCharStats(PChar);
+            PChar->loc.destination = PChar->getZone();
+            memset(&PChar->loc.p, 0, sizeof(PChar->loc.p));
+        }
+        // Exiting Mog House..
+        else if (zoneLineID == 1903324538)
+        {
+            PChar->profile.mhflag &= ~0x40; // leaving the Mog House resets the 2F tracker
             uint16 prevzone = PChar->getZone();
 
             // If zero, return to previous zone.. otherwise, determine the zone..
@@ -4290,6 +4314,42 @@ void SmallPacket0x0CB(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     else if (RBUFB(data, 0x04) == 2)
     {
         //close
+    }
+    else if (RBUFB(data, 0x04) == 5)
+    {
+        // Remodel 2F. Param2: 615 San d'Oria, 616 Bastok, 617 Windurst, 618 Mog Patio
+        if (PChar->m_moghouseID != PChar->id)
+        {
+            return;
+        }
+        if (!(PChar->profile.mhflag & 0x20))
+        {
+            ShowWarning(CL_YELLOW"SmallPacket0x0CB: %s remodeling 2F without it unlocked\n" CL_RESET, PChar->GetName());
+            return;
+        }
+        uint16 newStyle = RBUFW(data, 0x06);
+        // Invalid style (or Patio without the design document) falls back to the nation default
+        if (newStyle < 615 || newStyle > 618 || (newStyle == 618 && !charutils::hasKeyItem(PChar, 3051)))
+        {
+            newStyle = 615 + (PChar->profile.nation < 3 ? PChar->profile.nation : 0);
+        }
+        uint16 oldStyle = 615 + ((PChar->profile.mhflag >> 7) & 0x03);
+
+        PChar->profile.mhflag &= ~0x0180;
+        PChar->profile.mhflag |= ((newStyle - 615) << 7);
+        charutils::SaveCharStats(PChar);
+
+        PChar->pushPacket(new CMessageStandardPacket(293)); // Your second floor has been successfully remodeled.
+
+        // On 2F the model only changes through a rezone
+        if (newStyle != oldStyle && (PChar->profile.mhflag & 0x40))
+        {
+            PChar->status = STATUS_DISAPPEAR;
+            PChar->loc.destination = PChar->getZone();
+            memset(&PChar->loc.p, 0, sizeof(PChar->loc.p));
+            PChar->clearPacketList();
+            charutils::SendToZone(PChar, 2, zoneutils::GetZoneIPP(PChar->getZone()));
+        }
     }
     else
     {
