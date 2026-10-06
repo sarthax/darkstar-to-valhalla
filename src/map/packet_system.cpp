@@ -5043,7 +5043,11 @@ void SmallPacket0x0FA(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     uint16 ItemID = RBUFW(data, (0x04));
 
     if (ItemID == 0)
+    {
+        // No item means the client has finished placing furniture
+        PChar->UpdateMoghancement();
         return;
+    }
 
     uint8  slotID = RBUFB(data, (0x06));
     uint8  containerID = RBUFB(data, (0x07));
@@ -5079,9 +5083,9 @@ void SmallPacket0x0FA(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             "UPDATE char_inventory "
             "SET "
             "extra = '%s' "
-            "WHERE location = 1 AND slot = %u AND charid = %u";
+            "WHERE location = %u AND slot = %u AND charid = %u";
 
-        if (Sql_Query(SqlHandle, Query, extra, slotID, PChar->id) != SQL_ERROR && Sql_AffectedRows(SqlHandle) != 0 && !wasInstalled)
+        if (Sql_Query(SqlHandle, Query, extra, containerID, slotID, PChar->id) != SQL_ERROR && Sql_AffectedRows(SqlHandle) != 0 && !wasInstalled)
         {
             PChar->getStorage(LOC_STORAGE)->AddBuff(PItem->getStorage());
 
@@ -5140,9 +5144,9 @@ void SmallPacket0x0FB(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 "UPDATE char_inventory "
                 "SET "
                 "extra = '%s' "
-                "WHERE location = 1 AND slot = %u AND charid = %u";
+                "WHERE location = %u AND slot = %u AND charid = %u";
 
-            if (Sql_Query(SqlHandle, Query, extra, slotID, PChar->id) != SQL_ERROR && Sql_AffectedRows(SqlHandle) != 0)
+            if (Sql_Query(SqlHandle, Query, extra, containerID, slotID, PChar->id) != SQL_ERROR && Sql_AffectedRows(SqlHandle) != 0)
             {
                 uint8 NewSize = PItemContainer->GetSize() - RemovedSize;
                 for (uint8 SlotID = PItemContainer->GetSize(); SlotID > NewSize; --SlotID)
@@ -5162,6 +5166,9 @@ void SmallPacket0x0FB(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         else
         {
             ShowError(CL_RED"SmallPacket0x0FB: furnishing can't be removed\n" CL_RESET);
+            // Answer anyway so the client releases the Remove prompt (the item stays installed)
+            PChar->pushPacket(new CInventoryItemPacket(PItem, containerID, PItem->getSlotID()));
+            PChar->pushPacket(new CInventoryFinishPacket());
         }
     }
     return;

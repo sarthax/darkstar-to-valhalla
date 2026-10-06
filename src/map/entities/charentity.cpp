@@ -56,6 +56,10 @@
 #include "../ability.h"
 #include "../conquest_system.h"
 #include "../utils/gardenutils.h"
+#include "../items/item_furnishing.h"
+#include "../packets/key_items.h"
+#include "../packets/message_special.h"
+#include "../lua/luautils.h"
 #include "../spell.h"
 #include "../attack.h"
 #include "../utils/attackutils.h"
@@ -197,6 +201,7 @@ CCharEntity::CCharEntity()
 
     m_LastYell = 0;
     m_moghouseID = 0;
+    m_moghancementID = 0;
 
     PAI = std::make_unique<CAIContainer>(this, nullptr, std::make_unique<CPlayerController>(this),
         std::make_unique<CTargetFind>(this));
@@ -460,6 +465,307 @@ void CCharEntity::ReloadPartyDec()
 bool CCharEntity::ReloadParty()
 {
     return m_reloadParty;
+}
+
+namespace
+{
+    // Key items a piece of furniture can grant: MOGHANCEMENT_* 512-539, MOGLIFICATION_* 544-552 and
+    // MEGA_MOGLIFICATION_* 553-561. Server ids confirmed in-game (512 = Moghancement: Fire).
+    // Ids 540-543, 562-563 and 2849+ are not supported here (not confirmed against the client yet).
+    bool isFurnitureKeyItem(uint16 id)
+    {
+        return (id >= MOGHANCEMENT_FIRE && id <= MOGLIFICATION_CAPACITY_BOOST) ||
+               (id >= MOGLIFICATION_RESIST_POISON && id <= MOGLIFICATION_RESIST_CURSE);
+    }
+
+    // The modifier a Moghancement applies. The elemental synth-failure effect and the Moglification crafting aura
+    // are read straight from the key item by synthutils::doSynthFail, so they are not duplicated here.
+    using ModList = std::vector<std::pair<Mod, int16>>;
+    void moghancementMods(uint16 id, uint8 nation, ModList& out)
+    {
+        out.clear();
+        switch (id)
+        {
+            case MOGHANCEMENT_GARDENING:                                    out.emplace_back(Mod::GARDENING_WILT_BONUS, 36); break;
+            case MOGHANCEMENT_FISHING:      case MOGLIFICATION_FISHING:      out.emplace_back(Mod::FISH, 1); break;
+            case MOGHANCEMENT_WOODWORKING:  case MOGLIFICATION_WOODWORKING:  out.emplace_back(Mod::WOOD, 1); break;
+            case MOGHANCEMENT_SMITHING:     case MOGLIFICATION_SMITHING:     out.emplace_back(Mod::SMITH, 1); break;
+            case MOGHANCEMENT_GOLDSMITHING: case MOGLIFICATION_GOLDSMITHING: out.emplace_back(Mod::GOLDSMITH, 1); break;
+            case MOGHANCEMENT_CLOTHCRAFT:   case MOGLIFICATION_CLOTHCRAFT:   out.emplace_back(Mod::CLOTH, 1); break;
+            case MOGHANCEMENT_LEATHERCRAFT: case MOGLIFICATION_LEATHERCRAFT: out.emplace_back(Mod::LEATHER, 1); break;
+            case MOGHANCEMENT_BONECRAFT:    case MOGLIFICATION_BONECRAFT:    out.emplace_back(Mod::BONE, 1); break;
+            case MOGHANCEMENT_ALCHEMY:      case MOGLIFICATION_ALCHEMY:      out.emplace_back(Mod::ALCHEMY, 1); break;
+            case MOGHANCEMENT_COOKING:      case MOGLIFICATION_COOKING:      out.emplace_back(Mod::COOK, 1); break;
+            case MEGA_MOGLIFICATION_FISHING:      out.emplace_back(Mod::FISH, 5); break;
+            case MEGA_MOGLIFICATION_WOODWORKING:  out.emplace_back(Mod::WOOD, 5); break;
+            case MEGA_MOGLIFICATION_SMITHING:     out.emplace_back(Mod::SMITH, 5); break;
+            case MEGA_MOGLIFICATION_GOLDSMITHING: out.emplace_back(Mod::GOLDSMITH, 5); break;
+            case MEGA_MOGLIFICATION_CLOTHCRAFT:   out.emplace_back(Mod::CLOTH, 5); break;
+            case MEGA_MOGLIFICATION_LEATHERCRAFT: out.emplace_back(Mod::LEATHER, 5); break;
+            case MEGA_MOGLIFICATION_BONECRAFT:    out.emplace_back(Mod::BONE, 5); break;
+            case MEGA_MOGLIFICATION_ALCHEMY:      out.emplace_back(Mod::ALCHEMY, 5); break;
+            case MEGA_MOGLIFICATION_COOKING:      out.emplace_back(Mod::COOK, 5); break;
+            case MOGHANCEMENT_EXPERIENCE:  out.emplace_back(Mod::EXPERIENCE_RETAINED, 5); break;
+            case MOGHANCEMENT_DESYNTHESIS: out.emplace_back(Mod::DESYNTH_SUCCESS, 2); break;
+            case MOGHANCEMENT_CONQUEST:    out.emplace_back(Mod::CONQUEST_BONUS, 6); break;
+            case MOGHANCEMENT_REGION:      out.emplace_back(Mod::CONQUEST_REGION_BONUS, 10); break;
+            case MOGHANCEMENT_SANDORIA_CONQUEST: if (nation == 0) { out.emplace_back(Mod::CONQUEST_BONUS, 6); } break;
+            case MOGHANCEMENT_BASTOK_CONQUEST:   if (nation == 1) { out.emplace_back(Mod::CONQUEST_BONUS, 6); } break;
+            case MOGHANCEMENT_WINDURST_CONQUEST: if (nation == 2) { out.emplace_back(Mod::CONQUEST_BONUS, 6); } break;
+            case MOGHANCEMENT_MONEY:       out.emplace_back(Mod::GILFINDER, 10); break;
+            case MOGHANCEMENT_MONEY_II:    out.emplace_back(Mod::GILFINDER, 15); break;
+            case MOGHANCEMENT_CAMPAIGN:    out.emplace_back(Mod::CAMPAIGN_BONUS, 5); break;
+            case MOGHANCEMENT_SKILL_GAINS:
+                out.emplace_back(Mod::COMBAT_SKILLUP_RATE, 25);
+                out.emplace_back(Mod::MAGIC_SKILLUP_RATE, 25);
+                break;
+            case MOGHANCEMENT_BOUNTY:
+                out.emplace_back(Mod::EXP_BONUS, 10);
+                out.emplace_back(Mod::CAPACITY_BONUS, 10);
+                break;
+            case MOGLIFICATION_EXPERIENCE_BOOST: out.emplace_back(Mod::EXP_BONUS, 15); break;
+            case MOGLIFICATION_CAPACITY_BOOST:   out.emplace_back(Mod::CAPACITY_BONUS, 15); break;
+            // Resist amounts are placeholders (Topaz uses 20 for all; real values unknown)
+            case MOGLIFICATION_RESIST_POISON: out.emplace_back(Mod::POISONRES, 20); break;
+            case MOGLIFICATION_RESIST_PARALYSIS: out.emplace_back(Mod::PARALYZERES, 20); break;
+            case MOGLIFICATION_RESIST_SILENCE:       out.emplace_back(Mod::SILENCERES, 20); break;
+            case MOGLIFICATION_RESIST_PETRIFICATION: out.emplace_back(Mod::PETRIFYRES, 20); break;
+            case MOGLIFICATION_RESIST_VIRUS:         out.emplace_back(Mod::VIRUSRES, 20); break;
+            case MOGLIFICATION_RESIST_CURSE:         out.emplace_back(Mod::CURSERES, 20); break;
+            default: break; // elemental failure rates and fishing-item chance: no modifier
+        }
+    }
+}
+
+bool CCharEntity::hasMoghancement(uint16 moghancementID) const
+{
+    return m_moghancementID == moghancementID;
+}
+
+void CCharEntity::LoadMoghancement()
+{
+    // Only furniture grants these key items, so whichever one is held is the active Moghancement
+    for (uint16 id = MOGHANCEMENT_FIRE; id <= MOGLIFICATION_RESIST_CURSE; id = (id == MOGLIFICATION_CAPACITY_BOOST ? MOGLIFICATION_RESIST_POISON : id + 1))
+    {
+        if (isFurnitureKeyItem(id) && charutils::hasKeyItem(this, id))
+        {
+            SetMoghancement(id);
+            return;
+        }
+    }
+}
+
+void CCharEntity::UpdateMoghancement()
+{
+    // Add up the aura of every installed piece of furniture, per element (DSP elements are 0-7)
+    uint16 elements[8] = { 0 };
+    for (auto containerID : { LOC_MOGSAFE, LOC_MOGSAFE2 })
+    {
+        CItemContainer* PContainer = getStorage(containerID);
+        for (int slotID = 0; slotID < PContainer->GetSize(); ++slotID)
+        {
+            CItem* PItem = PContainer->GetItem(slotID);
+            if (PItem != nullptr && PItem->isType(ITEM_FURNISHING))
+            {
+                CItemFurnishing* PFurniture = static_cast<CItemFurnishing*>(PItem);
+                if (PFurniture->isInstalled() && PFurniture->getElement() < 8)
+                {
+                    elements[PFurniture->getElement()] += PFurniture->getAura();
+                }
+            }
+        }
+    }
+
+    // The dominant element wins; a tie, or no aura at all, gives no Moghancement
+    int    dominantElement = -1;
+    uint16 dominantAura    = 0;
+    bool   hasTiedElements = false;
+    for (int e = 0; e < 8; ++e)
+    {
+        if (elements[e] > dominantAura)
+        {
+            dominantElement = e;
+            dominantAura    = elements[e];
+            hasTiedElements = false;
+        }
+        else if (elements[e] == dominantAura)
+        {
+            hasTiedElements = true;
+        }
+    }
+
+    // The strongest installed piece of the dominant element picks the Moghancement.
+    // (Topaz breaks equal-aura ties by placement order; DSP furniture has no placement order, so the first found wins.)
+    uint8  bestAura          = 0;
+    uint16 newMoghancementID = 0;
+    if (!hasTiedElements && dominantAura > 0)
+    {
+        for (auto containerID : { LOC_MOGSAFE, LOC_MOGSAFE2 })
+        {
+            CItemContainer* PContainer = getStorage(containerID);
+            for (int slotID = 0; slotID < PContainer->GetSize(); ++slotID)
+            {
+                CItem* PItem = PContainer->GetItem(slotID);
+                if (PItem != nullptr && PItem->isType(ITEM_FURNISHING))
+                {
+                    CItemFurnishing* PFurniture = static_cast<CItemFurnishing*>(PItem);
+                    if (PFurniture->isInstalled() && PFurniture->getElement() == dominantElement &&
+                        PFurniture->getAura() > bestAura && isFurnitureKeyItem(PFurniture->getMoghancement()))
+                    {
+                        bestAura          = PFurniture->getAura();
+                        newMoghancementID = PFurniture->getMoghancement();
+                    }
+                }
+            }
+        }
+    }
+
+    if (newMoghancementID != 0)
+    {
+        // Shown every time the player finishes furnishing, as in Topaz
+        pushPacket(new CMessageSpecialPacket(this, luautils::GetTextIDVariable(getZone(), "KEYITEM_OBTAINED"), newMoghancementID, 0, 0, 0, false));
+    }
+
+    ChangeMoghancement(newMoghancementID);
+}
+
+void CCharEntity::ChangeMoghancement(uint16 newMoghancementID)
+{
+    if (newMoghancementID != m_moghancementID)
+    {
+        uint16 oldID = m_moghancementID;
+        if (oldID != 0)
+        {
+            charutils::delKeyItem(this, oldID);
+        }
+        if (newMoghancementID != 0)
+        {
+            charutils::addKeyItem(this, newMoghancementID);
+        }
+
+        // One key item packet per table touched
+        if (newMoghancementID != 0)
+        {
+            pushPacket(new CKeyItemsPacket(this, (KEYS_TABLE)(newMoghancementID / 512)));
+        }
+        if (oldID != 0 && (newMoghancementID == 0 || oldID / 512 != newMoghancementID / 512))
+        {
+            pushPacket(new CKeyItemsPacket(this, (KEYS_TABLE)(oldID / 512)));
+        }
+        charutils::SaveKeyItems(this);
+
+        SetMoghancement(newMoghancementID);
+    }
+}
+
+void CCharEntity::SetMoghancement(uint16 moghancementID)
+{
+    ModList mods;
+
+    // Take off whatever the previous Moghancement applied
+    moghancementMods(m_moghancementID, profile.nation, mods);
+    for (auto& m : mods)
+    {
+        delModifier(m.first, m.second);
+    }
+
+    m_moghancementID = moghancementID;
+
+    moghancementMods(m_moghancementID, profile.nation, mods);
+    for (auto& m : mods)
+    {
+        addModifier(m.first, m.second);
+    }
+}
+
+std::string CCharEntity::MoghancementDebug(const std::string& action, int32 value)
+{
+    std::string out;
+    char        line[256];
+
+    if (action == "set")
+    {
+        if (value != 0 && !isFurnitureKeyItem((uint16)value))
+        {
+            return "Not a furniture Moghancement key item id: " + std::to_string(value);
+        }
+        ChangeMoghancement((uint16)value);
+    }
+    else if (action == "clear")
+    {
+        ChangeMoghancement(0);
+    }
+    else if (action == "recalc")
+    {
+        UpdateMoghancement();
+    }
+    else if (action != "info")
+    {
+        return "Unknown action. Use: info | set <keyitemid> | clear | recalc";
+    }
+
+    // Aura per element, from the installed furniture
+    uint16 elements[8] = { 0 };
+    for (auto containerID : { LOC_MOGSAFE, LOC_MOGSAFE2 })
+    {
+        CItemContainer* PContainer = getStorage(containerID);
+        for (int slotID = 0; slotID < PContainer->GetSize(); ++slotID)
+        {
+            CItem* PItem = PContainer->GetItem(slotID);
+            if (PItem != nullptr && PItem->isType(ITEM_FURNISHING))
+            {
+                CItemFurnishing* PFurniture = static_cast<CItemFurnishing*>(PItem);
+                if (PFurniture->isInstalled() && PFurniture->getElement() < 8)
+                {
+                    elements[PFurniture->getElement()] += PFurniture->getAura();
+                }
+            }
+        }
+    }
+    snprintf(line, sizeof(line), "Moghancement: active key item %u (nation %u)\n", m_moghancementID, profile.nation);
+    out += line;
+    snprintf(line, sizeof(line), "Aura  fire %u  ice %u  wind %u  earth %u  lightning %u  water %u  light %u  dark %u\n",
+             elements[0], elements[1], elements[2], elements[3], elements[4], elements[5], elements[6], elements[7]);
+    out += line;
+
+    // Furniture key items actually held (should be exactly one)
+    out += "Held furniture key items:";
+    for (uint16 id = MOGHANCEMENT_FIRE; id <= MOGLIFICATION_RESIST_CURSE; id = (id == MOGLIFICATION_CAPACITY_BOOST ? MOGLIFICATION_RESIST_POISON : id + 1))
+    {
+        if (isFurnitureKeyItem(id) && charutils::hasKeyItem(this, id))
+        {
+            out += " " + std::to_string(id);
+        }
+    }
+    out += "\n";
+
+    // Current value of every modifier the Moghancements use
+    struct { const char* name; Mod mod; } mods[] = {
+        { "EXPERIENCE_RETAINED", Mod::EXPERIENCE_RETAINED }, { "DESYNTH_SUCCESS", Mod::DESYNTH_SUCCESS },
+        { "CONQUEST_BONUS", Mod::CONQUEST_BONUS }, { "CONQUEST_REGION_BONUS", Mod::CONQUEST_REGION_BONUS },
+        { "GILFINDER", Mod::GILFINDER }, { "CAMPAIGN_BONUS", Mod::CAMPAIGN_BONUS },
+        { "CAPACITY_BONUS", Mod::CAPACITY_BONUS }, { "EXP_BONUS", Mod::EXP_BONUS },
+        { "COMBAT_SKILLUP_RATE", Mod::COMBAT_SKILLUP_RATE }, { "MAGIC_SKILLUP_RATE", Mod::MAGIC_SKILLUP_RATE },
+        { "GARDENING_WILT_BONUS", Mod::GARDENING_WILT_BONUS },
+        { "POISONRES", Mod::POISONRES }, { "PARALYZERES", Mod::PARALYZERES }, { "SILENCERES", Mod::SILENCERES },
+        { "PETRIFYRES", Mod::PETRIFYRES }, { "VIRUSRES", Mod::VIRUSRES }, { "CURSERES", Mod::CURSERES },
+        { "FISH", Mod::FISH }, { "WOOD", Mod::WOOD }, { "SMITH", Mod::SMITH }, { "GOLDSMITH", Mod::GOLDSMITH },
+        { "CLOTH", Mod::CLOTH }, { "LEATHER", Mod::LEATHER }, { "BONE", Mod::BONE }, { "ALCHEMY", Mod::ALCHEMY }, { "COOK", Mod::COOK },
+    };
+    out += "Mods (non-zero):";
+    bool any = false;
+    for (auto& m : mods)
+    {
+        int16 v = getMod(m.mod);
+        if (v != 0)
+        {
+            snprintf(line, sizeof(line), " %s=%d", m.name, v);
+            out += line;
+            any = true;
+        }
+    }
+    out += any ? "\n" : " none\n";
+    return out;
 }
 
 void CCharEntity::PostTick()
@@ -1592,7 +1898,7 @@ void CCharEntity::Die()
     conquest::LoseInfluencePoints(this);
 
     if (GetLocalVar("MijinGakure") == 0)
-        charutils::DelExperiencePoints(this, map_config.exp_retain, 0);
+        charutils::DelExperiencePoints(this, dsp_cap(map_config.exp_retain + getMod(Mod::EXPERIENCE_RETAINED) / 100.0f, 0.0f, 1.0f), 0);
 }
 
 void CCharEntity::Die(duration _duration)

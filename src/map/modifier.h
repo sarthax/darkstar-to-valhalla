@@ -665,7 +665,18 @@ enum class Mod
 
     ALL_WSDMG_ALL_HITS        = 840, // Generic (all Weaponskills) damage, on all hits.
     // Per https://www.bg-wiki.com/bg/Weapon_Skill_Damage we need all 3..
-    ALL_WSDMG_FIRST_HIT       = 841 // Generic (all Weaponskills) damage, first hit only.
+    ALL_WSDMG_FIRST_HIT       = 841, // Generic (all Weaponskills) damage, first hit only.
+
+    GARDENING_WILT_BONUS      = 861, // Increases the number of Vanadays a Mog House plant can survive before it wilts
+
+    // Moghancement effects (Mog House furniture aura)
+    EXPERIENCE_RETAINED       = 862, // Percent of the experience loss on KO that is retained
+    DESYNTH_SUCCESS           = 863, // Rate of desynthesis success
+    CONQUEST_BONUS            = 864, // Percent bonus to individual conquest points
+    CONQUEST_REGION_BONUS     = 865, // Percent bonus to region (influence) points
+    GILFINDER                 = 866, // Percent bonus to gil dropped by mobs
+    CAMPAIGN_BONUS            = 867, // Campaign evaluation bonus (no consumer yet)
+    CAPACITY_BONUS            = 868, // Percent bonus to capacity points (no consumer yet)
 
     // 570 through 825 used by WS DMG mods these are not spares.
     // SPARE = 860, // stuff

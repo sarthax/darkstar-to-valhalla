@@ -1,10 +1,10 @@
 -- Variable TextID   Description text
 
 -- General Texts
-ITEM_CANNOT_BE_OBTAINED = 6549; -- You cannot obtain the item <item>. Come back after sorting your inventory.
-          ITEM_OBTAINED = 6555; -- Obtained: <item>.
-           GIL_OBTAINED = 6556; -- Obtained <number> gil.
-       KEYITEM_OBTAINED = 6558; -- Obtained key item: <keyitem>.
+ITEM_CANNOT_BE_OBTAINED = 6551; -- You cannot obtain the item <item>. Come back after sorting your inventory.
+          ITEM_OBTAINED = 6557; -- Obtained: <item>.
+           GIL_OBTAINED = 6558; -- Obtained <number> gil.
+       KEYITEM_OBTAINED = 6560; -- Obtained key item: <keyitem>.
          NOT_BROKEN_ORB = 7232; -- The Mana Orb in this receptacle is not broken.
     EXAMINED_RECEPTACLE = 7233; -- You have already examined this receptacle.
      DOOR_FIRMLY_CLOSED = 7260; -- The door is firmly closed.

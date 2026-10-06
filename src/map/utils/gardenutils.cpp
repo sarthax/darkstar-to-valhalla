@@ -106,8 +106,7 @@ namespace gardenutils
                     {
                         uint8  stageDuration        = GetStageDuration(PPotItem);
                         uint32 daysSinceStageChange = (vanatime - PPotItem->getStageTimestamp()) / VANADAY_SECONDS;
-                        // DSP has no Moghancement/GARDENING_WILT_BONUS mod yet, so no wilt bonus applies
-                        uint8  wiltTime             = VANADAYS_TO_WILT;
+                        uint8  wiltTime             = VANADAYS_TO_WILT + PChar->getMod(Mod::GARDENING_WILT_BONUS);
                         bool   wasExamined          = PPotItem->wasExamined();
                         if ((!wasExamined && (stageDuration > wiltTime || (stageDuration + daysSinceStageChange > wiltTime))) ||
                             daysSinceStageChange > VANADAYS_TO_GUARANTEE_WILT + wiltTime)

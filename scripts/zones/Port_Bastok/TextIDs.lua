@@ -1,13 +1,13 @@
 -- Variable TextID   Description text
 
 -- General Texts
-   ITEM_CANNOT_BE_OBTAINED = 6380; -- You cannot obtain the item <item>. Come back after sorting your inventory.
-FULL_INVENTORY_AFTER_TRADE = 6384; -- You cannot obtain the item (item>. Try trading again after sorting your inventory.
-             ITEM_OBTAINED = 6386; -- Obtained: #.
-              GIL_OBTAINED = 6387; -- Obtained <<<Numeric Parameter 0>>> gil.
-          KEYITEM_OBTAINED = 6389; -- Obtained key item: <<<Unknown Parameter (Type: 80) 1>>>.
-              KEYITEM_LOST = 6390; -- Lost key item <<<Unknown Parameter (Type: 80) 1>>>.
-       NOT_HAVE_ENOUGH_GIL = 6391; -- You do not have enough gil.
+   ITEM_CANNOT_BE_OBTAINED = 6382; -- You cannot obtain the item <item>. Come back after sorting your inventory.
+FULL_INVENTORY_AFTER_TRADE = 6386; -- You cannot obtain the item (item>. Try trading again after sorting your inventory.
+             ITEM_OBTAINED = 6388; -- Obtained: #.
+              GIL_OBTAINED = 6389; -- Obtained <<<Numeric Parameter 0>>> gil.
+          KEYITEM_OBTAINED = 6391; -- Obtained key item: <<<Unknown Parameter (Type: 80) 1>>>.
+              KEYITEM_LOST = 6392; -- Lost key item <<<Unknown Parameter (Type: 80) 1>>>.
+       NOT_HAVE_ENOUGH_GIL = 6393; -- You do not have enough gil.
              HOMEPOINT_SET = 6504; -- Home point set!
     FISHING_MESSAGE_OFFSET = 7080; -- You can't fish here.
              MOGHOUSE_EXIT = 7943; -- You have learned your way through the back alleys of Bastok! Now you can exit to any area from your residence.
