@@ -1,4 +1,4 @@
--- Belphoebe (Crimson III, Jugner Forest [S] zone 104). Rift/Pyxis ids match client (rifts 17203939-41, Pyxis 17203942-44).
+-- Belphoebe (Crimson III, Jugner Forest zone 104). Rift/Pyxis ids match client (rifts 17203939-41, Pyxis 17203942-44).
 -- [V] client mob ids 17203697-99 (capture ids are -1). Live rows were misaligned and 17203699 missing.
 -- Positions [C] capture: rift0 (78,118) rot 224; rift1 (263.84,539.1); rift2 (-333.9,-119). Pyxis1 position [D] (no capture of that rift).
 REPLACE INTO mob_spawn_points (mobid,mobname,polutils_name,groupid,pos_x,pos_y,pos_z,pos_rot) VALUES
