@@ -30,6 +30,7 @@ local function tick(mob)
         notify(mob, VW_TIME_UP);
         notify(mob, VW_FADES);
         mob:setLocalVar("VW_DEADLINE", 0);
+        vwEndOperation(mob);
         DespawnMob(mob:getID());
         return;
     end
@@ -57,6 +58,7 @@ function onMobFight(mob, target) tick(mob); end;
 function onMobDeath(mob, player, isKiller)
     mob:setLocalVar("VW_DEADLINE", 0);
 
+    vwEndOperation(mob);
     local idx = mob:getID() - 17568142;
     vwOnKill(mob, player, {
         cruor = 5500, -- Crimson II base, 0% alignment [C]

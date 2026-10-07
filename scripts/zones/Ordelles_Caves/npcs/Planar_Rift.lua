@@ -6,11 +6,18 @@
 -----------------------------------
 require("scripts/globals/status");
 require("scripts/globals/keyitems");
+require("scripts/globals/voidwatch");
 
 -- Zone-local message ids [V] (z193 dialog.yml pulled 2026-10-06; do NOT use TextIDs.lua, stale)
 local VW_NOT_ELIGIBLE      = 7506;
 local VW_CLEARANCE_EXPEND  = 7507;
 local VW_FIEND_MATERIALIZE = 7527;
+local VW_TOO_FAR = 7503;
+local VW_ENGAGED = 7504;
+local VW_UNCONSCIOUS = 7505;
+local VW_NO_EXPEND = 7508;
+local VW_CARRIED_OVER = 7509;
+local RANGE = 50; -- [D] clearance range unverified
 local VW_MINUTES_TO_COMPLETE = 7513;
 
 local RIFT_FIRST = 17568198;   -- [V] client events dat == DSP npc_list
@@ -55,7 +62,7 @@ end;
 function onEventUpdate(player,csid,option)
 end;
 
-function onEventFinish(player,csid,option)
+function onEventFinish(player,csid,option,npc)
     if (csid < 6000 or csid > 6002 or option ~= 1) then return; end
     local idx = csid - 6000;
     local tier = highestCrimson(player);
@@ -67,10 +74,28 @@ function onEventFinish(player,csid,option)
     if (mob == nil or mob:isSpawned()) then return; end   -- already up
     -- [D] voidstone is one KI per stock count: drop the highest-numbered one held (retail stock semantics unverified)
     player:delKeyItem(VOIDSTONES[voidstoneCount(player)]);
-    player:messageSpecial(VW_CLEARANCE_EXPEND, VOIDSTONES[1]);  -- [V] 7507 param = keyitem; exact param form unverified
-    player:messageSpecial(VW_FIEND_MATERIALIZE);
     SpawnMob(MOB_FIRST + idx):updateClaim(player);
-    GetMobByID(MOB_FIRST + idx):setLocalVar("VW_SPAWNER", player:getID());
+    mob = GetMobByID(MOB_FIRST + idx);
+    mob:setLocalVar("VW_SPAWNER", player:getID());
+    -- clearance is per player [V 7503-7509]: in range, not engaged, alive; spawner expends the stone
+    for _, m in pairs(player:getAlliance()) do
+        if (m:isPC() and m:getZoneID() == player:getZoneID()) then
+            if (m:getID() == player:getID()) then
+                m:messageSpecial(VW_CLEARANCE_EXPEND, VOIDSTONES[1]);
+                vwGrantClearance(m, mob);
+            elseif (m:checkDistance(GetNPCByID(RIFT_FIRST + idx)) > RANGE) then
+                m:messageSpecial(VW_TOO_FAR);
+            elseif (m:getHP() == 0) then
+                m:messageSpecial(VW_UNCONSCIOUS);
+            elseif (m:isEngaged()) then
+                m:messageSpecial(VW_ENGAGED);
+            else
+                -- [D] voidstone holders keep theirs (7509); others get limited spoils (7508)
+                m:messageSpecial((voidstoneCount(m) > 0) and VW_CARRIED_OVER or VW_NO_EXPEND, VOIDSTONES[1]);
+                vwGrantClearance(m, mob);
+            end
+        end
+    end
+    player:messageSpecial(VW_FIEND_MATERIALIZE);
     player:messageSpecial(VW_MINUTES_TO_COMPLETE, 30);
-    -- TODO [D]: 30 min timer via onInstanceTimeUpdate-style mob tick, status 475 on party, weakness/stagger/blitz, Pyxis
 end;

@@ -50,3 +50,23 @@ function vwPyxisItems(npc)
     for i = 1, 8 do t[i] = npc:getLocalVar("ITEM" .. i); end
     return t;
 end
+
+-- status 475 for a cleared participant; remembered on the mob so it can be removed at the end
+function vwGrantClearance(player, mob)
+    player:addStatusEffect(EFFECT_VOIDWATCHER, 0, 0, 1800); -- [D] duration/behavior unverified
+    mob:setLocalVar("VW_CLR" .. player:getID(), 1);
+end
+
+function vwHasClearance(mob, player)
+    return mob:getLocalVar("VW_CLR" .. player:getID()) == 1;
+end
+
+-- end of operation (kill or timeout): clear status 475 from everyone cleared in this zone
+function vwEndOperation(mob)
+    for _, p in pairs(mob:getZone():getPlayers()) do
+        if (vwHasClearance(mob, p)) then
+            p:delStatusEffect(EFFECT_VOIDWATCHER);
+            mob:setLocalVar("VW_CLR" .. p:getID(), 0);
+        end
+    end
+end
