@@ -58,6 +58,7 @@ function onMobSpawn(mob)
     mob:setLocalVar("VW_WARNED", LIMIT + 1);
     mob:setMobMod(MOBMOD_NO_DESPAWN, 1);
     vwWeaknessInit(mob);
+    mob:setMod(MOD_DEFP, 50); -- [W] "very high Defense"; amount is a [D] guess
 end;
 
 function onMobRoam(mob) tick(mob); end;
