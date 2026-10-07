@@ -1,0 +1,156 @@
+{{disambiguation|Voidwatch|Voidwatch Weaknesses}}
+{{Category Page Header
+|ToC=
+|Float=left
+|Image=Voidwatch Quests.png
+|Image Size=300
+|Image Link=
+|Intro Text=
+While participation in the vast majority of Voidwatch battles is possible without quest progression, [[Provenance]] and its four battlefields can only be accessed if the player has progressed to the climax of the Voidwatch Jeuno region line of quests.
+
+Unlocking [[:Category:Kupofried's Weapon Skill Moogle Magic|Empyrean Weapon Skills]] also requires some progress passed the starting cities Voidwatch tiers and completing [[Drafted by the Duchy]].
+
+[[:Category:Transportation#Voidwatch Teleportation|Voidwatch Teleportation]] destinations are also rewarded based on quest progression.
+}}
+{| style="color: black;" width=100% border=0
+|- BGCOLOR="#ADBDCC" align="center"
+| colspan=2 | '''Jeuno Region Quests'''
+| colspan=1 BGCOLOR="#FFFFF" |
+| colspan=2 | '''Other Region Quests'''
+|- BGCOLOR="#ADBDCC"
+! width="24%" | Quest
+! width="24%" | Reward
+! width="4%" BGCOLOR="#FFFFF" | 
+! width="24%" | Quest
+! width="24%" | Reward
+|- BGCOLOR="#E5E5E5" align="center"
+| [[Guardian of the Void]]
+| 
+| BGCOLOR="#FFFFF" | 
+| BGCOLOR="#CBCBBB" | [[Voidwatch Ops: Border Crossing]]
+| BGCOLOR="#CBCBBB" | [[Ashen stratum abyssite]] (start)
+|- BGCOLOR="#E5E5E5" align="center"
+| [[Drafted by the Duchy]]
+| [[Voidwatcher's emblem: Jeuno]],<br>[[White stratum abyssite]]
+| BGCOLOR="#FFFFF" | 
+| BGCOLOR="#CBCBBB" | Subquest: [[VW Op. 054: Elshimo List]]
+| BGCOLOR="#CBCBBB" | 
+|- BGCOLOR="#E5E5E5" align="center"
+| [[Battle on a New Front]]
+| [[Voidwatcher's emblem: Qufim]],<br>[[White stratum abyssite III]],<br>30,000 [[gil]]
+| BGCOLOR="#FFFFF" | 
+| BGCOLOR="#CBCBBB" | Subquest: [[VW Op. 101: Detour to Zepwell]]
+| BGCOLOR="#CBCBBB" | 
+|- BGCOLOR="#E5E5E5" align="center"
+| [[VW Op. 126: Qufim Incursion]]
+| 50,000 gil
+| BGCOLOR="#FFFFF" | 
+| BGCOLOR="#CBCBBB" | [[VW Op. 115: Li'Telor Variant]]
+| BGCOLOR="#CBCBBB" | [[Ashen stratum abyssite II]] (start)<br>[[Ashen stratum abyssite III]] (completion)
+|- BGCOLOR="#E5E5E5" align="center"
+| [[A Cait Calls]]
+| 
+| BGCOLOR="#FFFFF" | 
+| BGCOLOR="#CBCBBB" | [[Skyward Ho, Voidwatcher!]]
+| BGCOLOR="#CBCBBB" | 
+|- BGCOLOR="#E5E5E5" align="center"
+| [[The Truth Is Out There]]
+| 
+| BGCOLOR="#FFFFF" | 
+| BGCOLOR="#FFFFF" | 
+| BGCOLOR="#FFFFF" | 
+|- BGCOLOR="#E5E5E5" align="center"
+| [[Re-Drafted by the Duchy]]
+| [[White stratum abyssite IV]],<br>[[Tricolor Voidwatcher's emblem]]
+| BGCOLOR="#FFFFF" | 
+| BGCOLOR="#ede0b2" | [[VW Op. 050: Aht Urhgan Assault]]
+| BGCOLOR="#ede0b2" | [[Amber stratum abyssite]]
+|- BGCOLOR="#E5E5E5" align="center"
+| [[A New Menace]]
+| [[White stratum abyssite V]],<br>50,000 gil
+| BGCOLOR="#FFFFF" | 
+| BGCOLOR="#ede0b2" | [[VW Op. 068: Subterranean Skirmish]]
+| BGCOLOR="#ede0b2" | [[Amber stratum abyssite II]] (start)
+|- BGCOLOR="#E5E5E5" align="center"
+| [[No Rest for the Weary]]
+| [[White stratum abyssite VI]],<br>[[Starlight Voidwatcher's emblem]]
+| BGCOLOR="#FFFFF" | 
+| BGCOLOR="#FFFFF" | 
+| BGCOLOR="#FFFFF" | 
+|- BGCOLOR="#E5E5E5" align="center"
+| Side Quest: [[VW Op. 115: Valkurm Duster]]
+| 
+| BGCOLOR="#FFFFF" | 
+| BGCOLOR="#ccc2dc" | [[VW Op. 026: Tavnazian Terrors]]
+| BGCOLOR="#ccc2dc" | [[Hyacinth stratum abyssite]]
+|- BGCOLOR="#E5E5E5" align="center"
+| Side Quest: [[VW Op. 118: Buburimu Squall]]
+| 
+| BGCOLOR="#FFFFF" | 
+| BGCOLOR="#ccc2dc" | [[VW Op. 004: Bibiki Bombardment]]
+| BGCOLOR="#ccc2dc" | [[Hyacinth stratum abyssite II]] (start)
+|- BGCOLOR="#E5E5E5" align="center"
+| [[A World in Flux]]
+| 30,000 gil
+| BGCOLOR="#FFFFF" | 
+| BGCOLOR="#FFFFF" | 
+| BGCOLOR="#FFFFF" | 
+|- BGCOLOR="#E5E5E5" align="center"
+| [[Between a Rock and Rift]]
+| 
+| BGCOLOR="#FFFFF" | 
+| BGCOLOR="#FFFFF" | 
+| BGCOLOR="#FFFFF" | 
+|- BGCOLOR="#E5E5E5" align="center"
+| [[A Farewell to Felines]]
+| 
+| BGCOLOR="#FFFFF" | 
+| BGCOLOR="#FFFFF" | 
+| BGCOLOR="#FFFFF" | 
+|- BGCOLOR="#E5E5E5" align="center"
+| [[Third Tour of Duchy]]
+| 
+| BGCOLOR="#FFFFF" | 
+| BGCOLOR="#FFFFF" | 
+| BGCOLOR="#FFFFF" | 
+|- BGCOLOR="#E5E5E5" align="center"
+| [[Glimmer of Hope]]
+| [[Kupofried's corundum]]
+| BGCOLOR="#FFFFF" | 
+| BGCOLOR="#FFFFF" | 
+| BGCOLOR="#FFFFF" | 
+|- BGCOLOR="#E5E5E5" align="center"
+| [[Brace for the Unknown]]
+| [[Clairvoy ant]], [[Provenance]] access
+| BGCOLOR="#FFFFF" | 
+| BGCOLOR="#FFFFF" | 
+| BGCOLOR="#FFFFF" | 
+|- BGCOLOR="#E5E5E5" align="center"
+| [[Provenance (Quest)|Provenance]]
+| 
+| BGCOLOR="#FFFFF" | 
+| BGCOLOR="#FFFFF" | 
+| BGCOLOR="#FFFFF" | 
+|- BGCOLOR="#E5E5E5" align="center"
+| [[Crystal Guardian]]
+| 
+| BGCOLOR="#FFFFF" | 
+| BGCOLOR="#FFFFF" | 
+| BGCOLOR="#FFFFF" | 
+|- BGCOLOR="#E5E5E5" align="center"
+| [[Endings and Beginnings]]
+| 
+| BGCOLOR="#FFFFF" | 
+| BGCOLOR="#FFFFF" | 
+| BGCOLOR="#FFFFF" | 
+|- BGCOLOR="#E5E5E5" align="center"
+| [[Ad Infinitum]]
+| 
+| BGCOLOR="#FFFFF" | 
+| BGCOLOR="#FFFFF" | 
+| BGCOLOR="#FFFFF" | 
+|- 
+|}
+[[Category:Quests]][[Category:Voidwatch]]
+== Notes ==
+*It is important to know that while the quests viewed on this page have a list here, there is no such list inside the games own menus like "voidwatch quests/missions" anywhere. Instead you will find the quests on this page under their respective 'current' or 'completed' menu options (just above Records of Eminence); Then choose left or right by using the controller or keyboard arrows under the regions: "Jeuno" or "Other Areas" or "Outlands" to find them in-game.

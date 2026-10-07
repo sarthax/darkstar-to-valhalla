@@ -1,0 +1,22 @@
+{{usable item
+|description=This potion instantly resets the recast time for all job abilities.
+|type=Usable Item
+|flags=Not auctionable, Usable, NPC tradable, Not vendorable, Not sendable, Exclusive
+|stack size=1
+|singular log name=Revitalizer
+|valid targets=Self
+|activation time=1 second(s)
+}}
+
+==Notes==
+*Upon usage, Revitalizers reset the recast timers on all job abilities, including [[:Category:SP Ability|SP Abilities]].
+*Revitalizers can be acquired in several locations:
+** [[Abyssea]]: Randomly from maximum level amber crates. Granted to the entire alliance when defeating [[Resheph]] or [[Cuijatender]] ({{Gdrop}}).
+** [[Moblin Maze Mongers]]: Obtained by the entire party when the leader spends 3 C.C. points to acquire medicines from [[Sadistiq]] in a MMM Revitalization Team maze.
+***See the following page for how to access revitalizers without obtaining Maze Voucher 09 yourself [https://www.bg-wiki.com/ffxi/Category:Moblin_Maze_Mongers#Step-by-step_guide_to_getting_Revitalizer_and_resetting_SPs]
+** [[Besieged]]: Obtained automatically.
+** [[Nyzul Isle]], [[Salvage]]: Obtained randomly from armoury crates.
+** [[Voidwatch]]: Obtained upon hitting an extreme vulnerability with a [[periapt of recompense]] in possession.
+
+[[Category:Medicine]]
+{{Item Info}}

@@ -1,0 +1,93 @@
+{{Adversary Description 2
+|Image= Kaggen.jpg
+|Class= Voidwatch
+|Type= Vermin
+|Family= Mantid
+|Main Job=
+|Sub Job=
+|Adversary Description 2 Row=
+{{Adversary Description 2 Row
+|Variation=
+|Physical=
+|Magical=
+|Breath=
+|Slashing=
+|Blunt=
+|H2H=
+|Piercing=
+|Ranged=
+|Fire=
+|Wind=
+|Thunder=
+|Light=
+|Ice=
+|Earth=
+|Water=
+|Dark=
+}}
+|Notes=
+* Normal hits are frontal AoE and take multiple shadow images.
+** Will continue to attack normally like an Ironclad even if the current hate target is not in range.
+** Occasionally jumps and lands for high radial AoE damage in place of a normal attack round.
+* Gains increased evasion and defense at lower HP.
+* Uses the following TP moves:
+** '''Slicing Sickle''': Frontal AoE heavy physical damage, knockback, and defense down
+** '''Macerating Bile''': AoE heavy DoT Bio and all stats down
+** '''Raptorial Claw''': Frontal AoE physical damage, knockback, and magic defense down
+** '''Preying Posture''': Attack Boost, Accuracy Boost, Magic Attack Boost, and Intension for Kaggen and highly potent Defense Down and [[Gravity]] aura.
+*** Each of the buffs are dispellable, but it will take four dispels to remove them all.
+** '''Phlegm Expulsion''': AoE Slow, Silence, Amnesia
+** '''Death Prophet''': Only used <50% HP, frontal AoE Death (stunnable)
+*** Death Prophet is always preceded by Preying Posture.
+****Note: Even if Kaggen is stunned or staggered after Preying Posture, it may still attempt Death Prophet once the stun or stagger wears off.
+* Casts various AoE enfeebles ([[Poisonga II]], [[Graviga]], [[Paralyga]], [[Sleepga]]) and wind elemental nukes ([[Aero V]], [[Aeroga IV]], [[Aeroja]])
+* Kaggen has 99 INT, 96 MND, 105 CHR, and 50 [[Magic Defense Bonus]]
+[http://www.bluegartr.com/threads/104509-Voidwatch-Discussion?p=4847877&viewfull=1#post4847877 1]
+[http://www.bluegartr.com/threads/104509-Voidwatch-Discussion?p=5007950&viewfull=1#post5007950 2]
+----
+}}
+==Listings==
+{{Adversary Table 2
+|Default Family TP Moves=
+|Subsequent Moves=
+|Adversary Row 2=
+{{Adversary Row 2
+|Class= Voidwatch
+|Zone= Qufim Island
+|Title= Kaggen Clobberer
+|Crystal=
+|Treasure= 
+*{{ItemIcon|Mantis Eye|22}} {{tooltip|text=[[Mantis Eye]]|tooltip=[[File:Mantis Eye description.png]]}} ({{rdrop}})
+*{{ItemIcon|Phasmida Belt|22}} {{tooltip|text=[[Phasmida Belt]]|tooltip=[[File:Phasmida Belt description.png]]}} ({{vdrop}})
+*{{ItemIcon|Mekira Meikogai|22}} {{tooltip|text=[[Mekira Meikogai]]|tooltip=[[File:Mekira Meikogai description.png]]}} ({{xdrop}})
+*{{ItemIcon|Kaggen's Cuticle|22}} {{tooltip|text=[[Kaggen's Cuticle]]|tooltip=[[File:Kaggen's Cuticle description.png]]}} ({{vdrop}})
+*{{ItemIcon|Heavy Metal|22}} {{tooltip|text=[[Heavy Metal]]|tooltip=[[File:Heavy Metal description.png]]}} ({{udrop}})
+*Level 81-95 spell scrolls ({{udrop}})
+*Various crafting materials ({{cdrop}})
+*{{ItemIcon|Crystal Petrifact|22}} {{tooltip|text=[[Crystal Petrifact]]|tooltip=[[File:Crystal Petrifact description.png]]}} ({{cdrop}})
+*{{KI}} {{tooltip|text=[[Atmacite of Coercion]]|tooltip=[[File:Atmacite of Coercion.jpg]]}} ({{gdrop}})
+*{{KI}} {{tooltip|text=[[Periapt of emergence]]|tooltip=[[File:Periapt of emergence.jpg]]}} ({{gdrop}})
+|Steal=  
+|Despoil=     
+|Battlefield Name=
+|Spawn Type= Forced
+|Spawn Condition= {{KI}} [[White stratum abyssite III]], {{KI}} [[Voidstone]]
+|Abilities=
+|Spells=
+|Traits=
+|Level= 95-96
+|Aggro=
+|Link=
+|Detects=
+|HP=
+|MP=
+|Defense=
+|Evasion=
+|Magic Defense=
+|Assisted By=
+|Rifts= (G-6), (H-6), (I-7)
+|VW Path= White
+|VW Tier= III
+|FFXIDB=
+}}
+}}

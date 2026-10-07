@@ -1,0 +1,128 @@
+{{item
+|ah listing=Misc 1
+|description=The pitch-black sand that fills this pouch exudes a distinctly otherworldly aura.
+|type=Item
+|flags=Obtainable from Goblin Box, Not vendorable
+|stack size=12
+|singular log name=pouch of voiddust
+|ffxiah=3450/voiddust
+|ffxidb=3450
+}}
+
+== Notes ==
+* Can be traded to a [[Voidwatch Officer]] to obtain a [[Voidstone]].
+** When trading Voiddust, it can not, and will not, be turned into {{color|lightning|stock}}; instead, it will be turned into more Voidstone key items. You can trade multiple Voiddust at a time.
+* Can be found in Treasure Caskets in certain [[Grounds of Valor]] zones.
+{{Item NPC Table
+|Insert NPC List Template=
+{{Item NPC
+|NPC Name=Voidwatch Purveyor (Al Zahbi)
+|Zone=Al Zahbi
+|position=F-6
+|Notes=2000 [[Imperial Standing]]
+}}
+{{Item NPC
+|NPC Name=Voidwatch Purveyor (Aht Urhgan Whitegate)
+|Zone=Aht Urhgan Whitegate
+|position=I-8
+|Notes=2000 [[Imperial Standing]]
+}}
+{{Item NPC
+|NPC Name=Voidwatch Purveyor (Nashmau)
+|Zone=Nashmau
+|position=H-6
+|Notes=2000 [[Imperial Standing]]
+}}
+{{Item NPC
+|NPC Name=Voidwatch Purveyor (Southern San d'Oria (S))
+|Zone=Southern San d'Oria (S)
+|position=L-10
+|Notes=2000 [[Allied Notes]]
+}}
+{{Item NPC
+|NPC Name=Voidwatch Purveyor (Bastok Markets (S))
+|Zone=Bastok Markets (S)
+|position=H-4
+|Notes=2000 [[Allied Notes]]
+}}
+{{Item NPC
+|NPC Name=Voidwatch Purveyor (Windurst Waters (S))
+|Zone=Windurst Waters (S)
+|position=G-2
+|Notes=2000 [[Allied Notes]]
+}}
+{{Item NPC
+|NPC Name=Voidwatch Purveyor (Southern San d'Oria)
+|Zone=Southern San d'Oria
+|position=G-10
+|Notes=2000 [[Conquest Points]]
+}}
+{{Item NPC
+|NPC Name=Voidwatch Purveyor (Southern San d'Oria)
+|Zone=Southern San d'Oria
+|position=L-10
+|Notes=2000 [[Conquest Points]]
+}}
+{{Item NPC
+|NPC Name=Voidwatch Purveyor (Northern San d'Oria)
+|Zone=Northern San d'Oria
+|position=C-8
+|Notes=2000 [[Conquest Points]]
+}}
+{{Item NPC
+|NPC Name=Voidwatch Purveyor (Bastok Mines)
+|Zone=Bastok Mines
+|position=H-10
+|Notes=2000 [[Conquest Points]]
+}}
+{{Item NPC
+|NPC Name=Voidwatch Purveyor (Port Bastok)
+|Zone=Port Bastok
+|position=L-7
+|Notes=2000 [[Conquest Points]]
+}}
+{{Item NPC
+|NPC Name=Voidwatch Purveyor (Windurst Waters)
+|Zone=Windurst Waters
+|position=F-5
+|Notes=2000 [[Conquest Points]]
+}}
+{{Item NPC
+|NPC Name=Voidwatch Purveyor (Port Windurst)
+|Zone=Port Windurst
+|position=B-5
+|Notes=2000 [[Conquest Points]]
+}}
+{{Item NPC
+|NPC Name=Voidwatch Purveyor (Windurst Woods)
+|Zone=Windurst Woods
+|position=K-9
+|Notes=2000 [[Conquest Points]]
+}}
+{{Item NPC
+|NPC Name=Voidwatch Purveyor (Ru'Lude Gardens)
+|Zone=Ru'Lude Gardens
+|position=H-10
+|Notes=2000 [[Conquest Points]]
+}}
+{{Item NPC
+|NPC Name=Voidwatch Purveyor (Upper Jeuno)
+|Zone=Upper Jeuno
+|position=F-6
+|Notes=2000 [[Conquest Points]]
+}}
+{{Item NPC
+|NPC Name=Voidwatch Purveyor (Lower Jeuno)
+|Zone=Lower Jeuno
+|position=F-11
+|Notes=2000 [[Conquest Points]]
+}}
+{{Item NPC
+|NPC Name=Voidwatch Purveyor (Port Jeuno)
+|Zone=Port Jeuno
+|position=J-8
+|Notes=2000 [[Conquest Points]]
+}}
+}}
+
+[[Category:Voidwatch]]
