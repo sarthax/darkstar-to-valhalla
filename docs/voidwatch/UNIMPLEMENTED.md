@@ -73,3 +73,12 @@ Status: MISSING = no DB row/Lua, WRONG = live row differs from retail, GUESS = b
 - The "30 s Amnesia aura after TP moves" [F, unverified] is not built.
 - Own skill list 1165 (2106/2108/2109/2110, random pick) and spell list 448 tiered by HP in Lua [J,F]. Silence immunity only; no dispel-immunity bit exists. Evasion/ICE+DARK res/magic-dmg cut amounts [D].
 - KI Atmacite of Destruction DSP id 1812 not client-verified. Drops: Cadushi Grip 18810, Tonatiuh Axe 18539, Silver Mirror 3510 [F], ids vs DSP item_basic.
+
+## Botulus Rex (Jeuno Stage VI / White VI, Buburimu Peninsula z118) — first pass, untested in game
+- Message ids = z95 ids + 3051 [V: z118 dialog.yml text match, 96 hits]. Capture message ids skew vs client (11476 vs 11461) so client ids used. Capture NPC ids are +1 vs client; DSP npc_list was −2, so `rekey_118.sql` moved rifts/Pyxis/guide by +2 (sql/npc_list.sql edited to match). Cruor base 10000 (Jeuno stage 6) [C].
+- Rift event params 2126,-1065873409,57,1302,170,0 are the capture's verbatim values for White VI; meaning unknown. Tier table is White I–VI (ids 1444-1446,1450-1452); only VI accepted.
+- Mob rows 17261047/48/49 replaced (47 was a mislabeled zero-position Ketos row); group 13731 HP set to 145000 [C hptrack 142648-145430].
+- Skills 2798 Gnash 'n Guttle, 2799 Sloughy Sputum, 2801 Rancid Reflux, 2802 Crowning Flatus: anim ids from [C], damage/status amounts and aoe shapes [D]. Own list 1166.
+- NOT built: Chymous Reek, Just Dessert, Slimy Proposal, Bio aura (no skill id / animation evidence). Capture skills 2791/2792/2794/2795 (melee-like, msg 1/15) left out.
+- Spells list 449: Aeroja/Waterja/Blizzaja/Meteor seen [C]; Firaja/Stonja/Thundaja inferred [D]; Death unverified, not added. Chainspell at <70% HP then Meteor is [W], trigger [D].
+- KI Atmacite of the Shrewd 1828 and Dusky Periapt of Vigilance 1801 not client-verified (only 1828 wired as the KI drop). Pyxis capture items (Blizzaja scroll, crystal petrifact, mahogany log, ram horn) not wired; filler uses the generic pool.

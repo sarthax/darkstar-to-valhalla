@@ -33417,8 +33417,9 @@ INSERT INTO `mob_spawn_points` VALUES (17261042,'Pixie','Pixie',6464,0,0,0,0);
 INSERT INTO `mob_spawn_points` VALUES (17261043,'Pixie','Pixie',6464,0,0,0,0);
 INSERT INTO `mob_spawn_points` VALUES (17261044,'Pixie','Pixie',6464,0,0,0,0);
 INSERT INTO `mob_spawn_points` VALUES (17261045,'Pixie','Pixie',6464,0,0,0,0);
-INSERT INTO `mob_spawn_points` VALUES (17261047,'Ketos','Botulus Rex',6461,0,0,0,0);
-INSERT INTO `mob_spawn_points` VALUES (17261049,'Botulus_rex','Botulus Rex',13731,80,-0.449,-195,0);
+INSERT INTO `mob_spawn_points` VALUES (17261047,'Botulus_Rex','Botulus Rex',13731,80,0.049,-195,0);
+INSERT INTO `mob_spawn_points` VALUES (17261048,'Botulus_Rex','Botulus Rex',13731,360,0.001,-240,0);
+INSERT INTO `mob_spawn_points` VALUES (17261049,'Botulus_Rex','Botulus Rex',13731,-360,-8,-200,0);
 
 
 
