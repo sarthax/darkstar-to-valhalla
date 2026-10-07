@@ -17,10 +17,10 @@ REPLACE INTO mob_spawn_points (mobid,mobname,polutils_name,groupid,pos_x,pos_y,p
 REPLACE INTO mob_skills VALUES (2511,1775,'corpse_breath',4,10.0,2000,1500,4,0,0,0,0,0,0);
 DELETE FROM mob_skill_lists WHERE skill_list_id=1160;
 INSERT INTO mob_skill_lists (skill_list_name,skill_list_id,mob_skill_id) VALUES ('Virvatuli',1160,2511);
--- Spells: Blizzard IV/V [W ice nukes], Blizzaga III [C], Blizzaja [BG], Paralyga/Slowga/Blindga [W AoE enfeebles, ids D], Addle [W], Silencega [C], Death [W]
+-- Spells [FFXIclopedia]: Blizzard IV, Blizzaga IV, Blizzaja, Graviga, Bindga, Silencega, Slowga, Sleepga, Breakga, Dispelga, Death, Addle; Blizzaga III [C capture]
 DELETE FROM mob_spell_lists WHERE spell_list_id=443;
 INSERT INTO mob_spell_lists (spell_list_name,spell_list_id,spell_id,min_level,max_level) VALUES
- ('Virvatuli',443,152,1,99),('Virvatuli',443,153,1,99),('Virvatuli',443,181,1,99),('Virvatuli',443,497,1,99),
- ('Virvatuli',443,286,1,99),('Virvatuli',443,356,1,99),('Virvatuli',443,357,1,99),('Virvatuli',443,359,1,99),
- ('Virvatuli',443,361,1,99),('Virvatuli',443,367,1,99);
+ ('Virvatuli',443,152,1,99),('Virvatuli',443,181,1,99),('Virvatuli',443,182,1,99),('Virvatuli',443,497,1,99),
+ ('Virvatuli',443,366,1,99),('Virvatuli',443,362,1,99),('Virvatuli',443,359,1,99),('Virvatuli',443,357,1,99),
+ ('Virvatuli',443,273,1,99),('Virvatuli',443,365,1,99),('Virvatuli',443,360,1,99),('Virvatuli',443,367,1,99),('Virvatuli',443,286,1,99);
 UPDATE mob_pools SET skill_list_id=1160, spellList=443 WHERE poolid=5148;
