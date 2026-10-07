@@ -21,7 +21,7 @@ SUNBREEZE2021.TEXT_OFFSET = {
 
 -- Show timeline, built from capture 479 (Windurst, Perfect run): {ms, speaker, CLIENT dialog id}.
 -- Waits for players are compressed to <= 15 s; the live show is player-paced (see README, "Missing pieces").
-SUNBREEZE2021.SHOW = {
+SUNBREEZE2021.SHOW_MAIN = {
         { 0, "Mumor", 10016 },
         { 3000, "Mumor", 10017 },
         { 7000, "Mumor", 10018 },
@@ -90,6 +90,38 @@ SUNBREEZE2021.SHOW = {
         { 327000, "Mumor", 10102 }
 };
 
+-- Bongo's announcement opens the show (capture 479: 13 lines, +0..+43 s; Mumor's greeting follows at +53 s). [C]
+SUNBREEZE2021.SHOW_INTRO_OFFSETS = { 0, 4000, 7000, 10000, 14000, 18000, 21000, 25000, 28000, 32000, 35000, 39000, 43000 };
+SUNBREEZE2021.SHOW_MAIN_DELAY = 53000;
+SUNBREEZE2021.SHOW = {};
+for i, t in ipairs(SUNBREEZE2021.SHOW_INTRO_OFFSETS) do
+    table.insert(SUNBREEZE2021.SHOW, { t, "Bongo", 10146 + i });
+end
+for _, b in ipairs(SUNBREEZE2021.SHOW_MAIN) do
+    table.insert(SUNBREEZE2021.SHOW, { b[1] + SUNBREEZE2021.SHOW_MAIN_DELAY, b[2], b[3] });
+end
+
+-- Post-show vendors (Windurst = Fandango; Tango is Bastok's, both are in the Windurst entity list in capture 478). They are
+-- hidden while the show runs and appear when it ends [C 477 hidden / 478 visible; F: goods sellers that spawn after the curtain closes].
+SUNBREEZE2021.REVEAL = {
+    Tango    = { x = 13.606, y = -10.017, z = 5.637, rot = 117 },
+    Fandango = { x = 12.498, y = -10.0,   z = 2.856, rot = 117 },
+};
+
+function SUNBREEZE2021.setVendorsVisible(cast, visible)
+    for name, pos in pairs(SUNBREEZE2021.REVEAL) do
+        local npc = cast[name] and GetNPCByID(cast[name]) or nil;
+        if (npc ~= nil) then
+            if (visible) then
+                npc:setPos(pos.x, pos.y, pos.z, pos.rot);
+                npc:setStatus(STATUS_NORMAL);
+            else
+                npc:setStatus(STATUS_DISAPPEAR);
+            end
+        end
+    end
+end
+
 -- Speak one line from `npc` to every player in the zone within 50 yalms of it.
 function SUNBREEZE2021.say(npc, zoneId, dialogId)
     local off = SUNBREEZE2021.TEXT_OFFSET[zoneId];
@@ -115,6 +147,13 @@ function SUNBREEZE2021.startShow(zoneId, cast, beats)
     st.showEnd = os.time() + beats[#beats][1] / 1000;
     local anchor = GetNPCByID(cast.Mumor);
     if (anchor == nil) then return; end
+    SUNBREEZE2021.setVendorsVisible(cast, false);
+    anchor:timer(beats[#beats][1] + 5000, function(m)
+        local cur = SUNBREEZE2021.state[zoneId];
+        if (cur ~= nil and cur.run == run) then
+            SUNBREEZE2021.setVendorsVisible(cast, true);
+        end
+    end);
     local key = { ["Uka Totlihn"] = "Uka" };
     for _, beat in ipairs(beats) do
         local ms, who, dialogId = beat[1], beat[2], beat[3];
@@ -146,7 +185,7 @@ SUNBREEZE2021.VARIANTS = {
 SUNBREEZE2021.SCHEDULE = {
     -- [zoneId] = { variant = "curtain_call", interval = 3600, cast = { Mumor = <npcid>, Uka = ..., Diva = ..., Ullegore = ..., Foudeel = ..., Bongo = ... } }
     [239] = { variant = "curtain_call", interval = 3600,
-        cast = { Mumor = 17756358, Uka = 17756359, Diva = 17756360, Ullegore = 17756361, Foudeel = 17756363, Bongo = 17756367 } }, -- server npc_list ids (== capture 477 ids in this zone)
+        cast = { Mumor = 17756358, Uka = 17756359, Diva = 17756360, Ullegore = 17756361, Foudeel = 17756363, Bongo = 17756367, Tango = 17756366, Fandango = 17756368 } }, -- server npc_list ids (== capture 477 ids in this zone)
 };
 
 -- Call from each stage zone's Zone.lua onGameHour(zone). Starts that zone's show when the interval has elapsed

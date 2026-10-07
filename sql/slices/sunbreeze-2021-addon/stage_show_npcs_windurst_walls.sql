@@ -21,3 +21,9 @@ UPDATE npc_list SET pos_x=1.037, pos_y=-9.210, pos_z=-0.215, pos_rot=248, status
 UPDATE npc_list SET status=0 WHERE npcid IN (17756373, 17756374);
 -- NOT installed (hidden/appearing mid-show in the captures, need show-time reveal logic): 17756357 ???, 17756366 Tango,
 --   17756368 Fandango, 17756369 Wahboud #2. Decoration sets 17756375-17756384 / 17756388-17756397 / Shards: no capture evidence which are shown.
+
+-- Decoration set A (look 0x0506; 374 of this set is visible in captures 473/477/478/479, set B 387-397 uses look 0x04E0 and is not). [C]
+UPDATE npc_list SET status=0 WHERE npcid BETWEEN 17756375 AND 17756384;
+-- Tango / Fandango: post-show vendors, parked hidden at their pre-show positions (capture 477); the show reveals them at its end.
+UPDATE npc_list SET pos_x=15.490, pos_y=-10.020, pos_z=6.142, pos_rot=120, status=2 WHERE npcid=17756366;
+UPDATE npc_list SET pos_x=12.875, pos_y=-10.000, pos_z=2.957, pos_rot=120, status=2 WHERE npcid=17756368;
