@@ -82,3 +82,11 @@ Status: MISSING = no DB row/Lua, WRONG = live row differs from retail, GUESS = b
 - NOT built: Chymous Reek, Just Dessert, Slimy Proposal, Bio aura (no skill id / animation evidence). Capture skills 2791/2792/2794/2795 (melee-like, msg 1/15) left out.
 - Spells list 449: Aeroja/Waterja/Blizzaja/Meteor seen [C]; Firaja/Stonja/Thundaja inferred [D]; Death unverified, not added. Chainspell at <70% HP then Meteor is [W], trigger [D].
 - KI Atmacite of the Shrewd 1828 and Dusky Periapt of Vigilance 1801 not client-verified (only 1828 wired as the KI drop). Pyxis capture items (Blizzaja scroll, crystal petrifact, mahogany log, ram horn) not wired; filler uses the generic pool.
+
+## Ig-Alima (Jeuno Stage VI / White VI, Valkurm Dunes z103) — first pass, untested in game
+- Message ids = z118 ids + 7 = z95 + 3058 [V]; capture ids skew +15 vs client, client ids used. DSP npc_list already matched client ids (no re-key). Cruor base 10000 (Jeuno stage 6) [C]. Rift params verbatim from capture (same as Botulus Rex).
+- Mob rows 17199612/14 were zero-position group-0 rows; replaced with the 3 rift positions [V], group 13766, HP 161800 [C hptrack 161624-161973].
+- Skills 2784-2790 had rows but no Lua; all 7 written. Anim ids [C/DB]; damage multipliers, effect amounts/durations [D]; effect lists [F]. Own list 1167. Melee variants 2781-2783 not built.
+- Oblivion's Mantle fires right after Diluvial Wake via VW_MANTLE local var [F]. Crippling Rime hate reset [B]; used Slow as filler status [D].
+- Spells list 450: Blaze Spikes 249 [C]; Ice 250 / Shock 251 standard ids [D]. NOT built: Dread Spikes at low HP, ice spell casting [B], high auto-Regen, extreme MDB, bind/stun-on-hit [F]. Stun resistance growth not built.
+- KI Atmacite of the Valiant 1827 and Vivid Periapt of Vigilance 1800 not client-verified (only 1827 wired). Pyxis capture items (Curaga V scroll, petrified log, mind potion, elixir) not wired.
