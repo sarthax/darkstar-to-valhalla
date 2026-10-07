@@ -2149,6 +2149,18 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 *                                                                       *
 ************************************************************************/
 
+// The AH only stores an item id, so a purchased item is recreated with full charges.
+// Like retail, refuse to list a charged item that has been partially used.
+static bool IsPartiallyUsedChargedItem(CItem* PItem)
+{
+    if (PItem->isSubType(ITEM_CHARGED) && PItem->isType(ITEM_USABLE))
+    {
+        CItemUsable* PCharged = (CItemUsable*)PItem;
+        return PCharged->getCurrentCharges() < PCharged->getMaxCharges();
+    }
+    return false;
+}
+
 void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
     uint8  action = RBUFB(data, (0x04));
@@ -2179,6 +2191,11 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             !(PItem->isSubType(ITEM_LOCKED)) &&
             !(PItem->getFlag() & ITEM_FLAG_NOAUCTION))
         {
+            if (IsPartiallyUsedChargedItem(PItem))
+            {
+                PChar->pushPacket(new CAuctionHousePacket(action, 197, 0, 0)); // Failed to place up
+                break;
+            }
             PItem->setCharPrice(price); // not sure setCharPrice is right
             PChar->pushPacket(new CAuctionHousePacket(action, PItem, quantity, price));
         }
@@ -2237,6 +2254,12 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             !(PItem->isSubType(ITEM_LOCKED)) &&
             !(PItem->getFlag() & ITEM_FLAG_NOAUCTION))
         {
+            if (IsPartiallyUsedChargedItem(PItem))
+            {
+                PChar->pushPacket(new CAuctionHousePacket(action, 197, 0, 0)); // Failed to place up
+                return;
+            }
+
             uint32 auctionFee = 0;
             if (quantity == 0)
             {
