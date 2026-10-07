@@ -1,0 +1,167 @@
+{{item
+|ah listing=Misc 1
+|description=An ascent item employed by soldiers of the Voidwatch. Holds the power to enhance the bearer's spectral alignment.
+|type=Item
+|flags=Not vendorable
+|stack size=99
+|singular log name=xanthous cell
+}}
+
+== Notes ==
+* When traded to a [[Planar Rift]] before a [[:Category:Voidwatch|Voidwatch Operation]], this will increase your Yellow Spectral Alignment ([[Experience Points]] yield) by 75% per cell.
+** You are limited to trading 1 Xanthous cell per fight. 
+* Can be found in Treasure Caskets in certain [[Grounds of Valor]] zones.
+
+{{Item NPC Table
+|Insert NPC List Template=
+{{Item NPC
+|NPC Name=Voidwatch Officer (San d'Oria (S))
+|Zone=Southern San d'Oria (S)
+|position= (L-9)
+|Notes=3000 [[Cruor]]
+}}
+{{Item NPC
+|NPC Name=Voidwatch Officer (Bastok (S))
+|Zone=Bastok Markets (S)
+|position= (G-5)
+|Notes=3000 [[Cruor]]
+}}
+{{Item NPC
+|NPC Name=Voidwatch Officer (Windurst (S))
+|Zone=Windurst Waters (S)
+|position= (G-5)
+|Notes=3000 [[Cruor]]
+}}
+{{Item NPC
+|NPC Name=Voidwatch Officer (San d'Oria)
+|Zone=Southern San d'Oria
+|position= (F-9)
+|Notes=3000 [[Cruor]]
+}}
+{{Item NPC
+|NPC Name=Voidwatch Officer (Bastok)
+|Zone=Bastok Markets
+|position= (D-11)
+|Notes=3000 [[Cruor]]
+}}
+{{Item NPC
+|NPC Name=Voidwatch Officer (Windurst)
+|Zone=Windurst Waters
+|position= (G-5)
+|Notes=3000 [[Cruor]]
+}}
+{{Item NPC
+|NPC Name=Voidwatch Purveyor (Al Zahbi)
+|Zone=Al Zahbi
+|position=F-6
+|Notes=2000 [[Imperial Standing]]
+}}
+{{Item NPC
+|NPC Name=Voidwatch Purveyor (Aht Urhgan Whitegate)
+|Zone=Aht Urhgan Whitegate
+|position=I-8
+|Notes=2000 [[Imperial Standing]]
+}}
+{{Item NPC
+|NPC Name=Voidwatch Purveyor (Nashmau)
+|Zone=Nashmau
+|position=H-6
+|Notes=2000 [[Imperial Standing]]
+}}
+{{Item NPC
+|NPC Name=Voidwatch Purveyor (Southern San d'Oria (S))
+|Zone=Southern San d'Oria (S)
+|position=L-10
+|Notes=3000 [[Allied Notes]]
+}}
+{{Item NPC
+|NPC Name=Voidwatch Purveyor (Bastok Markets (S))
+|Zone=Bastok Markets (S)
+|position=H-4
+|Notes=3000 [[Allied Notes]]
+}}
+{{Item NPC
+|NPC Name=Voidwatch Purveyor (Windurst Waters (S))
+|Zone=Windurst Waters (S)
+|position=G-2
+|Notes=3000 [[Allied Notes]]
+}}
+{{Item NPC
+|NPC Name=Voidwatch Purveyor (Southern San d'Oria)
+|Zone=Southern San d'Oria
+|position=G-10
+|Notes=2000 [[Conquest Points]]
+}}
+{{Item NPC
+|NPC Name=Voidwatch Purveyor (Southern San d'Oria)
+|Zone=Southern San d'Oria
+|position=L-10
+|Notes=2000 [[Conquest Points]]
+}}
+{{Item NPC
+|NPC Name=Voidwatch Purveyor (Northern San d'Oria)
+|Zone=Northern San d'Oria
+|position=C-8
+|Notes=2000 [[Conquest Points]]
+}}
+{{Item NPC
+|NPC Name=Voidwatch Purveyor (Bastok Mines)
+|Zone=Bastok Mines
+|position=H-10
+|Notes=2000 [[Conquest Points]]
+}}
+{{Item NPC
+|NPC Name=Voidwatch Purveyor (Port Bastok)
+|Zone=Port Bastok
+|position=L-7
+|Notes=2000 [[Conquest Points]]
+}}
+{{Item NPC
+|NPC Name=Voidwatch Purveyor (Windurst Waters)
+|Zone=Windurst Waters
+|position=F-5
+|Notes=2000 [[Conquest Points]]
+}}
+{{Item NPC
+|NPC Name=Voidwatch Purveyor (Port Windurst)
+|Zone=Port Windurst
+|position=B-5
+|Notes=2000 [[Conquest Points]]
+}}
+{{Item NPC
+|NPC Name=Voidwatch Purveyor (Windurst Woods)
+|Zone=Windurst Woods
+|position=K-9
+|Notes=2000 [[Conquest Points]]
+}}
+{{Item NPC
+|NPC Name=Voidwatch Purveyor (Ru'Lude Gardens)
+|Zone=Ru'Lude Gardens
+|position=H-10
+|Notes=2000 [[Conquest Points]]
+}}
+{{Item NPC
+|NPC Name=Voidwatch Purveyor (Upper Jeuno)
+|Zone=Upper Jeuno
+|position=F-6
+|Notes=2000 [[Conquest Points]]
+}}
+{{Item NPC
+|NPC Name=Voidwatch Purveyor (Lower Jeuno)
+|Zone=Lower Jeuno
+|position=F-11
+|Notes=2000 [[Conquest Points]]
+}}
+{{Item NPC
+|NPC Name=Voidwatch Purveyor (Port Jeuno)
+|Zone=Port Jeuno
+|position=J-8
+|Notes=2000 [[Conquest Points]]
+}}
+}}
+
+== Related Links ==
+* [[Cobalt Cell]]
+* [[Rubicund Cell]]
+* [[Jade Cell]]
+[[Category:Voidwatch]][[Category:Ascent Item]]

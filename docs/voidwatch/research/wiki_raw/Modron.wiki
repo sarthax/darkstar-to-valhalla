@@ -1,0 +1,76 @@
+{{Adversary Description 2
+|Image=
+|Class=voidwatch
+|Type=plantoid
+|Family=treant
+|Main Job=blm
+|Sub Job=
+|Adversary Description 2 Row=
+{{Adversary Description 2 Row
+|Variation=
+|Physical=100
+|Magical=75
+|Breath=100
+|Slashing=100
+|Blunt=100
+|H2H=100
+|Piercing=100
+|Ranged=100
+|Fire=150
+|Wind=130
+|Thunder=130
+|Light=100
+|Ice=130
+|Earth=100
+|Water=100
+|Dark=150
+}}
+|Notes=
+*The (F-7) spawn is near the [[Unity Concord]] level 125 warp.
+*Assisted by '''Modron's Druid''' x2
+*Casts all elemental tier V, tier IV -ga, and -ja spells, as well as various AoE enfeebles.
+*Immune to Stun.
+*'''Pinecone Bomb''' is AoE and resets hate, dealing substantial damage and sleeping all targets.
+**Pinecone Bomb is ''not'' blocked by Fanatic's Drink.
+}}
+==Listings==
+{{Adversary Table 2
+|Adversary Row 2=
+{{Adversary Row 2
+|Class=voidwatch
+|Zone=The Boyahda Tree
+|Title=
+|Crystal=
+|Treasure=
+*{{imgpop|[[Evergreen Earring]]|Evergreen Earring description.png|link=}} {{vdrop}}
+*{{imgpop|[[Strobilus]]|Strobilus description.png|link=}} {{rdrop}}
+* [[Silver Mirror]] {{udrop}}
+* [[Riftsand]] {{udrop}}
+* Level 81-95 spell scrolls {{udrop}}
+* Various crafting materials {{cdrop}}
+* [[Crystal Petrifact]] {{cdrop}}
+*[[Atmacite of Rapidity]] {{KI}} (Key Item)
+|Steal=  
+|Despoil=     
+|Battlefield Name=
+|Spawn Type=
+|Spawn Condition=
+|Abilities=
+|Spells=
+|Traits=
+|Level= 
+|Aggro=
+|Link=
+|Detects=
+|HP=
+|MP=
+|Defense=
+|Evasion=
+|Magic Defense=
+|Assisted By=
+|Rifts=Map 1: (G-5), (K-8) Map 2: (F-7)
+|VW Path=Ashen
+|VW Tier=II
+|FFXIDB=
+}}
+}}

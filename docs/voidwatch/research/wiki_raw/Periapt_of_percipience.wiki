@@ -1,0 +1,26 @@
+{{Key Item Header|Name=Periapt of percipience
+|Type=Temporary Key Items
+|Description=A talisman formed of abyssite. Grants the bearer heightened insight into Voidwalker weaknesses against magic.
+|Image=Periapt of percipience.jpg
+}}
+{{Key Item Usage Table
+|type=Cost
+|Insert Key Item Acquisition Instance Template=
+{{Key Item Acquisition Instance
+|npcname=Voidwatch Officer
+|zone=Multiple 
+|cost= 150,000 [[Cruor]]
+}}
+|Insert Key Item Use Instance Template=
+{{Key Item Use Instance
+|usage=Battlefield
+|name=[[Voidwatch{{!}}Voidwatch Ops]]
+}}
+}}
+==Notes==
+*Upon using an offensive magic spell, there is a chance that the element of one magic [[Voidwatch Weaknesses|vulnerability]] will be revealed.
+** If in possession of the [[periapt of clarity]], the type of spell (white magic, black magic, bard song, ninjutsu, or blue magic) will be revealed in addition to the element.
+
+==Related Links==
+[[Periapt of clarity]]
+[[Category:Periapt]]
