@@ -97,7 +97,7 @@ function onMobDeath(mob, player, isKiller)
     vwEndOperation(mob);
     local idx = mob:getID() - 17568142;
     vwOnKill(mob, player, {
-        cruor = 5500, -- Crimson II base, 0% alignment [C]
+        region = "THREE", stage = 2, -- [F] stage table
         pyxisId = 17568201 + idx,
         drops = {19737, 11917}, -- Percept Bow, Carapacho Cuffs [W]; ids checked vs DSP item_basic
         keyitem = VIVID_PERIAPT_OF_INTENSITY, -- 1794 [V client DAT]

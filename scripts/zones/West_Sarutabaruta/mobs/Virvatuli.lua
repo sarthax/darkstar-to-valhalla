@@ -90,7 +90,7 @@ function onMobDeath(mob, player, isKiller)
     vwEndOperation(mob);
     local idx = mob:getID() - 17248625;
     vwOnKill(mob, player, {
-        cruor = 5000, -- [C] capture
+        region = "THREE", stage = 1, -- [F] stage table; cruor/EXP base
         pyxisId = 17248947 + idx,
         drops = {11668}, -- Irrwisch Ring [BG thread #201]; id checked vs DSP item_basic
         keyitem = VIVID_PERIAPT_OF_CONCENTRATION, -- 1788 [BG #137]

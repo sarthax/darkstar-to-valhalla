@@ -76,7 +76,7 @@ function onMobDeath(mob, player, isKiller)
     vwEndOperation(mob);
     local idx = mob:getID() - 17109718;
     vwOnKill(mob, player, {
-        cruor = 5000, -- [D] same as other tier-I NMs; no Cottus cruor capture checked
+        region = "THREE", stage = 1, -- [F] stage table; cruor/EXP base
         pyxisId = 17109853 + idx,
         drops = {11667}, -- Roller's Ring [BG #248/#289, F]; id checked vs DSP item_basic
         keyitem = VIVID_PERIAPT_OF_READINESS, -- 1796 [J, BG]

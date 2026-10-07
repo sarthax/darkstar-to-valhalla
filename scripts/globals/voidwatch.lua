@@ -10,6 +10,55 @@ require("scripts/globals/status");
 VW_PYXIS_LIFETIME = 180; -- seconds [W: 3 min]
 local PLACEHOLDER_POOL = {749, 695, 798, 866, 3508, 3510, 4118, 644, 690, 694, 815, 895, 645, 700};
 
+-- Base EXP / cruor per stage [F: ffxiclopedia Category:Voidwatch, Rewards]; Three Nations III = 6000 cruor confirmed [C].
+-- Scaled at the end by the player's yellow (EXP) / green (cruor) alignment.
+VW_REWARD = {
+    THREE = {{5000, 5000}, {5500, 5500}, {6000, 6000}, {6500, 6500}},
+    JEUNO = {{6000, 6000}, {6500, 6500}, {7000, 7000}, {6500, 6500}, {7000, 7000}, {10000, 10000}},
+    JEUNO_S = {[6] = {7500, 7500}},
+    ZILART = {{5000, 7000}, {5000, 7500}, {5000, 8000}},
+};
+function vwBaseReward(region, stage)
+    local r = VW_REWARD[region] and VW_REWARD[region][stage];
+    if (r == nil) then return nil, nil; end
+    return r[1], r[2]; -- exp, cruor
+end
+
+-- Ascent cells (Planar Rift trade, per player, max 3 each) [F]. Item ids from DSP item_basic (client id check pending).
+-- Bonus per cell: blue/red +50%, yellow/green +25% [F]. White has no cell.
+VW_CELLS = {[3434] = {"BLUE", 50}, [3435] = {"RED", 50}, [3436] = {"YELLOW", 25}, [3437] = {"GREEN", 25}};
+local CELL_MAX = 3;
+
+local function cellKey(player, color) return "CELL" .. player:getID() .. color; end
+
+function vwCellBonus(rift, player, color)
+    if (rift == nil) then return 0; end
+    local n = rift:getLocalVar(cellKey(player, color));
+    for _, v in pairs(VW_CELLS) do
+        if (v[1] == color) then return n * v[2]; end
+    end
+    return 0;
+end
+
+-- Planar Rift onTrade: accept cells up to 3 per colour. No message ids are known [D], so silent.
+function vwTradeCells(player, rift, trade)
+    local add = {};
+    for id, v in pairs(VW_CELLS) do
+        local have = trade:getItemQty(id);
+        if (have > 0) then
+            local cur = rift:getLocalVar(cellKey(player, v[1]));
+            if (cur + have > CELL_MAX) then return false; end
+            add[v[1]] = {have, cur};
+        end
+    end
+    local total = 0;
+    for _, a in pairs(add) do total = total + a[1]; end
+    if (total == 0 or trade:getItemCount() ~= total) then return false; end
+    for color, a in pairs(add) do rift:setLocalVar(cellKey(player, color), a[2] + a[1]); end
+    player:tradeComplete();
+    return true;
+end
+
 local function allianceInZone(player)
     local list = {};
     for _, m in pairs(player:getAlliance()) do
@@ -24,7 +73,15 @@ function vwOnKill(mob, player, cfg)
     if (pyxis == nil) then return; end
     pyxis:resetLocalVars();
     local items = {};
+    local rift = GetNPCByID(mob:getLocalVar("VW_RIFT_LAST"));
     local b, r = vwAlignment(mob);
+    -- Blue/red cells are per player but the Pyxis item list is shared: use the best bonus among participants [D]
+    local bestB, bestR = 0, 0;
+    for _, m in pairs(allianceInZone(player)) do
+        bestB = math.max(bestB, vwCellBonus(rift, m, "BLUE"));
+        bestR = math.max(bestR, vwCellBonus(rift, m, "RED"));
+    end
+    b = b + bestB; r = r + bestR;
     -- wiki: blue% = item count (100%/item, remainder = chance of +1); red% = chance of the rare drop [W].
     -- Rare chance base 10% x (1 + red/100) is a [D] guess; filler comes from the placeholder pool.
     local count = 1 + math.floor(b / 100) + ((math.random(0, 99) < (b % 100)) and 1 or 0);
@@ -48,7 +105,15 @@ function vwOnKill(mob, player, cfg)
     for _, m in pairs(allianceInZone(player)) do
         pyxis:setLocalVar("ELIG" .. m:getID(), 1);
         local b, r, y, g, w = vwAlignment(mob);
-        local cruor = math.floor(cfg.cruor * (100 + g) / 100); -- [D] green scaling formula unverified
+        b = b + vwCellBonus(rift, m, "BLUE"); r = r + vwCellBonus(rift, m, "RED");
+        y = y + vwCellBonus(rift, m, "YELLOW"); g = g + vwCellBonus(rift, m, "GREEN");
+        local exp, baseCruor = nil, cfg.cruor;
+        if (cfg.region ~= nil) then exp, baseCruor = vwBaseReward(cfg.region, cfg.stage); end
+        local cruor = math.floor(baseCruor * (100 + g) / 100); -- stage base x green [F]
+        if (exp ~= nil) then m:addExp(math.floor(exp * (100 + y) / 100)); end -- stage base x yellow [F]
+        if (rift ~= nil) then -- cells are consumed when the Pyxis is claimed [F]
+            for _, v in pairs(VW_CELLS) do rift:setLocalVar(cellKey(m, v[1]), 0); end
+        end
         m:addCurrency("cruor", cruor);
         m:messageSpecial(cfg.msgCruor, cruor, m:getCurrency("cruor"));
         m:messageSpecial(cfg.msgFinalBR, b, 0, r, 0);
@@ -89,6 +154,7 @@ local function vwRiftReturn(mob)
     if (rid ~= 0) then
         local rift = GetNPCByID(rid);
         if (rift ~= nil) then rift:setStatus(STATUS_NORMAL); end
+        mob:setLocalVar("VW_RIFT_LAST", rid); -- vwOnKill reads cells from the rift after cleanup
         mob:setLocalVar("VW_RIFT", 0);
     end
 end

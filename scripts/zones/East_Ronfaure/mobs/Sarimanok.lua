@@ -85,7 +85,7 @@ function onMobDeath(mob, player, isKiller)
     vwEndOperation(mob);
     local idx = mob:getID() - 17191335;
     vwOnKill(mob, player, {
-        cruor = 5000, -- Crimson I base [W: Cottus T1 5000]; 0% alignment
+        region = "THREE", stage = 1, -- [F] stage table
         pyxisId = 17191580 + idx,
         drops = {11813}, -- Chimera Hairpin [BG thread #203, player drop report]; id checked vs DSP item_basic
         keyitem = VIVID_PERIAPT_OF_READINESS, -- 1796 [V client DAT]

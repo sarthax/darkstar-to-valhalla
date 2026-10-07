@@ -41,3 +41,8 @@ Status: MISSING = no DB row/Lua, WRONG = live row differs from retail, GUESS = b
 - Rift event params: 14,18 Jade I; 14,16 Crimson III [C]; Indigo and other tiers [D]
 - !checknav not yet run for z95/z115/z81/z106 rift positions
 - Cavernous Maw z115 id 851->884 collides with SprigganCrier
+## Stage table / lights (voidwatch.lua)
+- Stage table applied [F]: cruor = base x (100+green)/100, EXP = base x (100+yellow)/100 via addExp (no EXP message id known, silent). Weakness-hit formula and per-hit values still [D]
+- Ascent cells: Planar Rift onTrade accepts cells 3434-3437 (max 3 each; bonuses blue/red +50, yellow/green +25 [F]); item ids from DSP item_basic, client check pending; no trade message ids known (silent); cells cleared when the Pyxis is claimed; wipe/timeout keeps them on the rift
+- Blue/red cell bonus is per player but the Pyxis item list is shared: best bonus among participants used [D]
+- Aello set to Zilart III (8000 cruor) per table; her real stage unconfirmed

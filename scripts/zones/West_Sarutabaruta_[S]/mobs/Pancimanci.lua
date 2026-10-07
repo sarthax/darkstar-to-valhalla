@@ -77,7 +77,7 @@ function onMobDeath(mob, player, isKiller)
     vwEndOperation(mob);
     local idx = mob:getID() - 17167113;
     vwOnKill(mob, player, {
-        cruor = 5000, -- [D] same as Virvatuli (Jade I); no Pancimanci cruor capture checked
+        region = "THREE", stage = 1, -- [F] stage table; cruor/EXP base
         pyxisId = 17167322 + idx,
         drops = {19761}, -- Impatiens [J loot page, F]; id checked vs DSP item_basic
         keyitem = VIVID_PERIAPT_OF_CONCENTRATION, -- 1788 [BG #137]
