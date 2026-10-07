@@ -17,14 +17,14 @@ Status: MISSING = no DB row/Lua, WRONG = live row differs from retail, GUESS = b
 - Colossal Slam - MISSING: ~1000-1500 dmg + Zombie/curse that Cursna cannot remove, knockback, 15-60 s [J]
 - Power Attack 666 / Impact Roar 664 / Grand Slam 665 - GUESS: Briareos-style DB rows reused; retail values/anim unverified
 - Pool job 9/9 (LSB) vs [F] COR; group HP 80000 / level 80-85 are LSB, not retail
-- Cruor [D 5000]; Double Attack amount [D 10]
+- Cruor 5000 [F stage table]; Double Attack amount [D 10]
 ## Sallow Seymour (Indigo I, North Gustaberg, z106)
 - Mud Stream - MISSING: self-centred magic dmg + Bind, Slow, Magic Def Down, Drown (-30HP/3s), maybe hate reset; used in pairs in 2nd half [J,B #7]
 - Epuration - MISSING [J]
 - Tremors 427 / Sandspin 426 - GUESS: existing Worm rows, retail effects (DEX Down / Accuracy Down) unverified
 - Draw In - GUESS: MOBMOD_DRAW_IN=1 engine behaviour, retail trigger distance unverified
 - Earth resistance trait [F] - MISSING; does-not-move [J] - not enforced
-- Spell cast rate / HP gaps [D]; Cruor [D 5000]; HP 40180 [F] not applied
+- Spell cast rate / HP gaps [D]; Cruor 5000 [F stage table]; HP 40180 [F] not applied
 ## Belphoebe (Crimson III, Jugner Forest [S], z104)
 - Norn Arrows - MISSING: ~1000-1500 dmg wide AoE, strips gear + gear lock (Encumberment); only candidate row in mob_skills.sql is commented out, anim 2262 unverified [J, F]
 - Fixed ability order Spring->Summer->Autumn->Winter->Cyclonic Turmoil is scripted (onMobFight useMobAbility, TP>=1000, 4s gap); pool skill_list_id=0. Norn Arrows slot skipped. Untested in game
@@ -32,7 +32,7 @@ Status: MISSING = no DB row/Lua, WRONG = live row differs from retail, GUESS = b
 - Skills 2193 zephyr_arrow, 2194 lethe_arrows, 2200 cyclonic_torrent are NOT in retail sources for Belphoebe; left out
 - Spells: -ja after each special skill, Death below 50% HP (F says 25%), rates/gaps [D]; Stun/Addle meant as AoE [J] but cast single-target
 - MOD_DMGMAGIC -30, Double Attack 10 [D]; wind/light/dark resistance traits not applied
-- Atmacite of Devotion KI 1806 from DSP keyitems.lua [W]; not yet client-verified. Cruor 6000 [C]
+- Atmacite of Devotion KI 1806 from DSP keyitems.lua [W]; not yet client-verified. Cruor 6000 [C, F]
 - Pyxis 1 position (263.1,553) [D] (no capture)
 ## Krabimanjaro / Aello (earlier slices)
 - mega_scissors anim 1781 vs 188; venom_shower field effect; metal_body / scissor_guard / bubble_curtain
