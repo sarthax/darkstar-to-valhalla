@@ -64,6 +64,20 @@ function onMobSpawn(mob)
     mob:setMod(MOD_DMGMAGIC, -50);     -- [W] 60% reduced magic damage; engine caps at -50 [D]
 end;
 
+-- Spell tiers [J wikiwiki.jp Virvatuli]: common Slowga/Dispelga/Bindga/Graviga/Sleepga; HP>=50% Blizzard IV, Blizzaga III;
+-- <50% Blizzard V, Blizzaga IV; <=30% + Blizzaja, Breakga, Death. No casting right after spawn. Silencega [C], Addle [F] added to common.
+function onMonsterMagicPrepare(mob, target)
+    if (mob:getLocalVar("VW_DEADLINE") - os.time() > LIMIT - 10) then return nil; end -- [J] no spells just after spawn; 10s is [D]
+    local pool = {357, 360, 362, 366, 273, 359, 286};
+    local hpp = mob:getHPP();
+    local extra;
+    if (hpp >= 50) then extra = {152, 181};
+    elseif (hpp > 30) then extra = {153, 182};
+    else extra = {153, 182, 497, 365, 367}; end
+    for _, sp in ipairs(extra) do table.insert(pool, sp); end
+    return pool[math.random(#pool)];
+end;
+
 function onMobRoam(mob) tick(mob); end;
 
 function onMobFight(mob, target)
