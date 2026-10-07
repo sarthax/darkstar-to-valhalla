@@ -54,12 +54,29 @@ NyzulIsle = {
         LAMP_NEEDS_OTHER_ACTION    = 7354, -- "All lamps on this floor are activated, but some other action appears to be necessary in order to activate the Rune of Transfer."
         LAMP_COOLDOWN              = 7355, -- "It appears you cannot activate this lamp for some time..."
         LAMP_ORDER_REQUIRED        = 7356, -- "Apparently, this lamp must be activated in a specific order..."
-        LAMP_NOT_ALL_LIT           = 7357, -- "Not all lights have been activated..." (ORDER variant)
-        LAMP_CONFIRMING_PROCEDURE  = 7358, -- "Confirming operation procedure..." (ORDER variant's 6s win-delay message)
-        RUNE_ALREADY_ACTIVATED     = 7359, -- "The Rune of Transfer has already been activated."
-        -- Real per-stage objective announcements. Only 6 entries (7360-7365) exist for
-        -- Nyzul.objective's 6 real values; FREE_FLOOR (6) has none, matching the wiki
-        -- ("Free floors will have no objective message.").
+        LAMP_NOT_ALL_LIT           = 7357, -- "Not all lights have been activated..." (ORDER variant's own distinct message)
+        LAMP_CONFIRMING_PROCEDURE  = 7358, -- "Confirming operation procedure..." (ORDER variant's real 6s win-delay message)
+        RUNE_ALREADY_ACTIVATED     = 7359, -- "The Rune of Transfer has already been activated." (about the rune, not a lamp)
+        -- Mumor's own Final Eternal Heart cast line, capture id 7675 (this session's Heroines'
+        -- Holdfast capture, CapLog 2025.05.02 00:18:53) = dialog.yml 7660 after the +15 capture
+        -- offset; verified this session against a fresh dat-extractor pull of zone 77's dialog.yml,
+        -- exact text match: "All life shall die and be born anew!Final!!! Eternal!!! Heart!!!"
+        MUMOR_FINAL_ETERNAL_HEART  = 7660,
+        -- Party-wipe taunt, 2 lines. Capture ids 7666 (Mumor)/no separate packet logged for Uka
+        -- Totlihn's line -- both resolved via the same +15 capture offset rule and verified this
+        -- session against a fresh dat-extractor pull of zone 77's dialog.yml (exact text match):
+        -- "That's right! The Mighty Maidens are back and better than ever!" (7651) /
+        -- "Oh, Mumor, we did it!" (7652). Fires ~6s after the party is wiped (CapLog 2025.05.01
+        -- 00:38:00 wipe -> 00:38:06 line), well before the separate 3-minute-later mission-failure
+        -- zone-out (onInstanceFailure) -- this is a taunt, not the failure message itself.
+        MUMOR_WIPE_TAUNT           = 7651,
+        UKA_TOTLIHN_WIPE_TAUNT     = 7652,
+        -- Real per-stage objective announcements. Note: only 6 entries (7360-7365) exist for
+        -- Nyzul.objective's 6 real values, and FREE_FLOOR (6) has none -- matches the wiki
+        -- exactly ("Free floors will have no objective message."), not a gap to fill.
+        -- 7360 and 7361 are an exact text duplicate ("Objective: Eliminate enemy leader.") -- both
+        -- map to ELIMINATE_ENEMY_LEADER; only 7360 is used (no confirmed reason to prefer 7361 for
+        -- either the boss-floor or regular-leader sub-case).
         OBJECTIVE_TEXT =
         {
             [1] = 7360, -- ELIMINATE_ENEMY_LEADER: "Objective: Eliminate enemy leader."
@@ -175,6 +192,17 @@ NyzulIsle = {
             IMPERIAL_GEAR3     = 17093136,
             IMPERIAL_GEAR4     = 17093137,
             NAJA               = 17093142,
+        },
+        -- Heroines' Holdfast (instance 80); mob_spawn_points ids are capture ids (unlike npc_list)
+        [80] = {
+            LION = 17093178,
+            PRISHE = 17093211,
+            NASHMEIRA = 17093247,
+            OVJANG = 17093248,
+            MNEJING = 17093249,
+            LILISETTE = 17093286,
+            LILISETTE_SPLIT = 17093287,
+            MUMOR = 17093309,
         },
         [59] = {
             RAZFAHD = 17093143,
@@ -381,10 +409,109 @@ NyzulIsle = {
                 { id = 17092994, count = 5 }, -- Racing Chariot
             },
         },
+        -- Nyzul Isle Uncharted Area Survey (instance 52) -- boss-floor HNM reskins (20/40/60/80/100).
+        -- Each boss reuses its confirmed real Topaz base mob's familyid/modelid/stats (reskin
+        -- convention precedent: Enigmatic_Vampyr/Soaring_Vampyr both reskin Vampyr_Jarl's exact
+        -- family/model elsewhere in this codebase). New poolids 6998-7008 (global max was 6997),
+        -- new mob_groups groupids 339-349 (zone 77 max was 338, unaffected by this relocation).
+        -- CORRECTED 2026-09-22: the original mob_spawn_points allocation (17093000-17093050) was
+        -- WRONG -- that entire range was already live content.
+        -- CORRECTED AGAIN 2026-09-23: the "fix" for the above (17093329-17093398, this comment
+        -- block's old claim that 17093329-17096710 was "genuinely free") was ALSO wrong -- it was
+        -- only checked against mob_spawn_points, never against npc_list. Direct query confirmed
+        -- 17093329-17093398 collides with 30 real npc_list rows still live in zone 77 today,
+        -- including 8 real `Moogle` NPCs at 17093345-17093352 and the real instance-51
+        -- Rune_of_Transfer/Runic_Lamp npcs at 17093330-336 -- root cause of the reported
+        -- floor 20/40 boss nameplates rendering as "Moogle"/"NPC[...]" (client targid = id &
+        -- 0xFFF render-slot collision between the new mob row and the pre-existing npc_list row
+        -- sharing the same id). Relocated to 17921019-17921051 -- WRONG AGAIN, discovered
+        -- 2026-09-23: instance_loader.cpp's mob-load query joins
+        -- "mob_groups.zoneid = ((mob_spawn_points.mobid>>12)&0xFFF)" -- zoneid is DERIVED from the
+        -- mobid's own bits, not a free column. Zone 77 mobids are only valid inside the narrow
+        -- 4096-id window 17092608-17096703 (decodes to zoneid 77); the entire 17921000-17921051
+        -- range (both this relocation's bosses AND the previously "already clean" 17921000-17921018
+        -- leader-NM pool, which had ALWAYS silently used this same wrong window and had simply never
+        -- been playtested that deep) decodes to zoneid 279 and was INNER-JOINed out of existence --
+        -- explains the "GetMobByID Mob doesn't exist" warnings for the entire mob[52] set, both old
+        -- and new, despite mob_spawn_points/instance_entities/mob_groups/mob_pools all being
+        -- correctly populated. RELOCATED AGAIN to 17093612-17093663 -- WRONG YET AGAIN, discovered
+        -- 2026-09-23: per topaz_zone_id_encoding_scheme, only ids whose offset from the zone-77
+        -- window base (17092608) is < 1024 (targid < 0x400) resolve as MOB/NPC at all -- ids
+        -- 0x400+ collide with the PC-reserved targid range and GetMobByID silently fails forever,
+        -- independent of collisions. 17093632-17093663 (offset 1024-1055) all violated this --
+        -- matches the live "GetMobByID Mob doesn't exist" log for exactly those ids. RELOCATED
+        -- (FINAL) to 17093483-17093534 (52 ids, offset 875-926, safely under the 1024 ceiling),
+        -- confirmed via direct query to have ZERO existing rows in mob_spawn_points OR npc_list.
+        -- Live DB migrated 2026-09-23 (UPDATE mob_spawn_points/instance_entities, verified by
+        -- direct query post-migration). mob_groups groupids 339-368 unchanged (composite PK
+        -- zoneid+groupid, not id-encoded). Per-boss relative offsets preserved (each base mob's
+        -- real Lua hardcodes escort/pet adds as base+1, base+2, ... --
+        -- Gulool_Ja_Ja.lua/Gurfurlur_the_Menacing.lua/Medusa.lua/Pandemonium_Warden.lua, confirmed
+        -- by reading all 4 scripts, zero Lua changes needed for this relocation). Vampyr_Jarl (Lord
+        -- Vryko's base) has NO script anywhere in the tree and no adds -- simple reskin.
+        [52] = {
+            -- 2026-09-23: boss self-id relocated to match the client DAT name table (Polutils
+            -- NPC/Monster List Entry dump: 0x0104D207-0x0104D20B == 17093127-17093131) so the
+            -- nameplate shows the real name instead of "NPC". The add-mob pet arrays still anchor
+            -- off the ADDBASE constants (the ids these bosses occupied before this relocation) --
+            -- DO NOT collapse SELF and ADDBASE back together, the DAT-matched ids are packed
+            -- contiguously (127,128,129,130,131) and would collide with the neighboring boss.
+            STEALTHLORD_HARAAL_JA         = 17093127, -- DAT-matched self id (Polutils 0x0104D207)
+            STEALTHLORD_HARAAL_JA_ADDBASE = 17093502, -- base Gulool_Ja_Ja; +1/+2 = Ja Chamberlain Escort x2, +3/+4 = Ja Palatine Escort x2
+            DABARGAR_THE_STOIC            = 17093128, -- DAT-matched self id (Polutils 0x0104D208)
+            DABARGAR_THE_STOIC_ADDBASE    = 17093507, -- base Gurfurlur_the_Menacing; +1/+2 = Hilltroll Honor Guard x2, +3/+4 = Woodtroll Honor Guard x2
+            STHENO                        = 17093129, -- DAT-matched self id (Polutils 0x0104D209)
+            STHENO_ADDBASE                = 17093512, -- base Medusa; +1..+4 = Stheno's Gorgon Handmaid x4 (reskinned Lamia_Exon)
+            DVALI_JONAH                   = 17093131, -- DAT-matched self id (Polutils 0x0104D20B)
+            DVALI_JONAH_ADDBASE           = 17093517, -- base Pandemonium_Warden; +1..+16 = Dvali's Ritual Lamp x16 (reskinned Pandemonium_Lamp)
+            LORD_VRYKO                    = 17093130, -- DAT-matched self id (Polutils 0x0104D20A); base Vampyr_Jarl, no adds, no custom AI
+
+            -- Item 2: 19 non-boss "Eliminate Enemy Leader" NMs, BG-Wiki-cross-checked 2026-09-22.
+            -- Real roster is 19 (not 18 -- a 4th real Chariot, Cornum, was missing from the original brief).
+            SCUTUM_CHARIOT          = 17093483, -- Chariot, Mortal Revolution
+            BELLUM_CHARIOT          = 17093484, -- Chariot, Discoid
+            PISTOLIUM_CHARIOT       = 17093485, -- Chariot, Homing Missile
+            CORNUM_CHARIOT          = 17093486, -- Chariot, Brainjack
+            GROATY_CUSTARD          = 17093487, -- Flan, Amplification (absorbs phys dmg)
+            CARAMEL_CUSTARD         = 17093488, -- Flan, reduced magic dmg
+            CARDAMOM_CUSTARD        = 17093489, -- Flan, Amorphic Scythe only, high def
+            NUKKU                   = 17093490, -- Imp, Grating Tantara
+            NOKKO                   = 17093491, -- Imp, Stifling Tantara
+            NEKKE                   = 17093492, -- Imp, Bugle Call/Frenetic Rip
+            URORO_SAMARORO          = 17093493, -- Poroggo, Water/Waterga + Water Bomb
+            IRORO_SAMARORO          = 17093494, -- Poroggo, Magic Hammer
+            ARORO_SAMARORO          = 17093495, -- Poroggo, tier3 -ga + Providence/Ancient Magic
+            ABJECT_AWIIJA           = 17093496, -- Soulflayer, Mind Purge + ice spells + Reprobation
+            ABJECT_FARZAHD          = 17093497, -- Soulflayer, Mind Blast + Blizzaga III + Reprobation
+            ABJECT_KHAROUB          = 17093498, -- Soulflayer, std TP moves + Unbridled Learning + Reprobation
+            NERVE_RENDER_YIYIROON   = 17093499, -- Qiqirn, triplet Faze, high evasion
+            EYE_PIERCER_FAFAROON    = 17093500, -- Qiqirn, Eagle Eye Shot x2, high evasion
+            MAD_MINER_BOBOROON      = 17093501, -- Qiqirn, Qiqirn Mine AoE
+        },
     },
 
-    npcs = {
-        -- DSP's own -- unchanged.
+    npc = {
+        -- Nyzul Isle Investigation (instance 51) -- ids confirmed against our own npc_list.sql
+        -- (all real, pre-existing rows -- see instance_list.sql's row 51 comment for the entrance
+        -- rune's cross-check against LSB's Rune_of_Transfer_Start.lua header position).
+        RUNE_OF_TRANSFER_OFFSET   = 17093330, -- moving rune used on each floor (paired with +1, one hidden at a time)
+        RUNE_OF_TRANSFER_ENTRANCE = 17093429, -- lobby rune, opens the floor-select menu
+        RUNIC_LAMP_OFFSET         = 17093332, -- first of the 5-lamp block (17093332-17093336)
+        VENDING_BOX               = 17093430,
+        -- 2026-09-23: relocated onto the client DAT name table's Armoury Crate block (Polutils
+        -- NPC/Monster List Entry dump: 0x0104D001-0x0104D014 == 17092609-17092628) so the
+        -- nameplate shows "Armoury Crate" instead of "NPC" -- previously this project avoided
+        -- 17092609 because that npcid's row had model 50 baked in (not a real chest mesh, likely
+        -- why it rendered invisible). The fix migrates the real 965 "Blue Casket" mesh row
+        -- (formerly 17093609, real distinct npc_list positions e.g. x=492/500/544) INTO 17092609,
+        -- carrying its correct look/position with it, rather than reusing the old model-50 row.
+        -- Exactly 3 of the 20 DAT-matched slots are used (17092609-17092611), unregistered to any
+        -- other instance. ARMOURY_CRATE_OFFSET is used as the single leader-kill drop crate
+        -- (dropArmouryCrate); all 3 (OFFSET..OFFSET+2) are used together for Free Floor's real
+        -- "random Armoury Crates scattered about" per BG Wiki/FFXIclopedia -- see
+        -- nyzul_isle_investigation.lua's pickSetPoint.
+        ARMOURY_CRATE_OFFSET      = 17092609,
+
         _257       = 17093359,
         _259       = 17093361,
         QM1        = 17093472,
@@ -414,3 +541,7 @@ NyzulIsle = {
         ARMOURY_CRATE_OFFSET      = 17093609,
     }
 }
+
+-- 2026-10-02: Topaz scripts index NyzulIsle.npcs; DSP's table here is named npc. Alias so both resolve
+-- (nil .npcs broke 52's onInstanceTimeUpdate every tick and every npcs.* lookup in globals/nyzul).
+NyzulIsle.npcs = NyzulIsle.npc
