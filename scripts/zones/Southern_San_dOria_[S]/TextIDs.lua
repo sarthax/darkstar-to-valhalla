@@ -1,4 +1,5 @@
 -- Variable TextID   Description text
+           ALLIED_SIGIL = 12911; -- You have received the Allied Sigil!
 
 -- General Texts
 ITEM_CANNOT_BE_OBTAINED = 6380; -- You cannot obtain the item <item> come back again after sorting your inventory
@@ -16,4 +17,3 @@ WYATT_DIALOG = 11077; -- Ahhh, sorry, sorry. The name's Wyatt, an' I be an armor
 
 -- Porter Moogle
     RETRIEVE_DIALOG_ID = 15572; -- You retrieve$ from the porter moogle's care.
-           ALLIED_SIGIL = 12911; -- You have received the Allied Sigil!

@@ -1,4 +1,5 @@
 -- Variable TextID   Description text
+           ALLIED_SIGIL = 12907;  -- You have received the Allied Sigil!
 
 -- General Texts
 ITEM_CANNOT_BE_OBTAINED = 6380;  -- You cannot obtain the item <item> come back again after sorting your inventory
@@ -20,4 +21,3 @@ EZURAROMAZURA_SHOP_DIALOG = 10880; -- A potent spelly-well or two can be the key
 
 -- Porter Moogle
     RETRIEVE_DIALOG_ID = 14972; -- You retrieve$ from the porter moogle's care.
-           ALLIED_SIGIL = 12907;  -- You have received the Allied Sigil!
