@@ -1,0 +1,2 @@
+-- Nyzul 52: Naja_Salaheem in zone 77 (other Whitegate NPC rows already exist in DSP with identical ids).
+INSERT INTO `npc_list` (`npcid`,`name`,`polutils_name`,`pos_rot`,`pos_x`,`pos_y`,`pos_z`,`flag`,`speed`,`speedsub`,`animation`,`animationsub`,`namevis`,`status`,`entityFlags`,`look`,`name_prefix`,`content_tag`,`widescan`) VALUES (17093464,'Naja_Salaheem','Naja Salaheem',0,46.500,0.000,-300.500,32769,50,50,0,3,0,0,25,0x0000fe0500000000000000000000000000000000,32,'TOAU',0);
