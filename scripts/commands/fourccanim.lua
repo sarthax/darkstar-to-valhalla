@@ -31,12 +31,19 @@ function onTrigger(player, arg1, arg2)
     local targ
     local code
 
-    if (arg2 == nil) then
-        -- player did not provide npcId. Shift arguments by one, use cursor target.
+    local id = tonumber(arg1)
+    if (arg2 == nil or arg2 == "" or id == nil) then
+        -- no (numeric) npcId given. Use cursor target; arg1 is the code (if arg1 isn't a number
+        -- but arg2 is present, e.g. the code was split by a space, join them back together).
         targ = player:getCursorTarget()
         code = arg1
+        if (arg2 ~= nil and arg2 ~= "" and id == nil) then
+            code = arg1 .. arg2
+        end
     else
-        targ = GetNPCByID(tonumber(arg1)) or GetMobByID(tonumber(arg1), player:getInstance())
+        -- instance entities need the instance passed to the lookup
+        local inst = player:getInstance()
+        targ = GetNPCByID(id, inst) or GetMobByID(id, inst) or GetNPCByID(id) or GetMobByID(id)
         code = arg2
     end
 
@@ -49,8 +56,16 @@ function onTrigger(player, arg1, arg2)
         return
     end
 
+    -- the command parser strips trailing/quoted spaces, so: "_" stands for a space, and a code
+    -- shorter than 4 characters is right-padded with spaces (e.g. "bow" or "bow_" -> "bow ")
+    if (code ~= nil) then
+        code = string.gsub(code, "_", " ")
+        if (string.len(code) < 4) then
+            code = code .. string.rep(" ", 4 - string.len(code))
+        end
+    end
     if (code == nil or string.len(code) ~= 4) then
-        error(player, "Code must be exactly 4 characters (pad with spaces if needed, e.g. \"bow \").")
+        error(player, "Code must be 4 characters or fewer (padded with spaces; \"_\" = space, e.g. \"DC0\" -> \"DC0 \").")
         return
     end
 
