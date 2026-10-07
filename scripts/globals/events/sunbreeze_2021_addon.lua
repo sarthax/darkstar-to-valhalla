@@ -102,19 +102,71 @@ function SUNBREEZE2021.say(npc, zoneId, dialogId)
     end
 end;
 
--- Start the fixed-beat show. `cast` = {Mumor=npc, Uka=npc, Diva=npc, Ullegore=npc, Foudeel=npc, Bongo=npc}
--- (Bongo speaks the explainer in the capture; the first entry may be adjusted per zone).
-function SUNBREEZE2021.startShow(zoneId, cast)
+-- Start the fixed-beat show. `cast` = {Mumor=npcId, Uka=npcId, Diva=npcId, Ullegore=npcId, Foudeel=npcId, Bongo=npcId}
+-- (server NPC ids, not entities: each beat re-resolves its speaker so a stale entity is skipped, never dereferenced).
+-- Every started run gets a new token; beats from an older run do nothing.
+function SUNBREEZE2021.startShow(zoneId, cast, beats)
     if (not isSunbreeze2021AddonEnabled()) then return; end
+    local st = SUNBREEZE2021.state[zoneId];
+    if (st == nil) then return; end
+    beats = beats or SUNBREEZE2021.SHOW;
+    st.run = (st.run or 0) + 1;
+    local run = st.run;
+    st.showEnd = os.time() + beats[#beats][1] / 1000;
+    local anchor = GetNPCByID(cast.Mumor);
+    if (anchor == nil) then return; end
     local key = { ["Uka Totlihn"] = "Uka" };
-    for _, beat in ipairs(SUNBREEZE2021.SHOW) do
+    for _, beat in ipairs(beats) do
         local ms, who, dialogId = beat[1], beat[2], beat[3];
-        local npc = cast[key[who] or who];
-        if (npc ~= nil) then
-            -- timers hang off the speaking NPC entity, cumulative from show start (no player-captured closures)
-            npc:timer(ms, function(n) SUNBREEZE2021.say(n, zoneId, dialogId); end);
+        local id = cast[key[who] or who];
+        if (id ~= nil) then
+            -- timers hang off the Mumor anchor NPC; closures capture only ids and the run token, never players
+            anchor:timer(ms, function(m)
+                local cur = SUNBREEZE2021.state[zoneId];
+                local npc = GetNPCByID(id);
+                if (cur ~= nil and cur.run == run and npc ~= nil) then
+                    SUNBREEZE2021.say(npc, zoneId, dialogId);
+                end
+            end);
         end
     end
+end;
+
+-- ---------------------------------------------------------------------------
+-- Framework: data-driven variants + per-zone schedule (design: docs/sunbreeze-event/DESIGN.md, decided 2026-10-07).
+-- Each stage zone loops its own show every `interval` seconds. A variant supplies the beats, so new shows
+-- (new dialog/models, same mechanic) are added as data here, not code. Only Curtain Call exists today.
+-- cast holds SERVER npc ids and stays nil until allocated (sql/slices/sunbreeze-2021-addon/); a zone with no
+-- cast is skipped. Never put capture ids here.
+-- ---------------------------------------------------------------------------
+SUNBREEZE2021.VARIANTS = {
+    curtain_call = { beats = SUNBREEZE2021.SHOW },
+};
+
+SUNBREEZE2021.SCHEDULE = {
+    -- [zoneId] = { variant = "curtain_call", interval = 3600, cast = { Mumor = <npcid>, Uka = ..., Diva = ..., Ullegore = ..., Foudeel = ..., Bongo = ... } }
+    [239] = { variant = "curtain_call", interval = 3600, cast = nil },
+};
+
+-- Call from each stage zone's Zone.lua onGameHour(zone). Starts that zone's show when the interval has elapsed
+-- and no run is in progress. Scheduling itself uses no timers.
+function SUNBREEZE2021.onGameHour(zone)
+    if (not isSunbreeze2021AddonEnabled()) then return; end
+    local zoneId = zone:getID();
+    local sch = SUNBREEZE2021.SCHEDULE[zoneId];
+    if (sch == nil or sch.cast == nil or sch.cast.Mumor == nil) then return; end
+    local mumor = GetNPCByID(sch.cast.Mumor);
+    if (mumor == nil) then return; end
+    if (SUNBREEZE2021.state[zoneId] == nil) then
+        SUNBREEZE2021.registerMumor(zoneId, mumor);
+    end
+    local st = SUNBREEZE2021.state[zoneId];
+    local now = os.time();
+    if ((st.showEnd or 0) > now) then return; end
+    if (st.lastStart ~= nil and now - st.lastStart < sch.interval) then return; end
+    st.lastStart = now;
+    st.mumor = mumor;
+    SUNBREEZE2021.startShow(zoneId, sch.cast, SUNBREEZE2021.VARIANTS[sch.variant].beats);
 end;
 
 -- ---------------------------------------------------------------------------

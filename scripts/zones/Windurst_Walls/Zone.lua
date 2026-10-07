@@ -101,3 +101,13 @@ function onEventFinish(player,csid,option)
         player:setVar("ASA_Status",0);
     end
 end;
+
+-----------------------------------
+-- onGameHour: Sunbreeze stage show scheduler (add-on, default off)
+-----------------------------------
+
+function onGameHour(zone)
+    if (SUNBREEZE2021 ~= nil or pcall(require, "scripts/globals/events/sunbreeze_2021_addon")) then
+        SUNBREEZE2021.onGameHour(zone);
+    end
+end;
