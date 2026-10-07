@@ -296,6 +296,7 @@
     <ClInclude Include="..\..\src\map\items\item_armor.h" />
     <ClInclude Include="..\..\src\map\items\item_currency.h" />
     <ClInclude Include="..\..\src\map\items\item_fish.h" />
+    <ClInclude Include="..\..\src\map\items\item_flowerpot.h" />
     <ClInclude Include="..\..\src\map\items\item_furnishing.h" />
     <ClInclude Include="..\..\src\map\items\item_general.h" />
     <ClInclude Include="..\..\src\map\items\item_linkshell.h" />
@@ -379,6 +380,7 @@
     <ClInclude Include="..\..\src\map\packets\instance_entry.h" />
     <ClInclude Include="..\..\src\map\packets\inventory_assign.h" />
     <ClInclude Include="..\..\src\map\packets\inventory_finish.h" />
+    <ClInclude Include="..\..\src\map\packets\furniture_interact.h" />
     <ClInclude Include="..\..\src\map\packets\inventory_item.h" />
     <ClInclude Include="..\..\src\map\packets\inventory_modify.h" />
     <ClInclude Include="..\..\src\map\packets\inventory_size.h" />
@@ -452,6 +454,7 @@
     <ClInclude Include="..\..\src\map\utils\blueutils.h" />
     <ClInclude Include="..\..\src\map\utils\charutils.h" />
     <ClInclude Include="..\..\src\map\utils\fishingutils.h" />
+    <ClInclude Include="..\..\src\map\utils\gardenutils.h" />
     <ClInclude Include="..\..\src\map\utils\guildutils.h" />
     <ClInclude Include="..\..\src\map\utils\battlefieldutils.h" />
     <ClInclude Include="..\..\src\map\utils\instanceutils.h" />
@@ -539,6 +542,7 @@
     <ClCompile Include="..\..\src\map\items\item_armor.cpp" />
     <ClCompile Include="..\..\src\map\items\item_currency.cpp" />
     <ClCompile Include="..\..\src\map\items\item_fish.cpp" />
+    <ClCompile Include="..\..\src\map\items\item_flowerpot.cpp" />
     <ClCompile Include="..\..\src\map\items\item_furnishing.cpp" />
     <ClCompile Include="..\..\src\map\items\item_general.cpp" />
     <ClCompile Include="..\..\src\map\items\item_linkshell.cpp" />
@@ -620,6 +624,7 @@
     <ClCompile Include="..\..\src\map\packets\instance_entry.cpp" />
     <ClCompile Include="..\..\src\map\packets\inventory_assign.cpp" />
     <ClCompile Include="..\..\src\map\packets\inventory_finish.cpp" />
+    <ClCompile Include="..\..\src\map\packets\furniture_interact.cpp" />
     <ClCompile Include="..\..\src\map\packets\inventory_item.cpp" />
     <ClCompile Include="..\..\src\map\packets\inventory_modify.cpp" />
     <ClCompile Include="..\..\src\map\packets\inventory_size.cpp" />
@@ -693,6 +698,7 @@
     <ClCompile Include="..\..\src\map\utils\blueutils.cpp" />
     <ClCompile Include="..\..\src\map\utils\charutils.cpp" />
     <ClCompile Include="..\..\src\map\utils\fishingutils.cpp" />
+    <ClCompile Include="..\..\src\map\utils\gardenutils.cpp" />
     <ClCompile Include="..\..\src\map\utils\guildutils.cpp" />
     <ClCompile Include="..\..\src\map\utils\battlefieldutils.cpp" />
     <ClCompile Include="..\..\src\map\utils\instanceutils.cpp" />
