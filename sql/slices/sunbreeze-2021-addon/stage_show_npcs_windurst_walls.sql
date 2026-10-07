@@ -27,3 +27,6 @@ UPDATE npc_list SET status=0 WHERE npcid BETWEEN 17756375 AND 17756384;
 -- Tango / Fandango: post-show vendors, parked hidden at their pre-show positions (capture 477); the show reveals them at its end.
 UPDATE npc_list SET pos_x=15.490, pos_y=-10.020, pos_z=6.142, pos_rot=120, status=2 WHERE npcid=17756366;
 UPDATE npc_list SET pos_x=12.875, pos_y=-10.000, pos_z=2.957, pos_rot=120, status=2 WHERE npcid=17756368;
+
+-- Event Moogle: renamed (script lookup is by name; plain 'Moogle' runs the Mog House script) and placed at the user's !logpos.
+UPDATE npc_list SET name='Sunbreeze_Moogle', polutils_name='Moogle', pos_x=-24.2861, pos_y=-2.2549, pos_z=-49.9921, status=0 WHERE npcid=17756356;
