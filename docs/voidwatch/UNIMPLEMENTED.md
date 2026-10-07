@@ -117,3 +117,9 @@ Status: MISSING = no DB row/Lua, WRONG = live row differs from retail, GUESS = b
 - **Drops:** only Athos's Gloves, Devourer, Praeco Doublet, Riftsand wired; scroll/material/medicine pools not built. Pyxis capture items (Wind Carol II scroll, darksteel ingot, others) not wired.
 - Cruor in capture was 16590 (base 7000 [W] plus bonuses); not reconciled.
 - Rift positions need `!checknav`.
+
+## Stachysaurus (Jeuno Stage V / White V, La Theine Plateau z102)
+- **Re-key:** DB block 689-696 shifted -1 to client ids via `rekey_102.sql` (Mogball/Mog-Tablet moved too to avoid collisions). Fount/Guide ids left untouched (DB and client differ by 1 in the other direction); not used by VW scripts.
+- **Clobber vs Crippling Slam:** capture shows Batterhorn 2099 (anim 1437) and Clobber 2100 [C]; the wikis list "Crippling Slam" (severe damage + Paralyze). Mapped to Clobber unconfirmed; the DB row's anim is 1436 vs capture 1438, left untouched (shared Wivre row). Both scripts are new (`batterhorn.lua`, `clobber.lua`); multipliers/Paralyze power [D].
+- **Drops:** only Ogier's Gauntlets, Brego Helm, Hreysti Helm, Riftsand wired; scroll/material/medicine pools and Pyxis capture items (crystal petrifact, mythril ingot, petrified log) not built.
+- Rift positions need `!checknav`; cruor in capture 16590 vs 7000 base not reconciled.
