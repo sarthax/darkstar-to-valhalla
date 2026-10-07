@@ -103,6 +103,7 @@ public:
     int32 getPos(lua_State*);               // Get Entity position (x,y,z)
     int32 getSpawnPos(lua_State*);          // Get Mob spawn position (x,y,z)
     int32 getZone(lua_State*);              // Get Entity zone
+    int32 sendEntityEmote(lua_State*);      // Any entity (NPC/mob) is the emote actor: sendEntityEmote(target, emoteId, mode)
     int32 getZoneID(lua_State*);            // Get Entity zone ID
     int32 getZoneName(lua_State*);          // Get Entity zone name
     int32 isInMogHouse(lua_State*);         // Check if entity inside a mog house

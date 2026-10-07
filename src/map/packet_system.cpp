@@ -2677,6 +2677,7 @@ void SmallPacket0x05D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     }
 
     PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CCharEmotionPacket(PChar, data));
+    luautils::OnPlayerEmote(PChar, RBUFB(data, (0x0A)), RBUFL(data, (0x04)), RBUFW(data, (0x08)));
     return;
 }
 
