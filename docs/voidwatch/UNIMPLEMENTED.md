@@ -65,3 +65,11 @@ Status: MISSING = no DB row/Lua, WRONG = live row differs from retail, GUESS = b
 - Pool 5161 moved to dedicated skill list 1164 (275 Sand Blast, 277 Venom Spray, 279 Mandibular Bite); engine picks randomly (order not documented). Sand Pit dropped (not documented for the NM).
 - Drops: [F] lists Ruszor Meat (5755 Slab of Ruszor Meat), [J] lists Rift Sand instead — both unresolved; item ids otherwise checked in DSP item_basic. KI Vivid Periapt of Focus 1792 not client-verified.
 - Stray rows: npc_list 17584498–17584503 (Planar_Rift/Riftworn_Pyxis at 55,260 / -193,197 / -137,377) sit in zone 197's id range; probably leftover mis-keyed LSB data. Not touched.
+
+## Lord Asag (Jade III / Windurst Stage III, Meriphataud Mountains z119) — first pass, untested in game
+- Message ids = z95 ids + 3346 [V: z119 dialog.yml text match, 149 hits]. Capture ids are −1 vs client in z119; DSP npc_list was −2, so `rekey_119.sql` moved rifts/Pyxis/fount/guide by +2 and the Moogle 307→309 (sql/npc_list.sql edited to match). Cruor base 6000 (Stage III) [C].
+- NOT built: Nocturnal Servitude (no DSP mob_skills row, no animation evidence) [J,F].
+- Heliovoid is an approximation: one dispel + 30 s Amnesia [F, unverified]; Nosferatu's Kiss is an AoE HP drain with damage [D]. Lua written fresh (SQL rows 2108/2109 existed without scripts).
+- The "30 s Amnesia aura after TP moves" [F, unverified] is not built.
+- Own skill list 1165 (2106/2108/2109/2110, random pick) and spell list 448 tiered by HP in Lua [J,F]. Silence immunity only; no dispel-immunity bit exists. Evasion/ICE+DARK res/magic-dmg cut amounts [D].
+- KI Atmacite of Destruction DSP id 1812 not client-verified. Drops: Cadushi Grip 18810, Tonatiuh Axe 18539, Silver Mirror 3510 [F], ids vs DSP item_basic.
