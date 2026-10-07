@@ -61,7 +61,14 @@ function onMobSpawn(mob)
 end;
 
 function onMobRoam(mob) tick(mob); end;
-function onMobFight(mob, target) tick(mob); end;
+
+function onMobFight(mob, target)
+    tick(mob);
+    -- [W] "Gains a Regain effect at low HP (cannot be dispelled)"; threshold/amount are [D] guesses
+    if (mob:getHPP() < 25 and mob:getMod(MOD_REGAIN) == 0) then
+        mob:addMod(MOD_REGAIN, 20);
+    end
+end;
 
 function onMobDeath(mob, player, isKiller)
     mob:setLocalVar("VW_DEADLINE", 0);
@@ -71,6 +78,9 @@ function onMobDeath(mob, player, isKiller)
     vwOnKill(mob, player, {
         cruor = 5500, -- Crimson II base, 0% alignment [C]
         pyxisId = 17568201 + idx,
+        drops = {19737, 11917}, -- Percept Bow, Carapacho Cuffs [W]; ids checked vs DSP item_basic
+        keyitem = VIVID_PERIAPT_OF_INTENSITY, -- 1794 [V client DAT]
+        msgKeyItem = 7611,
         msgCruor = 7607, msgFinalBR = 7604, msgFinalYG = 7602, msgFinalW = 7603,
     });
 end;
