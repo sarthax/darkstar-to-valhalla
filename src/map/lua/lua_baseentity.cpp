@@ -7124,7 +7124,7 @@ inline int32 CLuaBaseEntity::needToZone(lua_State *L)
 
 /************************************************************************
 *                                                                       *
-*   Get Container Size                                                  *
+*   GM debug: player:moghancementDebug(action, value)                   *
 *                                                                       *
 ************************************************************************/
 
@@ -7193,6 +7193,12 @@ inline int32 CLuaBaseEntity::moghancementDebug(lua_State* L)
     lua_pushstring(L, result.c_str());
     return 1;
 }
+
+/************************************************************************
+*                                                                       *
+*   Get Container Size                                                  *
+*                                                                       *
+************************************************************************/
 
 inline int32 CLuaBaseEntity::getContainerSize(lua_State *L)
 {
