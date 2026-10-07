@@ -145,7 +145,8 @@ SUNBREEZE2021.VARIANTS = {
 
 SUNBREEZE2021.SCHEDULE = {
     -- [zoneId] = { variant = "curtain_call", interval = 3600, cast = { Mumor = <npcid>, Uka = ..., Diva = ..., Ullegore = ..., Foudeel = ..., Bongo = ... } }
-    [239] = { variant = "curtain_call", interval = 3600, cast = nil },
+    [239] = { variant = "curtain_call", interval = 3600,
+        cast = { Mumor = 17756358, Uka = 17756359, Diva = 17756360, Ullegore = 17756361, Foudeel = 17756363, Bongo = 17756367 } }, -- server npc_list ids (== capture 477 ids in this zone)
 };
 
 -- Call from each stage zone's Zone.lua onGameHour(zone). Starts that zone's show when the interval has elapsed
