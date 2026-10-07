@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2015 Darkstar Dev Teams
+  Copyright (c) 2010-2018 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -21,31 +21,19 @@
 ===========================================================================
 */
 
-#ifndef _CMESSAGESTANDARTPACKET_H
-#define _CMESSAGESTANDARTPACKET_H
+#ifndef _CFURNITUREINTERACTPACKET_H
+#define _CFURNITUREINTERACTPACKET_H
 
 #include "../../common/cbasetypes.h"
 
 #include "basic.h"
 
-/************************************************************************
-*																		*
-*  																		*
-*																		*
-************************************************************************/
+class CItem;
 
-class CCharEntity;
-
-class CMessageStandardPacket : public CBasicPacket
+class CFurnitureInteractPacket : public CBasicPacket
 {
 public:
-
-    CMessageStandardPacket(uint16 MessageID);
-	CMessageStandardPacket(uint32 param0, uint16 MessageID);
-	CMessageStandardPacket(uint32 param0, uint32 param1, uint16 MessageID);
-	CMessageStandardPacket(CCharEntity* PChar, uint32 param0, uint16 MessageID);
-	CMessageStandardPacket(CCharEntity* PChar, uint32 param0, uint32 param1, uint16 MessageID);
-	CMessageStandardPacket(uint32 param0, uint32 param1, uint32 param2, uint32 param3, uint16 MessageID);
+    CFurnitureInteractPacket(CItem* PItem, uint8 LocationID, uint8 SlotID);
 };
 
 #endif

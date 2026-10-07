@@ -88,6 +88,7 @@
 #include "../utils/battleutils.h"
 #include "../utils/blueutils.h"
 #include "../utils/charutils.h"
+#include "../utils/gardenutils.h"
 #include "../utils/instanceutils.h"
 #include "../utils/itemutils.h"
 #include "../guild.h"
@@ -7109,6 +7110,26 @@ inline int32 CLuaBaseEntity::needToZone(lua_State *L)
 *                                                                       *
 ************************************************************************/
 
+/************************************************************************
+*                                                                       *
+*  GM debug: player:gardenDebug(action, value, slot)                    *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::gardenDebug(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    std::string action = lua_isstring(L, 1) ? lua_tostring(L, 1) : "info";
+    int32       value  = lua_isnumber(L, 2) ? (int32)lua_tointeger(L, 2) : 0;
+    int32       slot   = lua_isnumber(L, 3) ? (int32)lua_tointeger(L, 3) : -1;
+
+    std::string result = gardenutils::DebugCommand((CCharEntity*)m_PBaseEntity, action, value, slot);
+    lua_pushstring(L, result.c_str());
+    return 1;
+}
+
 inline int32 CLuaBaseEntity::getContainerSize(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
@@ -11820,6 +11841,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getCharmChance),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,needToZone),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getContainerSize),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,gardenDebug),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,changeContainerSize),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPartyMember),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPartySize),

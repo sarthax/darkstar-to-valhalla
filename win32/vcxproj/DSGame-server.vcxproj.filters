@@ -215,6 +215,9 @@
     <ClInclude Include="..\..\src\map\items\item_currency.h">
       <Filter>Header Files\items</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\map\items\item_flowerpot.h">
+      <Filter>Header Files\items</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\map\items\item_furnishing.h">
       <Filter>Header Files\items</Filter>
     </ClInclude>
@@ -345,6 +348,9 @@
       <Filter>Header Files\packets</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\map\packets\inventory_assign.h">
+      <Filter>Header Files\packets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\packets\furniture_interact.h">
       <Filter>Header Files\packets</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\map\packets\inventory_finish.h">
@@ -659,6 +665,9 @@
     <ClInclude Include="..\..\src\map\utils\fishingutils.h">
       <Filter>Header Files\utils</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\map\utils\gardenutils.h">
+      <Filter>Header Files\utils</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\map\utils\guildutils.h">
       <Filter>Header Files\utils</Filter>
     </ClInclude>
@@ -958,6 +967,9 @@
     <ClCompile Include="..\..\src\map\items\item_currency.cpp">
       <Filter>Source Files\items</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\map\items\item_flowerpot.cpp">
+      <Filter>Source Files\items</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\src\map\items\item_furnishing.cpp">
       <Filter>Source Files\items</Filter>
     </ClCompile>
@@ -1085,6 +1097,9 @@
       <Filter>Source Files\packets</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\map\packets\inventory_assign.cpp">
+      <Filter>Source Files\packets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\packets\furniture_interact.cpp">
       <Filter>Source Files\packets</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\map\packets\inventory_finish.cpp">
@@ -1397,6 +1412,9 @@
       <Filter>Source Files\utils</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\map\utils\fishingutils.cpp">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\utils\gardenutils.cpp">
       <Filter>Source Files\utils</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\map\utils\guildutils.cpp">

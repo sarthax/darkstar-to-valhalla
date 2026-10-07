@@ -406,6 +406,7 @@ public:
     int32 injectPacket(lua_State*);          // Send the character a packet kept in a file
 
     int32 getContainerSize(lua_State*);      // Gets the current capacity of a container
+    int32 gardenDebug(lua_State*);           // GM debug for Mog House flowerpots (!garden)
     int32 changeContainerSize(lua_State*);   // Increase/Decreases container size
     int32 resetPlayer(lua_State*);           // if player is stuck, GM command @resetPlayer name
     int32 setLevel(lua_State*);              // sets the character's level
