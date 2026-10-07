@@ -1369,6 +1369,16 @@ MOD_QUICK_DRAW_DMG_PERCENT    = 834 -- Percentage increase to QD damage
 MOD_SYNTH_SUCCESS    = 851 -- Rate of synthesis success
 MOD_SYNTH_SKILL_GAIN = 852 -- Synthesis skill gain rate
 
+-- Moghancement effects (Mog House furniture aura)
+MOD_GARDENING_WILT_BONUS  = 861 -- Vanadays a Mog House plant survives before wilting
+MOD_EXPERIENCE_RETAINED   = 862 -- Percent of experience loss on KO that is retained
+MOD_DESYNTH_SUCCESS       = 863 -- Rate of desynthesis success
+MOD_CONQUEST_BONUS        = 864 -- Percent bonus to individual conquest points
+MOD_CONQUEST_REGION_BONUS = 865 -- Percent bonus to region (influence) points
+MOD_GILFINDER             = 866 -- Percent bonus to gil dropped by mobs
+MOD_CAMPAIGN_BONUS        = 867 -- Campaign evaluation bonus (no consumer yet)
+MOD_CAPACITY_BONUS        = 868 -- Percent bonus to capacity points (no consumer yet)
+
 MOD_WEAPONSKILL_DAMAGE_BASE = 570 -- Specific to 1 Weaponskill: See modifier.h for how this is used
 MOD_ALL_WSDMG_ALL_HITS      = 840 -- Generic (all Weaponskills) damage, on all hits.
 -- Per https://www.bg-wiki.com/bg/Weapon_Skill_Damage we need all 3..
