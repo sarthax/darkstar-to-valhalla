@@ -66,6 +66,22 @@ Nyzul.objective =
     FREE_FLOOR                  = 6,
 }
 
+-- Real bug fix (2026-09-22, user-confirmed root cause): NyzulFloorProgress was a single flat charvar
+-- with no mission-id qualifier, shared between Investigation (assault 51) and Uncharted (assault 52)
+-- even though they're separate missions with separate Runic Disc progress -- clearing floor 60 in
+-- one currently unlocks floor 60 access in the other, and Sorrowful Sage always reports whichever
+-- mission wrote most recently, mislabeled. Fix per user's own direction ("create a new charvarname
+-- based on the instance"): mission 51 keeps the literal "NyzulFloorProgress" name (no migration/reset
+-- for existing live characters), every other assault id gets its own suffixed variant. Uncharted (52)
+-- -> "NyzulFloorProgress52". Every read/write site below now goes through this helper instead of the
+-- bare literal.
+Nyzul.floorProgressVar = function(assaultId)
+    if not assaultId or assaultId == 51 then
+        return "NyzulFloorProgress"
+    end
+    return "NyzulFloorProgress" .. tostring(assaultId)
+end
+
 Nyzul.lampsObjective =
 {
     REGISTER     = 1,
@@ -210,7 +226,7 @@ Nyzul.handleRunicKey = function(mob)
         -- qualifies. Kept LSB's RUNIC_DISK_SAVE=true branch (everyone who qualifies gets the key,
         -- not just diskHolder) -- this codebase's deliberate choice, no such setting exists here.
         for _, entity in pairs(chars) do
-            local floorProgress = entity:getVar("NyzulFloorProgress") or 0
+            local floorProgress = entity:getVar(Nyzul.floorProgressVar(entity:getCurrentAssault())) or 0
             if floorProgress + 1 >= startFloor and not entity:hasKeyItem(RUNIC_KEY) then
                 npcUtil.giveKeyItem(entity, RUNIC_KEY)
             end
@@ -239,17 +255,28 @@ Nyzul.bossArmorDrops =
     [100] = { { item = 16107, rate = 200 }, { item = 16106, rate = 200 }, { item = 16108, rate = 200 } }, -- Denali Bonnet / Askar Zucchetto / Goliard Chapeau
 }
 
-Nyzul.bossArmorDrop = function(player, mob)
-    if not player then
-        return
-    end
+-- Uncharted-only boss armor drops (item 5, 2026-09-23, user-directed): "these armor sets replace
+-- the goliard/askar/denali armor drops" -- read as replacing them for Uncharted Area Survey
+-- (assault 52) specifically, not globally, consistent with this whole build-out's standing
+-- instance-52-only/no-Investigation-impact constraint (item 3). Nyzul.bossArmorDrops above is
+-- left completely untouched, so Investigation's 6 boss scripts (Adamantoise/Behemoth/Cerberus/
+-- Fafnir/Hydra/Khimaira -- all of which also call bossArmorDrop) keep their real, original
+-- Denali/Askar/Goliard output. Same floor->slot mapping as that table (20=feet, 40=legs, 60=hands,
+-- 80=body, 100=head), same flat 20%/20%/20% (60% combined) house-rule odds, tiered by floor per
+-- the user's spec: 20=NQ, 40=+1, 60=+2, 80=+3, 100=the alternate HQ line (Thaumas/Phorcys/Nares,
+-- not "+4" -- these are separate real items, not augments). All 30 item ids resolved by exact name
+-- against this codebase's own item_basic (lsb_item_basic/topaz_item_basic, zero drift on any of
+-- them) -- none invented.
+Nyzul.unchartedBossArmorDrops =
+{
+    [ 20] = { { item = 10621, rate = 334 }, { item = 10616, rate = 333 }, { item = 10626, rate = 333 } }, -- Euxine Nails / Rheic Schuhs / Tethyan Clogs
+    [ 40] = { { item = 10556, rate = 334 }, { item = 10551, rate = 333 }, { item = 10561, rate = 333 } }, -- Euxine Kecks +1 / Rheic Dirs +1 / Tethyan Trews +1
+    [ 60] = { { item = 10526, rate = 334 }, { item = 10521, rate = 333 }, { item = 10531, rate = 333 } }, -- Euxine Gloves +2 / Rheic Mitts +2 / Tethyan Cuffs +2
+    [ 80] = { { item = 10478, rate = 334 }, { item = 10473, rate = 333 }, { item = 10483, rate = 333 } }, -- Euxine Coat +3 / Rheic Korazin +3 / Tethyan Saio +3
+    [100] = { { item = 10906, rate = 334 }, { item = 10901, rate = 333 }, { item = 10911, rate = 333 } }, -- Thaumas Hat / Phorcys Salade / Nares Cap
+}
 
-    local currentFloor = mob:getInstance():getLocalVar("Nyzul_Current_Floor")
-    local drops = Nyzul.bossArmorDrops[currentFloor]
-    if not drops then
-        return
-    end
-
+local function rollBossArmorDrop(player, mob, drops)
     local roll = math.random(1, 1000)
     local cumulative = 0
     for _, drop in ipairs(drops) do
@@ -259,6 +286,95 @@ Nyzul.bossArmorDrop = function(player, mob)
             return
         end
     end
+end
+
+-- Uncharted-only, 2026-09-23 (user-directed follow-up): once an item is selected above, grant it
+-- 1-3 times instead of a flat 1 -- independent stacking rolls, not a single 1-in-3 pick: 1 is
+-- guaranteed, then a 50% roll for a 2nd, then (only if the 2nd hit) a 25% roll for a 3rd. Scoped to
+-- the new Uncharted table only, same as the rest of this armor system -- Investigation's original
+-- bossArmorDrops output (still exactly 1 per kill) is untouched.
+local function rollBossArmorDropStacked(player, mob, drops)
+    -- 2026-09-26 (issue #2): the extra drops used to re-grant the SAME item (1-3 copies of one
+    -- piece). Each extra now rolls again from the items NOT already dropped, so a stacked kill yields
+    -- different pieces from the pool. Weighted by each item's own rate among the remaining items.
+    local pool = {}
+    for _, drop in ipairs(drops) do
+        table.insert(pool, drop)
+    end
+
+    -- picks a drop from `pool` weighted by rate and removes it; nil if the pool is empty
+    local function pickFromPool()
+        local total = 0
+        for _, drop in ipairs(pool) do
+            total = total + drop.rate
+        end
+        if total <= 0 then
+            return nil
+        end
+        local roll = math.random(1, total)
+        local cumulative = 0
+        for i, drop in ipairs(pool) do
+            cumulative = cumulative + drop.rate
+            if roll <= cumulative then
+                table.remove(pool, i)
+                return drop
+            end
+        end
+        return nil
+    end
+
+    -- first item keeps the original single mutually-exclusive 1000-permille roll (60/40 odds unchanged)
+    local roll = math.random(1, 1000)
+    local cumulative = 0
+    for _, drop in ipairs(drops) do
+        cumulative = cumulative + drop.rate
+        if roll <= cumulative then
+            player:addTreasure(drop.item, mob)
+            for i, d in ipairs(pool) do
+                if d == drop then
+                    table.remove(pool, i)
+                    break
+                end
+            end
+            -- 50% for a 2nd DIFFERENT item, then (only if the 2nd hit) 25% for a 3rd different one
+            if math.random(1, 100) <= 50 then
+                local second = pickFromPool()
+                if second then
+                    player:addTreasure(second.item, mob)
+                    if math.random(1, 100) <= 25 then
+                        local third = pickFromPool()
+                        if third then
+                            player:addTreasure(third.item, mob)
+                        end
+                    end
+                end
+            end
+            return
+        end
+    end
+end
+
+Nyzul.bossArmorDrop = function(player, mob)
+    if not player then
+        return
+    end
+
+    local currentFloor = mob:getInstance():getLocalVar("Nyzul_Current_Floor")
+
+    if player:getCurrentAssault() == 52 then
+        local drops = Nyzul.unchartedBossArmorDrops[currentFloor]
+        if drops then
+            rollBossArmorDropStacked(player, mob, drops)
+        end
+        return
+    end
+
+    local drops = Nyzul.bossArmorDrops[currentFloor]
+    if not drops then
+        return
+    end
+
+    rollBossArmorDrop(player, mob, drops)
 end
 
 -- ENABLE_VIGIL_DROPS (LSB settings toggle) doesn't exist in this codebase -- omitted, the 20%
@@ -349,9 +465,10 @@ Nyzul.handleProgress = function(instance, progress)
             -- eligibility.
             local startFloor = instance:getLocalVar("Nyzul_Isle_StartingFloor")
             for _, player in pairs(instance:getChars()) do
-                local currentProgress = player:getVar("NyzulFloorProgress") or 0
+                local progressVar = Nyzul.floorProgressVar(player:getCurrentAssault())
+                local currentProgress = player:getVar(progressVar) or 0
                 if (currentProgress + 1) >= startFloor and clearedFloor > currentProgress then
-                    player:setVar("NyzulFloorProgress", clearedFloor)
+                    player:setVar(progressVar, clearedFloor)
                     -- Real 2-param bug found via live-test screenshots: dialog table entry 7483 is
                     -- "Data up to and including Floor <Numeric Parameter 1> has been recorded on
                     -- your <item name, Special Code substitution reading Numeric Parameter 0>"
@@ -483,6 +600,277 @@ Nyzul.floorNMKill = function(mob, player)
     if instance:getStage() == Nyzul.objective.ELIMINATE_ALL_ENEMIES then
         instance:setProgress(instance:getProgress() + 1)
     end
+end
+
+-- Uncharted-only per-NM drop table (2026-09-22, user-directed). Nyzul.floorNMKill/vigilWeaponDrop
+-- above are completely untouched -- this is purely additive. Reuses the SAME real, pre-existing
+-- 90-NM floor pool (ID.mob[51].NM_EVEN/NM_ODD, mob_spawn_points 17092824-17092913, zone 77) that
+-- both missions already share, but gives Uncharted's own kills a chance at that NM's own real
+-- canonical drop from its native (non-Nyzul) zone/encounter, instead of Investigation's generic
+-- Vigil-weapon roll. Every item id below was resolved by real name via id_bridge.py against this
+-- codebase's own item_basic.sql (not guessed/invented) -- sourced from each NM's own real BG Wiki
+-- page Treasure table (preferring a vcdrop/rdrop/cdrop-tagged entry, i.e. that NM's own signature
+-- item, over shared trash-drop materials). 20% rate is a deliberate house rule matching
+-- vigilWeaponDrop's own existing 20% fodder-NM rate, not a wiki-sourced number.
+--
+-- 3 of the 90 pool's real names have NO confirmed drop anywhere -- their own BG Wiki pages are
+-- tagged "Information Needed" (Leech_King, Nunyenunc) or the pool's "Vouivre" doesn't match any real
+-- BG Wiki NM page at all (only unrelated companion mobs "Andras's Vouivre"/"Caim's Vouivre" exist,
+-- neither is this NM) -- left OUT of this table deliberately rather than fabricated; those 3 names
+-- fall through to the armoury-crate-only branch below (still 100% crate, no chance item) until/unless
+-- a real source is found.
+Nyzul.unchartedNMDrops = {
+    ["Aiatar"] = { item = 15367, rate = 20 }, -- Falconer's Hose
+    ["Amikiri"] = { item = 16968, rate = 20 }, -- Kamewari
+    ["Aquarius"] = { item = 17925, rate = 20 }, -- Fransisca
+    ["Argus"] = { item = 939, rate = 20 }, -- Hecteyes Eye
+    ["Asphyxiated_Amsel"] = { item = 13512, rate = 20 }, -- Malgust Ring
+    ["Bat_Eye"] = { item = 557, rate = 20 }, -- Ahriman Lens
+    ["Bloodpool_Vorax"] = { item = 13058, rate = 20 }, -- Bloodbead Amulet
+    ["Bloodsucker"] = { item = 13302, rate = 20 }, -- Bloodbead Ring
+    ["Bloodtear_Baldurf"] = { item = 910, rate = 20 }, -- Lumbering Horn
+    ["Bomb_King"] = { item = 17316, rate = 20 }, -- Bomb Arm
+    ["Bonnacon"] = { item = 15323, rate = 20 }, -- Cure Clogs
+    ["Buburimboo"] = { item = 13057, rate = 20 }, -- Buburimu Gorget
+    ["Burned_Bergmann"] = { item = 13510, rate = 20 }, -- Malflame Ring
+    ["Cactuar_Cantautor"] = { item = 14128, rate = 20 }, -- Kung Fu Shoes
+    ["Capricious_Cassie"] = { item = 13978, rate = 20 }, -- Aiming Bracelets
+    ["Cargo_Crab_Colin"] = { item = 881, rate = 20 }, -- Crab Shell
+    ["Carnero"] = { item = 17811, rate = 20 }, -- Katayama Ichimonji
+    ["Crushed_Krause"] = { item = 13508, rate = 20 }, -- Maldust Ring
+    ["Daggerclaw_Dracos"] = { item = 853, rate = 20 }, -- Raptor Skin
+    ["Drooling_Daisy"] = { item = 13838, rate = 20 }, -- Dodge Headband
+    ["Dune_Widow"] = { item = 13137, rate = 20 }, -- Spider Torque
+    ["Eastern_Shadow"] = { item = 18714, rate = 20 }, -- Vali's Bow
+    ["Ellyllon"] = { item = 4386, rate = 20 }, -- King Truffle
+    ["Emergent_Elm"] = { item = 15701, rate = 20 }, -- Arborist Nails
+    ["Energetic_Eruca"] = { item = 18584, rate = 20 }, -- Astral Staff
+    ["Falcatus_Aranei"] = { item = 18040, rate = 20 }, -- Webcutter
+    ["Fraelissa"] = { item = 17211, rate = 20 }, -- Almogavar Bow
+    ["Friar_Rush"] = { item = 18139, rate = 20 }, -- Bomb Core
+    ["Frostmane"] = { item = 16944, rate = 20 }, -- Lockheart
+    ["Fungus_Beetle"] = { item = 12371, rate = 20 }, -- Clipeus
+    ["Gargantua"] = { item = 13115, rate = 20 }, -- Elemental Charm
+    ["Golden_Bat"] = { item = 13576, rate = 20 }, -- Night Cape
+    ["Gyre-Carlin"] = { item = 14866, rate = 20 }, -- Concealing Cuffs
+    ["Helldiver"] = { item = 17281, rate = 20 }, -- Wingedge
+    ["Hellion"] = { item = 18041, rate = 20 }, -- A l'Outrance
+    ["Intulo"] = { item = 14759, rate = 20 }, -- Curaga Earring
+    ["Jaded_Jody"] = { item = 15613, rate = 20 }, -- Jet Seraweels
+    ["Jaggedy-Eared_Jack"] = { item = 13112, rate = 20 }, -- Rabbit Charm
+    ["Jolly_Green"] = { item = 13228, rate = 20 }, -- Shaman's Belt
+    ["Juggler_Hecatomb"] = { item = 16868, rate = 20 }, -- Heavy Halberd
+    ["Keeper_of_Halidom"] = { item = 16990, rate = 20 }, -- Daihannya
+    ["Leaping_Lizzy"] = { item = 15351, rate = 20 }, -- Bounding Boots
+    ["Maighdean_Uaine"] = { item = 14803, rate = 20 }, -- Optical Earring
+    ["Mischievous_Micholas"] = { item = 17618, rate = 20 }, -- Kidney Dagger
+    ["Nightmare_Vase"] = { item = 16913, rate = 20 }, -- Shinogi
+    ["Northern_Shadow"] = { item = 16723, rate = 20 }, -- Executioner
+    ["Odqan"] = { item = 14658, rate = 20 }, -- Atlaua's Ring
+    ["Old_Two-Wings"] = { item = 13598, rate = 20 }, -- Bat Cape
+    ["Orctrap"] = { item = 15291, rate = 20 }, -- Hojutsu Belt
+    ["Panzer_Percival"] = { item = 16714, rate = 20 }, -- Neckchopper
+    ["Peallaidh"] = { item = 14946, rate = 20 }, -- Nightmare Gloves
+    ["Peg_Powler"] = { item = 16728, rate = 20 }, -- Schwarz Axt
+    ["Pelican"] = { item = 12382, rate = 20 }, -- Astral Aspis
+    ["Pulverized_Pfeffer"] = { item = 13509, rate = 20 }, -- Malfrost Ring
+    ["Roc"] = { item = 4799, rate = 20 }, -- Scroll of Stonega III
+    ["Sabotender_Bailarin"] = { item = 14168, rate = 20 }, -- Dune Boots
+    ["Sabotender_Mariachi"] = { item = 17981, rate = 20 }, -- Bano del Sol
+    ["Serket"] = { item = 13552, rate = 20 }, -- Serket Ring
+    ["Serpopard_Ishtar"] = { item = 13086, rate = 20 }, -- Cerulean Pendant
+    ["Sewer_Syrup"] = { item = 13303, rate = 20 }, -- Jelly Ring
+    ["Shadow_Eye"] = { item = 13114, rate = 20 }, -- Moon Amulet
+    ["Sharp-Eared_Ropipi"] = { item = 15218, rate = 20 }, -- Entrancing Ribbon
+    ["Simurgh"] = { item = 15736, rate = 20 }, -- Trotter Boots
+    ["Smothered_Schmidt"] = { item = 13507, rate = 20 }, -- Malflood Ring
+    ["Southern_Shadow"] = { item = 12344, rate = 20 }, -- Master Shield
+    ["Spiny_Spipi"] = { item = 13607, rate = 20 }, -- Mist Silk Cape
+    ["Steelfleece_Baldarich"] = { item = 911, rate = 20 }, -- Rampaging Horn
+    ["Stinging_Sophie"] = { item = 16486, rate = 20 }, -- Beestinger
+    ["Stray_Mary"] = { item = 17366, rate = 20 }, -- Mary's Horn
+    ["Swamfisk"] = { item = 17594, rate = 20 }, -- Gelong Staff
+    ["Taisaijin"] = { item = 15222, rate = 20 }, -- Spelunker's Hat
+    ["Tom_Tit_Tat"] = { item = 16443, rate = 20 }, -- Fruit Punches
+    ["Tottering_Toby"] = { item = 13013, rate = 20 }, -- Stumbling Sandals
+    ["Trickster_Kinetix"] = { item = 16657, rate = 20 }, -- Tabar
+    ["Tumbling_Truffle"] = { item = 12485, rate = 20 }, -- Fungus Hat
+    ["Tyrannic_Tunnok"] = { item = 17927, rate = 20 }, -- Lohar
+    ["Ungur"] = { item = 18141, rate = 20 }, -- Ungur Boomerang
+    ["Unut"] = { item = 14287, rate = 20 }, -- Luna Subligar
+    ["Valkurm_Emperor"] = { item = 15224, rate = 20 }, -- Empress Hairpin
+    ["Western_Shadow"] = { item = 18752, rate = 20 }, -- Retaliators
+    ["Wounded_Wurfel"] = { item = 13511, rate = 20 }, -- Malflash Ring
+    ["Zizzy_Zillah"] = { item = 14945, rate = 20 }, -- Fencing Bracers
+}
+
+Nyzul.unchartedFloorNMDrop = function(player, mob)
+    if not player then
+        return
+    end
+
+    local drop = Nyzul.unchartedNMDrops[mob:getName()]
+    if drop and math.random(1, 100) <= drop.rate then
+        player:addTreasure(drop.item, mob)
+    end
+end
+
+-- Dispatcher for the 90 shared floor-NM mob scripts (each currently calls Nyzul.floorNMKill
+-- directly). Branches purely on the killing player's own active assault id: assault 52 (Uncharted)
+-- gets the per-NM drop table above; every other caller (assault 51 Investigation, or anything else
+-- that reuses these mob scripts/ids) falls through to the ORIGINAL, completely unmodified
+-- floorNMKill/vigilWeaponDrop behavior -- so Investigation's real output is provably unchanged.
+Nyzul.floorNMKillShared = function(mob, player)
+    if player and player:getCurrentAssault() == 52 then
+        local instance = mob:getInstance()
+
+        dropArmouryCrate(mob)
+        Nyzul.unchartedFloorNMDrop(player, mob)
+        Nyzul.unchartedAlexandriteDrop(player, mob)
+
+        if instance:getStage() == Nyzul.objective.ELIMINATE_ALL_ENEMIES then
+            instance:setProgress(instance:getProgress() + 1)
+        end
+    else
+        Nyzul.floorNMKill(mob, player)
+    end
+end
+
+-- Alexandrite (item 3, 2026-09-23, user-directed): non-boss-floor NM kills in Uncharted Area
+-- Survey (assault 52 only) have a chance to drop one Piece of Alexandrite, in addition to any
+-- other existing drop (Armoury Crate, Vigil weapon, per-NM signature item from unchartedNMDrops).
+-- Real item id 2488 ("piece_of_alexandrite") resolved via id_bridge.py -- no drift between
+-- LSB/Topaz. 20% rate is a house rule (no wiki-published number), matching the existing
+-- unchartedNMDrops/vigilWeaponDrop 20% convention. Callers are responsible for their own
+-- assault==52 gate; this function does not check it itself -- every caller already does
+-- (floorNMKillShared's uncharted branch below, already assault-gated; and the 19 leaderPool NM
+-- scripts, which are instance-52-exclusive mob_pools/ids by construction, see
+-- nyzul_isle_uncharted_area_survey.lua header note 1).
+local ALEXANDRITE_ITEM = 2488
+Nyzul.unchartedAlexandriteDrop = function(player, mob)
+    if player and math.random(1, 100) <= 20 then
+        player:addTreasure(ALEXANDRITE_ITEM, mob)
+    end
+end
+
+-- Coin Purse boss drops (item 3, 2026-09-23, user-directed): the floor 20/40/60 bosses
+-- (Stealthlord Haraal Ja/Dabargar the Stoic/Stheno) have a ~25% chance to drop a Cotton Coin
+-- Purse; Lord Vryko (floor 80) always drops one; Dvali Jonah (floor 100) always drops a Linen
+-- Coin Purse instead. Real item ids 5735 ("cotton_coin_purse")/5736 ("linen_coin_purse")
+-- resolved via id_bridge.py -- no drift between LSB/Topaz. These 5 boss scripts are
+-- instance-52-exclusive by construction (see nyzul_isle_uncharted_area_survey.lua header note 2:
+-- their mob_pools/mob_groups/mob_spawn_points ids don't exist in Investigation at all), so no
+-- assault gate is needed here.
+local COTTON_COIN_PURSE_ITEM = 5735
+local LINEN_COIN_PURSE_ITEM = 5736
+
+Nyzul.unchartedTierBossCoinPurseDrop = function(player, mob)
+    if player and math.random(1, 100) <= 25 then
+        player:addTreasure(COTTON_COIN_PURSE_ITEM, mob)
+    end
+end
+
+Nyzul.unchartedVrykoCoinPurseDrop = function(player, mob)
+    if player then
+        player:addTreasure(COTTON_COIN_PURSE_ITEM, mob)
+    end
+end
+
+Nyzul.unchartedJonahCoinPurseDrop = function(player, mob)
+    if player then
+        player:addTreasure(LINEN_COIN_PURSE_ITEM, mob)
+    end
+end
+
+-- Astraria fragment/redemption system (item 2/5, 2026-09-23, user-directed): the 5 Uncharted
+-- boss floors (20/40/60/80/100) each build toward one of 5 real key items -- BRONZE/SILVER/
+-- DSP-PORT-TODO: unmapped tpz.* reference -- see data/dsp_namespace_map.json
+-- MYTHRIL/GOLD/PLATINUM_ASTRARIUM (tpz.ki ids 2068-2072, scripts/globals/keyitems.lua, zero
+-- LSB/Topaz drift, and independently corroborated by Berangere's own real client event-data
+-- array in this session's Aht_Urhgan_Whitegate mission_toolkit pull). Per user spec: a per-tier
+-- char_var tracks fragments 0..5 (0..1 for Platinum only); on the 5th fragment (1st for
+-- Platinum) the real key item is auto-granted and the char_var resets to 0; while the player
+-- already holds that tier's key item, further boss kills can still tick the char_var up toward
+-- maxFragments-1 (banking progress on the *next* one) but can never complete it -- the final
+-- fragment is refused with a "you already possess this astrarium" message (exact wording is
+-- the user's own spec text, not a captured client string) until the held key item is redeemed
+-- at Berangere, which explicitly resets the char_var back to 0 (see Berangere.lua). This mirrors
+-- bossArmorDrop's own floor->tier dispatch below since these are the same 5 boss scripts.
+-- FIXED 2026-09-24: the original charvar names (e.g. "UnchartedAstrariumBronzeFragments", 34 chars)
+-- all exceeded char_vars.varname's varchar(30) column limit (sql/char_vars.sql:31), so every
+-- setCharVar() fragment write for every tier was silently failing (confirmed via live map-server
+-- "[SQL] DB error - Data too long for column 'varname'" while testing !astraria bronze set 3, which
+-- then read back as fragments=0). Renamed to fit under 30 chars; no numeric/content IDs involved, so
+-- this is a safe internal rename, not a fabricated id.
+Nyzul.astraria =
+{
+    BRONZE   = { charvar = "AstrariaFragBronze",   ki = BRONZE_ASTRARIUM,   maxFragments = 5, name = "bronze astrarium" },
+    SILVER   = { charvar = "AstrariaFragSilver",   ki = SILVER_ASTRARIUM,   maxFragments = 5, name = "silver astrarium" },
+    MYTHRIL  = { charvar = "AstrariaFragMythril",  ki = MYTHRIL_ASTRARIUM,  maxFragments = 5, name = "mythril astrarium" },
+    GOLD     = { charvar = "AstrariaFragGold",     ki = GOLD_ASTRARIUM,     maxFragments = 5, name = "gold astrarium" },
+    PLATINUM = { charvar = "AstrariaFragPlatinum", ki = PLATINUM_ASTRARIUM, maxFragments = 1, name = "platinum astrarium" },
+}
+
+local unchartedFloorToAstrariaTier =
+{
+    [ 20] = "BRONZE",
+    [ 40] = "SILVER",
+    [ 60] = "MYTHRIL",
+    [ 80] = "GOLD",
+    [100] = "PLATINUM",
+}
+
+Nyzul.unchartedAstrariaFragmentGain = function(player, mob)
+    if not player or player:getCurrentAssault() ~= 52 then
+        return
+    end
+
+    local currentFloor = mob:getInstance():getLocalVar("Nyzul_Current_Floor")
+    local tier = unchartedFloorToAstrariaTier[currentFloor]
+    if not tier then
+        return
+    end
+
+    local data = Nyzul.astraria[tier]
+
+    if player:hasKeyItem(data.ki) then
+        if data.maxFragments > 1 then
+            local fragments = player:getVar(data.charvar)
+            if fragments < data.maxFragments - 1 then
+                fragments = fragments + 1
+                player:setVar(data.charvar, fragments)
+                player:PrintToPlayer(string.format("You obtain a fragment of the %s. (%u/%u)", data.name, fragments, data.maxFragments))
+                return
+            end
+        end
+        player:PrintToPlayer(string.format("You already possess this astrarium. Unable to obtain additional parts."))
+        return
+    end
+
+    local fragments = player:getVar(data.charvar) + 1
+
+    if fragments >= data.maxFragments then
+        player:setVar(data.charvar, 0)
+        player:addKeyItem(data.ki)
+        player:messageSpecial(zones[player:getZoneID()].text.KEYITEM_OBTAINED, data.ki)
+    else
+        player:setVar(data.charvar, fragments)
+        player:PrintToPlayer(string.format("You obtain a fragment of the %s. (%u/%u)", data.name, fragments, data.maxFragments))
+    end
+end
+
+-- Called from Berangere.lua on a successful redemption -- resets fragment progress to 0 per
+-- user spec ("Once that particular astrarium is removed by redeeming, fragment char_var is
+-- reset to 0"), discarding any fragments banked toward the next one while the KI was held.
+Nyzul.unchartedAstrariaRedeem = function(player, tier)
+    local data = Nyzul.astraria[tier]
+    if not data or not player:hasKeyItem(data.ki) then
+        return false
+    end
+
+    player:delKeyItem(data.ki)
+    player:setVar(data.charvar, 0)
+    return true
 end
 
 Nyzul.specifiedGroupKill = function(mob)

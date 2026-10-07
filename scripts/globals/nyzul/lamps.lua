@@ -11,6 +11,7 @@
 -- earlier this session against a real Nyzul Isle capture (CSID 3 for the lamp's own interaction,
 -- see npcs/Runic_Lamp.lua).
 -----------------------------------
+require("scripts/globals/debug_print")
 require("scripts/globals/nyzul/floor_layouts")
 require("scripts/zones/Nyzul_Isle/IDs")
 require("scripts/globals/status")
@@ -27,6 +28,8 @@ Nyzul.resetLamps = function(instance)
             lamp:resetLocalVars()
             lamp:AnimationSub(0)
             lamp:setStatus(STATUS_CUTSCENE_ONLY)
+        else
+            dbgPrint(string.format("[LAMP DEBUG] resetLamps: GetNPCByID(%d) returned nil", i))
         end
     end
 end
@@ -37,7 +40,15 @@ Nyzul.lampsActivate = function(instance)
     local partySize = utils.clamp(instance:getLocalVar("partySize"), 3, 5)
     local layoutPoints = Nyzul.lampSpawnPoints[floorLayout]
 
+    -- 2026-09-23, debug logging added live per user request ("lamps not responding at all"). This
+    -- function only runs on a floor whose objective roll actually landed on ACTIVATE_ALL_LAMPS
+    -- (a 1-in-6 chance in finishPickSetPoint) -- absence of this line for a given floor confirms
+    -- the lamps are deliberately CUTSCENE_ONLY/untargetable that floor, not broken.
+    dbgPrint(string.format("[LAMP DEBUG] lampsActivate: floorLayout=%s objective=%s partySize=%s layoutPoints=%s",
+        tostring(floorLayout), tostring(lampsObjective), tostring(partySize), tostring(layoutPoints and #layoutPoints or "nil")))
+
     if not layoutPoints then
+        dbgPrint("[LAMP DEBUG] lampsActivate: no layoutPoints for this floorLayout -- aborting, lamps stay CUTSCENE_ONLY")
         return
     end
 
@@ -54,6 +65,7 @@ Nyzul.lampsActivate = function(instance)
         end
 
         instance:setLocalVar("[Lamp]PartySize", instance:getLocalVar("partySize"))
+        dbgPrint(string.format("[LAMP DEBUG] lampsActivate: REGISTER variant, lamp %d set NORMAL", NyzulIsle.npcs.RUNIC_LAMP_OFFSET))
     elseif lampsObjective == Nyzul.lampsObjective.ACTIVATE_ALL then
         local runicLamps = math.random(2, math.max(2, partySize - 1))
 
@@ -65,7 +77,11 @@ Nyzul.lampsActivate = function(instance)
                 local pos = dTableLampPoints[spawnPoint]
                 lamp:setPos(pos[1] or pos.x, pos[2] or pos.y, pos[3] or pos.z)
                 lamp:setStatus(STATUS_NORMAL)
+                dbgPrint(string.format("[LAMP DEBUG] lampsActivate: ACTIVATE_ALL variant, lamp %d set NORMAL at (%s,%s,%s)",
+                    i, tostring(pos[1] or pos.x), tostring(pos[2] or pos.y), tostring(pos[3] or pos.z)))
                 table.remove(dTableLampPoints, spawnPoint)
+            else
+                dbgPrint(string.format("[LAMP DEBUG] lampsActivate: ACTIVATE_ALL variant, GetNPCByID(%d) returned nil", i))
             end
         end
 

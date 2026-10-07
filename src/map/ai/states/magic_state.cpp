@@ -170,10 +170,24 @@ bool CMagicState::CanCastSpell(CBattleEntity* PTarget)
         m_errorMsg = std::make_unique<CMessageBasicPacket>(m_PEntity, m_PEntity, static_cast<uint16>(m_PSpell->getID()), 0, MSGBASIC_CANNOT_USE_IN_AREA);
         return false;
     }
-    if (m_PEntity->StatusEffectContainer->HasStatusEffect({EFFECT_SILENCE, EFFECT_MUTE, EFFECT_OMERTA}))
+    if (m_PEntity->StatusEffectContainer->HasStatusEffect({EFFECT_SILENCE, EFFECT_MUTE}))
     {
         m_errorMsg = std::make_unique<CMessageBasicPacket>(m_PEntity, m_PEntity, static_cast<uint16>(m_PSpell->getID()), 0, MSGBASIC_UNABLE_TO_CAST_SPELLS);
         return false;
+    }
+    // OMERTA (Nyzul pathos, scripts/globals/nyzul/pathos.lua): per-magic-type restriction, not a blanket silence.
+    // Power is a bitmask over SPELLGROUP (1 << (group-1), SONG..WHITE = 0x01 song, 0x02 black, 0x04 blue,
+    // 0x08 ninjutsu, 0x10 summoning, 0x20 white). Groups outside SONG..WHITE, or power 0, are never blocked.
+    // Ported from Topaz-Next.
+    if (auto* POmerta = m_PEntity->StatusEffectContainer->GetStatusEffect(EFFECT_OMERTA))
+    {
+        auto group = m_PSpell->getSpellGroup();
+        if (group >= SPELLGROUP_SONG && group <= SPELLGROUP_WHITE &&
+            (POmerta->GetPower() & (1 << (static_cast<uint8>(group) - 1))) != 0)
+        {
+            m_errorMsg = std::make_unique<CMessageBasicPacket>(m_PEntity, m_PEntity, static_cast<uint16>(m_PSpell->getID()), 0, MSGBASIC_UNABLE_TO_CAST_SPELLS);
+            return false;
+        }
     }
     if (!HasCost())
     {
