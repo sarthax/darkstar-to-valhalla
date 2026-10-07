@@ -49,6 +49,7 @@ local function voidstoneCount(player)
 end
 
 function onTrade(player,npc,trade)
+    vwTradeCells(player, npc, trade); -- ascent cells [F]
 end;
 
 function onTrigger(player,npc)

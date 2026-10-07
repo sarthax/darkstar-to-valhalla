@@ -86,7 +86,7 @@ function onMobDeath(mob, player, isKiller)
     vwEndOperation(mob);
     local idx = (mob:getID() - 17309985) / 4;
     vwOnKill(mob, player, {
-        cruor = 6000, -- [D] Zilart base 5000/7000-8000 per wiki digest; exact Ashen III value unverified (Wiggo capture p6 holds cruor total, not reward)
+        region = "ZILART", stage = 3, -- [F] Zilart III: 5000 EXP / 8000 cruor
         pyxisId = 17310114 + idx,
         drops = {11035, 11964}, -- Strophadic Earring, Whirlwind Dirs [W: BG wiki Aello 5% each]; ids checked vs DSP item_basic
         msgKeyItem = 10883,

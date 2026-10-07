@@ -109,7 +109,7 @@ function onMobDeath(mob, player, isKiller)
     vwEndOperation(mob);
     local idx = mob:getID() - 17203697;
     vwOnKill(mob, player, {
-        cruor = 6000, -- [C] Belphoebe Pyxis capture: 'obtains 6000 cruor'
+        region = "THREE", stage = 3, -- [F] stage table; cruor/EXP base
         pyxisId = 17203942 + idx,
         drops = {17057, 16498}, -- Tefnut Wand, Carabineer's Dagger [F, J]; ids checked vs DSP item_basic
         keyitem = ATMACITE_OF_DEVOTION, -- 1806 [W/F]; DSP keyitems.lua name; client-id check pending
