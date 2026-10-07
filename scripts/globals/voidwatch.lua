@@ -93,6 +93,23 @@ local function vwRiftReturn(mob)
     end
 end
 
+-- Aello: handmaidens are the 3 mob ids after her. Shrieking Gale resummons dead ones on her position [forum #1140]
+AELLO_HM_OFFSET = {{0.805, 0.113}, {0.807, 0.126}, {1.277, 0.438}};
+function vwAelloResummon(aello, target)
+    local pos = aello:getPos();
+    for i = 1, 3 do
+        local h = GetMobByID(aello:getID() + i);
+        if (h ~= nil and not h:isSpawned()) then
+            local m = SpawnMob(aello:getID() + i);
+            if (m ~= nil) then
+                local o = AELLO_HM_OFFSET[i]; -- [C] Wiggo capture offsets from Aello at the rift
+                m:setPos(pos.x + o[1], pos.y, pos.z + o[2], pos.rot);
+                if (target ~= nil) then m:updateEnmity(target); end
+            end
+        end
+    end
+end
+
 function vwPyxisItems(npc)
     local t = {};
     for i = 1, 8 do t[i] = npc:getLocalVar("ITEM" .. i); end
@@ -112,6 +129,9 @@ end
 -- end of operation (kill or timeout): clear status 475 from everyone cleared in this zone
 function vwEndOperation(mob)
     vwRiftReturn(mob);
+    if (mob:getName() == "Aello") then
+        for i = 1, 3 do DespawnMob(mob:getID() + i); end
+    end
     for _, p in pairs(mob:getZone():getPlayers()) do
         if (vwHasClearance(mob, p)) then
             p:delStatusEffect(EFFECT_VOIDWATCHER);
