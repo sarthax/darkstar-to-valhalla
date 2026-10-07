@@ -11,6 +11,7 @@ require("scripts/globals/keyitems");
 local VW_NOT_ELIGIBLE      = 7506;
 local VW_CLEARANCE_EXPEND  = 7507;
 local VW_FIEND_MATERIALIZE = 7527;
+local VW_MINUTES_TO_COMPLETE = 7513;
 
 local RIFT_FIRST = 17568198;   -- [V] client events dat == DSP npc_list
 local MOB_FIRST  = 17568142;   -- [V] mob_spawn_points rows, group 13809 (i-th row <-> i-th rift) [LSB order]
@@ -69,5 +70,7 @@ function onEventFinish(player,csid,option)
     player:messageSpecial(VW_CLEARANCE_EXPEND, VOIDSTONES[1]);  -- [V] 7507 param = keyitem; exact param form unverified
     player:messageSpecial(VW_FIEND_MATERIALIZE);
     SpawnMob(MOB_FIRST + idx):updateClaim(player);
+    GetMobByID(MOB_FIRST + idx):setLocalVar("VW_SPAWNER", player:getID());
+    player:messageSpecial(VW_MINUTES_TO_COMPLETE, 30);
     -- TODO [D]: 30 min timer via onInstanceTimeUpdate-style mob tick, status 475 on party, weakness/stagger/blitz, Pyxis
 end;
