@@ -338,4 +338,7 @@ end
 -- (e.g. Sunbreeze stage show). emoteId is the raw client emote id; targetId/targetIndex
 -- are the emote's target entity (0 if none).
 function onPlayerEmote(player, emoteId, targetId, targetIndex)
+    if (SUNBREEZE2021 ~= nil or pcall(require, "scripts/globals/events/sunbreeze_2021_addon")) then
+        SUNBREEZE2021.onEmote(player, emoteId);
+    end
 end
