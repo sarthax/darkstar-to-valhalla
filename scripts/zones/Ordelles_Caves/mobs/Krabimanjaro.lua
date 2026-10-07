@@ -7,6 +7,9 @@
 -----------------------------------
 
 require("scripts/globals/voidwatch");
+require("scripts/globals/status");
+require("scripts/globals/magic");
+require("scripts/globals/msg");
 local VW_MINUTES_TO_COMPLETE = 7513;
 local VW_MINUTES_REMAINING   = 7514;
 local VW_SECONDS_REMAINING   = 7515;
@@ -53,11 +56,28 @@ local function tick(mob)
     end
 end
 
+function onMobInitialize(mob)
+    mob:setMobMod(MOBMOD_ADD_EFFECT, 1);
+end;
+
+-- Melee additional effect: Paralysis [W] BG wiki; user-observed in-game. Chance/power/duration are [D] guesses.
+function onAdditionalEffect(mob, player)
+    local resist = applyResistanceAddEffect(mob, player, ELE_LIGHTNING, EFFECT_PARALYSIS);
+    if (math.random(0,99) >= 25 or resist <= 0.5) then
+        return 0,0,0;
+    end
+    if (player:hasStatusEffect(EFFECT_PARALYSIS) == false) then
+        player:addStatusEffect(EFFECT_PARALYSIS, 20, 0, 60 * resist);
+    end
+    return SUBEFFECT_PARALYSIS, msgBasic.ADD_EFFECT_STATUS, EFFECT_PARALYSIS;
+end;
+
 function onMobSpawn(mob)
     mob:setLocalVar("VW_DEADLINE", os.time() + LIMIT);
     mob:setLocalVar("VW_WARNED", LIMIT + 1);
     mob:setMobMod(MOBMOD_NO_DESPAWN, 1);
     vwWeaknessInit(mob);
+    mob:setMod(MOD_TRIPLE_ATTACK, 10); -- [W] BG wiki "can triple attack"; 10% rate per user
     mob:setMod(MOD_DEFP, 50); -- [W] "very high Defense"; amount is a [D] guess
 end;
 
@@ -65,9 +85,9 @@ function onMobRoam(mob) tick(mob); end;
 
 function onMobFight(mob, target)
     tick(mob);
-    -- [W] "Gains a Regain effect at low HP (cannot be dispelled)"; threshold/amount are [D] guesses
-    if (mob:getHPP() < 25 and mob:getMod(MOD_REGAIN) == 0) then
-        mob:addMod(MOD_REGAIN, 20);
+    -- [W] Regain below 50% HP (BG wiki Krabimanjaro; Krabkatoa "modest TP Regain"); 100 is the user's [D] pick
+    if (mob:getHPP() < 50 and mob:getMod(MOD_REGAIN) == 0) then
+        mob:addMod(MOD_REGAIN, 100);
     end
 end;
 
