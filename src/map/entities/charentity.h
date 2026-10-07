@@ -280,6 +280,7 @@ public:
     uint8             m_mentor;                     // Mentor flag status.
     bool              m_isNewPlayer;                // New player flag..
     uint32            m_moghouseID;
+    uint16            m_moghancementID;   // key item granted by the dominant furniture aura (0 = none)
 
     int8			  getShieldSize();
 
@@ -311,6 +312,14 @@ public:
     bool        ReloadParty();
 
     void        PostTick() override;
+
+    // Mog House Moghancement (dominant furniture aura -> key item + modifiers)
+    bool        hasMoghancement(uint16 moghancementID) const;
+    void        UpdateMoghancement();               // recalculate from the installed furniture, after placing/removing
+    void        LoadMoghancement();                 // login: restore from the key items already held
+    void        SetMoghancement(uint16 moghancementID);
+    void        ChangeMoghancement(uint16 newMoghancementID);   // swap key item + modifiers
+    std::string MoghancementDebug(const std::string& action, int32 value); // GM debug (!moghancement)
 
     virtual void addTrait(CTrait*) override;
     virtual void delTrait(CTrait*) override;

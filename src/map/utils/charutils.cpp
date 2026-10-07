@@ -785,6 +785,7 @@ namespace charutils
         }
 
         charutils::LoadInventory(PChar);
+        PChar->LoadMoghancement();
         PChar->m_event.EventID = luautils::OnZoneIn(PChar);
 
         CalculateStats(PChar);
@@ -910,7 +911,7 @@ namespace charutils
                         PItem->setSignature(EncodedString);
                     }
 
-                    if (PItem->isType(ITEM_FURNISHING) && PItem->getLocationID() == LOC_MOGSAFE)
+                    if (PItem->isType(ITEM_FURNISHING) && (PItem->getLocationID() == LOC_MOGSAFE || PItem->getLocationID() == LOC_MOGSAFE2))
                     {
                         if (((CItemFurnishing*)PItem)->isInstalled()) // способ узнать, что предмет действительно установлен
                         {
@@ -3123,13 +3124,17 @@ namespace charutils
                 uint32 gilPerPerson = gil / members.size();
                 for (auto PMember : members)
                 {
-                    UpdateItem(PMember, LOC_INVENTORY, 0, gilPerPerson);
-                    PMember->pushPacket(new CMessageBasicPacket(PMember, PMember, gilPerPerson, 0, 565));
+                    // Moghancement: Money / Money II
+                    uint32 memberGil = gilPerPerson + gilPerPerson * PMember->getMod(Mod::GILFINDER) / 100;
+                    UpdateItem(PMember, LOC_INVENTORY, 0, memberGil);
+                    PMember->pushPacket(new CMessageBasicPacket(PMember, PMember, memberGil, 0, 565));
                 }
             }
         }
         else if (distance(PChar->loc.p, PMob->loc.p) < 100)
         {
+            // Moghancement: Money / Money II
+            gil += gil * PChar->getMod(Mod::GILFINDER) / 100;
             UpdateItem(PChar, LOC_INVENTORY, 0, gil);
             PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, gil, 0, 565));
         }
