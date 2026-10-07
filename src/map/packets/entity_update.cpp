@@ -105,6 +105,12 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
                 // time (this print) vs. a client-side rendering/reset issue (would show correct
                 // here but still render unlit) -- scoped to zone 77 (Nyzul Isle) only, remove once
                 // root-caused.
+                // Retail sends the Symphonic Curator's name in its spawn packet (capture 0x00E, size 0x24)
+                if (type == ENTITY_SPAWN && strcmp(PEntity->GetName(), "SymphonicCurat") == 0)
+                {
+                    this->size = 0x24;
+                    memcpy(data + (0x34), PEntity->GetName(), (PEntity->name.size() > 15 ? 15 : PEntity->name.size()));
+                }
                 if (PEntity->loc.zone != nullptr && PEntity->loc.zone->GetID() == 77 && type == ENTITY_SPAWN)
                 {
                     ShowDebug("[NYZUL ANIMSUB DEBUG] ENTITY_SPAWN npc id=%d name=%s animationsub=%d\n",

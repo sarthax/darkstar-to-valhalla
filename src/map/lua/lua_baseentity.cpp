@@ -7109,6 +7109,33 @@ inline int32 CLuaBaseEntity::needToZone(lua_State *L)
 *                                                                       *
 ************************************************************************/
 
+inline int32 CLuaBaseEntity::isFurnitureInstalled(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+    CCharEntity* PChar  = (CCharEntity*)m_PBaseEntity;
+    uint16       ItemID = (uint16)lua_tointeger(L, 1);
+
+    for (auto containerID : { LOC_MOGSAFE, LOC_MOGSAFE2 })
+    {
+        CItemContainer* PContainer = PChar->getStorage(containerID);
+        for (int slotID = 0; slotID < PContainer->GetSize(); ++slotID)
+        {
+            CItem* PItem = PContainer->GetItem(slotID);
+            if (PItem != nullptr && PItem->getID() == ItemID && PItem->isType(ITEM_FURNISHING) &&
+                static_cast<CItemFurnishing*>(PItem)->isInstalled())
+            {
+                lua_pushboolean(L, true);
+                return 1;
+            }
+        }
+    }
+    lua_pushboolean(L, false);
+    return 1;
+}
+
 inline int32 CLuaBaseEntity::getContainerSize(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
@@ -11820,6 +11847,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getCharmChance),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,needToZone),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getContainerSize),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,isFurnitureInstalled),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,changeContainerSize),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPartyMember),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPartySize),
