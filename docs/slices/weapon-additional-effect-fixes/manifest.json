@@ -1,0 +1,302 @@
+{
+ "out_of_scope": [
+  {
+   "id": 16504,
+   "name": "oynos_knife",
+   "level": 93
+  },
+  {
+   "id": 17069,
+   "name": "moepapa_mace",
+   "level": 94
+  },
+  {
+   "id": 18785,
+   "name": "grotesque_cesti",
+   "level": 92
+  },
+  {
+   "id": 19296,
+   "name": "ban",
+   "level": 93
+  },
+  {
+   "id": 20609,
+   "name": "jugo_kukri_+1",
+   "level": 99
+  },
+  {
+   "id": 20611,
+   "name": "sangarius",
+   "level": 99
+  },
+  {
+   "id": 20612,
+   "name": "sangarius_+1",
+   "level": 99
+  },
+  {
+   "id": 20904,
+   "name": "cronus",
+   "level": 99
+  },
+  {
+   "id": 21102,
+   "name": "mafic_cudgel",
+   "level": 99
+  },
+  {
+   "id": 21166,
+   "name": "staccato_staff",
+   "level": 99
+  }
+ ],
+ "ready": [
+  {
+   "id": 16581,
+   "name": "holy_sword",
+   "source": "LandSandBoat item_mods (chance/damage), element confirmed by BG Wiki",
+   "lsb": {
+    "type": 1,
+    "damage": 10,
+    "chance": 5,
+    "element": 7
+   }
+  },
+  {
+   "id": 16816,
+   "name": "holy_sword_+1",
+   "source": "LandSandBoat item_mods (chance/damage), element confirmed by BG Wiki",
+   "lsb": {
+    "type": 1,
+    "damage": 10,
+    "chance": 10,
+    "element": 7
+   }
+  },
+  {
+   "id": 19132,
+   "name": "twilight_knife",
+   "source": "BG Wiki",
+   "assumption": "HP/MP amount uniform 1..45"
+  },
+  {
+   "id": 19315,
+   "name": "erebuss_lance",
+   "source": "user-supplied wiki formula (5%, TP/14, Empty only)",
+   "assumption": "no resistance/MAB adjustment"
+  }
+ ],
+ "renames": [
+  {
+   "id": 16489,
+   "name": "poison_kukri_+1",
+   "rename_from": "scripts/globals/items/poison_kukri _+1.lua",
+   "rename_to": "scripts/globals/items/poison_kukri_+1.lua"
+  }
+ ],
+ "needs_values": [
+  {
+   "id": 18784,
+   "name": "metasoma_katars",
+   "kind": "multi",
+   "wiki": "Additional effect: Poison, Paralyze, or Bind. User report: proc rate is very high and several of the three often land on one mob. Afflictions ignore enemy resistance and immunity. NOTE: a Lua script can skip the resistance roll but cannot skip immunity (enforced in C++ StatusEffectContainer::CanGainStatusEffect); that needs an engine change.",
+   "missing": [
+    "chance (per status)",
+    "power and duration per status"
+   ],
+   "lsb": {
+    "type": 1
+   }
+  },
+  {
+   "id": 18810,
+   "name": "cadushi_grip",
+   "kind": "drain",
+   "wiki": "Additional effect: HP drain. User observation: ~1% proc (about 1 in 25 hits), drained 34 HP and 43 HP on the two procs seen (2 samples, no range known)",
+   "missing": [
+    "chance",
+    "drain amount"
+   ],
+   "lsb": {
+    "type": 1
+   }
+  },
+  {
+   "id": 19140,
+   "name": "mantodea_harpe",
+   "kind": "status",
+   "wiki": "Additional effect: Gravity (user-confirmed; Gravity is EFFECT_WEIGHT in DSP, as spells/gravity.lua uses)",
+   "missing": [
+    "chance",
+    "power",
+    "duration"
+   ],
+   "lsb": {
+    "type": 1
+   }
+  },
+  {
+   "id": 19196,
+   "name": "darkling_bolt",
+   "kind": "dmg",
+   "wiki": "Additional effect: Darkness damage",
+   "missing": [
+    "chance",
+    "damage"
+   ],
+   "lsb": {}
+  },
+  {
+   "id": 19261,
+   "name": "jinx_discus",
+   "kind": "status",
+   "wiki": "Additional effect: Curse. Curse gives HP -12.5% and lasts 10-30 seconds (confirm CURSE_I vs CURSE_II power)",
+   "missing": [
+    "chance",
+    "power",
+    "duration"
+   ],
+   "lsb": {
+    "type": 1
+   }
+  },
+  {
+   "id": 19316,
+   "name": "fetter_lance",
+   "kind": "status",
+   "wiki": "Additional effect: Addle (also enhances \"Resist Slow\")",
+   "missing": [
+    "chance",
+    "power",
+    "duration"
+   ],
+   "lsb": {
+    "type": 1
+   }
+  }
+ ],
+ "no_data": [],
+ "stubs": [
+  {
+   "file": "scripts/globals/items/air_rider.lua",
+   "verdict": "cosmetic-intentional"
+  },
+  {
+   "file": "scripts/globals/items/airborne.lua",
+   "verdict": "cosmetic-intentional"
+  },
+  {
+   "file": "scripts/globals/items/angelwing.lua",
+   "verdict": "cosmetic-intentional"
+  },
+  {
+   "file": "scripts/globals/items/brilliant_snow.lua",
+   "verdict": "cosmetic-intentional"
+  },
+  {
+   "file": "scripts/globals/items/cracker.lua",
+   "verdict": "cosmetic-intentional"
+  },
+  {
+   "file": "scripts/globals/items/crackler.lua",
+   "verdict": "cosmetic-intentional"
+  },
+  {
+   "file": "scripts/globals/items/datechochin.lua",
+   "verdict": "cosmetic-intentional"
+  },
+  {
+   "file": "scripts/globals/items/falling_star.lua",
+   "verdict": "cosmetic-intentional"
+  },
+  {
+   "file": "scripts/globals/items/festive_fan.lua",
+   "verdict": "cosmetic-intentional"
+  },
+  {
+   "file": "scripts/globals/items/flask_of_muting_potion.lua",
+   "verdict": "special"
+  },
+  {
+   "file": "scripts/globals/items/goshikitenge.lua",
+   "verdict": "cosmetic-intentional"
+  },
+  {
+   "file": "scripts/globals/items/kongou_inaho.lua",
+   "verdict": "cosmetic-intentional"
+  },
+  {
+   "file": "scripts/globals/items/konron_hassen.lua",
+   "verdict": "cosmetic-intentional"
+  },
+  {
+   "file": "scripts/globals/items/little_comet.lua",
+   "verdict": "cosmetic-intentional"
+  },
+  {
+   "file": "scripts/globals/items/marine_bliss.lua",
+   "verdict": "cosmetic-intentional"
+  },
+  {
+   "file": "scripts/globals/items/meifu_goma.lua",
+   "verdict": "cosmetic-intentional"
+  },
+  {
+   "file": "scripts/globals/items/muteppo.lua",
+   "verdict": "cosmetic-intentional"
+  },
+  {
+   "file": "scripts/globals/items/ouka_ranman.lua",
+   "verdict": "cosmetic-intentional"
+  },
+  {
+   "file": "scripts/globals/items/papillion.lua",
+   "verdict": "cosmetic-intentional"
+  },
+  {
+   "file": "scripts/globals/items/popper.lua",
+   "verdict": "cosmetic-intentional"
+  },
+  {
+   "file": "scripts/globals/items/popstar.lua",
+   "verdict": "cosmetic-intentional"
+  },
+  {
+   "file": "scripts/globals/items/ramblers_cloak.lua",
+   "verdict": "special"
+  },
+  {
+   "file": "scripts/globals/items/rengedama.lua",
+   "verdict": "cosmetic-intentional"
+  },
+  {
+   "file": "scripts/globals/items/shisai_kaboku.lua",
+   "verdict": "cosmetic-intentional"
+  },
+  {
+   "file": "scripts/globals/items/sparkling_hand.lua",
+   "verdict": "cosmetic-intentional"
+  },
+  {
+   "file": "scripts/globals/items/spirit_masque.lua",
+   "verdict": "cosmetic-intentional"
+  },
+  {
+   "file": "scripts/globals/items/summer_fan.lua",
+   "verdict": "cosmetic-intentional"
+  },
+  {
+   "file": "scripts/globals/items/twilight_cloak.lua",
+   "verdict": "special"
+  },
+  {
+   "file": "scripts/globals/items/twinkle_shower.lua",
+   "verdict": "cosmetic-intentional"
+  },
+  {
+   "file": "scripts/globals/items/wedding_bell.lua",
+   "verdict": "cosmetic-intentional"
+  }
+ ]
+}
