@@ -8,3 +8,10 @@ Expected: click Rift -> "You feel a mysterious energy..." -> menu (7524) -> opti
 Not implemented yet: 30-min timer, status 475, party clearance, weakness/stagger/blitz, cruor/Pyxis rewards. The Pyxis NPC does nothing.
 Report: does the menu appear? does option 1 spawn? does the client freeze (param-count/csid issue)? what happens with no KI?
 Flagged invented bits: params[0]/[1] replayed from captures (RIFT-PARAM-CORRELATION.md); voidstone consumption semantics; msg 7507 param.
+
+## v2 additions (all first-pass, untested in game)
+- 30-min timer with warnings + despawn; status 475 for cleared party; per-player clearance messages.
+- Kill: cruor (5500 x green%), Final Spectral Alignment, Riftworn Pyxis (placeholder item pool; options 10=take, 9=relinquish).
+- Weakness (SIMPLIFIED): one random elemental-magic element per fight; each hit +alignment; blitz every 3rd hit for 15 s.
+  Weapon-skill/JA/pet weaknesses, stagger and attack-down are NOT implemented.
+- To test fast: lower LIMIT in mobs/Krabimanjaro.lua; cast all 8 elements of black magic to find the weakness.
