@@ -31,6 +31,8 @@ This file is part of DarkStar-server source code.
 #include "../common/utils.h"
 
 #include <string.h>
+#include <tuple>
+#include <cmath>
 #include "alliance.h"
 #include "mob_modifier.h"  // BUILD-FIX: MOBMOD_CHECK_AS_NM (used below) was never declared visible
                            // in this file -- check_as_nm's own patch added the enum value to
@@ -65,6 +67,7 @@ This file is part of DarkStar-server source code.
 #include "latent_effect_container.h"
 #include "treasure_pool.h"
 #include "item_container.h"
+#include "vana_time.h"
 #include "universal_container.h"
 #include "recast_container.h"
 
@@ -6120,6 +6123,10 @@ void PacketParserInitialize()
     PacketSize[0x0F6] = 0x00; PacketParser[0x0F6] = &SmallPacket0x0F6;
     PacketSize[0x0FA] = 0x00; PacketParser[0x0FA] = &SmallPacket0x0FA;
     PacketSize[0x0FB] = 0x00; PacketParser[0x0FB] = &SmallPacket0x0FB;
+    PacketSize[0x0FC] = 0x00; PacketParser[0x0FC] = &SmallPacket0x0FC;
+    PacketSize[0x0FD] = 0x00; PacketParser[0x0FD] = &SmallPacket0x0FD;
+    PacketSize[0x0FE] = 0x00; PacketParser[0x0FE] = &SmallPacket0x0FE;
+    PacketSize[0x0FF] = 0x00; PacketParser[0x0FF] = &SmallPacket0x0FF;
     PacketSize[0x100] = 0x04; PacketParser[0x100] = &SmallPacket0x100;
     PacketSize[0x102] = 0x52; PacketParser[0x102] = &SmallPacket0x102;
     PacketSize[0x104] = 0x02; PacketParser[0x104] = &SmallPacket0x104;
