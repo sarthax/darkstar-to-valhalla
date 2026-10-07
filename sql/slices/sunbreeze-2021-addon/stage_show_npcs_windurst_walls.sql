@@ -11,3 +11,13 @@ UPDATE npc_list SET pos_x=2.687,  pos_y=-9.490, pos_z=0.450, pos_rot=239, status
 UPDATE npc_list SET pos_x=9.026,  pos_y=-10.000, pos_z=2.759, pos_rot=118, status=0 WHERE npcid=17756361;
 UPDATE npc_list SET pos_x=1.403,  pos_y=-9.370, pos_z=1.122, pos_rot=248, status=0 WHERE npcid=17756363;
 UPDATE npc_list SET pos_x=16.062, pos_y=-10.000, pos_z=5.050, pos_rot=120, status=0 WHERE npcid=17756367;
+-- Stage props/vendors that were VISIBLE (status 0) in captures 477/478 (positions from capture 477; stock rows are parked at 0,0,0 / hidden):
+--   17756362 blank prop (model 0x32), 17756364 Bashraf, 17756365 Wahboud (fireworks/goods vendors)
+UPDATE npc_list SET pos_x=8.272, pos_y=-10.000, pos_z=1.489, pos_rot=152, status=0 WHERE npcid=17756362;
+UPDATE npc_list SET pos_x=1.768, pos_y=-9.540, pos_z=2.466, pos_rot=248, status=0 WHERE npcid=17756364;
+UPDATE npc_list SET pos_x=1.037, pos_y=-9.210, pos_z=-0.215, pos_rot=248, status=0 WHERE npcid=17756365;
+-- Decoration rows already positioned in the stock table but hidden (status 2); visible in capture 477 (status 0):
+--   17756373 Fireworks (-130.382,-9.345,317.519), 17756374 blank prop at the Moogle (-26.51,-2.246,-51.839)
+UPDATE npc_list SET status=0 WHERE npcid IN (17756373, 17756374);
+-- NOT installed (hidden/appearing mid-show in the captures, need show-time reveal logic): 17756357 ???, 17756366 Tango,
+--   17756368 Fandango, 17756369 Wahboud #2. Decoration sets 17756375-17756384 / 17756388-17756397 / Shards: no capture evidence which are shown.
