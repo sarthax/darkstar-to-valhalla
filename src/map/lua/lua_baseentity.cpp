@@ -7109,6 +7109,19 @@ inline int32 CLuaBaseEntity::needToZone(lua_State *L)
 *                                                                       *
 ************************************************************************/
 
+inline int32 CLuaBaseEntity::moghancementDebug(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    std::string action = lua_isstring(L, 1) ? lua_tostring(L, 1) : "info";
+    int32       value  = lua_isnumber(L, 2) ? (int32)lua_tointeger(L, 2) : 0;
+
+    std::string result = ((CCharEntity*)m_PBaseEntity)->MoghancementDebug(action, value);
+    lua_pushstring(L, result.c_str());
+    return 1;
+}
+
 inline int32 CLuaBaseEntity::getContainerSize(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
@@ -11820,6 +11833,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getCharmChance),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,needToZone),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getContainerSize),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,moghancementDebug),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,changeContainerSize),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPartyMember),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPartySize),
