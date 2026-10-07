@@ -124,6 +124,11 @@ bool CMagicState::Update(time_point tick)
             m_PEntity->OnCastFinished(*this,action);
             m_PEntity->PAI->EventHandler.triggerListener("MAGIC_USE", m_PEntity, PTarget, m_PSpell.get(), &action);
             PTarget->PAI->EventHandler.triggerListener("MAGIC_TAKE", PTarget, m_PEntity, m_PSpell.get(), &action);
+            if (PTarget->objtype == TYPE_MOB && PTarget->health.hp <= 0)
+            {
+                static_cast<CMobEntity*>(PTarget)->m_lastKillKind = 1;
+                static_cast<CMobEntity*>(PTarget)->m_lastKillId = static_cast<uint16>(m_PSpell->getID());
+            }
         }
         m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
         Complete();
