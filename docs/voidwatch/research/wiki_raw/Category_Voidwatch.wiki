@@ -1,0 +1,686 @@
+{{disambiguation|Voidwatch Quests|Voidwatch Weaknesses}}
+{{Category Page Header
+|ToC= y
+|Float=left
+|Image=Voidwatch 1.jpg
+|Image Size=475
+|Image Link=
+|Intro Text='''Voidwatch''' is a confrontation-style battle system which takes place across various fields and dungeons throughout Vana'diel’s past and present. 
+
+If you're new to this event, refer to the [[Voidwatch Guide]] for beginner information and [[Voidwatch Quests]] for a storyline overview. 
+}}
+== Requirements ==
+In order to participate in Voidwatch, you must satisfy the following conditions:
+* Be level 75 or higher.
+* Possess an [[Adventurer's Certificate]] (Rank 3 or higher from a starting nation).
+* Possess any stratum abyssite (initially obtained from a city area [[Voidwatch Officer]]).
+
+In order to initiate a Voidwatch battle, the appropriate stratum abyssite on the initiating player must be advanced at least as high as the tier associated with the battle (see the tables below under "Voidwatch Ops"). Only the one player initiating the battle needs to fulfill this requirement. Higher tier stratum abyssites are obtained either by upgrading at an [[Atmacite Refiner]] or completing certain [[Voidwatch Quests]].
+
+== How to Participate ==
+[[Image:Planar Rift header.jpg|right|thumb|300px|Planar rifts are gateways from an alternate reality through which Voidwatch monsters are manifest.]]
+
+Players must initially speak to a [[Voidwatch Officer]] in order to obtain a Stratum Abyssite key item.  Each key item needs to be acquired only once.
+
+* [[Crimson stratum abyssite|<font color=DC143C>'''Crimson'''</font> stratum abyssite]] from either:
+**[[Voidwatch Officer (San d'Oria)]] - [[Southern San d'Oria]] (F-9)
+**[[Voidwatch Officer (San d'Oria (S))]] - [[Southern San d'Oria (S)]] (L-9)
+* [[Indigo stratum abyssite|<font color=4B0082>'''Indigo'''</font> stratum abyssite]] from either:
+**[[Voidwatch Officer (Bastok)]] - Bastok Markets (D-11)
+**[[Voidwatch Officer (Bastok (S))]] - Bastok Markets (G-5)
+* [[Jade stratum abyssite|<font color=00a86b>'''Jade'''</font> stratum abyssite]] from either:
+** [[Voidwatch Officer (Windurst)]] - [[Windurst Waters]] - (G-5)
+**[[Voidwatch Officer (Windurst (S))]] - [[Windurst Waters (S)]] - (G-5)
+* [[White stratum abyssite|<font color=82837E>'''White'''</font> stratum abyssite]] from:
+**The quest [[Drafted by the Duchy]] which can only be started after completing each of the three city paths.
+* [[Ashen stratum abyssite|<font color=655643>'''Ashen'''</font> stratum abyssite]] from: 
+**[[Kieran]] in [[Norg]] (I-8)
+* [[Hyacinth stratum abyssite|<font color=8453A0>'''Hyacinth'''</font> stratum abyssite]] from:
+**[[Owain]] in [[Tavnazian Safehold]] (H-6)
+* [[Amber stratum abyssite|<font color=FAB000>'''Amber'''</font> stratum abyssite]] from:
+**[[Camille]] in [[Wajaom Woodlands]] (M-7)
+***Exit [[Whitegate]] (H-10), into [[Wajaom Woodlands]], next to the NPC [[Zwinam]].
+[[:Category:Voidwatch_Quests|<span style="color: #00a86b;">'''In order to upgrade each path's abyssite, see the link for required quests and subquests.'''.</span>]]
+
+[[Voidwatch Officer]] NPCs will provide the player with {{KI}} [[voidstone]]s upon request.
+* A {{KI}} [[voidstone]] is required for a participating player in the battle to receive treasure and key item rewards.
+** Within [[Provenance]], a {{KI}} [[Kupofried's corundum]] is used instead of a [[voidstone]], but the same rules apply.
+** Players may still '''''participate''''' (but not '''''initiate''''') in battles for base EXP/cruor rewards and {{KI}} stratum abyssite upgrades without possessing a voidstone.
+*** However, they will not be eligible for treasure inside the [[Riftworn Pyxis]], {{KI}} [[Atmacite]] or [[:Category:Periapt|periapt]] drops, or any alignment-enhanced EXP/cruor rewards.
+* Voidstones regenerate over time at a rate of 1 every 20 hours (which can be sped up to 1 every 12 hours with two [[:Category:Periapt|Periapts of Exploration]]), and an unlimited amount can be accumulated on the [[Voidwatch Officer]].
+** Voidstones do not begin accumulating until the player speaks with a [[Voidwatch Officer]] on a level 75+ job for the first time.
+** Voidstones can also be obtained by trading [[Voiddust]] (obtained from [[Voidwatch Purveyor]]s or [[Grounds of Valor]] [[Treasure Casket]]s) to a Voidwatch Officer.
+*** When trading [[Voiddust]], it can only be turned into {{KI}} [[voidstone]]s in the player's inventory, not added to total stock. You cannot trade more than one [[Voiddust]] at a time.
+
+As of the April 5th, 2016 Version Update, '''players can use [[voidstone]]s directly from their stock''' instead of having to constantly refill the {{KI}} [[voidstone]] key items in their inventory.
+* You must change this setting in order to take advantage of it! It is '''off by default'''.
+* To set this option, speak with any [[Voidwatch Officer]] and select “Ask a bunch of questions.” Next, choose “Voidstone consumption” from the list of responses. When prompted, select “stock.”
+* You will still need at least 1 {{KI}} [[voidstone]] in your character's inventory to begin a battle.
+** Using the "stock" setting with no voidstone key items in your inventory causes the Planar Rift to state that you need a [[voidstone]] to begin a battle.
+** If you have the "stock" setting on, the {{KI}} [[voidstone]]s in your inventory will not be consumed until your stock reaches 0.
+
+==Battle Procedure==
+
+Once you are at the proper zone, you can begin the battle by examining one of three [[Planar Rift]]s. Neither the strength of your opponent nor the prizes for defeating it will be affected by your choice of rift. Prior to engaging in battle, a Voidwatch monster may be weakened by utilizing [[Void cluster]]s. After purchasing a [[Phase Displacer]] from [[Ardrick]] in [[Jugner Forest]] (I-8), trade it to any [[Planar Rift]] to receive a [[Void cluster]]. Only the player starting the battle will utilize void clusters, and up to to five can be used in one battle to weaken the enemy. Utilizing all five clusters will very significantly weaken the enemy, but the effect of even one will be noticeable.
+
+Once the battle has begun, a voidstone, if available, will be consumed for each person who participates in the battle.  HP and MP will be completely restored to all members in the alliance upon initiating the battle. Players who possess certain [[Periapt]]s will receive powerful temporary items at the start of the battle. 30 minutes are allotted to defeat the enemy before it despawns and the battle ends in failure. If a battle is failed or you choose not to examine the Riftworn Pyxis following a battle, your voidstone will not be used up and will be carried over to the next battle unless you are the player who starts the next battle (a voidstone of the player who starts the battle will always be consumed). Zilart battles will involve multiple enemies; only the primary target needs to be defeated to win the battle.
+
+During the battle, if a player ventures too far (approximately 50') from the location of the Planar Rift where the NM was spawned, a warning message will be displayed in the chat log. If the player does not return to the battlefield within a few seconds, Voidwatcher status will be lost and the player will not be able to participate in the battle. The status is not lost upon disconnecting. If an enemy is left unclaimed without hate for approximately 15-30 seconds, it will despawn and Voidwatcher status will be lost immediately. Voidwatch is a confrontation-style event; players without Voidwatcher status cannot participate in the battle by any means (including curing or raising members with Voidwatcher status).
+
+Upon defeating the enemy, a [[Riftworn Pyxis]] will appear for three minutes.  Every participant in the battle may examine it to receive their individual rewards (which will differ from the rewards received by other players). See [[#After_the_Battle_(Rewards)|After the Battle]] for more details.
+
+After defeating all of the monsters within a tier, in order to advance their stratum abyssite to the next tier, players must present the abyssite to an [[Atmacite Refiner]] NPC for examination. For example, a player who possesses Crimson Stratum Abyssite and then is present for the defeat of both Sarimanok and Cottus will be able to upgrade to Crimson Stratum Abyssite II, then to Crimson Stratum Abyssite III upon defeating Krabimanjaro, and finally Crimson Stratum Abyssite IV upon defeating Belphoebe and Kholomodumo. You may speak to any Atmacite Refiner NPC to upgrade any stratum abyssite, and you will not receive credit towards upgrading if your abyssite is on the incorrect tier when the monsters are defeated.
+
+There are several benefits to upgrading abyssite:
+* Ability to initiate the battle of all current and previous tier NMs aligned with that color of stratum abyssite (see tables below)
+* Direct warp (for 1000 cruor) via [[Atmacite Refiner]] to any area which has a Voidwatch battle which you can initiate
+* Full completion of the three starting nation paths, including completion of the quest [[Guardian of the Void]], is required for access to initiate battles in the Jeuno path.
+* [[Provenance]] and its battlefields are only accessible to those who have progressed to near the end of the [[Jeuno]] line of quests.
+
+Whether or not you have upgraded abyssites, you will still be able to obtain rewards from any fights you can participate in as long as you have available voidstones.
+
+== Voidwatch Ops ==
+The questline is a little ambiguous with Voidwatch. Follow the "Related Quests" on the tables below in order, as outlined below in order to progress through the quests. Each quest page itself has further details on progression, so be sure to visit them if you are stuck.
+[[Image:Voidwatch06.png|right|thumb|300px|Voidwatch Starter Nation Paths by Spira.]]
+{| width=100% border=1 style="max-width: 900px"
+|-
+|
+{| width=100% border=0
+|- BGCOLOR="#ADBDCC" align="center"
+| colspan=5 | '''Voidwatch Chapter I'''
+|- BGCOLOR="#ADBDCC" align="center"
+| colspan=5 | '''Related [[Quest]]s''': [[Guardian of the Void]] > [[Drafted by the Duchy]]
+|- BGCOLOR="#ADBDCC"
+! width="20%" | 
+! width="20%" | Tier I
+! width="20%" | Tier II
+! width="20%" | Tier III
+! width="20%" | Tier IV
+|- BGCOLOR="#FFCCCC" align="center"
+| BGCOLOR="#FF9999" rowspan="2" | '''San d'Oria'''<br>''Crimson Stratum Abyssite''<br>([[Crimson stratum abyssite|I]] &middot; [[Crimson stratum abyssite II|II]] &middot; [[Crimson stratum abyssite III|III]] &middot; [[Crimson stratum abyssite IV|IV]])
+| [[East Ronfaure]]:<br>'''[[Sarimanok]]'''
+| rowspan="2" | [[Ordelle's Caves]]:<br>'''[[Krabimanjaro]]'''
+| [[Jugner Forest]]:<br>'''[[Belphoebe]]'''
+| rowspan="2" | [[King Ranperre's Tomb]]:<br>'''[[Hahava]]'''
+|- BGCOLOR="#FFCCCC" align="center"
+| [[East Ronfaure (S)]]:<br>'''[[Cottus]]'''
+| [[Jugner Forest (S)]]:<br>'''[[Kholomodumo]]'''
+|- BGCOLOR="#C5C8FF" align="center"
+| BGCOLOR="#8F94FF" rowspan="2" | '''Bastok'''<br>''Indigo Stratum Abyssite''<br>([[Indigo stratum abyssite|I]] &middot; [[Indigo stratum abyssite II|II]] &middot; [[Indigo stratum abyssite III|III]] &middot; [[Indigo stratum abyssite IV|IV]])
+| [[North Gustaberg]]:<br>'''[[Sallow Seymour]]'''
+| rowspan="2" | [[Gusgen Mines]]:<br>'''[[Lorbulcrud]]'''
+| [[Pashhow Marshlands]]:<br>'''[[Murk-veined Baneberry]]'''
+| rowspan="2" | [[Dangruf Wadi]]:<br>'''[[Celaeno]]'''
+|- BGCOLOR="#C5C8FF" align="center"
+| [[North Gustaberg (S)]]:<br>'''[[Ushumgal]]'''
+| [[Pashhow Marshlands (S)]]:<br>'''[[Melancholic Moira]]'''
+|- BGCOLOR="#CCFFCC" align="center"
+| BGCOLOR="#99FF99" rowspan="2" | '''Windurst'''<br>''Jade Stratum Abyssite''<br>([[Jade stratum abyssite|I]] &middot; [[Jade stratum abyssite II|II]] &middot; [[Jade stratum abyssite III|III]] &middot; [[Jade stratum abyssite IV|IV]])
+| [[West Sarutabaruta]]:<br>'''[[Virvatuli]]'''
+| rowspan="2" | [[Maze of Shakhrami]]:<br>'''[[Ogbunabali]]'''
+| [[Meriphataud Mountains]]:<br>'''[[Lord Asag]]'''
+| rowspan="2" | [[Outer Horutoto Ruins]]:<br>'''[[Voidwrought]]'''
+|- BGCOLOR="#CCFFCC" align="center"
+| [[West Sarutabaruta (S)]]:<br>'''[[Pancimanci]]'''
+| [[Meriphataud Mountains (S)]]:<br>'''[[Akupara]]'''
+|-
+|}
+|-
+|}
+<br>
+[[Image:Voidwatch_jeuno.png|right|thumb|300px|Voidwatch Jeuno Path by Spira.]]
+[[Image:Voidwatch_zilart.png|right|thumb|300px|Voidwatch Zilart Path by Spira.]]
+{| width=100% border=1 style="max-width: 900px"
+|-
+|
+{| width=100% border=0
+|- BGCOLOR="#ADBDCC" align="center"
+| colspan=4 | '''Voidwatch Chapter II'''
+|- BGCOLOR="#ADBDCC" align="center"
+| colspan=4 | '''Related [[Quest]]s''': [[Battle on a New Front]] > [[VW Op. 126: Qufim Incursion]] > [[A Cait Calls]] > [[The Truth Is Out There]]
+|- BGCOLOR="#ADBDCC"
+! width="20%" | 
+! width="26.3%" | Tier I
+! width="26.3%" | Tier II
+! width="26.4%" | Tier III
+|- BGCOLOR="#E5E5E5" align="center"
+| BGCOLOR="#D9D9D9" rowspan="6" | '''Jeuno'''<br>''White Stratum Abyssite''<br>([[White stratum abyssite|I]] &middot; [[White stratum abyssite II|II]] &middot; [[White stratum abyssite III|III]])
+| [[Batallia Downs]]:<br>'''[[Cherufe]]'''
+| [[The Eldieme Necropolis]]:<br>'''[[Gasha]]'''
+| rowspan=2 | [[Qufim Island]]:<br>'''[[Kaggen]]'''
+|- BGCOLOR="#E5E5E5" align="center"
+| [[Batallia Downs (S)]]:<br>'''[[Taweret]]'''
+| [[The Eldieme Necropolis (S)]]:<br>'''[[Giltine]]'''
+|- BGCOLOR="#E5E5E5" align="center"
+| [[Rolanberry Fields]]:<br>'''[[Yatagarasu]]'''
+| [[Crawlers' Nest]]:<br>'''[[Mellonia]]'''
+| rowspan=2 | [[Lower Delkfutt's Tower]]:<br>'''[[Akvan]]'''
+|- BGCOLOR="#E5E5E5" align="center"
+| [[Rolanberry Fields (S)]]:<br>'''[[Agathos]]'''
+| [[Crawlers' Nest (S)]]:<br>'''[[Nympha Eunomia]]'''
+|- BGCOLOR="#E5E5E5" align="center"
+| [[Sauromugue Champaign]]:<br>'''[[Goji]]'''
+| [[Garlaige Citadel]]:<br>'''[[Roly-Poly]]'''
+| rowspan=2 | [[Behemoth's Dominion]]:<br>'''[[Pil]]'''
+|- BGCOLOR="#E5E5E5" align="center"
+| [[Sauromugue Champaign (S)]]:<br>'''[[Gugalanna]]'''
+| [[Garlaige Citadel (S)]]:<br>'''[[Laidly Laurence]]'''
+|- BGCOLOR="#ADBDCC" align="center"
+| colspan=4 | '''Related [[Quest]]s''': [[Voidwatch Ops: Border Crossing]] > [[VW Op. 054: Elshimo List]] > [[VW Op. 101: Detour to Zepwell]] > [[VW Op. 115: Li'Telor Variant]] > [[Skyward Ho, Voidwatcher!]]
+
+|- BGCOLOR="#ADBDCC"
+! width="20%" | 
+! width="26.3%" | Tier I
+! width="26.3%" | Tier II
+! width="26.4%" | Tier III
+|- BGCOLOR="#CBCBBB" align="center"
+| BGCOLOR="#8A8A7E" rowspan="6" | '''Zilart'''<br>''Ashen Stratum Abyssite''<br>([[Ashen stratum abyssite|I]] &middot; [[Ashen stratum abyssite II|II]] &middot; [[Ashen stratum abyssite III|III]])
+| [[Yuhtunga Jungle]]:<br>'''[[Holy Moly]]'''
+| rowspan=2 | [[The Sanctuary of Zi'Tah]]:<br>'''[[Cath Palug]]'''
+| rowspan=2 | [[Ru'Aun Gardens]]:<br>'''[[Aello]]'''
+|- BGCOLOR="#CBCBBB" align="center"
+| [[Temple of Uggalepih]]:<br>'''[[Neith]]'''
+|- BGCOLOR="#CBCBBB" align="center"
+| [[Ifrit's Cauldron]]:<br>'''[[Ildebrann]]'''
+| rowspan=2 | [[The Boyahda Tree]]:<br>'''[[Modron]]'''
+| rowspan=2 | [[The Shrine of Ru'Avitau]]:<br>'''[[Qilin]]'''
+|- BGCOLOR="#CBCBBB" align="center"
+| [[Western Altepa Desert]]:<br>'''[[Sabotender Campeador]]'''
+|- BGCOLOR="#CBCBBB" align="center"
+| [[Quicksand Caves]]:<br>'''[[Malleator Maurok]]'''
+| rowspan=2 | [[Ro'Maeve]]:<br>'''[[Mimic King]]'''
+| rowspan=2 | [[Ve'Lugannon Palace]]:<br>'''[[Uptala]]'''
+|- BGCOLOR="#CBCBBB" align="center"
+| [[Kuftal Tunnel]]:<br>'''[[Tangaroa]]'''
+|}
+|-
+|}
+<br>
+[[Image:Voidwatch_jeuno2.png|right|thumb|300px|Voidwatch Jeuno Second Path by Spira.]]
+{| width=100% border=1 style="max-width: 900px"
+|-
+|
+{| width=100% border=0
+|- BGCOLOR="#ADBDCC" align="center"
+| colspan=4 | '''Voidwatch Chapter III'''
+|- BGCOLOR="#ADBDCC" align="center"
+| colspan=4 | '''Related [[Quest]]s''': [[Re-Drafted by the Duchy]] > [[A New Menace]] > [[No Rest for the Weary]] > [[A World in Flux]]<br />
+'''Side Quests''': [[VW Op. 115: Valkurm Duster]] & [[VW Op. 118: Buburimu Squall]]
+|- BGCOLOR="#ADBDCC"
+! width="20%" | 
+! width="26.3%" | Tier IV
+! width="26.3%" | Tier V
+! width="26.4%" | Tier VI
+|- BGCOLOR="#E5E5E5" align="center"
+| BGCOLOR="#D9D9D9" rowspan="5" | '''Jeuno II'''<br>''White Stratum Abyssite''<br>([[White stratum abyssite IV|IV]] &middot; [[White stratum abyssite V|V]] &middot; [[White stratum abyssite VI|VI]])
+| [[West Ronfaure]]:<br>'''[[Lancing Lamorak]]'''
+| [[La Theine Plateau]]:<br>'''[[Stachysaurus]]'''
+| [[Vunkerl Inlet (S)]]:<br>'''[[Gaunab]]'''
+|- BGCOLOR="#E5E5E5" align="center"
+| [[South Gustaberg]]:<br>'''[[Bhishani]]'''
+| [[Konschtat Highlands]]:<br>'''[[Gwynn Ap Nudd]]'''
+| [[Grauberg (S)]]:<br>'''[[Ocythoe]]'''
+|- BGCOLOR="#E5E5E5" align="center"
+| [[East Sarutabaruta]]:<br>'''[[Rw Nw Prt M Hrw]]'''
+| [[Tahrongi Canyon]]:<br>'''[[Smierc]]'''
+| [[Fort Karugo-Narugo (S)]]:<br>'''[[Kalasutrax]]'''
+|- BGCOLOR="#E5E5E5" align="center"
+|
+|
+| [[Valkurm Dunes]]:<br>'''[[Ig-Alima]]'''
+|- BGCOLOR="#E5E5E5" align="center"
+|
+|
+| [[Buburimu Peninsula]]:<br>'''[[Botulus Rex]]'''
+|}
+|-
+|}
+
+<br>
+[[Image:Voidwatch_tah.png|right|thumb|300px|Voidwatch Expansions Paths by Spira.]]
+{| width=100% border=1 style="max-width: 900px"
+|-
+|
+{| width=100% border=0
+|- BGCOLOR="#ADBDCC" align="center"
+| colspan=3 | '''Voidwatch Chapter IV'''
+|- BGCOLOR="#ADBDCC" align="center"
+| colspan=3 | '''Related [[Quest]]s''': [[VW Op. 026: Tavnazian Terrors]] > [[VW Op. 004: Bibiki Bombardment]]
+|- BGCOLOR="#ADBDCC"
+! width="20%" | 
+! width="40%" | Tier I
+! width="40%" | Tier II
+|- BGCOLOR="#ccc2dc" align="center"
+| BGCOLOR="#9d82cb" rowspan="4" | '''Tavnazia'''<br>''Hyacinth Stratum Abyssite''<br>([[Hyacinth stratum abyssite|I]] &middot; [[Hyacinth stratum abyssite II|II]])
+| [[Attohwa Chasm]]:<br>'''[[Fjalar]]'''
+| rowspan=4 | [[Bibiki Bay]]:<br>'''[[Bismarck]]'''
+|- BGCOLOR="#ccc2dc" align="center"
+| [[Lufaise Meadows]]:<br>'''[[Abununnu]]'''
+|- BGCOLOR="#ccc2dc" align="center"
+| [[Misareaux Coast]]:<br>'''[[Tsui-Goab]]'''
+|- BGCOLOR="#ccc2dc" align="center"
+| [[Uleguerand Range]]:<br>'''[[Isarukitsck]]'''
+|- BGCOLOR="#ADBDCC" align="center"
+| colspan=3 | '''Related [[Quest]]s''': [[VW Op. 050: Aht Urhgan Assault]] > [[VW Op. 068: Subterranean Skirmish]]
+|- BGCOLOR="#ADBDCC"
+! width="20%" | 
+! width="40%" | Tier I
+! width="40%" | Tier II
+|- BGCOLOR="#ede0b2" align="center"
+| BGCOLOR="#e3b000" rowspan="4" | '''Aht Urhgan'''<br>''Amber Stratum Abyssite''<br>([[Amber stratum abyssite|I]] &middot; [[Amber stratum abyssite II|II]])
+| [[Arrapago Reef]]:<br>'''[[Dimgruzub]]'''
+| rowspan=4 | [[Aydeewa Subterrane]]:<br>'''[[Morta]]'''
+|- BGCOLOR="#ede0b2" align="center"
+| [[Caedarva Mire]]:<br>'''[[Brekekekex]]'''
+|- BGCOLOR="#ede0b2" align="center"
+| [[Mamook]]:<br>'''[[Yalungur]]'''
+|- BGCOLOR="#ede0b2" align="center"
+| [[Mount Zhayolm]]:<br>'''[[Vanasarvik]]'''
+|}
+|-
+|}
+<br>
+{| width=100% border=1 style="max-width: 900px"
+|-
+|
+{| width=100% border=0
+|- BGCOLOR="#ADBDCC" align="center"
+| colspan=3 | '''Voidwatch Finale'''
+|- BGCOLOR="#ADBDCC" align="center"
+| colspan=3 | '''Related [[Quest]]s''': [[Between a Rock and Rift]] > [[A Farewell to Felines]] > [[Third Tour of Duchy]] > [[Glimmer of Hope]] > [[Brace for the Unknown]] > [[Provenance (Quest)]] > [[Crystal Guardian]] > [[Endings and Beginnings]] > [[Ad Infinitum]]
+|- BGCOLOR="#ADBDCC"
+! width="20%" | 
+! width="40%" | Provenance Crystal
+! width="40%" | Provenance Protocrystal
+|- BGCOLOR="#e8e3e3" align="center"
+| BGCOLOR="#e0e0e0" rowspan="3" | '''[[Provenance]]'''
+| [[Beguiling Radiance]]:<br>'''Pil''' & '''Sarbaz'''
+| rowspan=3 BGCOLOR="#e0e0e0" | '''[[Provenance Watcher]]'''
+|- BGCOLOR="#e1e1e5" align="center"
+| [[Maddening Radiance]]:<br>'''Shah''' & '''Wazir'''
+|- BGCOLOR="#e2e8e2" align="center"
+| [[Seductive Radiance]]:<br>'''Asb''' & '''Rukh'''
+|-
+|}
+|}
+
+== Spectral Alignment ==
+*Alignment is calculated in the order shown in the table below. 
+**Base alignment plus staggers and synchronic blitz during the battle accumulate to a value with a maximum of the first cap shown.
+**The effects of ascent items and Treasure Hunter are added to the first value at the end of the battle up to a maximum of the second cap shown.
+**If the appropriate periapts are in possession, bonus alignment is added after other calculations which can surpass caps.
+
+{| width=100% border=1 style="max-width: 900px"
+|-
+|
+{| width=100% border=0
+|- align="center"
+| width="15%" |
+| width="13%" BGCOLOR="#FF6666" | '''Red'''<br> Reward Quality
+| width="13%" BGCOLOR="#3399FF" | '''Blue'''<br> Reward Quantity
+| width="13%" BGCOLOR="#66FF66" | '''Green'''<br> Cruor Yield
+| width="13%" BGCOLOR="#FFFF66" | '''Yellow'''<br> EXP Yield
+| width="13%" BGCOLOR="#DEDEDE" | '''White'''<br> Atmacite or Periapt Acquisition
+| width="10%" BGCOLOR="#999999" | '''Temporary Items Restored*'''
+| width="10%" BGCOLOR="#999999" | '''Stagger Duration (seconds)'''
+|- align="center"
+| BGCOLOR="#DDDDDD" | Base Alignment
+| BGCOLOR="#FFCCCC" | 100%
+| BGCOLOR="#99CCFF" | 100%
+| BGCOLOR="#CCFFCC" | 100%
+| BGCOLOR="#FFFFCC" | 100%
+| 0%
+|
+|
+|- align="center"
+| BGCOLOR="#DDDDDD" rowspan="2" | Normal Vulnerability Magic Stagger**
+| BGCOLOR="#FFCCCC" | 20%
+| BGCOLOR="#99CCFF" | 0%
+| BGCOLOR="#CCFFCC" | 10%
+| BGCOLOR="#FFFFCC" | 10%
+| 0%
+| BGCOLOR="#CCCCCC" | 1
+| BGCOLOR="#CCCCCC" | 5
+|- align="center"
+| BGCOLOR="#FFCCCC" | 40%^
+| BGCOLOR="#99CCFF" | 0%
+| BGCOLOR="#CCFFCC" | 50%
+| BGCOLOR="#FFFFCC" | 50%
+| 25%
+| BGCOLOR="#CCCCCC" | All
+| BGCOLOR="#CCCCCC" | 20
+|- align="center"
+| BGCOLOR="#DDDDDD" rowspan="2" | Normal Vulnerability JA/WS Stagger**
+| BGCOLOR="#FFCCCC" | 0%
+| BGCOLOR="#99CCFF" | 20%
+| BGCOLOR="#CCFFCC" | 10%
+| BGCOLOR="#FFFFCC" | 10%
+| 0%
+| BGCOLOR="#CCCCCC" | 1
+| BGCOLOR="#CCCCCC" | 5
+|- align="center"
+| BGCOLOR="#FFCCCC" | 0%
+| BGCOLOR="#99CCFF" | 40%^
+| BGCOLOR="#CCFFCC" | 50%
+| BGCOLOR="#FFFFCC" | 50%
+| 25%
+| BGCOLOR="#CCCCCC" | All
+| BGCOLOR="#CCCCCC" | 20
+|- align="center"
+| BGCOLOR="#DDDDDD" rowspan="2" | High Vulnerability Magic Stagger**
+| BGCOLOR="#FFCCCC" | 100%
+| BGCOLOR="#99CCFF" | 0%
+| BGCOLOR="#CCFFCC" | 50%
+| BGCOLOR="#FFFFCC" | 50%
+| 25%
+| BGCOLOR="#CCCCCC" | All
+| BGCOLOR="#CCCCCC" | 20
+|- align="center"
+| BGCOLOR="#FFCCCC" | 200%^
+| BGCOLOR="#99CCFF" | 0%
+| BGCOLOR="#CCFFCC" | 50%
+| BGCOLOR="#FFFFCC" | 50%
+| 25%
+| BGCOLOR="#CCCCCC" | All
+| BGCOLOR="#CCCCCC" | 20
+|- align="center"
+| BGCOLOR="#DDDDDD" rowspan="2" | High Vulnerability JA/WS Stagger**
+| BGCOLOR="#FFCCCC" | 0%
+| BGCOLOR="#99CCFF" | 100%
+| BGCOLOR="#CCFFCC" | 50%
+| BGCOLOR="#FFFFCC" | 50%
+| 25%
+| BGCOLOR="#CCCCCC" | All
+| BGCOLOR="#CCCCCC" | 20
+|- align="center"
+| BGCOLOR="#FFCCCC" | 0%
+| BGCOLOR="#99CCFF" | 200%^
+| BGCOLOR="#CCFFCC" | 50%
+| BGCOLOR="#FFFFCC" | 50%
+| 25%
+| BGCOLOR="#CCCCCC" | All
+| BGCOLOR="#CCCCCC" | 20
+|- align="center"
+| BGCOLOR="#DDDDDD" | Extreme Vulnerability Stagger
+| BGCOLOR="#FFCCCC" | 250%
+| BGCOLOR="#99CCFF" | 250%
+| BGCOLOR="#CCFFCC" | 125%
+| BGCOLOR="#FFFFCC" | 125%
+| 100%
+| BGCOLOR="#CCCCCC" | All
+| BGCOLOR="#CCCCCC" | 30
+|- align="center"
+| BGCOLOR="#DDDDDD" | Synchronic Blitz
+| colspan="5" BGCOLOR="#D4CEF2" | Full spectrum bonus (additive), increases with damage dealt<br>and offensive actions performed during the blitz window
+| 
+|
+|- align="center"
+| BGCOLOR="#BBBBBB" | Overall Cap of Above
+| BGCOLOR="#FF9999" | 350%
+| BGCOLOR="#3399FF" | 350%
+| BGCOLOR="#99FF99" | 225%
+| BGCOLOR="#FFFF99" | 225%
+| BGCOLOR="#DEDEDE" | 100%
+|
+|
+|- align="center"
+| BGCOLOR="#DDDDDD" | Ascent Items
+| BGCOLOR="#FFCCCC" | ''[[Rubicund Cell]]''<br>150% per cell<br>150% cap
+| BGCOLOR="#99CCFF" | ''[[Cobalt Cell]]''<br>150% per cell<br>150% cap
+| BGCOLOR="#CCFFCC" | ''[[Jade Cell]]''<br>75% per cell<br>75% cap
+| BGCOLOR="#FFFFCC" | ''[[Xanthous Cell]]''<br>75% per cell<br>75% cap
+| None
+| 
+|
+|- align="center"
+| BGCOLOR="#DDDDDD" | Treasure Hunter
+| colspan="5" BGCOLOR="#D4CEF2" | Full spectrum bonus (multiplies with total alignment including ascent items),<br>increases with active treasure hunter level (1% per level)
+| 
+|
+|- align="center"
+| BGCOLOR="#BBBBBB" | Overall Cap of Above
+| BGCOLOR="#FF9999" | 500%
+| BGCOLOR="#3399FF" | 500%
+| BGCOLOR="#99FF99" | 300%
+| BGCOLOR="#FFFF99" | 300%
+| BGCOLOR="#DEDEDE" | 100%
+| 
+|
+|- align="center"
+| BGCOLOR="#DDDDDD" | Periapts
+| BGCOLOR="#FFCCCC" | ''[[:Category:Periapt|Glory]]''<br>+25% each
+| BGCOLOR="#99CCFF" | ''[[:Category:Periapt|Concentration]]''<br>+25% each
+| BGCOLOR="#CCFFCC" | ''[[:Category:Periapt|Intensity]]''<br>+12.5% each
+| BGCOLOR="#FFFFCC" | ''[[:Category:Periapt|Focus]]''<br>+12.5% each
+| None
+|
+|- align="center"
+| BGCOLOR="#BBBBBB" | Maximum Possible Alignment
+| BGCOLOR="#FF9999" | 550%
+| BGCOLOR="#3399FF" | 550%
+| BGCOLOR="#99FF99" | 325%
+| BGCOLOR="#FFFF99" | 325%
+| BGCOLOR="#DEDEDE" | 100%
+| 
+|
+|-
+|}
+|-
+|}
+<nowiki>*</nowiki> Must be in possession of at least one temporary item [[:Category:Periapt|Periapt]] to have access to temporary items. Extreme vulnerabilities will additionally give a [[Revitalizer]] to the player who triggers it if they have a  [[Periapt of recompense]].<br>
+<nowiki>**</nowiki> If the player who staggers is in possession of periapt(s) of concord, job ability and weapon skill weaknesses will receive an alignment bonus. Similarly, periapt(s) of catalysis will yield bonus alignment on magic weaknesses. Low weaknesses will be increased by 5% per periapt, higher weaknesses will be increased by 10-20% on each light per periapt.
+<br>^ The higher alignment boosts are received when the weakness stagger is hit during or just after the mob is readying a TP move or casting a spell.
+<br>
+<br>
+
+Each of these lights may be enhanced in several ways - see the table above for summarized details. Note that the effects of periapts and [[:Category:Ascent Item|ascent items]] on spectral alignment are player-specific and do not apply to the entire group, while the effects of staggers, Synchronic Blitz, and Treasure Hunter do apply to the entire group.
+
+* Prior to the battle (these methods are player-specific):
+** Trading [[:Category:Ascent Item|ascent items]] to the Planar Rift before the battle begins
+*** Ascent items may be purchased from Voidwatch Officers for 3000 cruor or from [[Voidwatch Purveyor]]s for 2000 [[Conquest Points]] in conquest areas, 2000 [[Imperial Standing]] in ToAU areas, or 3000 [[Allied Notes]] in WotG areas.  They may also be found in Treasure Caskets.
+*** Up to three of each [[:Category:Ascent Item|ascent item]] can be traded per battle to reach maximum alignment obtainable from cells.
+*** The spectral alignment value from ascent items will be reset when the player opens a riftworn pyxis.  If the player did not have a voidstone at the start of battle, the spectral alignment from ascent items will carry over to the next battle.
+***Spectral alignment obtained through trading ascent items cap separately from spectral alignment obtained during the battle, so the maximum possible alignments can only be reached by trading ascent items prior to each battle.
+** Possessing certain alignment-enhancing periapts
+* During the battle (these methods apply to the full group):
+** Staggering ("devastating") the monster
+** Engaging in Synchronic Blitz during a stagger
+*** Alignment gained from Blitz is additive (e.g. a 6% blitz will directly add 6 to the previous alignments, 200% -> 206%).
+** Applying [[Treasure Hunter]] effect to the monster
+*** Alignment gained from Treasure Hunter is a percentage equal to the TH level, multiplied with the total alignments (including that from ascent items) at the end of the battle before applying bonus alignment from periapts (e.g. TH6 will add 6% to the previous alignments, 200% -> 212%). However, Treasure Hunter cannot make alignments exceed 300% for green/yellow or 500% for red/blue prior to periapt bonus alignment.
+
+* In Zilart battles only, an additional method of receiving alignment bonuses is available. When an assisting monster is defeated in one of these battles, a temporary window opens up in which any weaknesses hit on the main NM will result in an increased alignment bonus. Defeating more than one of the assisting monsters in quick succession will increase these alignment bonuses even further.
+
+== Vulnerabilities ==
+===Weaknesses and Staggers===
+Using a specific magic spell, weapon skill, or job ability can trigger a monster's weakness.
+* A full list of weakness triggers can be found on the '''[[Voidwatch Weaknesses]]''' page.
+* Triggering a monster's weakness will cause several things to occur:
+** Spectral alignments will be raised.
+** Monster's attack and magic attack power will be slightly reduced for the duration of the battle (this effect is cumulative).
+** Temporary items will be restored
+** The monster will be briefly staggered (frozen and unable to use abilities or attack).
+*** [[Synchronic Blitz]] will be available during the stagger for further alignment bonus.
+* Per the weakness messages gained from [[:Category:Periapt|periapts]] (of [[Periapt of percipience|percipience]] and [[Periapt of guidance|guidance]]), the enemy will be "vulnerable," "highly vulnerable," or "extremely vulnerable" to a particular weakness (often referred to shorthand as "1," "3," and "5" respectively by players), with the quantity and types of spectral alignment added dependent on the level of vulnerability and what triggered the stagger (reference the spectral alignment table above).
+** Weakness messages from periapts will vary based on the type of weakness.
+*** Job ability weakness messages will reference the job which learns the ability (e.g. "vulnerable to dark knight abilities")
+*** Pet ability weakness messages will reference "avatar," "automaton," or "pet" (pet refers to BST jug pets).
+**** Avatar-related messages can be further specified by obtaining a [[Periapt of sapience]].
+*** Weapon skill weakness messages will reference the type of weapon (e.g. "vulnerable to polearm weapon skills").
+**** Weapon skill weaknesses include all offensive skill-based and quested weapon skills (these do not include relic, mythic, or empyrean weapon skills).
+*** Magic weakness messages will reference the element of the spell (e.g. "vulnerable to fire elemental magic spells").
+**** Magic weaknesses include most offensive magic spells, both damaging and debuffing. Notable exceptions which are NOT included are tier I and tier V single target nukes and spells learned via merit points.
+**** Magic-related messages can be further specified by magic type (ninjutsu, songs, blue magic, white magic, or black magic) by obtaining a [[Periapt of clarity]].
+* At the start of the battle, one extreme vulnerability, two high vulnerabilities and six normal vulnerabilities are randomly chosen as weaknesses. 
+** Unlike in Abyssea, a weakness can be triggered at any time (including when the NM is casting or using a special ability or when another weakness is active).
+*** For normal and high vulnerabilities, the higher alignment percentage value staggers (40%, 200%) are received when the weakness is used while a spell is cast or TP move is readied by the monster.
+** Once a weakness has been hit, it will be replaced with a new one of the same tier (high or normal). These will not change during the battle until they are found and used on the monster.
+*** Extreme vulnerabilities can only be hit once per battle and will not be replaced.
+*** [[Gasha]] and [[Nympha Eunomia]], which despawn and respawn in phases, will have a new set of weaknesses (including a new extreme weakness, even if one has already been hit) on each spawn.
+** Upon triggering a weakness, affected spectral alignments will be displayed in the log as "XXX% (+YYY%)" where XXX% is the new total alignment, including the stagger, and YYY% is the amount that was added by the stagger.
+** If a set of weaknesses is particularly difficult to hit and the monster has been alive for five minutes or longer, the current hate target of the monster may use the "/fume" emote on the monster. This will cause the "aura" of the monster to change, and choose an entirely new set of weaknesses. This will not create a new extreme weakness if it has already been hit. For every five minutes the monster is alive, this can be used once (for example, after 10 minutes of fighting, the weaknesses can be changed twice in a row).
+*** This interval is reduced to 30 seconds with the key item {{KI}} [["Rhapsody in Mauve"]].
+
+===Synchronic Blitz===
+While an enemy is staggered, a window opens during which the enemy is frozen and '''Synchronic Blitz''' may be performed. 
+* The duration of the stagger (and Blitz opportunity) depends on the tier of weakness:
+** Lower weaknesses - ({{Green!}}) will stagger for 5 seconds.
+** Higher weaknesses - ({{Red!}}) will stagger for 20 seconds. 
+** Extreme weakness - ({{White!}}) will stagger for 30 seconds.
+** Stagger duration is additive -- other staggers can be hit while an enemy is already staggered, adding to the overall duration of the current stagger and Blitz opportunity.
+* Based on the overall amount of damage dealt and actions performed during the stagger, the Synchronic Blitz will reward all members of the alliance with enhanced spectral alignment of all colors immediately following the stagger (the effect on alignment will be displayed in the log after the stagger and Blitz opportunity ends). There is no cap on the amount of alignment that can be added by a Blitz, though the overall combined alignment from weaknesses and blitz are limited to 350% for red and blue, 225% for yellow and green, and 100% for white.
+
+===Provenance Notes===
+* There is no spectral alignment in Provenance, so weaknesses do not yield alignment or Synchronic Blitz opportunities.
+**Spectral alignment is only for temporary items, a momentary terror on the monster, and key item obtainment. Items are not affected.
+
+== Rewards ==
+=== After the Battle ===
+[[Image:Riftworn Pyxis header.jpg|right|thumb|300px|Rewards for completing Voidwatch battles are obtained separately by each player from a Riftworn Pyxis following the battle.]]
+
+Once the battle is successfully completed, a [[Riftworn Pyxis]] will appear at the position of the [[Planar Rift]] where the battle was initiated. Each player must click on the pyxis to receive his or her reward. The Pyxis will remain for three minutes or until all participants obtain or relinquish all of their rewards, whichever comes first, at which time it will despawn and be replaced by the [[Planar Rift]] shortly thereafter. In [[Provenance]], periapts and atmacites are obtained immediately upon battle completion and item rewards are obtained from a [[Glimmering Trove]] rather than a [[Riftworn Pyxis]]. As players cannot participate in a Provenance battle without expending the requisite key items, items are always obtained.
+
+* All players who participated in the battle will receive '''experience points''' and '''cruor''' depending on the location and tier of the battle.
+** If a voidstone was expended, the base values will be multiplied by the player's yellow (EXP) and green (cruor) spectral alignments at the end of the battle.
+** Experience points and cruor are not obtained from [[Provenance]] battles.
+
+
+{|width=400 border=1
+|-
+|
+{| width=100% border=0 cellspacing="1"
+|- BGCOLOR="#ADBDCC" align="center"
+| colspan=4 | '''Voidwatch Battle Rewards (EXP & Cruor)'''
+|- BGCOLOR="#ADBDCC"
+! width="20%" | Region
+! width="25%" | Tier
+! width="27.5%" | Base EXP
+! width="27.5%" | Base Cruor
+|- BGCOLOR="#E5E5E5" align="center"
+| rowspan="4" | City
+| I
+| 5000
+| 5000
+|- BGCOLOR="#E5E5E5" align="center"
+| II
+| 5500
+| 5500
+|- BGCOLOR="#E5E5E5" align="center"
+| III
+| 6000
+| 6000
+|- BGCOLOR="#E5E5E5" align="center"
+| IV
+| 6500
+| 6500
+|- BGCOLOR="#E5E5E5" align="center"
+| rowspan="5" | Jeuno
+| I
+| 6000
+| 6000
+|- BGCOLOR="#E5E5E5" align="center"
+| II & IV
+| 6500
+| 6500
+|- BGCOLOR="#E5E5E5" align="center"
+| III & V
+| 7000
+| 7000
+|- BGCOLOR="#E5E5E5" align="center"
+| VI (Past)
+| 7500
+| 7500
+|- BGCOLOR="#E5E5E5" align="center"
+| VI (Present)
+| 10000
+| 10000
+|- BGCOLOR="#E5E5E5" align="center"
+| rowspan="3" | Zilart
+| I
+| 5000
+| 7000
+|- BGCOLOR="#E5E5E5" align="center"
+| II
+| 5000
+| 7500
+|- BGCOLOR="#E5E5E5" align="center"
+| III
+| 5000
+| 8000
+|- BGCOLOR="#E5E5E5" align="center"
+| rowspan="3" | Aht Urhgan & Tavnazia
+| I
+| 7500
+| 7500
+|- BGCOLOR="#E5E5E5" align="center"
+| II
+| 10000
+| 10000
+|}
+|-
+|}
+
+
+* '''Stratum Abyssite Growth'''
+** Stratum Abyssite is advanced through tiers by successfully completing the Voidwatch battle(s) associated with the current tier (expending a [[voidstone]] is not necessary). 
+*** For crimson, indigo, jade, and white (I to II, IV to V) stratum abyssites, a player must speak with an [[Atmacite Refiner]] NPC after completing the current tier battle(s) to advance the abyssite.
+*** For white stratum abyssite (II to III, III to IV, and V to VI), ashen, hyacinth, and amber stratum abyssites, the tier of the abyssite is advanced through the associated [[:Category:Voidwatch Quests|quest progression]].
+
+* Players who expended a voidstone will additionally receive the following:
+** '''Items'''
+*** The amount of items received depends on the player's blue spectral alignment at the end of the battle. Each 100% corresponds to one item, and additional percentage relates to the probability of receiving one extra item. For example, 400% corresponds to 4 items and 525% corresponds to a 25% chance of 6 items and a 75% chance of 5 items.
+*** The chance of receiving rare or rare/ex items specific to the fight increases with the player's red spectral alignment at the end of the battle.
+**** Only one of the rare or rare/ex drops can be obtained in each battle, and it will always load into the top slot in the riftworn pyxis.
+*** If a player is already in possession of the rare/ex item or otherwise does not desire to receive the items in the crate, he or she can choose the "relinquish all items" option (the crate will not disappear until its timer runs out if any items remain in the crate).
+** '''Periapt or Atmacite'''
+*** The chance of receiving the periapt or atmacite associated with a particular battle is equal to the player's white spectral alignment at the end of the battle. If dropped, periapt or atmacite will drop to all members who expended a voidstone.
+*** In [[Provenance]], associated periapt and atmacite are automatically obtained upon completion of the battle (there is no spectral alignment in Provenance).
+** '''Petrifacts'''
+*** [[Crystal Petrifact]]s are commonly obtained as item rewards in the individual loot pool from any Voidwatch battle. Four of these can be traded for a [[Kupofried's corundum]] used to access the [[Provenance]] radiance battlefields.
+*** Key item petrifacts ([[Beguiling petrifact]], [[Maddening petrifact]], and [[Seductive petrifact]]) used to access the [[Provenance Watcher]] battlefield may also obtained infrequently at the completion of any Voidwatch battle outside [[Provenance]] or guaranteed from the Radiance battles within Provenance. While a voidstone must be expended to receive these, spectral alignment does not have any effect. If a key item petrifact does drop, it will drop to all those in the alliance who expended a voidstone.
+
+===Armor and Weapons===
+A host of varied unique equipment is available from the Voidwatch battles, with each battle offering at least one item available nowhere else. This includes (but is not limited to) the items below:
+
+====Armor Sets====
+Among the Voidwatch-specific equipment are three new sets of armor obtained from the tier IV, V, and VI foes of the white Voidwatch path, offering unique statistics and set bonuses:
+*[[Ogier's Armor Set]] (WAR, PLD, DRK, BST, SAM, DRG)
+*[[Rubeus Attire Set]] (WHM, BLM, RDM, BRD, SMN, SCH)
+*[[Athos's Armor Set]] (MNK, THF, RNG, NIN, BLU, COR, PUP, DNC, RUN)
+
+====Abjurations====
+Hands and legs abjurations from the [[Abjuration#Abjuration_Sets_.28Voidwatch.2FLegion.29|new Abjuration armor sets]] are obtained exclusively from the hyacinth and amber Voidwatch paths, as well as [[Provenance]] radiance battles.
+
+====Crystal Equipment====
+Several powerful weapons and armor pieces forged with crystal can be obtained exclusively from the final battle of [[Provenance]] against [[Provenance Watcher]].
+
+====Pulse Panoplia====
+The rarest and most unique items obtainable from Voidwatch are the [[Pulse Panoplia]]: weapons and armor named for their visible pulsing aura. If one of these unique pieces of equipment is obtained in the riftworn pyxis (denoted by a star next to the name), but the player does not desire to obtain that piece or already has it in possession, it may be converted into a [[Pulse Cell]] by selecting the "Obtain as pulse cell" option. Pulse Cells may be traded and sold (including the auction house). Obtaining five pulse cells of the same type and trading them to [[Ardrick]] in [[Jugner Forest]] will allow the player to obtain the associated equipment. Note: you must have obtained the title associated with defeating the monster that drops the desired equipment in order to receive the equipment from Pulse Cells. Titles can only be obtained if the associated stratum abyssite is at or beyond the tier associated with the NM when the NM is defeated.
+
+== Atmacite ==
+Players may receive an [[:Category:Atmacite|Atmacite]] from a successful Voidwatch battle.  Atmacites can be infused to players who posses a [[periapt of emergence]] in a manner similar to [[:Category:Abyssea Atma|Atmas]] from [[Abyssea]] (one atmacite for each periapt of emergence) to increase their power during Voidwatch Ops.  Once a player has an Atmacite, it may be upgraded with Cruor in stages by an Atmacite Refiner.
+
+== Periapt ==
+Players may receive a [[:Category:Periapt|Periapt]] from a successful Voidwatch battle, or by purchasing them with cruor from a [[Voidwatch Officer]].  Periapts bestow various enhancements during fights, including increasing spectral alignments and reducing voidstone regeneration time.
+
+Once obtained, periapts will always be active, similar to [[:Category:Abyssea Abyssite|Abyssites]] in Abyssea.
+
+== Generic Strategy Guide ==
+* Five [[Phase Displacer]]s turned into [[Void cluster]]s tend to render every fight versus all but [[Provenance]] targets extremely trivial by lowering enemy level by 25. Earning [["Rhapsody in Mauve"]] will reduce the cost of one to a mere 1,000 gil.
+* Gear better than sparks gear will start to be required even following the above as you clear tiers.
+* Waiting for the appropriate [[Category:Adventurer_Campaigns#Voidwatch_Campaign|adventurer campaign]] can make the climb through quests easier, as well earning Abyssite and [[:Category:Periapt|Periapt]] a guarantee.
+
+==Monthly Adventurer Campaigns==
+There is one type of campaign that may run any given month.
+
+{{Category:Adventurer_Campaigns
+|transcludesection=Voidwatch
+}}
+
+== Related Links ==
+*[[:Category:Voidwatch Quests]]
+*[[Voidwatch Weaknesses]]
+*[http://wilddragonchase.blogspot.com/2011/05/ffxi-voidwatch-part-i.html Spira's Graphical Voidwatch Guide]
+*[http://www.bluegartr.com/threads/104509-Voidwatch-Discussion?p=4639720&viewfull=1#post4639720 BG Generic strategy notes (Arthars past posters, BG)]
+*[https://docs.google.com/spreadsheet/pub?hl=en_US&key=0Au2a1TIiTj8WdHlvTWtkdU5DRU1JU21fbEtLUjN1TkE&hl=en_US&gid=0 Voidwatch Weaknesses (Slycer/BG)]
+[[Category:Battle Systems]]

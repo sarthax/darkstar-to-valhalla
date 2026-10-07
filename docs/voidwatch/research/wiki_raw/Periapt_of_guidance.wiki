@@ -1,0 +1,29 @@
+{{Key Item Header|Name=Periapt of guidance
+|Type=Temporary Key Items
+|Description=A talisman formed of abyssite. Grants the bearer heightened insight into Voidwalker weaknesses against weapon skills and abilities.
+|Image=Periapt of guidance.jpg
+}}
+{{Key Item Usage Table
+|type=Cost
+|Insert Key Item Acquisition Instance Template=
+{{Key Item Acquisition Instance
+|npcname=Voidwatch Officer
+|zone=Multiple 
+|cost= 150,000 [[Cruor]]
+}}
+|Insert Key Item Use Instance Template=
+{{Key Item Use Instance
+|usage=Battlefield
+|name=[[Voidwatch{{!}}Voidwatch Ops]].
+}}
+}}
+==Notes==
+*Upon using an offensive job ability or weapon skill, there is a chance that a hint to one job ability or weapon skill [[Voidwatch Weaknesses|vulnerability]] will be revealed.
+**If a weapon skill vulnerability is revealed, the type of weapon, or "automaton," will be shown.
+**If a job ability vulnerability is revealed, the job that natively learns that ability will be shown.
+**If a pet ability vulnerability is revealed, the type of pet will be shown (avatar, wyvern, automaton, or "pet," which refers to [[beastmaster]] jug pets).
+***Possession of a [[Periapt of sapience]] will enhance the pet-related messages to show the element of the avatar, the element of the wyvern breath, the monster family of the pet, or the frame of the automaton.
+
+==Related Links==
+ 
+[[Category:Periapt]][[Periapt of sapience]]

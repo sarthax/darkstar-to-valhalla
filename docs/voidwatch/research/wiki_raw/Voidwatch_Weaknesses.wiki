@@ -1,0 +1,732 @@
+{{disambiguation|Voidwatch|Voidwatch Quests}}
+At the start of any [[Voidwatch]] battle, several weakness triggers are chosen and grouped into various levels. There will be six normal vulnerabilities {{green!}}, two high vulnerabilities {{red!}}, and one extreme vulnerability {{white!}}. Weaknesses are chosen randomly from any of the job or pet abilities, weapon skills, and spells listed in the tables below and hints to those weakness triggers are provided by various [[periapt]] items acquired from [[Voidwatch Officer]]s. Once a weakness is hit, it will be replaced randomly with the same level weakness (normal or high, extreme weaknesses can only be hit once per battle), but not necessarily the same kind of trigger (ability, weapon skill, or spell). 
+
+Targeting an enemy's weakness results in the following:
+* Spectral alignments raised
+* Slight cumulative reduction in enemy attack and magic attack power for the remaining duration of the battle.
+* Restoration of one or all temporary items used.
+* Stagger of the enemy (temporary terror effect depending on the level of vulnerability).
+* [[Synchronic Blitz]] (results in increased alignment yield based on damage done and offensive abilities used during stagger).
+
+Appropriate timing of the weakness trigger during a monster's TP move or spellcast will cause it to yield additional alignment bonus and, in the case of normal vulnerabilities, additional temporary items and duration. This timing window is increasingly small on higher tier NMs and essentially non-existent on NMs such as [[Bismarck]] and [[Morta]]. See the [[:Category:Voidwatch#Weaknesses & Synchronic Blitz|weakness section of the Voidwatch page]] for more information.
+
+If a weapon skill, ability, or spell has no effect (except [[Dispel]] & [[Magic Finale]]), is completely resisted, or completely misses, it cannot trigger a weakness even if it is the vulnerability and must be tried again. For example, [[Poison]] and [[Poisonga]] cannot overwrite [[Poison II]] if it has already been applied, and so they cannot trigger weakness until the Poison II effect wears off.
+
+If a set of weaknesses is particularly difficult to hit and the monster has been alive for five minutes or longer, the current hate target of the monster may use the "/fume" emote on the monster. This will cause the "aura" of the monster to change, and choose an entirely new set of weaknesses. This will not create a new extreme weakness if it has already been hit. For every five minutes the monster is alive, this can be used once (for example, after 10 minutes of fighting, the weaknesses can be changed twice in a row). This interval is reduced to 30 seconds with the key item {{KI}} "[[Rhapsody in Mauve]]".
+
+== Job Ability Vulnerabilities ==
+*Jobs not listed in the table below do not have any job abilities that can be weakness triggers. Ability weakness messages may be displayed upon using any offensive job ability or weapon skill with a [[periapt of guidance]] in possession, and are specified by job or type of pet.
+
+{|width=900 border=1
+|-
+|
+{| width=100% border=0
+|- BGCOLOR="#ADBDCC"
+! width="11.2%" | [[Job]]
+! colspan="8" | Weakness Triggers
+|- BGCOLOR="#E5E5E5" align="center"
+| BGCOLOR="#d0d6dc" | '''[[Black Mage]]'''
+| [[Enmity Douse]]
+|
+|
+|
+|
+|
+|
+|
+|- BGCOLOR="#E5E5E5" align="center"
+| BGCOLOR="#d0d6dc" | '''[[Corsair]]'''
+| [[Quick Draw|Fire Shot]]
+| [[Quick Draw|Ice Shot]]
+| [[Quick Draw|Wind Shot]]
+| [[Quick Draw|Earth Shot]]
+| [[Quick Draw|Thunder Shot]]
+| [[Quick Draw|Water Shot]]
+|
+|
+|- BGCOLOR="#E5E5E5" align="center"
+| BGCOLOR="#d0d6dc" | '''[[Dancer]]'''
+| [[Quickstep]]
+| [[Stutter Step]]
+| [[Box Step]]
+| [[Feather Step]]
+| [[Violent Flourish]]
+| [[Animated Flourish]]
+| [[Desperate Flourish]]
+| [[Wild Flourish]]
+|- BGCOLOR="#E5E5E5" align="center"
+| BGCOLOR="#d0d6dc" | '''[[Dark Knight]]'''
+| [[Weapon Bash]]
+|
+|
+|
+|
+|
+|
+|
+|- BGCOLOR="#E5E5E5" align="center"
+| BGCOLOR="#d0d6dc" | '''[[Dragoon]]'''
+| [[Jump]]
+| [[High Jump]]
+| [[Spirit Jump]]
+| [[Soul Jump]]
+| 
+|
+|
+|
+|- BGCOLOR="#E5E5E5" align="center"
+| BGCOLOR="#d0d6dc" | '''[[Monk]]'''
+| [[Chi Blast]]
+|
+|
+|
+|
+|
+|
+|
+|- BGCOLOR="#E5E5E5" align="center"
+| BGCOLOR="#d0d6dc" | '''[[Paladin]]'''
+| [[Shield Bash]]
+|
+|
+|
+|
+|
+|
+|
+|- BGCOLOR="#E5E5E5" align="center"
+| BGCOLOR="#d0d6dc" | '''[[Ranger]]'''
+| [[Shadowbind]]
+| 
+|
+|
+|
+|
+|
+|
+|- BGCOLOR="#E5E5E5" align="center"
+| BGCOLOR="#d0d6dc" | '''[[Scholar]]'''
+| [[Libra]]
+| 
+|
+|
+|
+|
+|
+|
+|- BGCOLOR="#E5E5E5" align="center"
+| BGCOLOR="#d0d6dc" | '''[[Thief]]'''
+| [[Bully]]
+|
+|
+|
+|
+|
+|
+|
+|- BGCOLOR="#E5E5E5" align="center"
+| BGCOLOR="#d0d6dc" | '''[[Warrior]]'''
+| [[Provoke]]
+| 
+|
+|
+|
+|
+|
+|
+|}
+|-
+|}
+
+== Pet Vulnerabilities ==
+* Offensive abilities acquired by beastmaster jug pets can trigger weaknesses. All pet abilities are considered the same weakness.
+* Offensive automaton special abilities and weapon skills can trigger weaknesses. All automaton abilities and weapon skills are considered the same weakness.
+* Avatar blood pact weaknesses are specified by element (with a [[periapt of sapience]]) and the possible triggers are listed in the table below:
+
+{|width=400 border=1
+|-
+|
+{| width=100% border=0
+|- BGCOLOR="#ADBDCC"
+! Element
+! [[Avatar]]
+! colspan="1" | Weakness Trigger
+|- BGCOLOR="#E3E3E3" align="center"
+| BGCOLOR="#FFFFFF" | <font color="#33CDCF">'''Light'''</font>
+| '''[[Carbuncle]]'''
+| [[Holy Mist]]
+|- BGCOLOR="#BBBBBB" align="center"
+| rowspan="2" BGCOLOR="#000000" | <font color="white">'''Darkness'''</font>
+| '''[[Diabolos]]'''
+| [[Night Terror]]
+|- BGCOLOR="#BBBBBB" align="center"
+| '''[[Fenrir]]'''
+| [[Lunar Bay]]
+|- BGCOLOR="#FFCCCC" align="center"
+| BGCOLOR="#FF6666" | '''Fire'''
+| '''[[Ifrit]]'''
+| [[Fire IV]]
+|- BGCOLOR="#C0ECED" align="center"
+| BGCOLOR="#00DDFF" | '''Ice'''
+| '''[[Shiva]]'''
+| [[Blizzard IV]]
+|- BGCOLOR="#CCFFCC" align="center"
+| BGCOLOR="#66FF66" | '''Wind'''
+| '''[[Garuda]]'''
+| [[Aero IV]]
+|- BGCOLOR="#FFFFCC" align="center"
+| BGCOLOR="#FFFF66" | '''Earth'''
+| '''[[Titan]]'''
+| [[Stone IV]]
+|- BGCOLOR="#E0C9EA" align="center"
+| BGCOLOR="#A700ED" | '''Lightning'''
+| '''[[Ramuh]]'''
+| [[Thunder IV]]
+|- BGCOLOR="#C0E4ED" align="center"
+| BGCOLOR="#3399FF" | '''Water'''
+| '''[[Leviathan]]'''
+| [[Water IV]]
+|}
+|-
+|}
+
+== Weapon Skill Vulnerabilities ==
+*All offensive [[weapon skill]]s are potential weakness triggers except [[Relic Weapon|Relic]], [[Mythic Weapon|Mythic]], [[Empyrean Weapon|Empyrean]], and  [[Aeonic Weapon|Aeonic]] weapon skills. There are 8-12 potential vulnerabilities for each weapon type. Weapon skill messages may be displayed upon using any offensive job ability or weapon skill with a [[periapt of guidance]] in possession, and are specified by weapon type.
+
+{|width=900 border=1
+|-
+|
+{| width=100% border=0
+|- BGCOLOR="#ADBDCC"
+! width="11.2%" | Weapon
+! colspan="6" | Weakness Triggers
+|- BGCOLOR="#E5E5E5" align="center"
+| rowspan="2" BGCOLOR="#d0d6dc" | '''[[Archery]]'''
+| [[Flaming Arrow]]
+| [[Piercing Arrow]]
+| [[Dulling Arrow]]
+| [[Sidewinder]]
+| [[Blast Arrow]]
+| [[Arching Arrow]]
+|- BGCOLOR="#E5E5E5" align="center"
+| [[Empyreal Arrow]]
+| [[Refulgent Arrow]]
+|
+|
+|
+|
+|- BGCOLOR="#d1d8e0" align="center"
+| rowspan="2" BGCOLOR="#b9c8d7" | '''[[Axe]]'''
+| [[Raging Axe]]
+| [[Smash Axe]]
+| [[Gale Axe]]
+| [[Avalanche Axe]]
+| [[Spinning Axe]]
+| [[Rampage]]
+|- BGCOLOR="#d1d8e0" align="center"
+| [[Calamity]]
+| [[Mistral Axe]]
+| [[Decimation]]
+| [[Bora Axe]]
+|
+|
+|- BGCOLOR="#E5E5E5" align="center"
+| BGCOLOR="#d0d6dc" | '''[[Automaton]]'''
+| colspan=6 | All automaton weapon skills and offensive abilities are considered the same weakness.
+|- BGCOLOR="#d1d8e0" align="center"
+| rowspan="2" BGCOLOR="#b9c8d7" | '''[[Club]]'''
+| [[Shining Strike]]
+| [[Seraph Strike]]
+| [[Brainshaker]]
+| [[Skullbreaker]]
+| [[True Strike]]
+| [[Judgment]]
+|- BGCOLOR="#d1d8e0" align="center"
+| [[Hexa Strike]]
+| [[Black Halo]]
+| [[Flash Nova]]
+| 
+|
+|
+|- BGCOLOR="#E5E5E5" align="center"
+| rowspan="2" BGCOLOR="#d0d6dc" | '''[[Dagger]]'''
+| [[Wasp Sting]]
+| [[Gust Slash]]
+| [[Shadowstitch]]
+| [[Viper Bite]]
+| [[Cyclone]]
+| [[Energy Steal]]
+|- BGCOLOR="#E5E5E5" align="center"
+| [[Energy Drain]]
+| [[Dancing Edge]]
+| [[Shark Bite]]
+| [[Evisceration]]
+| [[Aeolian Edge]]
+|
+|- BGCOLOR="#d1d8e0" align="center"
+| rowspan="2" BGCOLOR="#b9c8d7" | '''[[Great Axe]]'''
+| [[Shield Break]]
+| [[Iron Tempest]]
+| [[Sturmwind]]
+| [[Armor Break]]
+| [[Keen Edge]]
+| [[Weapon Break]]
+|- BGCOLOR="#d1d8e0" align="center"
+| [[Raging Rush]]
+| [[Full Break]]
+| [[Steel Cyclone]]
+| [[Fell Cleave]]
+|
+|
+|- BGCOLOR="#E5E5E5" align="center"
+| rowspan="2" BGCOLOR="#d0d6dc" | '''[[Great Katana]]'''
+| [[Tachi: Enpi]]
+| [[Tachi: Hobaku]]
+| [[Tachi: Goten]]
+| [[Tachi: Kagero]]
+| [[Tachi: Jinpu]]
+| [[Tachi: Koki]]
+|- BGCOLOR="#E5E5E5" align="center"
+| [[Tachi: Yukikaze]]
+| [[Tachi: Gekko]]
+| [[Tachi: Kasha]]
+| [[Tachi: Ageha]]
+|
+|
+|- BGCOLOR="#d1d8e0" align="center"
+| rowspan="2" BGCOLOR="#b9c8d7" | '''[[Great Sword]]'''
+| [[Hard Slash]]
+| [[Power Slash]]
+| [[Frostbite]]
+| [[Freezebite]]
+| [[Shockwave]]
+| [[Crescent Moon]]
+|- BGCOLOR="#d1d8e0" align="center"
+| [[Sickle Moon]]
+| [[Spinning Slash]]
+| [[Ground Strike]]
+| [[Herculean Slash]]
+|
+|
+|- BGCOLOR="#E5E5E5" align="center"
+| rowspan="2" BGCOLOR="#d0d6dc" | '''[[Hand-to-Hand]]'''
+| [[Combo]]
+| [[Shoulder Tackle]]
+| [[One Inch Punch]]
+| [[Backhand Blow]]
+| [[Raging Fists]]
+| [[Spinning Attack]]
+|- BGCOLOR="#E5E5E5" align="center"
+| [[Howling Fist]]
+| [[Dragon Kick]]
+| [[Asuran Fists]]
+| [[Tornado Kick]]
+|
+|
+|- BGCOLOR="#d1d8e0" align="center"
+| rowspan="2" BGCOLOR="#b9c8d7" | '''[[Katana]]'''
+| [[Blade: Rin]]
+| [[Blade: Retsu]]
+| [[Blade: Teki]]
+| [[Blade: To]]
+| [[Blade: Chi]]
+| [[Blade: Ei]]
+|- BGCOLOR="#d1d8e0" align="center"
+| [[Blade: Jin]]
+| [[Blade: Ten]]
+| [[Blade: Ku]]
+| [[Blade: Yu]]
+|
+|
+|- BGCOLOR="#E5E5E5" align="center"
+| rowspan="2" BGCOLOR="#d0d6dc" | '''[[Marksmanship]]'''
+| [[Hot Shot]]
+| [[Split Shot]]
+| [[Sniper Shot]]
+| [[Slug Shot]]
+| [[Blast Shot]]
+| [[Heavy Shot]]
+|- BGCOLOR="#E5E5E5" align="center"
+| [[Detonator]]
+| [[Numbing Shot]]
+|
+|
+|
+|
+|- BGCOLOR="#d1d8e0" align="center"
+| rowspan="2" BGCOLOR="#b9c8d7" | '''[[Polearm]]'''
+| [[Double Thrust]]
+| [[Thunder Thrust]]
+| [[Raiden Thrust]]
+| [[Leg Sweep]]
+| [[Penta Thrust]]
+| [[Vorpal Thrust]]
+|- BGCOLOR="#d1d8e0" align="center"
+| [[Skewer]]
+| [[Wheeling Thrust]]
+| [[Impulse Drive]]
+| [[Sonic Thrust]]
+|
+|
+|- BGCOLOR="#E5E5E5" align="center"
+| rowspan="2" BGCOLOR="#d0d6dc" | '''[[Scythe]]'''
+| [[Slice]]
+| [[Dark Harvest]]
+| [[Shadow of Death]]
+| [[Nightmare Scythe]]
+| [[Spinning Scythe]]
+| [[Vorpal Scythe]]
+|- BGCOLOR="#E5E5E5" align="center"
+| [[Guillotine]]
+| [[Cross Reaper]]
+| [[Spiral Hell]]
+| [[Infernal Scythe]]
+|
+|
+|- BGCOLOR="#d1d8e0" align="center"
+| rowspan="2" BGCOLOR="#b9c8d7" | '''[[Staff]]'''
+| [[Heavy Swing]]
+| [[Rock Crusher]]
+| [[Earth Crusher]]
+| [[Starburst]]
+| [[Sunburst]]
+| [[Shell Crusher]]
+|- BGCOLOR="#d1d8e0" align="center"
+| [[Full Swing]]
+| [[Spirit Taker]]
+| [[Retribution]]
+| [[Cataclysm]]
+|
+|
+|- BGCOLOR="#E5E5E5" align="center"
+| rowspan="2" BGCOLOR="#d0d6dc" | '''[[Sword]]'''
+| [[Fast Blade]]
+| [[Burning Blade]]
+| [[Red Lotus Blade]]
+| [[Flat Blade]]
+| [[Shining Blade]]
+| [[Seraph Blade]]
+|- BGCOLOR="#E5E5E5" align="center"
+| [[Circle Blade]]
+| [[Spirits Within]]
+| [[Vorpal Blade]]
+| [[Swift Blade]]
+| [[Savage Blade]]
+| [[Sanguine Blade]]
+|}
+|-
+|}
+
+== Magic Vulnerabilities ==
+*Magic vulnerabilities include all spells in the table below and may be specified when casting any offensive spell by element with a [[periapt of percipience]] and type of magic ([[Black Magic]], [[White Magic]], [[Ninjutsu]], [[Singing|Bard Songs]], or [[Blue Magic]]) with a [[periapt of clarity]].
+{|width=900 border=1
+|-
+|
+{| width=100% border=0
+|- align="center"
+| width="11.2%" BGCOLOR="" | '''Magic Type'''
+| width="11.1%" BGCOLOR="#FF6666" | '''Fire'''
+| width="11.1%" BGCOLOR="#FFFF66" | '''Earth'''
+| width="11.1%" BGCOLOR="#3399FF" | '''Water'''
+| width="11.1%" BGCOLOR="#66FF66" | '''Wind'''
+| width="11.1%" BGCOLOR="#00DDFF" | '''Ice'''
+| width="11.1%" BGCOLOR="#A700ED" | '''Lightning'''
+| width="11.1%" BGCOLOR="#FFFFFF" | <font color="#000000">'''Light'''</font>
+| width="11.1%" BGCOLOR="#000000" | <font color="white">'''Darkness'''</font>
+|- align="center"
+| rowspan=17 BGCOLOR="#BBBBBB" | '''[[Black Magic]]<br>&<br>[[White Magic]]<sup>w</sup>'''
+| BGCOLOR="#FFCCCC" | [[Pyrohelix]]
+| BGCOLOR="#FFFFCC" | [[Geohelix]]
+| BGCOLOR="#C0E4ED" | [[Hydrohelix]]
+| BGCOLOR="#CCFFCC" | [[Anemohelix]]
+| BGCOLOR="#C0ECED" | [[Cryohelix]]
+| BGCOLOR="#E0C9EA" | [[Ionohelix]]
+| BGCOLOR="#E3E3E3" | [[Luminohelix]]
+| BGCOLOR="#BBBBBB" | [[Noctohelix]]
+|- align="center"
+| BGCOLOR="#FFCCCC" | [[Fire II]]
+| BGCOLOR="#FFFFCC" | [[Stone II]]
+| BGCOLOR="#C0E4ED" | [[Water II]]
+| BGCOLOR="#CCFFCC" | [[Aero II]]
+| BGCOLOR="#C0ECED" | [[Blizzard II]]
+| BGCOLOR="#E0C9EA" | [[Thunder II]]
+| BGCOLOR="#E3E3E3" | 
+| BGCOLOR="#BBBBBB" | [[Drain]]
+|- align="center"
+| BGCOLOR="#FFCCCC" | [[Fire III]]
+| BGCOLOR="#FFFFCC" | [[Stone III]]
+| BGCOLOR="#C0E4ED" | [[Water III]]
+| BGCOLOR="#CCFFCC" | [[Aero III]]
+| BGCOLOR="#C0ECED" | [[Blizzard III]]
+| BGCOLOR="#E0C9EA" | [[Thunder III]]
+| BGCOLOR="#E3E3E3" | 
+| BGCOLOR="#BBBBBB" | [[Aspir]]
+|- align="center"
+| BGCOLOR="#FFCCCC" | [[Fire IV]]
+| BGCOLOR="#FFFFCC" | [[Stone IV]]
+| BGCOLOR="#C0E4ED" | [[Water IV]]
+| BGCOLOR="#CCFFCC" | [[Aero IV]]
+| BGCOLOR="#C0ECED" | [[Blizzard IV]]
+| BGCOLOR="#E0C9EA" | [[Thunder IV]]
+| BGCOLOR="#E3E3E3" | 
+| BGCOLOR="#BBBBBB" | [[Absorb-TP]]
+|- align="center"
+| BGCOLOR="#FFCCCC" | [[Firaga]]
+| BGCOLOR="#FFFFCC" | [[Stonega]]
+| BGCOLOR="#C0E4ED" | [[Waterga]]
+| BGCOLOR="#CCFFCC" | [[Aeroga]]
+| BGCOLOR="#C0ECED" | [[Blizzaga]]
+| BGCOLOR="#E0C9EA" | [[Thundaga]]
+| BGCOLOR="#E3E3E3" | 
+| BGCOLOR="#BBBBBB" | [[Absorb-ACC]]
+|- align="center"
+| BGCOLOR="#FFCCCC" | [[Firaga II]]
+| BGCOLOR="#FFFFCC" | [[Stonega II]]
+| BGCOLOR="#C0E4ED" | [[Waterga II]]
+| BGCOLOR="#CCFFCC" | [[Aeroga II]]
+| BGCOLOR="#C0ECED" | [[Blizzaga II]]
+| BGCOLOR="#E0C9EA" | [[Thundaga II]]
+| BGCOLOR="#E3E3E3" | 
+| BGCOLOR="#BBBBBB" | [[Absorb-STR]]
+|- align="center"
+| BGCOLOR="#FFCCCC" | [[Firaga III]]
+| BGCOLOR="#FFFFCC" | [[Stonega III]]
+| BGCOLOR="#C0E4ED" | [[Waterga III]]
+| BGCOLOR="#CCFFCC" | [[Aeroga III]]
+| BGCOLOR="#C0ECED" | [[Blizzaga III]]
+| BGCOLOR="#E0C9EA" | [[Thundaga III]]
+| BGCOLOR="#E3E3E3" | 
+| BGCOLOR="#BBBBBB" | [[Absorb-DEX]]
+|- align="center"
+| BGCOLOR="#FFCCCC" | [[Firaja]]
+| BGCOLOR="#FFFFCC" | [[Stoneja]]
+| BGCOLOR="#C0E4ED" | [[Waterja]]
+| BGCOLOR="#CCFFCC" | [[Aeroja]]
+| BGCOLOR="#C0ECED" | 
+| BGCOLOR="#E0C9EA" | 
+| BGCOLOR="#E3E3E3" | 
+| BGCOLOR="#BBBBBB" | [[Absorb-AGI]]
+|- align="center"
+| BGCOLOR="#FFCCCC" | [[Flare]]
+| BGCOLOR="#FFFFCC" | [[Quake]]
+| BGCOLOR="#C0E4ED" | [[Flood]]
+| BGCOLOR="#CCFFCC" | [[Tornado]]
+| BGCOLOR="#C0ECED" | [[Freeze]]
+| BGCOLOR="#E0C9EA" | [[Burst]]
+| BGCOLOR="#E3E3E3" | [[Banish II]]<sup>w</sup>
+| BGCOLOR="#BBBBBB" | [[Absorb-VIT]]
+|- align="center"
+| BGCOLOR="#FFCCCC" | 
+| BGCOLOR="#FFFFCC" | 
+| BGCOLOR="#C0E4ED" | 
+| BGCOLOR="#CCFFCC" | 
+| BGCOLOR="#C0ECED" | 
+| BGCOLOR="#E0C9EA" | 
+| BGCOLOR="#E3E3E3" | [[Banish III]]<sup>w</sup>
+| BGCOLOR="#BBBBBB" | [[Absorb-INT]]
+|- align="center"
+| BGCOLOR="#FFCCCC" | [[Burn]]
+| BGCOLOR="#FFFFCC" | [[Rasp]]
+| BGCOLOR="#C0E4ED" | [[Drown]]
+| BGCOLOR="#CCFFCC" | [[Choke]]
+| BGCOLOR="#C0ECED" | [[Frost]]
+| BGCOLOR="#E0C9EA" | [[Shock]]
+| BGCOLOR="#E3E3E3" | [[Banishga]]<sup>w</sup>
+| BGCOLOR="#BBBBBB" | [[Absorb-MND]]
+|- align="center"
+| BGCOLOR="#FFCCCC" | 
+| BGCOLOR="#FFFFCC" | 
+| BGCOLOR="#C0E4ED" | [[Poison]]
+| BGCOLOR="#CCFFCC" | 
+| BGCOLOR="#C0ECED" | 
+| BGCOLOR="#E0C9EA" | [[Stun]]
+| BGCOLOR="#E3E3E3" | [[Banishga II]]<sup>w</sup>
+| BGCOLOR="#BBBBBB" | [[Absorb-CHR]]
+|- align="center"
+| BGCOLOR="#FFCCCC" | 
+| BGCOLOR="#FFFFCC" | 
+| BGCOLOR="#C0E4ED" | [[Poison II]]
+| BGCOLOR="#CCFFCC" | 
+| BGCOLOR="#C0ECED" | 
+| BGCOLOR="#E0C9EA" | 
+| BGCOLOR="#E3E3E3" | [[Holy]]<sup>w</sup>
+| BGCOLOR="#BBBBBB" | [[Bio II]]
+|- align="center"
+| BGCOLOR="#FFCCCC" | 
+| BGCOLOR="#FFFFCC" |
+| BGCOLOR="#C0E4ED" | [[Poisonga]]
+| BGCOLOR="#CCFFCC" | 
+| BGCOLOR="#C0ECED" | 
+| BGCOLOR="#E0C9EA" | 
+| BGCOLOR="#E3E3E3" | [[Flash]]<sup>w</sup>
+| BGCOLOR="#BBBBBB" | 
+|- align="center"
+| BGCOLOR="#FFCCCC" | 
+| BGCOLOR="#FFFFCC" |
+| BGCOLOR="#C0E4ED" | 
+| BGCOLOR="#CCFFCC" | 
+| BGCOLOR="#C0ECED" | 
+| BGCOLOR="#E0C9EA" | 
+| BGCOLOR="#E3E3E3" | [[Dia II]]<sup>w</sup>
+| BGCOLOR="#BBBBBB" | [[Blind]]
+|- align="center"
+| BGCOLOR="#FFCCCC" | [[Addle]]<sup>w</sup>
+| BGCOLOR="#FFFFCC" | [[Slow]]<sup>w</sup>
+| BGCOLOR="#C0E4ED" | 
+| BGCOLOR="#CCFFCC" | 
+| BGCOLOR="#C0ECED" | [[Paralyze]]<sup>w</sup>
+| BGCOLOR="#E0C9EA" | 
+| BGCOLOR="#E3E3E3" | [[Diaga]]<sup>w</sup>
+| BGCOLOR="#BBBBBB" | [[Dispel]]
+|-
+| 
+| 
+| 
+| 
+| 
+|
+| 
+| 
+|- align="center"
+| rowspan=5 BGCOLOR="#FFFFCC" | '''[[Ninjutsu]]'''
+| BGCOLOR="#FFCCCC" | [[Katon: Ichi]]
+| BGCOLOR="#FFFFCC" | [[Doton: Ichi]]
+| BGCOLOR="#C0E4ED" | [[Suiton: Ichi]]
+| BGCOLOR="#CCFFCC" | [[Huton: Ichi]]
+| BGCOLOR="#C0ECED" | [[Hyoton: Ichi]]
+| BGCOLOR="#E0C9EA" | [[Raiton: Ichi]]
+| BGCOLOR="#E3E3E3" |
+| BGCOLOR="#BBBBBB" | [[Kurayami: Ichi]]
+|- align="center"
+| BGCOLOR="#FFCCCC" | [[Katon: Ni]]
+| BGCOLOR="#FFFFCC" | [[Doton: Ni]]
+| BGCOLOR="#C0E4ED" | [[Suiton: Ni]]
+| BGCOLOR="#CCFFCC" | [[Huton: Ni]]
+| BGCOLOR="#C0ECED" | [[Hyoton: Ni]]
+| BGCOLOR="#E0C9EA" | [[Raiton: Ni]]
+| BGCOLOR="#E3E3E3" |
+| BGCOLOR="#BBBBBB" | [[Kurayami: Ni]]
+|- align="center"
+| BGCOLOR="#FFCCCC" | 
+| BGCOLOR="#FFFFCC" | [[Hojo: Ichi]]
+| BGCOLOR="#C0E4ED" | [[Dokumori: Ichi]]
+| BGCOLOR="#CCFFCC" | 
+| BGCOLOR="#C0ECED" | [[Jubaku: Ichi]]
+| BGCOLOR="#E0C9EA" | 
+| BGCOLOR="#E3E3E3" |
+| BGCOLOR="#BBBBBB" | [[Yurin: Ichi]]
+|- align="center"
+| BGCOLOR="#FFCCCC" | 
+| BGCOLOR="#FFFFCC" | [[Hojo: Ni]]
+| BGCOLOR="#C0E4ED" | [[Aisha: Ichi]]
+| BGCOLOR="#CCFFCC" | 
+| BGCOLOR="#C0ECED" | 
+| BGCOLOR="#E0C9EA" | 
+| BGCOLOR="#E3E3E3" |
+| BGCOLOR="#BBBBBB" | 
+|- align="center"
+| 
+| 
+| 
+| 
+| 
+|
+| 
+| 
+|- align="center"
+| rowspan=3 BGCOLOR="#E0C9EA" | '''[[Singing|Bard Songs]]'''
+| BGCOLOR="#FFCCCC" | [[Ice Threnody]]
+| BGCOLOR="#FFFFCC" | [[Ltng. Threnody]]
+| BGCOLOR="#C0E4ED" | [[Fire Threnody]]
+| BGCOLOR="#CCFFCC" | [[Earth Threnody]]
+| BGCOLOR="#C0ECED" | [[Wind Threnody]]
+| BGCOLOR="#E0C9EA" | [[Water Threnody]]
+| BGCOLOR="#E3E3E3" | [[Dark Threnody]]
+| BGCOLOR="#BBBBBB" | [[Light Threnody]]
+|- align="center"
+| BGCOLOR="#FFCCCC" | 
+| BGCOLOR="#FFFFCC" | [[Battlefield Elegy]]
+| BGCOLOR="#C0E4ED" | 
+| BGCOLOR="#CCFFCC" |
+| BGCOLOR="#C0ECED" | 
+| BGCOLOR="#E0C9EA" | 
+| BGCOLOR="#E3E3E3" | [[Magic Finale]]
+| BGCOLOR="#BBBBBB" | 
+|- align="center"
+| BGCOLOR="#FFCCCC" | 
+| BGCOLOR="#FFFFCC" | [[Carnage Elegy]]
+| BGCOLOR="#C0E4ED" | 
+| BGCOLOR="#CCFFCC" |
+| BGCOLOR="#C0ECED" | 
+| BGCOLOR="#E0C9EA" | 
+| BGCOLOR="#E3E3E3" | 
+| BGCOLOR="#BBBBBB" |
+|- align="center"
+| 
+| 
+| 
+| 
+| 
+|
+| 
+| 
+|  
+|- align="center"
+| rowspan=7 BGCOLOR="#C0E4ED" | '''[[Blue Magic]]'''
+| BGCOLOR="#FFCCCC" | [[Firespit]] (5)
+| BGCOLOR="#FFFFCC" | [[Sandspin]] (2)
+| BGCOLOR="#C0E4ED" | [[Acrid Stream]] (3)
+| BGCOLOR="#CCFFCC" | [[Hecatomb Wave]] (3)
+| BGCOLOR="#C0ECED" | [[Infrasonics]] (4)
+| BGCOLOR="#E0C9EA" | [[Temporal Shift]] (5)
+| BGCOLOR="#E3E3E3" | [[Actinic Burst]] (4)
+| BGCOLOR="#BBBBBB" | [[Death Ray]] (2)
+|- align="center"
+| BGCOLOR="#FFCCCC" | [[Heat Breath]] (4)
+| BGCOLOR="#FFFFCC" | [[Magnetite Cloud]] (3)
+| BGCOLOR="#C0E4ED" | [[Maelstrom]] (5)
+| BGCOLOR="#CCFFCC" | [[Mysterious Light|Myster. Light]] (4)
+| BGCOLOR="#C0ECED" | [[Ice Break]] (3)
+| BGCOLOR="#E0C9EA" | [[Mind Blast]] (4)
+| BGCOLOR="#E3E3E3" | [[Radiant Breath]] (4)
+| BGCOLOR="#BBBBBB" | [[Eyes on Me]] (4)
+|- align="center"
+| BGCOLOR="#FFCCCC" | [[Thermal Pulse]] (3)
+| BGCOLOR="#FFFFCC" | [[Cimicine Discharge|Cim. Discharge]] (3)
+| BGCOLOR="#C0E4ED" | [[Corrosive Ooze]] (4)
+| BGCOLOR="#CCFFCC" | [[Leafstorm]] (4)
+| BGCOLOR="#C0ECED" | [[Cold Wave]] (1)
+| BGCOLOR="#E0C9EA" | [[Charged Whisker|Chrgd. Whisker]] (4)
+| BGCOLOR="#E3E3E3" | [[Blank Gaze]] (2)
+| BGCOLOR="#BBBBBB" | [[Sandspray]] (2)
+|- align="center"
+| BGCOLOR="#FFCCCC" | [[Blastbomb]] (2)
+| BGCOLOR="#FFFFCC" | [[Bad Breath]] (5)
+| BGCOLOR="#C0E4ED" | [[Cursed Sphere]] (2)
+| BGCOLOR="#CCFFCC" | [[Reaving Wind]] (4)
+| BGCOLOR="#C0ECED" | [[Frost Breath]] (3)
+| BGCOLOR="#E0C9EA" | [[Blitzstrahl]] (4)
+| BGCOLOR="#E3E3E3" | [[Light of Penance|Lgt. of Penance]] (5)
+| BGCOLOR="#BBBBBB" |
+|- align="center"
+| BGCOLOR="#FFCCCC" | Points: (14)
+| BGCOLOR="#FFFFCC" | Points: (13)
+| BGCOLOR="#C0E4ED" | Points: (14)
+| BGCOLOR="#CCFFCC" | Points: (15)
+| BGCOLOR="#C0ECED" | Points: (11)
+| BGCOLOR="#E0C9EA" | Points: (17)
+| BGCOLOR="#E3E3E3" | Points: (15)
+| BGCOLOR="#BBBBBB" | Points: (8)
+|}
+|}
+
+* With two Blue Mages, having one set Darkness, Thunder, Light, and Wind while the other sets Fire, Earth, Ice, and Water will distribute the set point costs nearly evenly.  Other configurations work as well, this is simply a quick reference.
+
+== Provenance Notes ==
+Since there is no spectral alignment in [[Provenance]], weaknesses will have no effect on items obtained and do not result in a Synchronic Blitz. However, temporary items will still be granted, monsters will still be staggered, and monsters' attack and magic attack power will still be reduced by targeting weaknesses.
+
+[[Category:Voidwatch]]
+
+==Related Links==
+*[https://docs.google.com/spreadsheet/pub?hl=en_US&key=0Au2a1TIiTj8WdHlvTWtkdU5DRU1JU21fbEtLUjN1TkE&hl=en_US&gid=0 Voidwatch Weaknesses (Slycer/BG)]
+*[http://www.bluegartr.com/threads/105836-Voidwatch-NM-Weaknesses Voidwatch NM Weaknesses Discussion and Verification (BG)]

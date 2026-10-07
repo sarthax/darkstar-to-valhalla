@@ -1,0 +1,455 @@
+{{Job Trait
+|desc=Increases chance of getting treasure.
+|type=Level
+|Insert Job Trait Level Template=
+{{Job Trait Level
+|tier=I
+|jlevels=THF15, BLU98*
+|value=[[#Notes|See Table]]
+}}
+{{Job Trait Level
+|tier=II
+|jlevels=THF45
+|value=[[#Notes|See Table]]
+}}
+{{Job Trait Level
+|tier=III
+|jlevels=THF90
+|value=[[#Notes|See Table]]
+}}
+|blu=yes
+|notes=
+{{{!}}
+{{{!}} class="Standard collapsible" style="text-align: center;"
+{{!}}-Style="background-color:#0966A7; color:white;"
+!colspan="8"{{!}}Treasure Hunter Drop Rate Data Points
+{{!}}-Style="background-color:#4696CF; color:white;"
+! TH Level
+! Very Common
+! Common
+! Uncommon
+! Rare
+! Very Rare
+! Super Rare
+! Ultra Rare
+{{!}}-
+! style="background-color:#C9E8FD;" {{!}} 0
+{{!}} style="background-color:#90adda;" {{!}} 24.00%
+{{!}} style="background-color:#EA8D52;" {{!}} 15.00%
+{{!}} style="background-color:#BCBCBC;" {{!}} 10.00%
+{{!}} style="background-color:#FEC827;" {{!}} 5.00%
+{{!}} style="background-color:#96BCED;" {{!}} 1.00%
+{{!}} style="background-color:#87B368;" {{!}} 0.50%
+{{!}} style="background-color:#8998b4;" {{!}} 0.10%
+{{!}}-
+! style="background-color:#C9E8FD;" {{!}} 1
+{{!}} style="background-color:#90adda;" {{!}} 48.00%
+{{!}} style="background-color:#EA8D52;" {{!}} 30.00%
+{{!}} style="background-color:#BCBCBC;" {{!}} 12.00%
+{{!}} style="background-color:#FEC827;" {{!}} 6.00%
+{{!}} style="background-color:#96BCED;" {{!}} 1.50%
+{{!}} style="background-color:#87B368;" {{!}} 0.75%
+{{!}} style="background-color:#8998b4;" {{!}} 0.20%
+{{!}}-
+! style="background-color:#C9E8FD;;" {{!}} 2
+{{!}} style="background-color:#90adda;" {{!}} 56.00%
+{{!}} style="background-color:#EA8D52;" {{!}} 40.00%
+{{!}} style="background-color:#BCBCBC;" {{!}} 15.00%
+{{!}} style="background-color:#FEC827;" {{!}} 7.00%
+{{!}} style="background-color:#96BCED;" {{!}} 2.00%
+{{!}} style="background-color:#87B368;" {{!}} 1.00%
+{{!}} style="background-color:#8998b4;" {{!}} 0.30%
+{{!}}-
+! style="background-color:#C9E8FD;" {{!}} 3
+{{!}} style="background-color:#90adda;" {{!}} 60.00%
+{{!}} style="background-color:#EA8D52;" {{!}} 42.50%
+{{!}} style="background-color:#BCBCBC;" {{!}} 16.50%
+{{!}} style="background-color:#FEC827;" {{!}} 7.50%
+{{!}} style="background-color:#96BCED;" {{!}} 2.25%
+{{!}} style="background-color:#87B368;" {{!}} 1.20%
+{{!}} style="background-color:#8998b4;" {{!}} 0.35%
+{{!}}-
+! style="background-color:#C9E8FD;" {{!}} 4
+{{!}} style="background-color:#90adda;" {{!}} 64.00%
+{{!}} style="background-color:#EA8D52;" {{!}} 45.00%
+{{!}} style="background-color:#BCBCBC;" {{!}} 18.00%
+{{!}} style="background-color:#FEC827;" {{!}} 8.00%
+{{!}} style="background-color:#96BCED;" {{!}} 2.50%
+{{!}} style="background-color:#87B368;" {{!}} 1.40%
+{{!}} style="background-color:#8998b4;" {{!}} 0.40%
+{{!}}-
+! style="background-color:#C9E8FD;" {{!}} 5
+{{!}} style="background-color:#90adda;" {{!}} 66.66%
+{{!}} style="background-color:#EA8D52;" {{!}} 47.50%
+{{!}} style="background-color:#BCBCBC;" {{!}} 19.00%
+{{!}} style="background-color:#FEC827;" {{!}} 8.50%
+{{!}} style="background-color:#96BCED;" {{!}} 3.00%
+{{!}} style="background-color:#87B368;" {{!}} 1.60%
+{{!}} style="background-color:#8998b4;" {{!}} 0.45%
+{{!}}-
+! style="background-color:#C9E8FD;" {{!}} 6
+{{!}} style="background-color:#90adda;" {{!}} 68.00%
+{{!}} style="background-color:#EA8D52;" {{!}} 50.00%
+{{!}} style="background-color:#BCBCBC;" {{!}} 20.00%
+{{!}} style="background-color:#FEC827;" {{!}} 9.00%
+{{!}} style="background-color:#96BCED;" {{!}} 3.50%
+{{!}} style="background-color:#87B368;" {{!}} 1.80%
+{{!}} style="background-color:#8998b4;" {{!}} 0.50%
+{{!}}-
+! style="background-color:#C9E8FD;" {{!}} 7
+{{!}} style="background-color:#90adda;" {{!}} 69.00%
+{{!}} style="background-color:#EA8D52;" {{!}} 52.50%
+{{!}} style="background-color:#BCBCBC;" {{!}} 21.00%
+{{!}} style="background-color:#FEC827;" {{!}} 9.50%
+{{!}} style="background-color:#96BCED;" {{!}} 4.00%
+{{!}} style="background-color:#87B368;" {{!}} 2.00%
+{{!}} style="background-color:#8998b4;" {{!}} 0.60%
+{{!}}-
+! style="background-color:#C9E8FD;" {{!}} 8
+{{!}} style="background-color:#90adda;" {{!}} 70.50%
+{{!}} style="background-color:#EA8D52;" {{!}} 55.00%
+{{!}} style="background-color:#BCBCBC;" {{!}} 22.50%
+{{!}} style="background-color:#FEC827;" {{!}} 10.50%
+{{!}} style="background-color:#96BCED;" {{!}} 4.75%
+{{!}} style="background-color:#87B368;" {{!}} 2.30%
+{{!}} style="background-color:#8998b4;" {{!}} 0.70%
+{{!}}-
+! style="background-color:#C9E8FD;" {{!}} 9
+{{!}} style="background-color:#90adda;" {{!}} 72.00%
+{{!}} style="background-color:#EA8D52;" {{!}} 57.50%
+{{!}} style="background-color:#BCBCBC;" {{!}} 24.00%
+{{!}} style="background-color:#FEC827;" {{!}} 11.50%
+{{!}} style="background-color:#96BCED;" {{!}} 5.50%
+{{!}} style="background-color:#87B368;" {{!}} 2.60%
+{{!}} style="background-color:#8998b4;" {{!}} 0.80%
+{{!}}-
+! style="background-color:#C9E8FD;" {{!}} 10
+{{!}} style="background-color:#90adda;" {{!}} 73.50%
+{{!}} style="background-color:#EA8D52;" {{!}} 60.00%
+{{!}} style="background-color:#BCBCBC;" {{!}} 26.50%
+{{!}} style="background-color:#FEC827;" {{!}} 12.50%
+{{!}} style="background-color:#96BCED;" {{!}} 6.50%
+{{!}} style="background-color:#87B368;" {{!}} 3.00%
+{{!}} style="background-color:#8998b4;" {{!}} 0.90%
+{{!}}-
+! style="background-color:#C9E8FD;" {{!}} 11
+{{!}} style="background-color:#90adda;" {{!}} 74.00%
+{{!}} style="background-color:#EA8D52;" {{!}} 62.50%
+{{!}} style="background-color:#BCBCBC;" {{!}} 28.00%
+{{!}} style="background-color:#FEC827;" {{!}} 13.50%
+{{!}} style="background-color:#96BCED;" {{!}} 7.50%
+{{!}} style="background-color:#87B368;" {{!}} 3.50%
+{{!}} style="background-color:#8998b4;" {{!}} 1.00%
+{{!}}-
+! style="background-color:#C9E8FD;" {{!}} 12
+{{!}} style="background-color:#90adda;" {{!}} 76.00%
+{{!}} style="background-color:#EA8D52;" {{!}} 65.00%
+{{!}} style="background-color:#BCBCBC;" {{!}} 29.50%
+{{!}} style="background-color:#FEC827;" {{!}} 15.50%
+{{!}} style="background-color:#96BCED;" {{!}} 8.25%
+{{!}} style="background-color:#87B368;" {{!}} 4.00%
+{{!}} style="background-color:#8998b4;" {{!}} 1.15%
+{{!}}-
+! style="background-color:#C9E8FD;" {{!}} 13
+{{!}} style="background-color:#90adda;" {{!}} 78.00%
+{{!}} style="background-color:#EA8D52;" {{!}} 67.50%
+{{!}} style="background-color:#BCBCBC;" {{!}} 31.00%
+{{!}} style="background-color:#FEC827;" {{!}} 17.50%
+{{!}} style="background-color:#96BCED;" {{!}} 9.00%
+{{!}} style="background-color:#87B368;" {{!}} 4.50%
+{{!}} style="background-color:#8998b4;" {{!}} 1.30%
+{{!}}-
+! style="background-color:#C9E8FD;" {{!}} 14
+{{!}} style="background-color:#90adda;" {{!}} 80.00%
+{{!}} style="background-color:#EA8D52;" {{!}} 70.00%
+{{!}} style="background-color:#BCBCBC;" {{!}} 32.50%
+{{!}} style="background-color:#FEC827;" {{!}} 20.00%
+{{!}} style="background-color:#96BCED;" {{!}} 10.00%
+{{!}} style="background-color:#87B368;" {{!}} 5.00%
+{{!}} style="background-color:#8998b4;" {{!}} 1.50%
+{{!}}}
+{{!}}valign="top"{{!}}
+* This trait is not believed to make "superior" treasure drop, but it increases the odds that you will get items and by default increases the odds "superior" will drop.
+** ''Example:'' There are some items that share treasure slots, such as [[Strider Sword]] and [[Sarutobi Kyahan]] from [[Quu Domi the Gallant]].  One of the two always drops.  In this situation, Treasure Hunter will not make both or all items drop and is unlikely to affect them in any way.
+*With THF as a main job, the effect of equipment, atma, and job ability bonuses on Treasure Hunter is limited to a base of Treasure Hunter +8. This can be raised to a maximum of +12 (or +14, see below) through procs during battle.
+*With any other main job, the base effect is limited to Treasure Hunter +4.<sup>[http://forum.square-enix.com/ffxi/threads/40657-Mar-18-2014-%28JST%29-Version-Update?p=498469&viewfull=1#post498469]</sup>
+*[[Trust Magic|Trusts]] on THF or /THF are capable of applying Treasure Hunter on a mob. Note that they do not gain access to higher than the first Treasure Hunter trait, regardless of the level they are summoned at.
+**THF trusts: Aldo, Aldo (UC), Chacharoon, Fablinix, Jakoh Wahcondalo (UC), Lehko Habhoka, Lion I, Lion II, Maximilian, Nanaa Mihgo, and Romaa Mihgo.
+**/THF trusts: Ark Angel MR, Maat, and Margret.
+*Pets are limited to the first Treasure Hunter trait. [[Version Update (03/26/2012)|(As of 2012)]]
+** [[Threestar Lynn]] (lv. 99-119 Ladybug), [[Dipper Yuly]] (lv. 76-114 Ladybug), [[Faithful Falcorr]] (lv. 86-114 Hippogryph)
+
+===Applying Treasure Hunter:===
+* Treasure Hunter works as a [[debuff]] effect on the monster. The player with Treasure Hunter must take some aggressive action against the mob in order to apply the Treasure Hunter effect. Afterwards, the effect will remain even if the player is dead, no longer present in the party, or in the zone.
+** It is possible to apply Treasure Hunter using an [[AoE]] attack.
+** The effect is only removed if the mob becomes [[passive]] and regenerates.
+** The effect of Treasure Hunter +1 items are considered and applied after the first enmity generation, and then can be removed even before a "proc".
+===Treasure Hunter Proc System:===
+* The Treasure Hunter [[proc]] system was introduced in the December 2010 update and applies to players using [[Thief]] main job, as well as the [[Ranger]] job ability [[Bounty Shot]].
+* The maximum base Treasure Hunter level that can be applied from the first action against an enemy is 8.
+**This includes the Treasure Hunter trait.
+**The [[Kupower]] "Treasure Hound" is not subject to this cap. In areas affected by [[Kupower]]s, it is possible to apply TH9 on the first action.
+*Treasure Hunter can be increased up to a maximum value of 12, with 0 [[Job Points]] invested into Thief Job Points or via [[Bounty Shot]].
+**The 100 [[Job Points]] Gift on THF increases the maximum possible value of Treasure Hunter to '''13'''.
+**The 1200 [[Job Points]] Gift on THF increases the maximum possible value of Treasure Hunter to '''14'''.
+* [[Bounty Shot]] allows the initial application of TH2 (up to TH5 with [[Bounty Shot]]+3) and can also cause upgrades between TH levels with repeated usage (up to a maximum of '''7''' with [[Bounty Shot]]+3).
+* Upgrading TH levels from normal attack rounds is inversely proportional to the difference between your current TH level in trait/gear and the monster's current TH level<sup>[http://forum.square-enix.com/ffxi/threads/27974-TH-Procing?p=377001#post377001]</sup>.
+** ''Example 1:'' If you plant TH6 on the monster by pulling with your TH gear on and then continue to use your TH gear while you kill the monster, there is a 0-level gap between your current TH level and the monster's current TH level. This makes it "easy" to proc.
+** ''Example 2:'' If you plant TH6 on the monster by pulling with your TH gear on and then swap to TH3 to kill the monster, there is a 3-level gap between your current TH level and the monster's current TH level. This makes it comparatively more difficult to proc.
+**A proposed model that is within margin of error of the testing and has a clear pattern could be: 4% with 0 level gap, 2% with 1 level gap, 1% with 2 level gap, 0.5% with 3 level gap, 0.25% with 4 level gap, and 0.125% with 5 level gap [https://www.ffxiah.com/forum/topic/55788/treasure-hunter-proc-rate-testing-th-8-versus-14/7/].
+** There is a much greater chance of TH level upgrade from Sneak or Trick Attack (approximately 10x).
+***This is multiplicative to the TH up bonus from [[Feint]] merits.
+** Treasure Hunter can only proc on the first hit of an attack round.
+** Attacks must do damage in order to potentially upgrade Treasure Hunter effectiveness. Hits for 0 do not count.
+** Treasure Hunter can proc on the first hit of weaponskills, but will not display any message when it does.
+====Summary:====
+* Treasure Hunter I/II seem to offer a substantial bonus over no-Treasure Hunter, but Treasure Hunter >III is less potent.
+** Treasure Hunter '''diminishing returns''' have been confirmed by Sicycre, Community Rep, on the [http://forum.square-enix.com/ffxi/threads/55869-Question-about-Treasure-Hunter-Aurix-and-Dynamis-Divergence%21?p=622880#post622880 Official Forums].
+* Combining all the proc-system factors, TPing and SA/TAing in equipment with Treasure Hunter +1 will allow you to reach high TH levels much more rapidly (See References).
+====Charts:====
+<span class="mbt-hover">[[File:XI_TH_DropRate.png|550px]]<span class="mbt-tooltip">[[File:XI_TH_DropRate.png|link=]]</span></span>
+<span class="mbt-hover">[[File:Treasure Hunter Relative.png|550px]]<span class="mbt-tooltip">[[File:Treasure Hunter Relative.png|link=]]</span></span>
+
+{{Blue Magic Job Trait
+|SetPointRequirement=12   <!-- Set point minimum requirement to access, can be null -->
+|Insert Blue Magic JT Detail Template=
+{{Blue Magic JT Detail
+|spell=Charged Whisker     <!-- Spell name, will automatically link if it exists -->
+|level=88    <!-- Level of Blue Magic spell -->
+|setpoints=4     <!--Set point cost by the spell -->
+|traitpoints=6     <!--Trait point value of the spell -->
+}}
+{{Blue Magic JT Detail
+|spell=Evryone. Grudge     <!-- Spell name, will automatically link if it exists -->
+|level=90    <!-- Level of Blue Magic spell -->
+|setpoints=4     <!--Set point cost by the spell -->
+|traitpoints=6     <!--Trait point value of the spell -->
+}}
+{{Blue Magic JT Detail
+|spell=Amorphic Spikes     <!-- Spell name, will automatically link if it exists -->
+|level=98    <!-- Level of Blue Magic spell -->
+|setpoints=4     <!--Set point cost by the spell -->
+|traitpoints=6     <!--Trait point value of the spell -->
+}}
+}}
+*Setting only two spells will grant the trait [[Gilfinder]] instead.
+}}
+
+{| class="sortable equipmodifiers" style="text-align: center; width: 100%; max-width:800px;"
+! colspan="5" | Treasure Hunter +X Gear
+|-
+! style="width: 25%;" | Item
+! Level
+! Slot
+! Jobs
+! style="width: 25%;" | Bonus
+|-
+| {{Item Tooltip|Per. Lucky Egg|alt=Perfect Lucky Egg}}
+| 99
+| [[Ammo]]
+| All Jobs
+| +1
+|-
+| {{Item Tooltip|Assassin's Knife}}
+| 119
+| [[Dagger]]
+| THF
+| +1
+|-
+| {{Item Tooltip|Plun. Knife}}
+| 119
+| [[Dagger]]
+| THF
+| +2
+|-
+| {{Item Tooltip|Gandring}}
+| 119
+| [[Dagger]]
+| THF
+| +3
+|-
+| {{Item Tooltip|Sandung}}
+| 119
+| [[Dagger]]
+| THF
+| +1
+|-
+| {{Item Tooltip|Taming Sari}}
+| 119
+| [[Dagger]]
+| THF / BRD / DNC
+| {{augment}} ([[Sinister Reign]]): +1
+|-
+| {{Item Tooltip|Thief's Knife}}
+| 70
+| [[Dagger]]
+| THF
+| +1
+|-
+| {{Item Tooltip|Volte Cap}}
+| 119
+| [[Head]]
+| All Jobs
+| +1
+|-
+| {{Item Tooltip|Wh. Rarab Cap +1|alt=White Rarab Cap +1}}
+| 1
+| [[Head]]
+| All Jobs
+| +1
+|-
+| {{Item Tooltip|Volte Jupon}}
+| 119
+| [[Body]]
+| All Jobs
+| +2
+|-
+| {{Item Tooltip|Assassin's Armlets}}
+| 75
+| [[Hands]]
+| THF
+| +1
+|-
+| {{Item Tooltip|Asn. Armlets +1|alt=Assassin's Armlets +1}}
+| 75
+| [[Hands]]
+| THF
+| +1
+|-
+| {{Item Tooltip|Asn. Armlets +2|alt=Assassin's Armlets +2}}
+| 90
+| [[Hands]]
+| THF
+| +2
+|-
+| {{Item Tooltip|Plun. Armlets|alt=Plunderer's Armlets}}
+| 109
+| [[Hands]]
+| THF
+| +2
+|-
+| {{Item Tooltip|Plun. Armlets +1|alt=Plunderer's Armlets +1}}
+| 119
+| [[Hands]]
+| THF
+| +3
+|-
+| {{Item Tooltip|Plun. Armlets +2|alt=Plunderer's Armlets +2}}
+| 119
+| [[Hands]]
+| THF
+| +3
+|-
+| {{Item Tooltip|Plun. Armlets +3|alt=Plunderer's Armlets +3}}
+| 119
+| [[Hands]]
+| THF
+| +4
+|-
+| {{Item Tooltip|Volte Bracers}}
+| 119
+| [[Hands]]
+| All Jobs
+| +1
+|-
+| {{Item Tooltip|Volte Hose}}
+| 119
+| [[Legs]]
+| All Jobs
+| +1
+|-
+| {{Item Tooltip|Raid. Poulaines +2|alt=Raider's Poulaines +2}}
+| 81
+| [[Feet]]
+| THF
+| +1
+|-
+| {{Item Tooltip|Skulk. Poulaines|alt=Skulker's Poulaines}}
+| 109
+| [[Feet]]
+| THF
+| +2
+|-
+| {{Item Tooltip|Skulk. Poulaines +1|alt=Skulker's Poulaines +1}}
+| 119
+| [[Feet]]
+| THF
+| +3
+|-
+| {{Item Tooltip|Skulk. Poulaines +2|alt=Skulker's Poulaines +2}}
+| 119
+| [[Feet]]
+| THF
+| +4
+|-
+| {{Item Tooltip|Skulk. Poulaines +3|alt=Skulker's Poulaines +3}}
+| 119
+| [[Feet]]
+| THF
+| +5
+|-
+| {{Item Tooltip|Volte Boots}}
+| 119
+| [[Feet]]
+| All Jobs
+| +1
+|-
+| {{Item Tooltip|Gorney Ring}}
+| 99
+| [[Ring]]
+| All Jobs
+| +1
+|-
+| {{Item Tooltip|Gorney Ring +1}}
+| 99
+| [[Ring]]
+| All Jobs
+| +1
+|-
+| {{Item Tooltip|Chaac Belt}}
+| 99
+| [[Waist]]
+| All Jobs
+| +1
+|-
+| {{Item Tooltip|Tarutaru Sash}}
+| 70
+| [[Waist]]
+| MNK / WHM / BLM / RDM / PLD / BRD / RNG / SMN /BLU / PUP / SCH / GEO / RUN
+| {{augment}} ([[Abyssea - La Theine]]): +1
+|-
+| {{Item Tooltip|Hoxne Ring}}
+| 99
+| [[Ring]]
+| All Jobs
+| +2
+|-
+| [[Reisenjima Armor]]
+| 119
+| Varies
+| Various (All Jobs)
+| {{augment}} ([[Dark Matter]]): +1~2
+|-
+| [[Reisenjima Weapons]]
+| 119
+| Varies
+| Various (All Jobs)
+| {{augment}} ([[Dark Matter]]): +1~2
+|}
+
+==References==
+* [http://www.bluegartr.com/threads/95489-TH-testing-final-results Enedin's Treasure Hunter Summary (Enedin, BG)]
+* [http://www.bluegartr.com/threads/63785-Drop-Rate-Analysis-and-Treasure-Hunter Drop Rate Analysis and Treasure Hunter Findings (Mojo, BG)]
+* [http://forum.square-enix.com/ffxi/threads/11492-Screwed-again-Proposed-THF-job-adjustments.?p=165935&viewfull=1#post165935 Treasure Hunter III sample (Insaniac, Official Forums)]
+* [http://forum.square-enix.com/ffxi/threads/12798-Treasure-Hunter-Testing?p=167964&viewfull=1#post167964 TH Upgrade Testing (Arcon, Official Forums)]
+* [http://www.bluegartr.com/threads/50420 Treasure Hunter discussion - (BG Forums)]
+* [http://www.bluegartr.com/threads/108198-Random-Facts-Thread-Traits-and-Stats-%28Player-and-Monster%29?p=5325375&viewfull=1#post5325375 Applying TH with AoE Magic (Yugl, BG)]
+* [http://www.bluegartr.com/threads/113366-TH-procs?p=5475918#post5475918 Wearing TH enhances the rate of TH upgrade (Ninjya and Motenten, BG Forums)]
+* [http://www.bluegartr.com/threads/112776-Dev-Tracker-Findings-Posts?p=5469894&viewfull=1#post5469894 Official Statement by SE regarding TH (SE with Translation by Slycer (BG Forums)]
+* [http://www.ffxiah.com/forum/topic/34755/thf-in-todays-ffxi/4/#2135368 Comparison of TH3 and TH6 in Dynamis (Fenrir.Motenten, FFXIAH)]
+* [http://www.bluegartr.com/threads/108198-Random-Facts-Thread-Traits-and-Stats-(Player-and-Monster)?p=5670209&viewfull=1#post5670209 Passive mobs remove TH (Rocl, BG Forums)]
+* [http://forum.square-enix.com/ffxi/threads/27974-TH-Procing?p=377001#post377001 SE on the probability of TH procing.]
+* [http://forum.square-enix.com/ffxi/threads/56550-Development-Q-A-March-2020?p=624996&viewfull=1#post624996 PAX East 2020 Dev QA Thread containing official TH chart]
+*[https://www.ffxiah.com/forum/topic/55788/treasure-hunter-proc-rate-testing-th-8-versus-14/7/ TH Proc data (Thorny)]
+*[https://wikiwiki.jp/ffxi/%E3%82%B9%E3%82%BF%E3%83%B3%E3%83%80%E3%83%BC%E3%83%89%E3%82%B8%E3%83%A7%E3%83%96/%E3%82%B7%E3%83%BC%E3%83%95#v9ba4282 シーフ ジョブ特性  / トレジャーハンターIII（Thief job traits / Treasure Hunter III） (WikiWiki［JP］— wikiwiki.jp)]
+*[https://wiki.ffo.jp/html/1678.html 「トレジャーハンター（Treasure Hunter）」 (Friends of Windurst wiki［JP］— wiki.ffo.jp)]

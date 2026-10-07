@@ -1,0 +1,122 @@
+{{guide}}
+
+V2- This is a heavy edit and redo of the old (Pre-iLevel) Voidwatch guide.
+==Voidwatch==
+Voidwatch consists of a series of battles against increasingly difficult NMs. Most of these battles take place in locations that already exist in present and past-day Vana'diel, with the final few battles taking place in a new area called [[Provenance]]. Voidwatch was originally designed for levels 90 to non-iLevel 99 and has a very loose questline associated with it (see [[Voidwatch Quests]]) which is not required to allow you to farm the items you would be looking for. 
+
+These days the only reasons players do Voidwatch is to farm [[Heavy Metal Plate]] to either sell or upgrade their Level 90 Empyrean Weapon to Level 95 (of which 1500 are needed) and to complete the 3 Nations routes to unlock the [[Empyrean Weapon Skill]]. The battles are still a great source of [[cruor]] you can use for [[Abyssea]] and the normal rewards provide a good amount of various crafting materials you can use for crafting or just cold hard [[gil]].
+
+Voidwatch also serves as a good alternate teleportation service to areas that are not as convenient as the Home Points or Survival Manuals. 
+
+The guide below is a rewrite of the pre-iLevel era guide similar to the Abyssea guide rewrite. As such this will only focus on the only reasons players would be doing this  event which is, beginner-focused information on starting Voidwatch, progression needed for [[Empyrean Weapon Skill]] unlock, how battles work, how rewards are distributed, and the important enemies you would fight for certain items.
+
+If you do not need to immediately unlock the ability to obtain [[Empyrean Weapon Skill]]s it is to your benefit to just start your stone timer and wait for a [[:Category:Adventurer_Campaigns#Voidwatch|Voidwatch Event]]. The reason for doing Voidwatch during the event is that the rarer treasures are easier to obtain, the amount of [[cruor]] you receive is vastly increased which is the same [[cruor]] you use in [[Abyssea]], and also any KI the enemies have will be obtained at a near 100% certainty.
+
+==Starting Voidwatch==
+===Timer and Voidstones===
+Upon returning to the game, your very first priorities before anything else should be to start your Abyssea [[Traverser stone]] and Voidwatch [[Voidstone]] timers, even if you have no intention of starting Voidwatch for quite some time. Because the stones accrue slowly starting it as quickly as possible is essential for when you eventually do decide to participate. The [[voidstone]] timer is started by speaking with one of the three starter city [[Voidwatch Officer]]s and obtaining their respective stratum abyssite (more on that below). When you first start Voidwatch, voidstones are regenerated at a rate of one every 20 hours. A voidstone must be used in every Voidwatch battle from which you wish to acquire items, so many will be necessary. Thankfully, the 20 hours can be reduced by 8 hours with 2 Periapts (4 hours for each Periapt), and voidstones can also be obtained by trading [[Voiddust]] (which can be acquired from [[Conquest Points]], [[Allied Notes]], [[Imperial Standing]], [[Grounds of Valor]], and the [[Auction House]]) to [[Voidwatch Officer]]s.
+
+===Stratum Abyssites and Progression===
+There are seven different color "stratum abyssites" which correspond to seven different Vana'diel regions for Voidwatch battles.
+
+Stratum abyssites must be obtained from each of the three starter cities (past or present) in order to progress along their respective paths. Once all three of these paths are completed, a fourth path is opened in the Jeuno areas, which ultimately leads to the [[Provenance]] zone. Three side paths are also available at any time which take place in the Zilart, Tavnazia, and Aht Urhgan regions. Upon first starting Voidwatch, all paths are open and may be started immediately except the Jeuno path. 
+
+Each path consists of tiers which comprise one or more battles. All battles in a tier must be completed before being able to upgrade a stratum abyssite to the next tier. Once a tier has been completed, stratum abyssites may be upgraded to the next level by speaking with any [[Atmacite Refiner]] NPC and selecting the appropriate dialogue options. Tiers must be upgraded in the proper progression order. Note that progression is NOT required to partake in any Voidwatch battles except those in [[Provenance]]. However, progression is strongly recommended to acquire the zone teleports to higher tier areas. 
+
+'''Progression is also required to initiate Voidwatch battles; you can only initiate battles of your current tier or earlier tier abyssites. Once you have started your voidstone timer and have stones you can join in the farming groups.'''
+
+
+To unlock [[Empyrean Weapon Skill]]s the starter Abyssites should be completed using the following path. You will only need to do this 1 time.
+{| width=100% border=1 style="max-width: 900px"
+|-
+|
+{| width=100% border=0
+|- BGCOLOR="#ADBDCC" align="center"
+| colspan=5 | '''Voidwatch Chapter I'''
+|- BGCOLOR="#ADBDCC"
+! width="20%" | 
+! width="20%" | Tier I
+! width="20%" | Tier II
+! width="20%" | Tier III
+! width="20%" | Tier IV
+|- BGCOLOR="#FFCCCC" align="center"
+| BGCOLOR="#FF9999" rowspan="2" | '''San d'Oria'''<br>''Crimson Stratum Abyssite''<br>([[Crimson stratum abyssite|I]] &middot; [[Crimson stratum abyssite II|II]] &middot; [[Crimson stratum abyssite III|III]] &middot; [[Crimson stratum abyssite IV|IV]])
+| [[East Ronfaure]]:<br>'''[[Sarimanok]]'''
+| rowspan="2" | [[Ordelle's Caves]]:<br>'''[[Krabimanjaro]]'''
+| [[Jugner Forest]]:<br>'''[[Belphoebe]]'''
+| rowspan="2" | [[King Ranperre's Tomb]]:<br>'''[[Hahava]]'''
+|- BGCOLOR="#FFCCCC" align="center"
+| [[East Ronfaure (S)]]:<br>'''[[Cottus]]'''
+| [[Jugner Forest (S)]]:<br>'''[[Kholomodumo]]'''
+|- BGCOLOR="#C5C8FF" align="center"
+| BGCOLOR="#8F94FF" rowspan="2" | '''Bastok'''<br>''Indigo Stratum Abyssite''<br>([[Indigo stratum abyssite|I]] &middot; [[Indigo stratum abyssite II|II]] &middot; [[Indigo stratum abyssite III|III]] &middot; [[Indigo stratum abyssite IV|IV]])
+| [[North Gustaberg]]:<br>'''[[Sallow Seymour]]'''
+| rowspan="2" | [[Gusgen Mines]]:<br>'''[[Lorbulcrud]]'''
+| [[Pashhow Marshlands]]:<br>'''[[Murk-veined Baneberry]]'''
+| rowspan="2" | [[Dangruf Wadi]]:<br>'''[[Celaeno]]'''
+|- BGCOLOR="#C5C8FF" align="center"
+| [[North Gustaberg (S)]]:<br>'''[[Ushumgal]]'''
+| [[Pashhow Marshlands (S)]]:<br>'''[[Melancholic Moira]]'''
+|- BGCOLOR="#CCFFCC" align="center"
+| BGCOLOR="#99FF99" rowspan="2" | '''Windurst'''<br>''Jade Stratum Abyssite''<br>([[Jade stratum abyssite|I]] &middot; [[Jade stratum abyssite II|II]] &middot; [[Jade stratum abyssite III|III]] &middot; [[Jade stratum abyssite IV|IV]])
+| [[West Sarutabaruta]]:<br>'''[[Virvatuli]]'''
+| rowspan="2" | [[Maze of Shakhrami]]:<br>'''[[Ogbunabali]]'''
+| [[Meriphataud Mountains]]:<br>'''[[Lord Asag]]'''
+| rowspan="2" | [[Outer Horutoto Ruins]]:<br>'''[[Voidwrought]]'''
+|- BGCOLOR="#CCFFCC" align="center"
+| [[West Sarutabaruta (S)]]:<br>'''[[Pancimanci]]'''
+| [[Meriphataud Mountains (S)]]:<br>'''[[Akupara]]'''
+|-
+|}
+|-
+|}
+
+===Voidwatch Teleportation===
+After obtaining a stratum abyssite of any kind, teleportation to areas for battles you can initiate are immediately unlocked. Teleporation is available from [[Atmacite Refiner]]s to accessible areas within the current time period for 1000 [[cruor]]. For example, after obtaining [[Jade stratum abyssite]], teleportation is available to [[West Sarutabaruta]] from present-day Atmacite Refiners and to [[West Sarutabaruta (S)]] from past Atmacite Refiners. As the tier of the stratum abyssite is increased, the list of teleportation areas increases as well. In all, teleportation to 65 different fields and dungeons around Vana'diel is available by completing all Voidwatch paths.
+
+==Battles==
+Voidwatch NM battles have several unique aspects which are unlike other NM battles in Vana'diel.
+
+===Void Clusters===
+Prior to engaging in a Voidwatch battle, it is possible to weaken the NM that will be spawned by using [[Void cluster]]s, obtained by trading [[Phase Displacer]]s to the [[Planar Rift]] and selecting the number of clusters desired to be used prior to spawning the NM (up to 5, yielding an increasingly weak foe). These can be purchased from [[Ardrick]] behind the outpost in [[Jugner Forest]] for 20,000 gil or 1,000 gil.* This can be especially useful in getting through tier progression when not many players are available to complete the battles. As an iLevel 117 or higher job you will be able to go through almost all solo. There are a few enemies that will be problematic but just need to know the mechanic associated with them. (Example: Doom Aura on Tanegaroa - run out of range until aura disappears.)
+*Upon completing Rhapsodies of Vana'diel mission 2-40 and receiving the "Rhapsody in Mauve" key item, the cost to purchase is reduced to 1,000g.
+
+===Spectral Alignment===
+In each Voidwatch battle outside Provenance, there are five colors of spectral alignment which can be enhanced by triggering weaknesses and/or trading [[:Category:Ascent Item|Ascent Item]]s to the [[Planar Rift]] prior to battle. Each color corresponds to one aspect of the battle's rewards: red for reward quality, blue for reward quantity, yellow for EXP, green for cruor, and white for key items. 
+
+The majority of the times people will farm Voidwatch items is during a Voidwatch Campaign. During this Campaign all lights will be set to the maximum value but can also increased an extra 150% with an [[:Category:Ascent Item|Ascent Item]]s.
+As confirmed by the Dev. Team ([https://www.bluegartr.com/threads/112776-Dev-Tracker-Findings-Posts-(NO-DISCUSSION)?p=6895181&viewfull=1#post6895181]) Red is the only light that you would need to cap to increase the possibility of the most commonly farmed Voidwatch items. So buy a bunch of [[Rubicund Cell]]s and make a trade macro to boost your chances.
+
+===Weaknesses===
+While this was the way to increase the lights, the campaign generally negates the need to use this mechanic. The campaign sets the lights to the maximum as if you had triggered a weakness. Paired with the large level disparity from the original level 99 non-iLevel to today's iLevel 117-119 it's pretty much ignored.
+
+===Temporary Items===
+Voidwatch has a very strong emphasis on the timely utilization of temporary items, unlike most other battle systems in Final Fantasy XI. However, when you first begin Voidwatch, you will start with no temporary items. Temporary items are only obtained after receiving certain periapt key items (see the periapt list below). As the list of acquirable temporary items contains extremely powerful ones such as [[Fanatic's Drink]], obtaining these key items should be one of your top priorities after starting Voidwatch.
+
+===Rewards===
+Possibly the most unique (and controversial) aspect of Voidwatch is the rewards system. As mentioned above, spectral alignment has a direct relation to the rewards obtained at the end of the battle. Unlike other battle systems, each player in Voidwatch receives his or her own individual reward pool from a [[Riftworn Pyxis]]. This means that if a rare/ex item is obtained, it can only obtained by that one player and not traded or distributed to others. 
+
+The rarest of the rewards are the [[Pulse Panoplia]], previously powerful armor and weapons that have a glowing aura and are obtained from certain higher tier battles. Once powerful they are relegated to nothing more than lockstyle pieces. If one of these items is obtained, but not desired, it can be exchanged for a [[Pulse Cell]], which can then be sold or traded (five cells are required to reobtain the original armor or weapon). 
+
+As mentioned the primary reward people do Voidwatch for is for the [[Heavy Metal Plate]]s. 1500 are required to upgrade a Level 90 [[Empyrean Weapon]] to Level 95. Sometimes people will try to farm [[Riftcinder]] or [[Riftdross]], 60 of which are needed to upgrade a Level 95 [[Empyrean Weapon]] to 99, and which one you need is dependent on the weapon being upgraded. Rarely you'll see others still trying for the monster specific crafting items needed upgrade [[Reforged Relic Armor]] to +1. Sadly all other rewards have been outclassed by newer (and much more easily obtained) gear that was introduced in the iLevel era and beyond.
+
+==Key Items==
+Key item atmacites and periapts are either purchased with cruor or acquired at the end of a successful Voidwatch battle where a [[voidstone]] was expended and sufficient white spectral alignment was accumulated. Note that a voidstone must be used and the Riftworn Pyxis must be opened to obtain the key item.
+
+===Atmacites===
+Similar to [[Atma]] in Abyssea, [[Atmacite]]s can be used to power up your character while taking part in a Voidwatch battle. Unlike Atma, Atmacites must be upgraded with very significant amounts of cruor in order to achieve their full potential. Due to the large cruor cost, upgrading atmacites should not be a priority upon first returning to the game; however, some atmacites are sufficiently powerful without being upgraded. See the [[atmacite]] page for more information. [[Atmacite of the Shrewd]] is an oft-used mage atmacite and [[Atmacite of the Valiant]] and [[Atmacite of Coercion]] are typically used for DD.
+
+===Periapts===
+Similar to [[:Category:Abyssea Abyssite|Abyssite]] in Abyssea, [[Periapt]]s are used to enhance certain aspects of Voidwatch battles. The most important periapts are:
+*[[Vivid periapt of adaptability|Vivid]] and [[Dusky periapt of adaptability]], [[Vivid periapt of readiness|Vivid]] and [[Dusky periapt of readiness]]: Grant temporary items at the beginning of a Voidwatch battle and with each stagger. There are other periapts that grant temporary items, but these are by far the most important.
+*[[Vivid periapt of exploration|Vivid]] and [[Dusky periapt of exploration]]: Decrease the regeneration time of voidstones (Dusky can only be acquired from Provenance, but Vivid should be acquired ASAP).
+*[[Vivid periapt of frontiers|Vivid]], [[Dusky periapt of frontiers|Dusky]], and/or [[Neutral periapt of frontiers]]: Increase the quantity of [[voidstone]]s the player may carry to use before needing to revisit a [[Voidwatch Officer]].
+*[[Periapt of emergence|Periapts of emergence]]: Used to equip atmacites.
+
+The easiest way to obtain these is during the campaign. Fighting the enemies during a campaign practically guarantees you any KI associated with that enemy without the need to stagger it.
+
+==What to Farm==
+The vast majority of people as mentioned previously will farm Heavy Metal Plates. The main enemy fought is usually [[Aello]] using one of the 3 spots at (G-5), (I-11), (J-6) in [[Ru'Aun Gardens]]. Some people will also fight [[Qilin]] in one of the spots in [[The Shrine of Ru'Avitau]] - (F-6), (F-9), (J-6) (Floor 2)
+
+While previously the items needed to upgrade Reforged Relic Armor to Reforged Relic Armor +1 were a reason to farm other enemies, the price of those has dropped considerably due to alternate ways to procure them. As such you could buy them off the AH and quickly make that money back selling the crafting items dropped while farming HMPs. Additionally, farming the 2 Rift items, [[Riftdross]] and [[Riftcinder]], is not as efficient as just buying them as they are now also rewards from [[Ambuscade]]. If you wanted to use voidwatch to get you those Rift items you would be better off just farming extra HMP after you have gotten what you need to upgrade your weapon and selling them to buy them. The reason for this is that unlike HMP which can come in pouches with anywhere from 3 to 15 plates in them, the Rift items will only drop singularly at the same abysmal 3-7% possible drop rate as the pouches at BEST and the pouches have the potential to earn you more money than 1 Rift item. But the choice is really up to you.
+[[Category:Guides]] [[Category:Voidwatch]] [[Category:Event Guides]]

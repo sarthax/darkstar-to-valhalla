@@ -1,0 +1,748 @@
+By infusing yourself with atmacite using a specific key item, it is possible to enhance your fighting prowess during Voidwatch Ops.
+
+Atmacites can only be infused by players possessing a [[periapt of emergence]]. Each periapt of emergence in possession allows the player to equip one atmacite (up to three total).
+
+Atmacites are acquired by defeating the listed [[Voidwatch]] notorious monster with a white spectral alignment greater than 0%. The white alignment is equal to the chance of acquring the atmacite at the end of the battle. For [[Provenance]] battles, Atmacites are automatically obtained upon completion. Newly obtained atmacites begin at level 1 and can be upgraded to higher levels at either any [[Atmacite Refiner]] NPC or any [[Planar Rift]].
+
+Atmacites must be infused by the [[Atmacite Refiner]] or [[Planar Rift]] prior to participating in a battle for a nominal cruor cost. Once infused, the atmacite will remain infused for any future Voidwatch battles until the player infuses a different atmacite. 
+
+Atmacites must be leveled up to achieve their full potential, up to a maximum of level 15. This is done by expending cruor at an [[Atmacite Refiner]] or [[Planar Rift]].
+
+"[[Sphere]]" effects from certain atmacites are a party-only buff with a range of 10' around the player equipped with the atmacite. The sphere effect does not apply to the player using the atmacite, only the other members of the player's party.
+
+After obtaining [["Rhapsody in Mauve"]], upgrades cost 1/20 the amount of Cruor.
+
+{| border="0" width=100% style="text-align:center; background-color:#000878"
+|- style="background:#C3C6DD;"
+! width="15%" | Atmacite Name
+! width="5%" | Level
+! width="15%" | Total Upgrade Cost (Cruor)
+! width="40%" | Effect
+! width="15%" | Obtained From
+|- bgcolor="#ffffff"
+| rowspan="4" | [[Atmacite of the Adamant]]
+| 1
+| N/A
+| HP+5 Breath damage taken -1% {{Earth}}+5 {{Water}}+5
+| rowspan="4" | [[Kalasutrax]]
+|- bgcolor="#DCDCDC"
+| 5
+| 150,000 or 7500
+| HP+25 Breath damage taken -2% {{Earth}}+25 {{Water}}+25
+|- bgcolor="#BEBEBE"
+| 10
+| 675,000 or 33,750
+| HP+50 Breath damage taken -4% {{Earth}}+50 {{Water}}+50
+|- bgcolor="#A0A0A0"
+| 15
+| 1,575,000 or 78,750
+| HP+100 Breath damage taken -5% {{Earth}}+100 {{Water}}+100
+|- bgcolor="#ffffff"
+| rowspan="4" | [[Atmacite of Affinity]]
+| 1
+| N/A
+| Enhances "Fast Cast" effect +1 Depending on day: Enhances elemental magic +5 Depending on day: Magic Accuracy+10
+| rowspan="4" | [[Fjalar]]
+|- bgcolor="#DCDCDC"
+| 5
+| 150,000 or 7500
+| Enhances "Fast Cast" effect +3 Depending on day: Enhances elemental magic +6 Depending on day: Magic Accuracy+12
+|- bgcolor="#BEBEBE"
+| 10
+| 675,000 or 33,750
+| Enhances "Fast Cast" effect +5 Depending on day: Enhances elemental magic +8 Depending on day: Magic Accuracy+16
+|- bgcolor="#A0A0A0"
+| 15
+| 1,575,000 or 78,750
+| Enhances "Fast Cast" effect +8 Depending on day: Enhances elemental magic +10 Depending on day: Magic Accuracy+20
+|- bgcolor="#ffffff"
+| rowspan="4" | [[Atmacite of Aplomb]]
+| 1
+| N/A
+| MP+100 MND+5 Enhances "Resist Silence" effect +1
+| rowspan="4" | [[Vanasarvik]]
+|- bgcolor="#DCDCDC"
+| 5
+| 150,000 or 7500
+| MP+120 MND+6 Enhances "Resist Silence" effect +5
+|- bgcolor="#BEBEBE"
+| 10
+| 675,000 or 33,750
+| MP+150 MND+8 Enhances "Resist Silence" effect +10
+|- bgcolor="#A0A0A0"
+| 15
+| 1,575,000 or 78,750
+| MP+200 MND+10 Enhances "Resist Silence" effect +25
+|- bgcolor="#ffffff"
+| rowspan="4" | [[Atmacite of Assailment]]
+| 1
+| N/A
+| STR+1 "Magic Attack Bonus"+1 "Slow"+1% Addle+1%
+| rowspan="4" | [[Beguiling Radiance]]
+|- bgcolor="#DCDCDC"
+| 5
+| 250,000 or 12,500
+| STR+5 "Magic Attack Bonus"+5 "Slow"+5% Addle+5%
+|- bgcolor="#BEBEBE"
+| 10
+| 1,125,000 or 56,250
+| STR+10 "Magic Attack Bonus"+10 "Slow"+10% Addle+10%
+|- bgcolor="#A0A0A0"
+| 15
+| 2,625,000 or 131,250
+| STR+20 "Magic Attack Bonus"+20 "Slow"+15% Addle+15%
+|- bgcolor="#ffffff"
+| rowspan="4" | [[Atmacite of the Assassin]]
+| 1
+| N/A
+| HP+100 AGI+5 "Double Attack"+1%
+| rowspan="4" | [[Dimgruzub]]
+|- bgcolor="#DCDCDC"
+| 5
+| 150,000 or 7500
+| HP+120 AGI+6 "Double Attack"+1%
+|- bgcolor="#BEBEBE"
+| 10
+| 675,000 or 33,750
+| HP+150 AGI+8 "Double Attack"+2%
+|- bgcolor="#A0A0A0"
+| 15
+| 1,575,000 or 78,750
+| HP+200 AGI+10 "Double Attack"+3%
+|- bgcolor="#ffffff"
+| rowspan="4" | [[Atmacite of Cataphract]]
+| 1
+| N/A
+| HP+1% MND+1 "Magic Defense Bonus"+1 "Cure" potency +1%
+| rowspan="4" | [[Seductive Radiance]]
+|- bgcolor="#DCDCDC"
+| 5
+| 250,000 or 12,500
+| HP+2% MND+2 "Magic Defense Bonus"+3 "Cure" potency +5%
+|- bgcolor="#BEBEBE"
+| 10
+| 1,125,000 or 56,250
+| HP+4% MND+4 "Magic Defense Bonus"+5 "Cure" potency +10%
+|- bgcolor="#A0A0A0"
+| 15
+| 2,625,000 or 131,250
+| HP+5% MND+5 "Magic Defense Bonus"+10 "Cure" potency +15%
+|- bgcolor="#ffffff"
+| rowspan="4" | [[Atmacite of Coercion]]
+| 1
+| N/A
+| STR+1 AGI+1 Accuracy+1
+| rowspan="4" | [[Kaggen]]
+|- bgcolor="#DCDCDC"
+| 5
+| 150,000 or 7500
+| STR+2 AGI+2 Accuracy+3 "Regain"+10
+|- bgcolor="#BEBEBE"
+| 10
+| 675,000 or 33,750
+| STR+4 AGI+4 Accuracy+5 "Regain"+20
+|- bgcolor="#A0A0A0"
+| 15
+| 1,575,000 or 78,750
+| STR+5 AGI+5 Accuracy+10 "Regain"+30
+|- bgcolor="#ffffff"
+| rowspan="4" | [[Atmacite of Curses]]
+| 1
+| N/A
+| INT+5 "Magic Attack Bonus"+5 Magic Accuracy+1
+| rowspan="4" | [[Brekekekex]]
+|- bgcolor="#DCDCDC"
+| 5
+| 150,000 or 7500
+| INT+6 "Magic Attack Bonus"+6 Magic Accuracy+2
+|- bgcolor="#BEBEBE"
+| 10
+| 675,000 or 33,750
+| INT+8 "Magic Attack Bonus"+8 Magic Accuracy+4
+|- bgcolor="#A0A0A0"
+| 15
+| 1,575,000 or 78,750
+| INT+10 "Magic Attack Bonus"+10 Magic Accuracy+5
+|- bgcolor="#ffffff"
+| rowspan="4" | [[Atmacite of Dark Designs]]
+| 1
+| N/A
+| INT+5 Magic Accuracy+5 TP Bonus +50
+| rowspan="4" | [[Abununnu]]
+|- bgcolor="#DCDCDC"
+| 5
+| 150,000 or 7500
+| INT+6 Magic Accuracy+6 TP Bonus +250
+|- bgcolor="#BEBEBE"
+| 10
+| 675,000 or 33,750
+| INT+8 Magic Accuracy+8 TP Bonus +500
+|- bgcolor="#A0A0A0"
+| 15
+| 1,575,000 or 78,750
+| INT+10 Magic Accuracy+10 TP Bonus +500
+|- bgcolor="#ffffff"
+| rowspan="4" | [[Atmacite of Deluges]]
+| 1
+| N/A
+| Enmity+1 VIT+1 "Store TP"+1
+| rowspan="4" | [[Uptala]]
+|- bgcolor="#DCDCDC"
+| 5
+| 150,000 or 7500
+| Enmity+5 VIT+5 "Store TP"+5 "Double Attack"+1%
+|- bgcolor="#BEBEBE"
+| 10
+| 675,000 or 33,750
+| Enmity+10 VIT+10 "Store TP"+10 "Double Attack"+2%
+|- bgcolor="#A0A0A0"
+| 15
+| 1,575,000 or 78,750
+| Enmity+15 VIT+15 "Store TP"+15 "Double Attack"+3%
+|- bgcolor="#ffffff"
+| rowspan="4" | [[Atmacite of the Depths]]
+| 1
+| N/A
+| HP+10% STR+10 "Water Attack Bonus"+1
+| rowspan="4" | [[Bismarck]]
+|- bgcolor="#DCDCDC"
+| 5
+| 250,000 or 12,500
+| HP+11% STR+11 "Water Attack Bonus"+5
+|- bgcolor="#BEBEBE"
+| 10
+| 1,125,000 or 56,250
+| HP+13% STR+13 "Water Attack Bonus"+10 Sphere: "Double Attack"+1%
+|- bgcolor="#A0A0A0"
+| 15
+| 2,625,000 or 131,250
+| HP+15% STR+15 "Water Attack Bonus"+15 Sphere: "Double Attack"+2%
+|- bgcolor="#ffffff"
+| rowspan="4" | [[Atmacite of Destruction]]
+| 1
+| N/A
+| MP+5 "Magic Atk. Bonus"+1 Enhances "Fast Cast" effect +1
+| rowspan="4" | [[Lord Asag]]
+|- bgcolor="#DCDCDC"
+| 5
+| 100,000 or 5000
+| MP+25 "Magic Atk. Bonus"+5 Enhances "Fast Cast" effect +1
+|- bgcolor="#BEBEBE"
+| 10
+| 350,000 or 17,500
+| MP+50 "Magic Atk. Bonus"+10 Enhances "Fast Cast" effect +2
+|- bgcolor="#A0A0A0"
+| 15
+| 750,000 or 37,500
+| MP+100 "Magic Atk. Bonus"+15 Enhances "Fast Cast" effect +3
+|- bgcolor="#ffffff"
+| rowspan="4" | [[Atmacite of Devotion]]
+| 1
+| N/A
+| MND+1 Enmity-1
+| rowspan="4" | [[Belphoebe]]
+|- bgcolor="#DCDCDC"
+| 5
+| 100,000 or 5000
+| MND+5 Enmity-5 Sphere: "Refresh"+1
+|- bgcolor="#BEBEBE"
+| 10
+| 350,000 or 17,500
+| MND+10 Enmity-10 Sphere: "Refresh"+1
+|- bgcolor="#A0A0A0"
+| 15
+| 750,000 or 37,500
+| MND+15 Enmity-15 Sphere: "Refresh"+2
+|- bgcolor="#ffffff"
+| rowspan="4" | [[Atmacite of Discipline]]
+| 1
+| N/A
+| HP+1% "Magic Def. Bonus"+1 "Save TP"+20
+| rowspan="4" | [[Voidwrought]]
+|- bgcolor="#DCDCDC"
+| 5
+| 150,000 or 7500
+| HP+3% All attributes +1 "Magic Def. Bonus"+3 "Save TP"+100
+|- bgcolor="#BEBEBE"
+| 10
+| 520,000 or 10,400
+| HP+5% All attributes +1 "Magic Def. Bonus"+5 "Save TP"+200
+|- bgcolor="#A0A0A0"
+| 15
+| 1,010,000 or 50,500
+| HP+10% All attributes +3 "Magic Def. Bonus"+10 "Save TP"+200
+|- bgcolor="#ffffff"
+| rowspan="4" | [[Atmacite of Eminence]]
+| 1
+| N/A
+| HP+1% STR+1 INT+1
+| rowspan="4" | [[Hahava]]
+|- bgcolor="#DCDCDC"
+| 5
+| 150,000 or 7500
+| HP+2% STR+2 INT+5 "Double Attack"+1%
+|- bgcolor="#BEBEBE"
+| 10
+| 520,000 or 10,400
+| HP+4% STR+4 INT+10 "Double Attack"+2%
+|- bgcolor="#A0A0A0"
+| 15
+| 1,010,000 or 50,500
+| HP+5% STR+5 INT+15 "Double Attack"+3%
+|- bgcolor="#ffffff"
+| rowspan="4" | [[Atmacite of Enticement]]
+| 1
+| N/A
+| MP+1% CHR+1 Magic Accuracy+1
+| rowspan="4" | [[Celaeno]]
+|- bgcolor="#DCDCDC"
+| 5
+| 150,000 or 7500
+| MP+3% CHR+5 Magic Accuracy+2 Sphere "Regen"+1
+|- bgcolor="#BEBEBE"
+| 10
+| 520,000 or 10,400
+| MP+5% CHR+10 Magic Accuracy+4 Sphere "Regen"+2
+|- bgcolor="#A0A0A0"
+| 15
+| 1,010,000 or 50,500
+| MP+10% CHR+15 Magic Accuracy+5 Sphere "Regen"+3
+|- bgcolor="#ffffff"
+| rowspan="4" | [[Atmacite of Exhortation]]
+| 1
+| N/A
+| HP+1% VIT+1 Skillchain damage +2%
+| rowspan="4" | [[Qilin]]
+|- bgcolor="#DCDCDC"
+| 5
+| 150,000 or 7500
+| HP+2% VIT+2 Skillchain damage +10%
+|- bgcolor="#BEBEBE"
+| 10
+| 675,000 or 33,750
+| HP+4% VIT+4 Skillchain damage +20% Sphere: "Regain"+10
+|- bgcolor="#A0A0A0"
+| 15
+| 1,575,000 or 78,750
+| HP+5% VIT+5 Skillchain damage +30% Sphere: "Regain"+20
+|- bgcolor="#ffffff"
+| rowspan="4" | [[Atmacite of Finesse]]
+| 1
+| N/A
+| INT+1 Ranged Attack+1 Ranged Accuracy+1 Magic burst damage+2
+| rowspan="4" | [[Akvan]]
+|- bgcolor="#DCDCDC"
+| 5
+| 150,000 or 7500
+| INT+3 Ranged Attack+2 Ranged Accuracy+5 Magic burst damage+10
+|- bgcolor="#BEBEBE"
+| 10
+| 675,000 or 33,750
+| INT+5 Ranged Attack+4 Ranged Accuracy+10 Magic burst damage+20
+|- bgcolor="#A0A0A0"
+| 15
+| 1,575,000 or 78,750
+| INT+10 Ranged Attack+5 Ranged Accuracy+15 Magic burst damage+30
+|- bgcolor="#ffffff"
+| rowspan="4" | [[Atmacite of the Forager]]
+| 1
+| N/A
+| DEX+5 VIT+5
+| rowspan="4" | [[Tsui-Goab]]
+|- bgcolor="#DCDCDC"
+| 5
+| 150,000 or 7500
+| DEX+6 VIT+6
+|- bgcolor="#BEBEBE"
+| 10
+| 675,000 or 33,750
+| DEX+8 VIT+8 "Regain"+10
+|- bgcolor="#A0A0A0"
+| 15
+| 1,575,000 or 78,750
+| DEX+10 VIT+10 "Regain"+10
+|- bgcolor="#ffffff"
+| rowspan="4" | [[Atmacite of Glaciers]]
+| 1
+| N/A
+| DEF+10 "Magic Defense Bonus"+5 "Ice Attack Bonus"+1
+| rowspan="4" | [[Isarukitsck]]
+|- bgcolor="#DCDCDC"
+| 5
+| 150,000 or 7500
+| DEF+12 "Magic Defense Bonus"+6 "Ice Attack Bonus"+5
+|- bgcolor="#BEBEBE"
+| 10
+| 675,000 or 33,750
+| DEF+16 "Magic Defense Bonus"+8 "Ice Attack Bonus"+10
+|- bgcolor="#A0A0A0"
+| 15
+| 1,575,000 or 78,750
+| DEF+20 "Magic Defense Bonus"+10 "Ice Attack Bonus"+15
+|- bgcolor="#ffffff"
+| rowspan="4" | [[Atmacite of Imperium]]
+| 1
+| N/A
+| All attributes +1 Enmity-2 Enhances "Resist Charm" effect +1 Enhances "Resist Amnesia" effect +1
+| rowspan="4" | [[Maddening Radiance]]
+|- bgcolor="#DCDCDC"
+| 5
+| 250,000 or 12,500
+| All attributes +2 Enmity-10 Enhances "Resist Charm" effect +5 Enhances "Resist Amnesia" effect +5
+|- bgcolor="#BEBEBE"
+| 10
+| 1,125,000 or 56,250
+| All attributes +4 Enmity-20 Enhances "Resist Charm" effect +10 Enhances "Resist Amnesia" effect +10
+|- bgcolor="#A0A0A0"
+| 15
+| 2,625,000 or 131,250
+| All attributes +8 Enmity-30 Enhances "Resist Charm" effect +25 Enhances "Resist Amnesia" effect +25
+|- bgcolor="#ffffff"
+| rowspan="4" | [[Atmacite of Incursion]]
+| 1
+| N/A
+| DEX+1 Attack+1 Ranged Attack+1
+| rowspan="4" | [[Melancholic Moira]]
+|- bgcolor="#DCDCDC"
+| 5
+| 100,000 or 5000
+| DEX+5 Attack+5 Ranged Attack+5
+|- bgcolor="#BEBEBE"
+| 10
+| 350,000 or 17,500
+| DEX+10 Attack+10 Ranged Attack+10
+|- bgcolor="#A0A0A0"
+| 15
+| 750,000 or 37,500
+| DEX+15 Attack+15 Ranged Attack+15
+|- bgcolor="#ffffff"
+| rowspan="4" | [[Atmacite of Latitude]]
+| 1
+| N/A
+| MND+1 "Subtle Blow"+1 TP Bonus +50 Haste +1%
+| rowspan="4" | [[Pil]]
+|- bgcolor="#DCDCDC"
+| 5
+| 150,000 or 7500
+| MND+2 "Subtle Blow"+3 TP Bonus +250 Haste +1%
+|- bgcolor="#BEBEBE"
+| 10
+| 675,000 or 33,750
+| MND+4 "Subtle Blow"+5 TP Bonus +500 Haste +2%
+|- bgcolor="#A0A0A0"
+| 15
+| 1,575,000 or 78,750
+| MND+5 "Subtle Blow"+10 TP Bonus +500 Haste +3%
+|- bgcolor="#ffffff"
+| rowspan="4" | [[Atmacite of Mysticism]]
+| 1
+| N/A
+| MP+1% AGI+1 "Magic Atk. Bonus"+1
+| rowspan="4" | [[Cath Palug]]
+|- bgcolor="#DCDCDC"
+| 5
+| 150,000 or 7500
+| MP+2% AGI+2 "Magic Atk. Bonus"+3
+|- bgcolor="#BEBEBE"
+| 10
+| 520,000 or 10,400
+| MP+4% AGI+4 "Magic Atk. Bonus"+5
+|- bgcolor="#A0A0A0"
+| 15
+| 1,010,000 or 50,500
+| MP+5% AGI+5 "Magic Atk. Bonus"+10
+|- bgcolor="#ffffff"
+| rowspan="4" | [[Atmacite of Onslaught]]
+| 1
+| N/A
+| DEX+1 AGI+1 Spell interruption rate down 2%
+| rowspan="4" | [[Murk-veined Baneberry]]
+|- bgcolor="#DCDCDC"
+| 5
+| 100,000 or 5000
+| DEX+2 AGI+5 Spell interruption rate down 10%
+|- bgcolor="#BEBEBE"
+| 10
+| 350,000 or 17,500
+| DEX+4 AGI+10 Spell interruption rate down 20%
+|- bgcolor="#A0A0A0"
+| 15
+| 750,000 or 37,500
+| DEX+5 AGI+15 Spell interruption rate down 30%
+|- bgcolor="#ffffff"
+| rowspan="4" | [[Atmacite of the Parapet]]
+| 1
+| N/A
+| DEF+5 STR+1 VIT+1 Damage taken -1%
+| rowspan="4" | [[Seductive Radiance]]
+|- bgcolor="#DCDCDC"
+| 5
+| 250,000 or 12,500
+| DEF+25 STR+1 VIT+1 Damage taken -1%
+|- bgcolor="#BEBEBE"
+| 10
+| 1,125,000 or 56,250
+| DEF+50 STR+3 VIT+3 Damage taken -2%
+|- bgcolor="#A0A0A0"
+| 15
+| 2,625,000 or 131,250
+| DEF+100 STR+5 VIT+5 Damage taken -3%
+|- bgcolor="#ffffff"
+| rowspan="4" | [[Atmacite of Persistence]]
+| 1
+| N/A
+| STR+1 Accuracy+1 Physical damage taken -1%
+| rowspan="4" | [[Kholomodumo]]
+|- bgcolor="#DCDCDC"
+| 5
+| 100,000 or 5000
+| STR+5 Accuracy+2 Physical damage taken -2%
+|- bgcolor="#BEBEBE"
+| 10
+| 350,000 or 17,500
+| STR+10 Accuracy+4 Physical damage taken -4%
+|- bgcolor="#A0A0A0"
+| 15
+| 750,000 or 37,500
+| STR+15 Accuracy+5 Physical damage taken -5%
+|- bgcolor="#ffffff"
+| rowspan="4" | [[Atmacite of Preparedness]]
+| 1
+| N/A
+| VIT+1 INT+1 Magic damage taken -1%
+| rowspan="4" | [[Mimic King]]
+|- bgcolor="#DCDCDC"
+| 5
+| 150,000 or 7500
+| VIT+3 INT+2 Magic damage taken -2%
+|- bgcolor="#BEBEBE"
+| 10
+| 520,000 or 10,400
+| VIT+5 INT+4 Magic damage taken -4%
+|- bgcolor="#A0A0A0"
+| 15
+| 1,010,000 or 50,500
+| VIT+10 INT+5 Magic damage taken -5%
+|- bgcolor="#ffffff"
+| rowspan="4" | [[Atmacite of Preservation]]
+| 1
+| N/A
+| MP+10% Enhances "Refresh" effect +3 "Earth Attack Bonus"+1
+| rowspan="4" | [[Morta]]
+|- bgcolor="#DCDCDC"
+| 5
+| 250,000 or 12,500
+| MP+11% Enhances "Refresh" effect +4 "Earth Attack Bonus"+5
+|- bgcolor="#BEBEBE"
+| 10
+| 1,125,000 or 56,250
+| MP+13% Enhances "Refresh" effect +4 "Earth Attack Bonus"+10 Sphere: "Magic Attack Bonus"+1
+|- bgcolor="#A0A0A0"
+| 15
+| 2,625,000 or 131,250
+| MP+15% Enhances "Refresh" effect +5 "Earth Attack Bonus"+15 Sphere: "Magic Attack Bonus"+2
+|- bgcolor="#ffffff"
+| rowspan="4" | [[Atmacite of Provenance]]
+| 1
+| N/A
+| Damage taken -1%
+| rowspan="4" | [[Provenance Watcher]]
+|- bgcolor="#DCDCDC"
+| 5
+| 300,000 or 15,000
+| Damage taken -3%
+|- bgcolor="#BEBEBE"
+| 10
+| 1,250,000 or 12,500
+| Damage taken -5% Occasionally negates MP cost Auto-Reraise
+|- bgcolor="#A0A0A0"
+| 15
+| 2,800,000 or 140,000
+| Damage taken -10% Occasionally negates MP cost Auto-Reraise Sphere: Reraise
+|- bgcolor="#ffffff"
+| rowspan="4" | [[Atmacite of Rapidity]]
+| 1
+| N/A
+| MND+1 Enhances "Fast Cast" effect +1 "Snapshot"+1
+| rowspan="4" | [[Modron]]
+|- bgcolor="#DCDCDC"
+| 5
+| 150,000 or 7500
+| MND+5 Enhances "Fast Cast" effect +2 "Snapshot"+2
+|- bgcolor="#BEBEBE"
+| 10
+| 520,000 or 10,400
+| MND+10 Enhances "Fast Cast" effect +4 "Snapshot"+4
+|- bgcolor="#A0A0A0"
+| 15
+| 1,010,000 or 50,500
+| MND+15 Enhances "Fast Cast" effect +5 "Snapshot"+5
+|- bgcolor="#ffffff"
+| rowspan="4" | [[Atmacite of the Shrewd]]
+| 1
+| N/A
+| Damage taken -1% "Magic Atk. Bonus"+1 Magic Accuracy+1 Enmity-1
+| rowspan="4" | [[Botulus Rex]]
+|- bgcolor="#DCDCDC"
+| 5
+| 250,000 or 12,500
+| Damage taken -3% "Magic Atk. Bonus"+3 Magic Accuracy+5 Enmity-3
+|- bgcolor="#BEBEBE"
+| 10
+| 1,125,000 or 56,250
+| Damage taken -5% "Magic Atk. Bonus"+5 Magic Accuracy+10 Enmity-5
+|- bgcolor="#A0A0A0"
+| 15
+| 2,625,000 or 131,250
+| Damage taken -10% "Magic Atk. Bonus"+10 Magic Accuracy+15 Enmity-10
+|- bgcolor="#ffffff"
+| rowspan="4" | [[Atmacite of Skyblaze]]
+| 1
+| N/A
+| DEX+1 Accuracy+1 Lightning elemental attack+1 {{Thunder}}+5
+| rowspan="4" | [[Ocythoe]]
+|- bgcolor="#DCDCDC"
+| 5
+| 150,000 or 7500
+| DEX+3 Accuracy+5 Lightning elemental attack+5 {{Thunder}}+25
+|- bgcolor="#BEBEBE"
+| 10
+| 675,000 or 33,750
+| DEX+5 Accuracy+10 Lightning elemental attack+10 {{Thunder}}+50
+|- bgcolor="#A0A0A0"
+| 15
+| 1,575,000 or 78,750
+| DEX+10 Accuracy+15 Lightning elemental attack+15 {{Thunder}}+100
+|- bgcolor="#ffffff"
+| rowspan="4" | [[Atmacite of the Slayer]]
+| 1
+| N/A
+| STR+1 AGI+1 Fire elemental attack+1 {{Fire}}+5
+| rowspan="4" | [[Gaunab]]
+|- bgcolor="#DCDCDC"
+| 5
+| 150,000 or 7500
+| STR+3 AGI+3 Fire elemental attack+5 {{Fire}}+25
+|- bgcolor="#BEBEBE"
+| 10
+| 675,000 or 33,750
+| STR+5 AGI+5 Fire elemental attack+10 {{Fire}}+50
+|- bgcolor="#A0A0A0"
+| 15
+| 1,575,000 or 78,750
+| STR+10 AGI+10 Fire elemental attack+15 {{Fire}}+100
+|- bgcolor="#ffffff"
+| rowspan="4" | [[Atmacite of the Solipsist]]
+| 1
+| N/A
+| All attributes +1 Enmity+2 Enhances "Resist Charm" effect +1 Enhances "Resist Amnesia" effect +1
+| rowspan="4" | [[Maddening Radiance]]
+|- bgcolor="#DCDCDC"
+| 5
+| 250,000 or 12,500
+| All attributes +2 Enmity+10 Enhances "Resist Charm" effect +5 Enhances "Resist Amnesia" effect +5
+|- bgcolor="#BEBEBE"
+| 10
+| 1,125,000 or 56,250
+| All attributes +4 Enmity+20 Enhances "Resist Charm" effect +10 Enhances "Resist Amnesia" effect +10
+|- bgcolor="#A0A0A0"
+| 15
+| 2,625,000 or 131,250
+| All attributes +5 Enmity+30 Enhances "Resist Charm" effect +25 Enhances "Resist Amnesia" effect +25
+|- bgcolor="#ffffff"
+| rowspan="4" | [[Atmacite of Temperance]]
+| 1
+| N/A
+| DEF:+2 HP+5 DEX+1
+| rowspan="4" | [[Akupara]]
+|- bgcolor="#DCDCDC"
+| 5
+| 100,000 or 5000
+| DEF:+10 HP+25 DEX+2
+|- bgcolor="#BEBEBE"
+| 10
+| 350,000 or 17,500
+| DEF:+20 HP+50 DEX+4
+|- bgcolor="#A0A0A0"
+| 15
+| 750,000 or 37,500
+| DEF:+30 HP+100 DEX+5
+|- bgcolor="#ffffff"
+| rowspan="4" | [[Atmacite of the Tropics]]
+| 1
+| N/A
+| "Subtle Blow"+5 CHR+5 "Triple Attack"+1%
+| rowspan="4" | [[Yalungur]]
+|- bgcolor="#DCDCDC"
+| 5
+| 150,000 or 7500
+| "Subtle Blow"+6 CHR+6 "Triple Attack"+1%
+|- bgcolor="#BEBEBE"
+| 10
+| 675,000 or 33,750
+| "Subtle Blow"+8 CHR+8 "Triple Attack"+2%
+|- bgcolor="#A0A0A0"
+| 15
+| 1,575,000 or 78,750
+| "Subtle Blow"+10 CHR+10 "Triple Attack"+3%
+|- bgcolor="#ffffff"
+| rowspan="4" | [[Atmacite of Unity]]
+| 1
+| N/A
+| MND+1 Ranged Accuracy+1 "Waltz" potency +2% Song casting time -1%
+| rowspan="4" | [[Aello]]
+|- bgcolor="#DCDCDC"
+| 5
+| 150,000 or 7500
+| MND+2 Ranged Accuracy+3 "Waltz" potency +10% Song casting time -2%
+|- bgcolor="#BEBEBE"
+| 10
+| 675,000 or 33,750
+| MND+4 Ranged Accuracy+5 "Waltz" potency +20% Song casting time -4%
+|- bgcolor="#A0A0A0"
+| 15
+| 1,575,000 or 78,750
+| MND+5 Ranged Accuracy+10 "Waltz" potency +30% Song casting time -5%
+|- bgcolor="#ffffff"
+| rowspan="4" | [[Atmacite of the Valiant]]
+| 1
+| N/A
+| HP+1% All attributes +1 Accuracy+1 Haste+1%
+| rowspan="4" | [[Ig-Alima]]
+|- bgcolor="#DCDCDC"
+| 5
+| 250,000 or 12,500
+| HP+3% All attributes +5 Accuracy+2 Haste+2%
+|- bgcolor="#BEBEBE"
+| 10
+| 1,125,000 or 56,250
+| HP+5% All attributes +10 Accuracy+4 Haste+4%
+|- bgcolor="#A0A0A0"
+| 15
+| 2,625,000 or 131,250
+| HP+10% All attributes +15 Accuracy+5 Haste+5%
+|- bgcolor="#ffffff"
+| rowspan="4" | [[Atmacite of the Vanguard]]
+| 1
+| N/A
+| Attack-5 "Subtle Blow"+1 Haste+1% "Double Attack"+1%
+| rowspan="4" | [[Beguiling Radiance]]
+|- bgcolor="#DCDCDC"
+| 5
+| 250,000 or 12,500
+| Attack-25 "Subtle Blow"+5 Haste+3% "Double Attack"+2%
+|- bgcolor="#BEBEBE"
+| 10
+| 1,125,000 or 56,250
+| Attack-50 "Subtle Blow"+10 Haste+5% "Double Attack"+4%
+|- bgcolor="#A0A0A0"
+| 15
+| 2,625,000 or 131,250
+| Attack-100 "Subtle Blow"+20 Haste+10% "Double Attack"+5%
+|- bgcolor="#A0A0A0"
+|Total
+|600
+|66,385,000 or 3,319,250
+|}
+
+[[Category:Voidwatch]]
