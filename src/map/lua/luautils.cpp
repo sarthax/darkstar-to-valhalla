@@ -4514,6 +4514,37 @@ namespace luautils
         return 0;
     }
 
+    // onPlayerEmote(player, emoteId, targetId, targetIndex) -- scripts/globals/player.lua.
+    // Fired after the emote has been rebroadcast; emoteId is the raw 0x05D id (e.g. /cheer, /clap, /danceN).
+    int32 OnPlayerEmote(CCharEntity* PChar, uint8 emoteId, uint32 targetId, uint16 targetIndex)
+    {
+        lua_prepscript("scripts/globals/player.lua");
+        if (prepFile(File, "onPlayerEmote"))
+            return -1;
+
+        CLuaBaseEntity LuaBaseEntity(PChar);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+        lua_pushinteger(LuaHandle, emoteId);
+        lua_pushinteger(LuaHandle, targetId);
+        lua_pushinteger(LuaHandle, targetIndex);
+
+        if (lua_pcall(LuaHandle, 4, LUA_MULTRET, 0))
+        {
+            ShowError("luautils::onPlayerEmote: %s\n", lua_tostring(LuaHandle, -1));
+            lua_pop(LuaHandle, 1);
+            return -1;
+        }
+
+        int32 returns = lua_gettop(LuaHandle) - oldtop;
+        if (returns > 0)
+        {
+            ShowError("luautils::onPlayerEmote (%s): 0 returns expected, got %d\n", File, returns);
+            lua_pop(LuaHandle, returns);
+        }
+
+        return 0;
+    }
+
     int32 OnPlayerLevelDown(CCharEntity* PChar)
     {
         lua_prepscript("scripts/globals/player.lua");

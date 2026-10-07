@@ -270,6 +270,7 @@ namespace luautils
 
     int32 OnPlayerLevelUp(CCharEntity* PChar);
     int32 OnPlayerLevelDown(CCharEntity* PChar);
+    int32 OnPlayerEmote(CCharEntity* PChar, uint8 emoteId, uint32 targetId, uint16 targetIndex);
 
     bool OnChocoboDig(CCharEntity* PChar, bool pre);                           // chocobo digging, pre = check
     bool LoadEventScript(CCharEntity* PChar, const char* functionName);    // Utility method: checks for and loads a lua function for events

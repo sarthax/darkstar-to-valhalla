@@ -3,6 +3,7 @@
 -- Deals fire damage to an enemy.
 -----------------------------------------
 
+require("scripts/globals/heroines_holdfast");
 require("scripts/globals/magic");
 require("scripts/globals/status");
 
@@ -15,6 +16,9 @@ function onMagicCastingCheck(caster, target, spell)
 end;
 
 function onSpellCast(caster, target, spell)
+    -- Ovjang (HH) spell line; gated to HH Ovjang inside ovjangSpellSay.
+    tpz.heroines.ovjangSpellSay(caster, 7616);
+
     local spellParams = {};
     spellParams.hasMultipleTargetReduction = false;
     spellParams.resistBonus = 1.0;

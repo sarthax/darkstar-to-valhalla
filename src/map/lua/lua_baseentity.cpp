@@ -666,6 +666,24 @@ inline int32 CLuaBaseEntity::getYPos(lua_State *L)
 
 //======================================================//
 
+inline int32 CLuaBaseEntity::sendEntityEmote(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 2));
+
+    CLuaBaseEntity* PTarget = Lunar<CLuaBaseEntity>::check(L, 1);
+    CBaseEntity* PTargetEnt = PTarget ? PTarget->GetBaseEntity() : m_PBaseEntity;
+    uint8 emoteId = (uint8)lua_tointeger(L, 2);
+    uint8 mode    = lua_isnumber(L, 3) ? (uint8)lua_tointeger(L, 3) : 2;
+
+    if (PTargetEnt && m_PBaseEntity->loc.zone)
+    {
+        m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity, CHAR_INRANGE,
+            new CCharEmotionPacket(m_PBaseEntity, PTargetEnt->id, PTargetEnt->targid, emoteId, mode));
+    }
+    return 0;
+}
+
 inline int32 CLuaBaseEntity::getZPos(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
@@ -11610,6 +11628,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getXPos),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getYPos),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getZPos),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,sendEntityEmote),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getRotPos),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getZone),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getZoneID),
