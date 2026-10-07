@@ -100,3 +100,11 @@ Status: MISSING = no DB row/Lua, WRONG = live row differs from retail, GUESS = b
 - Hraun Dragon summon at 100/75/50/25% HP (only missing pets) [B #1004]; "resummon a few minutes after defeated" [F] not built separately.
 - NOT built: flying state while pets live (immune to melee, fire-element auto attacks [F]), 40-50 yalm AoE range when grounded, regen +1%/min [B], Absolute Terror duration tuning, pets' own dragon ability list (uses pool list 87 as-is).
 - Drops [F]: Glassblower's Belt 10816, Gram 19173, Silver Mirror 3510, ids vs DSP item_basic. KI Vivid Periapt of Adaptability DSP id 1798 [F name], not client-verified. Pyxis capture params (902,4145,798 / 653) not wired.
+
+## Lancing Lamorak (Jeuno Stage IV / White IV, West Ronfaure z100)
+- **ID offset risk:** client npc ids are DB+33 in z100 (rifts 587-589, Pyxis 590-592) vs the capture's DB+1; followed the client per the standing rule via `rekey_100.sql`. Verify the rifts/Pyxis respond in game.
+- **Shadows:** [F] "5+ shadows after any TP move or spell". Built for spells and Rhinowrecker only (3 Copy Images, count [D]). Shadows after Rhino Attack / Power Attack not built (shared beetle skill scripts, left untouched).
+- **Rhinowrecker / Power Attack / Rhino Attack:** damage multipliers [D]; Rhinowrecker knockback and conal shape not verified (anim 1986 [C]).
+- **Spell choice/rates:** [D]. Aero V 158, Aeroga IV 187, Aeroja 498, Silencega 359 from [F].
+- **Drops:** only Athos's Boots, Blithe Mantle, Brego Gloves, Riftsand wired; scroll/material/medicine pools not built. Pyxis capture items (coral fragment, darksteel ingot, elixir, ram horn) not wired.
+- Rift positions need `!checknav`; mob 17187289 row in `sql/mob_spawn_points.sql` is superseded by the slice SQL.
