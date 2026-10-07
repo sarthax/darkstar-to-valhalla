@@ -1,2 +1,0 @@
-mapid=2012107
-rom_path=ROM2\12\107.DAT
