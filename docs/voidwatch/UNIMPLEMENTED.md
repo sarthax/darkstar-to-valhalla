@@ -90,3 +90,13 @@ Status: MISSING = no DB row/Lua, WRONG = live row differs from retail, GUESS = b
 - Oblivion's Mantle fires right after Diluvial Wake via VW_MANTLE local var [F]. Crippling Rime hate reset [B]; used Slow as filler status [D].
 - Spells list 450: Blaze Spikes 249 [C]; Ice 250 / Shock 251 standard ids [D]. NOT built: Dread Spikes at low HP, ice spell casting [B], high auto-Regen, extreme MDB, bind/stun-on-hit [F]. Stun resistance growth not built.
 - KI Atmacite of the Valiant 1827 and Vivid Periapt of Vigilance 1800 not client-verified (only 1827 wired). Pyxis capture items (Curaga V scroll, petrified log, mind potion, elixir) not wired.
+
+## Ildebrann (Zilart Stage I / Ashen I, Ifrit's Cauldron z205) — first pass, untested in game
+- Message ids = z118 ids − 3939 = z95 − 888 [V: z205 dialog.yml text-checked on 12 ids]. Capture NPC ids are +1 vs client for rifts (capture rift 17617263 = idx 1, csid 6001); DSP npc_list already matches client, no re-key. Mob ids equal client. Rift params 2126,-1065873409,63,1302,170,0, KI 1447 (Ashen Stratum Abyssite) [C]; Ashen I-III (1447-1449) all accepted [F].
+- Mob/pet row layout: every 3rd row is Ildebrann (166/169/172), +1/+2 are Hraun Dragons. HP 129300 [C] (a second kill read ~116800, unexplained); pets 15900 [C].
+- Cruor/EXP from ZILART stage 1 {5000,7000} [F]; capture cruor reading not usable.
+- Skills [C ids]: Fiery Breath 1281, Touchdown 1282, Inferno Blast 1283, Tebbad Wing (air) 1284; Absolute Terror 1285 [F, not seen in capture]; Baleful Roar 2696 anim 660 [C] (new row; Lua = dispel-all, conal/aoe shape [D]). Existing Tiamat-family Lua reused for the first five; own list 1168. Skill 1278 melee fire variant and Spike Flail (hate from behind) not built.
+- Spells list 451: Firaga IV 177, Fire V 148, Firaja 496 [C]; rates [D].
+- Hraun Dragon summon at 100/75/50/25% HP (only missing pets) [B #1004]; "resummon a few minutes after defeated" [F] not built separately.
+- NOT built: flying state while pets live (immune to melee, fire-element auto attacks [F]), 40-50 yalm AoE range when grounded, regen +1%/min [B], Absolute Terror duration tuning, pets' own dragon ability list (uses pool list 87 as-is).
+- Drops [F]: Glassblower's Belt 10816, Gram 19173, Silver Mirror 3510, ids vs DSP item_basic. KI Vivid Periapt of Adaptability DSP id 1798 [F name], not client-verified. Pyxis capture params (902,4145,798 / 653) not wired.
