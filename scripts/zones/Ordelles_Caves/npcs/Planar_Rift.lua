@@ -71,31 +71,32 @@ function onEventFinish(player,csid,option,npc)
         return;
     end
     local mob = GetMobByID(MOB_FIRST + idx);
-    if (mob == nil or mob:isSpawned()) then return; end   -- already up
+    local rift = GetNPCByID(RIFT_FIRST + idx);
+    if (mob == nil or mob:isSpawned() or rift:getStatus() ~= STATUS_NORMAL) then return; end   -- already up / rift fading
     -- [D] voidstone is one KI per stock count: drop the highest-numbered one held (retail stock semantics unverified)
     player:delKeyItem(VOIDSTONES[voidstoneCount(player)]);
-    SpawnMob(MOB_FIRST + idx):updateClaim(player);
-    mob = GetMobByID(MOB_FIRST + idx);
-    mob:setLocalVar("VW_SPAWNER", player:getID());
-    -- clearance is per player [V 7503-7509]: in range, not engaged, alive; spawner expends the stone
-    for _, m in pairs(player:getAlliance()) do
-        if (m:isPC() and m:getZoneID() == player:getZoneID()) then
-            if (m:getID() == player:getID()) then
-                m:messageSpecial(VW_CLEARANCE_EXPEND, VOIDSTONES[1]);
-                vwGrantClearance(m, mob);
-            elseif (m:checkDistance(GetNPCByID(RIFT_FIRST + idx)) > RANGE) then
-                m:messageSpecial(VW_TOO_FAR);
-            elseif (m:getHP() == 0) then
-                m:messageSpecial(VW_UNCONSCIOUS);
-            elseif (m:isEngaged()) then
-                m:messageSpecial(VW_ENGAGED);
-            else
-                -- [D] voidstone holders keep theirs (7509); others get limited spoils (7508)
-                m:messageSpecial((voidstoneCount(m) > 0) and VW_CARRIED_OVER or VW_NO_EXPEND, VOIDSTONES[1]);
-                vwGrantClearance(m, mob);
+    -- NM spawns on the rift after it fades (template: vwSpawnAtRift) [C]
+    vwSpawnAtRift(rift, MOB_FIRST + idx, player, function(mob)
+        -- clearance is per player [V 7503-7509]: in range, not engaged, alive; spawner expends the stone
+        for _, m in pairs(player:getAlliance()) do
+            if (m:isPC() and m:getZoneID() == player:getZoneID()) then
+                if (m:getID() == player:getID()) then
+                    m:messageSpecial(VW_CLEARANCE_EXPEND, VOIDSTONES[1]);
+                    vwGrantClearance(m, mob);
+                elseif (m:checkDistance(rift) > RANGE) then
+                    m:messageSpecial(VW_TOO_FAR);
+                elseif (m:getHP() == 0) then
+                    m:messageSpecial(VW_UNCONSCIOUS);
+                elseif (m:isEngaged()) then
+                    m:messageSpecial(VW_ENGAGED);
+                else
+                    -- [D] voidstone holders keep theirs (7509); others get limited spoils (7508)
+                    m:messageSpecial((voidstoneCount(m) > 0) and VW_CARRIED_OVER or VW_NO_EXPEND, VOIDSTONES[1]);
+                    vwGrantClearance(m, mob);
+                end
             end
         end
-    end
+    end);
     player:messageSpecial(VW_FIEND_MATERIALIZE);
     player:messageSpecial(VW_MINUTES_TO_COMPLETE, 30);
 end;

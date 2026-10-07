@@ -55,11 +55,42 @@ function vwOnKill(mob, player, cfg)
         m:messageSpecial(cfg.msgFinalYG, y, 0, g, 0);
         m:messageSpecial(cfg.msgFinalW, w);
     end
+    -- Pyxis appears where the NM died (Nyzul armoury-crate pattern) [user spec; capture: appears ~2s after kill]
+    local pos = mob:getPos();
+    pyxis:AnimationSub(0);
+    pyxis:setPos(pos.x, pos.y, pos.z, pos.rot);
     pyxis:setStatus(STATUS_NORMAL);
+    pyxis:forceRespawn();
     local token = os.time();
     pyxis:timer(VW_PYXIS_LIFETIME * 1000, function(npc)
         if (npc:getLocalVar("TOKEN") == token) then npc:setStatus(STATUS_DISAPPEAR); end
     end);
+end
+
+-- Rift -> NM spawn [C: click t0, NM first seen t0+~4s]. The rift fades, then the NM appears on the rift.
+-- Shared template for every Voidwatch NM. Returns nothing; claims for `player` once the NM is up.
+VW_RIFT_FADE_DELAY = 3; -- seconds [C]
+function vwSpawnAtRift(rift, mobId, player, after)
+    local pos = rift:getPos();
+    rift:setStatus(STATUS_DISAPPEAR);
+    rift:timer(VW_RIFT_FADE_DELAY * 1000, function(npc)
+        local m = SpawnMob(mobId);
+        if (m == nil) then npc:setStatus(STATUS_NORMAL); return; end
+        m:setPos(pos.x, pos.y, pos.z, pos.rot);
+        m:setLocalVar("VW_RIFT", npc:getID());
+        m:setLocalVar("VW_SPAWNER", player:getID());
+        if (player ~= nil) then m:updateClaim(player); end
+    end);
+end
+
+-- rift returns when the operation ends
+local function vwRiftReturn(mob)
+    local rid = mob:getLocalVar("VW_RIFT");
+    if (rid ~= 0) then
+        local rift = GetNPCByID(rid);
+        if (rift ~= nil) then rift:setStatus(STATUS_NORMAL); end
+        mob:setLocalVar("VW_RIFT", 0);
+    end
 end
 
 function vwPyxisItems(npc)
@@ -80,6 +111,7 @@ end
 
 -- end of operation (kill or timeout): clear status 475 from everyone cleared in this zone
 function vwEndOperation(mob)
+    vwRiftReturn(mob);
     for _, p in pairs(mob:getZone():getPlayers()) do
         if (vwHasClearance(mob, p)) then
             p:delStatusEffect(EFFECT_VOIDWATCHER);
