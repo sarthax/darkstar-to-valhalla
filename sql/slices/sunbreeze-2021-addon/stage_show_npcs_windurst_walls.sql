@@ -1,0 +1,6 @@
+-- Sunbreeze 2021 stage show NPCs, Windurst Walls (zone 239). TEMPLATE: @ids must be allocated by the server devs.
+-- Never reuse capture entity ids. Positions are from capture 477 (raw packet coords, NOT checknav-verified; Y inverted rule applies).
+--   Mumor   (4.31, -9.67, 1.62) rot 247     Diva (2.687, -9.49, 0.45) rot 239
+-- Remaining NPCs (Uka Totlihn, Ullegore, Foudeel, Bongo) positions: pull from capture 478/479 npc rows before writing.
+-- Uninstall: DELETE FROM npc_list WHERE npcid IN (@MUMOR,@DIVA,...);
+-- INSERT INTO npc_list (...)  -- columns per the target server's npc_list.sql; count columns programmatically
