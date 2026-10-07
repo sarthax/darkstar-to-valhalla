@@ -27,5 +27,18 @@ function onSpellCast(caster, target, spell)
     spellParams.M100 = 2;
     spellParams.M200 = 2;
 
-    return doElementalNuke(caster, spell, target, spellParams);
+    local dmg = doElementalNuke(caster, spell, target, spellParams);
+
+    -- Krabimanjaro (Voidwatch): crab NMs that cast Flood also have an AoE "Floodga" variant that DSP lacks;
+    -- emulate it here by splashing alliance members near the target (same local-override idea as the
+    -- Mamool Ja Firespit splash). Name-guarded so no other caster is affected. Radius 10' is a [D] guess.
+    if (caster:isMob() and caster:getName() == "Krabimanjaro" and target:isPC()) then
+        for _, m in pairs(target:getAlliance()) do
+            if (m:getID() ~= target:getID() and m:isAlive() and m:getZoneID() == target:getZoneID()
+                and m:checkDistance(target) <= 10) then
+                m:delHP(doElementalNuke(caster, spell, m, spellParams));
+            end
+        end
+    end
+    return dmg;
 end;
