@@ -16,3 +16,4 @@ WYATT_DIALOG = 11077; -- Ahhh, sorry, sorry. The name's Wyatt, an' I be an armor
 
 -- Porter Moogle
     RETRIEVE_DIALOG_ID = 15572; -- You retrieve$ from the porter moogle's care.
+           ALLIED_SIGIL = 12911; -- You have received the Allied Sigil!

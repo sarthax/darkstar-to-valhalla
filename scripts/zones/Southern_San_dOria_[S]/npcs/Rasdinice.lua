@@ -6,6 +6,7 @@
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
 require("scripts/zones/Southern_San_dOria_[S]/TextIDs");
+require("scripts/globals/campaign");
 -----------------------------------
 -- onTrade Action
 -----------------------------------
@@ -18,7 +19,12 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-player:showText(npc, 11637); -- (Couldn't find default text so i threw this in) Perhaps you should first attend to more pressing matters...
+-- Event 311 (text only): not of this nation's allegiance. Verified by decode, no capture.
+    if (player:getCampaignAllegiance() ~= 1) then
+        player:startEvent(311, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+    else
+        opsOnTrigger(player, 307);
+    end
 end;
 
 -----------------------------------
@@ -26,8 +32,9 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+    if (csid == 307) then
+        opsOnEventUpdate(player, csid, option);
+    end
 end;
 
 -----------------------------------

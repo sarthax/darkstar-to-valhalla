@@ -17,3 +17,4 @@ KARLOTTE_DELIVERY_DIALOG = 10859; -- I am here to help with all your parcel deli
 
 -- Porter Moogle
       RETRIEVE_DIALOG_ID = 14712; -- You retrieve$ from the porter moogle's care.
+           ALLIED_SIGIL = 12350; -- You have received the Allied Sigil!

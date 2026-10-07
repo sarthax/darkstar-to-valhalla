@@ -8,6 +8,7 @@
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;
+require("scripts/globals/campaign");
 -----------------------------------
 
 -----------------------------------
@@ -22,7 +23,12 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x0133);
+    -- Event 311 (text only): serving another nation.
+    if (player:getCampaignAllegiance() ~= 3) then
+        player:startEvent(311, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+    else
+        opsOnTrigger(player, 307);
+    end
 end;
 
 -----------------------------------
@@ -30,8 +36,9 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+    if (csid == 307) then
+        opsOnEventUpdate(player, csid, option);
+    end
 end;
 
 -----------------------------------

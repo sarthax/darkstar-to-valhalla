@@ -166,6 +166,8 @@ namespace luautils
     int32 StartElevator(lua_State*);
     int32 GetServerVariable(lua_State*);
     int32 SetServerVariable(lua_State *);
+    int32 GetCampaignValue(lua_State*);
+    int32 SetCampaignValue(lua_State*);
     int32 clearVarFromAll(lua_State *);                                         // Deletes a specific player variable from all players
     int32 terminate(lua_State*);                                                // Logs off all characters and terminates the server
 
