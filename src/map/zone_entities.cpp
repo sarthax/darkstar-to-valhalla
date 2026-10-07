@@ -38,6 +38,9 @@ This file is part of DarkStar-server source code.
 
 #include "entities/mobentity.h"
 #include "entities/npcentity.h"
+#include "entities/charentity.h"
+#include "items/item_furnishing.h"
+#include "item_container.h"
 
 #include "packets/char.h"
 #include "packets/char_sync.h"
@@ -578,18 +581,68 @@ void CZoneEntities::SpawnPCs(CCharEntity* PChar)
     }
 }
 
+// Only an installed Orchestrion (426) shows the Symphonic Curator, as in LSB; the other instruments are menu options
+static bool HasInstalledInstrument(CCharEntity* PChar)
+{
+    for (auto containerID : { LOC_MOGSAFE, LOC_MOGSAFE2 })
+    {
+        CItemContainer* PContainer = PChar->getStorage(containerID);
+        for (int slotID = 0; slotID < PContainer->GetSize(); ++slotID)
+        {
+            CItem* PItem = PContainer->GetItem(slotID);
+            if (PItem != nullptr && PItem->isType(ITEM_FURNISHING) && static_cast<CItemFurnishing*>(PItem)->isInstalled())
+            {
+                uint16 id = PItem->getID();
+                if (id == 426)
+                {
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
+}
+
+// Retail sends this 0x067 (sub 0x03/0x05) after each Mog House NPC spawn (capture)
+class CMogNpcSetPacket : public CBasicPacket
+{
+public:
+    CMogNpcSetPacket(CBaseEntity* PEntity)
+    {
+        this->type = 0x67;
+        this->size = 0x0C;
+        WBUFB(data, 0x04) = 0x03;
+        WBUFB(data, 0x05) = 0x05;
+        WBUFW(data, 0x06) = PEntity->targid;
+        WBUFL(data, 0x08) = PEntity->id;
+    }
+};
+
 void CZoneEntities::SpawnMoogle(CCharEntity* PChar)
 {
+    bool moogleSpawned  = false;
+    bool curatorSpawned = false;
+    bool wantCurator    = HasInstalledInstrument(PChar);
+
     for (EntityList_t::const_iterator it = m_npcList.begin(); it != m_npcList.end(); ++it)
     {
         CNpcEntity* PCurrentNpc = (CNpcEntity*)it->second;
 
-        if (PCurrentNpc->loc.p.z == 1.5 &&
-            PCurrentNpc->look.face == 0x52)
+        bool isMoogle  = !moogleSpawned && PCurrentNpc->loc.p.z == 1.5 && PCurrentNpc->look.face == 0x52;
+        bool isCurator = wantCurator && !curatorSpawned && PCurrentNpc->loc.p.z == -7.5 && PCurrentNpc->look.face == 0x37;
+
+        if (isMoogle || isCurator)
         {
             PCurrentNpc->status = STATUS_NORMAL;
             PChar->pushPacket(new CEntityUpdatePacket(PCurrentNpc, ENTITY_SPAWN, UPDATE_ALL_MOB));
             PCurrentNpc->status = STATUS_DISAPPEAR;
+            // Retail follows each Mog House NPC spawn with a 0x067 (sub 0x03/0x05) entity-set packet (capture)
+            PChar->pushPacket(new CMogNpcSetPacket(PCurrentNpc));
+            moogleSpawned  = moogleSpawned  || isMoogle;
+            curatorSpawned = curatorSpawned || isCurator;
+        }
+        if (moogleSpawned && (curatorSpawned || !wantCurator))
+        {
             return;
         }
     }
