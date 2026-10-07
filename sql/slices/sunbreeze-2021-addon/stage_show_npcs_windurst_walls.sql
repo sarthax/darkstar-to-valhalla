@@ -19,14 +19,13 @@ UPDATE npc_list SET pos_x=1.037, pos_y=-9.210, pos_z=-0.215, pos_rot=248, status
 -- Decoration rows already positioned in the stock table but hidden (status 2); visible in capture 477 (status 0):
 --   17756373 Fireworks (-130.382,-9.345,317.519), 17756374 blank prop at the Moogle (-26.51,-2.246,-51.839)
 UPDATE npc_list SET status=0 WHERE npcid IN (17756373, 17756374);
--- NOT installed (hidden/appearing mid-show in the captures, need show-time reveal logic): 17756357 ???, 17756366 Tango,
---   17756368 Fandango, 17756369 Wahboud #2. Decoration sets 17756375-17756384 / 17756388-17756397 / Shards: no capture evidence which are shown.
+-- NOT installed (need show-time logic / no capture evidence): 17756357 ???, 17756369 Wahboud #2. Decoration sets 17756375-17756384 / 17756388-17756397 / Shards: no capture evidence which are shown.
 
 -- Decoration set A (look 0x0506; 374 of this set is visible in captures 473/477/478/479, set B 387-397 uses look 0x04E0 and is not). [C]
 UPDATE npc_list SET status=0 WHERE npcid BETWEEN 17756375 AND 17756384;
--- Tango / Fandango: post-show vendors, parked hidden at their pre-show positions (capture 477); the show reveals them at its end.
-UPDATE npc_list SET pos_x=15.490, pos_y=-10.020, pos_z=6.142, pos_rot=120, status=2 WHERE npcid=17756366;
-UPDATE npc_list SET pos_x=12.875, pos_y=-10.000, pos_z=2.957, pos_rot=120, status=2 WHERE npcid=17756368;
+-- Tango / Fandango stand at their show positions with Bongo (same shot); the show script runs them in and out. [C 479]
+UPDATE npc_list SET pos_x=15.490, pos_y=-10.020, pos_z=6.142, pos_rot=120, status=0 WHERE npcid=17756366;
+UPDATE npc_list SET pos_x=12.875, pos_y=-10.000, pos_z=2.957, pos_rot=120, status=0 WHERE npcid=17756368;
 
 -- Event Moogle: renamed (script lookup is by name; plain 'Moogle' runs the Mog House script) and placed at the user's !logpos.
 UPDATE npc_list SET name='Sunbreeze_Moogle', polutils_name='Moogle', pos_x=-24.2861, pos_y=-2.2549, pos_z=-49.9921, status=0 WHERE npcid=17756356;
