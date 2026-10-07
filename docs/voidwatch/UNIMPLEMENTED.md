@@ -25,10 +25,19 @@ Status: MISSING = no DB row/Lua, WRONG = live row differs from retail, GUESS = b
 - Draw In - GUESS: MOBMOD_DRAW_IN=1 engine behaviour, retail trigger distance unverified
 - Earth resistance trait [F] - MISSING; does-not-move [J] - not enforced
 - Spell cast rate / HP gaps [D]; Cruor [D 5000]; HP 40180 [F] not applied
+## Belphoebe (Crimson III, Jugner Forest [S], z104)
+- Norn Arrows - MISSING: ~1000-1500 dmg wide AoE, strips gear + gear lock (Encumberment); only candidate row in mob_skills.sql is commented out, anim 2262 unverified [J, F]
+- Fixed ability order Spring->Summer->Autumn->Winter->Cyclonic Turmoil is scripted (onMobFight useMobAbility, TP>=1000, 4s gap); pool skill_list_id=0. Norn Arrows slot skipped. Untested in game
+- Spring/Summer/Autumn/Winter Breeze + Cyclonic Turmoil use existing DSP skill scripts (2195-2199): Summer Breeze Regain etc. unverified
+- Skills 2193 zephyr_arrow, 2194 lethe_arrows, 2200 cyclonic_torrent are NOT in retail sources for Belphoebe; left out
+- Spells: -ja after each special skill, Death below 50% HP (F says 25%), rates/gaps [D]; Stun/Addle meant as AoE [J] but cast single-target
+- MOD_DMGMAGIC -30, Double Attack 10 [D]; wind/light/dark resistance traits not applied
+- Atmacite of Devotion KI 1806 from DSP keyitems.lua [W]; not yet client-verified. Cruor 6000 [C]
+- Pyxis 1 position (263.1,553) [D] (no capture)
 ## Krabimanjaro / Aello (earlier slices)
 - mega_scissors anim 1781 vs 188; venom_shower field effect; metal_body / scissor_guard / bubble_curtain
 - Aello: see STATUS.md
 ## Cross-cutting
-- Jade/Crimson/Indigo rift event params (14,18) observed for Jade I only; other tiers [D]
+- Rift event params: 14,18 Jade I; 14,16 Crimson III [C]; Indigo and other tiers [D]
 - !checknav not yet run for z95/z115/z81/z106 rift positions
 - Cavernous Maw z115 id 851->884 collides with SprigganCrier
