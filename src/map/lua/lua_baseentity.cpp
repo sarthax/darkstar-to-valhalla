@@ -926,7 +926,7 @@ inline int32 CLuaBaseEntity::addItem(lua_State *L)
         {
             PItem->setQuantity(quantity);
 
-            if (PItem->isType(ITEM_ARMOR))
+            if (PItem->isType(ITEM_ARMOR) || PItem->isType(ITEM_WEAPON))
             {
                 if (augment0 != 0) ((CItemArmor*)PItem)->setAugment(0, augment0, augment0val);
                 if (augment1 != 0) ((CItemArmor*)PItem)->setAugment(1, augment1, augment1val);
