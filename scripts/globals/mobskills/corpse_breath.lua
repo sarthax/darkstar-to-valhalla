@@ -1,6 +1,6 @@
 ---------------------------------------------
 --  Corpse Breath (Virvatuli)
---  [C] skill id 2511, anim 1775 (capture). Effect/element are [D]: wiki only says "Can use Corpse Breath".
+--  [C] skill id 2511, anim 1775 (capture). Ignores shadows, ~200-600 dmg [FFXIclopedia]; dark element + params [D].
 ---------------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/status");
