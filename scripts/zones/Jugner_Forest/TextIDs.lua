@@ -1,10 +1,10 @@
 -- Variable TextID   Description text
 
 -- General Texts
-ITEM_CANNOT_BE_OBTAINED = 6402; -- You cannot obtain the item <item>. Come back after sorting your inventory.
-          ITEM_OBTAINED = 6408; -- Obtained: <item>.
-           GIL_OBTAINED = 6409; -- Obtained <number> gil.
-       KEYITEM_OBTAINED = 6411; -- Obtained key item: <keyitem>.
+ITEM_CANNOT_BE_OBTAINED = 6404; -- You cannot obtain the item <item>. Come back after sorting your inventory.
+          ITEM_OBTAINED = 6410; -- Obtained: <item>.
+           GIL_OBTAINED = 6411; -- Obtained <number> gil.
+       KEYITEM_OBTAINED = 6413; -- Obtained key item: <keyitem>.
         BEASTMEN_BANNER = 7150; -- There is a beastmen's banner.
  FISHING_MESSAGE_OFFSET = 7702; -- You can't fish here.
 

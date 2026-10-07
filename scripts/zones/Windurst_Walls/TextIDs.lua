@@ -1,11 +1,11 @@
 -- Variable TextID   Description text
 
 -- General Texts
-    ITEM_CANNOT_BE_OBTAINED = 6539; -- Come back after sorting your inventory.
-                               ITEM_OBTAINED = 6545; -- Obtained:
-                            ITEMS_OBTAINED = 6554; -- You obtain
-                                  GIL_OBTAINED = 6546; -- Obtained gil
-                       KEYITEM_OBTAINED = 6548; -- Obtained key item:
+    ITEM_CANNOT_BE_OBTAINED = 6541; -- Come back after sorting your inventory.
+                               ITEM_OBTAINED = 6547; -- Obtained:
+                            ITEMS_OBTAINED = 6556; -- You obtain
+                                  GIL_OBTAINED = 6548; -- Obtained gil
+                       KEYITEM_OBTAINED = 6550; -- Obtained key item:
                             HOMEPOINT_SET = 6636; -- Home point set!
       FISHING_MESSAGE_OFFSET = 7054; -- You can't fish here.
                            MOGHOUSE_EXIT = 8186; -- You have learned your way through the back alleys of Windurst! Now you can exit to any area from your residence.

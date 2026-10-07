@@ -1,13 +1,13 @@
 -- Variable TextID   Description text
 
 -- General Texts
-   ITEM_CANNOT_BE_OBTAINED =  6435; -- You cannot obtain the item <item>. Come back after sorting your inventory.
-FULL_INVENTORY_AFTER_TRADE =  6439; -- You cannot obtain the item <item>. Try trading again after sorting your inventory.
-             ITEM_OBTAINED =  6441; -- Obtained:
-              GIL_OBTAINED =  6442; -- Obtained <<<Numeric Parameter 0>>> gil.
-       NOT_HAVE_ENOUGH_GIL =  6446; -- You do not have enough gil.
-          KEYITEM_OBTAINED =  6444; -- Obtained key item: <<<Unknown Parameter (Type: 80) 1>>>.
-            ITEMS_OBTAINED =  6450; -- You obtain
+   ITEM_CANNOT_BE_OBTAINED =  6437; -- You cannot obtain the item <item>. Come back after sorting your inventory.
+FULL_INVENTORY_AFTER_TRADE =  6441; -- You cannot obtain the item <item>. Try trading again after sorting your inventory.
+             ITEM_OBTAINED =  6443; -- Obtained:
+              GIL_OBTAINED =  6444; -- Obtained <<<Numeric Parameter 0>>> gil.
+       NOT_HAVE_ENOUGH_GIL =  6448; -- You do not have enough gil.
+          KEYITEM_OBTAINED =  6446; -- Obtained key item: <<<Unknown Parameter (Type: 80) 1>>>.
+            ITEMS_OBTAINED =  6452; -- You obtain
           SMITHING_SUPPORT =  6858; -- Your ?Multiple Choice (Parameter 1)?[fishing/woodworking/smithing/goldsmithing/clothcraft/leatherworking/bonecraft/alchemy/cooking] skills went up ...
   GUILD_TERMINATE_CONTRACT =  6872; -- You have terminated your trading contract with the Multiple Choice (Parameter 1)[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild and formed a new one with the Multiple Choice (Parameter 0)[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild
         GUILD_NEW_CONTRACT =  6880; -- You have formed a new trading contract with the Multiple Choice (Parameter 0)[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild

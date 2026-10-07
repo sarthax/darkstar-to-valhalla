@@ -1,10 +1,10 @@
 -- Variable TextID   Description text
 
 -- General Texts
-ITEM_CANNOT_BE_OBTAINED = 6402; -- You cannot obtain the item <item>. Come back after sorting your inventory.
-          ITEM_OBTAINED = 6408;  -- Obtained: <item>.
-           GIL_OBTAINED = 6409;  -- Obtained <number> gil.
-       KEYITEM_OBTAINED = 6411;  -- Obtained key item: <keyitem>.
+ITEM_CANNOT_BE_OBTAINED = 6404; -- You cannot obtain the item <item>. Come back after sorting your inventory.
+          ITEM_OBTAINED = 6410;  -- Obtained: <item>.
+           GIL_OBTAINED = 6411;  -- Obtained <number> gil.
+       KEYITEM_OBTAINED = 6413;  -- Obtained key item: <keyitem>.
  FISHING_MESSAGE_OFFSET = 6656;  -- You can't fish here.
           HOMEPOINT_SET = 2;     -- Home point set!
          DOOR_IS_LOCKED = 10353; -- The door is locked tight.
