@@ -1,16 +1,16 @@
 -----------------------------------
--- Area: Southern SandOria [S]
---  NPC: Miliart, T.K.
+-- Area: Bastok Markets [S]
+--  NPC: Millard, I.M.
 -- Type: Sigil NPC
--- !pos 107 1 -31 80
+-- !pos (unverified - see npc_list)
 -- Logic lives in scripts/globals/campaign.lua (sigilOn*)
 -----------------------------------
-package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
+package.loaded["scripts/zones/Bastok_Markets_[S]/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/status");
 require("scripts/globals/campaign");
-require("scripts/zones/Southern_San_dOria_[S]/TextIDs");
+require("scripts/zones/Bastok_Markets_[S]/TextIDs");
 
 function onTrade(player,npc,trade)
 end;
