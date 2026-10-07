@@ -24,7 +24,14 @@ local function notify(mob, msgid, param)
     end
 end
 
+local VWMSG = {msgWeakElem = 7627, msgBlitzOn = 7634, msgBlitzOff = 7635, msgBlitzGain = 7636, msgBR = 7637, msgW = 7638};
+
+function onMagicHit(caster, target, spell)
+    vwOnMagicHit(target, caster, spell, VWMSG);
+end;
+
 local function tick(mob)
+    vwWeaknessTick(mob, VWMSG);
     local left = mob:getLocalVar("VW_DEADLINE") - os.time();
     if (left <= 0) then
         notify(mob, VW_TIME_UP);
@@ -50,6 +57,7 @@ function onMobSpawn(mob)
     mob:setLocalVar("VW_DEADLINE", os.time() + LIMIT);
     mob:setLocalVar("VW_WARNED", LIMIT + 1);
     mob:setMobMod(MOBMOD_NO_DESPAWN, 1);
+    vwWeaknessInit(mob);
 end;
 
 function onMobRoam(mob) tick(mob); end;
