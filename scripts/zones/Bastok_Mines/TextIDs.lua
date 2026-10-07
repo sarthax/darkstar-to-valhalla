@@ -1,12 +1,12 @@
 -- Variable TextID   Description text
 
 -- General Texts
-       ITEM_CANNOT_BE_OBTAINED =  6380; -- Come back after sorting your inventory.
-    FULL_INVENTORY_AFTER_TRADE =  6384; -- Try trading again after sorting your inventory.
-                 ITEM_OBTAINED =  6386; -- Obtained: <<<Unknown Parameter (Type: 80) 1>>><<<Possible Special Code: 01>>><<<Possible Special Code: 05>>>
-                  GIL_OBTAINED =  6387; -- Obtained <<<Numeric Parameter 0>>> gil.
-           NOT_HAVE_ENOUGH_GIL =  6391; -- You do not have enough gil.
-              KEYITEM_OBTAINED =  6389; -- Obtained key item: <<<Unknown Parameter (Type: 80) 1>>>
+       ITEM_CANNOT_BE_OBTAINED =  6382; -- Come back after sorting your inventory.
+    FULL_INVENTORY_AFTER_TRADE =  6386; -- Try trading again after sorting your inventory.
+                 ITEM_OBTAINED =  6388; -- Obtained: <<<Unknown Parameter (Type: 80) 1>>><<<Possible Special Code: 01>>><<<Possible Special Code: 05>>>
+                  GIL_OBTAINED =  6389; -- Obtained <<<Numeric Parameter 0>>> gil.
+           NOT_HAVE_ENOUGH_GIL =  6393; -- You do not have enough gil.
+              KEYITEM_OBTAINED =  6391; -- Obtained key item: <<<Unknown Parameter (Type: 80) 1>>>
                  HOMEPOINT_SET =  6477; -- Home point set!
                ALCHEMY_SUPPORT =  7051; -- Your Multiple Choice (Parameter 1)[fishing/woodworking/smithing/goldsmithing/clothcraft/leatherworking/bonecraft/alchemy/cooking] skills went up
       GUILD_TERMINATE_CONTRACT =  7065; -- You have terminated your trading contract with the Multiple Choice (Parameter 1)[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild and formed a new one with the Multiple Choice (Parameter 0)[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild

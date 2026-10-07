@@ -1,10 +1,10 @@
 -- Variable TextID   Description text
 
 -- General Texts
-ITEM_CANNOT_BE_OBTAINED = 6909; -- You cannot obtain the item <item>. Come back after sorting your inventory.
-          ITEM_OBTAINED = 6915; -- Obtained: <item>.
-           GIL_OBTAINED = 6916; -- Obtained <number> gil.
-       KEYITEM_OBTAINED = 6918; -- Obtained key item: <keyitem>.
+ITEM_CANNOT_BE_OBTAINED = 6912; -- You cannot obtain the item <item>. Come back after sorting your inventory.
+          ITEM_OBTAINED = 6918; -- Obtained: <item>.
+           GIL_OBTAINED = 6919; -- Obtained <number> gil.
+       KEYITEM_OBTAINED = 6921; -- Obtained key item: <keyitem>.
  FISHING_MESSAGE_OFFSET = 7576; -- You can't fish here.
 
 -- Logging
