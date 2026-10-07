@@ -46,3 +46,13 @@ Status: MISSING = no DB row/Lua, WRONG = live row differs from retail, GUESS = b
 - Ascent cells: Planar Rift onTrade accepts cells 3434-3437 (max 3 each; bonuses blue/red +50, yellow/green +25 [F]); item ids from DSP item_basic, client check pending; no trade message ids known (silent); cells cleared when the Pyxis is claimed; wipe/timeout keeps them on the rift
 - Blue/red cell bonus is per player but the Pyxis item list is shared: best bonus among participants used [D]
 - Aello set to Zilart III (8000 cruor) per table; her real stage unconfirmed
+
+## Hahava (Crimson IV, King Ranperre's Tomb z190) — first pass, untested in game
+- Message ids = z95 ids − 1015 [V: z190 dialog.yml text match, 138 hits]. Capture ids == client ids in this zone.
+- Skills 2714–2721 (yaksha/raksha) had no Lua; written with [D] damage multipliers/durations. Stances toggle every ~45 s [D]; Oblivion/Vengeance only <50% HP [F,J].
+- Yaksha stance −50% physical taken via MOD_DMGPHYS (no separate non-dispellable effect). Raksha stance just erases effects; the "removes multiple magic effects" wording in [J] is ambiguous.
+- Stance skills display "no effect" (msgBasic.NO_EFFECT) — no proper self-buff message wired.
+- NOT built: very high weaponskill-damage resistance [F]; Stun resistance growth over time [F]; Vengeance's item-use block [J]; frontal-cone vs AoE targeting (all hit as AoE per skill row); "attacks without turning to face"; Petrify immunity (no bit in this engine's immunity set).
+- Quad attack 25% / Regain 10 are [D] amounts for [F] wording.
+- Skills 2684–2691 (dark_*) remain on pool list 472 but the pool now uses skill_list_id=0 (Lua-driven only).
+- Hahava's Mail drop is item 3445 "Suit of Hahava's Mail" (material); KI 1808 not client-verified.
