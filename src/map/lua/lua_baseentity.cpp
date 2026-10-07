@@ -41,6 +41,7 @@
 #include "../packets/char.h"
 #include "../packets/char_abilities.h"
 #include "../packets/char_appearance.h"
+#include "../packets/char_emotion.h"
 #include "../packets/char_jobs.h"
 #include "../packets/char_job_extra.h"
 #include "../packets/char_equip.h"
