@@ -1,0 +1,59 @@
+-----------------------------------
+-- Area: Ordelle's Caves
+--  MOB: Krabimanjaro (Voidwatch, Crimson II)
+-- Voidwatch slice: 30 minute limit + cleanup. Ticks via onMobRoam/onMobFight
+-- (open-zone mob, no instance). Message ids from research/MESSAGE-IDS-SLICE-ZONES.md
+-- (anchor verified, offsets inferred).
+-----------------------------------
+
+local VW_MINUTES_TO_COMPLETE = 7513;
+local VW_MINUTES_REMAINING   = 7514;
+local VW_SECONDS_REMAINING   = 7515;
+local VW_TIME_UP             = 7516;
+local VW_FADES               = 7517;
+local LIMIT = 1800; -- 30 min [C]
+
+local function notify(mob, msgid, param)
+    local p = GetPlayerByID(mob:getLocalVar("VW_SPAWNER"));
+    if (p == nil or p:getZoneID() ~= mob:getZoneID()) then return; end
+    for _, m in pairs(p:getAlliance()) do
+        if (m:isPC() and m:getZoneID() == mob:getZoneID()) then
+            m:messageSpecial(msgid, param or 0);
+        end
+    end
+end
+
+local function tick(mob)
+    local left = mob:getLocalVar("VW_DEADLINE") - os.time();
+    if (left <= 0) then
+        notify(mob, VW_TIME_UP);
+        notify(mob, VW_FADES);
+        mob:setLocalVar("VW_DEADLINE", 0);
+        DespawnMob(mob:getID());
+        return;
+    end
+    local warned = mob:getLocalVar("VW_WARNED");
+    local marks = {600, 300, 120, 60, 30, 10};
+    for _, s in ipairs(marks) do
+        if (left <= s and warned > s) then
+            mob:setLocalVar("VW_WARNED", s);
+            if (s >= 60) then notify(mob, VW_MINUTES_REMAINING, s / 60);
+            else notify(mob, VW_SECONDS_REMAINING, s); end
+            break;
+        end
+    end
+end
+
+function onMobSpawn(mob)
+    mob:setLocalVar("VW_DEADLINE", os.time() + LIMIT);
+    mob:setLocalVar("VW_WARNED", LIMIT + 1);
+    mob:setMobMod(MOBMOD_NO_DESPAWN, 1);
+end;
+
+function onMobRoam(mob) tick(mob); end;
+function onMobFight(mob, target) tick(mob); end;
+
+function onMobDeath(mob, player, isKiller)
+    mob:setLocalVar("VW_DEADLINE", 0);
+    -- TODO step 2: cruor, Final Spectral Alignment, Riftworn Pyxis
+end;
