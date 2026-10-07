@@ -39,6 +39,11 @@
 
 uint16 GetMogHouseID(CCharEntity* PChar)
 {
+    // 2F model = 0x0267 + style (mhflag 0x80/0x100: 0 San d'Oria, 1 Bastok, 2 Windurst, 3 Mog Patio)
+    if (PChar->profile.mhflag & 0x40)
+    {
+        return 0x0267 + ((PChar->profile.mhflag >> 7) & 0x03);
+    }
     switch (zoneutils::GetCurrentRegion(PChar->getZone()))
     {
     case REGION_WEST_AHT_URHGAN:
@@ -167,6 +172,10 @@ CZoneInPacket::CZoneInPacket(CCharEntity * PChar, int16 csid)
     if (PChar->m_moghouseID != 0)
     {
         WBUFB(data,(0x80)) = 1;
+        if (PChar->profile.mhflag & 0x40)
+        {
+            WBUFB(data,(0xA8)) = 0x02;                        // On 2F: full exit menu
+        }
         WBUFW(data,(0xAA)) = GetMogHouseID(PChar);            // Mog House id
         WBUFB(data,(0xAE)) = GetMogHouseFlag(PChar);          // Mog House leaving flag
     }
