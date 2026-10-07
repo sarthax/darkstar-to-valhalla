@@ -108,3 +108,12 @@ Status: MISSING = no DB row/Lua, WRONG = live row differs from retail, GUESS = b
 - **Spell choice/rates:** [D]. Aero V 158, Aeroga IV 187, Aeroja 498, Silencega 359 from [F].
 - **Drops:** only Athos's Boots, Blithe Mantle, Brego Gloves, Riftsand wired; scroll/material/medicine pools not built. Pyxis capture items (coral fragment, darksteel ingot, elixir, ram horn) not wired.
 - Rift positions need `!checknav`; mob 17187289 row in `sql/mob_spawn_points.sql` is superseded by the slice SQL.
+
+## Smierc (Jeuno Stage V / White V, Tahrongi Canyon z117)
+- No re-key needed: DB npc ids already equal client ids (rifts 17257088-90, Pyxis 91-93). Capture ids are +3 vs client.
+- **Quick Magic:** [F] "Quick Magic Meteor"; the ability id is unconfirmed, so Meteor is cast normally from the spell pool, with no Quick Magic buff.
+- **Cloudscourge:** id 2824, anim 1993 [C]; damage, element and Terror duration [D]. Melee uses the shared skill list only via its own list (no extra skills).
+- **Spell choice / -ja threshold (<30% HP):** [D].
+- **Drops:** only Athos's Gloves, Devourer, Praeco Doublet, Riftsand wired; scroll/material/medicine pools not built. Pyxis capture items (Wind Carol II scroll, darksteel ingot, others) not wired.
+- Cruor in capture was 16590 (base 7000 [W] plus bonuses); not reconciled.
+- Rift positions need `!checknav`.
