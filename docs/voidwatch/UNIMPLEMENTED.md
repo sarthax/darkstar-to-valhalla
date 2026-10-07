@@ -56,3 +56,12 @@ Status: MISSING = no DB row/Lua, WRONG = live row differs from retail, GUESS = b
 - Quad attack 25% / Regain 10 are [D] amounts for [F] wording.
 - Skills 2684–2691 (dark_*) remain on pool list 472 but the pool now uses skill_list_id=0 (Lua-driven only).
 - Hahava's Mail drop is item 3445 "Suit of Hahava's Mail" (material); KI 1808 not client-verified.
+
+## Ogbunabali (Jade II / Windurst Stage II, Maze of Shakhrami z198) — first pass, untested in game
+- Message ids = z95 ids − 997 [V: z198 dialog.yml text match, 138 hits]. Capture ids == client ids. Cruor 7040 in capture = 5500 × 1.28 green [C,F].
+- NOT built: Gravitic Horn (<50%, frontal magic dmg ~800, hate reset, knockback, Weight) and Quake Blast (<50%, self AoE ~300, strips equipment) [F,J]. No DSP mob_skills rows and no animation evidence in the capture (killed before 50%) — need a client anim id before adding. Used as a pair (Quake Blast then Gravitic Horn) [J].
+- NOT built: low-proc Enpetrify on melee [F,J]; "Does not cast magic" is satisfied by spellList 0.
+- High attack speed / Store TP: only MOD_DOUBLE_ATTACK 10 + MOD_STORETP 30 [D].
+- Pool 5161 moved to dedicated skill list 1164 (275 Sand Blast, 277 Venom Spray, 279 Mandibular Bite); engine picks randomly (order not documented). Sand Pit dropped (not documented for the NM).
+- Drops: [F] lists Ruszor Meat (5755 Slab of Ruszor Meat), [J] lists Rift Sand instead — both unresolved; item ids otherwise checked in DSP item_basic. KI Vivid Periapt of Focus 1792 not client-verified.
+- Stray rows: npc_list 17584498–17584503 (Planar_Rift/Riftworn_Pyxis at 55,260 / -193,197 / -137,377) sit in zone 197's id range; probably leftover mis-keyed LSB data. Not touched.
