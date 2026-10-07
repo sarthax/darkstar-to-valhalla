@@ -6,6 +6,7 @@
 -- (anchor verified, offsets inferred).
 -----------------------------------
 
+require("scripts/globals/voidwatch");
 local VW_MINUTES_TO_COMPLETE = 7513;
 local VW_MINUTES_REMAINING   = 7514;
 local VW_SECONDS_REMAINING   = 7515;
@@ -55,5 +56,11 @@ function onMobFight(mob, target) tick(mob); end;
 
 function onMobDeath(mob, player, isKiller)
     mob:setLocalVar("VW_DEADLINE", 0);
-    -- TODO step 2: cruor, Final Spectral Alignment, Riftworn Pyxis
+
+    local idx = mob:getID() - 17568142;
+    vwOnKill(mob, player, {
+        cruor = 5500, -- Crimson II base, 0% alignment [C]
+        pyxisId = 17568201 + idx,
+        msgCruor = 7607, msgFinalBR = 7604, msgFinalYG = 7602, msgFinalW = 7603,
+    });
 end;
