@@ -24,8 +24,24 @@ function vwOnKill(mob, player, cfg)
     if (pyxis == nil) then return; end
     pyxis:resetLocalVars();
     local items = {};
-    for i = 1, math.random(1, 3) do
+    local b, r = vwAlignment(mob);
+    -- wiki: blue% = item count (100%/item, remainder = chance of +1); red% = chance of the rare drop [W].
+    -- Rare chance base 10% x (1 + red/100) is a [D] guess; filler comes from the placeholder pool.
+    local count = 1 + math.floor(b / 100) + ((math.random(0, 99) < (b % 100)) and 1 or 0);
+    for i = 1, math.min(count, 7) do
         table.insert(items, PLACEHOLDER_POOL[math.random(1, #PLACEHOLDER_POOL)]);
+    end
+    if (cfg.drops and math.random() < 0.10 * (1 + r / 100)) then
+        table.insert(items, 1, cfg.drops[math.random(1, #cfg.drops)]); -- rare goes top slot
+    end
+    if (cfg.keyitem) then
+        local kiChance = 0.05 * (1 + r / 100); -- [D] unknown
+        for _, m in pairs(allianceInZone(player)) do
+            if (not m:hasKeyItem(cfg.keyitem) and math.random() < kiChance) then
+                m:addKeyItem(cfg.keyitem);
+                m:messageSpecial(cfg.msgKeyItem, cfg.keyitem);
+            end
+        end
     end
     for i = 1, 8 do pyxis:setLocalVar("ITEM" .. i, items[i] or 0); end
     pyxis:setLocalVar("TOKEN", os.time());
