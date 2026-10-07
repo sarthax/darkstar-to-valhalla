@@ -24,6 +24,7 @@ This file is part of DarkStar-server source code.
 #include "weaponskill_state.h"
 #include "../ai_container.h"
 #include "../../entities/battleentity.h"
+#include "../../entities/mobentity.h"
 #include "../../packets/action.h"
 #include "../../utils/battleutils.h"
 #include "../../weapon_skill.h"
@@ -107,6 +108,15 @@ bool CWeaponSkillState::Update(time_point tick)
         auto PTarget {GetTarget()};
         m_PEntity->PAI->EventHandler.triggerListener("WEAPONSKILL_USE", m_PEntity, PTarget, m_PSkill->getID());
         PTarget->PAI->EventHandler.triggerListener("WEAPONSKILL_TAKE", PTarget, m_PEntity, m_PSkill->getID());
+        if (PTarget->objtype == TYPE_MOB)
+        {
+            auto PMob = static_cast<CMobEntity*>(PTarget);
+            if (PMob->health.hp <= 0)
+            {
+                PMob->m_lastKillKind = 2;
+                PMob->m_lastKillId = m_PSkill->getID();
+            }
+        }
         auto delay = m_PSkill->getAnimationTime();
         m_finishTime = tick + delay;
         Complete();

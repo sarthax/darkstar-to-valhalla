@@ -10270,6 +10270,23 @@ inline int32 CLuaBaseEntity::hideName(lua_State* L)
     return 0;
 }
 
+/************************************************************************
+*  Function: setNpcFlags()                                              *
+*  Purpose : DSP-PORT: set an NPC's entityFlags and push an update      *
+*  Example : npc:setNpcFlags(3)                                         *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::setNpcFlags(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_NPC);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+    ((CNpcEntity*)m_PBaseEntity)->setEntityFlags((uint32)lua_tointeger(L, 1));
+    m_PBaseEntity->updatemask |= UPDATE_HP;
+    return 0;
+}
+
 inline int32 CLuaBaseEntity::untargetable(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
@@ -11998,6 +12015,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isPet),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isAlly),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,injectActionPacket),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,setNpcFlags),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setMobFlags),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasTrait),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getTrickAttackChar),

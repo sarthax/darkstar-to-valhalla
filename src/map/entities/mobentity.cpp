@@ -58,6 +58,8 @@ CMobEntity::CMobEntity()
     objtype = TYPE_MOB;
 
     m_DropID = 0;
+    m_lastKillKind = 0;
+    m_lastKillId = 0;
 
     m_minLevel = 1;
     m_maxLevel = 1;
@@ -565,6 +567,8 @@ bool CMobEntity::ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags)
 void CMobEntity::Spawn()
 {
     CBattleEntity::Spawn();
+    m_lastKillKind = 0;
+    m_lastKillId = 0;
     m_giveExp = true;
     m_HiPCLvl = 0;
     m_THLvl = 0;

@@ -2696,11 +2696,14 @@ namespace luautils
                     lua_pushboolean(LuaHandle, isKiller);
 
                     lua_pushboolean(LuaHandle, isWeaponSkillKill);
+                    // DSP-PORT: args 5/6 = how the mob's last hit landed (0 melee/none, 1 spell, 2 weaponskill) + its id
+                    lua_pushinteger(LuaHandle, static_cast<CMobEntity*>(PMob)->m_lastKillKind);
+                    lua_pushinteger(LuaHandle, static_cast<CMobEntity*>(PMob)->m_lastKillId);
                     // lua_pushboolean(LuaHandle, isMagicKill);
                     // lua_pushboolean(LuaHandle, isPetKill);
                     // Todo: look at better way do do these than additional bools...
 
-                    if (lua_pcall(LuaHandle, 4, 0, 0))
+                    if (lua_pcall(LuaHandle, 6, 0, 0))
                     {
                         ShowError("luautils::onMobDeathEx: %s\n", lua_tostring(LuaHandle, -1));
                         lua_pop(LuaHandle, 1);
