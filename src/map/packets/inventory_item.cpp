@@ -51,22 +51,37 @@ CInventoryItemPacket::CInventoryItemPacket(CItem* PItem, uint8 LocationID, uint8
 		{
 			WBUFB(data,(0x11)) = 0x01;
 
-            if (((CItemUsable*)PItem)->getCurrentCharges() > 0)
+            // Flag byte (matches LandSandBoat's 0x020 item attr packet):
+            // 0x80 always set, 0x40 ready to use, 0x20 empty, 0x10 partially depleted.
+            // The client refuses to auction an item whose 0x10 bit is set, so it must only
+            // be sent when the item really has fewer than its maximum charges.
+            CItemUsable* PCharged = (CItemUsable*)PItem;
+            uint8 chargeFlags = 0x80;
+
+            if (PCharged->getCurrentCharges() < PCharged->getMaxCharges())
             {
-                if (((CItemUsable*)PItem)->getReuseTime() == 0)
+                chargeFlags |= 0x10;
+            }
+
+            if (PCharged->getCurrentCharges() > 0)
+            {
+                if (PCharged->getReuseTime() == 0)
                 {
-                    WBUFB(data,(0x14)) = 0xD0;
+                    chargeFlags |= 0x40;
                 }
                 else
                 {
-                    WBUFB(data,(0x14)) = 0x90;
-
                     uint32 CurrentTime = CVanaTime::getInstance()->getVanaTime();
 
-                    WBUFL(data,(0x15)) = ((CItemUsable*)PItem)->getNextUseTime();
-                    WBUFL(data,(0x19)) = ((CItemUsable*)PItem)->getUseDelay() + CurrentTime;
+                    WBUFL(data,(0x15)) = PCharged->getNextUseTime();
+                    WBUFL(data,(0x19)) = PCharged->getUseDelay() + CurrentTime;
                 }
             }
+            else
+            {
+                chargeFlags |= 0x20;
+            }
+            WBUFB(data,(0x14)) = chargeFlags;
 		}
 
         if (PItem->isType(ITEM_WEAPON) && ((CItemWeapon*)PItem)->isUnlockable())
