@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Jugner Forest [S] (104)
+-- Area: Jugner Forest (104)
 --  NPC: Planar Rift (Voidwatch) -- Belphoebe slice (first-pass, untested in-game)
 -- Rift i (npcid 17203939+i) -> csid 6000+i -> spawns Belphoebe mob 17203697+i
 -- Evidence tags: [C] capture  [V] client dat/fresh pull  [D] design choice (invented, flagged)

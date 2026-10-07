@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Jugner Forest [S] (104)
+-- Area: Jugner Forest (104)
 --  MOB: Belphoebe (Voidwatch, Crimson III, [S] zone)
 -- Voidwatch slice: 30 minute limit + cleanup. Ticks via onMobRoam/onMobFight
 -- (open-zone mob, no instance). Message ids = z95 ids + 3751 [V: z104 dialog.yml text-checked].
