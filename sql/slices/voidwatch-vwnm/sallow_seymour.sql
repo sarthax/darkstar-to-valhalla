@@ -12,3 +12,6 @@ INSERT INTO mob_spell_lists (spell_list_name,spell_list_id,spell_id,min_level,ma
  ('SallowSeymour',445,162,1,99),('SallowSeymour',445,499,1,99),('SallowSeymour',445,365,1,99);
 -- immunity: silence (0x10) [J]
 UPDATE mob_pools SET skill_list_id=1163, spellList=445, hasSpellScript=1, immunity=(immunity|16) WHERE poolid=4687;
+
+-- [C] 2026-10-07: HP 34772 (hptrack 34633-35011).
+UPDATE mob_groups SET HP=34772 WHERE groupid=13772;

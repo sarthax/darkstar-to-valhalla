@@ -11,3 +11,6 @@ INSERT INTO mob_spell_lists (spell_list_name,spell_list_id,spell_id,min_level,ma
  ('Lord_Asag',448,367,1,99),('Lord_Asag',448,148,1,99),('Lord_Asag',448,177,1,99),('Lord_Asag',448,496,1,99);
 -- immunity [F]: silence 0x10 (no dispel bit)
 UPDATE mob_pools SET skill_list_id=1165, spellList=448, hasSpellScript=1, immunity=(immunity|16) WHERE poolid=5189;
+
+-- [C] 2026-10-07: HP 53000 (hptrack 50123-54906).
+UPDATE mob_groups SET HP=53000 WHERE groupid=13828;

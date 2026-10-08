@@ -106,15 +106,15 @@ Open items for Cottus: level, mobType, job, second HP capture, Mercurial Strike 
 
 | field | value (snapshot) | source | verified | note |
 |---|---|---|---|---|
-| level | 88-90 | ? | no |  |
+| level | see summary | ? | no | no level source; NPCLogger level unreliable. |
 | mobType | 2 | ? | no |  |
 | main/sub job | BLM/BLM | ? | no |  |
-| HP | 0 (formula) | ? | no |  |
-| skills | list 0 | ? | no |  |
-| spells | list 446 | ? | no |  |
+| HP | 61641 | C | partial | set 2026-10-07 from hptrack (61026-61840); was formula. Single capture. |
+| skills | list 1174: Spring Breeze 2195 | C | yes | added 2026-10-07; was none. Capture: Spring Breeze id 2195 anim 1583 matches DB. |
+| spells | list 446 + Thunder V | C | partial | Thunder V (168) added 2026-10-07. Capture also: Stun, Stonega III, Graviga, Blizzaja, Addle all in list. |
 | Pyxis drops | see NM-DETAILS | ? | no |  |
 | key item | see NM-DETAILS | ? | no |  |
-| cruor/EXP | see NM-DETAILS | ? | no |  |
+| cruor/EXP | 6000 cruor | C | yes | capture: 6000 cruor. |
 | mods | see NM-DETAILS | ? | no |  |
 
 ## Kholomodumo (Jugner_Forest_[S])
@@ -137,15 +137,15 @@ Open items for Cottus: level, mobType, job, second HP capture, Mercurial Strike 
 
 | field | value (snapshot) | source | verified | note |
 |---|---|---|---|---|
-| level | 94-95 | ? | no |  |
+| level | see summary | ? | no | no level source; NPCLogger level unreliable. |
 | mobType | 2 | ? | no |  |
 | main/sub job | BLM/WAR | ? | no |  |
-| HP | 0 (formula) | ? | no |  |
-| skills | list 0 | ? | no |  |
-| spells | list 447 | ? | no |  |
+| HP | 71785 | C | partial | set 2026-10-07 from hptrack (71519-72052, midpoint); was formula. Single capture. |
+| skills | list 1175: Yaksha Stance, Oblivion, Bliss, Raksha Stance, Illusion | C | partial | added 2026-10-07; matched by ANIM (1900/1903/1902/1904/1906), capture ids 2714/2717/2716/2718/2720 differ from DB. Three unnamed skills (capture ids 2711-2713, anims 1897-1899) have no DB row: **missing**. |
+| spells | list 447 | C | yes | capture: Fire IV, Fire V, Firaga III/IV, Stun, Slowga, Silencega all in list. |
 | Pyxis drops | see NM-DETAILS | ? | no |  |
 | key item | see NM-DETAILS | ? | no |  |
-| cruor/EXP | see NM-DETAILS | ? | no |  |
+| cruor/EXP | 6500 cruor | C | yes | capture: 6500 cruor. |
 | mods | see NM-DETAILS | ? | no |  |
 
 ## Stachysaurus (La_Theine_Plateau)
@@ -167,60 +167,60 @@ Open items for Cottus: level, mobType, job, second HP capture, Mercurial Strike 
 
 | field | value (snapshot) | source | verified | note |
 |---|---|---|---|---|
-| level | 94-95 | ? | no |  |
+| level | see summary | ? | no | no level source; NPCLogger level unreliable. |
 | mobType | 2 | ? | no |  |
 | main/sub job | SAM/SAM | ? | no |  |
-| HP | 0 (formula) | ? | no |  |
-| skills | list 1164 | ? | no |  |
+| HP | 56615 | C | partial | set 2026-10-07 from hptrack (52213-57437); was formula. Single capture. |
+| skills | list 1164 | C | **mismatch** | Venom Spray matches (DB 277 anim 811). Mandibular Bite: capture anim 1273 vs DB 279 anim 813, different move; no DB row for anim 1273. |
 | spells | list 0 | ? | no |  |
 | Pyxis drops | see NM-DETAILS | ? | no |  |
 | key item | see NM-DETAILS | ? | no |  |
-| cruor/EXP | see NM-DETAILS | ? | no |  |
+| cruor/EXP | 7040 cruor | C | **mismatch** | capture: 7040 cruor; DB stage table gives a different base. Check stage/bonus. |
 | mods | see NM-DETAILS | ? | no |  |
 
 ## Lord_Asag (Meriphataud_Mountains)
 
 | field | value (snapshot) | source | verified | note |
 |---|---|---|---|---|
-| level | 94-95 | ? | no |  |
+| level | see summary | ? | no | no level source; NPCLogger level unreliable. |
 | mobType | 2 | ? | no |  |
 | main/sub job | BLM/RDM | ? | no |  |
-| HP | 0 (formula) | ? | no |  |
-| skills | list 1165 | ? | no |  |
-| spells | list 448 | ? | no |  |
+| HP | 53000 | C | partial | set 2026-10-07 from hptrack (50123-54906); was formula. Single capture. |
+| skills | list 1165 | C | yes | capture: Wings of Gehenna 2110, Nosferatu's Kiss 2108 match. |
+| spells | list 448 | C | yes | capture: Fire IV, Firaja, Paralyga, Addle all in list. |
 | Pyxis drops | see NM-DETAILS | ? | no |  |
 | key item | see NM-DETAILS | ? | no |  |
-| cruor/EXP | see NM-DETAILS | ? | no |  |
+| cruor/EXP | 6000 cruor | C | yes | capture: 6000 cruor. |
 | mods | see NM-DETAILS | ? | no |  |
 
 ## SallowSeymour (North_Gustaberg)
 
 | field | value (snapshot) | source | verified | note |
 |---|---|---|---|---|
-| level | 100-101 | ? | no |  |
+| level | 100-101 | ? | no | no level source. |
 | mobType | 2 | ? | no |  |
 | main/sub job | BLM/BLM | ? | no |  |
-| HP | 0 (formula) | ? | no |  |
-| skills | list 1163 | ? | no |  |
-| spells | list 445 | ? | no |  |
+| HP | 34772 | C | partial | set 2026-10-07 from hptrack (34633-35011); was formula. Single capture. |
+| skills | list 1163 | C | **mismatch** | Tremors matches (anim 171). Mud Stream (capture id 2645 anim 1839) has no DB row: **missing**. |
+| spells | list 445 | C | yes | capture: Stonega II/III, Stone IV, Slowga all in list. |
 | Pyxis drops | see NM-DETAILS | ? | no |  |
 | key item | see NM-DETAILS | ? | no |  |
-| cruor/EXP | see NM-DETAILS | ? | no |  |
+| cruor/EXP | 5000 cruor | C | yes | capture: 5000 cruor; also Indigo Stratum Abyssite + 2 voidstones. |
 | mods | see NM-DETAILS | ? | no |  |
 
 ## Krabimanjaro (Ordelles_Caves)
 
 | field | value (snapshot) | source | verified | note |
 |---|---|---|---|---|
-| level | 95-96 | ? | no |  |
+| level | see summary | ? | no | no level source; NPCLogger level unreliable. |
 | mobType | 2 | ? | no |  |
 | main/sub job | BLM/PLD | ? | no |  |
-| HP | 0 (formula) | ? | no |  |
-| skills | list 1159 | ? | no |  |
-| spells | list 439 | ? | no |  |
+| HP | 47578 | C | partial | set 2026-10-07 from hptrack (47104-50085); was formula. Single capture. |
+| skills | list 1159 | C | yes | capture anims match DB: Venom Shower 2512, Bubble Curtain (anim 187), Scissor Guard (anim 189). |
+| spells | list 439 + Sleepga | C | partial | Sleepga (363) added 2026-10-07. Water V, Graviga, Silencega in list. |
 | Pyxis drops | see NM-DETAILS | ? | no |  |
 | key item | see NM-DETAILS | ? | no |  |
-| cruor/EXP | see NM-DETAILS | ? | no |  |
+| cruor/EXP | 5500 cruor | C | yes | capture: 5500 cruor. |
 | mods | see NM-DETAILS | ? | no |  |
 
 ## Melancholic_Moira (Pashhow_Marshlands_[S])
@@ -318,15 +318,15 @@ Open items for Cottus: level, mobType, job, second HP capture, Mercurial Strike 
 
 | field | value (snapshot) | source | verified | note |
 |---|---|---|---|---|
-| level | 89-90 | ? | no |  |
+| level | see summary | ? | no | no level source; NPCLogger level unreliable. |
 | mobType | 2 | ? | no |  |
 | main/sub job | BLM/WAR | ? | no |  |
-| HP | 0 (formula) | ? | no |  |
-| skills | list 1160 | ? | no |  |
-| spells | list 443 | ? | no |  |
+| HP | 33343 | C | partial | set 2026-10-07 from hptrack (33011-33775); was formula. Single capture. |
+| skills | list 1160 | C | yes | capture: Corpse Breath 2511 matches. |
+| spells | list 443 | C | yes | capture: Silencega, Blizzaga III in list. |
 | Pyxis drops | see NM-DETAILS | ? | no |  |
 | key item | see NM-DETAILS | ? | no |  |
-| cruor/EXP | see NM-DETAILS | ? | no |  |
+| cruor/EXP | 5000 cruor | C | yes | capture: 5000 cruor. |
 | mods | see NM-DETAILS | ? | no |  |
 
 ## Pancimanci (West_Sarutabaruta_[S])
