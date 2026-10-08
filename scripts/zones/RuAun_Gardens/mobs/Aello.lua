@@ -7,6 +7,7 @@
 -----------------------------------
 
 require("scripts/globals/voidwatch");
+require("scripts/globals/voidwatch_ki");
 require("scripts/globals/status");
 require("scripts/globals/magic");
 require("scripts/globals/msg");
@@ -88,8 +89,9 @@ function onMobDeath(mob, player, isKiller)
     vwOnKill(mob, player, {
         region = "ZILART", stage = 3, -- [F] Zilart III: 5000 EXP / 8000 cruor
         pyxisId = 17310114 + idx,
-        drops = {11035, 11964}, -- Strophadic Earring, Whirlwind Dirs [W: BG wiki Aello 5% each]; ids checked vs DSP item_basic
+        drops = {11035, 11964, 18905, 18904, 5910}, -- Strophadic Earring, Whirlwind Dirs, Swiftwing, Ephemeron, Heavy Metal Pouch [F ffxiclopedia Aello]; ids checked vs DSP item_basic
         msgKeyItem = 10883,
         msgCruor = 10879, msgFinalBR = 10876, msgFinalYG = 10874, msgFinalW = 10875,
     });
+    vwExtraKeyItem(player, mob, ATMACITE_OF_UNITY, 10883, 0.05); -- [F ffxiclopedia item page: possible spoil]; chance [D]
 end;
