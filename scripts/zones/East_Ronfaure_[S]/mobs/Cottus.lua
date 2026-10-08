@@ -79,8 +79,13 @@ function onMobDeath(mob, player, isKiller)
         region = "THREE", stage = 1, -- [F] stage table; cruor/EXP base
         pyxisId = 17109853 + idx,
         drops = {11667}, -- Roller's Ring [BG #248/#289, F]; id checked vs DSP item_basic
-        keyitem = VIVID_PERIAPT_OF_READINESS, -- 1796 [J, BG]
-        msgKeyItem = 8193,
         msgCruor = 8189, msgFinalBR = 8186, msgFinalYG = 8184, msgFinalW = 8185,
     });
+    -- Periapt is guaranteed on every Pyxis [C Raguza 2021.03.27, BG #6]; granted here, not via the random cfg.keyitem path.
+    for _, m in pairs(player:getAlliance()) do
+        if (m:isPC() and m:getZoneID() == mob:getZoneID() and not m:hasKeyItem(VIVID_PERIAPT_OF_READINESS)) then
+            m:addKeyItem(VIVID_PERIAPT_OF_READINESS); -- 1796 [J, BG]
+            m:messageSpecial(8193, VIVID_PERIAPT_OF_READINESS);
+        end
+    end
 end;

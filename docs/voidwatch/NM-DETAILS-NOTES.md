@@ -52,9 +52,9 @@ Capture covers a ~70 s kill by a small group with 3 cells; Cottus used only 2 TP
 | level | 80-85 | ? | **no** | NPCLogger level byte says 95, but the same field says 95 for Pancimanci, which the user states is 83 — field is not a usable level source. No ground truth for Cottus. |
 | mobType | 0 | ? | no | BG Wiki class = VWNM; user ruled Pancimanci non-NM. Cottus unchecked. |
 | main/sub job | BST/BST (LSB) | F=COR per UNIMPLEMENTED | no | BG Wiki job field blank. Unresolved. |
-| HP | 80000 | C | **contradicted** | hptrack kill estimate 45408 (range 44501-45998, method I). DB value is LSB, not retail. Candidate fix: 45408 pending a second capture. |
+| HP | 45408 | C | partial | fixed 2026-10-07 from hptrack estimate (range 44501-45998). Single capture; confirm with a second. |
 | skill: Impact Roar (664) | in list 1162, anim 408 | C | yes | actionview: ID 664, anim 408, msg 188 |
-| skill: Trebuchet | NO ROW | C, W, F | missing | actionview: ID 1636, anim 1132, msg 31. Not in `mob_skills`. |
+| skill: Trebuchet | id 1636, anim 1132 | C | yes | built 2026-10-07: heavy single-target ranged, resets hate. Damage multiplier [D]. |
 | skill: Grand Slam (665) / Power Attack (666) | in list 1162 | D | no | Briareos-style rows reused; not seen in capture |
 | skill: Mercurial Strike | NO ROW | W, F | missing | every ~45 s per W; 111..1111 damage picks next WS |
 | skill: Colossal Slam | NO ROW | J | missing | |
@@ -62,14 +62,14 @@ Capture covers a ~70 s kill by a small group with 3 cells; Cottus used only 2 TP
 | spells | none (list 0) | J, B #613 | partial | no spell use seen in capture; consistent |
 | traits | Double Attack 10 | J (trait), D (amount) | partial | W also says minor Regain: not implemented |
 | Pyxis rare drop | Roller's Ring (11667) | B #248/#289 (player reports), J, F | yes | item id checked vs `item_basic`; drop rate 10% x (1+red) is D |
-| key item | Vivid Periapt of Readiness (1796), 5% random | C, KI-VERIFICATION | **mismatch** | KI id client-verified. But capture: "obtains the vivid periapt of readiness!" on Pyxis open, forum #6 also says automatic. DB script gives only 5% chance. Fix candidate: always grant on Pyxis open. |
+| key item | Vivid Periapt of Readiness (1796), always | C, KI-VERIFICATION | yes | fixed 2026-10-07: granted to every alliance member in zone on kill (Cottus.lua). |
 | cruor | 5000 x green | C | yes | 11250 = 5000 x 225% green |
 | EXP | 5000 x yellow | C | yes | 11250 limit points, yellow 225% |
 | final lights (this run) | n/a | C | n/a | B209 R309 Y225 G225 W100. Forum run (#6): B270 R390 Y225 G225 W75 — lights vary by run/cells. |
 | message ids (z81) | 8109 materialize, 8197 relinquished | V | yes | capture shows 8110/8198: consistent +1 capture offset, script ids text-checked vs dialog.yml |
 | Pyxis csid | 6003 | C | yes | params 1132, 748 (meaning unknown) |
 
-Open items for Cottus: level, mobType, job, HP correction, Trebuchet / Mercurial Strike / Colossal Slam rows, periapt always-grant, Regain.
+Open items for Cottus: level, mobType, job, second HP capture, Mercurial Strike / Colossal Slam rows (no verified skill ids, not built), Regain.
 
 
 ## Ildebrann (Ifrits_Cauldron)
