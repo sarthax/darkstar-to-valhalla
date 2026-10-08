@@ -26,7 +26,7 @@ Column `src` for hand-checked values lives in `NM-DETAILS-NOTES.md`. Unknown = `
 | Ig-Alima | Valkurm_Dunes | 119-120 | 2 | WAR/BLM | 161800 | 7 skills | list 450 (3) | borealis, hoarfrost_blade, dhampyr_sword, wroth_scythe, ogiers_surcoat, plate_of_heavy_metal, clump_of_riftdross, pinch_of_riftcinder |
 | Lancing_Lamorak | West_Ronfaure | 94-95 | 0 | BLM/THF | 106500 | 3 skills | list 452 (4) | athoss_boots, blithe_mantle, brego_gloves, chunk_of_riftsand |
 | Virvatuli | West_Sarutabaruta | 89-90 | 2 | BLM/WAR | 33343 | 1 skills | list 443 (14) | irrwisch_ring |
-| Pancimanci | West_Sarutabaruta_[S] | 83-83 | 0 | MNK/MNK | 0 (formula) | 3 skills | list 444 (10) | impatiens |
+| Pancimanci | West_Sarutabaruta_[S] | 83-83 | 0 | MNK/MNK | 0 (formula) | 4 skills | list 444 (10) | impatiens |
 
 ## Per-NM detail
 
@@ -574,7 +574,7 @@ Script mods:
 | melee delay / dmg mult | 320 / 100 |
 | respawn | 0 |
 | immunity bitmask | 1 |
-| skill list 1161 | head_butt, dream_flower, petal_pirouette |
+| skill list 1161 | head_butt, dream_flower, scream, petal_pirouette |
 | spell list 444 | 10 spell rows |
 | mob_groups.dropid | 0 |
 | Pyxis rare drops (script) | impatiens (19761) |

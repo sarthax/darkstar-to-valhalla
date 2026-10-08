@@ -124,12 +124,12 @@ Open items for Cottus: level, mobType, job, second HP capture, Mercurial Strike 
 | level | 93-94 | ? | no |  |
 | mobType | 2 | ? | no |  |
 | main/sub job | BLM/BLM | ? | no |  |
-| HP | 60436 | ? | no |  |
+| HP | 60436 | C | yes | hptrack Est.HP 60436 (57416-60987), set earlier. |
 | skills | list 1172 | B/C | partial | Accursed Armor/Amnesic Blast/Ecliptic Meteor from forum+capture; damage/duration [D]; plain Meteor has no skill row |
-| spells | list 0 | ? | no |  |
+| spells | none | C | yes | capture shows no spells cast. |
 | Pyxis drops | see NM-DETAILS | ? | no |  |
 | key item | see NM-DETAILS | W/F | no | client-id check pending |
-| cruor/EXP | see NM-DETAILS | ? | no |  |
+| cruor/EXP | 6000 base (stage 3) | C | yes | 9660 = 6000 x 161% green. |
 | mods | see NM-DETAILS | ? | no |  |
 | cruor | — | C | yes | 9660 = 6000 x 161% green (Raguza 2021.03.28) |
 
@@ -230,12 +230,12 @@ Open items for Cottus: level, mobType, job, second HP capture, Mercurial Strike 
 | level | 92-95 | ? | no |  |
 | mobType | 2 | ? | no |  |
 | main/sub job | WAR/WAR | ? | no |  |
-| HP | 50796 | D | no | estimate from capture kill time (~80 s) |
+| HP | 50796 | C | yes | hptrack Est.HP 50796 (50290-55747, method L). Source corrected from kill-time estimate. |
 | skills | list 1173 | D | no | capture showed no mob TP moves; skill rows are design guesses |
 | spells | list 0 | ? | no |  |
 | Pyxis drops | see NM-DETAILS | ? | no |  |
 | key item | see NM-DETAILS | V | yes | client id 1810 per KI-VERIFICATION.md |
-| cruor/EXP | see NM-DETAILS | ? | no |  |
+| cruor/EXP | 6000 base (stage 3) | C | yes | 12300 = 6000 x 205% green. |
 | mods | see NM-DETAILS | ? | no |  |
 | cruor | — | C | yes | 12300 = 6000 x 205% green (Raguza 2021.03.27) |
 
@@ -336,10 +336,10 @@ Open items for Cottus: level, mobType, job, second HP capture, Mercurial Strike 
 | level | 83-83 | U | user-stated | 83, easy to kill, plain mob (2026-10-07) |
 | mobType | 0 | U | user-stated | not an NM |
 | main/sub job | MNK/MNK | ? | no |  |
-| HP | 0 (formula) | ? | no |  |
-| skills | list 1161 | ? | no |  |
-| spells | list 444 | ? | no |  |
+| HP | 0 (formula) | U | user-stated | capture hptrack shows 47878 (47401-47886) but user states plain level-83 mob, easy to kill; left on formula. Revisit if too weak. |
+| skills | list 1161 + Scream | C | partial | Dream Flower (anim 45) matches; Scream (anim 50 = skill 306) added 2026-10-07. Fatal Scream (capture id 2387, anim 1660) has no DB row: **missing**. |
+| spells | list 444 | C | yes | capture: Aeroga III, Stonega III, Addle all in list. |
 | Pyxis drops | see NM-DETAILS | ? | no |  |
 | key item | see NM-DETAILS | ? | no |  |
-| cruor/EXP | see NM-DETAILS | ? | no |  |
+| cruor/EXP | 5000 (stage 1) | C | yes | capture: 5000 cruor. |
 | mods | see NM-DETAILS | ? | no |  |
