@@ -21992,8 +21992,8 @@ INSERT INTO `mob_spawn_points` VALUES (17167109,'KaiserBehemoth','Kaiser Behemot
 INSERT INTO `mob_spawn_points` VALUES (17167110,'FerreousCoffin','Ferreous Coffin',0,0,0,0,0);
 INSERT INTO `mob_spawn_points` VALUES (17167111,'Lewenhart','Lewenhart',0,0,0,0,217);
 INSERT INTO `mob_spawn_points` VALUES (17167112,'AuroralAlicorn','Auroral Alicorn',0,0,0,0,0);
-INSERT INTO `mob_spawn_points` VALUES (17167113,'Pancimani','Pancimanci',13747,120,-3.5,-440,183);
-INSERT INTO `mob_spawn_points` VALUES (17167115,'Pancimani','Pancimanci',13747,2.675,-28.5,560.355,150);
+INSERT INTO `mob_spawn_points` VALUES (17167113,'Pancimanci','Pancimanci',13747,120,-3.5,-440,183);
+INSERT INTO `mob_spawn_points` VALUES (17167115,'Pancimanci','Pancimanci',13747,2.675,-28.5,560.355,150);
 
 -- ------------------------------------------------------------
 -- Fort Karugo-Narugo [S] (Zone 96)
