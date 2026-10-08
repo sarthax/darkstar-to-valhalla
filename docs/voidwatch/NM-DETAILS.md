@@ -7,7 +7,7 @@ Column `src` for hand-checked values lives in `NM-DETAILS-NOTES.md`. Unknown = `
 | NM | Zone | Lv | mobType | Job | HP override | Skills | Spells | Drops (script) |
 |---|---|---|---|---|---|---|---|---|
 | Botulus_Rex | Buburimu_Peninsula | 94-95 | 2 | BLM/BLM | 145000 | 4 skills | list 449 (7) | asteria, supernal_knife, gerras_staff, beaivis_scepter, athoss_tabard, rubeus_jacket, plate_of_heavy_metal, clump_of_riftdross, pinch_of_riftcinder |
-| Sarimanok | East_Ronfaure | 94-95 | 2 | THF/BLM | 0 (formula) | 5 skills | list 440 (3) | chimera_hairpin |
+| Sarimanok | East_Ronfaure | 94-95 | 2 | THF/BLM | 37254 | 5 skills | list 440 (3) | chimera_hairpin |
 | Cottus | East_Ronfaure_[S] | 80-85 | 0 | BST/BST | 45408 | 4 skills | — | rollers_ring |
 | Ildebrann | Ifrits_Cauldron | 98-99 | 2 | BLM/BLM | 129300 | 6 skills | list 451 (3) | glassblowers_belt, gram, silver_mirror |
 | HraunDragon | Ifrits_Cauldron | 95-96 | 2 | WAR/WAR | 15900 | 10 skills | — | — |
@@ -65,7 +65,7 @@ Script mods:
 | level | 94-95 |
 | mobType (2 = NM) | 2 |
 | main/sub job | THF/BLM |
-| HP override / MP | 0 / 9999 |
+| HP override / MP | 37254 / 9999 |
 | family HP/ATT/DEF/ACC/EVA | 93 / 3 / 3 / 3 / 3 |
 | melee delay / dmg mult | 200 / 100 |
 | respawn | 0 |
