@@ -136,7 +136,7 @@ Status: MISSING = no DB row/Lua, WRONG = live row differs from retail, GUESS = b
 
 ## Melancholic Moira (Indigo III, Pashhow Marshlands [S], z90)
 - The capture (Raguza 2021.03.27, ~80 s kill) shows NO mob TP moves, so her whole skill set comes from forum/LSB, not [C]
-- Bad Breath (2392) - GUESS: fixed 600-800 damage [B #106], radial [B #611]; ailment set copied from the Morbol bad_breath.lua [D]; shared Morbol 319 is HP-scaled so unusable here
+- Bad Breath (319, damage branch in bad_breath.lua) - GUESS: fixed 600-800 damage [B #106], radial [B #611]; ailment set copied from the Morbol bad_breath.lua [D]; Morbol default is HP-scaled so a Moira-specific branch was added
 - Tainting Breath (2575) - GUESS: id/anim 63 from a commented LSB row; 300-500 damage + Disease 60 s are [D]
 - Impale 316 / Vampiric Lash 317 - kept from the LSB Morbol pool list [LSB], not reported for Moira; Sweet Breath 320 dropped
 - "EBB" [B #106, #611] - NOT BUILT: AoE, possibly NPC self-targeted; no resolved name or skill row
@@ -151,3 +151,12 @@ Status: MISSING = no DB row/Lua, WRONG = live row differs from retail, GUESS = b
 - Testudo Tremor anim id 2329 unverified; Tortoise Song uses the Adamantoise dispel-all Lua
 - Voidwrought: shock spikes are always on (retail: while casting); Ballistic Kick percent-HP damage and equipment strip approximated (physical hit + Encumbrance); Turbine Hurricane is DSP row turbine_cyclone
 - Voidwrought third spawn position (-480,-0.5,760) is a design guess; level/HP for both unknown
+
+## Indigo batch (2026-10-08): Ushumgal, Lorbulcrud, Murk-veined Baneberry, Celaeno
+- Generated from templates; SQL in sql/slices/voidwatch-vwnm/ (ushumgal, lorbulcrud, murk_veined_baneberry, celaeno, rekey_109). Not tested in game
+- Oppressive Glare (Ushumgal 2392) and Wings of Woe (Celaeno 2727): effect unknown, no-effect stubs
+- Celaeno LSB skills 2722-2724 unnamed, not modelled; level 95-96 is [D]
+- Ushumgal job THF/THF is LSB-only; Lorbulcrud set BLM (LSB 9/9 cannot cast)
+- Baneberry Tonberry Coat (1119) drop rate unknown, not modelled
+- Pashhow (z109) npc_list tail rekeyed +2 to match client ids; verify Fount/Hume/Passage/Survival Guide still work
+- Pyxis/KI client ids and rift positions (!checknav) unverified for all four
