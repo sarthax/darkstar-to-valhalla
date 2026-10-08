@@ -68,3 +68,39 @@ for (z, name), lst in seen.items():
 out += summary + ["", "## Per-NM detail", ""] + detail
 open('docs/voidwatch/NM-DETAILS.md', 'w', encoding='utf-8').write("\n".join(out) + "\n")
 print(len(seen), 'NMs')
+
+# --- NM-DETAILS-NOTES.md: hand-edited source/verified ledger. Created once, NEVER overwritten. ---
+NOTES = 'docs/voidwatch/NM-DETAILS-NOTES.md'
+if not os.path.exists(NOTES):
+    PREFILL = {  # (NM, field) -> (source, verified, note); only facts established in this project's sessions
+        ('Pancimanci', 'level'): ('U', 'user-stated', '83, easy to kill, plain mob (2026-10-07)'),
+        ('Pancimanci', 'mobType'): ('U', 'user-stated', 'not an NM'),
+        ('Melancholic_Moira', 'HP'): ('D', 'no', 'estimate from capture kill time (~80 s)'),
+        ('Melancholic_Moira', 'skills'): ('D', 'no', 'capture showed no mob TP moves; skill rows are design guesses'),
+        ('Melancholic_Moira', 'key item'): ('V', 'yes', 'client id 1810 per KI-VERIFICATION.md'),
+        ('Melancholic_Moira', 'cruor'): ('C', 'yes', '12300 = 6000 x 205% green (Raguza 2021.03.27)'),
+        ('Kholomodumo', 'cruor'): ('C', 'yes', '9660 = 6000 x 161% green (Raguza 2021.03.28)'),
+        ('Kholomodumo', 'skills'): ('B/C', 'partial', 'Accursed Armor/Amnesic Blast/Ecliptic Meteor from forum+capture; damage/duration [D]; plain Meteor has no skill row'),
+        ('Kholomodumo', 'key item'): ('W/F', 'no', 'client-id check pending'),
+        ('Cottus', 'rift positions'): ('C', 'yes', 'match capture'),
+    }
+    FIELDS = ['level', 'mobType', 'main/sub job', 'HP', 'skills', 'spells', 'Pyxis drops', 'key item', 'cruor/EXP', 'mods']
+    L = ["# Voidwatch NM Details — Notes (hand-edited)", "",
+         "Source and verification ledger for `NM-DETAILS.md`. **This file is never overwritten by the generator.**", "",
+         "Source tags: [C] capture, [V] client dat, [J] wikiwiki.jp, [F] FFXIclopedia, [W] BG Wiki, [B] BG forum, [D] design guess, [U] user-stated, `?` = none known.",
+         "Verified: `yes` (checked against a ground-truth source), `partial`, `no` (unchecked/guess), `user-stated`.",
+         "Values are a snapshot when this file was created; the live numbers are in `NM-DETAILS.md`.", ""]
+    for (z, name), lst in seen.items():
+        r = lst[0][1]
+        L += ["## %s (%s)" % (name, z), "", "| field | value (snapshot) | source | verified | note |", "|---|---|---|---|---|"]
+        snap = {'level': '%s-%s' % (r[2], r[3]), 'mobType': r[12], 'main/sub job': '%s/%s' % (JOBS.get(r[10], r[10]), JOBS.get(r[11], r[11])),
+                'HP': r[4] if r[4] else '0 (formula)', 'skills': 'list %s' % r[14], 'spells': 'list %s' % r[15], 'Pyxis drops': 'see NM-DETAILS', 'key item': 'see NM-DETAILS', 'cruor/EXP': 'see NM-DETAILS', 'mods': 'see NM-DETAILS'}
+        for fld in FIELDS:
+            s, v, n = PREFILL.get((name, fld), ('?', 'no', ''))
+            L.append("| %s | %s | %s | %s | %s |" % (fld, snap[fld], s, v, n))
+        extra = [k for k in PREFILL if k[0] == name and k[1] not in FIELDS]
+        for k in extra:
+            s, v, n = PREFILL[k]; L.append("| %s | — | %s | %s | %s |" % (k[1], s, v, n))
+        L.append("")
+    open(NOTES, 'w', encoding='utf-8').write("\n".join(L))
+    print('created', NOTES)
