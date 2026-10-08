@@ -31,6 +31,7 @@ local VWMSG = {msgWeakElem = 8752, msgBlitzOn = 8759, msgBlitzOff = 8760, msgBli
 
 function onMagicHit(caster, target, spell)
     vwOnMagicHit(target, caster, spell, VWMSG);
+    return 0;
 end;
 
 -- Accursed Armor (skill 2390) adds curse spikes for 60 s [D]; drop them when the timer lapses.
