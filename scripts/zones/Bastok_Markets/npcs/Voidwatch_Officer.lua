@@ -5,7 +5,7 @@
 -----------------------------------
 require("scripts/globals/voidwatch_officer");
 
-local CFG = {nation = 2, city = 1, officerCsid = 9, refinerCsid = 8, kiMsg = 6391}; -- csids [C] captures 708-721/699; kiMsg = KEYITEM_OBTAINED from this zone's TextIDs.lua [V]
+local CFG = {grantPath = 2, nation = 2, city = 1, officerCsid = 9, refinerCsid = 8, kiMsg = 6391}; -- csids [C] captures 708-721/699; kiMsg = KEYITEM_OBTAINED from this zone's TextIDs.lua [V]
 
 function onTrade(player,npc,trade)
 end;
