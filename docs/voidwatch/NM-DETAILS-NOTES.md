@@ -16,10 +16,11 @@ Values are a snapshot when this file was created; the live numbers are in `NM-DE
 | HP | 145000 | ? | no | no capture; BG Wiki lists only rifts, tier and treasure (no stats). |
 | skills | list 1166 | ? | no |  |
 | spells | list 449 | ? | no |  |
-| Pyxis drops | 6 rares + materials | W | yes | BG Wiki treasure list matches the script (Gerra's Staff, Supernal Knife, Asteria, Athos's Tabard, Rubeus Jacket, Beaivi's Scepter). |
-| key item | Atmacite of the Shrewd | W | partial | wiki also lists Dusky Periapt of Vigilance; DB grants only the atmacite. |
+| Pyxis drops | 9 items with per-item % | U | user-stated | dropRates: Asteria 0.1, Supernal Knife 12.2, Gerra's Staff 16, Beaivi's Scepter 0.1, Athos's Tabard 1.8, Rubeus Jacket 2.1, Heavy Metal 21.1, Riftdross 0.8, Riftcinder 3.3 (percent) |
+| key item | Atmacite of the Shrewd + Dusky Periapt of Vigilance | W, U | partial | both granted (periapt via vwExtraKeyItem); chances 5% [D] |
 | cruor/EXP | see NM-DETAILS | ? | no |  |
 | mods | see NM-DETAILS | ? | no |  |
+| petrifacts | Beguiling/Seductive/Maddening Petrifact (Jeuno path) | U | partial | rare per member, VW_PETRIFACT_RATE 5% x (1+red) [D, tunable]; paths per user 2026-10-07; KI ids 1556-1558 [U] |
 
 ## Sarimanok (East_Ronfaure)
 
@@ -35,6 +36,7 @@ Values are a snapshot when this file was created; the live numbers are in `NM-DE
 | key item | Vivid Periapt of Readiness | ? | no | no periapt message in capture (may already be owned); 5% random in DB. Check forum. |
 | cruor/EXP | 5000 / 5000 (stage 1) | C | yes | capture: 5000 exp, 5000 cruor (at +0%). |
 | mods | see NM-DETAILS | ? | no |  |
+| petrifacts | Beguiling/Seductive/Maddening Petrifact (three-nation path) | U | partial | rare per member, VW_PETRIFACT_RATE 5% x (1+red) [D, tunable]; paths per user 2026-10-07; KI ids 1556-1558 [U] |
 
 ## Cottus (East_Ronfaure_[S])
 
@@ -70,7 +72,7 @@ Capture covers a ~70 s kill by a small group with 3 cells; Cottus used only 2 TP
 | Pyxis csid | 6003 | C | yes | params 1132, 748 (meaning unknown) |
 
 Open items for Cottus: level, mobType, job, second HP capture, Mercurial Strike / Colossal Slam rows (no verified skill ids, not built), Regain.
-
+| petrifacts | Beguiling/Seductive/Maddening Petrifact (three-nation path) | U | partial | rare per member, VW_PETRIFACT_RATE 5% x (1+red) [D, tunable]; paths per user 2026-10-07; KI ids 1556-1558 [U] |
 
 ## Ildebrann (Ifrits_Cauldron)
 
@@ -80,12 +82,13 @@ Open items for Cottus: level, mobType, job, second HP capture, Mercurial Strike 
 | mobType | 2 | ? | no |  |
 | main/sub job | BLM/BLM | ? | no |  |
 | HP | 129300 | ? | no | no capture; BG Wiki lists only rifts, tier and treasure (no stats). BG Wiki page is empty. |
-| skills | list 1168 | ? | no |  |
-| spells | list 451 | ? | no |  |
+| skills | list 1168 (+Spike Flail 1280) | J | partial | JP: Tebbad Wing, Inferno Blast, Touchdown, Absolute Terror, Baleful Roar, Fiery Breath, Spike Flail; Spike Flail added 2026-10-07 |
+| spells | Fire V, Firaga IV, Firaja | J | partial | BLM per JP wiki; regain+regen, fire/ice resist, magic dmg -50% |
 | Pyxis drops | see NM-DETAILS | ? | no |  |
 | key item | see NM-DETAILS | ? | no |  |
 | cruor/EXP | see NM-DETAILS | ? | no |  |
 | mods | see NM-DETAILS | ? | no |  |
+| petrifacts | Beguiling Petrifact (Ashen path) | U | partial | rare per member, VW_PETRIFACT_RATE 5% x (1+red) [D, tunable]; paths per user 2026-10-07; KI ids 1556-1558 [U] |
 
 ## HraunDragon (Ifrits_Cauldron)
 
@@ -95,7 +98,7 @@ Open items for Cottus: level, mobType, job, second HP capture, Mercurial Strike 
 | mobType | 2 | ? | no |  |
 | main/sub job | WAR/WAR | ? | no |  |
 | HP | 15900 | ? | no |  |
-| skills | list 87 | ? | no |  |
+| skills | list 1177: Voidsong, Petro Eyes, Body Slam, Flame Breath | J, U | partial | 2 per rift, no shared hate, respawn when Ildebrann flies; own list created 2026-10-07 |
 | spells | list 0 | ? | no |  |
 | Pyxis drops | see NM-DETAILS | ? | no |  |
 | key item | see NM-DETAILS | ? | no |  |
@@ -116,6 +119,7 @@ Open items for Cottus: level, mobType, job, second HP capture, Mercurial Strike 
 | key item | see NM-DETAILS | ? | no |  |
 | cruor/EXP | 6000 cruor | C | yes | capture: 6000 cruor. |
 | mods | see NM-DETAILS | ? | no |  |
+| petrifacts | Beguiling/Seductive/Maddening Petrifact (three-nation path) | U | partial | rare per member, VW_PETRIFACT_RATE 5% x (1+red) [D, tunable]; paths per user 2026-10-07; KI ids 1556-1558 [U] |
 
 ## Kholomodumo (Jugner_Forest_[S])
 
@@ -132,6 +136,7 @@ Open items for Cottus: level, mobType, job, second HP capture, Mercurial Strike 
 | cruor/EXP | 6000 base (stage 3) | C | yes | 9660 = 6000 x 161% green. |
 | mods | see NM-DETAILS | ? | no |  |
 | cruor | — | C | yes | 9660 = 6000 x 161% green (Raguza 2021.03.28) |
+| petrifacts | Beguiling/Seductive/Maddening Petrifact (three-nation path) | U | partial | rare per member, VW_PETRIFACT_RATE 5% x (1+red) [D, tunable]; paths per user 2026-10-07; KI ids 1556-1558 [U] |
 
 ## Hahava (King_Ranperres_Tomb)
 
@@ -147,6 +152,7 @@ Open items for Cottus: level, mobType, job, second HP capture, Mercurial Strike 
 | key item | see NM-DETAILS | ? | no |  |
 | cruor/EXP | 6500 cruor | C | yes | capture: 6500 cruor. |
 | mods | see NM-DETAILS | ? | no |  |
+| petrifacts | Beguiling/Seductive/Maddening Petrifact (three-nation path) | U | partial | rare per member, VW_PETRIFACT_RATE 5% x (1+red) [D, tunable]; paths per user 2026-10-07; KI ids 1556-1558 [U] |
 
 ## Stachysaurus (La_Theine_Plateau)
 
@@ -162,6 +168,7 @@ Open items for Cottus: level, mobType, job, second HP capture, Mercurial Strike 
 | key item | Vivid Periapt of Glory | W | yes | matches wiki. |
 | cruor/EXP | see NM-DETAILS | ? | no |  |
 | mods | see NM-DETAILS | ? | no |  |
+| petrifacts | Beguiling/Seductive/Maddening Petrifact (Jeuno path) | U | partial | rare per member, VW_PETRIFACT_RATE 5% x (1+red) [D, tunable]; paths per user 2026-10-07; KI ids 1556-1558 [U] |
 
 ## Ogbunabali (Maze_of_Shakhrami)
 
@@ -177,6 +184,7 @@ Open items for Cottus: level, mobType, job, second HP capture, Mercurial Strike 
 | key item | see NM-DETAILS | ? | no |  |
 | cruor/EXP | 5500 base (stage 2) | C | yes | capture 7040 = 5500 x 128% green; matches stage 2 base. |
 | mods | see NM-DETAILS | ? | no |  |
+| petrifacts | Beguiling/Seductive/Maddening Petrifact (three-nation path) | U | partial | rare per member, VW_PETRIFACT_RATE 5% x (1+red) [D, tunable]; paths per user 2026-10-07; KI ids 1556-1558 [U] |
 
 ## Lord_Asag (Meriphataud_Mountains)
 
@@ -192,6 +200,7 @@ Open items for Cottus: level, mobType, job, second HP capture, Mercurial Strike 
 | key item | see NM-DETAILS | ? | no |  |
 | cruor/EXP | 6000 cruor | C | yes | capture: 6000 cruor. |
 | mods | see NM-DETAILS | ? | no |  |
+| petrifacts | Beguiling/Seductive/Maddening Petrifact (three-nation path) | U | partial | rare per member, VW_PETRIFACT_RATE 5% x (1+red) [D, tunable]; paths per user 2026-10-07; KI ids 1556-1558 [U] |
 
 ## SallowSeymour (North_Gustaberg)
 
@@ -207,6 +216,7 @@ Open items for Cottus: level, mobType, job, second HP capture, Mercurial Strike 
 | key item | see NM-DETAILS | ? | no |  |
 | cruor/EXP | 5000 cruor | C | yes | capture: 5000 cruor; also Indigo Stratum Abyssite + 2 voidstones. |
 | mods | see NM-DETAILS | ? | no |  |
+| petrifacts | Beguiling/Seductive/Maddening Petrifact (three-nation path) | U | partial | rare per member, VW_PETRIFACT_RATE 5% x (1+red) [D, tunable]; paths per user 2026-10-07; KI ids 1556-1558 [U] |
 
 ## Krabimanjaro (Ordelles_Caves)
 
@@ -222,6 +232,7 @@ Open items for Cottus: level, mobType, job, second HP capture, Mercurial Strike 
 | key item | see NM-DETAILS | ? | no |  |
 | cruor/EXP | 5500 cruor | C | yes | capture: 5500 cruor. |
 | mods | see NM-DETAILS | ? | no |  |
+| petrifacts | Beguiling/Seductive/Maddening Petrifact (three-nation path) | U | partial | rare per member, VW_PETRIFACT_RATE 5% x (1+red) [D, tunable]; paths per user 2026-10-07; KI ids 1556-1558 [U] |
 
 ## Melancholic_Moira (Pashhow_Marshlands_[S])
 
@@ -238,6 +249,7 @@ Open items for Cottus: level, mobType, job, second HP capture, Mercurial Strike 
 | cruor/EXP | 6000 base (stage 3) | C | yes | 12300 = 6000 x 205% green. |
 | mods | see NM-DETAILS | ? | no |  |
 | cruor | — | C | yes | 12300 = 6000 x 205% green (Raguza 2021.03.27) |
+| petrifacts | Beguiling/Seductive/Maddening Petrifact (three-nation path) | U | partial | rare per member, VW_PETRIFACT_RATE 5% x (1+red) [D, tunable]; paths per user 2026-10-07; KI ids 1556-1558 [U] |
 
 ## Aello (RuAun_Gardens)
 
@@ -247,12 +259,13 @@ Open items for Cottus: level, mobType, job, second HP capture, Mercurial Strike 
 | mobType | 2 | ? | no |  |
 | main/sub job | BLM/BLM | ? | no |  |
 | HP | see NM-DETAILS | ? | no | no capture; BG Wiki lists only rifts, tier and treasure (no stats). |
-| skills | list 471 | ? | no |  |
-| spells | list 441 | ? | no |  |
+| skills | Rending Talons, Typhoean Rage, Shrieking Gale, Wings of Agony | J | partial | Kaleidoscopic Fury (<50% HP) has no Lua yet; Shrieking Gale summons 3 handmaidens |
+| spells | Fire V, Firaga IV, Firaja, Slowga, Addle, Stun | J | partial | Addle/Stun AoE, no Silencega [J] |
 | Pyxis drops | see NM-DETAILS | ? | no |  |
-| key item | see NM-DETAILS | ? | no |  |
+| key item | Atmacite of Unity | J, U | partial | granted via vwExtraKeyItem, chance 5% [D]; Aello drops extended per JP wiki |
 | cruor/EXP | see NM-DETAILS | ? | no |  |
 | mods | see NM-DETAILS | ? | no |  |
+| petrifacts | Beguiling Petrifact (Ashen path) | U | partial | rare per member, VW_PETRIFACT_RATE 5% x (1+red) [D, tunable]; paths per user 2026-10-07; KI ids 1556-1558 [U] |
 
 ## Aellos_Handmaiden (RuAun_Gardens)
 
@@ -262,7 +275,7 @@ Open items for Cottus: level, mobType, job, second HP capture, Mercurial Strike 
 | mobType | 2 | ? | no |  |
 | main/sub job | RDM/WHM | ? | no |  |
 | HP | 0 (formula) | ? | no |  |
-| skills | list 195 | ? | no |  |
+| skills | list 1176: Lethe Arrows | J | yes | spells Protectra V, Shellra V, Aero IV, Holy, Aeroga III, Paralyga, Silencega [J] |
 | spells | list 442 | ? | no |  |
 | Pyxis drops | see NM-DETAILS | ? | no |  |
 | key item | see NM-DETAILS | ? | no |  |
@@ -283,6 +296,7 @@ Open items for Cottus: level, mobType, job, second HP capture, Mercurial Strike 
 | key item | Vivid Periapt of Glory | W | yes | matches wiki. |
 | cruor/EXP | see NM-DETAILS | ? | no |  |
 | mods | see NM-DETAILS | ? | no |  |
+| petrifacts | Beguiling/Seductive/Maddening Petrifact (Jeuno path) | U | partial | rare per member, VW_PETRIFACT_RATE 5% x (1+red) [D, tunable]; paths per user 2026-10-07; KI ids 1556-1558 [U] |
 
 ## Ig-Alima (Valkurm_Dunes)
 
@@ -294,10 +308,11 @@ Open items for Cottus: level, mobType, job, second HP capture, Mercurial Strike 
 | HP | 161800 | ? | no |  |
 | skills | list 1167 | ? | no |  |
 | spells | list 450 | ? | no |  |
-| Pyxis drops | 5 rares + materials | W | yes | wiki: Borealis, Hoarfrost Blade, Ogier's Surcoat, Wroth Scythe, Dhampyr Sword, Heavy Metal, Riftdross, Riftcinder. Matches. |
-| key item | Atmacite of the Valiant | W | partial | wiki also lists Vivid Periapt of Vigilance; DB grants only the atmacite. |
+| Pyxis drops | 8 items with per-item % | U | user-stated | dropRates: Borealis 0.2, Hoarfrost Blade 4.1, Dhampyr Sword 5.7, Wroth Scythe 18.5, Ogier's Surcoat 2.6, Heavy Metal 12.8, Riftdross 3.6, Riftcinder 1 (percent) |
+| key item | Atmacite of the Valiant + Vivid Periapt of Vigilance | U, F | partial | both granted (periapt via vwExtraKeyItem); chances 5% [D] |
 | cruor/EXP | see NM-DETAILS | ? | no |  |
 | mods | see NM-DETAILS | ? | no |  |
+| petrifacts | Beguiling/Seductive/Maddening Petrifact (Jeuno path) | U | partial | rare per member, VW_PETRIFACT_RATE 5% x (1+red) [D, tunable]; paths per user 2026-10-07; KI ids 1556-1558 [U] |
 
 ## Lancing_Lamorak (West_Ronfaure)
 
@@ -309,10 +324,11 @@ Open items for Cottus: level, mobType, job, second HP capture, Mercurial Strike 
 | HP | 106500 | ? | no |  |
 | skills | list 1169 | ? | no |  |
 | spells | list 452 | ? | no |  |
-| Pyxis drops | 3 rares + Riftsand | W | yes | wiki: Athos's Boots, Blithe Mantle, Brego Gloves, Riftsand. Matches. |
-| key item | Vivid Periapt of Catalysis | W | partial | wiki also lists Maddening Petrifact (rare KI); not implemented. |
+| Pyxis drops | 4 items with per-item % | U | user-stated | dropRates: Athos's Boots 5.2, Blithe Mantle 26.5, Brego Gloves 2.6, Riftsand 25.8 (percent) |
+| key item | Vivid Periapt of Catalysis | U, F | partial | DSP id 1781; client-id check pending; chance 5% [D] |
 | cruor/EXP | see NM-DETAILS | ? | no |  |
 | mods | see NM-DETAILS | ? | no |  |
+| petrifacts | Beguiling/Seductive/Maddening Petrifact (Jeuno path) | U | partial | rare per member, VW_PETRIFACT_RATE 5% x (1+red) [D, tunable]; paths per user 2026-10-07; KI ids 1556-1558 [U] |
 
 ## Virvatuli (West_Sarutabaruta)
 
@@ -328,14 +344,15 @@ Open items for Cottus: level, mobType, job, second HP capture, Mercurial Strike 
 | key item | see NM-DETAILS | ? | no |  |
 | cruor/EXP | 5000 cruor | C | yes | capture: 5000 cruor. |
 | mods | see NM-DETAILS | ? | no |  |
+| petrifacts | Beguiling/Seductive/Maddening Petrifact (three-nation path) | U | partial | rare per member, VW_PETRIFACT_RATE 5% x (1+red) [D, tunable]; paths per user 2026-10-07; KI ids 1556-1558 [U] |
 
 ## Pancimanci (West_Sarutabaruta_[S])
 
 | field | value (snapshot) | source | verified | note |
 |---|---|---|---|---|
-| level | 83-83 | U | user-stated | 83, easy to kill, plain mob (2026-10-07) |
+| level | 83 | U | user-stated | plain mob, no Pyxis per user |
 | mobType | 0 | U | user-stated | not an NM |
-| main/sub job | MNK/MNK | ? | no |  |
+| main/sub job | MNK/BLM | D | no | sub BLM so CalculateStats allocates MP (fix 2026-10-07) |
 | HP | 0 (formula) | U | user-stated | capture hptrack shows 47878 (47401-47886) but user states plain level-83 mob, easy to kill; left on formula. Revisit if too weak. |
 | skills | list 1161 + Scream | C | partial | Dream Flower (anim 45) matches; Scream (anim 50 = skill 306) added 2026-10-07. Fatal Scream (capture id 2387, anim 1660) has no DB row: **missing**. |
 | spells | list 444 | C | yes | capture: Aeroga III, Stonega III, Addle all in list. |
@@ -343,3 +360,4 @@ Open items for Cottus: level, mobType, job, second HP capture, Mercurial Strike 
 | key item | see NM-DETAILS | ? | no |  |
 | cruor/EXP | 5000 (stage 1) | C | yes | capture: 5000 cruor. |
 | mods | see NM-DETAILS | ? | no |  |
+| petrifacts | Beguiling/Seductive/Maddening Petrifact (three-nation path) | U | partial | rare per member, VW_PETRIFACT_RATE 5% x (1+red) [D, tunable]; paths per user 2026-10-07; KI ids 1556-1558 [U] |
