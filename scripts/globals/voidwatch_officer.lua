@@ -32,6 +32,19 @@ VWO.NM_TIER = {
     -- tracker entries with a known tier only (others unknown, not guessed)
     Lancing_Lamorak = {3, 4}, Stachysaurus = {3, 5}, Smierc = {3, 5}, Ig_Alima = {3, 6}, Botulus_Rex = {3, 6},
     Ildebrann = {4, 1}, Aello = {4, 3},
+    -- [J] wikiwiki.jp route step pages. Both live and framework-SQL spellings are listed where they differ. Index: White 3, Ashen 4, Hyacinth 5, Amber 6.
+    Voidwrought = {2, 4},
+    Cherufe = {3, 1}, Taweret = {3, 1}, Yatagarasu = {3, 1}, Agathos = {3, 1}, Goji = {3, 1}, Gugalanna = {3, 1},
+    Gasha = {3, 2}, Giltine = {3, 2}, Mellonia = {3, 2}, Nympha_Eunomia = {3, 2}, ["Roly-Poly"] = {3, 2}, Roly_Poly = {3, 2}, Laidly_Laurence = {3, 2},
+    Pil = {3, 3}, Akvan = {3, 3},
+    Bhishani = {3, 4}, Rw_Nw_Prt_M_Hrw = {3, 4}, RwNwPrtMHrw = {3, 4},
+    Gwynn_ap_Nudd = {3, 5}, GwynnapNudd = {3, 5},
+    Gaunab = {3, 6}, Ocythoe = {3, 6}, Kalasutrax = {3, 6},
+    Holy_Moly = {4, 1}, Neith = {4, 1}, Sabotender_Campeador = {4, 1}, Tangaroa = {4, 1}, Malleator_Maurok = {4, 1},
+    Cath_Palug = {4, 2}, Cath_palug = {4, 2}, Mimic_King = {4, 2},
+    Uptala = {4, 3}, Qilin = {4, 3},
+    Abununnu = {5, 1}, ["Tsui-Goab"] = {5, 1}, Isarukitsck = {5, 1}, Fjalar = {5, 1}, Bismarck = {5, 2},
+    Dimgruzub = {6, 1}, Vanasarvik = {6, 1}, Yalungur = {6, 1}, Brekekekex = {6, 1}, Morta = {6, 2},
 };
 -- Which NMs must ALL be beaten before the refiner upgrades a tier [W]: only I->II and IV->V style gates; others are quest-driven.
 VWO.REFINE_NEEDS_ALL = {[1] = true, [4] = true};
