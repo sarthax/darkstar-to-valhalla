@@ -5,6 +5,7 @@
 ---------------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/status");
+require("scripts/globals/magic");
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/msg");
 
@@ -13,7 +14,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local info = MobMagicalMove(mob, target, skill, mob:getWeaponDmg() * 6, -1, 1, TP_NO_EFFECT);
+    local info = MobMagicalMove(mob, target, skill, mob:getWeaponDmg() * 6, ELE_DARK, 1, TP_NO_EFFECT);
     local dmg = MobFinalAdjustments(info.dmg, mob, skill, target, MOBSKILL_MAGICAL, MOBPARAM_DARK, MOBPARAM_IGNORE_SHADOWS);
     -- [J wikiwiki.jp, F] also Blindness, Paralysis and Bio (-10HP/3s); durations/potency [D]
     MobStatusEffectMove(mob, target, EFFECT_BLINDNESS, 30, 0, 60);
