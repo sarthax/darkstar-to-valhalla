@@ -123,3 +123,13 @@ Status: MISSING = no DB row/Lua, WRONG = live row differs from retail, GUESS = b
 - **Clobber vs Crippling Slam:** capture shows Batterhorn 2099 (anim 1437) and Clobber 2100 [C]; the wikis list "Crippling Slam" (severe damage + Paralyze). Mapped to Clobber unconfirmed; the DB row's anim is 1436 vs capture 1438, left untouched (shared Wivre row). Both scripts are new (`batterhorn.lua`, `clobber.lua`); multipliers/Paralyze power [D].
 - **Drops:** only Ogier's Gauntlets, Brego Helm, Hreysti Helm, Riftsand wired; scroll/material/medicine pools and Pyxis capture items (crystal petrifact, mythril ingot, petrified log) not built.
 - Rift positions need `!checknav`; cruor in capture 16590 vs 7000 base not reconciled.
+## Kholomodumo (Crimson III, Jugner Forest [S], z82)
+- Accursed Armor (2390) - GUESS: curse spikes via MOD_SPIKES 4 for 60 s [D]; skill id/anim 1663/msg 101 [C]. Curse potency/duration come from the engine (power 15, 180 s)
+- Amnesic Blast (2391) - GUESS: anim 1664, ~80 dmg [C]; dark-element magic, 2x weapon dmg, Amnesia 30 s, cone shape [B] are [D]
+- Ecliptic Meteor (2586) - GUESS: anim 1684, ~103 dmg [C]; 6x weapon dmg, AoE radius 20 [D]; used only below 50% HP [B #614, C]
+- Meteor - MISSING: forum says Thunderbolt -> Meteor ("Meteobolt") below 50% [B]; no verified Meteor row (LSB 634 is a Chlevnik death meteor), so the phase alternates Thunderbolt 629 -> Ecliptic Meteor
+- Thunderbolt 629 - GUESS: reused existing row (anim 373 not verified against this NM)
+- Spell list - none: no spells in a ~2 min capture [C]; retail list unknown
+- Mob spawn row 17113827 was (0,0,0); now rift-1 position (275,-0.5,564) [D], needs !checknav
+- Drops Genesis Shield / Genesis Locket [B #292], rates [D]; silver mirror + crystal petrifact come from the generic pool as in the capture
+- Atmacite of Persistence KI id 1807 (DSP keyitems.lua), client-id check pending; HP 60436 from hptrack estimate [C]
