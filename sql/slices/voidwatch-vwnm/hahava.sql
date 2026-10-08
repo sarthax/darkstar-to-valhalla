@@ -13,3 +13,9 @@ INSERT INTO mob_spell_lists (spell_list_name,spell_list_id,spell_id,min_level,ma
  ('Hahava',447,359,1,99),('Hahava',447,286,1,99),('Hahava',447,252,1,99);
 -- immunity [J]: sleep 0x01, gravity 0x02, bind 0x04, silence 0x10, paralyze 0x20 (petrify has no bit here) = 0x37
 UPDATE mob_pools SET skill_list_id=0, spellList=447, hasSpellScript=1, immunity=(immunity|55) WHERE poolid=5164;
+
+-- [C] 2026-10-07: HP 71785 (hptrack 71519-72052 midpoint); Yaksha/Raksha stance skills matched by ANIM (capture ids differ).
+UPDATE mob_groups SET HP=71785 WHERE groupid=13805;
+DELETE FROM mob_skill_lists WHERE skill_list_id=1175;
+INSERT INTO mob_skill_lists (skill_list_name,skill_list_id,mob_skill_id) VALUES ('Hahava',1175,2714),('Hahava',1175,2716),('Hahava',1175,2717),('Hahava',1175,2718),('Hahava',1175,2720);
+UPDATE mob_pools SET skill_list_id=1175 WHERE poolid=5164;

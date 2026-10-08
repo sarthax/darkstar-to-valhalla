@@ -16,3 +16,8 @@ INSERT INTO mob_spell_lists (spell_list_name, spell_list_id, spell_id, min_level
 ('Krabimanjaro', 439, 214, 1, 255);
 -- 273 sleepga, 357 slowga, 359 silencega, 366 graviga: confirmed cast in capture/video (live spell_list names checked)
 UPDATE mob_pools SET spellList = 439 WHERE poolid = 5168;
+
+-- [C] 2026-10-07: HP 47578 (hptrack 47104-50085); Sleepga (363) seen.
+UPDATE mob_groups SET HP=47578 WHERE groupid=13809;
+DELETE FROM mob_spell_lists WHERE spell_list_id=439 AND spell_id=363;
+INSERT INTO mob_spell_lists (spell_list_name,spell_list_id,spell_id,min_level,max_level) VALUES ('Krabimanjaro',439,363,1,255);

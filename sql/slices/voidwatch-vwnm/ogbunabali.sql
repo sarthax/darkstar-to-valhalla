@@ -11,3 +11,6 @@ DELETE FROM mob_skill_lists WHERE skill_list_id=1164;
 INSERT INTO mob_skill_lists (skill_list_name,skill_list_id,mob_skill_id) VALUES ('Ogbunabali',1164,275),('Ogbunabali',1164,277),('Ogbunabali',1164,279);
 -- immunity: sleep (0x01) [J]
 UPDATE mob_pools SET skill_list_id=1164, immunity=(immunity|1) WHERE poolid=5161;
+
+-- [C] 2026-10-07: HP 56615 (hptrack 52213-57437).
+UPDATE mob_groups SET HP=56615 WHERE groupid=13802;

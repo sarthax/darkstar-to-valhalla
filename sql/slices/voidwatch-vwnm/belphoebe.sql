@@ -22,3 +22,11 @@ INSERT INTO mob_spell_lists (spell_list_name,spell_list_id,spell_id,min_level,ma
  ('Belphoebe',446,496,1,99),('Belphoebe',446,497,1,99),('Belphoebe',446,498,1,99),('Belphoebe',446,499,1,99),('Belphoebe',446,500,1,99),('Belphoebe',446,501,1,99);
 -- immunity: sleep (0x01) + silence (0x10) [J]
 UPDATE mob_pools SET skill_list_id=0, spellList=446, hasSpellScript=1, immunity=(immunity|17) WHERE poolid=5152;
+
+-- [C] 2026-10-07: HP 61641 (hptrack 61026-61840); Spring Breeze (skill 2195 anim 1583) and Thunder V (168) seen.
+UPDATE mob_groups SET HP=61641 WHERE groupid=13782;
+DELETE FROM mob_spell_lists WHERE spell_list_id=446 AND spell_id=168;
+INSERT INTO mob_spell_lists (spell_list_name,spell_list_id,spell_id,min_level,max_level) VALUES ('Belphoebe',446,168,1,255);
+DELETE FROM mob_skill_lists WHERE skill_list_id=1174;
+INSERT INTO mob_skill_lists (skill_list_name,skill_list_id,mob_skill_id) VALUES ('Belphoebe',1174,2195);
+UPDATE mob_pools SET skill_list_id=1174 WHERE poolid=5152;

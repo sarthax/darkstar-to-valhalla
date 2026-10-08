@@ -11,21 +11,21 @@ Column `src` for hand-checked values lives in `NM-DETAILS-NOTES.md`. Unknown = `
 | Cottus | East_Ronfaure_[S] | 80-85 | 0 | BST/BST | 45408 | 4 skills | — | rollers_ring |
 | Ildebrann | Ifrits_Cauldron | 98-99 | 2 | BLM/BLM | 129300 | 6 skills | list 451 (3) | glassblowers_belt, gram, silver_mirror |
 | HraunDragon | Ifrits_Cauldron | 95-96 | 2 | WAR/WAR | 15900 | 10 skills | — | — |
-| Belphoebe | Jugner_Forest | 88-90 | 2 | BLM/BLM | 0 (formula) | 0 skills | list 446 (32) | tefnut_wand, carabineers_dagger |
+| Belphoebe | Jugner_Forest | 88-90 | 2 | BLM/BLM | 61641 | 1 skills | list 446 (33) | tefnut_wand, carabineers_dagger |
 | Kholomodumo | Jugner_Forest_[S] | 93-94 | 2 | BLM/BLM | 60436 | 2 skills | — | genesis_shield, genesis_locket |
-| Hahava | King_Ranperres_Tomb | 94-95 | 2 | BLM/WAR | 0 (formula) | 0 skills | list 447 (13) | mextli_harness, ganeshas_mala, ganeshas_mask, suit_of_hahavas_mail, silver_mirror |
+| Hahava | King_Ranperres_Tomb | 94-95 | 2 | BLM/WAR | 71785 | 5 skills | list 447 (13) | mextli_harness, ganeshas_mala, ganeshas_mask, suit_of_hahavas_mail, silver_mirror |
 | Stachysaurus | La_Theine_Plateau | 96-97 | 2 | WAR/WAR | 193000 | 2 skills | — | ogiers_gauntlets, brego_helm, hreysti_helm, chunk_of_riftsand |
-| Ogbunabali | Maze_of_Shakhrami | 94-95 | 2 | SAM/SAM | 0 (formula) | 3 skills | — | mantodea_harpe, pipilaka_belt, silver_mirror, turquoise, slab_of_ruszor_meat |
-| Lord_Asag | Meriphataud_Mountains | 94-95 | 2 | BLM/RDM | 0 (formula) | 4 skills | list 448 (9) | cadushi_grip, tonatiuh_axe, silver_mirror |
-| SallowSeymour | North_Gustaberg | 100-101 | 2 | BLM/BLM | 0 (formula) | 2 skills | list 445 (7) | apathy_gorget |
-| Krabimanjaro | Ordelles_Caves | 95-96 | 2 | BLM/PLD | 0 (formula) | 7 skills | list 439 (10) | percept_bow, carapacho_cuffs |
+| Ogbunabali | Maze_of_Shakhrami | 94-95 | 2 | SAM/SAM | 56615 | 3 skills | — | mantodea_harpe, pipilaka_belt, silver_mirror, turquoise, slab_of_ruszor_meat |
+| Lord_Asag | Meriphataud_Mountains | 94-95 | 2 | BLM/RDM | 53000 | 4 skills | list 448 (9) | cadushi_grip, tonatiuh_axe, silver_mirror |
+| SallowSeymour | North_Gustaberg | 100-101 | 2 | BLM/BLM | 34772 | 2 skills | list 445 (7) | apathy_gorget |
+| Krabimanjaro | Ordelles_Caves | 95-96 | 2 | BLM/PLD | 47578 | 7 skills | list 439 (11) | percept_bow, carapacho_cuffs |
 | Melancholic_Moira | Pashhow_Marshlands_[S] | 92-95 | 2 | WAR/WAR | 50796 | 4 skills | — | appetence_crown |
 | Aello | RuAun_Gardens | 93-95 | 2 | BLM/BLM | 0 (formula) | 5 skills | list 441 (6) | strophadic_earring, whirlwind_dirs |
 | Aellos_Handmaiden | RuAun_Gardens | 90-92 | 2 | RDM/WHM | 0 (formula) | 8 skills | list 442 (7) | — |
 | Smierc | Tahrongi_Canyon | 92-95 | 2 | BLM/BLM | 142000 | 1 skills | list 453 (9) | athoss_gloves, devourer, praeco_doublet, chunk_of_riftsand |
 | Ig-Alima | Valkurm_Dunes | 119-120 | 2 | WAR/BLM | 161800 | 7 skills | list 450 (3) | borealis, hoarfrost_blade, dhampyr_sword, wroth_scythe, ogiers_surcoat, plate_of_heavy_metal, clump_of_riftdross, pinch_of_riftcinder |
 | Lancing_Lamorak | West_Ronfaure | 94-95 | 0 | BLM/THF | 106500 | 3 skills | list 452 (4) | athoss_boots, blithe_mantle, brego_gloves, chunk_of_riftsand |
-| Virvatuli | West_Sarutabaruta | 89-90 | 2 | BLM/WAR | 0 (formula) | 1 skills | list 443 (14) | irrwisch_ring |
+| Virvatuli | West_Sarutabaruta | 89-90 | 2 | BLM/WAR | 33343 | 1 skills | list 443 (14) | irrwisch_ring |
 | Pancimanci | West_Sarutabaruta_[S] | 83-83 | 0 | MNK/MNK | 0 (formula) | 3 skills | list 444 (10) | impatiens |
 
 ## Per-NM detail
@@ -166,13 +166,13 @@ Script mods:
 | level | 88-90 |
 | mobType (2 = NM) | 2 |
 | main/sub job | BLM/BLM |
-| HP override / MP | 0 / 9999 |
+| HP override / MP | 61641 / 9999 |
 | family HP/ATT/DEF/ACC/EVA | 90 / 3 / 3 / 3 / 3 |
 | melee delay / dmg mult | 240 / 100 |
 | respawn | 0 |
 | immunity bitmask | 17 |
-| skill list 0 | — |
-| spell list 446 | 32 spell rows |
+| skill list 1174 | spring_breeze |
+| spell list 446 | 33 spell rows |
 | mob_groups.dropid | 0 |
 | Pyxis rare drops (script) | tefnut_wand (17057), carabineers_dagger (16498) |
 | reward table | THREE stage 3 |
@@ -220,12 +220,12 @@ Script mods:
 | level | 94-95 |
 | mobType (2 = NM) | 2 |
 | main/sub job | BLM/WAR |
-| HP override / MP | 0 / 9999 |
+| HP override / MP | 71785 / 9999 |
 | family HP/ATT/DEF/ACC/EVA | 70 / 3 / 3 / 3 / 3 |
 | melee delay / dmg mult | 240 / 100 |
 | respawn | 0 |
 | immunity bitmask | 55 |
-| skill list 0 | — |
+| skill list 1175 | yaksha_stance, yaksha_oblivion, yaksha_bliss, raksha_stance, raksha_illusion |
 | spell list 447 | 13 spell rows |
 | mob_groups.dropid | 0 |
 | Pyxis rare drops (script) | mextli_harness (11855), ganeshas_mala (10928), ganeshas_mask (11814), suit_of_hahavas_mail (3445), silver_mirror (3510) |
@@ -273,7 +273,7 @@ Script mods:
 | level | 94-95 |
 | mobType (2 = NM) | 2 |
 | main/sub job | SAM/SAM |
-| HP override / MP | 0 / 0 |
+| HP override / MP | 56615 / 0 |
 | family HP/ATT/DEF/ACC/EVA | 120 / 3 / 2 / 3 / 3 |
 | melee delay / dmg mult | 240 / 100 |
 | respawn | 0 |
@@ -300,7 +300,7 @@ Script mods:
 | level | 94-95 |
 | mobType (2 = NM) | 2 |
 | main/sub job | BLM/RDM |
-| HP override / MP | 0 / 25000 |
+| HP override / MP | 53000 / 25000 |
 | family HP/ATT/DEF/ACC/EVA | 100 / 3 / 3 / 3 / 3 |
 | melee delay / dmg mult | 240 / 100 |
 | respawn | 0 |
@@ -330,7 +330,7 @@ Script mods:
 | level | 100-101 |
 | mobType (2 = NM) | 2 |
 | main/sub job | BLM/BLM |
-| HP override / MP | 0 / 9999 |
+| HP override / MP | 34772 / 9999 |
 | family HP/ATT/DEF/ACC/EVA | 70 / 3 / 3 / 3 / 3 |
 | melee delay / dmg mult | 240 / 100 |
 | respawn | 0 |
@@ -358,13 +358,13 @@ Script mods:
 | level | 95-96 |
 | mobType (2 = NM) | 2 |
 | main/sub job | BLM/PLD |
-| HP override / MP | 0 / 9999 |
+| HP override / MP | 47578 / 9999 |
 | family HP/ATT/DEF/ACC/EVA | 108 / 3 / 2 / 3 / 3 |
 | melee delay / dmg mult | 240 / 100 |
 | respawn | 0 |
 | immunity bitmask | 295 |
 | skill list 1159 | bubble_shower, bubble_curtain, big_scissors, scissor_guard, metallic_body, venom_shower, mega_scissors |
-| spell list 439 | 10 spell rows |
+| spell list 439 | 11 spell rows |
 | mob_groups.dropid | 0 |
 | Pyxis rare drops (script) | percept_bow (19737), carapacho_cuffs (11917) |
 | reward table | THREE stage 2 |
@@ -541,7 +541,7 @@ Script mods:
 | level | 89-90 |
 | mobType (2 = NM) | 2 |
 | main/sub job | BLM/WAR |
-| HP override / MP | 0 / 9999 |
+| HP override / MP | 33343 / 9999 |
 | family HP/ATT/DEF/ACC/EVA | 92 / 3 / 3 / 3 / 3 |
 | melee delay / dmg mult | 240 / 100 |
 | respawn | 0 |
