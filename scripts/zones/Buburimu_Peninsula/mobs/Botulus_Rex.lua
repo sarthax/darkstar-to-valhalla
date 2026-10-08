@@ -6,6 +6,7 @@
 -----------------------------------
 
 require("scripts/globals/voidwatch");
+require("scripts/globals/voidwatch_ki");
 require("scripts/globals/status");
 require("scripts/globals/magic");
 require("scripts/globals/msg");
@@ -95,4 +96,5 @@ function onMobDeath(mob, player, isKiller)
         msgKeyItem = 11545,
         msgCruor = 11541, msgFinalBR = 11538, msgFinalYG = 11536, msgFinalW = 11537,
     });
+    vwExtraKeyItem(player, mob, DUSKY_PERIAPT_OF_VIGILANCE, 11545, 0.05); -- [F ffxiclopedia item page: possible spoil]; chance [D]
 end;
