@@ -17,6 +17,11 @@ VWO.PATHS = {
     {name = "Indigo",  ki = {INDIGO_STRATUM_ABYSSITE, INDIGO_STRATUM_ABYSSITE_II, INDIGO_STRATUM_ABYSSITE_III, INDIGO_STRATUM_ABYSSITE_IV}},
     {name = "Jade",    ki = {JADE_STRATUM_ABYSSITE, JADE_STRATUM_ABYSSITE_II, JADE_STRATUM_ABYSSITE_III, JADE_STRATUM_ABYSSITE_IV}},
 };
+-- Outland/other paths (no captures; KI ids from keyitems.lua). Index 3.. use the second tier var (see tierVar).
+VWO.PATHS[4] = {name = "White",    ki = {WHITE_STRATUM_ABYSSITE, WHITE_STRATUM_ABYSSITE_II, WHITE_STRATUM_ABYSSITE_III, WHITE_STRATUM_ABYSSITE_IV, WHITE_STRATUM_ABYSSITE_V, WHITE_STRATUM_ABYSSITE_VI}};
+VWO.PATHS[5] = {name = "Ashen",    ki = {ASHEN_STRATUM_ABYSSITE, ASHEN_STRATUM_ABYSSITE_II, ASHEN_STRATUM_ABYSSITE_III}};
+VWO.PATHS[6] = {name = "Hyacinth", ki = {HYACINTH_STRATUM_ABYSSITE, HYACINTH_STRATUM_ABYSSITE_II}};
+VWO.PATHS[7] = {name = "Amber",    ki = {AMBER_STRATUM_ABYSSITE, AMBER_STRATUM_ABYSSITE_II}};
 VWO.VOIDSTONES = {VOIDSTONE1, VOIDSTONE2, VOIDSTONE3, VOIDSTONE4, VOIDSTONE5, VOIDSTONE6}; -- [V] 1539-1544
 
 -- NM name (mob:getName()) -> {pathIdx(0..2), tier(1..4)} [W tracker]. Jade IV has no NM listed (gap).
@@ -24,6 +29,9 @@ VWO.NM_TIER = {
     Cottus = {0, 1}, Sarimanok = {0, 1}, Krabimanjaro = {0, 2}, Belphoebe = {0, 3}, Kholomodumo = {0, 3}, Hahava = {0, 4},
     Sallow_Seymour = {1, 1}, Ushumgal = {1, 1}, Lorbulcrud = {1, 2}, Melancholic_Moira = {1, 3}, ["Murk-veined_Baneberry"] = {1, 3}, Celaeno = {1, 4},
     Pancimanci = {2, 1}, Virvatuli = {2, 1}, Ogbunabali = {2, 2}, Lord_Asag = {2, 3},
+    -- tracker entries with a known tier only (others unknown, not guessed)
+    Lancing_Lamorak = {3, 4}, Stachysaurus = {3, 5}, Smierc = {3, 5}, Ig_Alima = {3, 6}, Botulus_Rex = {3, 6},
+    Ildebrann = {4, 1}, Aello = {4, 3},
 };
 -- Which NMs must ALL be beaten before the refiner upgrades a tier [W]: only I->II and IV->V style gates; others are quest-driven.
 VWO.REFINE_NEEDS_ALL = {[1] = true, [4] = true};
@@ -33,9 +41,21 @@ local TIER_VAR = "VWO_TIERS";    -- bit = path*4 + tier-1 [H, matches refiner p5
 local STOCK_VAR = "VWO_STOCK";
 local STOCK_TS = "VWO_STOCK_TS";
 
+-- tier completion storage: paths 0-2 -> VWO_TIERS bit path*4+tier-1 (matches refiner p5 [H]); paths 3+ -> VWO_TIERS2 bit (path-3)*8+tier-1
+local function tierVar(path, tier)
+    if (path <= 2) then return TIER_VAR, path * 4 + tier - 1; end
+    return TIER_VAR .. "2", (path - 3) * 8 + tier - 1;
+end
+
+local function tierGet(player, path, tier)
+    local v, b = tierVar(path, tier);
+    return math.floor(player:getVar(v) / 2 ^ b) % 2 == 1;
+end
+
 function vwoHeldTier(player, p) -- highest held tier of path p (1..4) or 0
-    for t = 4, 1, -1 do
-        if (player:hasKeyItem(VWO.PATHS[p + 1].ki[t])) then return t; end
+    local ki = VWO.PATHS[p + 1].ki;
+    for t = #ki, 1, -1 do
+        if (player:hasKeyItem(ki[t])) then return t; end
     end
     return 0;
 end
@@ -61,7 +81,7 @@ local function vwoStartClock(player) -- clock starts at the first level 75+ offi
 end
 
 local function anyStratum(player)
-    for p = 0, 2 do if (vwoHeldTier(player, p) > 0) then return true; end end
+    for p = 0, #VWO.PATHS - 1 do if (vwoHeldTier(player, p) > 0) then return true; end end
     return false;
 end
 
@@ -78,12 +98,12 @@ end
 function vwoMarkKill(mob, player)
     local e = VWO.NM_TIER[mob:getName()];
     if (e == nil) then return; end
-    local bit = e[1] * 4 + (e[2] - 1);
+    local v, bit = tierVar(e[1], e[2]);
     local zone = player:getZoneID();
     for _, m in pairs(player:getAlliance()) do
         if (m:getZoneID() == zone) then
-            local v = m:getVar(TIER_VAR);
-            if (math.floor(v / 2 ^ bit) % 2 == 0) then m:setVar(TIER_VAR, v + 2 ^ bit); end
+            local cur = m:getVar(v);
+            if (math.floor(cur / 2 ^ bit) % 2 == 0) then m:setVar(v, cur + 2 ^ bit); end
         end
     end
 end
@@ -91,7 +111,7 @@ end
 -- [H] officer params. cfg = {nation=1..3 [C], city=f7 2/1/3 [C], csid, kiMsg}
 local function officerParams(player, cfg)
     local n = voidstoneLevel(player);
-    local p0 = 2 + cfg.nation * 4 + 2 * 256 + n * 2048 + 3 * 262144 + cfg.city * 2097152; -- Lua 5.1: no bit operators
+    local p0 = 2 + (cfg.nation or 0) * 4 + 2 * 256 + n * 2048 + 3 * 262144 + (cfg.city or 0) * 2097152; -- Lua 5.1: no bit operators
     local p2 = anyStratum(player) and 1 or 0; -- bit0 [C]; bits 1-6 unresolved
     return p0, player:getCurrency("cruor"), p2;
 end
@@ -110,8 +130,8 @@ end
 
 function vwoOfficerFinish(player, cfg, option)
     if (option == 5) then
-        local first = VWO.PATHS[cfg.nation].ki[1];
-        if (not player:hasKeyItem(first) and player:getMainLvl() >= 75) then
+        local first = cfg.grantPath and VWO.PATHS[cfg.grantPath].ki[1] or nil; -- sub-quest NPCs (Hildegard, Gushing Spring) have no grant
+        if (first ~= nil and vwoHeldTier(player, cfg.grantPath - 1) == 0 and player:getMainLvl() >= 75) then
             player:addKeyItem(first);
             player:messageSpecial(cfg.kiMsg, first);
         end
@@ -120,8 +140,7 @@ function vwoOfficerFinish(player, cfg, option)
         if (stock > 0) then -- [D] amount selection is not decoded: hand over the whole stock, max 6
             local give = math.min(stock, 6);
             player:setVar(STOCK_VAR, stock - give);
-            vwoSetVoidstones(player, give);
-            player:messageSpecial(cfg.kiMsg, VWO.VOIDSTONES[give]);
+            vwoSetVoidstones(player, give); -- no message: the numbered "Obtained key item: N voidstones" id is not capture-verified
         end
     end
 end
@@ -129,12 +148,13 @@ end
 -- [H] refiner params (see header of Atmacite_Refiner.lua)
 local function refinerParams(player, cfg)
     local held = anyStratum(player);
-    local p0 = cfg.nation * 262144 + 2 + (held and 4 or 0);
+    local p0 = (cfg.nation or 0) * 262144 + 2 -- nation unknown for outland refiners [D=0]
+         + (held and 4 or 0);
     local p1 = held and 16 or 0;
     local tiers = player:getVar(TIER_VAR);
-    local p5 = 0x800000 + tiers;
+    local p5 = 0x800000 + (tiers % 4096); -- first three paths only [H]
     local p6 = 0;
-    for p = 0, 2 do
+    for p = 0, 2 do -- p6 encoding known for Crimson/Indigo/Jade only [H]
         local t = vwoHeldTier(player, p);
         if (t > 0) then
             p6 = p6 + 2 ^ (2 * p) + ((t % 2 == 1) and 2 ^ (2 * p + 1) or 0);
@@ -150,15 +170,15 @@ end
 
 -- True when every NM of (path, tier) is recorded complete [H: bitmask holds one bit per tier, set by any tier NM kill, so this gate is only an approximation]
 local function tierDone(player, p, t)
-    return math.floor(player:getVar(TIER_VAR) / 2 ^ (p * 4 + t - 1)) % 2 == 1;
+    return tierGet(player, p, t);
 end
 
 function vwoRefinerFinish(player, cfg, option)
     if (option ~= 1) then return; end
-    for p = 0, 2 do
+    for p = 0, #VWO.PATHS - 1 do
         local t = vwoHeldTier(player, p);
-        if (t > 0 and t < 4 and tierDone(player, p, t)) then
-            local ki = VWO.PATHS[p + 1].ki;
+        local ki = VWO.PATHS[p + 1].ki;
+        if (t > 0 and t < #ki and tierDone(player, p, t)) then
             player:delKeyItem(ki[t]);
             player:addKeyItem(ki[t + 1]);
             player:messageSpecial(cfg.kiMsg, ki[t + 1]);
