@@ -13,11 +13,11 @@ Values are a snapshot when this file was created; the live numbers are in `NM-DE
 | level | 94-95 | ? | no |  |
 | mobType | 2 | ? | no |  |
 | main/sub job | BLM/BLM | ? | no |  |
-| HP | 145000 | ? | no |  |
+| HP | 145000 | ? | no | no capture; BG Wiki lists only rifts, tier and treasure (no stats). |
 | skills | list 1166 | ? | no |  |
 | spells | list 449 | ? | no |  |
-| Pyxis drops | see NM-DETAILS | ? | no |  |
-| key item | see NM-DETAILS | ? | no |  |
+| Pyxis drops | 6 rares + materials | W | yes | BG Wiki treasure list matches the script (Gerra's Staff, Supernal Knife, Asteria, Athos's Tabard, Rubeus Jacket, Beaivi's Scepter). |
+| key item | Atmacite of the Shrewd | W | partial | wiki also lists Dusky Periapt of Vigilance; DB grants only the atmacite. |
 | cruor/EXP | see NM-DETAILS | ? | no |  |
 | mods | see NM-DETAILS | ? | no |  |
 
@@ -79,7 +79,7 @@ Open items for Cottus: level, mobType, job, second HP capture, Mercurial Strike 
 | level | 98-99 | ? | no |  |
 | mobType | 2 | ? | no |  |
 | main/sub job | BLM/BLM | ? | no |  |
-| HP | 129300 | ? | no |  |
+| HP | 129300 | ? | no | no capture; BG Wiki lists only rifts, tier and treasure (no stats). BG Wiki page is empty. |
 | skills | list 1168 | ? | no |  |
 | spells | list 451 | ? | no |  |
 | Pyxis drops | see NM-DETAILS | ? | no |  |
@@ -155,11 +155,11 @@ Open items for Cottus: level, mobType, job, second HP capture, Mercurial Strike 
 | level | 96-97 | ? | no |  |
 | mobType | 2 | ? | no |  |
 | main/sub job | WAR/WAR | ? | no |  |
-| HP | 193000 | ? | no |  |
+| HP | 193000 | ? | no | no capture; BG Wiki lists only rifts, tier and treasure (no stats). |
 | skills | list 1171 | ? | no |  |
 | spells | list 0 | ? | no |  |
-| Pyxis drops | see NM-DETAILS | ? | no |  |
-| key item | see NM-DETAILS | ? | no |  |
+| Pyxis drops | 4 rares/materials | W | yes | wiki: Hreysti Helm, Ogier's Gauntlets, Brego Helm, Riftsand. Matches. |
+| key item | Vivid Periapt of Glory | W | yes | matches wiki. |
 | cruor/EXP | see NM-DETAILS | ? | no |  |
 | mods | see NM-DETAILS | ? | no |  |
 
@@ -246,7 +246,7 @@ Open items for Cottus: level, mobType, job, second HP capture, Mercurial Strike 
 | level | 93-95 | ? | no |  |
 | mobType | 2 | ? | no |  |
 | main/sub job | BLM/BLM | ? | no |  |
-| HP | 0 (formula) | ? | no |  |
+| HP | see NM-DETAILS | ? | no | no capture; BG Wiki lists only rifts, tier and treasure (no stats). |
 | skills | list 471 | ? | no |  |
 | spells | list 441 | ? | no |  |
 | Pyxis drops | see NM-DETAILS | ? | no |  |
@@ -279,8 +279,8 @@ Open items for Cottus: level, mobType, job, second HP capture, Mercurial Strike 
 | HP | 142000 | ? | no |  |
 | skills | list 1170 | ? | no |  |
 | spells | list 453 | ? | no |  |
-| Pyxis drops | see NM-DETAILS | ? | no |  |
-| key item | see NM-DETAILS | ? | no |  |
+| Pyxis drops | 4 | W | yes | wiki: Devourer, Praeco Doublet, Athos's Gloves, Riftsand. Matches. |
+| key item | Vivid Periapt of Glory | W | yes | matches wiki. |
 | cruor/EXP | see NM-DETAILS | ? | no |  |
 | mods | see NM-DETAILS | ? | no |  |
 
@@ -294,8 +294,8 @@ Open items for Cottus: level, mobType, job, second HP capture, Mercurial Strike 
 | HP | 161800 | ? | no |  |
 | skills | list 1167 | ? | no |  |
 | spells | list 450 | ? | no |  |
-| Pyxis drops | see NM-DETAILS | ? | no |  |
-| key item | see NM-DETAILS | ? | no |  |
+| Pyxis drops | 5 rares + materials | W | yes | wiki: Borealis, Hoarfrost Blade, Ogier's Surcoat, Wroth Scythe, Dhampyr Sword, Heavy Metal, Riftdross, Riftcinder. Matches. |
+| key item | Atmacite of the Valiant | W | partial | wiki also lists Vivid Periapt of Vigilance; DB grants only the atmacite. |
 | cruor/EXP | see NM-DETAILS | ? | no |  |
 | mods | see NM-DETAILS | ? | no |  |
 
@@ -309,8 +309,8 @@ Open items for Cottus: level, mobType, job, second HP capture, Mercurial Strike 
 | HP | 106500 | ? | no |  |
 | skills | list 1169 | ? | no |  |
 | spells | list 452 | ? | no |  |
-| Pyxis drops | see NM-DETAILS | ? | no |  |
-| key item | see NM-DETAILS | ? | no |  |
+| Pyxis drops | 3 rares + Riftsand | W | yes | wiki: Athos's Boots, Blithe Mantle, Brego Gloves, Riftsand. Matches. |
+| key item | Vivid Periapt of Catalysis | W | partial | wiki also lists Maddening Petrifact (rare KI); not implemented. |
 | cruor/EXP | see NM-DETAILS | ? | no |  |
 | mods | see NM-DETAILS | ? | no |  |
 
