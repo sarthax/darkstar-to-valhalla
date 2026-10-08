@@ -10,6 +10,7 @@ require("scripts/globals/msg");
 
 function onMobSkillCheck(target,mob,skill)
     if (mob:getLocalVar("ARMOR_END") > os.time()) then return 1; end -- already up
+    if (mob:getHPP() > 75) then return 1; end -- [J] only at HP <= 75%
     return 0;
 end;
 

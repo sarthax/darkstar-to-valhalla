@@ -129,12 +129,12 @@ Open items for Cottus: level, mobType, job, second HP capture, Mercurial Strike 
 | mobType | 2 | ? | no |  |
 | main/sub job | BLM/BLM | ? | no |  |
 | HP | 60436 | C | yes | hptrack Est.HP 60436 (57416-60987), set earlier. |
-| skills | list 1172 | B/C | partial | Accursed Armor/Amnesic Blast/Ecliptic Meteor from forum+capture; damage/duration [D]; plain Meteor has no skill row |
-| spells | none | C | yes | capture shows no spells cast. |
+| skills | list 1172: Howl, Flame Armor (>=75%), Accursed Armor (<=75%), Amnesic Blast, Wild Horn; <50%: Thunderbolt, Ecliptic Meteor | J, C | partial | JP wiki 2026-10-07 names the full set; Wild Horn/Howl/Flame Armor reuse LSB rows (anims not capture-checked); Amnesic Blast/Accursed Armor/Ecliptic Meteor values [D] |
+| spells | Meteor (spell 218) after Thunderbolt below 50% HP, 80% chance [D] | J, F | partial | capture showed no spells (it was a ~2 min fight above 50%); cast from Lua via castSpell; needs live test |
 | Pyxis drops | see NM-DETAILS | ? | no |  |
 | key item | see NM-DETAILS | W/F | no | client-id check pending |
 | cruor/EXP | 6000 base (stage 3) | C | yes | 9660 = 6000 x 161% green. |
-| mods | see NM-DETAILS | ? | no |  |
+| mods | Ecliptic Meteor adds Blind/Paralyze/Bio; resist: stun/silence/sleep immune, high Paralyze resist, triple attack | J, F | partial | status immunities and triple attack not yet applied in Lua/SQL [D] |
 | cruor | — | C | yes | 9660 = 6000 x 161% green (Raguza 2021.03.28) |
 | petrifacts | Beguiling/Seductive/Maddening Petrifact (three-nation path) | U | partial | rare per member, VW_PETRIFACT_RATE 5% x (1+red) [D, tunable]; paths per user 2026-10-07; KI ids 1556-1558 [U] |
 

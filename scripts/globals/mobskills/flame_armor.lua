@@ -15,6 +15,7 @@ require("scripts/globals/monstertpmoves");
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
+    if (mob:getLocalVar("FLAME_ARMOR_HPP") > 0 and mob:getHPP() < mob:getLocalVar("FLAME_ARMOR_HPP")) then return 1; end -- Voidwatch gate (Kholomodumo >=75% [J])
     return 0;
 end;
 
