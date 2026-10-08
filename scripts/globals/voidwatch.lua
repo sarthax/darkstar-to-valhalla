@@ -6,6 +6,7 @@
 -----------------------------------
 
 require("scripts/globals/status");
+require("scripts/globals/voidwatch_officer");
 
 VW_PYXIS_LIFETIME = 180; -- seconds [W: 3 min]
 local PLACEHOLDER_POOL = {749, 695, 798, 866, 3508, 3510, 4118, 644, 690, 694, 815, 895, 645, 700};
@@ -81,6 +82,7 @@ VW_PETRIFACTS = {
 };
 
 function vwOnKill(mob, player, cfg)
+    vwoMarkKill(mob, player); -- officer tier tracking (scripts/globals/voidwatch_officer.lua)
     local pyxis = GetNPCByID(cfg.pyxisId);
     print(string.format('[VW] vwOnKill mob=%d pyxisId=%d found=%s', mob:getID(), cfg.pyxisId, tostring(pyxis ~= nil)));
     if (pyxis == nil) then return; end
