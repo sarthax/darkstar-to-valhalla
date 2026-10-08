@@ -44,13 +44,6 @@ REPLACE INTO `mob_spawn_points` VALUES (17117892,'Gaunab','Gaunab',13814,-154.18
 REPLACE INTO `mob_spawn_points` VALUES (17122050,'Taweret','Taweret',13824,270.294,8.100,-391.839,212);
 REPLACE INTO `mob_spawn_points` VALUES (17122051,'Taweret','Taweret',13824,-320.000,-16.500,-42.000,226);
 
--- Cetus (zone 89): pool 6821 added (familyid unknown); group 18302 added; fresh id block 17142639-17142641 (LSB ids taken or fewer rows than rifts); script base id must follow; LSB spawns 1 vs DB rifts 3
-REPLACE INTO `mob_pools` (`poolid`,`name`,`packet_name`,`familyid`,`modelid`,`mJob`,`sJob`,`cmbSkill`,`cmbDelay`,`cmbDmgMult`,`behavior`,`aggro`,`true_detection`,`links`,`mobType`,`immunity`,`name_prefix`,`flag`,`entityFlags`,`animationsub`,`hasSpellScript`,`spellList`,`namevis`,`roamflag`,`skill_list_id`) VALUES (6821,'Cetus','Cetus',0,0x0000710B00000000000000000000000000000000,1,1,2,240,100,0,1,0,1,2,0,32,0,129,0,0,0,0,0,0);
-REPLACE INTO `mob_groups` (`groupid`,`poolid`,`zoneid`,`respawntime`,`spawntype`,`dropid`,`HP`,`MP`,`minLevel`,`maxLevel`,`allegiance`) VALUES (18302,6821,89,0,128,0,0,0,150,150,0);
-REPLACE INTO `mob_spawn_points` VALUES (17142639,'Cetus','Cetus',18302,-123.725,-7.284,590.606,59);
-REPLACE INTO `mob_spawn_points` VALUES (17142640,'Cetus','Cetus',18302,-80.0,-7.32,-385.0,0);
-REPLACE INTO `mob_spawn_points` VALUES (17142641,'Cetus','Cetus',18302,72.0,-47.691,285.0,0);
-
 -- Ocythoe (zone 89): 
 REPLACE INTO `mob_spawn_points` VALUES (17142450,'Ocythoe','Ocythoe',13724,-80.000,-7.799,-385.000,0);
 REPLACE INTO `mob_spawn_points` VALUES (17142451,'Ocythoe','Ocythoe',13724,72.000,-48.187,285.000,7);

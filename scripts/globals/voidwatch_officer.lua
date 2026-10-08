@@ -33,7 +33,8 @@ VWO.NM_TIER = {
     Lancing_Lamorak = {3, 4}, Stachysaurus = {3, 5}, Smierc = {3, 5}, Ig_Alima = {3, 6}, Botulus_Rex = {3, 6},
     Ildebrann = {4, 1}, Aello = {4, 3},
     -- [J] wikiwiki.jp route step pages. Both live and framework-SQL spellings are listed where they differ. Index: White 3, Ashen 4, Hyacinth 5, Amber 6.
-    Voidwrought = {2, 4},
+    Voidwrought = {2, 4}, Akupara = {2, 3}, -- Akupara: Jade III [user-confirmed]
+    -- Cetus is NOT a Voidwatch NM (Rhapsodies of Vana'diel mission 2-18); intentionally absent
     Cherufe = {3, 1}, Taweret = {3, 1}, Yatagarasu = {3, 1}, Agathos = {3, 1}, Goji = {3, 1}, Gugalanna = {3, 1},
     Gasha = {3, 2}, Giltine = {3, 2}, Mellonia = {3, 2}, Nympha_Eunomia = {3, 2}, ["Roly-Poly"] = {3, 2}, Roly_Poly = {3, 2}, Laidly_Laurence = {3, 2},
     Pil = {3, 3}, Akvan = {3, 3},
