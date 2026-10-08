@@ -361,3 +361,34 @@ Open items for Cottus: level, mobType, job, second HP capture, Mercurial Strike 
 | cruor/EXP | 5000 (stage 1) | C | yes | capture: 5000 cruor. |
 | mods | see NM-DETAILS | ? | no |  |
 | petrifacts | Beguiling/Seductive/Maddening Petrifact (three-nation path) | U | partial | rare per member, VW_PETRIFACT_RATE 5% x (1+red) [D, tunable]; paths per user 2026-10-07; KI ids 1556-1558 [U] |
+
+## Akupara (Meriphataud_Mountains_[S])
+
+| field | value (snapshot) | source | verified | note |
+|---|---|---|---|---|
+| mobType | 2 | ? | no |  |
+| main/sub job | BLM/RDM | ? | no | LSB pool 4684 |
+| skills | list 1178: Tortoise Stomp 806, Earth Breath 808, Tortoise Song 804, Testudo Tremor 2585 (HP<=50%) | J | partial | Testudo Tremor anim 2329 from commented LSB row, not verified |
+| spells | list 454: Slowga, Breakga, Stone IV/V, Stonega III/IV, Stoneja | J | partial | Lua tiers by HP |
+| Pyxis drops | Akuparas Shell 3448, Scuta Cape 10970, Deluxe Animator 17923 | J, B | partial | rates [D] |
+| mods | double attack 20 [D]; immune stun, slow, elegy | J | partial |  |
+| level | see summary | ? | no | no level source; group 92-95 [D] |
+| HP | engine formula | ? | no | no capture/wiki HP; left unset |
+| key item | Atmacite of Temperance | J | partial | DSP id 1813; client-id check pending; chance 5% [D] |
+| petrifacts | Beguiling/Seductive/Maddening Petrifact (three-nation path) | U | partial | VW_PETRIFACT_RATE 5% [D]; paths per user 2026-10-07 |
+
+## Voidwrought (Outer_Horutoto_Ruins)
+
+| field | value (snapshot) | source | verified | note |
+|---|---|---|---|---|
+| mobType | 2 | ? | no |  |
+| main/sub job | BLM/RDM | ? | no | LSB pool 6724 -> DSP pool 7058, group 18226 |
+| spawns | 17572219-21 at rifts | J, V | partial | row 3 position [D], run !checknav -480 -0.5 760 |
+| skills | list 1179: Incinerator, Ballistic Kick, Arm Cannon, Seismic Impact, Turbine Hurricane, Eradicator, Scapula Beam | J | partial | HP gates in Lua; damage numbers [D]; Ballistic Kick strip = Encumbrance |
+| spells | list 455: Silencega, Slowga, Paralyga, Bindga, Dispelga, Graviga, Sleepga, Stun, Addle, Thunder IV/V, Thundaga III/IV, Thundaja | J | partial | Lua tiers by HP |
+| Pyxis drops | Voidwrought Plate 3447, Strendu Ring 11669, Strendu Mantle 10971, Anhur Robe 11856 | J, B | partial | rates [D] |
+| mods | double attack, attack/defense up, fire/ice res, shock spikes; immune sleep, gravity, bind, silence | J | partial | amounts [D]; spikes always on, not only while casting |
+| level | see summary | ? | no | no level source; group 92-95 [D] |
+| HP | engine formula | ? | no | no capture/wiki HP; left unset |
+| key item | Atmacite of Discipline | J | partial | DSP id 1814; client-id check pending; chance 5% [D] |
+| petrifacts | Beguiling/Seductive/Maddening Petrifact (three-nation path) | U | partial | VW_PETRIFACT_RATE 5% [D]; paths per user 2026-10-07 |

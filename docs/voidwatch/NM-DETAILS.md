@@ -12,13 +12,15 @@ Column `src` for hand-checked values lives in `NM-DETAILS-NOTES.md`. Unknown = `
 | Ildebrann | Ifrits_Cauldron | 98-99 | 2 | BLM/BLM | 129300 | 7 skills | list 451 (3) | glassblowers_belt, gram, silver_mirror |
 | HraunDragon | Ifrits_Cauldron | 95-96 | 2 | WAR/WAR | 15900 | 4 skills | — | — |
 | Belphoebe | Jugner_Forest | 88-90 | 2 | BLM/BLM | 61641 | 1 skills | list 446 (33) | tefnut_wand, carabineers_dagger |
-| Kholomodumo | Jugner_Forest_[S] | 93-94 | 2 | BLM/BLM | 60436 | 2 skills | — | genesis_shield, genesis_locket |
+| Kholomodumo | Jugner_Forest_[S] | 93-94 | 2 | BLM/BLM | 60436 | 5 skills | — | genesis_shield, genesis_locket |
 | Hahava | King_Ranperres_Tomb | 94-95 | 2 | BLM/WAR | 71785 | 5 skills | list 447 (13) | mextli_harness, ganeshas_mala, ganeshas_mask, suit_of_hahavas_mail, silver_mirror |
 | Stachysaurus | La_Theine_Plateau | 96-97 | 2 | WAR/WAR | 193000 | 2 skills | — | ogiers_gauntlets, brego_helm, hreysti_helm, chunk_of_riftsand |
 | Ogbunabali | Maze_of_Shakhrami | 94-95 | 2 | SAM/SAM | 56615 | 3 skills | — | mantodea_harpe, pipilaka_belt, silver_mirror, turquoise, slab_of_ruszor_meat |
 | Lord_Asag | Meriphataud_Mountains | 94-95 | 2 | BLM/RDM | 53000 | 4 skills | list 448 (9) | cadushi_grip, tonatiuh_axe, silver_mirror |
+| Akupara | Meriphataud_Mountains_[S] | 92-95 | 2 | BLM/RDM | 0 (formula) | 4 skills | list 454 (7) | akuparas_shell, scuta_cape, deluxe_animator |
 | SallowSeymour | North_Gustaberg | 100-101 | 2 | BLM/BLM | 34772 | 2 skills | list 445 (7) | apathy_gorget |
 | Krabimanjaro | Ordelles_Caves | 95-96 | 2 | BLM/PLD | 47578 | 7 skills | list 439 (11) | percept_bow, carapacho_cuffs |
+| Voidwrought | Outer_Horutoto_Ruins | 92-95 | 2 | BLM/RDM | 0 (formula) | 7 skills | list 455 (14) | voidwrought_plate, strendu_ring, strendu_mantle, anhur_robe |
 | Melancholic_Moira | Pashhow_Marshlands_[S] | 92-95 | 2 | WAR/WAR | 50796 | 4 skills | — | appetence_crown |
 | Aello | RuAun_Gardens | 93-95 | 2 | BLM/BLM | 0 (formula) | 5 skills | list 441 (6) | strophadic_earring, whirlwind_dirs, swiftwing, ephemeron, heavy_metal_pouch |
 | Aellos_Handmaiden | RuAun_Gardens | 90-92 | 2 | RDM/WHM | 0 (formula) | 1 skills | list 442 (7) | — |
@@ -199,7 +201,7 @@ Script mods:
 | melee delay / dmg mult | 240 / 100 |
 | respawn | 0 |
 | immunity bitmask | 0 |
-| skill list 1172 | accursed_armor, amnesic_blast |
+| skill list 1172 | wild_horn, flame_armor, howl, accursed_armor, amnesic_blast |
 | spell list 0 | 0 spell rows |
 | mob_groups.dropid | 0 |
 | Pyxis rare drops (script) | genesis_shield (16201), genesis_locket (10927) |
@@ -321,6 +323,33 @@ Script mods:
 - `MOD_DARKRES, 50`
 - `MOD_UDMGMAGIC, -25`
 
+### Akupara — Meriphataud_Mountains_[S]
+
+| field | value |
+|---|---|
+| mob ids | 17175250, 17175251, 17175252 |
+| group / pool / family | 13729 / 4684 / 2 (Adamantoise) |
+| level | 92-95 |
+| mobType (2 = NM) | 2 |
+| main/sub job | BLM/RDM |
+| HP override / MP | 0 / 9999 |
+| family HP/ATT/DEF/ACC/EVA | 120 / 3 / 2 / 3 / 4 |
+| melee delay / dmg mult | 240 / 100 |
+| respawn | 0 |
+| immunity bitmask | 648 |
+| skill list 1178 | tortoise_song, tortoise_stomp, earth_breath, testudo_tremor |
+| spell list 454 | 7 spell rows |
+| mob_groups.dropid | 0 |
+| Pyxis rare drops (script) | akuparas_shell (3448), scuta_cape (10970), deluxe_animator (17923) |
+| reward table | THREE stage 3 |
+| key item drop | ATMACITE_OF_TEMPERANCE |
+| tracker gaps | Abyssite path/tier not extracted from wiki roster. DSP mob data: partial (group [13729]). |
+
+Script mods:
+- `MOBMOD_HP_STANDBACK, -1`
+- `MOBMOD_NO_DESPAWN, 1`
+- `MOD_DOUBLE_ATTACK, 20`
+
 ### SallowSeymour — North_Gustaberg
 
 | field | value |
@@ -378,6 +407,39 @@ Script mods:
 - `MOD_TRIPLE_ATTACK, 10` — [W] BG wiki "can triple attack"; 10% rate per user
 - `MOD_DEFP, 50` — [W] "very high Defense"; amount is a [D] guess
 - `MOD_REGAIN, 100`
+
+### Voidwrought — Outer_Horutoto_Ruins
+
+| field | value |
+|---|---|
+| mob ids | 17572219, 17572220, 17572221 |
+| group / pool / family | 18226 / 7058 / 350 (Iron_Giant) |
+| level | 92-95 |
+| mobType (2 = NM) | 2 |
+| main/sub job | BLM/RDM |
+| HP override / MP | 0 / 9999 |
+| family HP/ATT/DEF/ACC/EVA | 130 / 3 / 3 / 3 / 3 |
+| melee delay / dmg mult | 240 / 100 |
+| respawn | 0 |
+| immunity bitmask | 23 |
+| skill list 1179 | turbine_cyclone, seismic_impact, incinerator, arm_cannon, ballistic_kick, scapula_beam, eradicator |
+| spell list 455 | 14 spell rows |
+| mob_groups.dropid | 0 |
+| Pyxis rare drops (script) | voidwrought_plate (3447), strendu_ring (11669), strendu_mantle (10971), anhur_robe (11856) |
+| reward table | THREE stage 4 |
+| key item drop | ATMACITE_OF_DISCIPLINE |
+| tracker gaps | Abyssite path/tier not extracted from wiki roster. DSP mob data: none (group []). |
+
+Script mods:
+- `MOBMOD_HP_STANDBACK, -1`
+- `MOBMOD_NO_DESPAWN, 1`
+- `MOD_DOUBLE_ATTACK, 20`
+- `MOD_ATTP, 20`
+- `MOD_DEFP, 20`
+- `MOD_FIRERES, 50`
+- `MOD_ICERES, 50`
+- `MOD_SPIKES, 5` — SPIKE_SHOCK
+- `MOD_SPIKES_DMG, 100`
 
 ### Melancholic_Moira — Pashhow_Marshlands_[S]
 
