@@ -96,6 +96,7 @@ function vwoSetVoidstones(player, n) -- KI level = stack count, replaces the pre
 end
 
 function vwoMarkKill(mob, player)
+    if (player == nil) then return; end
     local e = VWO.NM_TIER[mob:getName()];
     if (e == nil) then return; end
     local v, bit = tierVar(e[1], e[2]);
