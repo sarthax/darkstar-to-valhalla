@@ -20,6 +20,7 @@ INSERT INTO mob_skills VALUES
 -- Pool list: Armor + Amnesic Blast picked by the engine; Thunderbolt 629 / Ecliptic Meteor 2586 are fired by Lua below 50% HP.
 -- Listing 629/2586 here would let the engine use them above 50%, so they stay out of the list.
 DELETE FROM mob_skill_lists WHERE skill_list_id=1172;
-INSERT INTO mob_skill_lists (skill_list_name,skill_list_id,mob_skill_id) VALUES ('Kholomodumo',1172,2390),('Kholomodumo',1172,2391);
+INSERT INTO mob_skill_lists (skill_list_name,skill_list_id,mob_skill_id) VALUES ('Kholomodumo',1172,2390),('Kholomodumo',1172,2391),('Kholomodumo',1172,628),('Kholomodumo',1172,632),('Kholomodumo',1172,633);
+-- JP wiki 2026-10-07: Wild Horn 628, Flame Armor 632 (>=75% HP, Lua gate), Howl 633 (Warcry) added; Meteor spell is cast from Lua after Thunderbolt.
 -- No spellcasting seen in the capture [C, ~2 min]: no spell list.
 UPDATE mob_pools SET skill_list_id=1172, spellList=0 WHERE poolid=5153;
