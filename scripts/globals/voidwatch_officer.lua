@@ -195,7 +195,14 @@ local function tierDone(player, p, t)
 end
 
 function vwoRefinerFinish(player, cfg, option)
-    if (option ~= 1) then return; end
+    if (option ~= 1) then
+        -- Teleport (and any other menu) option encoding is NOT captured or decoded; log it so a real teleport can be mapped.
+        -- No warp is done here on purpose: destination zones/coords are unverified and must not be guessed.
+        if (option ~= 0) then
+            printf("[VWO refiner] unhandled option=%d (%s) char=%s zone=%d", option, string.format("0x%X", option), player:getName(), player:getZoneID());
+        end
+        return;
+    end
     for p = 0, #VWO.PATHS - 1 do
         local t = vwoHeldTier(player, p);
         local ki = VWO.PATHS[p + 1].ki;
