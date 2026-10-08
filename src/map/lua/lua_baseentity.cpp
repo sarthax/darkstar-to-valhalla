@@ -3186,6 +3186,15 @@ inline int32 CLuaBaseEntity::forceRespawn(lua_State* L)
             if (PEntity->loc.zone)
             {
                 PEntity->loc.zone->PushPacket(PEntity, CHAR_INRANGE, new CEntityUpdatePacket(PEntity, ENTITY_SPAWN, UPDATE_ALL_MOB));
+                // Players only add an NPC to their SpawnNPCList when they next move (packet_system -> SpawnNPCs),
+                // so an NPC switched on from STATUS_DISAPPEAR stays invisible until then. Refresh in-range players now.
+                PEntity->loc.zone->ForEachChar([PEntity](CCharEntity* PChar)
+                {
+                    if (distance(PChar->loc.p, PEntity->loc.p) < 50)
+                    {
+                        PChar->loc.zone->SpawnNPCs(PChar);
+                    }
+                });
             }
         }));
     }
