@@ -31,6 +31,7 @@ local VWMSG = {msgWeakElem = 8186, msgBlitzOn = 8193, msgBlitzOff = 8194, msgBli
 
 function onMagicHit(caster, target, spell)
     vwOnMagicHit(target, caster, spell, VWMSG);
+    return 0;
 end;
 
 local function tick(mob)

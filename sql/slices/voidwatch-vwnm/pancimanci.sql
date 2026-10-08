@@ -14,7 +14,8 @@ INSERT INTO mob_spell_lists (spell_list_name,spell_list_id,spell_id,min_level,ma
  ('Pancimanci',444,286,1,99),('Pancimanci',444,357,1,99),('Pancimanci',444,359,1,99),('Pancimanci',444,366,1,99),
  ('Pancimanci',444,176,1,99),('Pancimanci',444,181,1,99),('Pancimanci',444,186,1,99),('Pancimanci',444,191,1,99),('Pancimanci',444,196,1,99),('Pancimanci',444,201,1,99);
 -- immunity: sleep (0x01) [J "invalid: sleep"]
-UPDATE mob_pools SET skill_list_id=1161, spellList=444, immunity=(immunity|1) WHERE poolid=4711;
+UPDATE mob_pools SET skill_list_id=1161, spellList=444, immunity=(immunity|1), sJob=4 WHERE poolid=4711;
+-- sJob=4 (BLM): mobutils::CalculateStats only gives MP to PLD/WHM/BLM/RDM/DRK/BLU/SCH/SMN main or sub, so the 5000 MP in mob_groups was ignored (log: "has no mp for casting spells") [fix 2026-10-07].
 
 -- Fix: mobname was truncated to 'Pancimani', so scripts/zones/West_Sarutabaruta_[S]/mobs/Pancimanci.lua never loaded
 -- (no onMobDeath -> no cruor, no Riftworn Pyxis). Script lookup is by mobname.
