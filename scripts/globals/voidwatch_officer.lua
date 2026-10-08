@@ -167,6 +167,7 @@ function vwoOfficerFinish(player, cfg, option)
 end
 
 -- [H] refiner params (see header of Atmacite_Refiner.lua)
+VWO_PROBE = true; -- set false/remove after refiner menu gating is decoded
 local function refinerParams(player, cfg)
     local held = anyStratum(player);
     local p0 = (cfg.nation or 0) * 262144 + 2 -- nation unknown for outland refiners [D=0]
@@ -180,6 +181,10 @@ local function refinerParams(player, cfg)
         if (t > 0) then
             p6 = p6 + 2 ^ (2 * p) + ((t % 2 == 1) and 2 ^ (2 * p + 1) or 0);
         end
+    end
+    if (VWO_PROBE) then -- TEMPORARY diagnostic: all menu-gating bits set to see which sections the client unlocks
+        p5, p6 = 0xFFFFFF, 0xFFFFFFF;
+        printf("[VWO refiner probe] p5=%d p6=%d (normal p5/p6 overwritten)", p5, p6);
     end
     return p0, p1, 0, 0, player:getCurrency("cruor"), p5, p6;
 end
