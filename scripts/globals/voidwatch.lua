@@ -68,8 +68,8 @@ local function allianceInZone(player)
 end
 
 -- cfg: {cruor=, pyxisId=, msgCruor=, msgFinalBR=, msgFinalYG=, msgFinalW=}
--- Petrifact key items (1556-1558 [U]). region matches cfg.region; city = also drops from NMs flagged petrifact=true
--- (Jade/Windurst, the only city paths built so far). Hyacinth (Tavnazia) and Amber (Aht Urhgan) NMs not built yet.
+-- Petrifact key items (1556-1558 [U]). region matches cfg.region; city = also drops from every three-nation NM (region THREE: Indigo/Crimson/Jade)
+-- Hyacinth (Tavnazia) and Amber (Aht Urhgan) NMs not built yet.
 VW_PETRIFACT_RATE = 0.05; -- [D] 'rare'; tune here
 VW_PETRIFACTS = {
     {ki = BEGUILING_PETRIFACT, region = "ZILART", city = true},   -- Ashen, city, Jeuno
@@ -118,7 +118,7 @@ function vwOnKill(mob, player, cfg)
     end
     -- Petrifacts: rare per alliance member [U 2026-10-07]; paths in VW_PETRIFACTS, rate VW_PETRIFACT_RATE [D, adjustable]
     for _, pf in ipairs(VW_PETRIFACTS) do
-        if (cfg.region == pf.region or (cfg.petrifact and pf.city)) then
+        if (cfg.region == pf.region or (pf.city and cfg.region == "THREE")) then
             for _, m in pairs(allianceInZone(player)) do
                 if (not m:hasKeyItem(pf.ki) and math.random() < VW_PETRIFACT_RATE * (1 + r / 100)) then
                     m:addKeyItem(pf.ki);
