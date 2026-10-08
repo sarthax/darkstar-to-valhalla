@@ -146,3 +146,8 @@ Status: MISSING = no DB row/Lua, WRONG = live row differs from retail, GUESS = b
 - Atmacite of Incursion 1810: client id verified (KI-VERIFICATION.md). HP 50796 from hptrack estimate [C]; cruor 12300 = 6000 x 205% green [C]
 - Message ids: z90 dialog.yml, each text-checked (z82 - 566); the capture's 8087/8175 are the +1 capture offset of 8086/8174
 - Not tested in game
+
+## Akupara / Voidwrought (2026-10-07)
+- Testudo Tremor anim id 2329 unverified; Tortoise Song uses the Adamantoise dispel-all Lua
+- Voidwrought: shock spikes are always on (retail: while casting); Ballistic Kick percent-HP damage and equipment strip approximated (physical hit + Encumbrance); Turbine Hurricane is DSP row turbine_cyclone
+- Voidwrought third spawn position (-480,-0.5,760) is a design guess; level/HP for both unknown
