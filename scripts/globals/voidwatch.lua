@@ -7,6 +7,7 @@
 
 require("scripts/globals/status");
 require("scripts/globals/voidwatch_officer");
+require("scripts/globals/voidwatch_drops"); -- VW_DROP_OVERRIDES: server-specific drop additions/removals, managed by the Mission Toolkit Voidwatch domain
 
 VW_PYXIS_LIFETIME = 180; -- seconds [W: 3 min]
 local PLACEHOLDER_POOL = {749, 695, 798, 866, 3508, 3510, 4118, 644, 690, 694, 815, 895, 645, 700};
@@ -85,7 +86,11 @@ function vwOnKill(mob, player, cfg)
     vwoMarkKill(mob, player); -- officer tier tracking (scripts/globals/voidwatch_officer.lua)
     local pyxis = GetNPCByID(cfg.pyxisId);
     print(string.format('[VW] vwOnKill mob=%d pyxisId=%d found=%s', mob:getID(), cfg.pyxisId, tostring(pyxis ~= nil)));
-    if (pyxis == nil) then return; end
+    if (pyxis == nil) then
+        local r0 = GetNPCByID(mob:getLocalVar("VW_RIFT_LAST"));
+        if (r0 ~= nil) then r0:setStatus(STATUS_NORMAL); end
+        return;
+    end
     pyxis:resetLocalVars();
     local items = {};
     local rift = GetNPCByID(mob:getLocalVar("VW_RIFT_LAST"));
@@ -100,15 +105,31 @@ function vwOnKill(mob, player, cfg)
     -- wiki: blue% = item count (100%/item, remainder = chance of +1); red% = chance of the rare drop [W].
     -- Rare chance base 10% x (1 + red/100) is a [D] guess; filler comes from the placeholder pool.
     local count = 1 + math.floor(b / 100) + ((math.random(0, 99) < (b % 100)) and 1 or 0);
-    for i = 1, math.min(count, 7) do
-        table.insert(items, PLACEHOLDER_POOL[math.random(1, #PLACEHOLDER_POOL)]);
+    -- Server-specific overrides (voidwatch_drops.lua): shared pool additions/removals, per-NM added drops and removed script drops.
+    local ov = (VW_DROP_OVERRIDES.nm or {})[mob:getName()] or {};
+    local rm = {};
+    for _, id in ipairs(ov.remove or {}) do rm[id] = true; end
+    local pool = {};
+    local poolRm = {};
+    for _, id in ipairs(VW_DROP_OVERRIDES.poolRemove or {}) do poolRm[id] = true; end
+    for _, id in ipairs(PLACEHOLDER_POOL) do if (not poolRm[id]) then table.insert(pool, id); end end
+    for _, id in ipairs(VW_DROP_OVERRIDES.pool or {}) do if (not poolRm[id]) then table.insert(pool, id); end end
+    if (#pool > 0) then
+        for i = 1, math.min(count, 7) do
+            table.insert(items, pool[math.random(1, #pool)]);
+        end
     end
     if (cfg.dropRates) then -- per-item measured rates in percent, rolled independently [W/F/U]; red cells scale them [D]
         for id, pct in pairs(cfg.dropRates) do
-            if (math.random() * 100 < pct * (1 + r / 100)) then table.insert(items, 1, id); end
+            if (not rm[id] and math.random() * 100 < pct * (1 + r / 100)) then table.insert(items, 1, id); end
         end
     elseif (cfg.drops and math.random() < 0.10 * (1 + r / 100)) then
-        table.insert(items, 1, cfg.drops[math.random(1, #cfg.drops)]); -- rare goes top slot
+        local keep = {};
+        for _, id in ipairs(cfg.drops) do if (not rm[id]) then table.insert(keep, id); end end
+        if (#keep > 0) then table.insert(items, 1, keep[math.random(1, #keep)]); end -- rare goes top slot
+    end
+    for id, pct in pairs(ov.add or {}) do -- per-NM additions, percent, rolled independently like dropRates
+        if (math.random() * 100 < pct * (1 + r / 100)) then table.insert(items, 1, id); end
     end
     if (cfg.keyitem) then
         local kiChance = 0.05 * (1 + r / 100); -- [D] unknown
@@ -160,6 +181,32 @@ function vwOnKill(mob, player, cfg)
     pyxis:timer(VW_PYXIS_LIFETIME * 1000, function(npc)
         if (npc:getLocalVar("TOKEN") == token) then npc:setStatus(STATUS_DISAPPEAR); end
     end);
+    -- The Pyxis sits exactly on the rift position; keep the rift hidden until the Pyxis is gone,
+    -- otherwise the overlapping entities make the Pyxis untargetable.
+    if (rift ~= nil) then
+        vwHoldRift(rift:getID(), cfg.pyxisId, os.time() + VW_PYXIS_LIFETIME + 10);
+    end
+end
+
+-- Hide the rift and restore it once the Pyxis is gone (claimed/expired) or `untilT` passes.
+-- Closures capture ids only (no entity userdata).
+local vwRiftPoll;
+vwRiftPoll = function(riftId, pyxisId, untilT)
+    local rift = GetNPCByID(riftId);
+    local pyxis = GetNPCByID(pyxisId);
+    if (rift == nil) then return; end
+    if (pyxis == nil or pyxis:getStatus() == STATUS_DISAPPEAR or os.time() >= untilT) then
+        rift:setStatus(STATUS_NORMAL);
+        return;
+    end
+    pyxis:timer(5000, function() vwRiftPoll(riftId, pyxisId, untilT); end);
+end
+
+function vwHoldRift(riftId, pyxisId, untilT)
+    local rift = GetNPCByID(riftId);
+    if (rift == nil) then return; end
+    rift:setStatus(STATUS_DISAPPEAR);
+    vwRiftPoll(riftId, pyxisId, untilT);
 end
 
 -- Rift -> NM spawn [C: click t0, NM first seen t0+~4s]. The rift fades, then the NM appears on the rift.
@@ -167,14 +214,24 @@ end
 VW_RIFT_FADE_DELAY = 3; -- seconds [C]
 function vwSpawnAtRift(rift, mobId, player, after)
     local pos = rift:getPos();
+    local riftId = rift:getID();
+    local playerId = player:getID();
     rift:setStatus(STATUS_DISAPPEAR);
-    rift:timer(VW_RIFT_FADE_DELAY * 1000, function(npc)
+    -- Do NOT capture entity userdata (player/rift/pos) in the closure: it runs 3s later and a stale
+    -- pointer crashes the map server. Capture plain values and re-resolve by id.
+    local x, y, z, rot = pos.x, pos.y, pos.z, pos.rot;
+    rift:timer(VW_RIFT_FADE_DELAY * 1000, function()
+        local r = GetNPCByID(riftId);
         local m = SpawnMob(mobId);
-        if (m == nil) then npc:setStatus(STATUS_NORMAL); return; end
-        m:setPos(pos.x, pos.y, pos.z, pos.rot);
-        m:setLocalVar("VW_RIFT", npc:getID());
-        m:setLocalVar("VW_SPAWNER", player:getID());
-        if (player ~= nil) then m:updateClaim(player); end
+        if (m == nil) then
+            if (r ~= nil) then r:setStatus(STATUS_NORMAL); end
+            return;
+        end
+        m:setPos(x, y, z, rot);
+        m:setLocalVar("VW_RIFT", riftId);
+        m:setLocalVar("VW_SPAWNER", playerId);
+        local p = GetPlayerByID(playerId);
+        if (p ~= nil and p:getZoneID() == m:getZoneID()) then m:updateClaim(p); end
     end);
 end
 
@@ -183,7 +240,8 @@ local function vwRiftReturn(mob)
     local rid = mob:getLocalVar("VW_RIFT");
     if (rid ~= 0) then
         local rift = GetNPCByID(rid);
-        if (rift ~= nil) then rift:setStatus(STATUS_NORMAL); end
+        -- on a kill (HP 0) vwOnKill keeps the rift hidden until the Pyxis is gone
+        if (rift ~= nil and mob:getHP() > 0) then rift:setStatus(STATUS_NORMAL); end
         mob:setLocalVar("VW_RIFT_LAST", rid); -- vwOnKill reads cells from the rift after cleanup
         mob:setLocalVar("VW_RIFT", 0);
     end
@@ -210,6 +268,31 @@ function vwPyxisItems(npc)
     local t = {};
     for i = 1, 8 do t[i] = npc:getLocalVar("ITEM" .. i); end
     return t;
+end
+
+-- Pyxis menu [C]: option 1-8 = take that slot's item, 10 = obtain all, 9 = relinquish/done.
+-- After a pick retail re-sends the same csid with the taken slot zeroed (captures: params 4141,4273 -> 4141,0).
+-- Returns true if the option was a take (1-8, 10) so the caller skips its other branches.
+function vwPyxisTake(player, pyxis, csid, option, msgObtain)
+    local taken = (option >= 1 and option <= 8) or option == 10;
+    if (not taken) then return false; end
+    local slots = (option == 10) and {1, 2, 3, 4, 5, 6, 7, 8} or {option};
+    for _, i in ipairs(slots) do
+        local item = pyxis:getLocalVar("ITEM" .. i);
+        if (item ~= 0 and player:addItem(item, 1)) then
+            player:messageSpecial(msgObtain, item);
+            pyxis:setLocalVar("ITEM" .. i, 0);
+        end
+    end
+    local it = vwPyxisItems(pyxis);
+    local left = false;
+    for i = 1, 8 do if (it[i] ~= 0) then left = true; end end
+    if (left) then
+        player:startEvent(csid, it[1], it[2], it[3], it[4], it[5], it[6], it[7], it[8]);
+    else
+        pyxis:setLocalVar("TAKEN" .. player:getID(), 1);
+    end
+    return true;
 end
 
 -- status 475 for a cleared participant; remembered on the mob so it can be removed at the end
@@ -270,6 +353,7 @@ function vwWeaknessInit(mob)
     for k in pairs(CAP) do mob:setLocalVar("VW_" .. k, 0); end
     mob:setLocalVar("VW_HITS", 0);
     mob:setLocalVar("VW_BLITZ_END", 0);
+    mob:setLocalVar("VW_NO_REBUFF", 1); -- see vwBuffActive
 end
 
 -- cfg: {msgWeakElem=7627, msgBlitzOn=7634, msgBlitzOff=7635, msgBlitzGain=7636, msgBR=7637, msgW=7638}
@@ -301,4 +385,37 @@ function vwWeaknessTick(mob, cfg)
         vwNotify(mob, cfg.msgBR, b, r);
         vwNotify(mob, cfg.msgW, w);
     end
+end
+
+-----------------------------------
+-- No redundant self-buffs [D]. Voidwatch NMs must not re-use a self-buff (spell or mob skill) while its effect
+-- is still on them; only after it expires or is dispelled. Debuffs on players are NOT filtered.
+-- Spells: vwPick() drops self-buff spells already active (only Ig-Alima's spikes are self-buff spells).
+-- Mob skills: the engine shuffles the skill list and takes the first whose onMobSkillCheck returns 0, so the
+-- self-buff skill scripts call vwBuffActive(mob, effect) and return 1 to make it pick another skill.
+-- vwBuffActive is false for non-Voidwatch mobs (flag set in vwWeaknessInit), so shared skill scripts are unchanged for them.
+-----------------------------------
+local VW_SELF_SPELL_EFFECT = {
+    [249] = {EFFECT_BLAZE_SPIKES, EFFECT_ICE_SPIKES, EFFECT_SHOCK_SPIKES}, -- any spikes up blocks all three
+    [250] = {EFFECT_BLAZE_SPIKES, EFFECT_ICE_SPIKES, EFFECT_SHOCK_SPIKES},
+    [251] = {EFFECT_BLAZE_SPIKES, EFFECT_ICE_SPIKES, EFFECT_SHOCK_SPIKES},
+};
+
+function vwBuffActive(mob, ...)
+    if (mob:getLocalVar("VW_NO_REBUFF") ~= 1) then return false; end
+    for _, eff in ipairs({...}) do
+        if (mob:hasStatusEffect(eff)) then return true; end
+    end
+    return false;
+end
+
+-- Random spell from pool, skipping self-buffs that are still up; nil if nothing is left.
+function vwPick(mob, target, pool)
+    local ok = {};
+    for _, s in ipairs(pool) do
+        local e = VW_SELF_SPELL_EFFECT[s];
+        if (e == nil or not vwBuffActive(mob, unpack(e))) then table.insert(ok, s); end
+    end
+    if (#ok == 0) then return nil; end
+    return ok[math.random(#ok)];
 end
