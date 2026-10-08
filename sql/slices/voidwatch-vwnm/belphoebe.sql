@@ -2,9 +2,9 @@
 -- [V] client mob ids 17203697-99 (capture ids are -1). Live rows were misaligned and 17203699 missing.
 -- Positions [C] capture: rift0 (78,118) rot 224; rift1 (263.84,539.1); rift2 (-333.9,-119). Pyxis1 position [D] (no capture of that rift).
 REPLACE INTO mob_spawn_points (mobid,mobname,polutils_name,groupid,pos_x,pos_y,pos_z,pos_rot) VALUES
- (17203697,'Belphoebe','Belphoebe',13782,78.0,-0.5,118.0,52),
- (17203698,'Belphoebe','Belphoebe',13782,263.84,-0.447,539.103,233),
- (17203699,'Belphoebe','Belphoebe',13782,-333.937,-1.242,-118.985,139);
+ (17203696,'Belphoebe','Belphoebe',13782, 78.0,-0.5,118.0,52),
+ (17203697,'Belphoebe','Belphoebe',13782,263.84,-0.447,539.103,233),
+ (17203698,'Belphoebe','Belphoebe',13782,-333.937,-1.242,-118.985,139);
 UPDATE npc_list SET pos_x=78.000,pos_y=0.000,pos_z=118.000,pos_rot=224 WHERE npcid=17203939;
 UPDATE npc_list SET pos_x=78.100,pos_y=0.000,pos_z=118.000,pos_rot=224 WHERE npcid=17203942;
 UPDATE npc_list SET pos_x=263.100,pos_y=0.000,pos_z=553.000 WHERE npcid=17203943;

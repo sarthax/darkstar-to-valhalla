@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Jugner Forest (104)
 --  NPC: Planar Rift (Voidwatch) -- Belphoebe slice (first-pass, untested in-game)
--- Rift i (npcid 17203939+i) -> csid 6000+i -> spawns Belphoebe mob 17203697+i
+-- Rift i (npcid 17203939+i) -> csid 6000+i -> spawns Belphoebe mob 17203696+i
 -- Evidence tags: [C] capture  [V] client dat/fresh pull  [D] design choice (invented, flagged)
 -----------------------------------
 require("scripts/globals/status");
@@ -21,7 +21,7 @@ local RANGE = 50; -- [D] clearance range unverified
 local VW_MINUTES_TO_COMPLETE = 12147;
 
 local RIFT_FIRST = 17203939;   -- [V] client events dat == DSP npc_list
-local MOB_FIRST  = 17203697;   -- [V] mob_spawn_points rows, group 13782 (i-th row <-> i-th rift) [LSB order]
+local MOB_FIRST  = 17203696;   -- [V] mob_spawn_points rows, group 13782 (i-th row <-> i-th rift) [LSB order]
 -- Belphoebe needs Crimson Stratum Abyssite (III) or higher [W: wiki tier table]
 local JADE = {CRIMSON_STRATUM_ABYSSITE, CRIMSON_STRATUM_ABYSSITE_II, CRIMSON_STRATUM_ABYSSITE_III, CRIMSON_STRATUM_ABYSSITE_IV}; -- (named JADE for template parity; these are Crimson ids 366-369)
 local MIN_TIER = 3;
