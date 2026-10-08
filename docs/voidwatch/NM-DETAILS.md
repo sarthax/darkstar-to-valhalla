@@ -8,7 +8,7 @@ Column `src` for hand-checked values lives in `NM-DETAILS-NOTES.md`. Unknown = `
 |---|---|---|---|---|---|---|---|---|
 | Botulus_Rex | Buburimu_Peninsula | 94-95 | 2 | BLM/BLM | 145000 | 4 skills | list 449 (7) | asteria, supernal_knife, gerras_staff, beaivis_scepter, athoss_tabard, rubeus_jacket, plate_of_heavy_metal, clump_of_riftdross, pinch_of_riftcinder |
 | Sarimanok | East_Ronfaure | 94-95 | 2 | THF/BLM | 0 (formula) | 5 skills | list 440 (3) | chimera_hairpin |
-| Cottus | East_Ronfaure_[S] | 80-85 | 0 | BST/BST | 80000 | 3 skills | — | rollers_ring |
+| Cottus | East_Ronfaure_[S] | 80-85 | 0 | BST/BST | 45408 | 4 skills | — | rollers_ring |
 | Ildebrann | Ifrits_Cauldron | 98-99 | 2 | BLM/BLM | 129300 | 6 skills | list 451 (3) | glassblowers_belt, gram, silver_mirror |
 | HraunDragon | Ifrits_Cauldron | 95-96 | 2 | WAR/WAR | 15900 | 10 skills | — | — |
 | Belphoebe | Jugner_Forest | 88-90 | 2 | BLM/BLM | 0 (formula) | 0 skills | list 446 (32) | tefnut_wand, carabineers_dagger |
@@ -92,17 +92,17 @@ Script mods:
 | level | 80-85 |
 | mobType (2 = NM) | 0 |
 | main/sub job | BST/BST |
-| HP override / MP | 80000 / 0 |
+| HP override / MP | 45408 / 0 |
 | family HP/ATT/DEF/ACC/EVA | 125 / 3 / 2 / 3 / 3 |
 | melee delay / dmg mult | 240 / 100 |
 | respawn | 0 |
 | immunity bitmask | 0 |
-| skill list 1162 | impact_roar, grand_slam, power_attack |
+| skill list 1162 | impact_roar, grand_slam, power_attack, trebuchet |
 | spell list 0 | 0 spell rows |
 | mob_groups.dropid | 0 |
 | Pyxis rare drops (script) | rollers_ring (11667) |
 | reward table | THREE stage 1 |
-| key item drop | VIVID_PERIAPT_OF_READINESS |
+| key item drop | — |
 | tracker gaps | Zone [S]: DSP [S]-zone support unchecked. Shared: Pyxis item pool is a placeholder; weakness/stagger simplified; rift params[0] and clearance range unverified; untested in game. |
 
 Script mods:
