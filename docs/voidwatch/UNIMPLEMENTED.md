@@ -133,3 +133,16 @@ Status: MISSING = no DB row/Lua, WRONG = live row differs from retail, GUESS = b
 - Mob spawn row 17113827 was (0,0,0); now rift-1 position (275,-0.5,564) [D], needs !checknav
 - Drops Genesis Shield / Genesis Locket [B #292], rates [D]; silver mirror + crystal petrifact come from the generic pool as in the capture
 - Atmacite of Persistence KI id 1807 (DSP keyitems.lua), client-id check pending; HP 60436 from hptrack estimate [C]
+
+## Melancholic Moira (Indigo III, Pashhow Marshlands [S], z90)
+- The capture (Raguza 2021.03.27, ~80 s kill) shows NO mob TP moves, so her whole skill set comes from forum/LSB, not [C]
+- Bad Breath (2392) - GUESS: fixed 600-800 damage [B #106], radial [B #611]; ailment set copied from the Morbol bad_breath.lua [D]; shared Morbol 319 is HP-scaled so unusable here
+- Tainting Breath (2575) - GUESS: id/anim 63 from a commented LSB row; 300-500 damage + Disease 60 s are [D]
+- Impale 316 / Vampiric Lash 317 - kept from the LSB Morbol pool list [LSB], not reported for Moira; Sweet Breath 320 dropped
+- "EBB" [B #106, #611] - NOT BUILT: AoE, possibly NPC self-targeted; no resolved name or skill row
+- Spell list - none: no casting reported
+- Spawn rows all non-zero and next to their rifts; no edits. Rift params 6,0 [C] (Crimson uses 14,16)
+- Drops: Appetence Crown (rate [D]); Silver Mirror / Black Rock / Darksteel Ingot [B #106, #1357] come from the generic pool only
+- Atmacite of Incursion 1810: client id verified (KI-VERIFICATION.md). HP 50796 from hptrack estimate [C]; cruor 12300 = 6000 x 205% green [C]
+- Message ids: z90 dialog.yml, each text-checked (z82 - 566); the capture's 8087/8175 are the +1 capture offset of 8086/8174
+- Not tested in game
