@@ -36,7 +36,9 @@ VWO.NM_TIER = {
 -- Which NMs must ALL be beaten before the refiner upgrades a tier [W]: only I->II and IV->V style gates; others are quest-driven.
 VWO.REFINE_NEEDS_ALL = {[1] = true, [4] = true};
 
-local STOCK_PERIOD = 20 * 3600; -- [W] one voidstone per 20 hours, unlimited accumulation
+local STOCK_PERIOD = 20 * 3600; -- [W ffxiclopedia Voidstone] one voidstone per 20 hours, unlimited accumulation in officer stock
+local STOCK_PERIOD_PERIAPT = 16 * 3600; -- [W] with Vivid Periapt of Exploration
+local CARRY = 3; -- [W] carry 3; 6 with a Vivid/Dusky/Neutral Periapt of Frontiers
 local TIER_VAR = "VWO_TIERS";    -- bit = path*4 + tier-1 [H, matches refiner p5 bits 0..11]
 local STOCK_VAR = "VWO_STOCK";
 local STOCK_TS = "VWO_STOCK_TS";
@@ -64,11 +66,12 @@ function vwoStock(player)
     local ts = player:getVar(STOCK_TS);
     if (ts == 0) then return 0; end
     local stock = player:getVar(STOCK_VAR);
-    local gain = math.floor((os.time() - ts) / STOCK_PERIOD);
+    local period = player:hasKeyItem(VIVID_PERIAPT_OF_EXPLORATION) and STOCK_PERIOD_PERIAPT or STOCK_PERIOD;
+    local gain = math.floor((os.time() - ts) / period);
     if (gain > 0) then
         stock = stock + gain;
         player:setVar(STOCK_VAR, stock);
-        player:setVar(STOCK_TS, ts + gain * STOCK_PERIOD);
+        player:setVar(STOCK_TS, ts + gain * period);
     end
     return stock;
 end
@@ -138,10 +141,13 @@ function vwoOfficerFinish(player, cfg, option)
         end
     elseif (option == 1) then
         local stock = vwoStock(player);
-        if (stock > 0) then -- [D] amount selection is not decoded: hand over the whole stock, max 6
-            local give = math.min(stock, 6);
-            player:setVar(STOCK_VAR, stock - give);
-            vwoSetVoidstones(player, give); -- no message: the numbered "Obtained key item: N voidstones" id is not capture-verified
+        local cap = CARRY;
+        if (player:hasKeyItem(VIVID_PERIAPT_OF_FRONTIERS) or player:hasKeyItem(DUSKY_PERIAPT_OF_FRONTIERS) or player:hasKeyItem(NEUTRAL_PERIAPT_OF_FRONTIERS)) then cap = 6; end
+        local held = voidstoneLevel(player);
+        local add = math.min(stock, cap - held); -- [D] amount selection not decoded: top up to the carry cap; carried stones count against it
+        if (add > 0) then
+            player:setVar(STOCK_VAR, stock - add);
+            vwoSetVoidstones(player, held + add); -- no message: the numbered "Obtained key item: N voidstones" id is not capture-verified
         end
     end
 end
