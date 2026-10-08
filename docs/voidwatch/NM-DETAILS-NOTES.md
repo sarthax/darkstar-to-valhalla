@@ -175,7 +175,7 @@ Open items for Cottus: level, mobType, job, second HP capture, Mercurial Strike 
 | spells | list 0 | ? | no |  |
 | Pyxis drops | see NM-DETAILS | ? | no |  |
 | key item | see NM-DETAILS | ? | no |  |
-| cruor/EXP | 7040 cruor | C | **mismatch** | capture: 7040 cruor; DB stage table gives a different base. Check stage/bonus. |
+| cruor/EXP | 5500 base (stage 2) | C | yes | capture 7040 = 5500 x 128% green; matches stage 2 base. |
 | mods | see NM-DETAILS | ? | no |  |
 
 ## Lord_Asag (Meriphataud_Mountains)
