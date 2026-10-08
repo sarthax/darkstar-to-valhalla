@@ -21,3 +21,6 @@ UPDATE mob_pools SET skill_list_id=1161, spellList=444, immunity=(immunity|1) WH
 UPDATE mob_spawn_points SET mobname='Pancimanci' WHERE groupid=13747;
 -- Level 83, plain (non-NM) mob [U user-stated 2026-10-07]; mob_pools.mobType is already 0.
 UPDATE mob_groups SET minlevel=83, maxlevel=83 WHERE groupid=13747;
+
+-- [C] 2026-10-07: Scream seen (anim 50 = skill 306). Fatal Scream (capture id 2387 anim 1660) has no DB row.
+INSERT INTO mob_skill_lists (skill_list_name,skill_list_id,mob_skill_id) SELECT 'Pancimanci',1161,306 FROM DUAL WHERE NOT EXISTS (SELECT 1 FROM mob_skill_lists WHERE skill_list_id=1161 AND mob_skill_id=306);
