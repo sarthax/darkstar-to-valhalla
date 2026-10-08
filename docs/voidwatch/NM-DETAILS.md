@@ -9,8 +9,8 @@ Column `src` for hand-checked values lives in `NM-DETAILS-NOTES.md`. Unknown = `
 | Botulus_Rex | Buburimu_Peninsula | 94-95 | 2 | BLM/BLM | 145000 | 4 skills | list 449 (7) | asteria, supernal_knife, gerras_staff, beaivis_scepter, athoss_tabard, rubeus_jacket, plate_of_heavy_metal, clump_of_riftdross, pinch_of_riftcinder |
 | Sarimanok | East_Ronfaure | 94-95 | 2 | THF/BLM | 37254 | 5 skills | list 440 (3) | chimera_hairpin |
 | Cottus | East_Ronfaure_[S] | 80-85 | 0 | BST/BST | 45408 | 4 skills | — | rollers_ring |
-| Ildebrann | Ifrits_Cauldron | 98-99 | 2 | BLM/BLM | 129300 | 6 skills | list 451 (3) | glassblowers_belt, gram, silver_mirror |
-| HraunDragon | Ifrits_Cauldron | 95-96 | 2 | WAR/WAR | 15900 | 10 skills | — | — |
+| Ildebrann | Ifrits_Cauldron | 98-99 | 2 | BLM/BLM | 129300 | 7 skills | list 451 (3) | glassblowers_belt, gram, silver_mirror |
+| HraunDragon | Ifrits_Cauldron | 95-96 | 2 | WAR/WAR | 15900 | 4 skills | — | — |
 | Belphoebe | Jugner_Forest | 88-90 | 2 | BLM/BLM | 61641 | 1 skills | list 446 (33) | tefnut_wand, carabineers_dagger |
 | Kholomodumo | Jugner_Forest_[S] | 93-94 | 2 | BLM/BLM | 60436 | 2 skills | — | genesis_shield, genesis_locket |
 | Hahava | King_Ranperres_Tomb | 94-95 | 2 | BLM/WAR | 71785 | 5 skills | list 447 (13) | mextli_harness, ganeshas_mala, ganeshas_mask, suit_of_hahavas_mail, silver_mirror |
@@ -20,13 +20,13 @@ Column `src` for hand-checked values lives in `NM-DETAILS-NOTES.md`. Unknown = `
 | SallowSeymour | North_Gustaberg | 100-101 | 2 | BLM/BLM | 34772 | 2 skills | list 445 (7) | apathy_gorget |
 | Krabimanjaro | Ordelles_Caves | 95-96 | 2 | BLM/PLD | 47578 | 7 skills | list 439 (11) | percept_bow, carapacho_cuffs |
 | Melancholic_Moira | Pashhow_Marshlands_[S] | 92-95 | 2 | WAR/WAR | 50796 | 4 skills | — | appetence_crown |
-| Aello | RuAun_Gardens | 93-95 | 2 | BLM/BLM | 0 (formula) | 5 skills | list 441 (6) | strophadic_earring, whirlwind_dirs |
-| Aellos_Handmaiden | RuAun_Gardens | 90-92 | 2 | RDM/WHM | 0 (formula) | 8 skills | list 442 (7) | — |
+| Aello | RuAun_Gardens | 93-95 | 2 | BLM/BLM | 0 (formula) | 5 skills | list 441 (6) | strophadic_earring, whirlwind_dirs, swiftwing, ephemeron, heavy_metal_pouch |
+| Aellos_Handmaiden | RuAun_Gardens | 90-92 | 2 | RDM/WHM | 0 (formula) | 1 skills | list 442 (7) | — |
 | Smierc | Tahrongi_Canyon | 92-95 | 2 | BLM/BLM | 142000 | 1 skills | list 453 (9) | athoss_gloves, devourer, praeco_doublet, chunk_of_riftsand |
 | Ig-Alima | Valkurm_Dunes | 119-120 | 2 | WAR/BLM | 161800 | 7 skills | list 450 (3) | borealis, hoarfrost_blade, dhampyr_sword, wroth_scythe, ogiers_surcoat, plate_of_heavy_metal, clump_of_riftdross, pinch_of_riftcinder |
 | Lancing_Lamorak | West_Ronfaure | 94-95 | 0 | BLM/THF | 106500 | 3 skills | list 452 (4) | athoss_boots, blithe_mantle, brego_gloves, chunk_of_riftsand |
 | Virvatuli | West_Sarutabaruta | 89-90 | 2 | BLM/WAR | 33343 | 1 skills | list 443 (14) | irrwisch_ring |
-| Pancimanci | West_Sarutabaruta_[S] | 83-83 | 0 | MNK/MNK | 0 (formula) | 4 skills | list 444 (10) | impatiens |
+| Pancimanci | West_Sarutabaruta_[S] | 83-83 | 0 | MNK/BLM | 0 (formula) | 4 skills | list 444 (10) | impatiens |
 
 ## Per-NM detail
 
@@ -123,7 +123,7 @@ Script mods:
 | melee delay / dmg mult | 240 / 100 |
 | respawn | 0 |
 | immunity bitmask | 0 |
-| skill list 1168 | fiery_breath, touchdown, inferno_blast, tebbad_wing_air, absolute_terror, baleful_roar |
+| skill list 1168 | spike_flail, fiery_breath, touchdown, inferno_blast, tebbad_wing_air, absolute_terror, baleful_roar |
 | spell list 451 | 3 spell rows |
 | mob_groups.dropid | 0 |
 | Pyxis rare drops (script) | glassblowers_belt (10816), gram (19173), silver_mirror (3510) |
@@ -149,7 +149,7 @@ Script mods:
 | melee delay / dmg mult | 240 / 100 |
 | respawn | 0 |
 | immunity bitmask | 0 |
-| skill list 87 | flame_breath, poison_breath, wind_breath, body_slam, heavy_stomp, chaos_blade, petro_eyes, voidsong, thornsong, lodesong |
+| skill list 1177 | flame_breath, body_slam, petro_eyes, voidsong |
 | spell list 0 | 0 spell rows |
 | mob_groups.dropid | 0 |
 | Pyxis rare drops (script) | — |
@@ -421,7 +421,7 @@ Script mods:
 | skill list 471 | rending_talons, shrieking_gale, wings_of_agony, typhoean_rage, kaleidoscopic_fury |
 | spell list 441 | 6 spell rows |
 | mob_groups.dropid | 0 |
-| Pyxis rare drops (script) | strophadic_earring (11035), whirlwind_dirs (11964) |
+| Pyxis rare drops (script) | strophadic_earring (11035), whirlwind_dirs (11964), swiftwing (18905), ephemeron (18904), heavy_metal_pouch (5910) |
 | reward table | ZILART stage 3 |
 | key item drop | — |
 | tracker gaps | Skills in SQL, no mobskill Lua (Kaleidoscopic Fury commented out); 3 handmaiden adds; 1 of 3 mob rows partial. Shared: Pyxis item pool is a placeholder; weakness/stagger simplified; rift params[0] and clearance range unverified; untested in game. |
@@ -444,7 +444,7 @@ Script mods:
 | melee delay / dmg mult | 240 / 100 |
 | respawn | 0 |
 | immunity bitmask | 0 |
-| skill list 195 | zephyr_arrow, lethe_arrows, spring_breeze, summer_breeze, autumn_breeze, winter_breeze, cyclonic_turmoil, cyclonic_torrent |
+| skill list 1176 | lethe_arrows |
 | spell list 442 | 7 spell rows |
 | mob_groups.dropid | 0 |
 | Pyxis rare drops (script) | — |
@@ -568,7 +568,7 @@ Script mods:
 | group / pool / family | 13747 / 4711 / 178 (Mandragora) |
 | level | 83-83 |
 | mobType (2 = NM) | 0 |
-| main/sub job | MNK/MNK |
+| main/sub job | MNK/BLM |
 | HP override / MP | 0 / 5000 |
 | family HP/ATT/DEF/ACC/EVA | 107 / 3 / 3 / 3 / 3 |
 | melee delay / dmg mult | 320 / 100 |
