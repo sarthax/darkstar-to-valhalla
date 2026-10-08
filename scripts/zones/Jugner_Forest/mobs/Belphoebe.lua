@@ -55,6 +55,12 @@ local function tick(mob)
     end
 end
 
+function onMobInitialize(mob)
+    -- BLM main job defaults to HP_STANDBACK 70 (mobutils SetupJob): mob would stay at range above 70% HP.
+    -- Voidwatch NMs must close to melee; -1 disables standback (precedent: Bahamut).
+    mob:setMobMod(MOBMOD_HP_STANDBACK, -1);
+end;
+
 function onMobSpawn(mob)
     mob:setLocalVar("VW_DEADLINE", os.time() + LIMIT);
     mob:setLocalVar("VW_WARNED", LIMIT + 1);
@@ -87,7 +93,7 @@ function onMonsterMagicPrepare(mob, target)
         for _, s in ipairs({177, 182, 187, 192, 197, 202, 178, 183, 188, 193, 198, 203}) do table.insert(pool, s); end -- -ga IV/V
         if (math.random(100) <= 10) then return 367; end -- Death, infrequent [J]; rate [D]
     end
-    return pool[math.random(#pool)];
+    return vwPick(mob, target, pool);
 end;
 
 function onMobRoam(mob) tick(mob); end;
@@ -107,7 +113,7 @@ function onMobDeath(mob, player, isKiller)
     mob:setLocalVar("VW_DEADLINE", 0);
 
     vwEndOperation(mob);
-    local idx = mob:getID() - 17203697;
+    local idx = mob:getID() - 17203696;
     vwOnKill(mob, player, {
         region = "THREE", stage = 3, -- [F] stage table; cruor/EXP base
         pyxisId = 17203942 + idx,

@@ -161,7 +161,7 @@ Script mods:
 
 | field | value |
 |---|---|
-| mob ids | 17203697, 17203698, 17203699 |
+| mob ids | 17203696, 17203697, 17203698 |
 | group / pool / family | 13782 / 5152 / 195 (Pixie) |
 | level | 88-90 |
 | mobType (2 = NM) | 2 |
