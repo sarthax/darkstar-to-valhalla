@@ -25,15 +25,15 @@ Values are a snapshot when this file was created; the live numbers are in `NM-DE
 
 | field | value (snapshot) | source | verified | note |
 |---|---|---|---|---|
-| level | 94-95 | ? | no |  |
+| level | 94-95 | ? | no | no level source; NPCLogger level unreliable. Ask user. |
 | mobType | 2 | ? | no |  |
 | main/sub job | THF/BLM | ? | no |  |
-| HP | 0 (formula) | ? | no |  |
-| skills | list 198 | ? | no |  |
-| spells | list 440 | ? | no |  |
+| HP | 37254 | C | partial | set 2026-10-07 from hptrack kill estimate (35765-40074); was formula. Single capture. |
+| skills | list 198 | C | partial | capture: Crosswind id 1718 anim 1194 matches DB. Other four (Wind Shear, Obfuscate, Zephyr Mantle, Ill Wind) not seen in capture. |
+| spells | list 440 | C | partial | capture: Silencega id 359 matches (157, 185, 359 in list). Others not seen. |
 | Pyxis drops | see NM-DETAILS | ? | no |  |
-| key item | see NM-DETAILS | ? | no |  |
-| cruor/EXP | see NM-DETAILS | ? | no |  |
+| key item | Vivid Periapt of Readiness | ? | no | no periapt message in capture (may already be owned); 5% random in DB. Check forum. |
+| cruor/EXP | 5000 / 5000 (stage 1) | C | yes | capture: 5000 exp, 5000 cruor (at +0%). |
 | mods | see NM-DETAILS | ? | no |  |
 
 ## Cottus (East_Ronfaure_[S])

@@ -9,3 +9,6 @@ INSERT INTO mob_spell_lists (spell_list_name, spell_list_id, spell_id, min_level
 ('Sarimanok', 440, 185, 1, 255),
 ('Sarimanok', 440, 359, 1, 255);
 UPDATE mob_pools SET spellList = 440 WHERE poolid = 5165;
+
+-- HP [C] hptrack kill estimate 37254 (35765-40074); was formula (0).
+UPDATE mob_groups SET HP=37254 WHERE groupid=13806;
