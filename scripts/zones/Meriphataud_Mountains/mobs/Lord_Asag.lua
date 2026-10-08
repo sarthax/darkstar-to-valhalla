@@ -95,6 +95,7 @@ function onMobDeath(mob, player, isKiller)
         region = "THREE", stage = 3, -- [C] Jade III capture, 6000 cruor base; Windurst Stage III
         pyxisId = 17265318 + idx,
         drops = {18810, 18539, 3510}, -- Cadushi Grip, Tonatiuh Axe, Silver Mirror [F]; ids vs DSP item_basic
+        petrifact = true, -- Jade (Windurst) path: Maddening Petrifact rare [U 2026-10-07]
         keyitem = ATMACITE_OF_DESTRUCTION, -- DSP id 1812; client-id check pending
         msgKeyItem = 11840,
         msgCruor = 11836, msgFinalBR = 11833, msgFinalYG = 11831, msgFinalW = 11832,

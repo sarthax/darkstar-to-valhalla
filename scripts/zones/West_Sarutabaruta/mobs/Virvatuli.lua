@@ -94,6 +94,7 @@ function onMobDeath(mob, player, isKiller)
         region = "THREE", stage = 1, -- [F] stage table; cruor/EXP base
         pyxisId = 17248947 + idx,
         drops = {11668}, -- Irrwisch Ring [BG thread #201]; id checked vs DSP item_basic
+        petrifact = true, -- Jade (Windurst) path: Maddening Petrifact rare [U 2026-10-07]
         keyitem = VIVID_PERIAPT_OF_CONCENTRATION, -- 1788 [BG #137]
         msgKeyItem = 11560,
         msgCruor = 11556, msgFinalBR = 11553, msgFinalYG = 11551, msgFinalW = 11552,

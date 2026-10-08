@@ -88,7 +88,11 @@ function vwOnKill(mob, player, cfg)
     for i = 1, math.min(count, 7) do
         table.insert(items, PLACEHOLDER_POOL[math.random(1, #PLACEHOLDER_POOL)]);
     end
-    if (cfg.drops and math.random() < 0.10 * (1 + r / 100)) then
+    if (cfg.dropRates) then -- per-item measured rates in percent, rolled independently [W/F/U]; red cells scale them [D]
+        for id, pct in pairs(cfg.dropRates) do
+            if (math.random() * 100 < pct * (1 + r / 100)) then table.insert(items, 1, id); end
+        end
+    elseif (cfg.drops and math.random() < 0.10 * (1 + r / 100)) then
         table.insert(items, 1, cfg.drops[math.random(1, #cfg.drops)]); -- rare goes top slot
     end
     if (cfg.keyitem) then
@@ -97,6 +101,15 @@ function vwOnKill(mob, player, cfg)
             if (not m:hasKeyItem(cfg.keyitem) and math.random() < kiChance) then
                 m:addKeyItem(cfg.keyitem);
                 m:messageSpecial(cfg.msgKeyItem, cfg.keyitem);
+            end
+        end
+    end
+    -- Maddening Petrifact: rare from any Windurst (Jade), Jeuno (White) or Aht Urhgan VWNM [U 2026-10-07]; rate [D]
+    if (cfg.petrifact or cfg.region == "JEUNO") then
+        for _, m in pairs(allianceInZone(player)) do
+            if (not m:hasKeyItem(MADDENING_PETRIFACT) and math.random() < 0.05 * (1 + r / 100)) then
+                m:addKeyItem(MADDENING_PETRIFACT);
+                m:messageSpecial(cfg.msgKeyItem, MADDENING_PETRIFACT);
             end
         end
     end

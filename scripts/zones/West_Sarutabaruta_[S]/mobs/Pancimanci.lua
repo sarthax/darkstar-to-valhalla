@@ -81,6 +81,7 @@ function onMobDeath(mob, player, isKiller)
         region = "THREE", stage = 1, -- [F] stage table; cruor/EXP base
         pyxisId = 17167322 + idx,
         drops = {19761}, -- Impatiens [J loot page, F]; id checked vs DSP item_basic
+        petrifact = true, -- Jade (Windurst) path: Maddening Petrifact rare [U 2026-10-07]
         keyitem = VIVID_PERIAPT_OF_CONCENTRATION, -- 1788 [BG #137]
         msgKeyItem = 8494,
         msgCruor = 8490, msgFinalBR = 8487, msgFinalYG = 8485, msgFinalW = 8486,

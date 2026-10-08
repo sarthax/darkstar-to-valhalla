@@ -93,6 +93,7 @@ function onMobDeath(mob, player, isKiller)
         region = "JEUNO", stage = 6, -- [C] White VI; 10000 cruor base
         pyxisId = 17261222 + idx,
         drops = {19145, 19146, 18625, 18882, 10451, 10452, 3509, 3498, 3499}, -- Asteria, Supernal Knife, Gerra's Staff, Beaivi's Scepter, Athos's Tabard, Rubeus Jacket, Plate of Heavy Metal, Riftdross, Riftcinder [F]; ids vs DSP item_basic
+        dropRates = {[19145]=0.1, [19146]=12.2, [18625]=16.0, [18882]=0.1, [10451]=1.8, [10452]=2.1, [3509]=21.1, [3498]=0.8, [3499]=3.3}, -- Asteria, Supernal Knife, Gerra's Staff, Beaivi's Scepter, Athos's Tabard, Rubeus Jacket, Heavy Metal, Riftdross, Riftcinder [U 2026-10-07, % per item]
         keyitem = ATMACITE_OF_THE_SHREWD, -- DSP id 1828; client-id check pending
         msgKeyItem = 11545,
         msgCruor = 11541, msgFinalBR = 11538, msgFinalYG = 11536, msgFinalW = 11537,
