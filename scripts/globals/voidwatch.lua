@@ -68,6 +68,18 @@ local function allianceInZone(player)
 end
 
 -- cfg: {cruor=, pyxisId=, msgCruor=, msgFinalBR=, msgFinalYG=, msgFinalW=}
+-- Petrifact key items (1556-1558 [U]). region matches cfg.region; city = also drops from NMs flagged petrifact=true
+-- (Jade/Windurst, the only city paths built so far). Hyacinth (Tavnazia) and Amber (Aht Urhgan) NMs not built yet.
+VW_PETRIFACT_RATE = 0.05; -- [D] 'rare'; tune here
+VW_PETRIFACTS = {
+    {ki = BEGUILING_PETRIFACT, region = "ZILART", city = true},   -- Ashen, city, Jeuno
+    {ki = BEGUILING_PETRIFACT, region = "JEUNO"},
+    {ki = SEDUCTIVE_PETRIFACT, region = "HYACINTH", city = true}, -- Hyacinth, city, Jeuno
+    {ki = SEDUCTIVE_PETRIFACT, region = "JEUNO"},
+    {ki = MADDENING_PETRIFACT, region = "AMBER", city = true},    -- Aht Urhgan, city, Jeuno
+    {ki = MADDENING_PETRIFACT, region = "JEUNO"},
+};
+
 function vwOnKill(mob, player, cfg)
     local pyxis = GetNPCByID(cfg.pyxisId);
     if (pyxis == nil) then return; end
@@ -104,12 +116,14 @@ function vwOnKill(mob, player, cfg)
             end
         end
     end
-    -- Maddening Petrifact: rare from any Windurst (Jade), Jeuno (White) or Aht Urhgan VWNM [U 2026-10-07]; rate [D]
-    if (cfg.petrifact or cfg.region == "JEUNO") then
-        for _, m in pairs(allianceInZone(player)) do
-            if (not m:hasKeyItem(MADDENING_PETRIFACT) and math.random() < 0.05 * (1 + r / 100)) then
-                m:addKeyItem(MADDENING_PETRIFACT);
-                m:messageSpecial(cfg.msgKeyItem, MADDENING_PETRIFACT);
+    -- Petrifacts: rare per alliance member [U 2026-10-07]; paths in VW_PETRIFACTS, rate VW_PETRIFACT_RATE [D, adjustable]
+    for _, pf in ipairs(VW_PETRIFACTS) do
+        if (cfg.region == pf.region or (cfg.petrifact and pf.city)) then
+            for _, m in pairs(allianceInZone(player)) do
+                if (not m:hasKeyItem(pf.ki) and math.random() < VW_PETRIFACT_RATE * (1 + r / 100)) then
+                    m:addKeyItem(pf.ki);
+                    m:messageSpecial(cfg.msgKeyItem, pf.ki);
+                end
             end
         end
     end
