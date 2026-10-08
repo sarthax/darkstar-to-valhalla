@@ -92,6 +92,7 @@ function onMobDeath(mob, player, isKiller)
         region = "JEUNO", stage = 4, -- [C] White IV; 6500 cruor base [W], -- [C] White IV; 
         pyxisId = 17187590 + idx,
         drops = {10601, 10988, 10503, 3500}, -- Athos's Boots, Blithe Mantle, Brego Gloves, Chunk of Riftsand [F]; ids vs DSP item_basic
+        dropRates = {[10601]=5.2, [10988]=26.5, [10503]=2.6, [3500]=25.8}, -- Athos's Boots, Blithe Mantle, Brego Gloves, Riftsand [U 2026-10-07, % per item]
         keyitem = VIVID_PERIAPT_OF_CATALYSIS, -- DSP id 1781 [F]; client-id check pending
         msgKeyItem = 11648,
         msgCruor = 11644, msgFinalBR = 11641, msgFinalYG = 11639, msgFinalW = 11640,

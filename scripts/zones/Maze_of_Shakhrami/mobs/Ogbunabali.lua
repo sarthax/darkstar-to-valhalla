@@ -81,6 +81,7 @@ function onMobDeath(mob, player, isKiller)
         region = "THREE", stage = 2, -- [F] Windurst Stage II; 5500 base cruor (capture 7040 = 5500 x 1.28 green)
         pyxisId = 17588785 + idx,
         drops = {19140, 11771, 3510, 798, 5755}, -- Mantodea Harpe, Pipilaka Belt, Silver Mirror, Turquoise, Slab of Ruszor Meat [F]; JP lists Rift Sand instead of Ruszor Meat; ids vs DSP item_basic
+        petrifact = true, -- Jade (Windurst) path: Maddening Petrifact rare [U 2026-10-07]
         keyitem = VIVID_PERIAPT_OF_FOCUS, -- 1792 [W/B/J]; DSP keyitems.lua name; client-id check pending
         msgKeyItem = 7497,
         msgCruor = 7493, msgFinalBR = 7490, msgFinalYG = 7488, msgFinalW = 7489,
