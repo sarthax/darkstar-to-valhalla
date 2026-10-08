@@ -82,6 +82,7 @@ VW_PETRIFACTS = {
 
 function vwOnKill(mob, player, cfg)
     local pyxis = GetNPCByID(cfg.pyxisId);
+    print(string.format('[VW] vwOnKill mob=%d pyxisId=%d found=%s', mob:getID(), cfg.pyxisId, tostring(pyxis ~= nil)));
     if (pyxis == nil) then return; end
     pyxis:resetLocalVars();
     local items = {};
