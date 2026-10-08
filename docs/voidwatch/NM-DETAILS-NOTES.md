@@ -392,3 +392,58 @@ Open items for Cottus: level, mobType, job, second HP capture, Mercurial Strike 
 | HP | engine formula | ? | no | no capture/wiki HP; left unset |
 | key item | Atmacite of Discipline | J | partial | DSP id 1814; client-id check pending; chance 5% [D] |
 | petrifacts | Beguiling/Seductive/Maddening Petrifact (three-nation path) | U | partial | VW_PETRIFACT_RATE 5% [D]; paths per user 2026-10-07 |
+
+## Ushumgal (North_Gustaberg_[S])
+
+| field | value (snapshot) | source | verified | note |
+|---|---|---|---|---|
+| mobType | 2 | ? | no |  |
+| main/sub job | THF/THF | LSB | no | LSB pool 6820 only; not in capture/wiki |
+| HP | 43455 | C | yes | hptrack estimate |
+| skills | list 1180: skill 2155, Oppressive Glare 2392 | C, LSB | partial | Oppressive Glare effect unknown - no-effect stub |
+| spells | none | ? | no | not a caster |
+| Pyxis drops | 11770, 2524, 703 | B, J | partial | drops list, no per-item rates |
+| key item | Vivid Periapt of Exploration | V | partial | client-id check pending |
+| spawns | 17138408-10 at rifts | C | partial | run !checknav on rift positions |
+
+## Lorbulcrud (Gusgen_Mines)
+
+| field | value (snapshot) | source | verified | note |
+|---|---|---|---|---|
+| mobType | 2 | ? | no |  |
+| main/sub job | BLM/BLM | D | no | LSB had 9/9, which cannot cast; BLM so caster script works |
+| level | 99 | F | partial | wiki says 100; server cap |
+| HP | 46776 | C | yes | hptrack estimate |
+| skills | list 1181: Fluid Spread 2548, Mucus Spread 2551 | C | yes | capture anims 1768/1771; reuse existing fluid_spread/mucus_spread Lua |
+| spells | list 456: Addle, Water IV, Silencega, Aeroga III, Aero IV | C | yes |  |
+| Pyxis drops | 10930, 17112 | B, J | partial | drops list, no per-item rates |
+| key item | Dusky Periapt of Readiness | V | partial | client-id check pending |
+| spawns | 17580342-44 at rifts | C | partial | run !checknav on rift positions |
+
+## Murk-veined_Baneberry (Pashhow_Marshlands)
+
+| field | value (snapshot) | source | verified | note |
+|---|---|---|---|---|
+| mobType | 2 | ? | no |  |
+| main/sub job | BLM/THF | LSB | no |  |
+| level | 92-94 | LSB | no | kept from LSB |
+| HP | 47988 | C | yes | hptrack estimate |
+| skills | list 1182: Words of Bane 783, Everyone's Rancor 921 | C | yes | rows + Lua already existed |
+| spells | list 457: Blizzaga III, Stonega IV, Firaga IV | C | yes |  |
+| Pyxis drops | 19172 5.7%, 10931 20%; Tonberry Coat 1119 rate unknown | FFXIDB/B | partial | Tonberry Coat not modelled |
+| key item | Atmacite of Onslaught | V | partial | client-id check pending |
+| npc ids | rifts 17224371-73, Pyxis 374-376 | V | yes | z109 npc_list rekeyed +2 (rekey_109.sql); Fount/Hume/Passage/Survival Guide moved with it |
+
+## Celaeno (Dangruf_Wadi)
+
+| field | value (snapshot) | source | verified | note |
+|---|---|---|---|---|
+| mobType | 2 | ? | no |  |
+| main/sub job | BLM/BLM | LSB | no | LSB pool 6890 |
+| level | 95-96 | D | no | design guess |
+| HP | 63664 | C | yes | hptrack estimate |
+| skills | list 1183: Rending Talons 2725, Shrieking Gale 2726, Wings of Woe 2727, Wings of Agony 2728, Typhoean Rage 2729 | C | partial | Wings of Woe effect unknown - stub; LSB 2722-2724 unnamed, not modelled |
+| spells | list 458: Aeroja, Graviga, Aeroga IV, Slowga, Silencega | C | yes |  |
+| Pyxis drops | 11856 0.76%, 17360 1.76%, 17273 13.8%, 3449 0.82%, 2875 0.06%, 3510 27.5% | FFXIDB | yes | dropRates in percent |
+| key item | Atmacite of Enticement | V | partial | client-id check pending |
+| rift event params | 14,16 | C | yes |  |

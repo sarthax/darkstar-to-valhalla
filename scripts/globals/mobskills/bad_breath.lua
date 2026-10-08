@@ -26,6 +26,10 @@ function onMobWeaponSkill(target, mob, skill)
     MobStatusEffectMove(mob, target, EFFECT_WEIGHT, 50, 0, 60);
 
     local dmgmod = MobBreathMove(mob, target, 0.15, 3, ELE_EARTH, 500);
+    if (mob:getName() == "Melancholic_Moira") then
+        -- Voidwatch NM: fixed ~600-800 [B #106] instead of HP-scaled (0.15 x ~50k HP would be thousands). Band [D].
+        dmgmod = math.random(600, 800);
+    end
 
     local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,MOBSKILL_BREATH,MOBPARAM_EARTH,MOBPARAM_IGNORE_SHADOWS);
     target:delHP(dmg);

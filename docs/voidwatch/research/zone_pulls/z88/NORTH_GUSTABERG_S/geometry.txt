@@ -1,0 +1,2 @@
+mapid=5000008
+rom_path=ROM5\0\8.DAT

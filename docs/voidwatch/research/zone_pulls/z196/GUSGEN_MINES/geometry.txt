@@ -1,0 +1,2 @@
+mapid=1000016
+rom_path=ROM1\0\16.DAT

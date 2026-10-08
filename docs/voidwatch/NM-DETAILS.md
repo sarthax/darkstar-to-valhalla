@@ -7,8 +7,10 @@ Column `src` for hand-checked values lives in `NM-DETAILS-NOTES.md`. Unknown = `
 | NM | Zone | Lv | mobType | Job | HP override | Skills | Spells | Drops (script) |
 |---|---|---|---|---|---|---|---|---|
 | Botulus_Rex | Buburimu_Peninsula | 94-95 | 2 | BLM/BLM | 145000 | 4 skills | list 449 (7) | asteria, supernal_knife, gerras_staff, beaivis_scepter, athoss_tabard, rubeus_jacket, plate_of_heavy_metal, clump_of_riftdross, pinch_of_riftcinder |
+| Celaeno | Dangruf_Wadi | 95-96 | 2 | BLM/BLM | 63664 | 5 skills | list 458 (5) | — |
 | Sarimanok | East_Ronfaure | 94-95 | 2 | THF/BLM | 37254 | 5 skills | list 440 (3) | chimera_hairpin |
 | Cottus | East_Ronfaure_[S] | 80-85 | 0 | BST/BST | 45408 | 4 skills | — | rollers_ring |
+| Lorbulcrud | Gusgen_Mines | 99-99 | 2 | BLM/BLM | 46776 | 2 skills | list 456 (5) | veisa_collar, fulcrum_pole |
 | Ildebrann | Ifrits_Cauldron | 98-99 | 2 | BLM/BLM | 129300 | 7 skills | list 451 (3) | glassblowers_belt, gram, silver_mirror |
 | HraunDragon | Ifrits_Cauldron | 95-96 | 2 | WAR/WAR | 15900 | 4 skills | — | — |
 | Belphoebe | Jugner_Forest | 88-90 | 2 | BLM/BLM | 61641 | 1 skills | list 446 (33) | tefnut_wand, carabineers_dagger |
@@ -19,8 +21,10 @@ Column `src` for hand-checked values lives in `NM-DETAILS-NOTES.md`. Unknown = `
 | Lord_Asag | Meriphataud_Mountains | 94-95 | 2 | BLM/RDM | 53000 | 4 skills | list 448 (9) | cadushi_grip, tonatiuh_axe, silver_mirror |
 | Akupara | Meriphataud_Mountains_[S] | 92-95 | 2 | BLM/RDM | 0 (formula) | 4 skills | list 454 (7) | akuparas_shell, scuta_cape, deluxe_animator |
 | SallowSeymour | North_Gustaberg | 100-101 | 2 | BLM/BLM | 34772 | 2 skills | list 445 (7) | apathy_gorget |
+| Ushumgal | North_Gustaberg_[S] | 95-95 | 2 | THF/THF | 43455 | 2 skills | — | accursed_belt, peiste_stinger, petrified_log |
 | Krabimanjaro | Ordelles_Caves | 95-96 | 2 | BLM/PLD | 47578 | 7 skills | list 439 (11) | percept_bow, carapacho_cuffs |
 | Voidwrought | Outer_Horutoto_Ruins | 92-95 | 2 | BLM/RDM | 0 (formula) | 7 skills | list 455 (14) | voidwrought_plate, strendu_ring, strendu_mantle, anhur_robe |
+| Murk-veined_Baneberry | Pashhow_Marshlands | 92-94 | 2 | BLM/THF | 47988 | 2 skills | list 457 (3) | — |
 | Melancholic_Moira | Pashhow_Marshlands_[S] | 92-95 | 2 | WAR/WAR | 50796 | 4 skills | — | appetence_crown |
 | Aello | RuAun_Gardens | 93-95 | 2 | BLM/BLM | 0 (formula) | 5 skills | list 441 (6) | strophadic_earring, whirlwind_dirs, swiftwing, ephemeron, heavy_metal_pouch |
 | Aellos_Handmaiden | RuAun_Gardens | 90-92 | 2 | RDM/WHM | 0 (formula) | 1 skills | list 442 (7) | — |
@@ -53,6 +57,32 @@ Column `src` for hand-checked values lives in `NM-DETAILS-NOTES.md`. Unknown = `
 | reward table | JEUNO stage 6 |
 | key item drop | ATMACITE_OF_THE_SHREWD |
 | tracker gaps | Shared: Pyxis item pool is a placeholder; weakness/stagger simplified; rift params[0] and clearance range unverified; untested in game. |
+
+Script mods:
+- `MOBMOD_HP_STANDBACK, -1`
+- `MOBMOD_NO_DESPAWN, 1`
+
+### Celaeno — Dangruf_Wadi
+
+| field | value |
+|---|---|
+| mob ids | 17559871, 17559872, 17559873 |
+| group / pool / family | 18228 / 6890 / 184 (Moblin) |
+| level | 95-96 |
+| mobType (2 = NM) | 2 |
+| main/sub job | BLM/BLM |
+| HP override / MP | 63664 / 9999 |
+| family HP/ATT/DEF/ACC/EVA | 92 / 3 / 3 / 3 / 3 |
+| melee delay / dmg mult | 240 / 100 |
+| respawn | 0 |
+| immunity bitmask | 0 |
+| skill list 1183 | rending_talons, shrieking_gale, wings_of_woe, wings_of_agony, typhoean_rage |
+| spell list 458 | 5 spell rows |
+| mob_groups.dropid | 0 |
+| Pyxis rare drops (script) | — |
+| reward table | THREE stage 4 |
+| key item drop | ATMACITE_OF_ENTICEMENT |
+| tracker gaps | Wings of Woe effect unknown (stub); LSB skills 2722-2724 unnamed, not modelled; level 95-96 is a design guess. Shared: Pyxis/KI and positions unverified; untested in game. |
 
 Script mods:
 - `MOBMOD_HP_STANDBACK, -1`
@@ -110,6 +140,32 @@ Script mods:
 Script mods:
 - `MOBMOD_NO_DESPAWN, 1`
 - `MOD_DOUBLE_ATTACK, 10` — [J] trait; amount [D]
+
+### Lorbulcrud — Gusgen_Mines
+
+| field | value |
+|---|---|
+| mob ids | 17580342, 17580343, 17580344 |
+| group / pool / family | 14088 / 5311 / 66 (Clot) |
+| level | 99-99 |
+| mobType (2 = NM) | 2 |
+| main/sub job | BLM/BLM |
+| HP override / MP | 46776 / 9999 |
+| family HP/ATT/DEF/ACC/EVA | 100 / 3 / 3 / 3 / 3 |
+| melee delay / dmg mult | 240 / 100 |
+| respawn | 0 |
+| immunity bitmask | 0 |
+| skill list 1181 | fluid_spread, mucus_spread |
+| spell list 456 | 5 spell rows |
+| mob_groups.dropid | 0 |
+| Pyxis rare drops (script) | veisa_collar (10930), fulcrum_pole (17112) |
+| reward table | THREE stage 2 |
+| key item drop | DUSKY_PERIAPT_OF_READINESS |
+| tracker gaps | Shared: Pyxis/KI client id and rift positions (!checknav) unverified; untested in game. |
+
+Script mods:
+- `MOBMOD_HP_STANDBACK, -1`
+- `MOBMOD_NO_DESPAWN, 1`
 
 ### Ildebrann — Ifrits_Cauldron
 
@@ -207,7 +263,7 @@ Script mods:
 | Pyxis rare drops (script) | genesis_shield (16201), genesis_locket (10927) |
 | reward table | THREE stage 3 |
 | key item drop | ATMACITE_OF_PERSISTENCE |
-| tracker gaps | DSP mob data: full (group [13783]). |
+| tracker gaps | Skills 1172 (Accursed Armor/Amnesic Blast/Ecliptic Meteor, damage [D]). Shared: Pyxis item pool placeholder; untested in game. |
 
 Script mods:
 - `MOBMOD_HP_STANDBACK, -1`
@@ -343,7 +399,7 @@ Script mods:
 | Pyxis rare drops (script) | akuparas_shell (3448), scuta_cape (10970), deluxe_animator (17923) |
 | reward table | THREE stage 3 |
 | key item drop | ATMACITE_OF_TEMPERANCE |
-| tracker gaps | Abyssite path/tier not extracted from wiki roster. DSP mob data: partial (group [13729]). |
+| tracker gaps | Shared: Pyxis item pool placeholder; Testudo Tremor anim id unverified; HP/level unverified; untested in game. |
 
 Script mods:
 - `MOBMOD_HP_STANDBACK, -1`
@@ -377,6 +433,31 @@ Script mods:
 - `MOBMOD_NO_DESPAWN, 1`
 - `MOD_DOUBLE_ATTACK, 10` — [J] trait; amount [D]
 - `MOBMOD_DRAW_IN, 1` — [BG #7] uses Draw In; engine mod pulls the target when out of reach (retail trigger [D])
+
+### Ushumgal — North_Gustaberg_[S]
+
+| field | value |
+|---|---|
+| mob ids | 17138408, 17138409, 17138410 |
+| group / pool / family | 18227 / 6820 / 312 (Nuhn) |
+| level | 95-95 |
+| mobType (2 = NM) | 2 |
+| main/sub job | THF/THF |
+| HP override / MP | 43455 / 0 |
+| family HP/ATT/DEF/ACC/EVA | 90 / 3 / 3 / 3 / 3 |
+| melee delay / dmg mult | 240 / 100 |
+| respawn | 0 |
+| immunity bitmask | 0 |
+| skill list 1180 | torpefying_charge, oppressive_glare |
+| spell list 0 | 0 spell rows |
+| mob_groups.dropid | 0 |
+| Pyxis rare drops (script) | accursed_belt (11770), peiste_stinger (2524), petrified_log (703) |
+| reward table | THREE stage 1 |
+| key item drop | VIVID_PERIAPT_OF_EXPLORATION |
+| tracker gaps | Skills: Oppressive Glare effect unknown (stub). Job LSB-only. Shared: Pyxis items/KI client id and rift positions (!checknav) unverified; untested in game. |
+
+Script mods:
+- `MOBMOD_NO_DESPAWN, 1`
 
 ### Krabimanjaro — Ordelles_Caves
 
@@ -428,7 +509,7 @@ Script mods:
 | Pyxis rare drops (script) | voidwrought_plate (3447), strendu_ring (11669), strendu_mantle (10971), anhur_robe (11856) |
 | reward table | THREE stage 4 |
 | key item drop | ATMACITE_OF_DISCIPLINE |
-| tracker gaps | Abyssite path/tier not extracted from wiki roster. DSP mob data: none (group []). |
+| tracker gaps | Shared: pool/group/spawns created 2026-10-07 (3rd spawn pos [D]); skill numbers [D]; shock spikes always on; Ballistic Kick strip approximated; untested in game. |
 
 Script mods:
 - `MOBMOD_HP_STANDBACK, -1`
@@ -440,6 +521,32 @@ Script mods:
 - `MOD_ICERES, 50`
 - `MOD_SPIKES, 5` — SPIKE_SHOCK
 - `MOD_SPIKES_DMG, 100`
+
+### Murk-veined_Baneberry — Pashhow_Marshlands
+
+| field | value |
+|---|---|
+| mob ids | 17224185, 17224186, 17224187 |
+| group / pool / family | 14089 / 5312 / 243 (Tonberry) |
+| level | 92-94 |
+| mobType (2 = NM) | 2 |
+| main/sub job | BLM/THF |
+| HP override / MP | 47988 / 9999 |
+| family HP/ATT/DEF/ACC/EVA | 87 / 3 / 3 / 4 / 3 |
+| melee delay / dmg mult | 240 / 100 |
+| respawn | 0 |
+| immunity bitmask | 0 |
+| skill list 1182 | words_of_bane, everyones_rancor |
+| spell list 457 | 3 spell rows |
+| mob_groups.dropid | 0 |
+| Pyxis rare drops (script) | — |
+| reward table | THREE stage 3 |
+| key item drop | ATMACITE_OF_ONSLAUGHT |
+| tracker gaps | Tonberry Coat drop rate unknown (not modelled). Shared: Pyxis/KI client id and rift positions (!checknav) unverified; untested in game. |
+
+Script mods:
+- `MOBMOD_HP_STANDBACK, -1`
+- `MOBMOD_NO_DESPAWN, 1`
 
 ### Melancholic_Moira — Pashhow_Marshlands_[S]
 
@@ -455,13 +562,13 @@ Script mods:
 | melee delay / dmg mult | 200 / 100 |
 | respawn | 0 |
 | immunity bitmask | 0 |
-| skill list 1173 | impale, vampiric_lash, melancholic_bad_breath, tainting_breath |
+| skill list 1173 | impale, vampiric_lash, bad_breath, tainting_breath |
 | spell list 0 | 0 spell rows |
 | mob_groups.dropid | 0 |
 | Pyxis rare drops (script) | appetence_crown (11815) |
 | reward table | THREE stage 3 |
 | key item drop | ATMACITE_OF_INCURSION |
-| tracker gaps | DSP mob data: full (group [13728]). |
+| tracker gaps | Skills are design guesses (capture showed no TP moves). Shared: Pyxis/KI and rift positions unverified; untested in game. |
 
 Script mods:
 - `MOBMOD_NO_DESPAWN, 1`
