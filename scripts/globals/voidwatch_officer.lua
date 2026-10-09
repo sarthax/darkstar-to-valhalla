@@ -297,6 +297,7 @@ end
 function vwoAtmaUpdate(player, cfg, option)
     local m = cfg.atmaMsg;
     if (m == nil) then return; end
+    if (VWO_PROBE) then printf("[VWO atma update] option=0x%X char=%s", option, player:getName()); end
     local low = option % 65536;
     local slot = math.floor(option / 65536);
     if (slot < 1 or slot > 40) then return; end
@@ -310,6 +311,7 @@ function vwoAtmaUpdate(player, cfg, option)
         if (player:getCurrency("cruor") < cost) then player:messageSpecial(m.notEnough); return; end
         player:delCurrency("cruor", cost);
         player:setVar("VWA" .. idx, lv + 1);
+        if (VWO_PROBE) then printf("[VWO atma enrich] idx=%d lv %d -> %d cost=%d stored=%d", idx, lv, lv + 1, cost, player:getVar("VWA" .. idx)); end
         player:messageSpecial(m.enriched, cost, ki, lv + 1);
         player:updateEvent(0, ki, lv + 1, atmaWords(player)[math.floor(idx / 8)], player:getCurrency("cruor"), 0, 0, 0);
     elseif (low == 2) then
@@ -318,26 +320,38 @@ function vwoAtmaUpdate(player, cfg, option)
     end
 end
 
--- Finish phase (auto=0): ((0x80|slot)<<16)|6 infuse [C]. Returns true when handled.
+-- Finish phase (auto=0): infuse = ((swap?0x80:0)|slot)<<16 | 3*pos, pos = target infuse slot 1..3 [H: fits Wiggo 0x850006 = swap into pos 2 (p3 field 2 changed), Gwendy 0x150003 = empty pos 1]. Returns true when handled.
 function vwoAtmaFinish(player, cfg, option)
     local m = cfg.atmaMsg;
     if (m == nil) then return false; end
-    if (option % 65536 ~= 6) then return false; end
-    local slot = math.floor(option / 65536) - 128;
+    local low = option % 65536;
+    if (low == 4) then -- purge: (pos<<16)|4 [H, Bastok log 0x10004]
+        local ppos = math.floor(option / 65536) % 128;
+        if (ppos < 1 or ppos > 3 or m.purged == nil) then return false; end
+        local pslot = player:getVar("VWA_INF" .. ppos);
+        if (VWO_PROBE) then printf("[VWO atma purge] char=%s pos=%d slot=%d", player:getName(), ppos, pslot); end
+        if (pslot == 0) then player:messageSpecial(m.noInfuse); return true; end
+        player:setVar("VWA_INF" .. ppos, 0);
+        player:messageSpecial(m.purged, ATMA_KI0 + pslot - 1, atmaLevel(player, pslot - 1));
+        return true;
+    end
+    if (low ~= 3 and low ~= 6 and low ~= 9) then return false; end
+    local pos = low / 3;
+    local hi = math.floor(option / 65536);
+    local swap = hi >= 128;
+    local slot = hi % 128;
     if (slot < 1 or slot > 40) then return false; end
     local idx = slot - 1;
     local ki = ATMA_KI0 + idx;
-    if (not player:hasKeyItem(ki)) then player:messageSpecial(m.noInfuse); return true; end
+    if (VWO_PROBE) then printf("[VWO atma infuse] char=%s ki=%d pos=%d swap=%s", player:getName(), ki, pos, tostring(swap)); end
+    if (not player:hasKeyItem(ki) or pos > atmaInfuseSlots(player)) then player:messageSpecial(m.noInfuse); return true; end
     if (player:getCurrency("cruor") < ATMA_INFUSE_COST) then player:messageSpecial(m.notEnough); return true; end
-    local free = nil;
-    for s = 1, atmaInfuseSlots(player) do
-        local cur = player:getVar("VWA_INF" .. s);
-        if (cur == idx + 1) then free = nil; break; end -- already infused
-        if (cur == 0 and free == nil) then free = s; end
+    for s2 = 1, 3 do
+        if (s2 ~= pos and player:getVar("VWA_INF" .. s2) == idx + 1) then player:messageSpecial(m.noInfuse); return true; end -- already infused elsewhere
     end
-    if (free == nil) then player:messageSpecial(m.noInfuse); return true; end
+    if (player:getVar("VWA_INF" .. pos) ~= 0 and not swap) then player:messageSpecial(m.noInfuse); return true; end
     player:delCurrency("cruor", ATMA_INFUSE_COST);
-    player:setVar("VWA_INF" .. free, idx + 1);
+    player:setVar("VWA_INF" .. pos, idx + 1);
     player:messageSpecial(m.infused, ki, atmaLevel(player, idx), ATMA_INFUSE_COST);
     return true;
 end
