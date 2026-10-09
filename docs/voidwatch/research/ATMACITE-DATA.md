@@ -85,3 +85,10 @@ Per-level steps verified against captures [C]:
 | 37 | 38 | 1843 | the Tropics | C | Yalungur | "Subtle Blow"+5 CHR+5 "Triple Attack"+1% | "Subtle Blow"+6 CHR+6 "Triple Attack"+1% | "Subtle Blow"+8 CHR+8 "Triple Attack"+2% | "Subtle Blow"+10 CHR+10 "Triple Attack"+3% |
 | 38 | 39 | 1844 | Curses | C | Brekekekex | INT+5 "Magic Attack Bonus"+5 Magic Accuracy+1 | INT+6 "Magic Attack Bonus"+6 Magic Accuracy+2 | INT+8 "Magic Attack Bonus"+8 Magic Accuracy+4 | INT+10 "Magic Attack Bonus"+10 Magic Accuracy+5 |
 | 39 | 40 | 1845 | Preservation | D | Morta | MP+10% Enhances "Refresh" effect +3 "Earth Attack Bonus"+1 | MP+11% Enhances "Refresh" effect +4 "Earth Attack Bonus"+5 | MP+13% Enhances "Refresh" effect +4 "Earth Attack Bonus"+10 Sphere: "Magic Attack Bonus"+1 | MP+15% Enhances "Refresh" effect +5 "Earth Attack Bonus"+15 Sphere: "Magic Attack Bonus"+2 |
+
+## Client name check (2026-10-09) [D]
+
+Source: `D:\Claude\FFXI-Tools\FFXI-Resources-dist\keyitems.ndjson.gz` (client key item name DAT, version 30260805_0). Client ids 2507-2546 are the 40 atmacites in the SAME order as DSP `keyitems.lua` 1806-1845 (constant offset +701); all 40 names match one-to-one. The four ids seen in captures (1807 Persistence, 1810 Incursion, 1835 Provenance, 1841 Assassin) match the names at those list positions, so the packet/DSP numbering and the index = KI - 1806 rule hold for all 40.
+
+- 1823 is "Atmacite of Exhortation" in the client DAT (2524). The FFXIclopedia "Promises" claim is not client text; use Exhortation.
+- "Enticement" (1811, client 2512) is a separate client entry from Exhortation, so FFXIclopedia's "formerly Exhortation" note is also not reflected in the client.
