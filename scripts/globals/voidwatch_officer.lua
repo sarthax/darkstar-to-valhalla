@@ -313,10 +313,11 @@ function vwoAtmaUpdate(player, cfg, option)
         player:setVar("VWA" .. idx, lv + 1);
         if (VWO_PROBE) then printf("[VWO atma enrich] idx=%d lv %d -> %d cost=%d stored=%d", idx, lv, lv + 1, cost, player:getVar("VWA" .. idx)); end
         player:messageSpecial(m.enriched, cost, ki, lv + 1);
-        player:updateEvent(0, ki, lv + 1, atmaWords(player)[math.floor(idx / 8)], player:getCurrency("cruor"), 0, 0, 0);
+        local w = atmaWords(player);
+        player:updateEvent((vwoAtmaParams(player, (cfg.nation or 0) * 262144 + 2)), ki, lv + 1, w[2], player:getCurrency("cruor"), w[4], 7, 7);
     elseif (low == 2) then
         local w = atmaWords(player);
-        player:updateEvent(w[0], w[1], w[2], w[3], w[4], 0x11111111, 7, 7);
+        player:updateEvent((vwoAtmaParams(player, (cfg.nation or 0) * 262144 + 2)), w[0], w[1], w[2], w[3], w[4], 7, 7); -- [C] Wiggo refresh = p0 (start-style packed), 5 level words, 7, 7
     end
 end
 
