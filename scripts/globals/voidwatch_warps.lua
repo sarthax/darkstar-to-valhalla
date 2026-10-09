@@ -18,10 +18,14 @@ VWO_WARPS = {
     [262146] = {era = "present", stone = "Crimson", tier = 3, zone = 104, x = -574.33, y = -3.0, z = -441.59, rot = 0},
     -- present Crimson San d'Oria 4: King_Ranperres_Tomb (King Ranperre's Tomb (Entrance))
     [393218] = {era = "present", stone = "Crimson", tier = 4, zone = 190, x = -130.35, y = 0.0, z = 256.16, rot = 65},
-    -- present Jade Windurst 1: West_Sarutabaruta (outside Windurst Waters) -- SKIPPED: incomplete
-    -- present Jade Windurst 2: Maze_of_Shakhrami (entrance (outdoor landing zone not given by wiki)) -- SKIPPED: incomplete
-    -- present Jade Windurst 3: Meriphataud_Mountains -- SKIPPED: incomplete
-    -- present Jade Windurst 4: Outer_Horutoto_Ruins (entrance (outdoor landing zone not given by wiki)) -- SKIPPED: incomplete
+    -- present Jade Windurst 1: West_Sarutabaruta (outside Windurst Waters)
+    [851970] = {era = "present", stone = "Jade", tier = 1, zone = 115, x = 320.75, y = -5.12, z = -22.05, rot = 65},
+    -- present Jade Windurst 2: Maze_of_Shakhrami (entrance (outdoor landing zone not given by wiki))
+    [983042] = {era = "present", stone = "Jade", tier = 2, zone = 118, x = -325.02, y = -40.85, z = 285.5, rot = 173},
+    -- present Jade Windurst 3: Meriphataud_Mountains
+    [1048578] = {era = "present", stone = "Jade", tier = 3, zone = 119, x = -122.75, y = -24.0, z = -598.0, rot = 157},
+    -- present Jade Windurst 4: Outer_Horutoto_Ruins (entrance (outdoor landing zone not given by wiki))
+    [1179650] = {era = "present", stone = "Jade", tier = 4, zone = 116, x = 259.76, y = -17.24, z = -437.88, rot = 65},
     -- present White Jeuno 1: Batallia_Downs -- SKIPPED: incomplete
     -- present White Jeuno 1: Rolanberry_Fields -- SKIPPED: incomplete
     -- present White Jeuno 1: Sauromugue_Champaign -- SKIPPED: incomplete
