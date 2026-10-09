@@ -173,13 +173,17 @@ local function refinerParams(player, cfg)
     local p0 = (cfg.nation or 0) * 262144 + 2 -- nation unknown for outland refiners [D=0]
          + (held and 4 or 0);
     local p1 = held and 16 or 0;
-    local tiers = player:getVar(TIER_VAR);
-    local p5 = 0x800000 + (tiers % 4096); -- first three paths only [H]
+    -- p5 = 0x800000 + one bit per HELD stratum stone, bit = path*4 + tier-1 [C: 12 Raguza refine captures; a player holding Crimson IV + Indigo IV + Jade I read 0x188]
+    -- p6 = 2 bits per path, set only when the held stone is ready to refine: 01 for even tiers, 11 for odd tiers; 00 = held but not ready [C]
+    local p5 = 0x800000;
     local p6 = 0;
-    for p = 0, 2 do -- p6 encoding known for Crimson/Indigo/Jade only [H]
+    for p = 0, 2 do -- Crimson/Indigo/Jade only; other paths' bits not captured
         local t = vwoHeldTier(player, p);
-        if (t > 0) then
-            p6 = p6 + 2 ^ (2 * p) + ((t % 2 == 1) and 2 ^ (2 * p + 1) or 0);
+        if (t > 0 and t <= 4) then
+            p5 = p5 + 2 ^ (p * 4 + t - 1);
+            if (tierGet(player, p, t)) then
+                p6 = p6 + 2 ^ (2 * p) + ((t % 2 == 1) and 2 ^ (2 * p + 1) or 0);
+            end
         end
     end
     if (VWO_PROBE) then -- TEMPORARY diagnostic: all menu-gating bits set to see which sections the client unlocks
