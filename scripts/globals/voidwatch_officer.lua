@@ -229,6 +229,7 @@ local function vwoRefinerWarp(player, option)
 end
 
 function vwoRefinerFinish(player, cfg, option)
+    if (vwoAtmaFinish and vwoAtmaFinish(player, cfg, option)) then return; end
     if (option ~= 1) then
         -- Teleport options: (destId << 16) | 2 [C]. Mapped ones warp via VWO_WARPS; any other option is logged so it can be added in the toolkit.
         if (option ~= 0 and not vwoRefinerWarp(player, option)) then
@@ -246,4 +247,96 @@ function vwoRefinerFinish(player, cfg, option)
             return; -- [D] upgrades one stone per confirm; multi-stone selection encoding unknown
         end
     end
+end
+
+-----------------------------------
+-- Atmacite enrich / infuse. FIRST PASS, UNTESTED IN-GAME. Evidence: docs/voidwatch/research/ATMACITE-DATA.md + REFINER-CAPTURE-DECODE.md
+-- [C] option encodings and update layout (Wiggo 2020-02-02, Windurst Waters). Per-level cost steps [J/C], post-"Rhapsody in Mauve".
+-- Message ids are PER ZONE (client dialog.yml): only zones whose CFG carries atmaMsg are enabled. Purge is NOT built (option id not captured).
+-----------------------------------
+local ATMA_KI0 = 1806; -- KI id of list index 0; index = KI - 1806, slot = KI - 1805 [C]
+local ATMA_CLASS = "AABAABAABCCCBBBCCCCCCDDDDDDDDECCCCDCCCCD"; -- one letter per index 0..39 [W/user decision, see ATMACITE-DATA.md]
+local ATMA_INFUSE_COST = 100; -- cruor, any level [W2, level 1 also C]
+local ATMA_MAXLV = 15;
+
+-- cost to reach level L+1, indexed by L (1..14) [J step table / 20, cross-checked with captures]
+local ATMA_STEPS = {
+    A = {500, 1000, 1500, 2000, 2500, 2500, 2500, 2500, 2500, 3000, 3500, 4000, 4500, 5000},
+    B = {1500, 1500, 2000, 2500, 3000, 3500, 4000, 4000, 4000, 4500, 5000, 5000, 5000, 5000},
+    C = {}, D = {},
+    E = {2500, 2500, 5000, 5000, 7500, 7500, 10000, 10000, 12500, 12500, 15000, 15000, 17500, 17500},
+};
+for n = 1, 14 do ATMA_STEPS.C[n] = 750 * n; ATMA_STEPS.D[n] = 1250 * n; end
+
+local function atmaLevel(player, idx)
+    local l = player:getVar("VWA" .. idx);
+    if (l < 1) then l = 1; end
+    return l;
+end
+
+local function atmaWords(player) -- p0..p4: 8 nibbles each, nibble = level, index 0 = low nibble [C]
+    local w = {};
+    for k = 0, 4 do
+        local v = 0;
+        for n = 0, 7 do v = v + atmaLevel(player, k * 8 + n) * 16 ^ n; end
+        w[k] = v;
+    end
+    return w;
+end
+
+local function atmaInfuseSlots(player)
+    local n = 0;
+    if (player:hasKeyItem(PERIAPT_OF_EMERGENCE1)) then n = n + 1; end
+    if (player:hasKeyItem(PERIAPT_OF_EMERGENCE2)) then n = n + 1; end
+    if (player:hasKeyItem(PERIAPT_OF_EMERGENCE3)) then n = n + 1; end
+    return n;
+end
+
+-- Update phase (auto=1): (slot<<16)|5 enrich one level, (slot<<16)|2 list refresh [C]
+function vwoAtmaUpdate(player, cfg, option)
+    local m = cfg.atmaMsg;
+    if (m == nil) then return; end
+    local low = option % 65536;
+    local slot = math.floor(option / 65536);
+    if (slot < 1 or slot > 40) then return; end
+    local idx = slot - 1;
+    local ki = ATMA_KI0 + idx;
+    if (low == 5) then
+        if (not player:hasKeyItem(ki)) then return; end
+        local lv = atmaLevel(player, idx);
+        if (lv >= ATMA_MAXLV) then player:messageSpecial(m.max, ki); return; end
+        local cost = ATMA_STEPS[string.sub(ATMA_CLASS, idx + 1, idx + 1)][lv];
+        if (player:getCurrency("cruor") < cost) then player:messageSpecial(m.notEnough); return; end
+        player:delCurrency("cruor", cost);
+        player:setVar("VWA" .. idx, lv + 1);
+        player:messageSpecial(m.enriched, cost, ki, lv + 1);
+        player:updateEvent(0, ki, lv + 1, atmaWords(player)[math.floor(idx / 8)], player:getCurrency("cruor"), 0, 0, 0);
+    elseif (low == 2) then
+        local w = atmaWords(player);
+        player:updateEvent(w[0], w[1], w[2], w[3], w[4], 0x11111111, 7, 7);
+    end
+end
+
+-- Finish phase (auto=0): ((0x80|slot)<<16)|6 infuse [C]. Returns true when handled.
+function vwoAtmaFinish(player, cfg, option)
+    local m = cfg.atmaMsg;
+    if (m == nil) then return false; end
+    if (option % 65536 ~= 6) then return false; end
+    local slot = math.floor(option / 65536) - 128;
+    if (slot < 1 or slot > 40) then return false; end
+    local idx = slot - 1;
+    local ki = ATMA_KI0 + idx;
+    if (not player:hasKeyItem(ki)) then player:messageSpecial(m.noInfuse); return true; end
+    if (player:getCurrency("cruor") < ATMA_INFUSE_COST) then player:messageSpecial(m.notEnough); return true; end
+    local free = nil;
+    for s = 1, atmaInfuseSlots(player) do
+        local cur = player:getVar("VWA_INF" .. s);
+        if (cur == idx + 1) then free = nil; break; end -- already infused
+        if (cur == 0 and free == nil) then free = s; end
+    end
+    if (free == nil) then player:messageSpecial(m.noInfuse); return true; end
+    player:delCurrency("cruor", ATMA_INFUSE_COST);
+    player:setVar("VWA_INF" .. free, idx + 1);
+    player:messageSpecial(m.infused, ki, atmaLevel(player, idx), ATMA_INFUSE_COST);
+    return true;
 end
