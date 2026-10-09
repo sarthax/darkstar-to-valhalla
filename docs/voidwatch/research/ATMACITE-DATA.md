@@ -12,14 +12,15 @@ Tags: [C] capture, [W] BG wiki, [W2] FFXIclopedia, [D] DSP keyitems.lua, [U] unk
 
 ## Cost classes (cumulative cruor at L5/L10/L15, post-Rhapsody = JP table / 20)
 
-Class "C2" is new: the JP wiki [J] and FFXIclopedia [W2] both give Kaggen/Akvan/Pil/Uptala/Aello/Qilin a 1,245,000 total; BG Wiki [W] wrongly lists them under C (1,575,000). 2 of 3 sources agree, and the JP step table sums exactly, so C2 is used.
+**USER DECISION 2026-10-09: use BG Wiki classes (the six below go in class C, 1,575,000). The C2 row (1,245,000) is kept below only as the JP/FFXIclopedia alternative if a capture ever contradicts BG.**
+
+Class "C2" (alternative, NOT used): the JP wiki [J] and FFXIclopedia [W2] both give Kaggen/Akvan/Pil/Uptala/Aello/Qilin a 1,245,000 total; BG Wiki [W] wrongly lists them under C (1,575,000). 2 of 3 sources agree, and the JP step table sums exactly, so C2 is used.
 
 | Class | L5 | L10 | L15 | Members |
 |---|---|---|---|---|
 | A | 5,000 | 17,500 | 37,500 | Devotion, Persistence, Onslaught, Incursion, Destruction, Temperance |
 | B | 7,500 | 26,000 | 50,500 | Eminence, Enticement, Discipline, Mysticism, Rapidity, Preparedness |
-| C2 | 7,500 | 29,250 | 62,250 | Coercion, Finesse, Latitude, Deluges, Unity, Exhortation (indices 9, 10, 11, 15, 16, 17) |
-| C | 7,500 | 33,750 | 78,750 | Skyblaze, the Slayer, the Adamant, Dark Designs, the Forager, Glaciers, Affinity, the Assassin, Aplomb, the Tropics, Curses |
+| C | 7,500 | 33,750 | 78,750 | Coercion, Finesse, Latitude, Deluges, Unity, Exhortation, Skyblaze, the Slayer, the Adamant, Dark Designs, the Forager, Glaciers, Affinity, the Assassin, Aplomb, the Tropics, Curses |
 | D | 12,500 | 56,250 | 131,250 | the Valiant, the Shrewd, the Vanguard, Assailment, Cataphract, the Parapet, Imperium, the Solipsist, the Depths, Preservation |
 | E | 15,000 | 62,500 | 140,000 | Provenance |
 
@@ -31,12 +32,19 @@ Source: wikiwiki.jp/ffxi ヴォイドウォッチ/アートマ霊子 (2016-04-18
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | A | 500 | 1000 | 1500 | 2000 | 2500 | 2500 | 2500 | 2500 | 2500 | 3000 | 3500 | 4000 | 4500 | 5000 |
 | B | 1500 | 1500 | 2000 | 2500 | 3000 | 3500 | 4000 | 4000 | 4000 | 4500 | 5000 | 5000 | 5000 | 5000 |
-| C2 | 750 | 1500 | 2250 | 3000 | 3750 | 3750 | 4500 | 4500 | 5250 | 6000 | 6000 | 6750 | 6750 | 7500 |
+| C2 (alt, unused) | 750 | 1500 | 2250 | 3000 | 3750 | 3750 | 4500 | 4500 | 5250 | 6000 | 6000 | 6750 | 6750 | 7500 |
 | C | 750 | 1500 | 2250 | 3000 | 3750 | 4500 | 5250 | 6000 | 6750 | 7500 | 8250 | 9000 | 9750 | 10500 |
 | D | 1250 | 2500 | 3750 | 5000 | 6250 | 7500 | 8750 | 10000 | 11250 | 12500 | 13750 | 15000 | 16250 | 17500 |
 | E | 2500 | 2500 | 5000 | 5000 | 7500 | 7500 | 10000 | 10000 | 12500 | 12500 | 15000 | 15000 | 17500 | 17500 |
 
 Cross-check against captures [C]: class A (1810 all steps; 1807 L14/L15), class C (1841 all steps), class E (1835 L7-L15) all match the JP steps exactly. Classes B, C2 and D are therefore [J]-sourced but internally consistent (sums match the L5/L10/L15 totals on BG and FFXIclopedia where those agree).
+
+## User decisions (2026-10-09)
+
+- Source conflict (Coercion/Finesse/Latitude/Deluges/Unity/Exhortation costs): use BG Wiki, class C. Reason given: more consistent and lower cost.
+- Drop rule: guaranteed at 100% white; otherwise chance = white % (the two wikis align).
+- Parapet / Solipsist / Imperium sharing a battle's NM is real (several atmacites can drop from one fight), not a copy-paste error.
+- Per-level cost: user suggested an even split of each tier total (for example class A: L1-5 = 100,000 pre-quest, 25,000 per step; L5-10 = 250,000 / 5; L10-15 = 400,000 / 5). That was decided before the JP step table was found; the real series is uneven and is confirmed by captures (class A, C, E). Totals at L5/L10/L15 are identical either way. Recommended build: use the real steps from the table above (captured/JP), falling back to the even split only for a class with no step data.
 
 ## Conflicts between sources
 
@@ -73,15 +81,15 @@ Cross-check against captures [C]: class A (1810 all steps; 1807 L14/L15), class 
 | 6 | 7 | 1812 | Destruction | A | Lord Asag | MP+5 "Magic Atk. Bonus"+1 Enhances "Fast Cast" effect +1 | MP+25 "Magic Atk. Bonus"+5 Enhances "Fast Cast" effect +1 | MP+50 "Magic Atk. Bonus"+10 Enhances "Fast Cast" effect +2 | MP+100 "Magic Atk. Bonus"+15 Enhances "Fast Cast" effect +3 |
 | 7 | 8 | 1813 | Temperance | A | Akupara | DEF:+2 HP+5 DEX+1 | DEF:+10 HP+25 DEX+2 | DEF:+20 HP+50 DEX+4 | DEF:+30 HP+100 DEX+5 |
 | 8 | 9 | 1814 | Discipline | B | Voidwrought | HP+1% "Magic Def. Bonus"+1 "Save TP"+20 | HP+3% All attributes +1 "Magic Def. Bonus"+3 "Save TP"+100 | HP+5% All attributes +1 "Magic Def. Bonus"+5 "Save TP"+200 | HP+10% All attributes +3 "Magic Def. Bonus"+10 "Save TP"+200 |
-| 9 | 10 | 1815 | Coercion | C2 | Kaggen | STR+1 AGI+1 Accuracy+1 | STR+2 AGI+2 Accuracy+3 "Regain"+10 | STR+4 AGI+4 Accuracy+5 "Regain"+20 | STR+5 AGI+5 Accuracy+10 "Regain"+30 |
-| 10 | 11 | 1816 | Finesse | C2 | Akvan | INT+1 Ranged Attack+1 Ranged Accuracy+1 Magic burst damage+2 | INT+3 Ranged Attack+2 Ranged Accuracy+5 Magic burst damage+10 | INT+5 Ranged Attack+4 Ranged Accuracy+10 Magic burst damage+20 | INT+10 Ranged Attack+5 Ranged Accuracy+15 Magic burst damage+30 |
-| 11 | 12 | 1817 | Latitude | C2 | Pil | MND+1 "Subtle Blow"+1 TP Bonus +50 Haste +1% | MND+2 "Subtle Blow"+3 TP Bonus +250 Haste +1% | MND+4 "Subtle Blow"+5 TP Bonus +500 Haste +2% | MND+5 "Subtle Blow"+10 TP Bonus +500 Haste +3% |
+| 9 | 10 | 1815 | Coercion | C | Kaggen | STR+1 AGI+1 Accuracy+1 | STR+2 AGI+2 Accuracy+3 "Regain"+10 | STR+4 AGI+4 Accuracy+5 "Regain"+20 | STR+5 AGI+5 Accuracy+10 "Regain"+30 |
+| 10 | 11 | 1816 | Finesse | C | Akvan | INT+1 Ranged Attack+1 Ranged Accuracy+1 Magic burst damage+2 | INT+3 Ranged Attack+2 Ranged Accuracy+5 Magic burst damage+10 | INT+5 Ranged Attack+4 Ranged Accuracy+10 Magic burst damage+20 | INT+10 Ranged Attack+5 Ranged Accuracy+15 Magic burst damage+30 |
+| 11 | 12 | 1817 | Latitude | C | Pil | MND+1 "Subtle Blow"+1 TP Bonus +50 Haste +1% | MND+2 "Subtle Blow"+3 TP Bonus +250 Haste +1% | MND+4 "Subtle Blow"+5 TP Bonus +500 Haste +2% | MND+5 "Subtle Blow"+10 TP Bonus +500 Haste +3% |
 | 12 | 13 | 1818 | Mysticism | B | Cath Palug | MP+1% AGI+1 "Magic Atk. Bonus"+1 | MP+2% AGI+2 "Magic Atk. Bonus"+3 | MP+4% AGI+4 "Magic Atk. Bonus"+5 | MP+5% AGI+5 "Magic Atk. Bonus"+10 |
 | 13 | 14 | 1819 | Rapidity | B | Modron | MND+1 Enhances "Fast Cast" effect +1 "Snapshot"+1 | MND+5 Enhances "Fast Cast" effect +2 "Snapshot"+2 | MND+10 Enhances "Fast Cast" effect +4 "Snapshot"+4 | MND+15 Enhances "Fast Cast" effect +5 "Snapshot"+5 |
 | 14 | 15 | 1820 | Preparedness | B | Mimic King | VIT+1 INT+1 Magic damage taken -1% | VIT+3 INT+2 Magic damage taken -2% | VIT+5 INT+4 Magic damage taken -4% | VIT+10 INT+5 Magic damage taken -5% |
-| 15 | 16 | 1821 | Deluges | C2 | Uptala | Enmity+1 VIT+1 "Store TP"+1 | Enmity+5 VIT+5 "Store TP"+5 "Double Attack"+1% | Enmity+10 VIT+10 "Store TP"+10 "Double Attack"+2% | Enmity+15 VIT+15 "Store TP"+15 "Double Attack"+3% |
-| 16 | 17 | 1822 | Unity | C2 | Aello | MND+1 Ranged Accuracy+1 "Waltz" potency +2% Song casting time -1% | MND+2 Ranged Accuracy+3 "Waltz" potency +10% Song casting time -2% | MND+4 Ranged Accuracy+5 "Waltz" potency +20% Song casting time -4% | MND+5 Ranged Accuracy+10 "Waltz" potency +30% Song casting time -5% |
-| 17 | 18 | 1823 | Exhortation | C2 | Qilin | HP+1% VIT+1 Skillchain damage +2% | HP+2% VIT+2 Skillchain damage +10% | HP+4% VIT+4 Skillchain damage +20% Sphere: "Regain"+10 | HP+5% VIT+5 Skillchain damage +30% Sphere: "Regain"+20 |
+| 15 | 16 | 1821 | Deluges | C | Uptala | Enmity+1 VIT+1 "Store TP"+1 | Enmity+5 VIT+5 "Store TP"+5 "Double Attack"+1% | Enmity+10 VIT+10 "Store TP"+10 "Double Attack"+2% | Enmity+15 VIT+15 "Store TP"+15 "Double Attack"+3% |
+| 16 | 17 | 1822 | Unity | C | Aello | MND+1 Ranged Accuracy+1 "Waltz" potency +2% Song casting time -1% | MND+2 Ranged Accuracy+3 "Waltz" potency +10% Song casting time -2% | MND+4 Ranged Accuracy+5 "Waltz" potency +20% Song casting time -4% | MND+5 Ranged Accuracy+10 "Waltz" potency +30% Song casting time -5% |
+| 17 | 18 | 1823 | Exhortation | C | Qilin | HP+1% VIT+1 Skillchain damage +2% | HP+2% VIT+2 Skillchain damage +10% | HP+4% VIT+4 Skillchain damage +20% Sphere: "Regain"+10 | HP+5% VIT+5 Skillchain damage +30% Sphere: "Regain"+20 |
 | 18 | 19 | 1824 | Skyblaze | C | Ocythoe | DEX+1 Accuracy+1 Lightning elemental attack+1 Thunder+5 | DEX+3 Accuracy+5 Lightning elemental attack+5 Thunder+25 | DEX+5 Accuracy+10 Lightning elemental attack+10 Thunder+50 | DEX+10 Accuracy+15 Lightning elemental attack+15 Thunder+100 |
 | 19 | 20 | 1825 | the Slayer | C | Gaunab | STR+1 AGI+1 Fire elemental attack+1 Fire+5 | STR+3 AGI+3 Fire elemental attack+5 Fire+25 | STR+5 AGI+5 Fire elemental attack+10 Fire+50 | STR+10 AGI+10 Fire elemental attack+15 Fire+100 |
 | 20 | 21 | 1826 | the Adamant | C | Kalasutrax | HP+5 Breath damage taken -1% Earth+5 Water+5 | HP+25 Breath damage taken -2% Earth+25 Water+25 | HP+50 Breath damage taken -4% Earth+50 Water+50 | HP+100 Breath damage taken -5% Earth+100 Water+100 |
