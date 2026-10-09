@@ -172,7 +172,8 @@ local function refinerParams(player, cfg)
     local held = anyStratum(player);
     local p0 = (cfg.nation or 0) * 262144 + 2 -- nation unknown for outland refiners [D=0]
          + (held and 4 or 0);
-    local p1 = held and 16 or 0;
+    local p1, p2, p3 = 0, 0, 0;
+    if (vwoAtmaParams) then p0, p1, p2, p3 = vwoAtmaParams(player, p0); end -- atmacite ownership/infusion words [C Wiggo, see ATMACITE-DATA.md]
     -- p5 = 0x800000 + one bit per HELD stratum stone, bit = path*4 + tier-1 [C: 12 Raguza refine captures; a player holding Crimson IV + Indigo IV + Jade I read 0x188]
     -- p6 = 2 bits per path, set only when the held stone is ready to refine: 01 for even tiers, 11 for odd tiers; 00 = held but not ready [C]
     local p5 = 0x800000;
@@ -190,7 +191,7 @@ local function refinerParams(player, cfg)
         p5, p6 = 0xFFFFFF, 0xFFFFFFF;
         printf("[VWO refiner probe] p5=%d p6=%d (normal p5/p6 overwritten)", p5, p6);
     end
-    return p0, p1, 0, 0, player:getCurrency("cruor"), p5, p6;
+    return p0, p1, p2, p3, player:getCurrency("cruor"), p5, p6;
 end
 
 function vwoRefinerTrigger(player, cfg)
@@ -339,4 +340,29 @@ function vwoAtmaFinish(player, cfg, option)
     player:setVar("VWA_INF" .. free, idx + 1);
     player:messageSpecial(m.infused, ki, atmaLevel(player, idx), ATMA_INFUSE_COST);
     return true;
+end
+
+-- Refiner start params for atmacites [C Wiggo 2020-02-02, two refiner opens]:
+--  p1 = owned bitmask idx 0..31 (bit n = KI 1806+n), p2 = idx 32..39 [H: ownership, fits Wiggo p1=0xbfbd7ffe/p2=0x78 and p1 bit4 for a Crimson I-only character]
+--  p3 = three 7-bit infused slot numbers (slot = KI-1805) [C: 2,6,30 -> 2,5,30 after infusing KI 1810]
+--  p0 bits 3-4 = infuse slot count [H], bits 6-9 / 10-13 / 14-17 = levels of the three infused atmacites [C], bits 5 and 24 set when atmacites exist [H, unexplained in Wiggo p0]
+function vwoAtmaParams(player, p0)
+    local p1, p2, any = 0, 0, false;
+    for idx = 0, 39 do
+        if (player:hasKeyItem(ATMA_KI0 + idx)) then
+            any = true;
+            if (idx < 32) then p1 = p1 + 2 ^ idx; else p2 = p2 + 2 ^ (idx - 32); end
+        end
+    end
+    local p3 = 0;
+    for s = 1, 3 do
+        local slot = player:getVar("VWA_INF" .. s);
+        if (slot > 0) then
+            p3 = p3 + slot * 128 ^ (s - 1);
+            p0 = p0 + atmaLevel(player, slot - 1) * 2 ^ (2 + 4 * s + 0); -- bits 6,10,14
+        end
+    end
+    p0 = p0 + atmaInfuseSlots(player) * 8;
+    if (any) then p0 = p0 + 32 + 16777216; end
+    return p0, p1, p2, p3;
 end
