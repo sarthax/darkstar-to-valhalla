@@ -1,0 +1,9 @@
+// excerpt of src/map/ai/ai_container.cpp (from main @ eff415776b); lines 336,342
+    m_PrevTick = m_Tick;
+    m_Tick = _tick;
+
+    //#TODO: timestamp in the event?
+    EventHandler.triggerListener("TICK", PEntity);
+    PEntity->Tick(_tick);
+
+// ...

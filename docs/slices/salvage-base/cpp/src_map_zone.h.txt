@@ -1,0 +1,6 @@
+// excerpt of src/map/zone.h (from main @ eff415776b); lines 117,120
+    ZONE_ZHAYOLM_REMNANTS             = 73,
+    ZONE_ARRAPAGO_REMNANTS            = 74,
+    ZONE_BHAFLAU_REMNANTS             = 75,
+    ZONE_SILVER_SEA_REMNANTS          = 76,
+// ...
