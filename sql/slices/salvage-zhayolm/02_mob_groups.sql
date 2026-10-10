@@ -1,28 +1,57 @@
--- salvage-zhayolm: group scripting. Zhayolm Remnants mobs spawn by script (spawntype 128 = SCRIPTED,
--- respawn 0), not on a timer. dropid is left as DSP has it. Pools are DSP's own ids.
-UPDATE `mob_groups` SET `poolid` = 216, `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2379 AND `zoneid` = 73;
-UPDATE `mob_groups` SET `poolid` = 218, `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2380 AND `zoneid` = 73;
-UPDATE `mob_groups` SET `poolid` = 219, `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2381 AND `zoneid` = 73;
-UPDATE `mob_groups` SET `poolid` = 221, `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2382 AND `zoneid` = 73;
-UPDATE `mob_groups` SET `poolid` = 364, `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2384 AND `zoneid` = 73;
-UPDATE `mob_groups` SET `poolid` = 577, `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2385 AND `zoneid` = 73;
-UPDATE `mob_groups` SET `poolid` = 1098, `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2386 AND `zoneid` = 73;
-UPDATE `mob_groups` SET `poolid` = 1345, `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2387 AND `zoneid` = 73;
-UPDATE `mob_groups` SET `poolid` = 1413, `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2388 AND `zoneid` = 73;
-UPDATE `mob_groups` SET `poolid` = 2138, `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2390 AND `zoneid` = 73;
-UPDATE `mob_groups` SET `poolid` = 2508, `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2391 AND `zoneid` = 73;
-UPDATE `mob_groups` SET `poolid` = 2526, `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2392 AND `zoneid` = 73;
-UPDATE `mob_groups` SET `poolid` = 2533, `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2393 AND `zoneid` = 73;
-UPDATE `mob_groups` SET `poolid` = 2534, `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2394 AND `zoneid` = 73;
-UPDATE `mob_groups` SET `poolid` = 2535, `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2395 AND `zoneid` = 73;
-UPDATE `mob_groups` SET `poolid` = 2538, `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2396 AND `zoneid` = 73;
-UPDATE `mob_groups` SET `poolid` = 2539, `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2397 AND `zoneid` = 73;
-UPDATE `mob_groups` SET `poolid` = 2541, `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2398 AND `zoneid` = 73;
-UPDATE `mob_groups` SET `poolid` = 2545, `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2399 AND `zoneid` = 73;
-UPDATE `mob_groups` SET `poolid` = 3181, `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2401 AND `zoneid` = 73;
-UPDATE `mob_groups` SET `poolid` = 3183, `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2402 AND `zoneid` = 73;
-UPDATE `mob_groups` SET `poolid` = 3526, `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2405 AND `zoneid` = 73;
-UPDATE `mob_groups` SET `poolid` = 3898, `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2407 AND `zoneid` = 73;
-UPDATE `mob_groups` SET `poolid` = 4117, `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2409 AND `zoneid` = 73;
-UPDATE `mob_groups` SET `poolid` = 4389, `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2411 AND `zoneid` = 73;
-UPDATE `mob_groups` SET `poolid` = 4508, `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2412 AND `zoneid` = 73;
+-- salvage-zhayolm: one group per live group (id 29000 + live groupid). Pool ids are the 730000-offset copies; dropid is the 50000-offset copy in 06_mob_droplist.sql.
+DELETE FROM `mob_groups` WHERE `groupid` BETWEEN 29000 AND 29999;
+INSERT INTO `mob_groups` VALUES (29001,733223,73,0,128,52037,0,0,0,0,0); -- Puk
+INSERT INTO `mob_groups` VALUES (29002,732545,73,0,128,51605,0,0,0,0,0); -- Mamool_Ja_Zenist
+INSERT INTO `mob_groups` VALUES (29003,733181,73,0,128,52016,0,0,0,0,0); -- Poroggo_Gent
+INSERT INTO `mob_groups` VALUES (29004,734508,73,0,128,52806,0,0,0,0,0); -- Ziz
+INSERT INTO `mob_groups` VALUES (29005,734117,73,0,128,52533,0,0,0,0,0); -- Vagrant_Lindwurm
+INSERT INTO `mob_groups` VALUES (29006,730577,73,0,128,50384,0,0,0,0,0); -- Bull_Bugard
+INSERT INTO `mob_groups` VALUES (29007,733183,73,0,128,0,0,0,0,0,0); -- Poroggo_Madame
+INSERT INTO `mob_groups` VALUES (29008,731098,73,0,128,50696,0,0,0,0,0); -- Draco_Lizard
+INSERT INTO `mob_groups` VALUES (29009,732533,73,0,128,50696,0,0,0,0,0); -- Mamool_Ja_Savant
+INSERT INTO `mob_groups` VALUES (29010,734389,73,0,128,52678,0,0,0,0,0); -- Wyvern
+INSERT INTO `mob_groups` VALUES (29011,732508,73,0,128,51589,0,0,0,0,0); -- Mamool_Ja_Bounder
+INSERT INTO `mob_groups` VALUES (29012,732535,73,0,128,50608,0,0,0,0,0); -- Mamool_Ja_Spearman
+INSERT INTO `mob_groups` VALUES (29013,732541,73,0,128,0,0,0,0,0,0); -- Mamool_Jas_Wyvern
+INSERT INTO `mob_groups` VALUES (29014,732138,73,0,128,51403,0,0,0,0,0); -- Jakko
+INSERT INTO `mob_groups` VALUES (29015,732538,73,0,128,0,0,0,0,0,0); -- Mamool_Ja_Strapper
+INSERT INTO `mob_groups` VALUES (29016,732539,73,0,128,0,0,0,0,0,0); -- Mamool_Jas_Lizard
+INSERT INTO `mob_groups` VALUES (29017,730221,73,0,128,50154,0,0,0,0,0); -- Archaic_Rampart
+INSERT INTO `mob_groups` VALUES (29018,734275,73,0,128,0,0,0,0,0,0); -- Wajaom_Tiger
+INSERT INTO `mob_groups` VALUES (29019,732534,73,0,128,51599,0,0,0,0,0); -- Mamool_Ja_Sophist
+INSERT INTO `mob_groups` VALUES (29020,732526,73,0,128,51599,0,0,0,0,0); -- Mamool_Ja_Mimicker
+INSERT INTO `mob_groups` VALUES (29021,731345,73,0,128,50833,0,0,0,0,0); -- First_Rampart
+INSERT INTO `mob_groups` VALUES (29022,733526,73,0,128,50833,0,0,0,0,0); -- Second_Rampart
+INSERT INTO `mob_groups` VALUES (29023,733898,73,0,128,50833,0,0,0,0,0); -- Third_Rampart
+INSERT INTO `mob_groups` VALUES (29024,731413,73,0,128,50157,0,0,0,0,0); -- Fourth_Rampart
+INSERT INTO `mob_groups` VALUES (29025,733383,73,0,128,0,0,0,0,0,0); -- Rogue_Marid
+INSERT INTO `mob_groups` VALUES (29026,730218,73,0,128,50154,0,0,0,0,0); -- Archaic_Gear
+INSERT INTO `mob_groups` VALUES (29027,733670,73,0,128,0,0,0,0,0,0); -- Slime_Mold
+INSERT INTO `mob_groups` VALUES (29028,730216,73,0,128,0,0,0,0,0,0); -- Archaic_Chariot
+INSERT INTO `mob_groups` VALUES (29029,730219,73,0,128,50157,0,0,0,0,0); -- Archaic_Gears
+INSERT INTO `mob_groups` VALUES (29030,732669,73,0,128,0,0,0,0,0,0); -- Mindgazer
+INSERT INTO `mob_groups` VALUES (29031,733976,73,0,128,0,0,0,0,0,0); -- Torama
+INSERT INTO `mob_groups` VALUES (29032,731806,73,0,128,0,0,0,0,0,0); -- Greater_Manticore
+INSERT INTO `mob_groups` VALUES (29033,730364,73,0,128,50238,0,0,0,0,0); -- Battleclad_Chariot
+INSERT INTO `mob_groups` VALUES (29034,730831,73,0,128,0,0,0,0,0,0); -- Crawler
+INSERT INTO `mob_groups` VALUES (29035,732545,73,0,128,0,0,0,0,0,0); -- Mamool_Ja_Zenist
+INSERT INTO `mob_groups` VALUES (29036,732538,73,0,128,0,0,0,0,0,0); -- Mamool_Ja_Strapper
+INSERT INTO `mob_groups` VALUES (29037,732539,73,0,128,0,0,0,0,0,0); -- Mamool_Jas_Lizard
+INSERT INTO `mob_groups` VALUES (29038,0,73,0,128,0,0,0,0,0,0); -- Poroggo_Comtesse
+INSERT INTO `mob_groups` VALUES (29039,733934,73,0,128,0,0,0,0,0,0); -- Toad
+INSERT INTO `mob_groups` VALUES (29040,732526,73,0,128,0,0,0,0,0,0); -- Mamool_Ja_Mimicker
+INSERT INTO `mob_groups` VALUES (29041,732508,73,0,128,0,0,0,0,0,0); -- Mamool_Ja_Bounder
+INSERT INTO `mob_groups` VALUES (29042,730218,73,0,128,0,0,0,0,0,0); -- Archaic_Gear
+INSERT INTO `mob_groups` VALUES (29043,732534,73,0,128,0,0,0,0,0,0); -- Mamool_Ja_Sophist
+INSERT INTO `mob_groups` VALUES (29044,731040,73,0,128,0,0,0,0,0,0); -- Diremite
+INSERT INTO `mob_groups` VALUES (29045,730221,73,0,128,0,0,0,0,0,0); -- Archaic_Rampart
+INSERT INTO `mob_groups` VALUES (29046,730219,73,0,128,0,0,0,0,0,0); -- Archaic_Gears
+INSERT INTO `mob_groups` VALUES (29047,733221,73,0,128,0,0,0,0,0,0); -- Pugil
+INSERT INTO `mob_groups` VALUES (29048,732533,73,0,128,0,0,0,0,0,0); -- Mamool_Ja_Savant
+INSERT INTO `mob_groups` VALUES (29049,730216,73,0,128,0,0,0,0,0,0); -- Archaic_Chariot
+INSERT INTO `mob_groups` VALUES (29050,0,73,0,128,0,0,0,0,0,0); -- Mamool_Ja_Backstabber
+INSERT INTO `mob_groups` VALUES (29051,730364,73,0,128,0,0,0,0,0,0); -- Battleclad_Chariot
+INSERT INTO `mob_groups` VALUES (29052,0,73,0,128,0,0,0,0,0,0); -- Mamool_Ja_Antiquary
+INSERT INTO `mob_groups` VALUES (29053,730039,73,0,128,0,0,0,0,0,0); -- Acrolith
+INSERT INTO `mob_groups` VALUES (29054,732018,73,0,128,0,0,0,0,0,0); -- Hydra
+INSERT INTO `mob_groups` VALUES (29055,0,73,0,128,0,0,0,0,0,0); -- Enraged_Alfard
