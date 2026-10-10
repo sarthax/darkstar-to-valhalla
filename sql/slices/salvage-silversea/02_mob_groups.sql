@@ -1,0 +1,37 @@
+-- salvage-silversea: scripted-spawn groups. New groups use reserved ids 30000+ (all other slices are < 18500).
+-- dropid is 0 on new groups (live droplist ids do not map onto DSP's).
+UPDATE `mob_groups` SET `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2484 AND `zoneid` = 76;
+UPDATE `mob_groups` SET `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2485 AND `zoneid` = 76;
+UPDATE `mob_groups` SET `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2486 AND `zoneid` = 76;
+UPDATE `mob_groups` SET `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2487 AND `zoneid` = 76;
+UPDATE `mob_groups` SET `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2491 AND `zoneid` = 76;
+UPDATE `mob_groups` SET `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2493 AND `zoneid` = 76;
+UPDATE `mob_groups` SET `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2494 AND `zoneid` = 76;
+UPDATE `mob_groups` SET `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2495 AND `zoneid` = 76;
+UPDATE `mob_groups` SET `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2497 AND `zoneid` = 76;
+UPDATE `mob_groups` SET `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2498 AND `zoneid` = 76;
+UPDATE `mob_groups` SET `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2500 AND `zoneid` = 76;
+UPDATE `mob_groups` SET `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2501 AND `zoneid` = 76;
+UPDATE `mob_groups` SET `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2502 AND `zoneid` = 76;
+UPDATE `mob_groups` SET `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2504 AND `zoneid` = 76;
+UPDATE `mob_groups` SET `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2505 AND `zoneid` = 76;
+UPDATE `mob_groups` SET `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2506 AND `zoneid` = 76;
+UPDATE `mob_groups` SET `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2507 AND `zoneid` = 76;
+UPDATE `mob_groups` SET `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 14527 AND `zoneid` = 76;
+UPDATE `mob_groups` SET `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 14528 AND `zoneid` = 76;
+UPDATE `mob_groups` SET `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 14529 AND `zoneid` = 76;
+UPDATE `mob_groups` SET `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 14530 AND `zoneid` = 76;
+DELETE FROM `mob_groups` WHERE `groupid` = 30000;
+INSERT INTO `mob_groups` VALUES (30000,6507,76,0,128,0,0,0,75,76,0);
+DELETE FROM `mob_groups` WHERE `groupid` = 30001;
+INSERT INTO `mob_groups` VALUES (30001,6555,76,0,128,0,0,0,75,76,0);
+DELETE FROM `mob_groups` WHERE `groupid` = 30002;
+INSERT INTO `mob_groups` VALUES (30002,6533,76,0,128,0,0,0,75,76,0);
+DELETE FROM `mob_groups` WHERE `groupid` = 30003;
+INSERT INTO `mob_groups` VALUES (30003,6556,76,0,128,0,0,0,75,76,0);
+DELETE FROM `mob_groups` WHERE `groupid` = 30004;
+INSERT INTO `mob_groups` VALUES (30004,197,76,0,128,0,0,0,99,99,0);
+DELETE FROM `mob_groups` WHERE `groupid` = 30005;
+INSERT INTO `mob_groups` VALUES (30005,2065,76,0,128,0,0,0,99,99,0);
+DELETE FROM `mob_groups` WHERE `groupid` = 30006;
+INSERT INTO `mob_groups` VALUES (30006,6722,76,0,128,0,0,0,0,0,0);
