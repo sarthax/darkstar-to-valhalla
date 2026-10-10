@@ -1,48 +1,62 @@
--- salvage: scripted-spawn groups. New groups use reserved ids 31000+ (all other slices are < 18500).
--- dropid is 0 on new groups (live droplist ids do not map onto DSP's).
-UPDATE `mob_groups` SET `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2451 AND `zoneid` = 75;
-UPDATE `mob_groups` SET `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2452 AND `zoneid` = 75;
-UPDATE `mob_groups` SET `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2453 AND `zoneid` = 75;
-UPDATE `mob_groups` SET `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2456 AND `zoneid` = 75;
-DELETE FROM `mob_groups` WHERE `groupid` = 31000;
-INSERT INTO `mob_groups` VALUES (31000,5430,75,0,128,0,0,0,73,75,0);
-DELETE FROM `mob_groups` WHERE `groupid` = 31001;
-INSERT INTO `mob_groups` VALUES (31001,263,75,0,128,0,0,0,73,75,0);
-DELETE FROM `mob_groups` WHERE `groupid` = 31002;
-INSERT INTO `mob_groups` VALUES (31002,5431,75,0,128,0,0,0,73,75,0);
-DELETE FROM `mob_groups` WHERE `groupid` = 31003;
-INSERT INTO `mob_groups` VALUES (31003,5728,75,0,128,0,0,0,73,75,0);
-DELETE FROM `mob_groups` WHERE `groupid` = 31004;
-INSERT INTO `mob_groups` VALUES (31004,1887,75,0,128,0,0,0,75,75,0);
-DELETE FROM `mob_groups` WHERE `groupid` = 31005;
-INSERT INTO `mob_groups` VALUES (31005,1933,75,0,128,0,0,0,73,75,0);
-DELETE FROM `mob_groups` WHERE `groupid` = 31006;
-INSERT INTO `mob_groups` VALUES (31006,933,75,0,128,0,0,0,79,79,0);
-DELETE FROM `mob_groups` WHERE `groupid` = 31007;
-INSERT INTO `mob_groups` VALUES (31007,963,75,0,128,0,0,0,79,80,0);
-DELETE FROM `mob_groups` WHERE `groupid` = 31008;
-INSERT INTO `mob_groups` VALUES (31008,1448,75,0,128,0,0,0,79,79,0);
-DELETE FROM `mob_groups` WHERE `groupid` = 31009;
-INSERT INTO `mob_groups` VALUES (31009,1017,75,0,128,0,0,0,79,80,0);
-DELETE FROM `mob_groups` WHERE `groupid` = 31010;
-INSERT INTO `mob_groups` VALUES (31010,3191,75,0,128,0,0,0,80,80,0);
-DELETE FROM `mob_groups` WHERE `groupid` = 31011;
-INSERT INTO `mob_groups` VALUES (31011,221,75,0,128,0,0,0,80,82,0);
-DELETE FROM `mob_groups` WHERE `groupid` = 31012;
-INSERT INTO `mob_groups` VALUES (31012,6507,75,0,128,0,0,0,75,76,0);
-DELETE FROM `mob_groups` WHERE `groupid` = 31013;
-INSERT INTO `mob_groups` VALUES (31013,1471,75,0,128,0,0,0,75,76,0);
-DELETE FROM `mob_groups` WHERE `groupid` = 31014;
-INSERT INTO `mob_groups` VALUES (31014,6555,75,0,128,0,0,0,75,76,0);
-DELETE FROM `mob_groups` WHERE `groupid` = 31015;
-INSERT INTO `mob_groups` VALUES (31015,1863,75,0,128,0,0,0,80,82,0);
-DELETE FROM `mob_groups` WHERE `groupid` = 31016;
-INSERT INTO `mob_groups` VALUES (31016,2878,75,0,128,0,0,0,73,73,0);
-DELETE FROM `mob_groups` WHERE `groupid` = 31017;
-INSERT INTO `mob_groups` VALUES (31017,1862,75,0,128,0,0,0,80,82,0);
-DELETE FROM `mob_groups` WHERE `groupid` = 31018;
-INSERT INTO `mob_groups` VALUES (31018,3456,75,0,128,0,0,0,73,73,0);
-DELETE FROM `mob_groups` WHERE `groupid` = 31019;
-INSERT INTO `mob_groups` VALUES (31019,1079,75,0,128,0,0,0,82,82,0);
-DELETE FROM `mob_groups` WHERE `groupid` = 31020;
-INSERT INTO `mob_groups` VALUES (31020,6556,75,0,128,0,0,0,75,76,0);
+-- salvage-bhaflau: one group per live group (id 31000 + live groupid). Pool ids are the 750000-offset copies; dropid is the 58000-offset copy in 06_mob_droplist.sql.
+DELETE FROM `mob_groups` WHERE `groupid` BETWEEN 31000 AND 31999;
+INSERT INTO `mob_groups` VALUES (31001,750642,75,0,128,58420,0,0,75,75,0); -- Carmine_Eruca
+INSERT INTO `mob_groups` VALUES (31002,750412,75,0,128,58269,0,0,75,75,0); -- Bifrons
+INSERT INTO `mob_groups` VALUES (31003,754017,75,0,128,58152,0,0,75,75,0); -- Troll_Gemologist
+INSERT INTO `mob_groups` VALUES (31004,754281,75,0,128,60610,0,0,75,75,0); -- Wamouracampa
+INSERT INTO `mob_groups` VALUES (31005,754022,75,0,128,60483,0,0,75,75,0); -- Troll_Lapidarist
+INSERT INTO `mob_groups` VALUES (31006,754021,75,0,128,60481,0,0,75,75,0); -- Troll_Ironworker
+INSERT INTO `mob_groups` VALUES (31007,754286,75,0,128,58765,0,0,75,75,0); -- Wandering_Wamoura
+INSERT INTO `mob_groups` VALUES (31008,753808,75,0,128,60360,0,0,75,75,0); -- Sulfur_Scorpion
+INSERT INTO `mob_groups` VALUES (31009,752471,75,0,128,0,19000,0,75,75,0); -- Mad_Bomber
+INSERT INTO `mob_groups` VALUES (31010,751209,75,0,128,58765,9150,0,75,75,0); -- Empathic_Flan
+INSERT INTO `mob_groups` VALUES (31011,754030,75,0,128,58152,0,0,75,75,0); -- Troll_Smelter
+INSERT INTO `mob_groups` VALUES (31012,754032,75,0,128,58152,0,0,75,75,0); -- Troll_Stoneworker
+INSERT INTO `mob_groups` VALUES (31013,754010,75,0,128,58152,0,0,75,75,0); -- Troll_Cameist
+INSERT INTO `mob_groups` VALUES (31014,754015,75,0,128,0,0,0,75,75,0); -- Troll_Engraver
+INSERT INTO `mob_groups` VALUES (31015,754035,75,0,128,0,0,0,75,75,0); -- Trolls_Automaton
+INSERT INTO `mob_groups` VALUES (31016,750437,75,0,128,0,0,0,75,75,0); -- Black_Pudding
+INSERT INTO `mob_groups` VALUES (31017,750219,75,0,128,58159,0,0,75,75,0); -- Archaic_Gears
+INSERT INTO `mob_groups` VALUES (31018,750218,75,0,128,58156,0,0,75,75,0); -- Archaic_Gear
+INSERT INTO `mob_groups` VALUES (31019,750216,75,0,128,58152,0,0,75,75,0); -- Archaic_Chariot
+INSERT INTO `mob_groups` VALUES (31020,752433,75,0,128,59533,52396,0,75,75,0); -- Long-Bowed_Chariot
+INSERT INTO `mob_groups` VALUES (31022,753338,75,0,128,60081,6000,0,75,75,0); -- Reactionary_Rampart
+INSERT INTO `mob_groups` VALUES (31023,752014,75,0,128,0,3200,0,75,75,0); -- Hunting_Wasp
+INSERT INTO `mob_groups` VALUES (31024,750765,75,0,128,0,4000,0,75,75,0); -- Colibri
+INSERT INTO `mob_groups` VALUES (31025,751372,75,0,128,0,0,0,75,75,0); -- Flux_Flan
+INSERT INTO `mob_groups` VALUES (31026,750967,75,0,128,58604,8900,0,75,75,0); -- Demented_Jalaawa
+INSERT INTO `mob_groups` VALUES (31027,750714,75,0,128,0,3200,0,75,75,0); -- Chigoe
+INSERT INTO `mob_groups` VALUES (31028,751477,75,0,128,58939,4500,0,75,75,0); -- Gate_Widow
+INSERT INTO `mob_groups` VALUES (31029,753651,75,0,128,60267,5270,0,75,75,0); -- Skirmish_Pephredo
+INSERT INTO `mob_groups` VALUES (31030,754497,75,0,128,0,7450,0,75,75,0); -- Zebra_Zachary
+INSERT INTO `mob_groups` VALUES (31031,753984,75,0,128,0,3940,0,75,75,0); -- Tragopan
+INSERT INTO `mob_groups` VALUES (31032,753120,75,0,128,59989,0,0,75,75,0); -- Peryton
+INSERT INTO `mob_groups` VALUES (31033,0,75,0,128,0,0,0,0,0,0); -- Fly
+INSERT INTO `mob_groups` VALUES (31034,750437,75,0,128,0,0,0,75,75,0); -- Black_Pudding
+INSERT INTO `mob_groups` VALUES (31035,0,75,0,128,0,0,0,0,0,0); -- Moblin_Armsman
+INSERT INTO `mob_groups` VALUES (31036,0,75,0,128,0,0,0,0,0,0); -- Throat_Tearer_Tregotroq
+INSERT INTO `mob_groups` VALUES (31037,754281,75,0,128,0,0,0,75,75,0); -- Wamouracampa
+INSERT INTO `mob_groups` VALUES (31038,754286,75,0,128,0,0,0,75,75,0); -- Wandering_Wamoura
+INSERT INTO `mob_groups` VALUES (31039,0,75,0,128,0,0,0,0,0,0); -- Moblin_Poniardman
+INSERT INTO `mob_groups` VALUES (31040,0,75,0,128,0,0,0,0,0,0); -- Silent_Smotherer_Silak
+INSERT INTO `mob_groups` VALUES (31041,750894,75,0,128,0,0,0,0,0,0); -- Dahak
+INSERT INTO `mob_groups` VALUES (31042,0,75,0,128,0,0,0,0,0,0); -- Smouldering_Dahak
+INSERT INTO `mob_groups` VALUES (31043,754032,75,0,128,0,0,0,75,75,0); -- Troll_Stoneworker
+INSERT INTO `mob_groups` VALUES (31044,754010,75,0,128,0,0,0,75,75,0); -- Troll_Cameist
+INSERT INTO `mob_groups` VALUES (31045,754017,75,0,128,0,0,0,75,75,0); -- Troll_Gemologist
+INSERT INTO `mob_groups` VALUES (31046,754030,75,0,128,0,0,0,75,75,0); -- Troll_Smelter
+INSERT INTO `mob_groups` VALUES (31047,754022,75,0,128,0,0,0,75,75,0); -- Troll_Lapidarist
+INSERT INTO `mob_groups` VALUES (31048,754015,75,0,128,0,0,0,75,75,0); -- Troll_Engraver
+INSERT INTO `mob_groups` VALUES (31049,754035,75,0,128,0,0,0,75,75,0); -- Trolls_Automaton
+INSERT INTO `mob_groups` VALUES (31050,0,75,0,128,0,0,0,0,0,0); -- Troll_Occultist
+INSERT INTO `mob_groups` VALUES (31051,0,75,0,128,0,0,0,0,0,0); -- Troll_Pugilist
+INSERT INTO `mob_groups` VALUES (31052,0,75,0,128,0,0,0,0,0,0); -- Troll_Spellbinder
+INSERT INTO `mob_groups` VALUES (31053,0,75,0,128,0,0,0,0,0,0); -- Troll_Guardian
+INSERT INTO `mob_groups` VALUES (31054,0,75,0,128,0,0,0,0,0,0); -- Troll_Huntsman
+INSERT INTO `mob_groups` VALUES (31055,750218,75,0,128,0,0,0,75,75,0); -- Archaic_Gear
+INSERT INTO `mob_groups` VALUES (31056,750221,75,0,128,0,0,0,75,75,0); -- Archaic_Rampart
+INSERT INTO `mob_groups` VALUES (31057,750219,75,0,128,0,0,0,75,75,0); -- Archaic_Gears
+INSERT INTO `mob_groups` VALUES (31058,752433,75,0,128,0,52396,0,75,75,0); -- Long-Bowed_Chariot
+INSERT INTO `mob_groups` VALUES (31059,750039,75,0,128,0,0,0,0,0,0); -- Acrolith
+INSERT INTO `mob_groups` VALUES (31060,750680,75,0,128,0,0,0,0,0,0); -- Cerberus
+INSERT INTO `mob_groups` VALUES (31061,0,75,0,128,0,0,0,0,0,0); -- Orthrus_Seether
