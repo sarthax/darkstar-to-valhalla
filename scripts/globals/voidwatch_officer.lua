@@ -167,7 +167,7 @@ function vwoOfficerFinish(player, cfg, option)
 end
 
 -- [H] refiner params (see header of Atmacite_Refiner.lua)
-VWO_PROBE = true; -- set false/remove after refiner menu gating is decoded
+VWO_PROBE = false; -- set false/remove after refiner menu gating is decoded
 local function refinerParams(player, cfg)
     local held = anyStratum(player);
     local p0 = (cfg.nation or 0) * 262144 + 2 -- nation unknown for outland refiners [D=0]
@@ -190,6 +190,7 @@ local function refinerParams(player, cfg)
     if (VWO_PROBE) then -- TEMPORARY diagnostic: all menu-gating bits set to see which sections the client unlocks
         p5, p6 = 0xFFFFFF, 0xFFFFFFF;
         printf("[VWO refiner probe] p5=%d p6=%d (normal p5/p6 overwritten)", p5, p6);
+        printf("[VWO refiner probe] p0=0x%X p1=0x%X p2=0x%X p3=0x%X inf=%d/%d/%d", p0, p1, p2, p3, player:getVar("VWA_INF1"), player:getVar("VWA_INF2"), player:getVar("VWA_INF3"));
     end
     return p0, p1, p2, p3, player:getCurrency("cruor"), p5, p6;
 end
@@ -300,6 +301,11 @@ function vwoAtmaUpdate(player, cfg, option)
     if (VWO_PROBE) then printf("[VWO atma update] option=0x%X char=%s", option, player:getName()); end
     local low = option % 65536;
     local slot = math.floor(option / 65536);
+    if (low == 1 or (low == 2 and slot == 0)) then -- [C] plain 0x1 / 0x2 (slot 0): client asks for the level words, Wiggo answered each with the refresh reply
+        local w0 = atmaWords(player);
+        player:updateEvent(w0[0], w0[1], w0[2], w0[3], w0[4], 0x11111111, 7, 7);
+        return;
+    end
     if (slot < 1 or slot > 40) then return; end
     local idx = slot - 1;
     local ki = ATMA_KI0 + idx;
@@ -314,10 +320,10 @@ function vwoAtmaUpdate(player, cfg, option)
         if (VWO_PROBE) then printf("[VWO atma enrich] idx=%d lv %d -> %d cost=%d stored=%d", idx, lv, lv + 1, cost, player:getVar("VWA" .. idx)); end
         player:messageSpecial(m.enriched, cost, ki, lv + 1);
         local w = atmaWords(player);
-        player:updateEvent((vwoAtmaParams(player, (cfg.nation or 0) * 262144 + 2)), ki, lv + 1, w[2], player:getCurrency("cruor"), w[4], 7, 7);
+        player:updateEvent((vwoAtmaParams(player, (cfg.nation or 0) * 262144 + 2)), ki, lv + 1, w[3], player:getCurrency("cruor"), 0x11111111, 7, 7); -- [C] Wiggo enrich result: p0 counter?, KI, new level, level word 3, cruor, pad word, 7, 7
     elseif (low == 2) then
         local w = atmaWords(player);
-        player:updateEvent((vwoAtmaParams(player, (cfg.nation or 0) * 262144 + 2)), w[0], w[1], w[2], w[3], w[4], 7, 7); -- [C] Wiggo refresh = p0 (start-style packed), 5 level words, 7, 7
+        player:updateEvent(w[0], w[1], w[2], w[3], w[4], 0x11111111, 7, 7); -- [C] Wiggo refresh = SIX level words (idx 0..39 + pad of 1s, 8 nibbles each, low nibble first), 7, 7
     end
 end
 
@@ -336,8 +342,35 @@ function vwoAtmaFinish(player, cfg, option)
         player:messageSpecial(m.purged, ATMA_KI0 + pslot - 1, atmaLevel(player, pslot - 1));
         return true;
     end
+    if (low == 6 and math.floor(option / 65536) >= 64) then -- replace: hi = (0x40 << (pos-1)) | slot [C 0x850006 pos2, 0x550006 pos1; position-from-flag is INFERRED from those two]
+        local rh = math.floor(option / 65536);
+        local rslot = rh % 64;
+        local rpos = (rh >= 256) and 3 or ((rh >= 128) and 2 or 1);
+        local ridx = rslot - 1;
+        local rki = ATMA_KI0 + ridx;
+        local old = player:getVar("VWA_INF" .. rpos);
+        if (VWO_PROBE) then printf("[VWO atma swap] char=%s ki=%d pos=%d old=%d", player:getName(), rki, rpos, old); end
+        if (rslot < 1 or rslot > 40 or old == 0 or not player:hasKeyItem(rki) or rpos > atmaInfuseSlots(player)) then player:messageSpecial(m.noInfuse); return true; end
+        for s2 = 1, 3 do
+            if (player:getVar("VWA_INF" .. s2) == ridx + 1) then player:messageSpecial(m.noInfuse); return true; end
+        end
+        if (player:getCurrency("cruor") < ATMA_INFUSE_COST) then player:messageSpecial(m.notEnough); return true; end
+        player:delCurrency("cruor", ATMA_INFUSE_COST);
+        player:setVar("VWA_INF" .. rpos, ridx + 1);
+        if (m.swap ~= nil) then
+            player:messageSpecial(m.swap, ATMA_KI0 + old - 1, atmaLevel(player, old - 1), rki, atmaLevel(player, ridx), ATMA_INFUSE_COST);
+        else
+            player:messageSpecial(m.infused, rki, atmaLevel(player, ridx), ATMA_INFUSE_COST);
+        end
+        return true;
+    end
     if (low ~= 3 and low ~= 6 and low ~= 9) then return false; end
     local pos = low / 3;
+    if (low == 3) then -- [C] client sent 3 for pos 1 even with 3 slots and slot 1 filled: treat as 'infuse into first empty position' (INFERRED)
+        for s3 = 1, atmaInfuseSlots(player) do
+            if (player:getVar("VWA_INF" .. s3) == 0) then pos = s3; break; end
+        end
+    end
     local hi = math.floor(option / 65536);
     local swap = hi >= 128;
     local slot = hi % 128;
