@@ -6,3 +6,6 @@
 5. Armoury Crate, Slot, Socket: trigger text matches (6430-ish block: SOCKET_TRIGGER 7430, SLOT_TRIGGER 7431).
 6. Archaic Gear: melee hit despawns it after 4s; ranged does not (known).
 7. Time-up and party-fallen failure messages, then exit.
+
+## Apply order (v3)
+Apply sql/slices/salvage-bhaflau/00..06 in numeric order (06_mob_droplist.sql is new). Regression: compare spawn count, positions, pools and drops against the live Topaz DB (validate2.py reports 0 errors).
