@@ -1,0 +1,10 @@
+// excerpt of src/map/ai/controllers/player_controller.cpp (from main @ eff415776b); lines 156,163
+            PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_CANNOT_USE_WS));
+            return false;
+        }
+        bool impairmentBlocksWS = false;
+        if (auto* PImpairment = PChar->StatusEffectContainer->GetStatusEffect(EFFECT_IMPAIRMENT))
+        {
+            impairmentBlocksWS = (PImpairment->GetPower() & 0x02) != 0; // 0x02 = weapon skills restricted (Nyzul pathos)
+        }
+// ...
