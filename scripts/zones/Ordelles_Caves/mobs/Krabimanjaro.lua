@@ -59,6 +59,9 @@ end
 
 function onMobInitialize(mob)
     mob:setMobMod(MOBMOD_ADD_EFFECT, 1);
+    -- Pool mJob is BLM, whose C++ default (mobutils SetupJob) is HP_STANDBACK 70: the mob refuses to close
+    -- to melee range above 70% HP. He is a melee+caster crab; -1 disables standback (precedent: Bahamut).
+    mob:setMobMod(MOBMOD_HP_STANDBACK, -1);
 end;
 
 -- Melee additional effect: Paralysis [W] BG wiki; user-observed in-game. Chance/power/duration are [D] guesses.
