@@ -33,6 +33,12 @@ function onMagicHit(caster, target, spell)
     return 0;
 end;
 
+function onMobInitialize(mob)
+    -- BLM main job defaults to HP_STANDBACK 70 (mobutils SetupJob): mob would stay at range above 70% HP.
+    -- Voidwatch NMs must close to melee; -1 disables standback (precedent: Bahamut).
+    mob:setMobMod(MOBMOD_HP_STANDBACK, -1);
+end;
+
 function onMobSpawn(mob)
     mob:setLocalVar("VW_DEADLINE", os.time() + LIMIT);
     mob:setLocalVar("VW_WARNED", LIMIT + 1);
@@ -44,7 +50,7 @@ end;
 -- [C] Firaga IV 177, Fire V 148, Firaja 496. Spell choice/rates [D].
 function onMonsterMagicPrepare(mob, target)
     local pool = {177, 148, 496};
-    return pool[math.random(#pool)];
+    return vwPick(mob, target, pool);
 end;
 
 -- [B #1004] Hraun Dragon pets are summoned at 100/75/50/25% HP (only if not already up) [F: x2, may be resummoned].

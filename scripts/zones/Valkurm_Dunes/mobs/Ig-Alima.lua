@@ -71,7 +71,7 @@ function onMonsterMagicPrepare(mob, target)
     if (mob:getLocalVar("VW_DEADLINE") - os.time() > LIMIT - 10) then return nil; end
     if (mob:hasStatusEffect(EFFECT_BLAZE_SPIKES) or mob:hasStatusEffect(EFFECT_ICE_SPIKES) or mob:hasStatusEffect(EFFECT_SHOCK_SPIKES)) then return nil; end
     local pool = {249, 250, 251};
-    return pool[math.random(#pool)];
+    return vwPick(mob, target, pool);
 end;
 
 function onMobRoam(mob) tick(mob); end;

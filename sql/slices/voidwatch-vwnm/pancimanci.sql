@@ -20,7 +20,8 @@ UPDATE mob_pools SET skill_list_id=1161, spellList=444, immunity=(immunity|1), s
 -- Fix: mobname was truncated to 'Pancimani', so scripts/zones/West_Sarutabaruta_[S]/mobs/Pancimanci.lua never loaded
 -- (no onMobDeath -> no cruor, no Riftworn Pyxis). Script lookup is by mobname.
 UPDATE mob_spawn_points SET mobname='Pancimanci' WHERE groupid=13747;
--- Level 83, plain (non-NM) mob [U user-stated 2026-10-07]; mob_pools.mobType is already 0.
+-- Level 83 [U user-stated 2026-10-07]. Flagged NM (mobType 2 = MOBTYPE_NOTORIOUS) so /check reads impossible-to-gauge like the other Voidwatch NMs [U user 2026-10-08].
+UPDATE mob_pools SET mobType=2 WHERE poolid=4711;
 UPDATE mob_groups SET minlevel=83, maxlevel=83 WHERE groupid=13747;
 
 -- [C] 2026-10-07: Scream seen (anim 50 = skill 306). Fatal Scream (capture id 2387 anim 1660) has no DB row.

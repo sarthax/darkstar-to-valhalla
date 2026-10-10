@@ -36,13 +36,8 @@ function onEventFinish(player,csid,option,npc)
     local npcid = PYXIS_FIRST + (csid - 6003);
     local pyxis = GetNPCByID(npcid);
     if (pyxis == nil or pyxis:getLocalVar("ELIG" .. player:getID()) ~= 1) then return; end
-    if (option == 10) then
-        for _, item in ipairs(vwPyxisItems(pyxis)) do
-            if (item ~= 0 and player:addItem(item, 1)) then
-                player:messageSpecial(VW_OBTAINS_ITEM, item);
-            end
-        end
-        pyxis:setLocalVar("TAKEN" .. player:getID(), 1);
+    if (vwPyxisTake(player, pyxis, csid, option, VW_OBTAINS_ITEM)) then
+        return;
     elseif (option == 9) then
         pyxis:setLocalVar("TAKEN" .. player:getID(), 1);
         player:messageSpecial(VW_RELINQUISHED);
