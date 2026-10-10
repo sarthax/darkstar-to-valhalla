@@ -5,3 +5,6 @@
 4. Mobs of loaded stage spawn at positions; kill progress advances stage; doors unseal.
 5. Cell item use/removal, temp chest open, Slot/Socket/Armoury Crate (17076579) respond.
 6. Failure (timeout / party fallen) ejects with correct text.
+
+## Apply order (v3)
+Apply sql/slices/salvage-zhayolm/00..06 in numeric order (06_mob_droplist.sql is new). Regression: compare spawn count, positions, pools and drops against the live Topaz DB (validate2.py reports 0 errors).
