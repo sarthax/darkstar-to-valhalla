@@ -5,7 +5,9 @@
 -----------------------------------
 require("scripts/globals/voidwatch_officer");
 
-local CFG = {officerCsid = 14, refinerCsid = 16, kiMsg = 6413}; -- csids [V] decompiled from this zone's client events dat (no capture); kiMsg = KEYITEM_OBTAINED [V] dialog.yml pulled 2026-10-08; nation/city bits unknown [D=0]
+local CFG = {officerCsid = 14, refinerCsid = 16, kiMsg = 6413,
+    -- atmacite menu text ids: this zone's client dialog.yml pulled 2026-10-09 [V]
+    atmaMsg = {notEnough = 10831, infused = 10834, purged = 10836, swap = 10837, noInfuse = 10835, enriched = 10843, max = 10844}}; -- csids [V] decompiled from this zone's client events dat (no capture); kiMsg = KEYITEM_OBTAINED [V] dialog.yml pulled 2026-10-08; nation/city bits unknown [D=0]
 
 function onTrade(player,npc,trade)
 end;
