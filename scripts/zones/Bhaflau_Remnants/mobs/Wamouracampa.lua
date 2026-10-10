@@ -1,0 +1,14 @@
+-----------------------------------
+-- Area: Bhaflau Remnants
+--  Mob: Wamouracampa
+-----------------------------------
+-- 2026-09-06: real captured id/position (Mission Toolkit captures #110/#111), no Lua script
+-- existed for this mob type before -- see scripts/globals/salvage.lua's spawnTempChest comment
+-- for why the drop-chest call belongs here rather than in a shared/centralized hook.
+-----------------------------------
+require("scripts/globals/salvage")
+-----------------------------------
+function onMobDeath(mob, player, isKiller)
+    salvageUtil.spawnTempChest(mob)
+end
+
