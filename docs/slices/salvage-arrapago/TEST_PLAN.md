@@ -6,3 +6,6 @@
 5. Qiqirn Astrologer paths (points table) and Treasure Hunter routes run; chest drop via Armoury Crate pool.
 6. Telepad regions 12/13/14 exit with csid 211; failure -> csid 1 exit.
 7. Known: Lamia/Merrow no weapon-break animation.
+
+## Apply order (v3)
+Apply sql/slices/salvage-arrapago/00..06 in numeric order (06_mob_droplist.sql is new). Regression: compare spawn count, positions, pools and drops against the live Topaz DB (validate2.py reports 0 errors).
