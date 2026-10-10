@@ -1,37 +1,60 @@
--- salvage-silversea: scripted-spawn groups. New groups use reserved ids 30000+ (all other slices are < 18500).
--- dropid is 0 on new groups (live droplist ids do not map onto DSP's).
-UPDATE `mob_groups` SET `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2484 AND `zoneid` = 76;
-UPDATE `mob_groups` SET `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2485 AND `zoneid` = 76;
-UPDATE `mob_groups` SET `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2486 AND `zoneid` = 76;
-UPDATE `mob_groups` SET `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2487 AND `zoneid` = 76;
-UPDATE `mob_groups` SET `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2491 AND `zoneid` = 76;
-UPDATE `mob_groups` SET `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2493 AND `zoneid` = 76;
-UPDATE `mob_groups` SET `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2494 AND `zoneid` = 76;
-UPDATE `mob_groups` SET `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2495 AND `zoneid` = 76;
-UPDATE `mob_groups` SET `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2497 AND `zoneid` = 76;
-UPDATE `mob_groups` SET `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2498 AND `zoneid` = 76;
-UPDATE `mob_groups` SET `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2500 AND `zoneid` = 76;
-UPDATE `mob_groups` SET `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2501 AND `zoneid` = 76;
-UPDATE `mob_groups` SET `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2502 AND `zoneid` = 76;
-UPDATE `mob_groups` SET `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2504 AND `zoneid` = 76;
-UPDATE `mob_groups` SET `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2505 AND `zoneid` = 76;
-UPDATE `mob_groups` SET `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2506 AND `zoneid` = 76;
-UPDATE `mob_groups` SET `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2507 AND `zoneid` = 76;
-UPDATE `mob_groups` SET `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 14527 AND `zoneid` = 76;
-UPDATE `mob_groups` SET `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 14528 AND `zoneid` = 76;
-UPDATE `mob_groups` SET `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 14529 AND `zoneid` = 76;
-UPDATE `mob_groups` SET `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 14530 AND `zoneid` = 76;
-DELETE FROM `mob_groups` WHERE `groupid` = 30000;
-INSERT INTO `mob_groups` VALUES (30000,6507,76,0,128,0,0,0,75,76,0);
-DELETE FROM `mob_groups` WHERE `groupid` = 30001;
-INSERT INTO `mob_groups` VALUES (30001,6555,76,0,128,0,0,0,75,76,0);
-DELETE FROM `mob_groups` WHERE `groupid` = 30002;
-INSERT INTO `mob_groups` VALUES (30002,6533,76,0,128,0,0,0,75,76,0);
-DELETE FROM `mob_groups` WHERE `groupid` = 30003;
-INSERT INTO `mob_groups` VALUES (30003,6556,76,0,128,0,0,0,75,76,0);
-DELETE FROM `mob_groups` WHERE `groupid` = 30004;
-INSERT INTO `mob_groups` VALUES (30004,197,76,0,128,0,0,0,99,99,0);
-DELETE FROM `mob_groups` WHERE `groupid` = 30005;
-INSERT INTO `mob_groups` VALUES (30005,2065,76,0,128,0,0,0,99,99,0);
-DELETE FROM `mob_groups` WHERE `groupid` = 30006;
-INSERT INTO `mob_groups` VALUES (30006,6722,76,0,128,0,0,0,0,0,0);
+-- salvage-silversea: one group per live group (id 30000 + live groupid). Pool ids are the 760000-offset copies; dropid is the 54000-offset copy in 06_mob_droplist.sql.
+DELETE FROM `mob_groups` WHERE `groupid` BETWEEN 30000 AND 30999;
+INSERT INTO `mob_groups` VALUES (30001,765430,76,0,128,0,0,0,73,75,0); -- Ashu_Talif_Crew_mnk
+INSERT INTO `mob_groups` VALUES (30002,760263,76,0,128,0,0,0,73,75,0); -- Ashu_Talif_Crew_rng
+INSERT INTO `mob_groups` VALUES (30003,765431,76,0,128,0,0,9999,73,75,0); -- Ashu_Talif_Crew_rdm
+INSERT INTO `mob_groups` VALUES (30004,765728,76,0,128,0,0,0,73,75,0); -- Ashu_Talif_Crew_cor
+INSERT INTO `mob_groups` VALUES (30005,761887,76,0,128,55272,0,0,75,75,0); -- Hammerblow_Majanun
+INSERT INTO `mob_groups` VALUES (30006,765430,76,0,128,0,0,0,76,77,0); -- Ashu_Talif_Crew_mnk
+INSERT INTO `mob_groups` VALUES (30007,760263,76,0,128,0,0,0,76,77,0); -- Ashu_Talif_Crew_rng
+INSERT INTO `mob_groups` VALUES (30008,765431,76,0,128,0,0,9999,76,77,0); -- Ashu_Talif_Crew_rdm
+INSERT INTO `mob_groups` VALUES (30009,765728,76,0,128,0,0,0,76,77,0); -- Ashu_Talif_Crew_cor
+INSERT INTO `mob_groups` VALUES (30010,761933,76,0,128,0,0,0,73,75,0); -- Heraldic_Imp
+INSERT INTO `mob_groups` VALUES (30011,760933,76,0,128,0,0,0,79,79,0); -- Deadpan_Devilet
+INSERT INTO `mob_groups` VALUES (30012,760963,76,0,128,54602,0,0,79,80,0); -- Dekka
+INSERT INTO `mob_groups` VALUES (30013,761448,76,0,128,0,0,0,79,79,0); -- Gakke
+INSERT INTO `mob_groups` VALUES (30014,761017,76,0,128,0,0,0,79,80,0); -- Devilet
+INSERT INTO `mob_groups` VALUES (30015,763191,76,0,128,56019,0,0,80,80,0); -- Powderkeg_Yanadahn
+INSERT INTO `mob_groups` VALUES (30017,760221,76,0,128,54154,0,0,80,82,0); -- Archaic_Rampart
+INSERT INTO `mob_groups` VALUES (30018,766507,76,0,128,0,0,0,75,76,0); -- Haunt
+INSERT INTO `mob_groups` VALUES (30019,761471,76,0,128,0,0,0,75,76,0); -- Garm
+INSERT INTO `mob_groups` VALUES (30020,766555,76,0,128,0,0,0,75,76,0); -- Guard_Skeleton_blm
+INSERT INTO `mob_groups` VALUES (30021,766533,76,0,128,0,0,0,75,76,0); -- Doom_Mage
+INSERT INTO `mob_groups` VALUES (30022,760218,76,0,128,54154,0,0,80,82,0); -- Archaic_Gear
+INSERT INTO `mob_groups` VALUES (30023,760219,76,0,128,54154,0,0,80,82,0); -- Archaic_Gears
+INSERT INTO `mob_groups` VALUES (30024,761862,76,0,128,55262,0,0,80,82,0); -- Gyroscopic_Gear
+INSERT INTO `mob_groups` VALUES (30025,761079,76,0,128,54673,0,0,82,82,0); -- Don_Poroggo
+INSERT INTO `mob_groups` VALUES (30026,766556,76,0,128,0,0,0,75,76,0); -- Guard_Skeleton_war
+INSERT INTO `mob_groups` VALUES (30027,761863,76,0,128,55263,0,0,80,82,0); -- Gyroscopic_Gears
+INSERT INTO `mob_groups` VALUES (30028,760216,76,0,128,0,0,0,80,82,0); -- Archaic_Chariot
+INSERT INTO `mob_groups` VALUES (30029,762878,76,0,128,0,0,0,73,73,0); -- Night_Eft
+INSERT INTO `mob_groups` VALUES (30030,763456,76,0,128,0,0,0,73,73,0); -- Sand_Lizard
+INSERT INTO `mob_groups` VALUES (30031,760962,76,0,128,0,0,0,73,73,0); -- Deinonychus
+INSERT INTO `mob_groups` VALUES (30032,760732,76,0,128,54474,0,0,73,73,0); -- Citadel_Chelonian
+INSERT INTO `mob_groups` VALUES (30033,762431,76,0,128,55531,0,0,83,85,0); -- Long-Armed_Chariot
+INSERT INTO `mob_groups` VALUES (30034,760221,76,0,128,0,0,0,99,99,0); -- Archaic_Rampart
+INSERT INTO `mob_groups` VALUES (30035,0,76,0,128,0,0,0,99,99,0); -- Doomed
+INSERT INTO `mob_groups` VALUES (30036,0,76,0,128,0,0,0,99,99,0); -- Qiqirn
+INSERT INTO `mob_groups` VALUES (30037,762065,76,0,128,0,0,0,99,99,0); -- Imp
+INSERT INTO `mob_groups` VALUES (30038,0,76,0,128,0,0,0,100,100,0); -- Voracious_Carrion
+INSERT INTO `mob_groups` VALUES (30039,760197,76,0,128,0,0,0,99,99,0); -- Apkallu
+INSERT INTO `mob_groups` VALUES (30040,0,76,0,128,0,0,0,100,100,0); -- Apkallu_Avenger
+INSERT INTO `mob_groups` VALUES (30041,0,76,0,128,0,0,0,100,100,0); -- Seafarer_Piliproon
+INSERT INTO `mob_groups` VALUES (30042,765430,76,0,128,0,0,0,101,101,0); -- Ashu_Talif_Crew_mnk
+INSERT INTO `mob_groups` VALUES (30043,760263,76,0,128,0,0,0,101,101,0); -- Ashu_Talif_Crew_rng
+INSERT INTO `mob_groups` VALUES (30044,765431,76,0,128,0,0,9999,101,101,0); -- Ashu_Talif_Crew_rdm
+INSERT INTO `mob_groups` VALUES (30045,765728,76,0,128,0,0,0,101,101,0); -- Ashu_Talif_Crew_cor
+INSERT INTO `mob_groups` VALUES (30046,0,76,0,128,0,0,0,102,102,0); -- Fomor_Windwalker
+INSERT INTO `mob_groups` VALUES (30047,0,76,0,128,0,0,0,0,0,0); -- Stoneplate_Ghalimad
+INSERT INTO `mob_groups` VALUES (30048,0,76,0,128,0,0,0,0,0,0); -- Quickdirk_Kahladijn
+INSERT INTO `mob_groups` VALUES (30049,763215,76,0,128,0,0,0,0,0,0); -- Psycheflayer
+INSERT INTO `mob_groups` VALUES (30050,0,76,0,128,0,0,0,0,0,0); -- Lunatic_Psycheflayer
+INSERT INTO `mob_groups` VALUES (30051,766722,76,0,128,0,0,0,0,0,0); -- Orobon
+INSERT INTO `mob_groups` VALUES (30052,0,76,0,128,0,0,0,0,0,0); -- Argent-eyed_Orobon
+INSERT INTO `mob_groups` VALUES (30053,760218,76,0,128,0,0,0,0,0,0); -- Archaic_Gear
+INSERT INTO `mob_groups` VALUES (30054,760219,76,0,128,0,0,0,0,0,0); -- Archaic_Gears
+INSERT INTO `mob_groups` VALUES (30055,762431,76,0,128,0,0,0,0,0,0); -- Long-Armed_Chariot
+INSERT INTO `mob_groups` VALUES (30056,760216,76,0,128,0,0,0,0,0,0); -- Archaic_Chariot
+INSERT INTO `mob_groups` VALUES (30057,760039,76,0,128,0,0,0,0,0,0); -- Acrolith
+INSERT INTO `mob_groups` VALUES (30058,0,76,0,128,0,0,0,0,0,0); -- Dvergr
+INSERT INTO `mob_groups` VALUES (30059,0,76,0,128,0,0,0,0,0,0); -- Bloodthirsty_Dweorg

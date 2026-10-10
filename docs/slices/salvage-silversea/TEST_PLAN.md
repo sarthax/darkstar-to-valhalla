@@ -4,3 +4,6 @@
 3. Enter instance 71: arrive at (340,12,-165.5), pathos applied, equipment removed, Fireflies temp item.
 4. Mobs listed in IDs spawn on their positions; trade a Zhayolm Card (2375) to Slot -> Don Poroggo; trade cell to Socket -> Gakke.
 5. Armoury Crate 17088809 opens; timeout/party-fallen ejects to Alzadaal.
+
+## Apply order (v3)
+Apply sql/slices/salvage-silversea/00..06 in numeric order (06_mob_droplist.sql is new). Regression: compare spawn count, positions, pools and drops against the live Topaz DB (validate2.py reports 0 errors).
