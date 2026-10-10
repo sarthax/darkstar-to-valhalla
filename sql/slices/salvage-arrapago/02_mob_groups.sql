@@ -1,54 +1,66 @@
--- salvage: scripted-spawn groups. New groups use reserved ids 32000+ (all other slices are < 18500).
--- dropid is 0 on new groups (live droplist ids do not map onto DSP's).
-UPDATE `mob_groups` SET `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2413 AND `zoneid` = 74;
-UPDATE `mob_groups` SET `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2414 AND `zoneid` = 74;
-UPDATE `mob_groups` SET `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2415 AND `zoneid` = 74;
-UPDATE `mob_groups` SET `respawntime` = 0, `spawntype` = 128 WHERE `groupid` = 2416 AND `zoneid` = 74;
-DELETE FROM `mob_groups` WHERE `groupid` = 32000;
-INSERT INTO `mob_groups` VALUES (32000,5430,74,0,128,0,0,0,73,75,0);
-DELETE FROM `mob_groups` WHERE `groupid` = 32001;
-INSERT INTO `mob_groups` VALUES (32001,263,74,0,128,0,0,0,73,75,0);
-DELETE FROM `mob_groups` WHERE `groupid` = 32002;
-INSERT INTO `mob_groups` VALUES (32002,5431,74,0,128,0,0,0,73,75,0);
-DELETE FROM `mob_groups` WHERE `groupid` = 32003;
-INSERT INTO `mob_groups` VALUES (32003,5728,74,0,128,0,0,0,73,75,0);
-DELETE FROM `mob_groups` WHERE `groupid` = 32004;
-INSERT INTO `mob_groups` VALUES (32004,1887,74,0,128,0,0,0,75,75,0);
-DELETE FROM `mob_groups` WHERE `groupid` = 32005;
-INSERT INTO `mob_groups` VALUES (32005,1933,74,0,128,0,0,0,73,75,0);
-DELETE FROM `mob_groups` WHERE `groupid` = 32006;
-INSERT INTO `mob_groups` VALUES (32006,933,74,0,128,0,0,0,79,79,0);
-DELETE FROM `mob_groups` WHERE `groupid` = 32007;
-INSERT INTO `mob_groups` VALUES (32007,963,74,0,128,0,0,0,79,80,0);
-DELETE FROM `mob_groups` WHERE `groupid` = 32008;
-INSERT INTO `mob_groups` VALUES (32008,1448,74,0,128,0,0,0,79,79,0);
-DELETE FROM `mob_groups` WHERE `groupid` = 32009;
-INSERT INTO `mob_groups` VALUES (32009,1017,74,0,128,0,0,0,79,80,0);
-DELETE FROM `mob_groups` WHERE `groupid` = 32010;
-INSERT INTO `mob_groups` VALUES (32010,3191,74,0,128,0,0,0,80,80,0);
-DELETE FROM `mob_groups` WHERE `groupid` = 32011;
-INSERT INTO `mob_groups` VALUES (32011,437,74,0,128,0,0,0,75,75,0);
-DELETE FROM `mob_groups` WHERE `groupid` = 32012;
-INSERT INTO `mob_groups` VALUES (32012,6507,74,0,128,0,0,0,75,76,0);
-DELETE FROM `mob_groups` WHERE `groupid` = 32013;
-INSERT INTO `mob_groups` VALUES (32013,1471,74,0,128,0,0,0,75,76,0);
-DELETE FROM `mob_groups` WHERE `groupid` = 32014;
-INSERT INTO `mob_groups` VALUES (32014,6555,74,0,128,0,0,0,75,76,0);
-DELETE FROM `mob_groups` WHERE `groupid` = 32015;
-INSERT INTO `mob_groups` VALUES (32015,6533,74,0,128,0,0,0,75,76,0);
-DELETE FROM `mob_groups` WHERE `groupid` = 32016;
-INSERT INTO `mob_groups` VALUES (32016,1862,74,0,128,0,0,0,80,82,0);
-DELETE FROM `mob_groups` WHERE `groupid` = 32017;
-INSERT INTO `mob_groups` VALUES (32017,6556,74,0,128,0,0,0,75,76,0);
-DELETE FROM `mob_groups` WHERE `groupid` = 32018;
-INSERT INTO `mob_groups` VALUES (32018,2878,74,0,128,0,0,0,73,73,0);
-DELETE FROM `mob_groups` WHERE `groupid` = 32019;
-INSERT INTO `mob_groups` VALUES (32019,3456,74,0,128,0,0,0,73,73,0);
-DELETE FROM `mob_groups` WHERE `groupid` = 32020;
-INSERT INTO `mob_groups` VALUES (32020,962,74,0,128,0,0,0,73,73,0);
-DELETE FROM `mob_groups` WHERE `groupid` = 32021;
-INSERT INTO `mob_groups` VALUES (32021,2431,74,0,128,0,0,0,83,85,0);
-DELETE FROM `mob_groups` WHERE `groupid` = 32022;
-INSERT INTO `mob_groups` VALUES (32022,2065,74,0,128,0,0,0,99,99,0);
-DELETE FROM `mob_groups` WHERE `groupid` = 32023;
-INSERT INTO `mob_groups` VALUES (32023,197,74,0,128,0,0,0,99,99,0);
+-- salvage-arrapago: one group per live group (id 32000 + live groupid). Pool ids are the 740000-offset copies; dropid is the 62000-offset copy in 06_mob_droplist.sql.
+DELETE FROM `mob_groups` WHERE `groupid` BETWEEN 32000 AND 32999;
+INSERT INTO `mob_groups` VALUES (32001,740221,74,0,128,62161,0,0,73,74,0); -- Archaic_Rampart
+INSERT INTO `mob_groups` VALUES (32002,743431,74,0,128,64139,0,0,75,76,0); -- Sabotender_Maestro
+INSERT INTO `mob_groups` VALUES (32003,743294,74,0,128,64068,0,0,73,75,0); -- Qutrub_drk
+INSERT INTO `mob_groups` VALUES (32004,742334,74,0,128,63488,0,0,75,76,0); -- Lamia_Graverobber
+INSERT INTO `mob_groups` VALUES (32005,742329,74,0,128,63489,0,0,75,76,0); -- Lamia_Dartist
+INSERT INTO `mob_groups` VALUES (32006,742328,74,0,128,63488,0,0,75,76,0); -- Lamia_Dancer
+INSERT INTO `mob_groups` VALUES (32007,742359,74,0,128,0,0,0,75,76,0); -- Lamias_Elemental
+INSERT INTO `mob_groups` VALUES (32008,742332,74,0,128,63491,0,0,75,76,0); -- Lamia_Fatedealer
+INSERT INTO `mob_groups` VALUES (32009,742627,74,0,128,63488,0,0,75,76,0); -- Merrow_Shadowdancer
+INSERT INTO `mob_groups` VALUES (32010,743355,74,0,128,64089,0,0,75,76,0); -- Reserve_Draugar_blm
+INSERT INTO `mob_groups` VALUES (32011,745193,74,0,128,64089,0,0,75,75,0); -- Reserve_Draugar_drk
+INSERT INTO `mob_groups` VALUES (32012,742621,74,0,128,63662,0,0,75,76,0); -- Merrow_Kabukidancer
+INSERT INTO `mob_groups` VALUES (32013,742620,74,0,128,63491,0,0,75,76,0); -- Merrow_Icedancer
+INSERT INTO `mob_groups` VALUES (32014,745194,74,0,128,64089,0,0,75,75,0); -- Reserve_Draugar_drg
+INSERT INTO `mob_groups` VALUES (32015,741112,74,0,128,0,0,0,75,76,0); -- Draugars_Wyvern
+INSERT INTO `mob_groups` VALUES (32016,742619,74,0,128,63659,0,0,75,76,0); -- Merrow_Chantress
+INSERT INTO `mob_groups` VALUES (32017,745192,74,0,128,64089,0,0,75,75,0); -- Reserve_Draugar_thf
+INSERT INTO `mob_groups` VALUES (32018,741505,74,0,128,62949,0,0,75,76,0); -- Gespenst
+INSERT INTO `mob_groups` VALUES (32019,743246,74,0,128,64052,6000,0,77,78,0); -- Qiqirn_Astrologer
+INSERT INTO `mob_groups` VALUES (32020,743215,74,0,128,64029,14000,0,78,78,0); -- Psycheflayer
+INSERT INTO `mob_groups` VALUES (32021,746996,74,0,128,64060,0,0,73,75,0); -- Qiqirn_Treasure_Hunter
+INSERT INTO `mob_groups` VALUES (32022,746997,74,0,128,0,0,0,75,75,0); -- TH_Qiqirn_Mine
+INSERT INTO `mob_groups` VALUES (32023,741015,74,0,128,62641,14000,0,78,78,0); -- Deviate_Bhoot
+INSERT INTO `mob_groups` VALUES (32024,740218,74,0,128,62155,0,0,73,74,0); -- Archaic_Gear
+INSERT INTO `mob_groups` VALUES (32026,742890,74,0,128,63817,0,0,75,76,0); -- Nipper
+INSERT INTO `mob_groups` VALUES (32028,742653,74,0,128,63671,0,0,68,69,0); -- Migrant_Russula
+INSERT INTO `mob_groups` VALUES (32029,740978,74,0,128,62608,0,0,73,75,0); -- Demonic_Rose
+INSERT INTO `mob_groups` VALUES (32030,741018,74,0,128,62643,0,0,70,73,0); -- Devil_Manta
+INSERT INTO `mob_groups` VALUES (32031,740219,74,0,128,62158,0,0,74,75,0); -- Archaic_Gears
+INSERT INTO `mob_groups` VALUES (32033,740976,74,0,128,65168,0,0,73,75,0); -- Demonic_Pugil
+INSERT INTO `mob_groups` VALUES (32034,746722,74,0,128,63605,0,0,68,69,0); -- Orobon
+INSERT INTO `mob_groups` VALUES (32035,740216,74,0,128,62151,0,0,77,78,0); -- Archaic_Chariot
+INSERT INTO `mob_groups` VALUES (32036,742762,74,0,128,63745,0,0,68,69,0); -- Mourioche
+INSERT INTO `mob_groups` VALUES (32037,741761,74,0,128,63203,0,0,70,73,0); -- Goobbue_Wanderer
+INSERT INTO `mob_groups` VALUES (32038,743517,74,0,128,63203,0,0,68,69,0); -- Seasonal_Treant
+INSERT INTO `mob_groups` VALUES (32039,743751,74,0,128,64317,0,0,68,69,0); -- Staggering_Sapling
+INSERT INTO `mob_groups` VALUES (32040,742282,74,0,128,63463,0,0,68,69,0); -- Korrigan
+INSERT INTO `mob_groups` VALUES (32041,740246,74,0,128,62171,50000,0,80,85,0); -- Armored_Chariot
+INSERT INTO `mob_groups` VALUES (32042,744233,74,0,128,0,0,0,70,71,0); -- Vile_Wahzil
+INSERT INTO `mob_groups` VALUES (32043,743197,74,0,128,64020,0,0,70,72,0); -- Princess_Pudding
+INSERT INTO `mob_groups` VALUES (32044,0,74,0,128,0,0,0,0,0,0); -- Vulture
+INSERT INTO `mob_groups` VALUES (32045,0,74,0,128,0,0,0,0,0,0); -- Merrow_Kabukidancer
+INSERT INTO `mob_groups` VALUES (32046,0,74,0,128,0,0,0,0,0,0); -- Chigoe_Stinger
+INSERT INTO `mob_groups` VALUES (32047,0,74,0,128,0,0,0,0,0,0); -- Leech
+INSERT INTO `mob_groups` VALUES (32048,0,74,0,128,0,0,0,0,0,0); -- Merrow_Shadowdancer
+INSERT INTO `mob_groups` VALUES (32049,0,74,0,128,0,0,0,0,0,0); -- Lamia_Dartist
+INSERT INTO `mob_groups` VALUES (32050,0,74,0,128,0,0,0,0,0,0); -- Lamia_Dancer
+INSERT INTO `mob_groups` VALUES (32051,0,74,0,128,0,0,0,0,0,0); -- Lamias_Elemental
+INSERT INTO `mob_groups` VALUES (32052,0,74,0,128,0,0,0,0,0,0); -- Merrow_Chantress
+INSERT INTO `mob_groups` VALUES (32053,0,74,0,128,0,0,0,0,0,0); -- Merrow_Icedancer
+INSERT INTO `mob_groups` VALUES (32054,0,74,0,128,0,0,0,0,0,0); -- Archaic_Gear
+INSERT INTO `mob_groups` VALUES (32055,0,74,0,128,0,0,0,0,0,0); -- Flytrap
+INSERT INTO `mob_groups` VALUES (32056,0,74,0,128,65167,0,0,0,0,0); -- Qutrub
+INSERT INTO `mob_groups` VALUES (32057,0,74,0,128,0,0,0,0,0,0); -- Lamia_Graverobber
+INSERT INTO `mob_groups` VALUES (32058,0,74,0,128,0,0,0,0,0,0); -- Lamia_Fatedealer
+INSERT INTO `mob_groups` VALUES (32059,0,74,0,128,0,0,0,0,0,0); -- Acrolith
+INSERT INTO `mob_groups` VALUES (32060,0,74,0,128,0,0,0,0,0,0); -- Qutrub_Devourer
+INSERT INTO `mob_groups` VALUES (32061,0,74,0,128,0,0,0,0,0,0); -- Lamia_Spoliator
+INSERT INTO `mob_groups` VALUES (32062,0,74,0,128,0,0,0,0,0,0); -- Archaic_Rampart
+INSERT INTO `mob_groups` VALUES (32063,0,74,0,128,0,0,0,0,0,0); -- Archaic_Gears
+INSERT INTO `mob_groups` VALUES (32064,0,74,0,128,0,0,0,0,0,0); -- Armored_Chariot
+INSERT INTO `mob_groups` VALUES (32065,0,74,0,128,0,0,0,0,0,0); -- Archaic_Chariot
+INSERT INTO `mob_groups` VALUES (32066,0,74,0,128,0,0,0,0,0,0); -- Khimaira
+INSERT INTO `mob_groups` VALUES (32067,0,74,0,128,0,0,0,0,0,0); -- Khrysokhimaira_Elder
