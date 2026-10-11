@@ -143,7 +143,7 @@ function ephemeral.onEventFinish(player, option, wasTrade, obtainedMsg)
 
     -- Clusters first
     if (clusters > 0) then
-        if (npcUtil.giveItem(player, { { crystalData[index].cluster, clusters } })) then
+        if (giveCrystals(player, crystalData[index].cluster, clusters, obtainedMsg)) then
             totalToRemove = clusters * 12;
         end
     end
