@@ -16,3 +16,9 @@ Method: scripts in this folder parse both trees' `scripts/globals/homepoint.lua`
 - Al Zahbi #1 (idx 67) has no crystal in retail (dest 0,0,0); harmless as nothing references it.
 - `HOMEPOINT_TELEPORT = 0` and `HOMEPOINT_HEAL = 0` in `scripts/globals/settings.lua`: teleport menu is off unless the server sets it.
 - Verified equal to LSB: all 122 table fees, free-teleport groups, mask param/bit layout, all NPC-script indices and event ids.
+
+## HOMEPOINT_SET text ids (v2)
+Added to Toraimarai_Canal (10691), Southern_San_dOria_[S] (11107), Bastok_Markets_[S] (10825).
+Derived from fresh dialog.yml ("Home point set!" 10693/11109/10827) with the -2 TextIDs offset,
+confirmed by ITEM_OBTAINED in each zone (TextIDs 6432/6386/6386 vs dialog 6434/6388/6388) and matching Uleguerand (8327 -> 8325).
+Not yet tested in game. Leafallia: no home point text in its dialog.yml and TextIDs.lua is empty - left unfixed, no real id available.

@@ -5,6 +5,7 @@ ITEM_CANNOT_BE_OBTAINED = 6426; -- You cannot obtain the item <item>. Come back 
           ITEM_OBTAINED = 6432; -- Obtained: <item>.
            GIL_OBTAINED = 6433; -- Obtained <number> gil.
        KEYITEM_OBTAINED = 6435; -- Obtained key item: <keyitem>.
+    HOMEPOINT_SET = 10691; -- Home point set!
  FISHING_MESSAGE_OFFSET = 7252; -- You can't fish here.
 
 -- Treasure Coffer/Chest Dialog
