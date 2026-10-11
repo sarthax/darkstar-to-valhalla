@@ -33,28 +33,37 @@ local function getCrystalTotals(player)
     return params;
 end
 
+-- Confirm up to qty of itemId across trade slots (confirmItem takes a SLOT id, not an item id)
+local function confirmItemQty(trade, itemId, qty)
+    local left = qty;
+    for slot = 0, 7 do
+        if (left <= 0) then break; end
+        if (trade:getItemId(slot) == itemId) then
+            local take = math.min(trade:getSlotQty(slot), left);
+            if (take > 0 and trade:confirmItem(slot, take)) then
+                left = left - take;
+            end
+        end
+    end
+    return qty - left;
+end
+
 function ephemeral.onTrade(player, trade, successEvent, failEvent)
     local params = { 0, 0, 0, 0, 0, 0, 0, 0 };
     local success = false;
     for _, v in pairs(crystalData) do
-        if (npcUtil.tradeHas(trade, v.crystal) or npcUtil.tradeHas(trade, v.cluster)) then
-            -- Check how far from crystal cap we are
-            local currentCount = math.min(player:getCurrency(v.name), CrystalCap); -- In case there is a db discrepancy
+        if (trade:getItemQty(v.crystal) > 0 or trade:getItemQty(v.cluster) > 0) then
+            local currentCount = math.min(player:getCurrency(v.name), CrystalCap);
             local diff = CrystalCap - currentCount;
 
-            -- Count clusters and subtract any that won't fit
-            local hqQty = trade:getItemQty(v.cluster);
-            hqQty = math.min(hqQty, math.floor(diff / 12));
+            local hqQty = math.min(trade:getItemQty(v.cluster), math.floor(diff / 12));
+            hqQty = confirmItemQty(trade, v.cluster, hqQty);
             diff = math.max(diff - hqQty * 12, 0);
 
-            if (hqQty > 0) then trade:confirmItem(v.cluster, hqQty); end
-
-            -- Count normal crystals and subtract any that won't fit
             local qty = math.min(trade:getItemQty(v.crystal), diff);
+            qty = confirmItemQty(trade, v.crystal, qty);
 
-            if (qty > 0) then trade:confirmItem(v.crystal, qty); end
-
-            params[v.tradeparam] = bit.bor(hqQty, bit.lshift(qty, 16));
+            params[v.tradeparam] = hqQty + qty * 65536;
 
             local total = qty + hqQty * 12;
             if (total > 0) then
@@ -72,11 +81,16 @@ function ephemeral.onTrade(player, trade, successEvent, failEvent)
 end
 
 function ephemeral.onTrigger(player, event)
-    player:startEvent(event, unpack(getCrystalTotals(player)));
+    local totals = getCrystalTotals(player);
+    player:startEvent(event, totals[1], totals[2], totals[3], totals[4], 0, 0, 0, 0);
 end
 
-function ephemeral.onEventUpdate(player)
-    player:updateEvent(unpack(getCrystalTotals(player)));
+function ephemeral.onEventUpdate(player, csid, option, wasTrade)
+    -- Only the trade event has updates (matches LSB)
+    if (wasTrade) then
+        player:confirmTrade();
+        player:updateEvent(unpack(getCrystalTotals(player)));
+    end
 end
 
 function ephemeral.onEventFinish(player, option, wasTrade)
@@ -101,6 +115,7 @@ function ephemeral.onEventFinish(player, option, wasTrade)
     end
 
     -- Player selected "as many as can fit"
+    option = option % 4294967296;
     if (option > 0x80000000) then
         local freeSlots = player:getFreeSlotsCount();
         if (freeSlots > 0) then

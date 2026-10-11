@@ -20,7 +20,7 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    ephemeral.onEventUpdate(player);
+    ephemeral.onEventUpdate(player, csid, option, csid == tradeEvent);
 end;
 
 function onEventFinish(player,csid,option)
