@@ -9,6 +9,7 @@ require("scripts/globals/ephemeral");
 
 local triggerEvent = 913;
 local tradeEvent = 915;
+local ITEM_OBTAINED_MSG = 6596; -- zone-local (client dialog.yml); bare ITEM_OBTAINED global is polluted across zones
 local failEvent = 917;
 
 function onTrade(player,npc,trade)
@@ -24,5 +25,5 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    ephemeral.onEventFinish(player, option, csid == tradeEvent);
+    ephemeral.onEventFinish(player, option, csid == tradeEvent, ITEM_OBTAINED_MSG);
 end;

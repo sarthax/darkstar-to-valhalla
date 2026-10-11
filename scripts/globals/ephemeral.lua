@@ -48,6 +48,14 @@ local function confirmItemQty(trade, itemId, qty)
     return qty - left;
 end
 
+-- Give items with a zone-local obtained message (bare ITEM_OBTAINED global can belong to another zone)
+local function giveCrystals(player, itemId, qty, obtainedMsg)
+    if (player:getFreeSlotsCount() < math.ceil(qty / 12)) then return false; end
+    player:addItem(itemId, qty);
+    player:messageSpecial(obtainedMsg, itemId);
+    return true;
+end
+
 function ephemeral.onTrade(player, trade, successEvent, failEvent)
     local params = { 0, 0, 0, 0, 0, 0, 0, 0 };
     local success = false;
@@ -93,7 +101,7 @@ function ephemeral.onEventUpdate(player, csid, option, wasTrade)
     end
 end
 
-function ephemeral.onEventFinish(player, option, wasTrade)
+function ephemeral.onEventFinish(player, option, wasTrade, obtainedMsg)
     -- Early out if the player cancelled the menu
     if (not wasTrade and bit.band(option, 0xFFFF) == 0) then
         return;
@@ -142,7 +150,7 @@ function ephemeral.onEventFinish(player, option, wasTrade)
 
     -- Then crystals
     if (crystals > 0) then
-        if (npcUtil.giveItem(player, { { crystalData[index].crystal, crystals } })) then
+        if (giveCrystals(player, crystalData[index].crystal, crystals, obtainedMsg)) then
             totalToRemove = totalToRemove + crystals;
         end
     end
