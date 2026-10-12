@@ -947,8 +947,10 @@ REPLACE INTO `npc_list` VALUES (17649879,'Treasure_Casket','Treasure Casket',0,0
 REPLACE INTO `npc_list` VALUES (17649880,'Treasure_Casket','Treasure Casket',0,0.000,0.000,0.000,7,40,40,0,4,4,2,3,0x0000C50300000000000000000000000000000000,0,NULL,0);
 REPLACE INTO `npc_list` VALUES (17649881,'Treasure_Casket','Treasure Casket',0,0.000,0.000,0.000,7,40,40,0,4,4,2,3,0x0000C50300000000000000000000000000000000,0,NULL,0);
 REPLACE INTO `npc_list` VALUES (17649882,'Treasure_Casket','Treasure Casket',0,0.000,0.000,0.000,7,40,40,0,4,4,2,3,0x0000C50300000000000000000000000000000000,0,NULL,0);
--- scriptless zero-position rows sitting on casket slots (Quicksand Caves)
-DELETE FROM `npc_list` WHERE `npcid` IN (17629679,17629680) AND `pos_x`=0 AND `pos_y`=0 AND `pos_z`=0 AND `name` IN ('Achieve_Master','Unity_Master') OR (`npcid` IN (17629682,17629683,17629684) AND `name` LIKE 'NPC[%' AND `pos_x`=0 AND `pos_y`=0 AND `pos_z`=0);
+-- Quicksand Caves: Achieve/Unity Master move from casket slots to their client ids (17629687/17629689); 3 unnamed zero-position rows are dropped (commented in npc_list.sql)
+DELETE FROM `npc_list` WHERE `npcid` IN (17629679,17629680,17629682,17629683,17629684) AND `pos_x`=0 AND `pos_y`=0 AND `pos_z`=0 AND (`name` IN ('Achieve_Master','Unity_Master') OR `name` LIKE 'NPC[%');
+INSERT IGNORE INTO `npc_list` VALUES (17629687,'Achieve_Master','Achieve Master',0,0.000,0.000,0.000,0,40,40,0,0,0,2,3,0x0000320000000000000000000000000000000000,0,'SOA',1);
+INSERT IGNORE INTO `npc_list` VALUES (17629689,'Unity_Master','Unity Master',0,0.000,0.000,0.000,0,50,50,0,0,96,2,2051,0x0000340000000000000000000000000000000000,0,'SOA',0);
 -- Slots freed by sql/npc_id_realign_190_208.sql (run that first). INSERT IGNORE: a slot that is still occupied is left untouched.
 INSERT IGNORE INTO `npc_list` VALUES (17555966,'Treasure_Casket','Treasure Casket',0,0.000,0.000,0.000,7,40,40,0,4,4,2,3,0x0000C50300000000000000000000000000000000,0,NULL,0);
 INSERT IGNORE INTO `npc_list` VALUES (17555967,'Treasure_Casket','Treasure Casket',0,0.000,0.000,0.000,7,40,40,0,4,4,2,3,0x0000C50300000000000000000000000000000000,0,NULL,0);
