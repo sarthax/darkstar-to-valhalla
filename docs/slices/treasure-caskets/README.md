@@ -21,3 +21,6 @@ Reimport via `py -3 dbtool.py`, or on an existing DB run `sql/npc_id_realign_190
 
 ## Retest
 Quicksand Caves weight doors (open/close with weight) and Antican tag/qm6 spawns; King Ranperre's Tomb Grounds_Tome, Treasure_Chest spawn, Pyxis; Kill outdoor mobs -> chest appears, despawns at 3 min; locked chest lockpick minigame; temp-item and real-item loot; thief tool trade (1022); a new-block zone (e.g. Gusgen Mines); "<name> obtains..." message; chest visuals after re-entering range.
+
+## Zone-exclusive items (v7)
+Each zone has a `regionalItems` list in `casket_loot.lua`; a locked-casket item roll has a 5% chance to become one of them. The wiki's "one exclusive per zone" is inconsistent with the item pages, so the list is the union of both: items can appear in several zones and zones can have several. Kept as-is (user-confirmed valid): 112 Negoroshiki, 157 Iron Ingot (Middle Delkfutt's Tower; Rebel Earring 11042 added there per BG-Wiki), 177 Dragon Ring, 184 Giant's Earring. Added: Negoroshiki in 125 (Western Altepa Desert), Dragon Ring in 172 (Zeruhn Mines) and 192 (Inner Horutoto Ruins). Slot bug fixed: the exclusive now replaces the rolled slot instead of always overwriting slot 1 (which left a slot empty).
