@@ -12,8 +12,25 @@ Branch `feature/mog-tablets-super-kupowers`, cut from `master-dsp`. No SQL impor
 ## Evidence [C] (captures in Playthrough Captures/Mog Tablet)
 - Turn-in: csid 10111, EndPara 2, two item grants (15840 + 3973 for Piety). Power bit = 1<<(power-1) (522 = Martial+Treasure+Swift). Tablet order 0..10 matches the LSB enum. Login message text for active powers. Zi'Tah find text and broadcast text.
 
+## Power effects (status 2026-10-12)
+| Power | Status | Where |
+|---|---|---|
+| Thrifty Transit | partial | `conquest.lua` OP_TeleFee returns 0 in own-outpost zones; Survival Guide teleports and Explorer Moogle teleport service not built |
+| Martial Master | done | skill-up +`MOG_TABLET_SKILLUP_RATE` (25) under Signet; Valhalla already has 2x |
+| Blood of the Vampyr | done | mods 871/872 (`VAMPYR_REGEN/REFRESH`), added in `TickRegen` when HP/MP < 51%; Fellows not covered. No existing LSB/Topaz mod, so new |
+| Treasure Hound | done | Signet Gilfinder/TH +1 |
+| Artisan's Advantage | done | mod 873 in `doSynthFail`; needs ADVANCED image support (imagery effect power >= 3); default -20% of loss chance (`MOG_TABLET_ARTISAN_LOSS_SUPPORT`). JP wiki (wiki.ffo.jp/html/18146.html) gives no number; ffxilogdialy measured 53.5% -> 43.7% loss per failure (~-18%) |
+| Myriad Mystery Boxes | done | `caskets.lua` |
+| Dilatory Digestion | done | mod 874 `FOOD_DURATION` (+`MOG_TABLET_FOOD_DURATION`, 100 = twice as long), applied to `EFFECT_FOOD` in `CStatusEffectContainer::AddStatusEffect`. Sigil/Sanction food-duration comments still unwired |
+| Boundary Buster | done | conquest points doubled |
+| Bountiful Bazaar | done | 54 city regional vendor scripts accept the power in place of region ownership |
+| Swift Shoes | partial | Quickening on resting; Alter Egos/Fellows/Automatons and some removal conditions missing |
+| Crystal Caboodle | done | mods 869/870: crystal drop chance 20% -> 40% (`MOG_TABLET_CRYSTAL_RATE`), 10% of crystals become clusters; hook in `mobentity.cpp` |
+
+New mods 869-874 in `modifier.h` and `status.lua`: confirm no clash with Valhalla ids. Map server rebuild needed (C++). Quickening SQL: `UPDATE status_effects SET flags = 4194484 WHERE id = 176;`. Everything here is untested in-game and the C++ is uncompiled.
+
 ## Not built / unverified
-- The 11 power effects themselves (only the API; caskets.lua is not in master-dsp, so Myriad Mystery Boxes is not wired).
+- Remaining power gaps: see table above.
 - Spots: only the npc_list seed positions (16 zones) plus 2 capture positions (Zi'Tah, Valkurm). The other 13 zones have no spot, so they never host a tablet. Fill via the toolkit Super Kupopower page.
 - Valkurm: capture tablet id 17199761, DSP row 17199763. Left as DSP's; check on a live client.
 - Event 10109 option 4 poll and per-zone list replies (params not decoded); csid 10111 params after the 4th verified only for Piety; "reward already held" dialog is a placeholder.
