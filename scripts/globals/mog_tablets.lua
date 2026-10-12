@@ -328,6 +328,10 @@ function MOG_TABLET.desiredMods(player)
     if (MOG_TABLET.hasPower(MOG_TABLET.POWERS.ARTISANS_ADVANTAGE, player:getZoneID())) then
         mods[MOD_ARTISAN_LOSS_SUPPORT] = MOG_TABLET_ARTISAN_LOSS_SUPPORT or 20;
     end
+    -- Dilatory Digestion [W]: food effects last twice as long (hook: AddStatusEffect in status_effect_container.cpp)
+    if (MOG_TABLET.hasPower(MOG_TABLET.POWERS.DILATORY_DIGESTION, player:getZoneID())) then
+        mods[MOD_FOOD_DURATION] = MOG_TABLET_FOOD_DURATION or 100;
+    end
     return mods;
 end
 

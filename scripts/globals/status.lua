@@ -1383,7 +1383,7 @@ MOD_CLUSTER_DROP_RATE     = 870 -- Percent chance a dropped crystal is a cluster
 MOD_VAMPYR_REGEN          = 871 -- Blood of the Vampyr: HP/tick while HP < 51%
 MOD_VAMPYR_REFRESH        = 872 -- Blood of the Vampyr: MP/tick while MP < 51%
 MOD_ARTISAN_LOSS_SUPPORT  = 873 -- Artisan's Advantage: % reduction of failed-synth ingredient loss chance with Image Support
-MOD_ARTISAN_LOSS_ALWAYS   = 874 -- Artisan's Advantage: same, regardless of Image Support
+MOD_FOOD_DURATION          = 874 -- Dilatory Digestion: % added to food effect duration
 
 MOD_WEAPONSKILL_DAMAGE_BASE = 570 -- Specific to 1 Weaponskill: See modifier.h for how this is used
 MOD_ALL_WSDMG_ALL_HITS      = 840 -- Generic (all Weaponskills) damage, on all hits.

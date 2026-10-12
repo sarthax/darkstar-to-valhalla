@@ -183,3 +183,4 @@ MOG_TABLET_SKILLUP_RATE = 25; -- Martial Master skill-up bonus in percent; retai
 MOG_TABLET_CRYSTAL_RATE = 100; -- Crystal Caboodle: percent increase to the crystal drop chance (base 20% -> 40%)
 MOG_TABLET_CLUSTER_RATE = 10; -- Crystal Caboodle: percent of crystal drops that become a cluster
 MOG_TABLET_ARTISAN_LOSS_SUPPORT = 20; -- Artisan's Advantage: percent reduction of failed-synth ingredient loss chance, ADVANCED Synthesis Image Support only. JP wiki gives no number; ffxilogdialy measured ~53.5% -> ~43.7% loss per failure (about -18%), so 20
+MOG_TABLET_FOOD_DURATION = 100; -- Dilatory Digestion: percent added to food effect duration (100 = twice as long)
