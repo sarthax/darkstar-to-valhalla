@@ -89,7 +89,20 @@ enum MOGHOUSE_AURA
 	MOGHANCEMENT_BASTOK_CONQUEST 	= 536,		// Increases the number of individual conquest points received for Bastokan adventurers only 
 	MOGHANCEMENT_WINDURST_CONQUEST 	= 537,		// Increases the number of individual conquest points received for Windurstian adventurers only
 	MOGHANCEMENT_MONEY 				= 538,		// Increases the amount of Gil received
-	MOGHANCEMENT_CAMPAIGN 			= 539		// Improves your evaluation for services rendered to the Allied Forces
+	MOGHANCEMENT_CAMPAIGN 			= 539,		// Improves your evaluation for services rendered to the Allied Forces
+	MOGHANCEMENT_MONEY_II 			= 540,		// Increases the amount of Gil received (confirmed in game)
+	MOGHANCEMENT_SKILL_GAINS 		= 541,		// Increases the rate of skill gains (confirmed in game)
+	MOGHANCEMENT_BOUNTY 			= 542,		// Bounty (confirmed in game)
+	MOGLIFICATION_EXPERIENCE_BOOST 	= 562,		// Experience boost (confirmed in game)
+	MOGLIFICATION_CAPACITY_BOOST 	= 563,		// Capacity boost (confirmed in game)
+	MOGHANCEMENT_MANDRAGORA_MANIA 	= 543,		// Mog Garden breeding grounds effect (per wiki; no effect in DSP)
+	MOGLIFICATION_RESIST_POISON 	= 2849,		// Resist poison (confirmed in game)
+	MOGLIFICATION_RESIST_PARALYSIS 	= 2850,		// Resist paralysis (confirmed in game)
+	MOGLIFICATION_RESIST_UNKNOWN_2851 = 2851,	// probably Resist Death or Resist Sleep, unconfirmed (no effect wired)
+	MOGLIFICATION_RESIST_SILENCE 	= 2852,		// Resist silence (confirmed in game)
+	MOGLIFICATION_RESIST_PETRIFICATION = 2853,	// Resist petrification (confirmed in game)
+	MOGLIFICATION_RESIST_VIRUS 		= 2854,		// Resist virus (confirmed in game)
+	MOGLIFICATION_RESIST_CURSE 		= 2855		// Resist curse (confirmed in game)
 };
 
 

@@ -7,6 +7,7 @@
 
 require("scripts/globals/status");
 require("scripts/globals/settings");
+require("scripts/globals/abyssea_lights");
 
 -----------------------------------
 -- onEffectGain Action
@@ -14,6 +15,9 @@ require("scripts/globals/settings");
 
 function onEffectGain(target,effect)
     target:setAnimation(33);
+    if (target:hasStatusEffect(EFFECT_VISITANT) and isAbysseaLightZone(target:getZoneID())) then
+        displayAbysseaLights(target);
+    end
 end;
 
 -----------------------------------

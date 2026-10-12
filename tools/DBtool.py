@@ -382,7 +382,27 @@ def backup_db(silent=False, lite=False):
     return out
 
 
-def _import_list(files):
+def _precheck(files, silent):
+    """Static-check the SQL files before any table is dropped. Returns False to abort."""
+    try:
+        import sqlcheck
+    except ImportError:
+        warn('sqlcheck.py not found - skipping pre-import check')
+        return True
+    print('Pre-import check of %d file(s)...' % len(files))
+    if sqlcheck.check_files([sql_path(f) for f in files], out=err):
+        ok('Pre-import check passed.')
+        return True
+    err('Pre-import check found malformed rows (importing would drop the table and stop at the first bad row).')
+    if silent:
+        return False
+    return yes('Import anyway?')
+
+
+def _import_list(files, silent=False):
+    if not _precheck(files, silent):
+        err('Import aborted - fix the files above (py -3 tools/sqlcheck.py to re-check).')
+        return False
     failed = [f for f in files if not import_file(f)]
     if failed:
         err('\n%d file(s) failed: %s' % (len(failed), ', '.join(failed)))
@@ -404,7 +424,7 @@ def update_db(silent=False):
         print(', '.join(todo))
         if not yes('Proceed with update?'):
             return
-    _import_list(todo)
+    return _import_list(todo, silent)
 
 
 def setup_db(silent=False):
@@ -412,7 +432,7 @@ def setup_db(silent=False):
     if not create_db():
         return False
     fetch_files()
-    return _import_list(list(import_files))
+    return _import_list(list(import_files), silent)
 
 
 def resolve_backup(name):

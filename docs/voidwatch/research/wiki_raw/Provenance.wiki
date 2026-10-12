@@ -1,0 +1,112 @@
+{{Disambiguation|Provenance (Quest)}}
+{{Zone Preliminary 2
+|Zone Connections= 
+{{Zone Geography Table 2
+|Zone Geography Row 2=
+{{Zone Geography Row 2
+|Connected Zone=Walk of Echoes
+|Current Zone Exit Map=No Map.jpg
+|Current Zone Exit Position=?-?
+|Exit or Entrance Only=
+|Connected Zone Entrance Map=No Map.jpg
+|Connected Zone Entrance Position=?-?
+}}
+}}
+|Zone Info=
+{{Zone Description Table
+|Description.Image=Provenance header.jpg
+|Description.Japanese=真界
+|Description.Requires={{Wings}}
+|Description.Map_Acquisition=No Map
+|Description.Timeline=Shadowreign
+|Description.Continent=
+|Description.Region=
+|Description.Zone_Type=
+|Description.Activities=
+|Description.Weather=
+|Goblin.Footprint=
+|Notes= A land few mortals can ever hope to glimpse—an impossible place that brings forth both destruction and creation. It all began with a stone, or so the legend says....
+}}
+}}
+==Quests==
+{{Zone Quests Table
+|Insert Zone Quests Template=
+{{Zone Quests
+|Fame Level=
+|Quest Name=Brace for the Unknown
+|Reward=[[Clairvoy ant]], '''Provenance''' access
+|Quest Giver Name=
+|Position (pos)=
+}}
+{{Zone Quests
+|Fame Level=
+|Quest Name=Provenance (Quest)
+|Reward= 
+|Quest Giver Name=
+|Position (pos)=
+}}
+{{Zone Quests
+|Fame Level=
+|Quest Name=Crystal Guardian
+|Reward= 
+|Quest Giver Name=
+|Position (pos)=
+}}
+{{Zone Quests
+|Fame Level=
+|Quest Name=Endings and Beginnings
+|Reward= 
+|Quest Giver Name=
+|Position (pos)=
+}}
+{{Zone Quests
+|Fame Level=
+|Quest Name=Ad Infinitum
+|Reward= 
+|Quest Giver Name=
+|Position (pos)=
+}}
+}}
+{{Zone Battlefield Table
+|Insert Zone Battlefield Template=
+{{Zone Battlefield
+|Type=Voidwatch
+|Battlefield Name=Beguiling Radiance
+|Requirement=Kupofried's corundum
+|Level Cap=None
+|Time Limit=30
+|Party Members=18
+}}
+{{Zone Battlefield
+|Type=Voidwatch
+|Battlefield Name=Maddening Radiance
+|Requirement=Kupofried's corundum
+|Level Cap=None
+|Time Limit=30
+|Party Members=18
+}}
+{{Zone Battlefield
+|Type=Voidwatch
+|Battlefield Name=Seductive Radiance
+|Requirement=Kupofried's corundum
+|Level Cap=None
+|Time Limit=30
+|Party Members=18
+}}
+{{Zone Battlefield
+|Type=Voidwatch
+|Battlefield Name=Provenance Watcher
+|Requirement=Beguiling petrifact{{mi}}Maddening petrifact{{mi}}Seductive petrifact
+|Level Cap=None
+|Time Limit=30
+|Party Members=18
+}}
+}}
+
+== Notes ==
+* This zone is only accessible to those who have progressed sufficiently far in the [[:Category:Voidwatch Quests|Voidwatch storyline]].
+* Provenance is entered through a section of [[Walk of Echoes]] that can only be accessed via the Veridical Confluxes in [[Pashhow Marshlands (S)]] (near the Gate Crystal) and [[Grauberg (S)]] (in Witchfire Glen). The glimmering ??? inside the zone is used to transport the player to [[Provenance]]. The [[Grauberg (S)]] entrance can only be used by those who have progressed to the final battles of the Wings of the Goddess storyline.
+* The [[Planar Rift]] inside the zone serves as a zone exit back to [[Walk of Echoes]].
+* The '''Regal Pawprints''' inside the zone can be used to upgrade [[atmacite]]s and change equipped atmacites.
+
+[[Category:Voidwatch]]

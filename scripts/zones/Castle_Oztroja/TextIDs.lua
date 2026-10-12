@@ -1,12 +1,12 @@
 -- Variable TextID   Description text
 
 -- General Texts
-   ITEM_CANNOT_BE_OBTAINED = 6565; -- You cannot obtain the item <item>. Come back after sorting your inventory.
-FULL_INVENTORY_AFTER_TRADE = 6569; -- You cannot obtain the #. Try trading again after sorting your inventory.
-             ITEM_OBTAINED = 6571; -- Obtained: <item>.
-              GIL_OBTAINED = 6572; -- Obtained <number> gil.
-          KEYITEM_OBTAINED = 6574; -- Obtained key item: <keyitem>.
-            ITEMS_OBTAINED = 6577; -- You obtain
+   ITEM_CANNOT_BE_OBTAINED = 6567; -- You cannot obtain the item <item>. Come back after sorting your inventory.
+FULL_INVENTORY_AFTER_TRADE = 6571; -- You cannot obtain the #. Try trading again after sorting your inventory.
+             ITEM_OBTAINED = 6573; -- Obtained: <item>.
+              GIL_OBTAINED = 6574; -- Obtained <number> gil.
+          KEYITEM_OBTAINED = 6576; -- Obtained key item: <keyitem>.
+            ITEMS_OBTAINED = 6579; -- You obtain
     FISHING_MESSAGE_OFFSET = 7251; -- You can't fish here.
 
 -- Other dialog

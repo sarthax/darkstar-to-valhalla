@@ -1,12 +1,12 @@
 -- Variable TextID   Description text
 
 -- General Texts
-   ITEM_CANNOT_BE_OBTAINED = 6520; -- You cannot obtain the item <item>. Come back after sorting your inventory.
-FULL_INVENTORY_AFTER_TRADE = 6524; -- You cannot obtain the <item>. Try trading again after sorting your inventory.
-             ITEM_OBTAINED = 6526; -- Obtained: <item>.
-              GIL_OBTAINED = 6527; -- Obtained <number> gil.
-          KEYITEM_OBTAINED = 6529; -- Obtained key item: <keyitem>.
-            ITEMS_OBTAINED = 6535; -- You obtain <param2 number> <param1 item>!
+   ITEM_CANNOT_BE_OBTAINED = 6522; -- You cannot obtain the item <item>. Come back after sorting your inventory.
+FULL_INVENTORY_AFTER_TRADE = 6526; -- You cannot obtain the <item>. Try trading again after sorting your inventory.
+             ITEM_OBTAINED = 6528; -- Obtained: <item>.
+              GIL_OBTAINED = 6529; -- Obtained <number> gil.
+          KEYITEM_OBTAINED = 6531; -- Obtained key item: <keyitem>.
+            ITEMS_OBTAINED = 6537; -- You obtain <param2 number> <param1 item>!
              HOMEPOINT_SET = 10269; -- Home point set!
 
 -- Conquest system

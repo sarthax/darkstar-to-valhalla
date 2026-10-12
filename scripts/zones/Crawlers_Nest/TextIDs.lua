@@ -1,10 +1,10 @@
 --- Variable TextID   Description text
 
 -- General Texts
-ITEM_CANNOT_BE_OBTAINED = 6570; -- You cannot obtain the item <item>. Come back after sorting your inventory.
-          ITEM_OBTAINED = 6576; -- Obtained: <item>.
-           GIL_OBTAINED = 6577; -- Obtained <number> gil.
-       KEYITEM_OBTAINED = 6579; -- Obtained key item: <keyitem>.
+ITEM_CANNOT_BE_OBTAINED = 6572; -- You cannot obtain the item <item>. Come back after sorting your inventory.
+          ITEM_OBTAINED = 6578; -- Obtained: <item>.
+           GIL_OBTAINED = 6579; -- Obtained <number> gil.
+       KEYITEM_OBTAINED = 6581; -- Obtained key item: <keyitem>.
 
 -- Treasure Coffer/Chest Dialog
 CHEST_UNLOCKED = 7249; -- You unlock the chest!

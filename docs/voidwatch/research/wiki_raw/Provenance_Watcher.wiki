@@ -1,0 +1,112 @@
+{{Adversary Description
+|Image=Update05-15-2012 1.jpg
+|Class=    VWNM
+|Type=Unclassified
+|Family=Supreme Being
+|Main.Job=      
+|Sub.Job=
+|Crystal=  
+|Detects= 
+|Notes=*First defeated as part of the quest [[Crystal Guardian]], but may be repeated indefinitely.
+*The fight takes place in a battlefield which has a time limit of 30 minutes.
+** Entry into the battlefield requires key items [[Beguiling petrifact]], [[Maddening petrifact]], and [[Seductive petrifact]] from each player -- all three will be lost upon entry.
+*Items may be obtained via individual glimmering troves and a general treasure pool from Provenance Watcher. The treasure pool will include 1 or 2 pieces of Provenance Watcher equipment and 0 or 1 of the two possible scrolls.
+*Has around 350,000 HP (HP bar is not visible, but can be estimated based on the current stance).
+*As HP decreases, advances through three stances which alter the potential set of TP moves and magic spells:
+** Stance 1: Wings closed
+** Stance 2: Two wings open (~75% HP)
+** Stance 3: Four wings open (~50% HP)
+*Upon shifting to stance 3, Provenance Watcher will reset its aura to choose a new list of potential weakness triggers (a message will be displayed in the battle log when this occurs).
+*Physical attacks vary in power and additional effect depending on the relative location of the target (front: [[Stun]], side: {{question}}, or rear: [[Paralyze]]).
+*Uses Draw-In if hate target is out of range during a TP move or spell cast.
+*Casts the following spells (increasing in tier as HP decreases):
+** AoE debuffs ([[Addle]], [[Stun]], [[Silencega]], [[Paralyga]], [[Blindga]], [[Breakga]], [[Diaga III]])
+** Stance 1: Tier III single target nukes, 
+** Stance 2: Tier IV single target and tier III -ga nukes, [[Holy]], [[Comet]]
+** Stance 3: Tier V single target and tier IV -ga nukes, [[Holy II]], [[Meteor]]
+** <25% HP: Replaces tier IV -ga nukes with tier V -ga nukes.
+*Can be stunned but builds resistance (spells should be stunned whenever possible to avoid Crystal Fetters).
+*Uses the following TP moves:
+** '''Prismatic Breath''': AoE (conal) damage & [[Inhibit TP]] ([[Store TP]] reduction)
+** '''Acicular Brand''': AoE damage (other effects? {{question}})
+** '''Orogenesis''': AoE damage, [[Weight]], [[Choke]], & [[Evasion Down]]
+** '''Diffractive Break''': AoE damage, [[Amnesia]], [[Muddle]], & [[Silence]]
+** '''Euhedral Swat''': Used only when hate is pulled from behind, similar to '''[[Spike Flail]]''', high AoE damage/knockback, [[Attack Down]], and [[Defense Down]]
+** Stance 2: '''Crystallite Shower''': AoE damage, [[Dia]], [[Slow]], & [[Addle]]
+** Stance 2: '''Graviton Crux''': AoE HP drain, attribute absorb (random) & partial draw-in (pulls players in range towards Provenance Watcher), gains temporary Damage Spikes.<div id="copywrite">This code and information has been copied verbatim from the [http://wiki.bluegartr.com BlueGartr Wiki].</div> 
+** Stance 3: '''Phason Beam''': AoE damage & [[Magic Defense Down]]
+** Stance 3: '''Crystal Bolide''': AoE damage, [[Terror]], & [[Obliviscence]] (disables sub jobs)
+** Stance 3: '''Fragor Maximus''': AoE damage {{verification}} and [[weakness]], Provenance Watcher gains strong "Killer" (intimidation) effect for some time.
+* May summon one [[Crystal Fetter]] (up to three may be out simultaneously) upon successful casting of any spell.
+** The chance of a Crystal Fetter spawning increases with each stance (nearly guaranteed in the third stance).
+** Damage taken by Provenance Watcher is drastically cut until these are defeated (cut by ~99% with three present, ~80% with two present, and ~50% with one present)
+** The Crystal Fetters are each associated with one of the eight elements represented by their color and the element of Fetter will match that of the spell that spawned it.
+** Each Crystal Fetter has approximately 5000 HP.
+** Crystal Fetters are stationary and do not attack.
+** Each Crystal Fetter has a debuffing aura of two statuses associated with its element (the debuff effects wear off if the player moves out of range or the fetter is defeated):
+*** Darkness (red/purple glow): [[Bio]], 5-count [[Doom]]
+*** Light (white/light blue glow): [[Dia]], [[Curse (Recovery)]]
+*** Fire (red glow): [[Burn]], [[Attack Down]] {{verification}}
+*** Ice (light blue glow): [[Frost]], [[Magic Attack Down]] {{verification}} 
+*** Wind (green glow): [[Choke]], [[Evasion Down]]<div id="copywrite" style="font-size:60px;">This code and information has been copied verbatim from the [http://wiki.bluegartr.com BlueGartr Wiki].</div> 
+*** Earth (yellow glow): [[Rasp]], [[Defense Down]]
+*** Thunder (purple glow): [[Shock]], [[Accuracy Down]]
+*** Water (blue glow): [[Drown]], [[Magic Defense Down]] {{verification}}
+** Each Crystal Fetter is immune to either physical or magical damage:
+*** Ice, Earth, Water, and Darkness Crystal Fetters can only be affected by physical damage and are immune to magical damage.
+*** Thunder, Fire, Wind, and Light Crystal Fetters can only be affected by magical damage and are immune to physical damage.
+*** [[Twilight Scythe]] melee and [[Quick Draw]] will damage either type.}}
+==Listings==
+{{Adversary Table
+|Adversary Row=
+{{Adversary Row
+|Class=    VWNM
+|Zone= Provenance
+|FFXIDB= 
+|Title=Witness to Provenance
+|Spawns=
+|SpawnType=
+|SpawnCondition=
+|VW.Rifts=
+|VW.Path=Final Chapter: [[Crystal Guardian]]
+|VW.Tier=
+|Steal=
+|Treasure= 
+*{{KI}} [[Atmacite of Provenance]]
+*{{KI}} [[Periapt of emergence]]
+*{{KI}} [[Vivid periapt of exploration]]
+'''Glimmering Trove or Direct Drop''':
+* '''[[Plenitas Virga]]''' {{cdrop}}
+* '''[[Sanus Ensis]]''' {{cdrop}}
+* '''[[Adamas]]''' {{rdrop}}
+* '''[[Drachenhorn]]''' {{vdrop}}
+* '''[[Hyaline Hat]]''' {{vdrop}}
+* '''[[Tessera Saio]]''' {{vdrop}}
+'''Glimmering Trove Only''':
+* [[C.Abjuration: Bd.]] {{xdrop}}
+* [[F.Abjuration: Bd.]] {{xdrop}}
+* [[L.Abjuration: Bd.]] {{xdrop}}
+* [[S.Abjuration: Bd.]] {{xdrop}}
+* [[T.Abjuration: Bd.]] {{xdrop}}
+'''Direct Drop Only''':
+*[[Meteor (Scroll)]] {{vdrop}}
+*[[Arise (Scroll)]] {{vdrop}}
+|Abilities=
+|Spells=
+|Traits=
+|Level=
+|Aggro=
+|Link=
+|HP=
+|MP=
+|Defense=
+|Evasion=
+|Susceptible= 
+|Resists= 
+|Immune=
+|Absorbs=
+|Assisted.By=
+}}
+}}
+
+==Ability Information==

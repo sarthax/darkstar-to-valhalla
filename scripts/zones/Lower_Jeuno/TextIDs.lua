@@ -1,11 +1,11 @@
 -- Variable TextID   Description text
 
 -- General Texts
-ITEM_CANNOT_BE_OBTAINED = 6380; -- You cannot obtain the item <item>. Come back after sorting your inventory.
-          ITEM_OBTAINED = 6386; -- Obtained: <item>.
-           GIL_OBTAINED = 6387; -- Obtained <number> gil.
-       KEYITEM_OBTAINED = 6389; -- Obtained key item: <keyitem>.
-    NOT_HAVE_ENOUGH_GIL = 6393; -- You do not have enough gil.
+ITEM_CANNOT_BE_OBTAINED = 6382; -- You cannot obtain the item <item>. Come back after sorting your inventory.
+          ITEM_OBTAINED = 6388; -- Obtained: <item>.
+           GIL_OBTAINED = 6389; -- Obtained <number> gil.
+       KEYITEM_OBTAINED = 6391; -- Obtained key item: <keyitem>.
+    NOT_HAVE_ENOUGH_GIL = 6395; -- You do not have enough gil.
           HOMEPOINT_SET = 6515; -- Home point set!
  FISHING_MESSAGE_OFFSET = 6919; -- You can't fish here.
     INVENTORY_INCREASED = 7777; -- Your inventory capacity has increased.

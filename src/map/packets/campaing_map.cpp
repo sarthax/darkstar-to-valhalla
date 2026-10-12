@@ -25,6 +25,9 @@
 
 #include <string.h>
 
+#include "../entities/charentity.h"
+#include "../utils/charutils.h"
+
 #include "campaing_map.h"
 
     uint8 packet0[] = {
@@ -57,6 +60,59 @@
 	0xFA, 0xE8, 0x13, 0x00, 0xAE, 0x8F, 0x3E, 0xC3, 0x00, 0x00, 0x00, 0xFA, 0xFA, 0xE8, 0x13, 0x00, 
 	0x8E, 0x3E, 0xFA, 0x00, 0x00, 0x00, 0x00, 0xFA, 0xE8, 0xA3, 0x3F, 0x00};
 
+namespace
+{
+    // Layout of the 0x071 campaign payload (200 bytes, starts at data+0x04), verified against a retail capture:
+    //  +0x08 int32 AlliedNotes | +0x0C areas (5/5/5/5 bits: San/Bas/Win/Beast) | +0x10 7 nations x u32
+    //  (recon:4, unused:14, morale:7, prosperity:7) | +0x2C 13 zones x 12 bytes:
+    //  u32 (unused:1, owner:3, fortifications:10, resources:10, heroism:8), 4 x u8 influence, u32 (maxFort:10, maxRes:10, unused:12)
+    const int CAMPAIGN_REGIONS = 26;
+    const int CAMPAIGN_NATIONS = 7;
+
+    struct campaign_region_t { uint8 owner, heroism, inf[4]; uint16 fort, res, maxFort, maxRes; };
+    struct campaign_nation_t { uint8 recon, morale, prosperity; };
+
+    void PutU32(uint8* p, uint32 v) { p[0] = v & 0xFF; p[1] = (v >> 8) & 0xFF; p[2] = (v >> 16) & 0xFF; p[3] = (v >> 24) & 0xFF; }
+    uint32 GetU32(const uint8* p) { return p[0] | (p[1] << 8) | (p[2] << 16) | ((uint32)p[3] << 24); }
+
+    // Reads campaign_nation / campaign_map. Returns false (caller keeps the static retail snapshot) if either is incomplete.
+    bool LoadCampaignState(campaign_nation_t* nations, campaign_region_t* regions)
+    {
+        int32 ret = Sql_Query(SqlHandle, "SELECT reconnaissance, morale, prosperity FROM campaign_nation ORDER BY id ASC LIMIT %d;", CAMPAIGN_NATIONS);
+        if (ret == SQL_ERROR || Sql_NumRows(SqlHandle) != CAMPAIGN_NATIONS)
+        {
+            return false;
+        }
+        for (int i = 0; i < CAMPAIGN_NATIONS && Sql_NextRow(SqlHandle) == SQL_SUCCESS; ++i)
+        {
+            nations[i].recon = (uint8)Sql_GetIntData(SqlHandle, 0);
+            nations[i].morale = (uint8)Sql_GetIntData(SqlHandle, 1);
+            nations[i].prosperity = (uint8)Sql_GetIntData(SqlHandle, 2);
+        }
+
+        ret = Sql_Query(SqlHandle, "SELECT nation, heroism, influence_sandoria, influence_bastok, influence_windurst, influence_beastman, "
+            "current_fortifications, current_resources, max_fortifications, max_resources FROM campaign_map ORDER BY id ASC LIMIT %d;", CAMPAIGN_REGIONS);
+        if (ret == SQL_ERROR || Sql_NumRows(SqlHandle) != CAMPAIGN_REGIONS)
+        {
+            return false;
+        }
+        for (int i = 0; i < CAMPAIGN_REGIONS && Sql_NextRow(SqlHandle) == SQL_SUCCESS; ++i)
+        {
+            regions[i].owner = (uint8)Sql_GetIntData(SqlHandle, 0);
+            regions[i].heroism = (uint8)Sql_GetIntData(SqlHandle, 1);
+            for (int j = 0; j < 4; ++j)
+            {
+                regions[i].inf[j] = (uint8)Sql_GetIntData(SqlHandle, 2 + j);
+            }
+            regions[i].fort = (uint16)Sql_GetIntData(SqlHandle, 6);
+            regions[i].res = (uint16)Sql_GetIntData(SqlHandle, 7);
+            regions[i].maxFort = (uint16)Sql_GetIntData(SqlHandle, 8);
+            regions[i].maxRes = (uint16)Sql_GetIntData(SqlHandle, 9);
+        }
+        return true;
+    }
+}
+
 CCampaingPacket::CCampaingPacket(CCharEntity * PChar, uint8 number) 
 {
 	this->type = 0x71; 
@@ -67,4 +123,47 @@ CCampaingPacket::CCampaingPacket(CCharEntity * PChar, uint8 number)
 		case 0: memcpy(data+(0x04), &packet0, 200); break;
 		case 1: memcpy(data+(0x04), &packet1, 200); break;
 	}
+
+    campaign_nation_t nations[CAMPAIGN_NATIONS];
+    campaign_region_t regions[CAMPAIGN_REGIONS];
+    if (!LoadCampaignState(nations, regions))
+    {
+        return; // tables missing/incomplete: keep the static retail snapshot
+    }
+
+    uint8* payload = data + 0x04;
+
+    PutU32(payload + 0x08, (uint32)charutils::GetPoints(PChar, "allied_notes"));
+
+    uint32 areas[4] = { 0, 0, 0, 0 };
+    for (int i = 0; i < CAMPAIGN_REGIONS; ++i)
+    {
+        switch (regions[i].owner)
+        {
+            case 1: areas[0]++; break;
+            case 2: areas[1]++; break;
+            case 3: areas[2]++; break;
+            default: areas[3]++; break;
+        }
+    }
+    PutU32(payload + 0x0C, (areas[0] & 0x1F) | ((areas[1] & 0x1F) << 5) | ((areas[2] & 0x1F) << 10) | ((areas[3] & 0x1F) << 15));
+
+    for (int i = 0; i < CAMPAIGN_NATIONS; ++i)
+    {
+        uint8* n = payload + 0x10 + 4 * i;
+        uint32 unusedBits = GetU32(n) & (0x3FFFu << 4); // keep the unknown middle bits as captured
+        PutU32(n, (nations[i].recon & 0x0F) | unusedBits | ((uint32)(nations[i].morale & 0x7F) << 18) | ((uint32)(nations[i].prosperity & 0x7F) << 25));
+    }
+
+    const int start = number == 0 ? 0 : 13;
+    for (int i = 0; i < 13; ++i)
+    {
+        const campaign_region_t& r = regions[start + i];
+        uint8* z = payload + 0x2C + 12 * i;
+        uint32 unused0 = GetU32(z) & 0x1u;
+        uint32 unused1 = GetU32(z + 8) & (0xFFFu << 20);
+        PutU32(z, unused0 | ((uint32)(r.owner & 0x7) << 1) | ((uint32)(r.fort & 0x3FF) << 4) | ((uint32)(r.res & 0x3FF) << 14) | ((uint32)r.heroism << 24));
+        z[4] = r.inf[0]; z[5] = r.inf[1]; z[6] = r.inf[2]; z[7] = r.inf[3];
+        PutU32(z + 8, (r.maxFort & 0x3FF) | ((uint32)(r.maxRes & 0x3FF) << 10) | unused1);
+    }
 }

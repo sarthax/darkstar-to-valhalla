@@ -1,0 +1,27 @@
+{{item
+|description=A curious substance developed by Jeunoan researchers, said to have a debilitating effect on Voidwalkers.
+|type=Item
+|flags=Not vendorable, Not sendable, Exclusive
+|stack size=99
+|singular log name=phase displacer
+|ffxiah=3853/phase-displacer
+}}
+{{Item NPC Table
+|Insert NPC List Template=
+{{Item NPC
+|NPC Name=Ardrick
+|Zone=Jugner Forest
+|position=I-8
+|Notes=20,000 [[Gil]]
+
+1,000 [[Gil]] with [["Rhapsody in Mauve"]]
+}}
+}}
+
+== Notes ==
+* May be traded to any [[Planar Rift]] to convert to [[Void cluster]]s.
+** If you choose to begin a [[Voidwatch]] battle while in possession of one or more void clusters, you will be presented with the option to utilize them for the battle. Using void clusters will weaken the VWNM spawned, proportionally to the number of void clusters used (up to five).
+*** These are thought to reduce the monster level by 5 per cluster.
+** In [[Provenance]], the Planar Rift is also the exit. Trading to the Provenance Crystals does nothing.
+* Can buy as many as you like, but only use five at a time. Not limited to holding only five, can hold as much as your inventory can handle.
+* Upon completing Rhapsodies of Vana'diel mission 2-40 and receiving the [["Rhapsody in Mauve"]] key item, the cost to purchase is reduced to 1,000g.

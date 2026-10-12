@@ -1,0 +1,153 @@
+A category of NPCs whose purpose is to infuse and enrich [[:Category:Atmacite|atmacite]], upgrade stratum abyssite, and teleport players to [[Voidwatch]] Ops staging locations in exchange for [[Cruor]].
+
+{| class=default1 style="width:500px; text-align:center;"
+! colspan=3 | Atmacite Refiner NPC Locations 
+|-
+! Zone
+! Position
+! Name
+|- 
+| [[Southern San d'Oria (S)]]
+| (L-9)
+| [[{{PAGENAME}} (San d'Oria (S))|{{PAGENAME}}]]
+|-
+| [[Bastok Markets (S)]]
+| (G-5)
+| [[{{PAGENAME}} (Bastok (S))|{{PAGENAME}}]]
+|- 
+| [[Windurst Waters (S)]]
+| (G-5)
+| [[{{PAGENAME}} (Windurst (S))|{{PAGENAME}}]]
+|-
+| [[Southern San d'Oria]]
+| (F-9)
+| [[{{PAGENAME}} (San d'Oria)|{{PAGENAME}}]]
+|-
+| [[Bastok Markets]]
+| (D-11)
+| [[{{PAGENAME}} (Bastok)|{{PAGENAME}}]]
+|- 
+| [[Windurst Waters]]
+| (G-5)
+| [[{{PAGENAME}} (Windurst)|{{PAGENAME}}]]
+|- 
+| [[Norg]]
+| (I-8)
+| [[{{PAGENAME}} (Norg)|{{PAGENAME}}]]
+|- 
+| [[Rabao]]
+| (G-8)
+| [[{{PAGENAME}} (Rabao)|{{PAGENAME}}]]
+|- 
+| [[Kazham]]
+| (F-9)
+| [[{{PAGENAME}} (Kazham)|{{PAGENAME}}]]
+|- 
+| [[Qufim Island]]
+| (I-11)
+| [[{{PAGENAME}} (Qufim)|{{PAGENAME}}]]
+|-
+| [[Sauromugue Champaign]]
+| (E-6)
+| [[{{PAGENAME}} (Sauromugue)|{{PAGENAME}}]]
+|- 
+| [[Rolanberry Fields]]
+| (J-5)
+| [[{{PAGENAME}} (Rolanberry)|{{PAGENAME}}]]
+|- 
+| [[Batallia Downs]]
+| (K-8)
+| [[{{PAGENAME}} (Batallia)|{{PAGENAME}}]]
+|- 
+| [[Sauromugue Champaign (S)]]
+| (E-6)
+| [[{{PAGENAME}} (Sauromugue (S))|{{PAGENAME}}]]
+|-
+| [[Rolanberry Fields (S)]]
+| (J-5)
+| [[{{PAGENAME}} (Rolanberry (S))|{{PAGENAME}}]]
+|- 
+| [[Batallia Downs (S)]]
+| (K-8)
+| [[{{PAGENAME}} (Batallia (S))|{{PAGENAME}}]]
+|- 
+| [[Tavnazian Safehold]]
+| (H-6)
+| [[{{PAGENAME}} (Tavnazia)|{{PAGENAME}}]]
+|- 
+| [[Wajaom Woodlands]]
+| (M-7)
+| [[{{PAGENAME}} (Wajaom)|{{PAGENAME}}]]
+|- 
+|}
+
+=== Infusing and Enriching Atmacite ===
+Players in possession of one or more [[Periapt of emergence|Periapts of emergence]] can infuse obtained [[atmacite]]s for a nominal cruor fee at any Atmacite Refiner. Once infused, the atmacite will automatically become active each time a player engages in a Voidwatch battle until the player chooses to purge the atmacite. Atmacites must be purged before a new atmacite can be infused.
+
+Players may also pay the Atmacite Refiners to enrich [[:Category:Atmacite|Atmacite]] that they receive in battles. Each Atmacite can progress to level 15 after 14 upgrades, with a variable cost progression based on Cruor. 
+
+Atmacite can also be infused, purged, and enriched at any [[Planar Rift]] prior to engaging in battle.
+
+=== Upgrading Stratum Abyssite ===
+Upon completing the Voidwatch battle(s) associated with a particular tier and color of stratum abyssite, the stratum abyssite must be inspected by any Atmacite Refiner NPC in order to be upgraded to the next tier. Atmacite refiners can upgrade indigo, jade, crimson, and certain tiers of white stratum abyssites. Ashen stratum abyssite and other white statum abyssite tiers are upgraded through [[Voidwatch Quests]].
+
+== Teleportation ==
+Atmacite Refiner NPCs can teleport players to Voidwatch areas in which they can start battles (determined by the levels of their Stratum Abyssites). Each teleport costs 1,000 [[Cruor]].
+
+The following teleportation options are available upon speaking with an Atmacite Refiner. The type and tier of required Stratum Abyssite to have access to each teleportation option is noted next to the area. Areas related to "VW Ops" [[Voidwatch Quests]] cannot be teleported to until the quest has been activated. Available destinations are dependent upon whether you are interacting with a present-day or past Atmacite Refiner, but are not dependent on the location you are teleporting from (all destinations in each time period are available from any Atmacite Refiner in that time period). Teleports to field areas will bring you into the zone near one of the zone's entrances and typically in close proximity to at least one of the zone's [[Planar Rift]]s. Teleports to dungeon areas will bring you immediately outside one of the zone entrances. This is not always the front/main entrance when a dungeon has more than one entrance.
+
+=== Present-Day Vana'diel === 
+* {{icon|bastok|small}} '''Bastok''' - {{KI}} [[Indigo stratum abyssite]]
+** [[Indigo stratum abyssite|I]]: [[North Gustaberg]]
+** [[Indigo stratum abyssite II|II]]: [[Gusgen Mines]] (entrance)
+** [[Indigo stratum abyssite III|III]]: [[Pashhow Marshlands]]
+** [[Indigo stratum abyssite IV|IV]]: [[Dangruf Wadi]] (entrance)
+* {{icon|sandy|small}} '''San d'Oria''' - {{KI}} [[Crimson stratum abyssite]]
+** [[Crimson stratum abyssite|I]]: [[East Ronfaure]]
+** [[Crimson stratum abyssite II|II]]: [[Ordelle's Caves]] (entrance)
+** [[Crimson stratum abyssite III|III]]: [[Jugner Forest]]
+** [[Crimson stratum abyssite IV|IV]]: [[King Ranperre's Tomb]] (entrance)
+* {{icon|windurst|small}} '''Windurst''' - {{KI}} [[Jade stratum abyssite]]
+** [[Jade stratum abyssite|I]]: [[West Sarutabaruta]]
+** [[Jade stratum abyssite II|II]]: [[Maze of Shakhrami]] (entrance)
+** [[Jade stratum abyssite III|III]]: [[Meriphataud Mountains]]
+** [[Jade stratum abyssite IV|IV]]: [[Outer Horutoto Ruins]] (entrance)
+* {{icon|jeuno|small}} '''Jeuno''' - {{KI}} [[White stratum abyssite]]
+** [[White stratum abyssite|I]]: [[Rolanberry Fields]], [[Sauromugue Champaign]], [[Batallia Downs]]
+** [[White stratum abyssite II|II]]: [[Crawlers' Nest]] (entrance, Rolanberry Fields D-11), [[Garlaige Citadel]] (entrance, Sauromugue Champaign J-10), [[The Eldieme Necropolis]] (entrance, Batalia Downs I-10)
+** [[White stratum abyssite III|III]]: [[Qufim Island]], [[Behemoth's Dominion]], [[Lower Delkfutt's Tower]] (entrance)
+* {{icon|jeuno|small}} '''Jeuno II''' - {{KI}} [[White stratum abyssite]]
+** [[White stratum abyssite IV|IV]]: [[South Gustaberg]], [[East Sarutabaruta]], [[West Ronfaure]]
+** [[White stratum abyssite V|V]]: [[Konschtat Highlands]], [[Tahrongi Canyon]], [[La Theine Plateau]]
+** [[White stratum abyssite VI|VI]]: [[Beaucedine Glacier]]* (H-11), [[Valkurm Dunes]], [[Buburimu Peninsula]]
+* {{icon|zilart|small}} '''Zilart''' - {{KI}} [[Ashen stratum abyssite]]
+** [[Ashen stratum abyssite|I]]: [[Yuhtunga Jungle]], [[Ifrit's Cauldron]] (entrance, Yhoator Jungle I-6), [[Temple of Uggalepih]] (entrance, Yhoator Jungle J-12), [[Western Altepa Desert]], [[Quicksand Caves]] (entrance, Western Altepa Desert J-9), [[Kuftal Tunnel]] (entrance)
+** [[Ashen stratum abyssite II|II]]: [[The Sanctuary of Zi'Tah]], [[The Boyahda Tree]] (entrance), [[Ro'Maeve]]
+** [[Ashen stratum abyssite III|III]]: [[Hall of the Gods]]
+* {{icon|tavnazia|small}} '''Tavnazia''' - {{KI}} [[Hyacinth stratum abyssite]]
+** [[Hyacinth stratum abyssite|I]]: [[Lufaise Meadows]], [[Misareaux Coast]], [[Uleguerand Range]], [[Attohwa Chasm]]
+** [[Hyacinth stratum abyssite II|II]]: [[Bibiki Bay - Purgonorgo Isle]]
+* {{icon|Aht Urhgan|small}} '''Aht Urhgan''' - {{KI}} [[Amber stratum abyssite]]
+** [[Amber stratum abyssite|I]]:  [[Arrapago Reef]] (entrance, Caedarva Mire map #1, I-6), [[Caedarva Mire]] (Map #1, H-10), [[Mamook]] (entrance, Wajaom Woodlands E-12), [[Mount Zhayolm]] (L-7, Halvung entrance #1)
+** [[Amber stratum abyssite II|II]]: [[Aydeewa Subterrane]] (entrance, Bhaflau Thickets I-7)
+
+=== Past Vana'diel ===
+* {{icon|bastok|small}} '''Bastok''' - {{KI}} [[Indigo stratum abyssite]]
+** [[Indigo stratum abyssite|I]]: [[North Gustaberg (S)]]
+** [[Indigo stratum abyssite III|III]]: [[Pashhow Marshlands (S)]]
+* {{icon|sandy|small}} '''San d'Oria''' - {{KI}} [[Crimson stratum abyssite]]
+** [[Crimson stratum abyssite|I]]: [[East Ronfaure (S)]]
+** [[Crimson stratum abyssite III|III]]: [[Jugner Forest (S)]]
+* {{icon|windurst|small}} '''Windurst''' - {{KI}} [[Jade stratum abyssite]]
+** [[Jade stratum abyssite|I]]: [[West Sarutabaruta (S)]]
+** [[Jade stratum abyssite III|III]]: [[Meriphataud Mountains (S)]]
+* {{icon|jeuno|small}} '''Jeuno''' - {{KI}} [[White stratum abyssite]]
+** [[White stratum abyssite|I]]: [[Rolanberry Fields (S)]], [[Sauromugue Champaign (S)]], [[Batallia Downs (S)]]
+** [[White stratum abyssite II|II]]: [[Crawlers' Nest (S)]] (entrance), [[Garlaige Citadel (S)]] (entrance), [[The Eldieme Necropolis (S)]] (entrance)
+* {{icon|jeuno|small}} '''Jeuno II''' - {{KI}} [[White stratum abyssite]]
+** [[White stratum abyssite VI|VI]]: [[Grauberg (S)]], [[Fort Karugo-Narugo (S)]], [[Vunkerl Inlet (S)]]
+
+'''Note:''' Beaucedine Glacier has been added as a temporary battlefield for [[Kalasutrax]] to alleviate console freezing issues associated with the battle and can be warped to from present Atmacite Refiners.
+
+[[Category:Voidwatch]][[Category:Voidwatch Service NPC]]
+__notoc__

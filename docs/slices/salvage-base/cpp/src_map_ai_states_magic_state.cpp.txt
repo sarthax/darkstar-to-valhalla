@@ -1,0 +1,11 @@
+// excerpt of src/map/ai/states/magic_state.cpp (from main @ eff415776b); lines 170,178
+        m_errorMsg = std::make_unique<CMessageBasicPacket>(m_PEntity, m_PEntity, static_cast<uint16>(m_PSpell->getID()), 0, MSGBASIC_CANNOT_CAST_SPELL);
+        return ret;
+    }
+    if (!m_PEntity->loc.zone->CanUseMisc(m_PSpell->getZoneMisc()))
+    {
+        m_errorMsg = std::make_unique<CMessageBasicPacket>(m_PEntity, m_PEntity, static_cast<uint16>(m_PSpell->getID()), 0, MSGBASIC_CANNOT_USE_IN_AREA);
+        return false;
+    }
+    if (m_PEntity->StatusEffectContainer->HasStatusEffect({EFFECT_SILENCE, EFFECT_MUTE}))
+// ...

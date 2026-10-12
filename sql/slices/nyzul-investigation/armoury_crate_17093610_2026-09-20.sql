@@ -1,0 +1,3 @@
+-- Third Armoury Crate (2026-09-20). The instance script uses ARMOURY_CRATE_OFFSET..+2 (17093609-17093611); the package npc_list.sql had only 609 and 611.
+-- Values copied unchanged from the Topaz source npc_list row, the same way 609/611 were carried over. The old live dspdb has none of the three crate rows.
+REPLACE INTO `npc_list` (`npcid`, `name`, `polutils_name`, `pos_rot`, `pos_x`, `pos_y`, `pos_z`, `flag`, `speed`, `speedsub`, `animation`, `animationsub`, `namevis`, `status`, `entityFlags`, `look`, `name_prefix`, `content_tag`, `widescan`) VALUES (17093610, 'Armoury_Crate', 'Armoury Crate', 78, 500.877, -0.500, 15.508, 6, 40, 40, 0, 12, 4, 0, 1155, 0x0000C50300000000000000000000000000000000, 32, 'TOAU', 0);

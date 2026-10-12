@@ -40,6 +40,7 @@ This file is part of DarkStar-server source code.
 #include "utils/battleutils.h"
 #include "utils/charutils.h"
 #include "utils/fishingutils.h"
+#include "utils/gardenutils.h"
 #include "utils/guildutils.h"
 #include "utils/instanceutils.h"
 #include "utils/itemutils.h"
@@ -226,6 +227,7 @@ int32 do_init(int32 argc, int8** argv)
     ShowMessage("\t\t\t - " CL_GREEN"[OK]" CL_RESET"\n");
 
     fishingutils::LoadFishingMessages();
+    gardenutils::Initialize();
 
     ShowStatus("do_init: server is binding with port %u", map_port == 0 ? map_config.usMapPort : map_port);
     map_fd = makeBind_udp(map_config.uiMapIp, map_port == 0 ? map_config.usMapPort : map_port);
@@ -952,6 +954,10 @@ int32 map_config_default()
     map_config.ah_tax_rate_single = 1.0;
     map_config.ah_tax_rate_stacks = 0.5;
     map_config.ah_max_fee = 10000;
+    map_config.garden_day_matters       = false;
+    map_config.garden_moonphase_matters = false;
+    map_config.garden_pot_matters       = false;
+    map_config.garden_mh_aura_matters   = false;
     map_config.exp_rate = 1.0f;
     map_config.exp_loss_rate = 1.0f;
     map_config.exp_retain = 0.0f;
@@ -1114,6 +1120,22 @@ int32 map_config_read(const int8* cfgName)
         else if (strcmp(w1, "fov_allow_alliance") == 0)
         {
             map_config.fov_allow_alliance = atof(w2);
+        }
+        else if (strcmp(w1, "garden_day_matters") == 0)
+        {
+            map_config.garden_day_matters = atof(w2);
+        }
+        else if (strcmp(w1, "garden_moonphase_matters") == 0)
+        {
+            map_config.garden_moonphase_matters = atof(w2);
+        }
+        else if (strcmp(w1, "garden_pot_matters") == 0)
+        {
+            map_config.garden_pot_matters = atof(w2);
+        }
+        else if (strcmp(w1, "garden_mh_aura_matters") == 0)
+        {
+            map_config.garden_mh_aura_matters = atof(w2);
         }
         else if (strcmp(w1, "mob_tp_multiplier") == 0)
         {

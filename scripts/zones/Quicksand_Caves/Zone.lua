@@ -11,7 +11,7 @@ require("scripts/globals/keyitems");
 require("scripts/globals/npc_util");
 require("scripts/globals/zone");
 
-local base_id = 17629685;
+local base_id = 17629694;
 
 local anticanTagPositions =
 {
@@ -27,19 +27,19 @@ local anticanTagPositions =
 
 function onInitialize(zone)
     -- Weight Door System (RegionID, X, Radius, Z)
-    zone:registerRegion(1, -15, 5, -60, 0,0,0);   -- 0x010D01EF Door
-    zone:registerRegion(3, 15, 5,-180, 0,0,0);    -- 0x010D01F1 Door
-    zone:registerRegion(5, -580, 5,-420, 0,0,0);  -- 0x010D01F3 Door
-    zone:registerRegion(7, -700, 5,-420, 0,0,0);  -- 0x010D01F5 Door
-    zone:registerRegion(9, -700, 5,-380, 0,0,0);  -- 0x010D01F7 Door
-    zone:registerRegion(11, -780, 5,-460, 0,0,0); -- 0x010D01F9 Door
-    zone:registerRegion(13, -820, 5,-380, 0,0,0); -- 0x010D01FB Door
-    zone:registerRegion(15, -260, 5, 740, 0,0,0); -- 0x010D01FD Door
-    zone:registerRegion(17, -340, 5, 660, 0,0,0); -- 0x010D01FF Door
-    zone:registerRegion(19, -420, 5, 740, 0,0,0); -- 0x010D0201 Door
-    zone:registerRegion(21, -340, 5, 820, 0,0,0); -- 0x010D0203 Door
-    zone:registerRegion(23, -409, 5, 800, 0,0,0); -- 0x010D0205 Door
-    zone:registerRegion(25, -400, 5, 670, 0,0,0); -- 0x010D0207 Door
+    zone:registerRegion(1, -15, 5, -60, 0,0,0);   -- 0x010D01FE Door
+    zone:registerRegion(3, 15, 5,-180, 0,0,0);    -- 0x010D0200 Door
+    zone:registerRegion(5, -580, 5,-420, 0,0,0);  -- 0x010D0202 Door
+    zone:registerRegion(7, -700, 5,-420, 0,0,0);  -- 0x010D0204 Door
+    zone:registerRegion(9, -700, 5,-380, 0,0,0);  -- 0x010D0206 Door
+    zone:registerRegion(11, -780, 5,-460, 0,0,0); -- 0x010D0208 Door
+    zone:registerRegion(13, -820, 5,-380, 0,0,0); -- 0x010D020A Door
+    zone:registerRegion(15, -260, 5, 740, 0,0,0); -- 0x010D020C Door
+    zone:registerRegion(17, -340, 5, 660, 0,0,0); -- 0x010D020E Door
+    zone:registerRegion(19, -420, 5, 740, 0,0,0); -- 0x010D0210 Door
+    zone:registerRegion(21, -340, 5, 820, 0,0,0); -- 0x010D0212 Door
+    zone:registerRegion(23, -409, 5, 800, 0,0,0); -- 0x010D0214 Door
+    zone:registerRegion(25, -400, 5, 670, 0,0,0); -- 0x010D0216 Door
 
     --[[ -- (Old)
     zone:registerRegion(1,-18,-1, -62,-13,1, -57);
@@ -67,9 +67,9 @@ function onInitialize(zone)
     SetServerVariable("BastokFight8_1" ,0);
     SetServerVariable("Bastok8-1LastClear", os.time()-QM_RESET_TIME); -- Set a delay on ??? mission NM pop.
 
-    UpdateTreasureSpawnPoint(17629739);
+    UpdateTreasureSpawnPoint(17629748);
 
-    npcUtil.UpdateNPCSpawnPoint(17629761, 60, 120, anticanTagPositions, "[POP]Antican_Tag");
+    npcUtil.UpdateNPCSpawnPoint(17629770, 60, 120, anticanTagPositions, "[POP]Antican_Tag");
 end;
 
 -----------------------------------

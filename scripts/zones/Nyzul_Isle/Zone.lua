@@ -61,6 +61,8 @@ function onInstanceZoneIn(player, instance)
     end
 
     player:addTempItem(5348);
+    player:setLocalVar("HH_FullClearDone", 0)
+    player:setLocalVar("HH_PendingEjectMs", 0)
 end;
 
 -----------------------------------

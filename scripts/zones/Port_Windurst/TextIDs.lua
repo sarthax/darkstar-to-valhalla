@@ -1,12 +1,12 @@
 -- Variable TextID   Description text
 
 -- General Texts
-       ITEM_CANNOT_BE_OBTAINED = 10963; -- Come back after sorting your inventory.
-    FULL_INVENTORY_AFTER_TRADE = 10967; -- Try trading again after sorting your inventory.
-                 ITEM_OBTAINED = 10969; -- Obtained:
-                  GIL_OBTAINED = 10970; -- Obtained <<<Numeric Parameter 0>>> gil.
-              KEYITEM_OBTAINED = 10972; -- Obtained key item: <<<Unknown Parameter (Type: 80) 1>>>.
-           NOT_HAVE_ENOUGH_GIL = 10974; -- You do not have enough gil.
+       ITEM_CANNOT_BE_OBTAINED = 10965; -- Come back after sorting your inventory.
+    FULL_INVENTORY_AFTER_TRADE = 10969; -- Try trading again after sorting your inventory.
+                 ITEM_OBTAINED = 10971; -- Obtained:
+                  GIL_OBTAINED = 10972; -- Obtained <<<Numeric Parameter 0>>> gil.
+              KEYITEM_OBTAINED = 10974; -- Obtained key item: <<<Unknown Parameter (Type: 80) 1>>>.
+           NOT_HAVE_ENOUGH_GIL = 10976; -- You do not have enough gil.
                  HOMEPOINT_SET = 11060; -- Home point set!
         FISHING_MESSAGE_OFFSET = 11570; -- You can't fish here.
                FISHING_SUPPORT = 11674; -- Your ?Multiple Choice (Parameter 1)?[fishing/woodworking/smithing/goldsmithing/clothcraft/leatherworking/bonecraft/alchemy/cooking] skills went up ...
