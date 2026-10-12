@@ -340,6 +340,12 @@ bool CStatusEffectContainer::AddStatusEffect(CStatusEffect* PStatusEffect, bool 
         return false;
     }
 
+    // Dilatory Digestion (Super Kupower): food effects last longer
+    if (statusId == EFFECT_FOOD && m_POwner->getMod(Mod::FOOD_DURATION) > 0)
+    {
+        PStatusEffect->SetDuration(PStatusEffect->GetDuration() * (100 + m_POwner->getMod(Mod::FOOD_DURATION)) / 100);
+    }
+
     if (CanGainStatusEffect((EFFECT)statusId, PStatusEffect->GetPower()))
     {
 

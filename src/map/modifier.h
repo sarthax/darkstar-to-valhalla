@@ -688,7 +688,7 @@ enum class Mod
 
     // Super Kupower: Artisan's Advantage (set by MOG_TABLET.syncMods)
     ARTISAN_LOSS_SUPPORT      = 873, // Percent reduction of the failed-synthesis ingredient loss chance while Synthesis Image Support is active
-    ARTISAN_LOSS_ALWAYS       = 874, // Same, regardless of Synthesis Image Support
+    FOOD_DURATION             = 874, // Dilatory Digestion: percent added to food effect duration
 
     // 570 through 825 used by WS DMG mods these are not spares.
     // SPARE = 860, // stuff
