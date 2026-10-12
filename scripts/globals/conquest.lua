@@ -6,6 +6,7 @@
 
 require("scripts/globals/common");
 require("scripts/globals/missions");
+require("scripts/globals/mog_tablets");
 
 -----------------------------------
 -- convenience constants
@@ -512,9 +513,7 @@ function hasOutpost(player, region)
 end;
 
 -----------------------------------------------------------------
--- require("scripts/globals/mog_tablets");
-
-function OP_TeleFee(player,region)
+-- function OP_TeleFee(player,region)
 -----------------------------------------------------------------
 
 function OP_TeleFee(player,region)
