@@ -310,6 +310,12 @@ function MOG_TABLET.desiredMods(player)
                 mods[MOD_MAGIC_SKILLUP_RATE] = r;
             end
         end
+        -- Crystal Caboodle [W]: crystals more likely in affected zones, obtainable in beastmen-controlled regions,
+        -- and clusters may rarely drop instead of a crystal. Consumed by the crystal drop in mobentity.cpp.
+        if (MOG_TABLET.hasPower(MOG_TABLET.POWERS.CRYSTAL_CABOODLE, zoneId)) then
+            mods[MOD_CRYSTAL_DROP_RATE] = MOG_TABLET_CRYSTAL_RATE or 25;
+            mods[MOD_CLUSTER_DROP_RATE] = MOG_TABLET_CLUSTER_RATE or 10;
+        end
     end
     return mods;
 end
