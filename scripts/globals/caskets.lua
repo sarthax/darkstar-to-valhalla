@@ -505,7 +505,7 @@ local function getDrops(npc, dropType, zoneId)
                 items[i] = 4112 -- default to potion
             else
                 if math.random() < 0.05 then
-                    items[1] = casket_loot.casketItems[zoneId].regionalItems[math.random(1, #casket_loot.casketItems[zoneId].regionalItems)]
+                    items[i] = casket_loot.casketItems[zoneId].regionalItems[math.random(1, #casket_loot.casketItems[zoneId].regionalItems)]
                 else
                     items[i] = item
                 end

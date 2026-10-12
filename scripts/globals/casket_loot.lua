@@ -1785,7 +1785,7 @@ casket_loot.casketItems =
     },
     [125] =
     {
-        regionalItems = {19114}, -- Galkan Dagger
+        regionalItems = {19114, 17267}, -- Galkan Dagger / Negoroshiki
         temps =
         {
         -----------------------------------
@@ -2569,7 +2569,7 @@ casket_loot.casketItems =
     },
     [172] =
     {
-        regionalItems = {11677}, -- Prouesse Ring
+        regionalItems = {11677, 13467}, -- Prouesse Ring / Dragon Ring
         tempsLow =
         {
         -----------------------------------
@@ -3391,7 +3391,7 @@ casket_loot.casketItems =
     },
     [192] =
     {
-        regionalItems = {18624}, -- Numen Staff
+        regionalItems = {18624, 13467}, -- Numen Staff / Dragon Ring
         temps =
         {
         -----------------------------------
