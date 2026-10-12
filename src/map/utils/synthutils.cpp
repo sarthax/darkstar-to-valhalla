@@ -673,6 +673,19 @@ int32 doSynthFail(CCharEntity* PChar)
 	double random   = 0;
 	double lostItem = 0.15 - moghouseAura + (synthDiff > 0 ? synthDiff/20 : 0);
 
+	// Artisan's Advantage (Super Kupower): drastically reduced ingredient loss, more so with Synthesis Image Support
+	double artisan = PChar->getMod(Mod::ARTISAN_LOSS_ALWAYS);
+	// Synthesis Image Support is one imagery effect per craft (236-243, same order as the craft skills)
+	if (carrentCraft >= SKILL_WOODWORKING && carrentCraft <= SKILL_COOKING &&
+		PChar->StatusEffectContainer->HasStatusEffect((EFFECT)(EFFECT_WOODWORKING_IMAGERY + (carrentCraft - SKILL_WOODWORKING))))
+	{
+		artisan = std::max<double>(artisan, PChar->getMod(Mod::ARTISAN_LOSS_SUPPORT));
+	}
+	if (artisan > 0)
+	{
+		lostItem *= (100 - std::min<double>(artisan, 100)) / 100;
+	}
+
 	invSlotID = PChar->CraftContainer->getInvSlotID(1);
 
 	for(uint8 slotID = 1; slotID <= 8; ++slotID)

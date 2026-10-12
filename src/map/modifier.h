@@ -686,6 +686,10 @@ enum class Mod
     VAMPYR_REGEN              = 871, // HP per tick while HP is below 51%
     VAMPYR_REFRESH            = 872, // MP per tick while MP is below 51%
 
+    // Super Kupower: Artisan's Advantage (set by MOG_TABLET.syncMods)
+    ARTISAN_LOSS_SUPPORT      = 873, // Percent reduction of the failed-synthesis ingredient loss chance while Synthesis Image Support is active
+    ARTISAN_LOSS_ALWAYS       = 874, // Same, regardless of Synthesis Image Support
+
     // 570 through 825 used by WS DMG mods these are not spares.
     // SPARE = 860, // stuff
 };
