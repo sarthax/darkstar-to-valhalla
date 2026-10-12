@@ -50,10 +50,19 @@ end
 
 -- Give items with a zone-local obtained message (bare ITEM_OBTAINED global can belong to another zone)
 local function giveCrystals(player, itemId, qty, obtainedMsg)
-    if (player:getFreeSlotsCount() < math.ceil(qty / 12)) then return false; end
-    player:addItem(itemId, qty);
-    player:messageSpecial(obtainedMsg, itemId);
-    return true;
+    if (player:getFreeSlotsCount() < math.ceil(qty / 12)) then return 0; end
+    -- addItem places at most one stack (12) per call, so hand out one stack at a time
+    local left = qty;
+    while (left > 0) do
+        local n = math.min(left, 12);
+        if (player:addItem(itemId, n)) then
+            player:messageSpecial(obtainedMsg, itemId);
+        else
+            break;
+        end
+        left = left - n;
+    end
+    return qty - left;
 end
 
 function ephemeral.onTrade(player, trade, successEvent, failEvent)
@@ -143,16 +152,12 @@ function ephemeral.onEventFinish(player, option, wasTrade, obtainedMsg)
 
     -- Clusters first
     if (clusters > 0) then
-        if (giveCrystals(player, crystalData[index].cluster, clusters, obtainedMsg)) then
-            totalToRemove = clusters * 12;
-        end
+        totalToRemove = giveCrystals(player, crystalData[index].cluster, clusters, obtainedMsg) * 12;
     end
 
     -- Then crystals
     if (crystals > 0) then
-        if (giveCrystals(player, crystalData[index].crystal, crystals, obtainedMsg)) then
-            totalToRemove = totalToRemove + crystals;
-        end
+        totalToRemove = totalToRemove + giveCrystals(player, crystalData[index].crystal, crystals, obtainedMsg);
     end
 
     -- Remove what was handed out from char_points
