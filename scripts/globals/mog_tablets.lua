@@ -310,6 +310,12 @@ function MOG_TABLET.desiredMods(player)
                 mods[MOD_MAGIC_SKILLUP_RATE] = r;
             end
         end
+        -- Blood of the Vampyr [W]: latent Regen 1 HP/tick below 51% HP and Refresh 1 MP/tick below 51% MP while Signet.
+        -- The threshold is checked each regen tick in status_effect_container.cpp; stacks with other regen/refresh.
+        if (MOG_TABLET.hasPower(MOG_TABLET.POWERS.BLOOD_OF_THE_VAMPYR, zoneId)) then
+            mods[MOD_VAMPYR_REGEN] = 1;
+            mods[MOD_VAMPYR_REFRESH] = 1;
+        end
         -- Crystal Caboodle [W]: crystals more likely in affected zones, obtainable in beastmen-controlled regions,
         -- and clusters may rarely drop instead of a crystal. Consumed by the crystal drop in mobentity.cpp.
         if (MOG_TABLET.hasPower(MOG_TABLET.POWERS.CRYSTAL_CABOODLE, zoneId)) then

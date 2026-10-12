@@ -682,6 +682,10 @@ enum class Mod
     CRYSTAL_DROP_RATE         = 869, // Percent increase to the mob crystal drop chance; any value > 0 also lifts the beastmen-region restriction
     CLUSTER_DROP_RATE         = 870, // Percent chance that a dropped crystal is a cluster instead
 
+    // Super Kupower: Blood of the Vampyr (set by MOG_TABLET.syncMods); latent, stacks with REGEN/REFRESH
+    VAMPYR_REGEN              = 871, // HP per tick while HP is below 51%
+    VAMPYR_REFRESH            = 872, // MP per tick while MP is below 51%
+
     // 570 through 825 used by WS DMG mods these are not spares.
     // SPARE = 860, // stuff
 };
