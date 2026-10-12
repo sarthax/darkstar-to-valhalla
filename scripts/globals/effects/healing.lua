@@ -7,6 +7,7 @@
 
 require("scripts/globals/status");
 require("scripts/globals/settings");
+require("scripts/globals/mog_tablets");
 
 -----------------------------------
 -- onEffectGain Action
@@ -23,6 +24,8 @@ end;
 function onEffectTick(target,effect)
 
     local healtime = effect:getTickCount();
+
+    MOG_TABLET.onHealTick(target, healtime - 1); -- Swift Shoes Super Kupower
 
     if (healtime > 1) then
         -- curse II also known as "zombie"
