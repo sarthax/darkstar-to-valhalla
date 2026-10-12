@@ -2165,7 +2165,7 @@ casket_loot.casketItems =
     },
     [157] =
     {
-        regionalItems = {651}, -- Iron Ingot
+        regionalItems = {651, 11042}, -- Iron Ingot / Rebel Earring
         temps =
         {
         -----------------------------------
