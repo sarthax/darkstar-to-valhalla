@@ -1,0 +1,20 @@
+-- Ephemeral Moogle (crystal storage): char_points columns + npc_list ids matched to the client dat
+-- Run on an existing DB; fresh installs get the columns from sql/char_points.sql.
+ALTER TABLE `char_points`
+  ADD COLUMN IF NOT EXISTS `fire_crystals` smallint(5) unsigned NOT NULL DEFAULT 0,
+  ADD COLUMN IF NOT EXISTS `ice_crystals` smallint(5) unsigned NOT NULL DEFAULT 0,
+  ADD COLUMN IF NOT EXISTS `wind_crystals` smallint(5) unsigned NOT NULL DEFAULT 0,
+  ADD COLUMN IF NOT EXISTS `earth_crystals` smallint(5) unsigned NOT NULL DEFAULT 0,
+  ADD COLUMN IF NOT EXISTS `lightning_crystals` smallint(5) unsigned NOT NULL DEFAULT 0,
+  ADD COLUMN IF NOT EXISTS `water_crystals` smallint(5) unsigned NOT NULL DEFAULT 0,
+  ADD COLUMN IF NOT EXISTS `light_crystals` smallint(5) unsigned NOT NULL DEFAULT 0,
+  ADD COLUMN IF NOT EXISTS `dark_crystals` smallint(5) unsigned NOT NULL DEFAULT 0;
+
+DELETE FROM `npc_list` WHERE npcid IN (17719927,17719939,17740169,17740182,17752531,17752544,17723846,17723847,17764825,17764826,17764827);
+INSERT INTO `npc_list` VALUES (17723846,'Ephemeral_Moogle_WW','Ephemeral Moogle',79,-176.090,12.000,268.910,8,50,50,0,0,128,0,3,0x0000520000000000000000000000000000000000,0,NULL,1);
+INSERT INTO `npc_list` VALUES (17723847,'Ephemeral_Moogle_SM','Ephemeral Moogle',197,-186.440,12.000,140.310,1,50,50,0,0,128,0,3,0x0000520000000000000000000000000000000000,0,NULL,1);
+INSERT INTO `npc_list` VALUES (17719927,'Ephemeral_Moogle','Ephemeral Moogle',194,-185.750,-2.000,-3.860,1,50,50,0,0,128,0,3,0x0000520000000000000000000000000000000000,0,NULL,0);
+INSERT INTO `npc_list` VALUES (17740169,'Ephemeral_Moogle','Ephemeral Moogle',221,-219.820,-6.820,-63.250,14,40,40,0,0,128,0,3,0x0000520000000000000000000000000000000000,0,NULL,1);
+INSERT INTO `npc_list` VALUES (17752531,'Ephemeral_Moogle','Ephemeral Moogle',148,-117.250,-2.000,60.890,80,50,50,0,0,128,0,3,0x0000520000000000000000000000000000000000,0,NULL,0);
+INSERT INTO `npc_list` VALUES (17764826,'Ephemeral_Moogle_BW','Ephemeral Moogle',188,-10.500,-5.250,-143.400,22,50,50,0,0,128,0,3,0x0000520000000000000000000000000000000000,0,NULL,1);
+INSERT INTO `npc_list` VALUES (17764827,'Ephemeral_Moogle_CC','Ephemeral Moogle',243,-34.840,-1.250,-114.490,16,50,50,0,0,128,0,3,0x0000520000000000000000000000000000000000,0,NULL,1);
