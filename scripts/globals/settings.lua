@@ -175,6 +175,8 @@ DIMENSIONAL_PORTAL_UNLOCK = false; -- Set true to bypass requirements for using 
 -- ABYSSEA
 VISITANT_BONUS = 1.00; -- Default: 1.00 - (retail) - Multiplies the base time value of each Traverser Stone.
 -- MOG TABLETS / SUPER KUPOWERS
-MOG_TABLET_ALL_POWERS = 0;
+MOG_TABLET_ALL_POWERS = 0; -- Set 1 to activate all 11 Super Kupowers when the tablet set is complete (retail: Adventurer Appreciation Campaign)
 MOG_TABLET_GATE_EXPLORER_MOOGLES = 0; -- 1 = city Explorer Moogles only appear during Thrifty Transit (retail); 0 = always
-MOG_TABLET_SKILLUP_RATE = 25; -- Martial Master skill-up bonus in percent; retail magnitude unknown, 0 = no effect until set -- Set 1 to activate all 11 Super Kupowers when the tablet set is complete (retail: Adventurer Appreciation Campaign)
+MOG_TABLET_SKILLUP_RATE = 25; -- Martial Master skill-up bonus in percent; retail magnitude unknown, 0 = no effect until set
+MOG_TABLET_CRYSTAL_RATE = 25; -- Crystal Caboodle: percent increase to the crystal drop chance (base 20% -> 25%)
+MOG_TABLET_CLUSTER_RATE = 10; -- Crystal Caboodle: percent of crystal drops that become a cluster

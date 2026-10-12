@@ -678,6 +678,10 @@ enum class Mod
     CAMPAIGN_BONUS            = 867, // Campaign evaluation bonus (no consumer yet)
     CAPACITY_BONUS            = 868, // Percent bonus to capacity points (no consumer yet)
 
+    // Super Kupower: Crystal Caboodle (set by MOG_TABLET.syncMods)
+    CRYSTAL_DROP_RATE         = 869, // Percent increase to the mob crystal drop chance; any value > 0 also lifts the beastmen-region restriction
+    CLUSTER_DROP_RATE         = 870, // Percent chance that a dropped crystal is a cluster instead
+
     // 570 through 825 used by WS DMG mods these are not spares.
     // SPARE = 860, // stuff
 };
