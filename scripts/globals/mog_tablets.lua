@@ -323,6 +323,12 @@ function MOG_TABLET.desiredMods(player)
             mods[MOD_CLUSTER_DROP_RATE] = MOG_TABLET_CLUSTER_RATE or 10;
         end
     end
+    -- Artisan's Advantage [W]: ingredient loss on a failed synthesis is drastically reduced with Synthesis Image
+    -- Support (and possibly regardless). Magnitudes are settings; applied in doSynthFail (synthutils.cpp).
+    if (MOG_TABLET.hasPower(MOG_TABLET.POWERS.ARTISANS_ADVANTAGE, player:getZoneID())) then
+        mods[MOD_ARTISAN_LOSS_SUPPORT] = MOG_TABLET_ARTISAN_LOSS_SUPPORT or 90;
+        mods[MOD_ARTISAN_LOSS_ALWAYS] = MOG_TABLET_ARTISAN_LOSS_ALWAYS or 0;
+    end
     return mods;
 end
 

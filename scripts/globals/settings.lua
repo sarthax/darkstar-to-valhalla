@@ -180,3 +180,5 @@ MOG_TABLET_GATE_EXPLORER_MOOGLES = 0; -- 1 = city Explorer Moogles only appear d
 MOG_TABLET_SKILLUP_RATE = 25; -- Martial Master skill-up bonus in percent; retail magnitude unknown, 0 = no effect until set
 MOG_TABLET_CRYSTAL_RATE = 100; -- Crystal Caboodle: percent increase to the crystal drop chance (base 20% -> 40%)
 MOG_TABLET_CLUSTER_RATE = 10; -- Crystal Caboodle: percent of crystal drops that become a cluster
+MOG_TABLET_ARTISAN_LOSS_SUPPORT = 90; -- Artisan's Advantage: percent reduction of failed-synth ingredient loss chance with Synthesis Image Support (retail magnitude unknown: 'drastically')
+MOG_TABLET_ARTISAN_LOSS_ALWAYS = 0; -- Artisan's Advantage: percent reduction regardless of Image Support (wiki: 'possibly'; 0 = off)
