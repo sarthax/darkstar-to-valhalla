@@ -12,6 +12,7 @@
 -----------------------------------
 
 require("scripts/globals/status");
+require("scripts/globals/mog_tablets");
 
 -----------------------------------
 -- onEffectGain Action
@@ -20,6 +21,7 @@ require("scripts/globals/status");
 function onEffectGain(target,effect)
     target:addMod(MOD_DEF,15);
     target:addMod(MOD_EVA,15);
+    if (target:isPC()) then MOG_TABLET.syncMods(target); end
 end;
 
 -----------------------------------
@@ -36,4 +38,5 @@ end;
 function onEffectLose(target,effect)
     target:delMod(MOD_DEF,15);
     target:delMod(MOD_EVA,15);
+    if (target:isPC()) then MOG_TABLET.clearMods(target); end
 end;

@@ -201,6 +201,7 @@ end
 -- Login/zone-in notice: one line per active power [C: Raguza login].
 function MOG_TABLET.onZoneIn(player)
     MOG_TABLET.tick();
+    MOG_TABLET.syncMods(player);
     local zoneId = player:getZoneID();
     if (not MOG_TABLET.isAffectedZone(zoneId)) then return; end
     local mask = MOG_TABLET.getPowers();
@@ -268,4 +269,60 @@ function MOG_TABLET.gmForcePowers(mask, hours)
     setv("Powers", mask);
     setv("PowersEnd", now + hours * 3600);
     setv("ScatterAt", now + hours * 3600 + 3600);
+end
+
+-----------------------------------
+-- Power effects: stat-mod powers (Signet gated)
+-- Treasure Hound  [W]: Signet grants Gilfinder +1 and Treasure Hunter +1.
+-- Martial Master  [W]: Signet makes combat/magic skills rise faster. The wiki gives no magnitude,
+--                      so it is the tunable MOG_TABLET_SKILLUP_RATE (percent, settings.lua).
+-- Mods are tracked per player id so they can be removed exactly; the table is cleared on login
+-- (a fresh login rebuilds mods from scratch) via MOG_TABLET.onLogin.
+-----------------------------------
+
+MOG_TABLET.appliedMods = {};
+
+function MOG_TABLET.desiredMods(player)
+    local mods = {};
+    if (player:hasStatusEffect(EFFECT_SIGNET)) then
+        local zoneId = player:getZoneID();
+        if (MOG_TABLET.hasPower(MOG_TABLET.POWERS.TREASURE_HOUND, zoneId)) then
+            mods[MOD_GILFINDER] = 1;
+            mods[MOD_TREASURE_HUNTER] = 1;
+        end
+        if (MOG_TABLET.hasPower(MOG_TABLET.POWERS.MARTIAL_MASTER, zoneId)) then
+            local r = MOG_TABLET_SKILLUP_RATE or 0;
+            if (r ~= 0) then
+                mods[MOD_COMBAT_SKILLUP_RATE] = r;
+                mods[MOD_MAGIC_SKILLUP_RATE] = r;
+            end
+        end
+    end
+    return mods;
+end
+
+-- Idempotent: removes what was applied before, applies what is wanted now.
+function MOG_TABLET.syncMods(player)
+    local id = player:getID();
+    local old = MOG_TABLET.appliedMods[id] or {};
+    local new = MOG_TABLET.desiredMods(player);
+    for mod, amt in pairs(old) do
+        if (new[mod] ~= amt) then player:delMod(mod, amt); end
+    end
+    for mod, amt in pairs(new) do
+        if (old[mod] ~= amt) then player:addMod(mod, amt); end
+    end
+    MOG_TABLET.appliedMods[id] = new;
+end
+
+-- Signet effect lost: the effect is already gone when onEffectLose runs on some paths, so drop by registry.
+function MOG_TABLET.clearMods(player)
+    local id = player:getID();
+    for mod, amt in pairs(MOG_TABLET.appliedMods[id] or {}) do player:delMod(mod, amt); end
+    MOG_TABLET.appliedMods[id] = nil;
+end
+
+-- Fresh login: mods were rebuilt by the server, so forget the registry without delMod.
+function MOG_TABLET.onLogin(player)
+    MOG_TABLET.appliedMods[player:getID()] = nil;
 end
