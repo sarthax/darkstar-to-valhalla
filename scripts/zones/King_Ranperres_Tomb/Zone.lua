@@ -20,7 +20,7 @@ function onInitialize(zone)
     -- Vrtra
     SetRespawnTime(17555890, 86400, 259200);
 
-    UpdateTreasureSpawnPoint(17555955);
+    UpdateTreasureSpawnPoint(17556015);
 end;
 
 -----------------------------------

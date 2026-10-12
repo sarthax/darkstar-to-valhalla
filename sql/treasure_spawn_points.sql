@@ -184,20 +184,20 @@ INSERT INTO `treasure_spawn_points` VALUES (17498625,7,254,292.495,28.200,209.09
 INSERT INTO `treasure_spawn_points` VALUES (17498625,8,64,259.991,28.488,173.653); -- Sea Serpent Grotto
 INSERT INTO `treasure_spawn_points` VALUES (17498625,9,217,253.479,8.156,48.403); -- Sea Serpent Grotto
 INSERT INTO `treasure_spawn_points` VALUES (17498625,10,3,186.575,8.570,99.976); -- Sea Serpent Grotto
-INSERT INTO `treasure_spawn_points` VALUES (17555955,0,250,150.304,0.000,245.834); -- King Ranperre's Tomb
-INSERT INTO `treasure_spawn_points` VALUES (17555955,1,250,150.304,0.000,193.493); -- King Ranperre's Tomb
-INSERT INTO `treasure_spawn_points` VALUES (17555955,2,126,236.549,-0.210,149.944); -- King Ranperre's Tomb
-INSERT INTO `treasure_spawn_points` VALUES (17555955,3,250,203.316,0.000,140.128); -- King Ranperre's Tomb
-INSERT INTO `treasure_spawn_points` VALUES (17555955,4,250,203.316,0.000,129.619); -- King Ranperre's Tomb
-INSERT INTO `treasure_spawn_points` VALUES (17555955,5,250,203.316,0.000,119.546); -- King Ranperre's Tomb
-INSERT INTO `treasure_spawn_points` VALUES (17555955,6,126,213.959,0.000,129.619); -- King Ranperre's Tomb
-INSERT INTO `treasure_spawn_points` VALUES (17555955,7,126,236.549,-0.169,109.991); -- King Ranperre's Tomb
-INSERT INTO `treasure_spawn_points` VALUES (17555955,8,250,150.702,0.000,85.374); -- King Ranperre's Tomb
-INSERT INTO `treasure_spawn_points` VALUES (17555955,9,250,150.702,0.000,33.969); -- King Ranperre's Tomb
-INSERT INTO `treasure_spawn_points` VALUES (17555955,10,171,-19.585,6.630,14.740); -- King Ranperre's Tomb
-INSERT INTO `treasure_spawn_points` VALUES (17555955,11,0,-118.680,9.000,60.010); -- King Ranperre's Tomb
-INSERT INTO `treasure_spawn_points` VALUES (17555955,12,194,-56.994,7.359,155.155); -- King Ranperre's Tomb
-INSERT INTO `treasure_spawn_points` VALUES (17555955,13,193,-40.195,-0.008,-130.093); -- King Ranperre's Tomb
+INSERT INTO `treasure_spawn_points` VALUES (17556015,0,250,150.304,0.000,245.834); -- King Ranperre's Tomb
+INSERT INTO `treasure_spawn_points` VALUES (17556015,1,250,150.304,0.000,193.493); -- King Ranperre's Tomb
+INSERT INTO `treasure_spawn_points` VALUES (17556015,2,126,236.549,-0.210,149.944); -- King Ranperre's Tomb
+INSERT INTO `treasure_spawn_points` VALUES (17556015,3,250,203.316,0.000,140.128); -- King Ranperre's Tomb
+INSERT INTO `treasure_spawn_points` VALUES (17556015,4,250,203.316,0.000,129.619); -- King Ranperre's Tomb
+INSERT INTO `treasure_spawn_points` VALUES (17556015,5,250,203.316,0.000,119.546); -- King Ranperre's Tomb
+INSERT INTO `treasure_spawn_points` VALUES (17556015,6,126,213.959,0.000,129.619); -- King Ranperre's Tomb
+INSERT INTO `treasure_spawn_points` VALUES (17556015,7,126,236.549,-0.169,109.991); -- King Ranperre's Tomb
+INSERT INTO `treasure_spawn_points` VALUES (17556015,8,250,150.702,0.000,85.374); -- King Ranperre's Tomb
+INSERT INTO `treasure_spawn_points` VALUES (17556015,9,250,150.702,0.000,33.969); -- King Ranperre's Tomb
+INSERT INTO `treasure_spawn_points` VALUES (17556015,10,171,-19.585,6.630,14.740); -- King Ranperre's Tomb
+INSERT INTO `treasure_spawn_points` VALUES (17556015,11,0,-118.680,9.000,60.010); -- King Ranperre's Tomb
+INSERT INTO `treasure_spawn_points` VALUES (17556015,12,194,-56.994,7.359,155.155); -- King Ranperre's Tomb
+INSERT INTO `treasure_spawn_points` VALUES (17556015,13,193,-40.195,-0.008,-130.093); -- King Ranperre's Tomb
 INSERT INTO `treasure_spawn_points` VALUES (17559924,0,254,-499.709,3.262,215.970); -- Dangruf Wadi
 INSERT INTO `treasure_spawn_points` VALUES (17559924,1,73,-117.128,3.970,134.104); -- Dangruf Wadi
 INSERT INTO `treasure_spawn_points` VALUES (17559924,2,105,-60.745,3.063,295.362); -- Dangruf Wadi
@@ -501,16 +501,16 @@ INSERT INTO `treasure_spawn_points` VALUES (17617224,9,227,102.903,3.939,-97.614
 INSERT INTO `treasure_spawn_points` VALUES (17617224,10,2,-67.400,0.000,-39.111); -- Ifrit's Cauldron
 INSERT INTO `treasure_spawn_points` VALUES (17617224,11,255,-67.099,0.000,-0.796); -- Ifrit's Cauldron
 INSERT INTO `treasure_spawn_points` VALUES (17617224,12,182,160.900,-0.068,-22.165); -- Ifrit's Cauldron
-INSERT INTO `treasure_spawn_points` VALUES (17629739,0,255,613.598,-6.057,-680.984); -- Quicksand Caves
-INSERT INTO `treasure_spawn_points` VALUES (17629739,1,192,540.553,-16.920,-770.118); -- Quicksand Caves
-INSERT INTO `treasure_spawn_points` VALUES (17629739,2,255,429.401,-16.890,-739.502); -- Quicksand Caves
-INSERT INTO `treasure_spawn_points` VALUES (17629739,3,194,495.848,-10.863,-827.019); -- Quicksand Caves
-INSERT INTO `treasure_spawn_points` VALUES (17629739,4,255,629.929,-16.899,-820.711); -- Quicksand Caves
-INSERT INTO `treasure_spawn_points` VALUES (17629739,5,66,740.357,-16.877,-789.623); -- Quicksand Caves
-INSERT INTO `treasure_spawn_points` VALUES (17629739,6,94,826.074,-11.118,-733.808); -- Quicksand Caves
-INSERT INTO `treasure_spawn_points` VALUES (17629739,7,156,867.442,1.146,-708.477); -- Quicksand Caves
-INSERT INTO `treasure_spawn_points` VALUES (17629739,8,27,865.615,1.942,-622.742); -- Quicksand Caves
-INSERT INTO `treasure_spawn_points` VALUES (17629739,9,192,677.287,3.220,-581.735); -- Quicksand Caves
+INSERT INTO `treasure_spawn_points` VALUES (17629748,0,255,613.598,-6.057,-680.984); -- Quicksand Caves
+INSERT INTO `treasure_spawn_points` VALUES (17629748,1,192,540.553,-16.920,-770.118); -- Quicksand Caves
+INSERT INTO `treasure_spawn_points` VALUES (17629748,2,255,429.401,-16.890,-739.502); -- Quicksand Caves
+INSERT INTO `treasure_spawn_points` VALUES (17629748,3,194,495.848,-10.863,-827.019); -- Quicksand Caves
+INSERT INTO `treasure_spawn_points` VALUES (17629748,4,255,629.929,-16.899,-820.711); -- Quicksand Caves
+INSERT INTO `treasure_spawn_points` VALUES (17629748,5,66,740.357,-16.877,-789.623); -- Quicksand Caves
+INSERT INTO `treasure_spawn_points` VALUES (17629748,6,94,826.074,-11.118,-733.808); -- Quicksand Caves
+INSERT INTO `treasure_spawn_points` VALUES (17629748,7,156,867.442,1.146,-708.477); -- Quicksand Caves
+INSERT INTO `treasure_spawn_points` VALUES (17629748,8,27,865.615,1.942,-622.742); -- Quicksand Caves
+INSERT INTO `treasure_spawn_points` VALUES (17629748,9,192,677.287,3.220,-581.735); -- Quicksand Caves
 
 /*!40000 ALTER TABLE `treasure_spawn_points` ENABLE KEYS */;
 UNLOCK TABLES;
