@@ -7,6 +7,7 @@ require("scripts/globals/settings")
 require("scripts/globals/common")
 require("scripts/globals/status")
 require("scripts/globals/utils")
+require("scripts/globals/mog_tablets")
 -----------------------------------
 
 -----------------------------------
@@ -175,14 +176,10 @@ local function dropChance(player)
     -- GoV Prowess Increased Treasure Casket Discovery adds 5% per level (max 5 levels)
     -- for a total of 25% increase. -- NOTE this needs to be confirmed!
     -----------------------------------
-    --local kupowerMMBEffect    = player:getStatusEffect(tpz.effect.KUPOWERS_MYRIAD_MYSTERY_BOXES)  -- Super Kupowers Myriad Mystery Boxes not implimented yet.
     local casketProwessEffect = player:getStatusEffect(EFFECT_PROWESS_CASKET_RATE)
-    local kupowersMMBPower    = 0
+    local kupowersMMBPower    = MOG_TABLET.hasPower(MOG_TABLET.POWERS.MYRIAD_MYSTERY_BOXES, player:getZoneID()) and 0.1 or 0
     local prowessCasketsPower = 0
 
-    --if player:hasStatusEffect(tpz.effect.KUPOWERS_MYRIAD_MYSTERY_BOXES) then                       -- Super Kupowers Myriad Mystery Boxes not implimented yet.
-    --     kupowersMMBPower = kupowerMMBEffect:getPower()
-    --end
 
     if player:hasStatusEffect(EFFECT_PROWESS_CASKET_RATE) then
         prowessCasketsPower = casketProwessEffect:getPower()
@@ -235,9 +232,9 @@ local function setCasketData(player, x, y, z, r, npc, partyID, mobLvl)
     local attempts         = math.random(4, 6)
     local kupowersBonus    = 0
 
-    -- if player:hasStatusEffect(tpz.effect.KUPOWERS_MYRIAD_MYSTERY_BOXES) then    -- Super Kupowers Myriad Mystery Boxes not implimented yet.
-    --     kupowersBonus = 0.2
-    -- end
+    if MOG_TABLET.hasPower(MOG_TABLET.POWERS.MYRIAD_MYSTERY_BOXES, player:getZoneID()) then
+        kupowersBonus = 0.2
+    end
 
     if typeChance < 0.2 + kupowersBonus then
         chestStyle = 966 -- Brown locked
