@@ -15,7 +15,7 @@ Branch `feature/mog-tablets-super-kupowers`, cut from `master-dsp`. No SQL impor
 ## Power effects (status 2026-10-12)
 | Power | Status | Where |
 |---|---|---|
-| Thrifty Transit | partial | `conquest.lua` OP_TeleFee returns 0 in own-outpost zones; Survival Guide teleports and Explorer Moogle teleport service not built |
+| Thrifty Transit | partial | `conquest.lua` OP_TeleFee returns 0 in own-outpost zones. Explorer Moogles (5 city NPCs, 300 gil teleports already on Valhalla) are shown/hidden by `MOG_TABLET.applyExplorerMoogles` when `MOG_TABLET_GATE_EXPLORER_MOOGLES = 1` (default 0 = always visible, as on Valhalla); re-applied on scatter/activate/expire. Survival Guides do not exist on Valhalla: separate feature branch, then add the free-fee hook (fee 0 + free-travel param bit 0x0400 per LSB) |
 | Martial Master | done | skill-up +`MOG_TABLET_SKILLUP_RATE` (25) under Signet; Valhalla already has 2x |
 | Blood of the Vampyr | done | mods 871/872 (`VAMPYR_REGEN/REFRESH`), added in `TickRegen` when HP/MP < 51%; Fellows not covered. No existing LSB/Topaz mod, so new |
 | Treasure Hound | done | Signet Gilfinder/TH +1 |
