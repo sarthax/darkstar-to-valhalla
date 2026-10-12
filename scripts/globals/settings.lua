@@ -158,6 +158,7 @@ HOMEPOINT_HEAL = 0; --Set to 1 if you want Home Points to heal you like in singl
 RIVERNE_PORTERS = 120; -- Time in seconds that Unstable Displacements in Cape Riverne stay open after trading a scale.
 LANTERNS_STAY_LIT = 1200; -- time in seconds that lanterns in the Den of Rancor stay lit.
 CASKET_DROP_RATE = 0.1; -- chance a field mob kill spawns a Treasure Casket (retail 10%, 0 disables, clamped to 1.0)
+-- BlueGartr 2011 player reports (docs/treasure-caskets/research/bluegartr/FINDINGS.md) saw about 2% base and about 5% with Casket Discovery lvl 1; 10% is kept deliberately.
 ENABLE_COP_ZONE_CAP=1; -- enable or disable lvl cap
 TIMEZONE_OFFSET = 9.0; -- Offset from UTC used to determine when "JP Midnight" is for the server.  Default is JST (+9.0).
 ALLOW_MULTIPLE_EXP_RINGS = 0; -- Set to 1 to remove ownership restrictions on the Chariot/Empress/Emperor Band trio.
