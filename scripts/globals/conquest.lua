@@ -512,12 +512,16 @@ function hasOutpost(player, region)
 end;
 
 -----------------------------------------------------------------
--- function OP_TeleFee(player,region)
+-- require("scripts/globals/mog_tablets");
+
+function OP_TeleFee(player,region)
 -----------------------------------------------------------------
 
 function OP_TeleFee(player,region)
 
     if (hasOutpost(player, region+5) == 1) then
+        -- Thrifty Transit Super Kupower: outpost teleports are free (still need the outpost).
+        if (MOG_TABLET.hasPower(MOG_TABLET.POWERS.THRIFTY_TRANSIT, player:getZoneID())) then return 0; end
         if (GetRegionOwner(region) == player:getNation()) then
             return tpFees[region + 1];
         else

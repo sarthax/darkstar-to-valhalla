@@ -160,6 +160,7 @@ function MOG_TABLET.scatter()
     setv("PowersEnd", 0);
     setv("ScatterAt", 0);
     for zoneId, _ in pairs(MOG_TABLET_DATA.zones) do MOG_TABLET.applyZone(zoneId); end
+    MOG_TABLET.applyExplorerMoogles();
 end
 
 -- Lazy state machine: scatter on first use, power expiry, rescatter.
@@ -195,6 +196,7 @@ end
 
 function MOG_TABLET.onZoneInitialize(zone)
     MOG_TABLET.tick();
+    MOG_TABLET.applyExplorerMoogles();
     MOG_TABLET.applyZone(zone:getID());
 end
 
@@ -253,6 +255,7 @@ function MOG_TABLET.activatePowers()
     setv("Powers", mask);
     setv("PowersEnd", now + 7 * 86400);
     setv("ScatterAt", now + 7 * 86400 + math.random(8 * 3600, 24 * 3600));
+    MOG_TABLET.applyExplorerMoogles();
     MOG_TABLET.messageAll("The complete set of mog tablets has been restored to Ru'Lude Gardens! The ancient magic of King Kupofried permeates the air to instill adventurers in this area with its Super Kupowers!");  -- [S: message 1]
 end
 
@@ -373,5 +376,25 @@ function MOG_TABLET.dropSwiftShoes(player)
     if (cur ~= nil and cur:getSubPower() == MOG_TABLET.SWIFT_MARK
         and not MOG_TABLET.hasPower(MOG_TABLET.POWERS.SWIFT_SHOES, player:getZoneID())) then
         player:delStatusEffectSilent(EFFECT_QUICKENING);
+    end
+end
+
+-----------------------------------
+-- Thrifty Transit [W ffxiclopedia Thrifty_Transit]
+-- Free outpost teleports: OP_TeleFee (conquest.lua) returns 0 while active.
+-- Explorer Moogles (Bastok Mines, N San d'Oria, Port Windurst, Selbina, Mhaura) already exist in npc_list and
+-- always appear on this server; retail shows them only during Thrifty Transit. Optional gate, off by default:
+-- MOG_TABLET_GATE_EXPLORER_MOOGLES = 1 hides them unless the power is active (ids = npc_list rows, zones 234/231/240/249/248).
+-- Survival Guide teleports are not implemented anywhere in this tree (no script), so nothing to make free yet.
+-----------------------------------
+
+MOG_TABLET.CITY_EXPLORER_MOOGLES = { 17723648, 17735856, 17760450, 17793131, 17797253 };
+
+function MOG_TABLET.applyExplorerMoogles()
+    if (MOG_TABLET_GATE_EXPLORER_MOOGLES ~= 1) then return; end
+    local on = MOG_TABLET.hasPower(MOG_TABLET.POWERS.THRIFTY_TRANSIT);
+    for _, id in ipairs(MOG_TABLET.CITY_EXPLORER_MOOGLES) do
+        local npc = GetNPCByID(id);
+        if (npc ~= nil) then npc:setStatus(on and STATUS_NORMAL or STATUS_DISAPPEAR); end
     end
 end
