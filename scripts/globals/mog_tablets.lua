@@ -290,6 +290,16 @@ function MOG_TABLET.desiredMods(player)
             mods[MOD_GILFINDER] = 1;
             mods[MOD_TREASURE_HUNTER] = 1;
         end
+        -- Boundary Buster [W]: double Conquest Points, except in Tu'Lia (region 16).
+        -- Engine awards exp * (10% own nation / 15% otherwise + MOD_CONQUEST_BONUS), so adding the base
+        -- percentage as a bonus doubles it. Region ownership is read at sync time (zone-in / Signet change).
+        if (MOG_TABLET.hasPower(MOG_TABLET.POWERS.BOUNDARY_BUSTER, zoneId)) then
+            local zone = GetZone(zoneId);
+            local region = zone ~= nil and zone:getRegionID() or -1;
+            if (region >= 0 and region <= 22 and region ~= 16) then
+                mods[MOD_CONQUEST_BONUS] = (GetRegionOwner(region) == player:getNation()) and 10 or 15;
+            end
+        end
         if (MOG_TABLET.hasPower(MOG_TABLET.POWERS.MARTIAL_MASTER, zoneId)) then
             local r = MOG_TABLET_SKILLUP_RATE or 0;
             if (r ~= 0) then
