@@ -303,6 +303,7 @@ end
 
 -- Idempotent: removes what was applied before, applies what is wanted now.
 function MOG_TABLET.syncMods(player)
+    MOG_TABLET.dropSwiftShoes(player);
     local id = player:getID();
     local old = MOG_TABLET.appliedMods[id] or {};
     local new = MOG_TABLET.desiredMods(player);
@@ -325,4 +326,42 @@ end
 -- Fresh login: mods were rebuilt by the server, so forget the registry without delMod.
 function MOG_TABLET.onLogin(player)
     MOG_TABLET.appliedMods[player:getID()] = nil;
+end
+
+-----------------------------------
+-- Swift Shoes [W ffxiclopedia Swift_Shoes / Quickening]
+-- After resting >= 1 healing tick, the player gets Quickening. Rest longer = stronger and longer.
+-- Wiki table (ticks: speed/duration): 1: 12.5%/15m  2: 15%/20m  3: 17.5%/25m  4: 20%/30m  5+: 25%.
+-- Duration is +5 min per tick from 15 min, "maxing out at an hour" (the wiki's table row says 1h30,
+-- the text says 1 hour; text used, so the cap is MOG_TABLET.SWIFT_MAX_MINUTES). MOD_MOVE is an integer
+-- percent, so 12.5 and 17.5 are stored as 12 and 17.
+-- Removal: leaving the affected area (syncMods), KO/job change/level sync via the engine are NOT yet hooked.
+-- Not applied: Alter Egos, Fellows, Automatons, Wyverns (no verified hook).
+-----------------------------------
+
+MOG_TABLET.SWIFT_MARK        = 7701;   -- our own marker in the effect's subpower, to tell it from other Quickening sources
+MOG_TABLET.SWIFT_MAX_MINUTES = 60;
+MOG_TABLET.SWIFT_SPEED       = { 12, 15, 17, 20, 25 };
+
+-- ticks = healing ticks completed (wiki numbering; the first heal tick of healing.lua is wiki tick 1).
+function MOG_TABLET.onHealTick(player, ticks)
+    if (ticks < 1 or not player:isPC()) then return; end
+    if (not MOG_TABLET.hasPower(MOG_TABLET.POWERS.SWIFT_SHOES, player:getZoneID())) then return; end
+    if (player:hasStatusEffect(EFFECT_DISEASE)) then return; end
+    local cur = player:getStatusEffect(EFFECT_QUICKENING);
+    if (cur ~= nil and cur:getSubPower() ~= MOG_TABLET.SWIFT_MARK) then return; end  -- another source (gear/Jig/Fleet) keeps priority
+    local speed   = MOG_TABLET.SWIFT_SPEED[math.min(ticks, #MOG_TABLET.SWIFT_SPEED)];
+    local minutes = math.min(10 + 5 * ticks, MOG_TABLET.SWIFT_MAX_MINUTES);
+    if (cur ~= nil and cur:getPower() == speed and cur:getDuration() >= minutes * 60) then return; end
+    player:delStatusEffectSilent(EFFECT_QUICKENING);
+    player:addStatusEffect(EFFECT_QUICKENING, speed, 0, minutes * 60, 0, MOG_TABLET.SWIFT_MARK);
+end
+
+-- Called from syncMods: strip a Swift Shoes quickening once its power or area no longer applies.
+function MOG_TABLET.dropSwiftShoes(player)
+    local cur = player:getStatusEffect(EFFECT_QUICKENING);
+    if (cur ~= nil and cur:getSubPower() == MOG_TABLET.SWIFT_MARK
+        and not MOG_TABLET.hasPower(MOG_TABLET.POWERS.SWIFT_SHOES, player:getZoneID())) then
+        player:delStatusEffectSilent(EFFECT_QUICKENING);
+    end
 end
