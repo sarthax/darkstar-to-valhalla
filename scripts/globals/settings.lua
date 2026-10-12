@@ -172,3 +172,5 @@ DIMENSIONAL_PORTAL_UNLOCK = false; -- Set true to bypass requirements for using 
 
 -- ABYSSEA
 VISITANT_BONUS = 1.00; -- Default: 1.00 - (retail) - Multiplies the base time value of each Traverser Stone.
+-- MOG TABLETS / SUPER KUPOWERS
+MOG_TABLET_ALL_POWERS = 0; -- Set 1 to activate all 11 Super Kupowers when the tablet set is complete (retail: Adventurer Appreciation Campaign)
