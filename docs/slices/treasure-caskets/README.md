@@ -9,7 +9,7 @@ Port of the LSB/Topaz Treasure Casket system (F-18 in the DSP-LSB gap audit).
 - Setting: `CASKET_DROP_RATE` (default 0.1) in settings.lua.
 
 ## Provenance
-Loot tables = Topaz `{weight, itemId}` tables, item ids validated. Text ids from client dialog.yml per zone. NPC id blocks allocated per zone with collision checks against existing DSP npcs (27 zones got new blocks, 18 stray rows removed).
+Loot tables = Topaz `{weight, itemId}` tables, item ids validated. Text ids from client dialog.yml per zone. NPC ids are the client's own: every casket zone has 16 contiguous 'Treasure Casket' entities in the client zone data (mission_toolkit `entities` table), and the casket npcs MUST sit on those ids or the client shows another entity's name / makes the chest untargetable (first pass used collision-free ids and got this wrong in 37 of 60 zones). 56 existing DSP rows sat on those ids and were drifted placeholders (Achieve_Master, Unity_Master, Treasure_Coffer etc.; the client has the real ones 4-9 ids later); they are removed and saved in `removed_rows.sql`.
 Topaz lists zone 207 (typo) - this port uses Garlaige Citadel (200).
 
 ## SQL
