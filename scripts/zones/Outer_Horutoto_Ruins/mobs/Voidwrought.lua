@@ -34,6 +34,11 @@ function onMagicHit(caster, target, spell)
     return 0;
 end;
 
+function onWeaponskillHit(mob, attacker, wsid)
+    vwOnWeaponskillHit(mob, attacker, wsid, VWMSG);
+    return 0;
+end
+
 local function tick(mob)
     vwWeaknessTick(mob, VWMSG);
     local left = mob:getLocalVar("VW_DEADLINE") - os.time();
@@ -105,8 +110,10 @@ function onMobDeath(mob, player, isKiller)
     local idx = mob:getID() - 17572219;
     vwOnKill(mob, player, {
         region = "THREE", stage = 4, -- cruor/EXP base by stage [F]
+        atmacite = {1814}, -- white-light drop [W/J, ATMACITE-DATA.md]
         pyxisId = 17572306 + idx,
         drops = {3447, 11669, 10971, 11856},
+        dropRates = {[11856]=1, [11669]=5, [10971]=5, [3447]=5}, -- 11856 is item_basic "anhur_robe" but wiki lists "Fazheluo R. Mail" as the 1% drop: name mismatch, verify. [W 2026-10-09; BG wiki tier labels, NOT measured]
         keyitem = ATMACITE_OF_DISCIPLINE, -- DSP keyitems.lua name; client-id check pending
         msgKeyItem = 7491,
         msgCruor = 7487, msgFinalBR = 7484, msgFinalYG = 7482, msgFinalW = 7483,

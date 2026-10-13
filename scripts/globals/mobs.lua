@@ -9,6 +9,7 @@ require("scripts/globals/quests");
 require("scripts/globals/status");
 require("scripts/globals/abyssea_lights");
 require("scripts/globals/abyssea_pyxis");
+require("scripts/globals/caskets");
 
 -----------------------------------
 -- onMobDeathEx
@@ -21,6 +22,15 @@ function onMobDeathEx(mob, player, isKiller, isWeaponSkillKill, killKind, killId
         onAbysseaMobDeath(mob, player, killKind or 0, killId or 0);
         if (not mob:isNM()) then
             spawnPyxis(mob, player);
+        end
+    end
+
+    -- Treasure Caskets: only the killer rolls; spawnCasket gives the chest to the killer's party
+    if (isKiller == true and casket_zone_data[player:getZoneID()] ~= nil) then
+        local master = mob:getMaster();
+        if (master == nil or master:isMob()) then -- ignore mobs that are a player's pet
+            local pos = mob:getPos();
+            caskets.spawnCasket(player, mob, pos.x, pos.y, pos.z, pos.rot);
         end
     end
 

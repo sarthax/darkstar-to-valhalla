@@ -34,6 +34,11 @@ function onMagicHit(caster, target, spell)
     return 0;
 end;
 
+function onWeaponskillHit(mob, attacker, wsid)
+    vwOnWeaponskillHit(mob, attacker, wsid, VWMSG);
+    return 0;
+end
+
 local function tick(mob)
     vwWeaknessTick(mob, VWMSG);
     local left = mob:getLocalVar("VW_DEADLINE") - os.time();
@@ -57,6 +62,12 @@ local function tick(mob)
     end
 end
 
+function onMobInitialize(mob)
+    -- BLM main job defaults to HP_STANDBACK 70 (mobutils SetupJob): mob would stay at range above 70% HP.
+    -- Voidwatch NMs must close to melee; -1 disables standback (precedent: Bahamut).
+    mob:setMobMod(MOBMOD_HP_STANDBACK, -1);
+end;
+
 function onMobSpawn(mob)
     mob:setLocalVar("VW_DEADLINE", os.time() + LIMIT);
     mob:setLocalVar("VW_WARNED", LIMIT + 1);
@@ -75,7 +86,7 @@ function onMonsterMagicPrepare(mob, target)
     end
     if (mob:hasStatusEffect(EFFECT_CHAINSPELL)) then return 218; end
     local pool = {496, 497, 498, 499, 500, 501};
-    return pool[math.random(#pool)];
+    return vwPick(mob, target, pool);
 end;
 
 function onMobRoam(mob) tick(mob); end;
@@ -91,6 +102,7 @@ function onMobDeath(mob, player, isKiller)
     local idx = mob:getID() - 17261047;
     vwOnKill(mob, player, {
         region = "JEUNO", stage = 6, -- [C] White VI; 10000 cruor base
+        atmacite = {1828}, -- white-light drop [W/J, ATMACITE-DATA.md]
         pyxisId = 17261222 + idx,
         drops = {19145, 19146, 18625, 18882, 10451, 10452, 3509, 3498, 3499}, -- Asteria, Supernal Knife, Gerra's Staff, Beaivi's Scepter, Athos's Tabard, Rubeus Jacket, Plate of Heavy Metal, Riftdross, Riftcinder [F]; ids vs DSP item_basic
         dropRates = {[19145]=0.1, [19146]=12.2, [18625]=16.0, [18882]=0.1, [10451]=1.8, [10452]=2.1, [3509]=21.1, [3498]=0.8, [3499]=3.3}, -- Asteria, Supernal Knife, Gerra's Staff, Beaivi's Scepter, Athos's Tabard, Rubeus Jacket, Heavy Metal, Riftdross, Riftcinder [U 2026-10-07, % per item]

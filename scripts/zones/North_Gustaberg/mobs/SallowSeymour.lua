@@ -33,6 +33,11 @@ function onMagicHit(caster, target, spell)
     return 0;
 end;
 
+function onWeaponskillHit(mob, attacker, wsid)
+    vwOnWeaponskillHit(mob, attacker, wsid, VWMSG);
+    return 0;
+end
+
 local function tick(mob)
     vwWeaknessTick(mob, VWMSG);
     local left = mob:getLocalVar("VW_DEADLINE") - os.time();
@@ -56,6 +61,12 @@ local function tick(mob)
     end
 end
 
+function onMobInitialize(mob)
+    -- BLM main job defaults to HP_STANDBACK 70 (mobutils SetupJob): mob would stay at range above 70% HP.
+    -- Voidwatch NMs must close to melee; -1 disables standback (precedent: Bahamut).
+    mob:setMobMod(MOBMOD_HP_STANDBACK, -1);
+end;
+
 function onMobSpawn(mob)
     mob:setLocalVar("VW_DEADLINE", os.time() + LIMIT);
     mob:setLocalVar("VW_WARNED", LIMIT + 1);
@@ -71,7 +82,7 @@ function onMonsterMagicPrepare(mob, target)
     if (mob:getLocalVar("VW_DEADLINE") - os.time() > LIMIT - 10) then return nil; end -- [D] no spells just after spawn (as Virvatuli [J])
     local pool = {238, 357, 190, 191, 162, 499};
     if (mob:getHPP() <= 30) then table.insert(pool, 365); end
-    return pool[math.random(#pool)];
+    return vwPick(mob, target, pool);
 end;
 
 function onMobRoam(mob) tick(mob); end;

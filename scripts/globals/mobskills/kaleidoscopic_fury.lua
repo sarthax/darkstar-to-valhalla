@@ -7,7 +7,7 @@ require("scripts/globals/status");
 require("scripts/globals/monstertpmoves");
 
 function onMobSkillCheck(target,mob,skill)
-    if (mob:getName() == "Aello") then return (mob:getHPP() < 50) and 0 or 1; end
+    if (mob:getName() == "Aello" or mob:getName() == "Ocythoe") then return (mob:getHPP() < 50) and 0 or 1; end
     return 0;
 end;
 

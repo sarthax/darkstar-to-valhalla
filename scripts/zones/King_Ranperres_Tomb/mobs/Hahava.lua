@@ -33,6 +33,11 @@ function onMagicHit(caster, target, spell)
     return 0;
 end;
 
+function onWeaponskillHit(mob, attacker, wsid)
+    vwOnWeaponskillHit(mob, attacker, wsid, VWMSG);
+    return 0;
+end
+
 local function tick(mob)
     vwWeaknessTick(mob, VWMSG);
     local left = mob:getLocalVar("VW_DEADLINE") - os.time();
@@ -55,6 +60,12 @@ local function tick(mob)
         end
     end
 end
+
+function onMobInitialize(mob)
+    -- BLM main job defaults to HP_STANDBACK 70 (mobutils SetupJob): mob would stay at range above 70% HP.
+    -- Voidwatch NMs must close to melee; -1 disables standback (precedent: Bahamut).
+    mob:setMobMod(MOBMOD_HP_STANDBACK, -1);
+end;
 
 function onMobSpawn(mob)
     mob:setLocalVar("VW_DEADLINE", os.time() + LIMIT);
@@ -95,7 +106,7 @@ function onMonsterMagicPrepare(mob, target)
     else
         table.insert(pool, 148); table.insert(pool, 177); table.insert(pool, 496);
     end
-    return pool[math.random(#pool)];
+    return vwPick(mob, target, pool);
 end;
 
 function onMobRoam(mob) tick(mob); end;
@@ -123,8 +134,10 @@ function onMobDeath(mob, player, isKiller)
     local idx = mob:getID() - 17555901;
     vwOnKill(mob, player, {
         region = "THREE", stage = 4, -- [F] stage table; cruor/EXP base (6500 cruor confirmed [C])
+        atmacite = {1808}, -- white-light drop [W/J, ATMACITE-DATA.md]
         pyxisId = 17555964 + idx,
         drops = {11855, 10928, 11814, 3445, 3510}, -- Mextli Harness, Ganesha's Mala, Ganesha's Mask, Suit of Hahava's Mail, Silver Mirror [F]; ids checked vs DSP item_basic
+        dropRates = {[11855]=1, [10928]=5, [11814]=5, [3445]=5, [3510]=10}, -- BG wiki tiers (Very Rare 1 / Rare 5 / Uncommon 10) [W 2026-10-09; tier labels, NOT measured]
         keyitem = ATMACITE_OF_EMINENCE, -- 1808 [W/F]; DSP keyitems.lua name; client-id check pending
         msgKeyItem = 7479,
         msgCruor = 7475, msgFinalBR = 7472, msgFinalYG = 7470, msgFinalW = 7471,

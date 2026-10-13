@@ -10,7 +10,7 @@ require("scripts/globals/monstertpmoves");
 require("scripts/globals/msg");
 
 function onMobSkillCheck(target,mob,skill)
-    return 0;
+    return (mob:getHPP() < 50) and 0 or 1; -- <50% HP only [F,J]
 end;
 
 function onMobWeaponSkill(target, mob, skill)

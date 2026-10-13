@@ -34,6 +34,11 @@ function onMagicHit(caster, target, spell)
     return 0;
 end;
 
+function onWeaponskillHit(mob, attacker, wsid)
+    vwOnWeaponskillHit(mob, attacker, wsid, VWMSG);
+    return 0;
+end
+
 local function tick(mob)
     vwWeaknessTick(mob, VWMSG);
     local left = mob:getLocalVar("VW_DEADLINE") - os.time();
@@ -96,8 +101,10 @@ function onMobDeath(mob, player, isKiller)
     local idx = mob:getID() - 17175250;
     vwOnKill(mob, player, {
         region = "THREE", stage = 3, -- cruor/EXP base by stage [F]
+        atmacite = {1813}, -- white-light drop [W/J, ATMACITE-DATA.md]
         pyxisId = 17175425 + idx,
         drops = {3448, 10970, 17923},
+        dropRates = {[3448]=5, [10970]=5, [17923]=5}, -- all Rare 5% [W 2026-10-09; BG wiki tier labels, NOT measured]
         keyitem = ATMACITE_OF_TEMPERANCE, -- DSP keyitems.lua name; client-id check pending
         msgKeyItem = 8176,
         msgCruor = 8172, msgFinalBR = 8169, msgFinalYG = 8167, msgFinalW = 8168,

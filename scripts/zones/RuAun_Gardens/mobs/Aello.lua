@@ -35,6 +35,11 @@ function onMagicHit(caster, target, spell)
     return 0;
 end;
 
+function onWeaponskillHit(mob, attacker, wsid)
+    vwOnWeaponskillHit(mob, attacker, wsid, VWMSG);
+    return 0;
+end
+
 local function tick(mob)
     vwWeaknessTick(mob, VWMSG);
     local left = mob:getLocalVar("VW_DEADLINE") - os.time();
@@ -57,6 +62,12 @@ local function tick(mob)
         end
     end
 end
+
+function onMobInitialize(mob)
+    -- BLM main job defaults to HP_STANDBACK 70 (mobutils SetupJob): mob would stay at range above 70% HP.
+    -- Voidwatch NMs must close to melee; -1 disables standback (precedent: Bahamut).
+    mob:setMobMod(MOBMOD_HP_STANDBACK, -1);
+end;
 
 function onMobSpawn(mob)
     mob:setLocalVar("VW_DEADLINE", os.time() + LIMIT);
@@ -89,10 +100,11 @@ function onMobDeath(mob, player, isKiller)
     local idx = (mob:getID() - 17309985) / 4;
     vwOnKill(mob, player, {
         region = "ZILART", stage = 3, -- [F] Zilart III: 5000 EXP / 8000 cruor
+        atmacite = {1822}, -- white-light drop [W/J, ATMACITE-DATA.md]
         pyxisId = 17310114 + idx,
         drops = {11035, 11964, 18905, 18904, 5910}, -- Strophadic Earring, Whirlwind Dirs, Swiftwing, Ephemeron, Heavy Metal Pouch [F ffxiclopedia Aello]; ids checked vs DSP item_basic
+        dropRates = {[18904]=0.1, [18905]=1, [11035]=5, [11964]=5, [5910]=5}, -- [W 2026-10-09; BG wiki tier labels, NOT measured]
         msgKeyItem = 10883,
         msgCruor = 10879, msgFinalBR = 10876, msgFinalYG = 10874, msgFinalW = 10875,
     });
-    vwExtraKeyItem(player, mob, ATMACITE_OF_UNITY, 10883, 0.05); -- [F ffxiclopedia item page: possible spoil]; chance [D]
 end;

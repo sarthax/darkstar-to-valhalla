@@ -35,6 +35,11 @@ function onMagicHit(caster, target, spell)
     return 0;
 end;
 
+function onWeaponskillHit(mob, attacker, wsid)
+    vwOnWeaponskillHit(mob, attacker, wsid, VWMSG);
+    return 0;
+end
+
 local function tick(mob)
     vwWeaknessTick(mob, VWMSG);
     local left = mob:getLocalVar("VW_DEADLINE") - os.time();
@@ -88,6 +93,7 @@ function onMobDeath(mob, player, isKiller)
     local idx = mob:getID() - 17559871;
     vwOnKill(mob, player, {
         region = "THREE", stage = 4, -- stage = Indigo tier
+        atmacite = {1811}, -- white-light drop [W/J, ATMACITE-DATA.md]
         pyxisId = 17559932 + idx,
         dropRates = {[11856] = 0.76, [17360] = 1.76, [17273] = 13.8, [3449] = 0.82, [2875] = 0.06, [3510] = 27.5}, -- percent [U/F]
         keyitem = ATMACITE_OF_ENTICEMENT, -- DSP keyitems.lua name; client-id check pending

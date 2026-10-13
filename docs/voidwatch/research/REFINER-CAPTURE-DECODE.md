@@ -58,3 +58,17 @@ Cost classes are therefore per atmacite. Pre-"Rhapsody" values are x20. The char
 
 Buildable from evidence: p5/p6 gating (done in `voidwatch_officer.lua`), enrich flow (option encoding, message 15721, costs for known classes), infuse flow for level 1 (option, message 15712, 100 cruor).
 Not buildable yet: purge, Periapt of emergence slot handling, infuse cost at levels above 1, atmacite KI client ids vs DSP ids, unlocking of warp menu entries by p5/p6, p1 bit 1 and p0 high bits when atmacites are infused (Wiggo p0 = 0x10d9f7e, p2 = 120, p3 = 0x78302; layout differs from stratum-only characters).
+
+## 6. Corrections from in-game testing (2026-10-09, Bastok Markets) [T]
+
+These supersede the "not buildable" notes above; analyze/enrich/infuse (slots 1-3)/swap/purge all work in game.
+
+- **Client requests the level words with a plain Update**: `0x1`, or `0x2` with slot 0. The server MUST answer; ignoring them (early return on slot < 1) leaves the menu showing wrong levels.
+- **Level-word reply layout** (0x05C, 8 u32): six level words (8 nibbles each, low nibble first, atmacite idx 0..39, then a pad word 0x11111111), then 7, 7. Word 0 is a level word, not a packed p0.
+- **Enrich reply**: (counter, KI, new level, level word 3, cruor, 0x11111111, 7, 7). The first value (counter) is unverified.
+- **Enrich is Update `(slot<<16)|5`; refresh is Update `(slot<<16)|2`.**
+- **Plain infuse** is Finish `slot<<16 | 3`. The client sends 3 even for later slots, so the server must pick the first empty infuse position (1..slot count).
+- **Swap** is Finish `(flag|slot)<<16 | 6`; flag 0x40 = position 1 (confirmed), 0x80 = position 2, 0x100 = position 3 (inferred from two samples, not confirmed). Costs 100 cruor.
+- **Purge** is Finish `(pos<<16)|4`. It clears only the infuse position; the atmacite keeps its level (min 1) and its key item. Atmacites must be purged before another can be infused into that position.
+- Key item ownership in the DB blob is written only on character save, so a DB check can lag behind live state.
+- Message ids are per zone and were text-matched from a fresh dialog.yml (see `Atmacite_Refiner.lua` per zone).

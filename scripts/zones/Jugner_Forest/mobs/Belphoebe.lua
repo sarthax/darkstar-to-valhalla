@@ -33,6 +33,11 @@ function onMagicHit(caster, target, spell)
     return 0;
 end;
 
+function onWeaponskillHit(mob, attacker, wsid)
+    vwOnWeaponskillHit(mob, attacker, wsid, VWMSG);
+    return 0;
+end
+
 local function tick(mob)
     vwWeaknessTick(mob, VWMSG);
     local left = mob:getLocalVar("VW_DEADLINE") - os.time();
@@ -117,8 +122,10 @@ function onMobDeath(mob, player, isKiller)
     local idx = mob:getID() - 17203696;
     vwOnKill(mob, player, {
         region = "THREE", stage = 3, -- [F] stage table; cruor/EXP base
+        atmacite = {1806}, -- white-light drop [W/J, ATMACITE-DATA.md]
         pyxisId = 17203942 + idx,
         drops = {17057, 16498}, -- Tefnut Wand, Carabineer's Dagger [F, J]; ids checked vs DSP item_basic
+        dropRates = {[17057]=5, [16498]=5}, -- BG wiki "Rare" tier = 5% each [W 2026-10-09; tier label, NOT a measured rate; FFXIDB has no drop data]
         keyitem = ATMACITE_OF_DEVOTION, -- 1806 [W/F]; DSP keyitems.lua name; client-id check pending
         msgKeyItem = 12245,
         msgCruor = 12241, msgFinalBR = 12238, msgFinalYG = 12236, msgFinalW = 12237,
