@@ -14,3 +14,11 @@ Run once, on a DB that still has the old ids: `sql/slices/npc-id-realign/npc_id_
 `tools/dat_align.py`, `tools/check_npc_ids.py`, `tools/check_mob_ids.py` (the checkers need a live DB). Test list: ID_SHIFT_TEST_CHECKLIST.md.
 
 See UNRESOLVED.md for open items.
+
+## Reference audit (2026-10-13)
+Rule: an id change is not done until everything referencing it is checked (see memory `topaz-dsp-id-change-requires-lua-audit`).
+- Literal 8-digit ids in all `scripts/**/*.lua`, `IDs.lua`, and id-bearing SQL tables were compared with the ledger: a reference is stale only if it equals a ledger old id whose current row has a different name. Result: 37 Lua literals already target the DAT-correct id (the move fixed them); 1 stale, fixed (`West_Ronfaure/npcs/Signpost.lua` 17187507 -> 17187540).
+- `GetNPCByID(base+offset)` and variable forms were evaluated per file: 958 resolved, 0 stale. `getID()+k` relative door/torch offsets: 878 checks, no relation changed in an affected zone.
+- Stale in SQL: `instance_entities` instance 6 (Leujaoam, 5 door/prop ids) -> remapped in `sql/instance_entities.sql`; live DB: `sql/slices/npc-id-realign/instance_entities_leujaoam_6.sql`.
+- The 28 mob moves: no literal references anywhere. Not covered: ids built at runtime from non-literal sources, and `conquest.lua` leader-offset rows that point at `Moogle`/blank rows (pre-existing).
+- Known dead branch: West_Ronfaure Signpost `17187569` points at a Conquest_Banner (never a Signpost).
