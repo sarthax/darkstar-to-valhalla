@@ -49,3 +49,4 @@ MACCHI_GAZLITAH_SHOP_DIALOG4 = 10896; -- My new shipment has finally come in. Ta
 
 -- conquest Base
 CONQUEST_BASE = 0;
+COMMON_SENSE_SURVIVAL = 15677; -- new survival guide registered (client DAT, verified)

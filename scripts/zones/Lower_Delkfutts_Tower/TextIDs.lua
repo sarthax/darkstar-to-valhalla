@@ -13,3 +13,4 @@ THE_DOOR_IS_FIRMLY_SHUT_OPEN_KEY = 159; -- The door is firmly shut. You might be
 
 -- conquest Base
 CONQUEST_BASE = 0;
+COMMON_SENSE_SURVIVAL = 11761; -- new survival guide registered (client DAT, verified)

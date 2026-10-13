@@ -21992,8 +21992,8 @@ INSERT INTO `mob_spawn_points` VALUES (17167109,'KaiserBehemoth','Kaiser Behemot
 INSERT INTO `mob_spawn_points` VALUES (17167110,'FerreousCoffin','Ferreous Coffin',0,0,0,0,0);
 INSERT INTO `mob_spawn_points` VALUES (17167111,'Lewenhart','Lewenhart',0,0,0,0,217);
 INSERT INTO `mob_spawn_points` VALUES (17167112,'AuroralAlicorn','Auroral Alicorn',0,0,0,0,0);
-INSERT INTO `mob_spawn_points` VALUES (17167113,'Pancimani','Pancimanci',13747,120,-3.5,-440,183);
-INSERT INTO `mob_spawn_points` VALUES (17167115,'Pancimani','Pancimanci',13747,2.675,-28.5,560.355,150);
+INSERT INTO `mob_spawn_points` VALUES (17167113,'Pancimanci','Pancimanci',13747,120,-3.5,-440,183);
+INSERT INTO `mob_spawn_points` VALUES (17167115,'Pancimanci','Pancimanci',13747,2.675,-28.5,560.355,150);
 
 -- ------------------------------------------------------------
 -- Fort Karugo-Narugo [S] (Zone 96)
@@ -26681,9 +26681,9 @@ INSERT INTO `mob_spawn_points` VALUES (17199608,'Pixie','Pixie',5734,0,0,0,0);
 INSERT INTO `mob_spawn_points` VALUES (17199609,'Pixie','Pixie',5734,0,0,0,0);
 INSERT INTO `mob_spawn_points` VALUES (17199610,'Pixie','Pixie',5734,0,0,0,0);
 INSERT INTO `mob_spawn_points` VALUES (17199611,'Blue_Bascinet','Blue Bascinet',5679,0,0,0,0);
-INSERT INTO `mob_spawn_points` VALUES (17199612,'Ig-Alima','Ig-Alima',0,0,0,0,0);
-INSERT INTO `mob_spawn_points` VALUES (17199613,'Ig-Alima','Ig-Alima',13766,650,-0.2,0.001,0);
-INSERT INTO `mob_spawn_points` VALUES (17199614,'Ig-Alima','Ig-Alima',0,0,0,0,0);
+INSERT INTO `mob_spawn_points` VALUES (17199612,'Ig-Alima','Ig-Alima',13766,720,-8.078,195,0);
+INSERT INTO `mob_spawn_points` VALUES (17199613,'Ig-Alima','Ig-Alima',13766,650,0.293,0.001,0);
+INSERT INTO `mob_spawn_points` VALUES (17199614,'Ig-Alima','Ig-Alima',13766,-75,-0.312,-45,0);
 INSERT INTO `mob_spawn_points` VALUES (17199647,'Goblin_Bounty_Hunter','Goblin Bounty Hunter',5692,0,0,0,0);
 INSERT INTO `mob_spawn_points` VALUES (17199648,'Goblin_Bounty_Hunter','Goblin Bounty Hunter',5692,0,0,0,0);
 INSERT INTO `mob_spawn_points` VALUES (17199649,'Goblin_Bounty_Hunter','Goblin Bounty Hunter',5692,0,0,0,0);
@@ -33417,8 +33417,9 @@ INSERT INTO `mob_spawn_points` VALUES (17261042,'Pixie','Pixie',6464,0,0,0,0);
 INSERT INTO `mob_spawn_points` VALUES (17261043,'Pixie','Pixie',6464,0,0,0,0);
 INSERT INTO `mob_spawn_points` VALUES (17261044,'Pixie','Pixie',6464,0,0,0,0);
 INSERT INTO `mob_spawn_points` VALUES (17261045,'Pixie','Pixie',6464,0,0,0,0);
-INSERT INTO `mob_spawn_points` VALUES (17261047,'Ketos','Botulus Rex',6461,0,0,0,0);
-INSERT INTO `mob_spawn_points` VALUES (17261049,'Botulus_rex','Botulus Rex',13731,80,-0.449,-195,0);
+INSERT INTO `mob_spawn_points` VALUES (17261047,'Botulus_Rex','Botulus Rex',13731,80,0.049,-195,0);
+INSERT INTO `mob_spawn_points` VALUES (17261048,'Botulus_Rex','Botulus Rex',13731,360,0.001,-240,0);
+INSERT INTO `mob_spawn_points` VALUES (17261049,'Botulus_Rex','Botulus Rex',13731,-360,-8,-200,0);
 
 
 

@@ -16,6 +16,8 @@ require("scripts/globals/missions");
 -----------------------------------
 
 function onInitialize(zone)
+    require("scripts/globals/mog_tablets");
+    MOG_TABLET.applyExplorerMoogles(); -- Thrifty Transit gate (setting MOG_TABLET_GATE_EXPLORER_MOOGLES)
 
     SetExplorerMoogles(17797253);
 

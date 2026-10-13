@@ -340,6 +340,12 @@ bool CStatusEffectContainer::AddStatusEffect(CStatusEffect* PStatusEffect, bool 
         return false;
     }
 
+    // Dilatory Digestion (Super Kupower): food effects last longer
+    if (statusId == EFFECT_FOOD && m_POwner->getMod(Mod::FOOD_DURATION) > 0)
+    {
+        PStatusEffect->SetDuration(PStatusEffect->GetDuration() * (100 + m_POwner->getMod(Mod::FOOD_DURATION)) / 100);
+    }
+
     if (CanGainStatusEffect((EFFECT)statusId, PStatusEffect->GetPower()))
     {
 
@@ -1382,6 +1388,16 @@ void CStatusEffectContainer::TickRegen(time_point tick)
         int16 poison = m_POwner->getMod(Mod::REGEN_DOWN);
         int16 refresh = m_POwner->getMod(Mod::REFRESH) - m_POwner->getMod(Mod::REFRESH_DOWN);
         int16 regain = m_POwner->getMod(Mod::REGAIN) - m_POwner->getMod(Mod::REGAIN_DOWN);
+
+        // Blood of the Vampyr (Super Kupower): latent regen/refresh below 51%, stacks with all other sources
+        if (m_POwner->health.maxhp > 0 && m_POwner->health.hp * 100 < m_POwner->health.maxhp * 51)
+        {
+            regen += m_POwner->getMod(Mod::VAMPYR_REGEN);
+        }
+        if (m_POwner->health.maxmp > 0 && m_POwner->health.mp * 100 < m_POwner->health.maxmp * 51)
+        {
+            refresh += m_POwner->getMod(Mod::VAMPYR_REFRESH);
+        }
         m_POwner->addHP(regen);
 
         if (poison)

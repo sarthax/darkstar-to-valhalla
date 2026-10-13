@@ -18,3 +18,4 @@ CHEST_ILLUSION = 7358; -- The chest was but an illusion...
 
 -- conquest Base
 CONQUEST_BASE = 0;
+COMMON_SENSE_SURVIVAL = 7363; -- new survival guide registered (client DAT, verified)

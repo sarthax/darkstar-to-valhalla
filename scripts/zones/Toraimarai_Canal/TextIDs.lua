@@ -5,6 +5,7 @@ ITEM_CANNOT_BE_OBTAINED = 6428; -- You cannot obtain the item <item>. Come back 
           ITEM_OBTAINED = 6434; -- Obtained: <item>.
            GIL_OBTAINED = 6435; -- Obtained <number> gil.
        KEYITEM_OBTAINED = 6437; -- Obtained key item: <keyitem>.
+    HOMEPOINT_SET = 10693; -- Home point set!
  FISHING_MESSAGE_OFFSET = 7252; -- You can't fish here.
 
 -- Treasure Coffer/Chest Dialog
@@ -23,3 +24,4 @@ CHEST_ILLUSION = 7365; -- The chest was but an illusion...
 
 -- conquest Base
 CONQUEST_BASE = 7093; -- Tallying conquest results...
+COMMON_SENSE_SURVIVAL = 10665; -- new survival guide registered (client DAT, verified)

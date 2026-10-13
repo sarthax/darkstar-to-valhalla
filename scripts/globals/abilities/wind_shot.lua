@@ -32,6 +32,7 @@ end;
 -----------------------------------
 
 function onUseAbility(player,target,ability,action)
+    vwOnAbility(player, target, ability);
     local params = {};
     params.includemab = true;
     local dmg = (2 * player:getRangedDmg() + player:getAmmoDmg() + player:getMod(MOD_QUICK_DRAW_DMG)) * 1 + player:getMod(MOD_QUICK_DRAW_DMG_PERCENT)/100;

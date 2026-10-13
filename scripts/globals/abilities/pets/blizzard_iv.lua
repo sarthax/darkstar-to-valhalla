@@ -14,6 +14,7 @@ function onAbilityCheck(player, target, ability)
 end;
 
 function onPetAbility(target, pet, skill)
+    vwOnPetAbility(target, pet, ELE_ICE);
     local dINT = math.floor(pet:getStat(MOD_INT) - target:getStat(MOD_INT));
     local tp = skill:getTP();
 

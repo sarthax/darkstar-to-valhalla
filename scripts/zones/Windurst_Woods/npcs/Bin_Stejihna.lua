@@ -6,6 +6,7 @@
 -----------------------------------
 
 require("scripts/globals/shop");
+require("scripts/globals/mog_tablets");
 require("scripts/globals/conquest");
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 require("scripts/zones/Windurst_Woods/TextIDs");
@@ -23,7 +24,7 @@ end;
 
 function onTrigger(player,npc)
     RegionOwner = GetRegionOwner(ZULKHEIM);
-    if (RegionOwner ~= NATION_WINDURST) then 
+    if (RegionOwner ~= NATION_WINDURST and not MOG_TABLET.hasPower(MOG_TABLET.POWERS.BOUNTIFUL_BAZAAR)) then 
         player:showText(npc,BIN_STEJIHNA_CLOSED_DIALOG);
     else
         player:showText(npc,BIN_STEJIHNA_OPEN_DIALOG);

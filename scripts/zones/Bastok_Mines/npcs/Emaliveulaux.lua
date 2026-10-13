@@ -7,6 +7,7 @@
 
 require("scripts/globals/events/harvest_festivals");
 require("scripts/globals/shop");
+require("scripts/globals/mog_tablets");
 require("scripts/globals/conquest");
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
 require("scripts/zones/Bastok_Mines/TextIDs");
@@ -29,7 +30,7 @@ RegionOwner = GetRegionOwner(TAVNAZIANARCH);
 cop = 40; --player:getVar("chainsOfPromathiaMissions");
 
 if (cop >= 40) then
-        if (RegionOwner ~= NATION_BASTOK) then
+        if (RegionOwner ~= NATION_BASTOK and not MOG_TABLET.hasPower(MOG_TABLET.POWERS.BOUNTIFUL_BAZAAR)) then
                 player:showText(npc,EMALIVEULAUX_CLOSED_DIALOG);
         else
                 player:showText(npc,EMALIVEULAUX_OPEN_DIALOG);

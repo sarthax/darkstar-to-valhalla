@@ -34,6 +34,7 @@ end;
 -----------------------------------
 
 function onUseAbility(player,target,ability,action)
+    vwOnAbility(player, target, ability);
     -- Only remove TP if the player doesn't have Trance.
     if not player:hasStatusEffect(EFFECT_TRANCE) then
         player:delTP(100);
