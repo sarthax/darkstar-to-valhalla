@@ -52,6 +52,7 @@ function getSandOriaNotesItem(i)
         [2050] = {id = 10116, price = 2000} -- Cipher: Valaineral
     }
     local item = SandOria_AN[i];
+    if (item == nil) then return nil, nil; end
     return item.id, item.price;
 end;
 
@@ -69,6 +70,7 @@ function getBastokNotesItem(i)
         [2050] = {id = 10116, price = 2000} -- Cipher: Valaineral
     }
     local item = Bastok_AN[i];
+    if (item == nil) then return nil, nil; end
     return item.id, item.price;
 end;
 
@@ -86,6 +88,7 @@ function getWindurstNotesItem(i)
         [2050] = {id = 10116, price = 2000} -- Cipher: Valaineral
     }
     local item = Windurst_AN[i];
+    if (item == nil) then return nil, nil; end
     return item.id, item.price;
 end;
 
@@ -96,9 +99,12 @@ end;
 -- -------------------------------------------------------------------
 
 function getSigilTimeStamp(player)
-    local timeStamp = 0; -- zero'd till math is done.
+    local timeStamp = VanadielTime();
+    local sigil = player:getStatusEffect(EFFECT_SIGIL);
 
-    -- TODO: calculate time stamp for menu display of when it wears off
+    if (sigil ~= nil) then
+        timeStamp = timeStamp + sigil:getTimeRemaining() / 1000;
+    end
 
     return timeStamp;
 end;
@@ -139,3 +145,205 @@ end;
 
 -- TODO:
 -- Past nation teleport
+-- -------------------------------------------------------------------
+-- Shared Sigil NPC hooks (ported from LSB xi.campaign.sigilOn*)
+-- Event params 0-3 verified by decompiling event 110 (San d'Oria [S]):
+--   0 = allegiance, 1 = allied notes, 2 = freelance mask, 3 = menu bits.
+-- Params 4-7 (rank, 0, timestamp, 0) follow LSB; not independently decoded.
+-- zoneid = { base csid, nation allegiance }
+-- -------------------------------------------------------------------
+
+local SIGIL_NPC_INFO =
+{
+    [80] = { 110, 1 }, -- Southern San d'Oria [S] (Miliart, T.K.)
+    [87] = {  13, 2 }, -- Bastok Markets [S] (Millard, I.M.)
+    [94] = {  13, 3 }, -- Windurst Waters [S] (Mindala-Andola, C.C.)
+};
+
+local function getSigilRank(player)
+    for ki = 0x03AF, 0x039C, -1 do
+        if (player:hasKeyItem(ki) == true) then
+            return 1 + ki - 0x039C;
+        end
+    end
+    return 0;
+end;
+
+local function getSigilMenuOptions(player)
+    -- bit 0: medal expired, bit 1: no Sigil active, bit 2: Valaineral available, bit 3: Adelheid available
+    local mask = 0; -- campaign event flags (bits 2/3) not implemented
+    if (player:hasStatusEffect(EFFECT_SIGIL) == false) then
+        mask = mask + 2;
+    end
+    return mask;
+end;
+
+local function getNotesItemByZone(zoneid, option)
+    if (zoneid == 80) then return getSandOriaNotesItem(option);
+    elseif (zoneid == 87) then return getBastokNotesItem(option);
+    else return getWindurstNotesItem(option); end
+end;
+
+function sigilOnTrigger(player, npc)
+    local info = SIGIL_NPC_INFO[player:getZoneID()];
+
+    if (getMedalRank(player) == 0) then
+        player:startEvent(info[1] + 1);
+    else
+        player:startEvent(info[1],
+            player:getCampaignAllegiance(),
+            player:getCurrency("allied_notes"),
+            0, -- freelance mask (bit 0 enables reduced EXP loss), not implemented
+            getSigilMenuOptions(player),
+            getSigilRank(player),
+            0,
+            getSigilTimeStamp(player),
+            0);
+    end
+end;
+
+function sigilOnEventUpdate(player, csid, option)
+    local info = SIGIL_NPC_INFO[player:getZoneID()];
+
+    if (csid == info[1] and option % 16 == 2) then
+        local canEquip = 2; -- 0 = wrong job, 1 = wrong level, 2 = ok, 3+ = exit menu
+        local itemid = getNotesItemByZone(player:getZoneID(), option);
+
+        -- canEquipItem assumes armor/weapon data; only call it for equipment ids
+        if (itemid ~= nil and itemid >= 12000) then
+            if (player:canEquipItem(itemid) == false) then
+                canEquip = 0;
+            elseif (player:canEquipItem(itemid, true) == false) then
+                canEquip = 1;
+            end
+        end
+
+        player:updateEvent(0, 0, 0, 0, 0, 0, 0, canEquip);
+    end
+end;
+
+function sigilOnEventFinish(player, csid, option)
+    local zoneid = player:getZoneID();
+    local info = SIGIL_NPC_INFO[zoneid];
+
+    if (csid ~= info[1] or option == 0 or option == 1073741824) then
+        return;
+    end
+
+    if (option % 16 == 1) then
+        local selected = math.floor((option - 1) / 4096); -- bit0 Regen, bit1 Refresh, bit2 Meal, bit3 EXP loss
+        local cost = 0;
+        for i = 0, 3 do
+            if (math.floor(selected / 2^i) % 2 == 1) then
+                cost = cost + 50;
+            end
+        end
+
+        if (player:getCurrency("allied_notes") < cost) then
+            return;
+        end
+
+        local duration = 10800 + ((15 * getMedalRank(player)) * 60); -- 3hrs + 15 min per medal
+        local subPower = 35; -- regen/refresh trigger %, static minimum
+
+        player:delStatusEffect(EFFECT_SIGIL);
+        player:delStatusEffect(EFFECT_SANCTION);
+        player:delStatusEffect(EFFECT_SIGNET);
+        player:addStatusEffect(EFFECT_SIGIL, selected, 0, duration, 0, subPower, 0);
+        player:messageSpecial(ALLIED_SIGIL);
+
+        if (cost > 0) then
+            player:delCurrency("allied_notes", cost);
+        end
+
+    elseif (option % 16 == 2) then
+        local item, price = getNotesItemByZone(zoneid, option);
+
+        if (item == nil) then
+            return;
+        end
+
+        if (player:getCurrency("allied_notes") < price) then
+            return;
+        end
+
+        if (player:getFreeSlotsCount() >= 1) then
+            player:delCurrency("allied_notes", price);
+            player:addItem(item);
+            player:messageSpecial(ITEM_OBTAINED, item);
+        else
+            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, item);
+        end
+    end
+end;
+
+-----------------------------------
+-- Campaign Ops overseer menu (csid 307 San d'Oria/Windurst, 316 Bastok)
+-- Wire protocol decoded from retail captures (docs/campaign/OPS_NPC_EVENTS.md):
+--   start params = {credits, 1, 0, 1, 0, 0, 0, 0}
+--   client option 9           -> ack, server echoes the previous reply
+--   client option (n<<8)|5    -> op at menu slot n picked, server answers a status update
+-- The reply values are a snapshot of what retail sent with every op open; retail derives them
+-- from live campaign state which this server does not have, so the semantics of the mask/count
+-- fields are NOT decoded. Op credits are not regenerated (no retail timer data); a new player gets 1.
+-----------------------------------
+
+function opsOnTrigger(player, csid)
+    local credits = player:getVar("CampaignOpCredits");
+    if (credits == 0) then
+        credits = 1;
+        player:setVar("CampaignOpCredits", credits);
+    end
+    local reply = {credits, 1, 0, 1, 0, 0, 0, 0};
+    for i = 1, 8 do
+        player:setLocalVar("opsReply" .. i, reply[i]);
+    end
+    player:startEvent(csid, reply[1], reply[2], reply[3], reply[4], reply[5], reply[6], reply[7], reply[8]);
+end;
+
+function opsOnEventUpdate(player, csid, option)
+    local reply;
+    if (option == 9) then
+        -- ack: retail echoes {9, <p1>, <p2>, ...} of the previous status reply
+        reply = {9, player:getLocalVar("opsReply2"), player:getLocalVar("opsReply3"), player:getLocalVar("opsReply4"), 0, 0, 0, 0};
+    elseif (option % 256 == 5) then
+        local slot = math.floor(option / 256);
+        if (slot == 8) then
+            reply = {1047550, 4, 1024, 0, 0, 0, 0, 0};
+        else
+            reply = {1048574, 4, 0, 0, 0, 0, 0, 0};
+        end
+    else
+        return;
+    end
+    for i = 1, 8 do
+        player:setLocalVar("opsReply" .. i, reply[i]);
+    end
+    player:updateEvent(reply[1], reply[2], reply[3], reply[4], reply[5], reply[6], reply[7], reply[8]);
+end;
+
+-- Campaign state accessors (engine: GetCampaignValue / SetCampaignValue, tables campaign_nation / campaign_map).
+-- Nation ids: 0 Sandoria, 1 Bastok, 2 Windurst, 3 Orc, 4 Quadav, 5 Yagudo, 6 Dark Kindred.
+function getCampaignNationState(nationId)
+    return {
+        recon      = GetCampaignValue("nation", nationId, "reconnaissance"),
+        morale     = GetCampaignValue("nation", nationId, "morale"),
+        prosperity = GetCampaignValue("nation", nationId, "prosperity"),
+    };
+end;
+
+function setCampaignNationValue(nationId, column, value)
+    SetCampaignValue("nation", nationId, column, value);
+end;
+
+-- Region rows follow campaign_map.id order; nation is the packet owner value (army index + 1).
+function getCampaignRegionState(regionId)
+    return {
+        owner      = GetCampaignValue("map", regionId, "nation"),
+        heroism    = GetCampaignValue("map", regionId, "heroism"),
+        fort       = GetCampaignValue("map", regionId, "current_fortifications"),
+        resources  = GetCampaignValue("map", regionId, "current_resources"),
+        maxFort    = GetCampaignValue("map", regionId, "max_fortifications"),
+        maxRes     = GetCampaignValue("map", regionId, "max_resources"),
+    };
+end;

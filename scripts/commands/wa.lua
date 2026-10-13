@@ -94,11 +94,13 @@ local assault_missions =
     [58] = { zone = 77, entrance = 72, name = 'path_of_darkness' },
     [59] = { zone = 77, entrance = 72, name = 'nashmeiras_plea' },
     [51] = { zone = 77, entrance = 72, name = 'nyzul_isle_investigation' },
+    [52] = { zone = 77, entrance = 72, name = 'nyzul_isle_uncharted_survey' },
     [62] = { zone = 73, entrance = 72, name = 'zhayolm_remnants' },
     [65] = { zone = 74, entrance = 72, name = 'arrapago_remnants' },
     [68] = { zone = 75, entrance = 72, name = 'bhaflau_remnants' },
     [71] = { zone = 76, entrance = 72, name = 'silver_sea_remnants' },
     [79] = { zone = 56, entrance = 79, name = 'shades_of_vengeance' },
+    [80] = { zone = 77, entrance = 72, name = 'heroines_holdfast' },
 }
 
 local function printUsage(player)

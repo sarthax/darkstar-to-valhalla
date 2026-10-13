@@ -1,0 +1,146 @@
+These talisman-like objects bestow myriad benefits upon their bearers.
+
+Periapts obtained from battles can be acquired by defeating the listed [[Voidwatch]] notorious monster with a white spectral alignment greater than 0%. The white alignment is equal to the chance of acquring the periapt at the end of the battle.
+
+{| border="0" width=100% style="text-align:center; background-color:#000878"
+|- style="background:#C3C6DD;"
+! width="20%" | Periapt Name
+! width="40%" | Effect
+! width="10%" | Color
+! width="30%" | How to Obtain
+|- bgcolor="#FFFFFF"
+| rowspan="2" | adaptability
+| rowspan="2" | Grants the bearer the ability to receive temporary items upon commencing a Voidwatch operation.
+| bgcolor="#99FFEE" | [[Vivid periapt of adaptability|Vivid]]
+| bgcolor="#99FFEE" | [[Holy Moly]], [[Neith]], or [[Ildebrann]]
+|- bgcolor="#CCCCCC"
+| [[Dusky periapt of adaptability|Dusky]]
+| [[Sabotender Campeador]], [[Malleator Maurok]], or [[Tangaroa]]
+|- bgcolor="#FFFFFF"
+| rowspan="2" | catalysis
+| rowspan="2" | Grants the bearer heightened alignment bonus when exploiting [[Voidwatch Weaknesses|Voidwalker weaknesses]] to magic spells.
+| bgcolor="#99FFEE" | [[Vivid periapt of catalysis|Vivid]]
+| bgcolor="#99FFEE" | [[Lancing Lamorak]], [[Bhishani]], or [[Rw Nw Prt M Hrw]]
+|- bgcolor="#CCCCCC"
+| [[Dusky periapt of catalysis|Dusky]]
+| [[Dimgruzub]]
+|- bgcolor="#FFFFFF"
+| clarity
+| Enhances the effect granted by a periapt of percipience.
+| [[Periapt of clarity|None]]
+| Purchased from [[Voidwatch Officer]] for 50,000 [[Cruor]]
+|- bgcolor="#FFFFFF"
+| rowspan="2" | concentration
+| rowspan="2" | Enhances the bearer's spectral alignment.<br />Blue Spectral Alignment +25%
+| bgcolor="#99FFEE" | [[Vivid periapt of concentration|Vivid]]
+| bgcolor="#99FFEE" | [[Virvatuli]] or [[Pancimanci]]
+|- bgcolor="#CCCCCC"
+| [[Dusky periapt of concentration|Dusky]]
+| [[Yalungur]]
+|- bgcolor="#FFFFFF"
+| rowspan="2" | concord
+| rowspan="2" | Grants the bearer heightened alignment bonus when exploiting [[Voidwatch Weaknesses|Voidwalker weaknesses]] to weapon skills and enmity-related abilities.
+| bgcolor="#99FFEE" | [[Vivid periapt of concord|Vivid]]
+| bgcolor="#99FFEE" | [[Laidly Laurence]], [[Roly-Poly]], [[Mellonia]], [[Nympha Eunomia]], [[Gasha]], or [[Giltine]]
+|- bgcolor="#CCCCCC"
+| [[Dusky periapt of concord|Dusky]]
+| [[Abununnu]]
+|- bgcolor="#FFFFFF"
+| rowspan="3" | emergence
+| rowspan="3" | Grants the bearer the ability to infuse one unit of [[:Category:Atmacite|atmacite]].
+| rowspan="3" | [[Periapt of emergence|None]]
+| Purchased from [[Voidwatch Officer]] for 50,000 [[Cruor]]
+|- bgcolor="#FFFFFF"
+| [[Kaggen]], [[Akvan]], or [[Pil]]
+|- bgcolor="#FFFFFF"
+| [[Provenance Watcher]]
+|- bgcolor="#FFFFFF"
+| rowspan="2" | exploration
+| rowspan="2" | Increases the frequency at which the bearer may accrue voidstones.<br />Reduces stone accrument time by 4 hours.
+| bgcolor="#99FFEE" | [[Vivid periapt of exploration|Vivid]]
+| bgcolor="#99FFEE" | [[Sallow Seymour]] or [[Ushumgal]]
+|- bgcolor="#CCCCCC"
+| [[Dusky periapt of exploration|Dusky]]
+| [[Beguiling Radiance]]
+|- bgcolor="#FFFFFF"
+| rowspan="2" | focus
+| rowspan="2" | Enhances the bearer's spectral alignment.<br />Yellow Spectral Alignment +12.5%
+| bgcolor="#99FFEE" | [[Vivid periapt of focus|Vivid]]
+| bgcolor="#99FFEE" | [[Ogbunabali]]
+|- bgcolor="#CCCCCC"
+| [[Dusky periapt of focus|Dusky]]
+| [[Brekekekex]]
+|- bgcolor="#FFFFFF"
+| rowspan="3" | frontiers
+| rowspan="3" | Increases the capacity of voidstones the bearer can carry.
+| bgcolor="#99FFEE" | [[Vivid periapt of frontiers |Vivid]]
+| bgcolor="#99FFEE" | [[Taweret]], [[Cherufe]], [[Goji]], [[Gugalanna]], [[Yatagarasu]], or [[Agathos]]
+|- bgcolor="#CCCCCC"
+| [[Dusky periapt of frontiers|Dusky]]
+| [[Tsui-Goab]]
+|- bgcolor="#EEEEEE"
+| [[Neutral periapt of frontiers|Neutral]]
+| [[Vanasarvik]]
+|- bgcolor="#FFFFFF"
+| rowspan="2" | glory
+| rowspan="2" | Enhances the bearer's spectral alignment.<br />Red Spectral Alignment +25% 
+| bgcolor="#99FFEE" | [[Vivid periapt of glory|Vivid]]
+| bgcolor="#99FFEE" | [[Stachysaurus]], [[Gwynn Ap Nudd]], or [[Smierc]]
+|- bgcolor="#CCCCCC"
+| [[Dusky periapt of glory|Dusky]]
+| [[Isarukitsck]]
+|- bgcolor="#FFFFFF"
+| guidance
+| Grants the bearer heightened insight into [[Voidwatch Weaknesses|Voidwalker weaknesses]] against weapon skills and abilities. 
+| [[Periapt of guidance|None]]
+| Purchased from [[Voidwatch Officer]] for 150,000 [[Cruor]]
+|- bgcolor="#FFFFFF"
+| rowspan="2" | intensity
+| rowspan="2" | Enhances the bearer's spectral alignment.<br />Green Spectral Alignment +12.5%
+| bgcolor="#99FFEE" | [[Vivid periapt of intensity|Vivid]]
+| bgcolor="#99FFEE" | [[Krabimanjaro]]
+|- bgcolor="#CCCCCC"
+| [[Dusky periapt of intensity|Dusky]]
+| [[Fjalar]]
+|- bgcolor="#FFFFFF"
+| percipience
+| Grants the bearer heightened insight into [[Voidwatch Weaknesses|Voidwalker weaknesses]] against magic. 
+| [[Periapt of percipience|None]]
+| Purchased from [[Voidwatch Officer]] for 150,000 [[Cruor]]
+|- bgcolor="#FFFFFF"
+| rowspan="2" | prudence
+| rowspan="2" | Grants the bearer the ability to receive temporary items upon commencing a Voidwatch operation.
+| bgcolor="#99FFEE" | [[Vivid periapt of prudence|Vivid]]
+| bgcolor="#99FFEE" | [[Seductive Radiance]]
+|- bgcolor="#CCCCCC"
+| [[Dusky periapt of prudence|Dusky]]
+| [[Maddening Radiance]]
+|- bgcolor="#FFFFFF"
+| rowspan="2" | readiness
+| rowspan="2" | Grants the bearer the ability to receive temporary items upon commencing a Voidwatch operation. 
+| bgcolor="#99FFEE" | [[Vivid periapt of readiness|Vivid]]
+| bgcolor="#99FFEE" | [[Sarimanok]] or [[Cottus]]
+|- bgcolor="#CCCCCC"
+| [[Dusky periapt of readiness|Dusky]]
+| [[Lorbulcrud]]
+|- bgcolor="#FFFFFF"
+| recompense
+| Grants the bearer special temporary items upon particularly successful strikes at a Voidwalker's weak point.
+| [[Periapt of recompense|None]]
+| [[Bismarck]] or [[Morta]]
+|- bgcolor="#FFFFFF"
+| sapience
+| Enhances the potency of a periapt of guidance.
+| [[Periapt of sapience|None]]
+| Purchased from [[Voidwatch Officer]] for 50,000 [[Cruor]]
+|- bgcolor="#FFFFFF"
+| rowspan="2" | vigilance
+| rowspan="2" | Grants the bearer the ability to receive temporary items upon commencing a Voidwatch operation.
+| bgcolor="#99FFEE" | [[Vivid periapt of vigilance|Vivid]]
+| bgcolor="#99FFEE" | [[Ig-Alima]]
+|- bgcolor="#CCCCCC"
+| [[Dusky periapt of vigilance|Dusky]]
+| [[Botulus Rex]]
+|}
+
+[[Category:Voidwatch]]

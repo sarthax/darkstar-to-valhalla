@@ -1,12 +1,12 @@
 -- Variable TextID   Description text
 
 -- General Texts
-   ITEM_CANNOT_BE_OBTAINED = 6563; -- You cannot obtain the item. Come back after sorting your inventory.
-FULL_INVENTORY_AFTER_TRADE = 6565; -- You cannot obtain the #. Try trading again after sorting your inventory.
-             ITEM_OBTAINED = 6567; -- Obtained: <item>.
-              GIL_OBTAINED = 6568; -- Obtained <number> gil.
-          KEYITEM_OBTAINED = 6570; -- Obtained key item: <keyitem>.
-            ITEMS_OBTAINED = 6573; -- You obtain
+   ITEM_CANNOT_BE_OBTAINED = 6565; -- You cannot obtain the item. Come back after sorting your inventory.
+FULL_INVENTORY_AFTER_TRADE = 6567; -- You cannot obtain the #. Try trading again after sorting your inventory.
+             ITEM_OBTAINED = 6569; -- Obtained: <item>.
+              GIL_OBTAINED = 6570; -- Obtained <number> gil.
+          KEYITEM_OBTAINED = 6572; -- Obtained key item: <keyitem>.
+            ITEMS_OBTAINED = 6575; -- You obtain
            BEASTMEN_BANNER = 81; -- There is a beastmen's banner.
     FISHING_MESSAGE_OFFSET = 7228; -- You can't fish here.
 
@@ -23,3 +23,4 @@ UNUSUAL_ARRANGEMENT_OF_BRANCHES = 7873; -- There is an unusual arrangement of br
 
 -- conquest Base
 CONQUEST_BASE = 0;
+COMMON_SENSE_SURVIVAL = 12767; -- new survival guide registered (client DAT, verified)

@@ -1,10 +1,10 @@
 -- Variable TextID   Description text
 
 -- General Texts
-ITEM_CANNOT_BE_OBTAINED = 6415; -- You cannot obtain the item <item>. Come back after sorting your inventory.
-          ITEM_OBTAINED = 6421; -- Obtained: <item>.
-           GIL_OBTAINED = 6422; -- Obtained <number> gil.
-       KEYITEM_OBTAINED = 6424; -- Obtained key item: <keyitem>.
+ITEM_CANNOT_BE_OBTAINED = 6417; -- You cannot obtain the item <item>. Come back after sorting your inventory.
+          ITEM_OBTAINED = 6423; -- Obtained: <item>.
+           GIL_OBTAINED = 6424; -- Obtained <number> gil.
+       KEYITEM_OBTAINED = 6426; -- Obtained key item: <keyitem>.
         BEASTMEN_BANNER = 7163; -- There is a beastmen's banner.
  FISHING_MESSAGE_OFFSET = 7247; -- You can't fish here.
 
@@ -36,3 +36,4 @@ CONQUEST_BASE = 7082; -- Tallying conquest results...
 --chocobo digging
 DIG_THROW_AWAY = 7260; -- You dig up$, but your inventory is full. You regretfully throw the # away.
 FIND_NOTHING = 7262; -- You dig and you dig, but find nothing.
+COMMON_SENSE_SURVIVAL = 12307; -- new survival guide registered (client DAT, verified)

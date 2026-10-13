@@ -1,10 +1,10 @@
 -- Variable TextID   Description text
 
 -- General Texts
-ITEM_CANNOT_BE_OBTAINED = 6380; -- You cannot obtain the item <item>. Come back after sorting your inventory.
-          ITEM_OBTAINED = 6386; -- Obtained: <item>.
-           GIL_OBTAINED = 6387; -- Obtained <number> gil.
-       KEYITEM_OBTAINED = 6389; -- Obtained key item: <keyitem>.
+ITEM_CANNOT_BE_OBTAINED = 6382; -- You cannot obtain the item <item>. Come back after sorting your inventory.
+          ITEM_OBTAINED = 6388; -- Obtained: <item>.
+           GIL_OBTAINED = 6389; -- Obtained <number> gil.
+       KEYITEM_OBTAINED = 6391; -- Obtained key item: <keyitem>.
  FISHING_MESSAGE_OFFSET = 7206; -- You can't fish here.
 
 -- Mining
@@ -36,3 +36,4 @@ CONQUEST_BASE = 7047; -- Tallying conquest results...
 DEVICE_NOT_WORKING = 7320; -- The device is not working.
       SYS_OVERLOAD = 7329; -- arning! Sys...verload! Enterin...fety mode. ID eras...d 
       YOU_LOST_THE = 7334; -- You lost the #. 
+COMMON_SENSE_SURVIVAL = 11465; -- new survival guide registered (client DAT, verified)

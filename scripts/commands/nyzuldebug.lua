@@ -41,9 +41,9 @@
 --                                     until '!nyzuldebug leader clear'.
 --       !nyzuldebug leader clear  -- removes the pin, restoring the normal random roll.
 --
---       Must be run while standing inside a live Nyzul Isle Investigation instance
---       (!warpassault 51, then actually enter/create the floor loop via the entrance rune, or
---       already be mid-run).
+--       Must be run while standing inside a live Nyzul Isle Investigation (51) or
+--       Nyzul Uncharted Area Survey (52) instance (!warpassault 51 or !warpassault 52,
+--       then actually enter/create the floor loop via the entrance rune, or already be mid-run).
 -----------------------------------
 local nyzulIsleInvestigation = require("scripts/zones/Nyzul_Isle/instances/nyzul_isle_investigation")
 require("scripts/zones/Nyzul_Isle/IDs")
@@ -61,7 +61,7 @@ end
 
 function onTrigger(player, subcommand, arg)
     local instance = player:getInstance()
-    if not instance or instance:getID() ~= 51 then
+    if not instance or (instance:getID() ~= 51 and instance:getID() ~= 52) then
         player:PrintToPlayer("[NYZULDEBUG] You are not inside a live Nyzul Isle Investigation instance.")
         return
     end
@@ -105,9 +105,9 @@ function onTrigger(player, subcommand, arg)
             player:PrintToPlayer("[NYZULDEBUG] Leader pin cleared -- next reroll/floor transition uses the normal random roll.")
             return
         end
-        local leaderId = NyzulIsle.mobs[51][string.upper(arg or "")]
+        local leaderId = NyzulIsle.mobs[instance:getID()][string.upper(arg or "")]
         if not leaderId then
-            player:PrintToPlayer("[NYZULDEBUG] Unknown leader name. Use a real IDs.mob[51] leader name, e.g. ginger_custard, vanilla_custard, mokke, shielded_chariot.")
+            player:PrintToPlayer(string.format("[NYZULDEBUG] Unknown leader name. Use a real IDs.mob[%d] leader name, e.g. ginger_custard, vanilla_custard, mokke, shielded_chariot.", instance:getID()))
             printUsage(player)
             return
         end

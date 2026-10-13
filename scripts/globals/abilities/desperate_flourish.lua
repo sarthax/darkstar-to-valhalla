@@ -50,6 +50,7 @@ end;
 -----------------------------------
 
 function onUseAbility(player,target,ability,action)
+    vwOnAbility(player, target, ability);
 
     local isSneakValid = player:hasStatusEffect(EFFECT_SNEAK_ATTACK);
     if (isSneakValid and not player:isBehind(target)) then

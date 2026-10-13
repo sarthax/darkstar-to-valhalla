@@ -40,6 +40,7 @@
 -- Not ported this pass: the "preferred items" bulk-buy personalization feature (option flags 8-11
 -- in the real bytecode) -- core buy-one-item and buy-all-missing flows only.
 -----------------------------------
+require("scripts/globals/debug_print")
 require("scripts/zones/Nyzul_Isle/IDs")
 -----------------------------------
 tpz = tpz or {}
@@ -108,6 +109,10 @@ local GRADE_LOW    = 0x21
 local GRADE_MEDIUM = 0x31
 local GRADE_HIGH   = 0x41
 local GRADE_ALL    = 0x51
+
+-- Exposed so other scripts (e.g. heroines_holdfast.lua's trash-mob drop roll) can reuse the same
+-- real 25-item catalog without duplicating it. Table itself, not a copy -- read-only usage only.
+Nyzul.itemsTable = itemsTable
 
 local lowGradeItems, mediumGradeItems, highGradeItems = {}, {}, {}
 for slot = 1, 25 do
@@ -179,7 +184,7 @@ Nyzul.vendingBoxOnEventUpdate = function(player, csid, option)
     -- prints to chat but doesn't behave like a real menu purchase, while individual items work
     -- fine. Need the real raw option value for the "All of them" click to confirm whether it's
     -- actually resolving to GRADE_ALL (0x51) as this file assumes, or something else entirely.
-    print(string.format("[NYZUL VENDING DEBUG] player=%s csid=%s option=%s (0x%X) grade=0x%X pos=%d",
+    dbgPrint(string.format("[NYZUL VENDING DEBUG] player=%s csid=%s option=%s (0x%X) grade=0x%X pos=%d",
         player:getName(), tostring(csid), tostring(option), option, grade, pos))
 
     if grade == GRADE_ALL then

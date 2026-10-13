@@ -29,9 +29,7 @@
 -- (2026-08-18) -- covers all 50 built Assault missions (1-50) plus the
 -- pre-existing non-Assault instanced content that already used this
 -- table before (53, 54, 58, 59, 65, 79), plus the Salvage Remnants zones
--- added 2026-09-04 (62 Zhayolm, 68 Bhaflau, 71 Silver Sea -- their real
--- level-99 "_ii" siblings 64/67/70/73 remain commented out in
--- instance_list.sql, out of scope for now).
+-- added 2026-09-04 (62 Zhayolm, 68 Bhaflau, 71 Silver Sea).
 -----------------------------------
 cmdprops =
 {
@@ -96,11 +94,13 @@ local assault_missions =
     [58] = { zone = 77, entrance = 72, name = 'path_of_darkness' },
     [59] = { zone = 77, entrance = 72, name = 'nashmeiras_plea' },
     [51] = { zone = 77, entrance = 72, name = 'nyzul_isle_investigation' },
+    [52] = { zone = 77, entrance = 72, name = 'nyzul_isle_uncharted_survey' },
     [62] = { zone = 73, entrance = 72, name = 'zhayolm_remnants' },
     [65] = { zone = 74, entrance = 72, name = 'arrapago_remnants' },
     [68] = { zone = 75, entrance = 72, name = 'bhaflau_remnants' },
     [71] = { zone = 76, entrance = 72, name = 'silver_sea_remnants' },
     [79] = { zone = 56, entrance = 79, name = 'shades_of_vengeance' },
+    [80] = { zone = 77, entrance = 72, name = 'heroines_holdfast' },
 }
 
 local function printUsage(player)
@@ -164,7 +164,15 @@ function onTrigger(player, target)
 
         local instanceId = instance:getID()
         local mission = assault_missions[instanceId]
-        local entranceZone = mission and mission.entrance or player:getZoneID()
+        -- 2026-09-09: real fix -- user-confirmed live bug: falling back to player:getZoneID() is
+        -- always wrong for ANY instance (an instance's zone id IS the same as its host zone --
+        -- that's what makes it that zone's instance), so this fallback was silently landing the
+        -- player right back in the same zone they were trying to leave. Exposed concretely by an
+        -- invalid instanceId (0, an unregistered "bare" instance -- assault_missions[0] is nil)
+        -- looping the player back into the same broken instance at (0,0,0) instead of actually
+        -- leaving. Falls back to Aht Urhgan Whitegate (zone 50, confirmed via zone_settings.sql)
+        -- -- a real, always-safe non-instanced hub -- instead of the current zone.
+        local entranceZone = mission and mission.entrance or 50
 
         player:PrintToPlayer(string.format("[WARP] Leaving instance %d%s, ending it and warping to zone %d...",
             instanceId, mission and (" (" .. mission.name .. ")") or "", entranceZone))

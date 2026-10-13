@@ -22,6 +22,7 @@ end;
 -----------------------------------
 
 function onUseAbility(player,target,ability)
+    vwOnAbility(player, target, ability);
     local boost = player:getStatusEffect(EFFECT_BOOST);
     local multiplier = 1.0;
     if (boost ~= nil) then

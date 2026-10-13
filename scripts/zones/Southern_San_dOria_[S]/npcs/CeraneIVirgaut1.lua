@@ -18,7 +18,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-player:showText(npc, 13454); -- (Couldn't find default dialogue)  How very good to see you again!
+player:showText(npc, 13565); -- (Couldn't find default dialogue)  How very good to see you again!
 end;
 
 -----------------------------------

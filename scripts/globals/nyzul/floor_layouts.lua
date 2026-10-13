@@ -1080,6 +1080,39 @@ Nyzul.layoutSpawnPoints = -- Spawnpoints by layout.
     }
 }
 
+-- Indices (positions in the tables above) that must never be used: door-blocked / off-mesh.
+-- Managed by the mission toolkit's Nyzul Plot page (/nyzul -> click dots -> "Show Lua").
+Nyzul.excludedSpawnPoints =
+{
+    [10] = { 30 }, -- off-mesh (no navmesh polygon), found by nyzul_plot.py
+}
+Nyzul.excludedLampPoints =
+{
+}
+
+local function filtered(tbl, excluded, layout)
+    local skip = {}
+    for _, i in ipairs(excluded[layout] or {}) do
+        skip[i] = true
+    end
+    local out = {}
+    local src = tbl[layout] or {}
+    for i = 1, #src do
+        if not skip[i] then
+            table.insert(out, src[i])
+        end
+    end
+    return out
+end
+
+-- Fresh, mutable copies of a layout's usable points (exclusions removed).
+Nyzul.getSpawnPoints = function(layout)
+    return filtered(Nyzul.layoutSpawnPoints, Nyzul.excludedSpawnPoints, layout)
+end
+
+Nyzul.getLampPoints = function(layout)
+    return filtered(Nyzul.lampSpawnPoints, Nyzul.excludedLampPoints, layout)
+end
 
 
 -- Indices (positions in the tables above) that must never be used: door-blocked / off-mesh.

@@ -1,0 +1,2 @@
+mapid=125
+rom_path=ROM\0\125.DAT

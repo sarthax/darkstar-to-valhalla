@@ -1,10 +1,10 @@
 -- Variable TextID   Description text
 
 -- General Texts
-ITEM_CANNOT_BE_OBTAINED = 6380; -- You cannot obtain the item <item>. Come back after sorting your inventory.
-          ITEM_OBTAINED = 6386; -- Obtained: <item>.
-           GIL_OBTAINED = 6387; -- Obtained <number> gil.
-       KEYITEM_OBTAINED = 6389; -- Obtained key item: <keyitem>.
+ITEM_CANNOT_BE_OBTAINED = 6382; -- You cannot obtain the item <item>. Come back after sorting your inventory.
+          ITEM_OBTAINED = 6388; -- Obtained: <item>.
+           GIL_OBTAINED = 6389; -- Obtained <number> gil.
+       KEYITEM_OBTAINED = 6391; -- Obtained key item: <keyitem>.
  FISHING_MESSAGE_OFFSET = 7047; -- You can't fish here.
 
 -- Other Texts
@@ -36,6 +36,6 @@ INSECT_WINGS                = 8488; -- Broken shards of insect wing are scattere
 PAMAMA_PEELS                = 8490; -- Piles of pamama peels litter the ground...
 BROKEN_SHARDS               = 8493; -- Broken shards of insect wing are scattered all over...
 DRAWS_NEAR                  = 8516; -- Something draws near!
-COMMON_SENSE_SURVIVAL       = 9634; -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
+COMMON_SENSE_SURVIVAL = 9633; -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
 WELLSPRING                  = 7443;
 HOOFPRINT_FOUND             = 6398;

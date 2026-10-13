@@ -7,6 +7,8 @@
 
 require("scripts/globals/status");
 require("scripts/globals/settings");
+require("scripts/globals/abyssea_lights");
+require("scripts/globals/mog_tablets");
 
 -----------------------------------
 -- onEffectGain Action
@@ -14,6 +16,9 @@ require("scripts/globals/settings");
 
 function onEffectGain(target,effect)
     target:setAnimation(33);
+    if (target:hasStatusEffect(EFFECT_VISITANT) and isAbysseaLightZone(target:getZoneID())) then
+        displayAbysseaLights(target);
+    end
 end;
 
 -----------------------------------
@@ -23,6 +28,8 @@ end;
 function onEffectTick(target,effect)
 
     local healtime = effect:getTickCount();
+
+    MOG_TABLET.onHealTick(target, healtime - 1); -- Swift Shoes Super Kupower
 
     if (healtime > 1) then
         -- curse II also known as "zombie"

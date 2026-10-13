@@ -586,10 +586,13 @@ namespace conquest
             // 10% if region control is player's nation
             // 15% otherwise
 
-            uint32 points = exp * (PChar->profile.nation == GetRegionOwner(region) ? 0.1 : 0.15);
+            // Moghancement: Conquest bonus is added to the base percentage
+            double percentage = (PChar->profile.nation == GetRegionOwner(region) ? 0.1 : 0.15) + PChar->getMod(Mod::CONQUEST_BONUS) / 100.0;
+            uint32 points = (uint32)(exp * percentage);
 
             charutils::AddPoints(PChar, charutils::GetConquestPointsName(PChar).c_str(), points);
-            GainInfluencePoints(PChar, points/2);
+            // Moghancement: Region bonus adds flat influence points
+            GainInfluencePoints(PChar, points/2 + (uint32)(PChar->getMod(Mod::CONQUEST_REGION_BONUS) / 100.0));
         }
         return 0; // added conquest points (пока не вижу в этом определенного смысла)
     }

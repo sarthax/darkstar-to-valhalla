@@ -6,6 +6,7 @@
 
 require("scripts/globals/events/harvest_festivals");
 require("scripts/globals/shop");
+require("scripts/globals/mog_tablets");
 require("scripts/globals/conquest");
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
 require("scripts/zones/Bastok_Mines/TextIDs");
@@ -24,7 +25,7 @@ end;
 
 function onTrigger(player,npc)
     RegionOwner = GetRegionOwner(NORVALLEN);
-    if (RegionOwner ~= NATION_BASTOK) then
+    if (RegionOwner ~= NATION_BASTOK and not MOG_TABLET.hasPower(MOG_TABLET.POWERS.BOUNTIFUL_BAZAAR)) then
         player:showText(npc,MILLE_CLOSED_DIALOG);
     else
         player:showText(npc,MILLE_OPEN_DIALOG);

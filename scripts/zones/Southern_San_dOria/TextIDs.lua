@@ -1,14 +1,14 @@
 -- Variable TextID   Description text
 
 -- General Texts
-   ITEM_CANNOT_BE_OBTAINED = 6424; -- Come back after sorting your inventory.
-FULL_INVENTORY_AFTER_TRADE = 6428; -- Try trading again after sorting your inventory.
-             ITEM_OBTAINED = 6430; -- Obtained: <<<Unknown Parameter (Type: 80) 1>>><<<Possible Special Code: 01>>><<<Possible Special Code: 05>>>
-              GIL_OBTAINED = 6431; -- Obtained <<<Numeric Parameter 0>>> gil.
-          KEYITEM_OBTAINED = 6433; -- Obtained key item: <<<Unknown Parameter (Type: 80) 1>>>
-              KEYITEM_LOST = 6434; -- Lost key item:
+   ITEM_CANNOT_BE_OBTAINED = 6426; -- Come back after sorting your inventory.
+FULL_INVENTORY_AFTER_TRADE = 6430; -- Try trading again after sorting your inventory.
+             ITEM_OBTAINED = 6432; -- Obtained: <<<Unknown Parameter (Type: 80) 1>>><<<Possible Special Code: 01>>><<<Possible Special Code: 05>>>
+              GIL_OBTAINED = 6433; -- Obtained <<<Numeric Parameter 0>>> gil.
+          KEYITEM_OBTAINED = 6435; -- Obtained key item: <<<Unknown Parameter (Type: 80) 1>>>
+              KEYITEM_LOST = 6436; -- Lost key item:
              HOMEPOINT_SET = 24; -- Home point set!
-       NOT_HAVE_ENOUGH_GIL = 6435; -- You do not have enough gil.
+       NOT_HAVE_ENOUGH_GIL = 6437; -- You do not have enough gil.
            LEATHER_SUPPORT = 6773; -- Your ?Multiple Choice (Parameter 1)?[fishing/woodworking/smithing/goldsmithing/clothcraft/leatherworking/bonecraft/alchemy/cooking] skills went up ?Multiple Choice (Parameter 2)?[a little/ever so slightly/ever so slightly].?Prompt?
   GUILD_TERMINATE_CONTRACT = 6787; -- You have terminated your trading contract with the Multiple Choice (Parameter 1)[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild and formed a new one with the Multiple Choice (Parameter 0)[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild
         GUILD_NEW_CONTRACT = 6795; -- You have formed a new trading contract with the Multiple Choice (Parameter 0)[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild

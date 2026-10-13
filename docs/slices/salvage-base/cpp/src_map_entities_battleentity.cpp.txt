@@ -1,0 +1,8 @@
+// excerpt of src/map/entities/battleentity.cpp (from main @ eff415776b); lines 700,705
+
+uint8 CBattleEntity::GetSLevel()
+{
+    if (StatusEffectContainer->HasStatusEffect(EFFECT_OBLIVISCENCE)) { return 0; }
+    return m_slvl;
+}
+// ...

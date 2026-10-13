@@ -1,10 +1,10 @@
 -- Variable TextID   Description text
 
 -- General Texts
-ITEM_CANNOT_BE_OBTAINED = 6539; -- You cannot obtain the item <item>. come back after sorting your inventory.
-          ITEM_OBTAINED = 6545; -- Obtained: <item>.
-           GIL_OBTAINED = 6546; -- Obtained <number> gil.
-       KEYITEM_OBTAINED = 6548; -- Obtained key item: <keyitem>.
+ITEM_CANNOT_BE_OBTAINED = 6541; -- You cannot obtain the item <item>. come back after sorting your inventory.
+          ITEM_OBTAINED = 6547; -- Obtained: <item>.
+           GIL_OBTAINED = 6548; -- Obtained <number> gil.
+       KEYITEM_OBTAINED = 6550; -- Obtained key item: <keyitem>.
 
 -- Treasure Coffer/Chest Dialog
 CHEST_UNLOCKED = 7220; -- You unlock the chest!
@@ -23,3 +23,4 @@ NOTHING_OUT_OF_ORDINARY = 7550; -- There is nothing out of the ordinary here.
 -- conquest Base
 CONQUEST_BASE = 0;
 
+COMMON_SENSE_SURVIVAL = 7598; -- new survival guide registered (client DAT, verified)

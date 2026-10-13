@@ -7,6 +7,7 @@
 -- entirely by Zone.lua's onInstanceZoneIn (instance:getEntryPos(), reading instance_list.sql row
 -- 51's start_x/y/z/rot) -- no placement logic needed here.
 -----------------------------------
+require("scripts/globals/debug_print")
 require("scripts/globals/instance")
 require("scripts/globals/keyitems")
 require("scripts/globals/nyzul")
@@ -579,15 +580,15 @@ function pickSetPoint(instance)
 
     local layoutIndex = instance:getLocalVar("Nyzul_Isle_FloorLayout")
     local layoutPoint = Nyzul.FloorLayout[layoutIndex]
-    print(string.format("[NYZUL RUNE DEBUG] pickSetPoint: layoutIndex=%s layoutPoint=%s",
+    dbgPrint(string.format("[NYZUL RUNE DEBUG] pickSetPoint: layoutIndex=%s layoutPoint=%s",
         tostring(layoutIndex), tostring(layoutPoint)))
     if not layoutPoint then
-        print("[NYZUL RUNE DEBUG] pickSetPoint: Nyzul.FloorLayout has NO entry for this index -- aborting, player will not be repositioned")
+        dbgPrint("[NYZUL RUNE DEBUG] pickSetPoint: Nyzul.FloorLayout has NO entry for this index -- aborting, player will not be repositioned")
         return
     end
     local posX, posY, posZ = layoutPoint[1], layoutPoint[2], layoutPoint[3]
     local currentFloor = instance:getLocalVar("Nyzul_Current_Floor")
-    print(string.format("[NYZUL RUNE DEBUG] pickSetPoint: currentFloor=%s target pos=(%s,%s,%s)",
+    dbgPrint(string.format("[NYZUL RUNE DEBUG] pickSetPoint: currentFloor=%s target pos=(%s,%s,%s)",
         tostring(currentFloor), tostring(posX), tostring(posY), tostring(posZ)))
 
     -- Fires synchronously (zero delay) -- user-confirmed the fade-out/reposition/fade-in timing is
@@ -780,20 +781,20 @@ function onEventUpdate(player, csid, option)
     -- intent; do not rely on it firing.
     if csid == 95 then
         local instance = player:getInstance()
-        print(string.format("[NYZUL RUNE DEBUG] onEventUpdate: player=%s csid=95 instance=%s runeHandler=%s (playerID=%s)",
+        dbgPrint(string.format("[NYZUL RUNE DEBUG] onEventUpdate: player=%s csid=95 instance=%s runeHandler=%s (playerID=%s)",
             player:getName(), tostring(instance), instance and tostring(instance:getLocalVar("runeHandler")) or "N/A", tostring(player:getID())))
         if instance and instance:getLocalVar("runeHandler") == player:getID() then
-            print("[NYZUL RUNE DEBUG] onEventUpdate: calling pickSetPoint")
+            dbgPrint("[NYZUL RUNE DEBUG] onEventUpdate: calling pickSetPoint")
             pickSetPoint(instance)
         else
-            print("[NYZUL RUNE DEBUG] onEventUpdate: runeHandler mismatch or no instance -- pickSetPoint NOT called")
+            dbgPrint("[NYZUL RUNE DEBUG] onEventUpdate: runeHandler mismatch or no instance -- pickSetPoint NOT called")
         end
     end
 end
 
 function onEventFinish(player, csid, option)
     local instance = player:getInstance()
-    print(string.format("[NYZUL RUNE DEBUG] onEventFinish: player=%s csid=%s option=%s pos=(%.2f,%.2f,%.2f)",
+    dbgPrint(string.format("[NYZUL RUNE DEBUG] onEventFinish: player=%s csid=%s option=%s pos=(%.2f,%.2f,%.2f)",
         player:getName(), tostring(csid), tostring(option), player:getXPos(), player:getYPos(), player:getZPos()))
 
     if csid == 1 then

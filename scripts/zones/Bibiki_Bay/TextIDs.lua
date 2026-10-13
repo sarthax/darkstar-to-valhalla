@@ -1,10 +1,10 @@
 -- Variable TextID   Description text
 
 -- General Texts
-ITEM_CANNOT_BE_OBTAINED = 6380; -- You cannot obtain the item <item> come back again after sorting your inventory.
-          ITEM_OBTAINED = 6386; -- Obtained: <item>.
-           GIL_OBTAINED = 6387; -- Obtained <number> gil.
-       KEYITEM_OBTAINED = 6389; -- Obtained key item: <keyitem>.
+ITEM_CANNOT_BE_OBTAINED = 6382; -- You cannot obtain the item <item> come back again after sorting your inventory.
+          ITEM_OBTAINED = 6388; -- Obtained: <item>.
+           GIL_OBTAINED = 6389; -- Obtained <number> gil.
+       KEYITEM_OBTAINED = 6391; -- Obtained key item: <keyitem>.
  FISHING_MESSAGE_OFFSET = 7262; -- You can't fish here.
 
 -- Dialogs
@@ -40,3 +40,4 @@ YOUR_CLAMMING_CAPACITY = 7258; -- Your clamming capacity has increased toponzes!
 --chocobo digging
 DIG_THROW_AWAY = 7275; -- You dig up$, but your inventory is full. You regretfully throw the # away.
 FIND_NOTHING = 7277; -- You dig and you dig, but find nothing.
+COMMON_SENSE_SURVIVAL = 8637; -- new survival guide registered (client DAT, verified)

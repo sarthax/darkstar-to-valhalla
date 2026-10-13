@@ -1,10 +1,10 @@
 -- Variable TextID   Description text
 
 -- General Texts
-ITEM_CANNOT_BE_OBTAINED = 6380; -- You cannot obtain the item <item>. Come back after sorting your inventory.
-          ITEM_OBTAINED = 6386; -- Obtained: <item>.
-           GIL_OBTAINED = 6387; -- Obtained <number> gil.
-       KEYITEM_OBTAINED = 6389; -- Obtained key item: <keyitem>.
+ITEM_CANNOT_BE_OBTAINED = 6382; -- You cannot obtain the item <item>. Come back after sorting your inventory.
+          ITEM_OBTAINED = 6388; -- Obtained: <item>.
+           GIL_OBTAINED = 6389; -- Obtained <number> gil.
+       KEYITEM_OBTAINED = 6391; -- Obtained key item: <keyitem>.
         BEASTMEN_BANNER = 7128; -- There is a beastmen's banner.
  FISHING_MESSAGE_OFFSET = 7206; -- You can't fish here.
 HOMEPOINT_SET = 12690; -- Home point set!
@@ -29,3 +29,4 @@ PLAYERS_HAVE_NOT_REACHED_LEVEL = 7846; -- Players who have not reached levelare 
 
 -- conquest Base
 CONQUEST_BASE = 7047; -- Tallying conquest results...
+COMMON_SENSE_SURVIVAL = 12650; -- new survival guide registered (client DAT, verified)

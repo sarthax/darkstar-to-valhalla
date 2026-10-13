@@ -156,7 +156,12 @@ bool CPlayerController::WeaponSkill(uint16 targid, uint16 wsid)
             PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_CANNOT_USE_WS));
             return false;
         }
-        if (PChar->StatusEffectContainer->HasStatusEffect({EFFECT_AMNESIA, EFFECT_IMPAIRMENT}))
+        bool impairmentBlocksWS = false;
+        if (auto* PImpairment = PChar->StatusEffectContainer->GetStatusEffect(EFFECT_IMPAIRMENT))
+        {
+            impairmentBlocksWS = (PImpairment->GetPower() & 0x02) != 0; // 0x02 = weapon skills restricted (Nyzul pathos)
+        }
+        if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_AMNESIA) || impairmentBlocksWS)
         {
             PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_CANNOT_USE_ANY_WS));
             return false;

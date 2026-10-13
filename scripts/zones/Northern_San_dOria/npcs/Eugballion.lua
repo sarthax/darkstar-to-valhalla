@@ -10,6 +10,7 @@ require("scripts/globals/conquest");
 require("scripts/globals/quests");
 require("scripts/globals/shop");
 
+require("scripts/globals/mog_tablets");
 -----------------------------------
 -- onTrade Action
 -----------------------------------
@@ -31,7 +32,7 @@ end;
 
 function onTrigger(player,npc)
     
-    if (GetRegionOwner(QUFIMISLAND) ~= NATION_SANDORIA) then 
+    if (GetRegionOwner(QUFIMISLAND) ~= NATION_SANDORIA and not MOG_TABLET.hasPower(MOG_TABLET.POWERS.BOUNTIFUL_BAZAAR)) then 
         player:showText(npc,EUGBALLION_CLOSED_DIALOG);
     else
         player:showText(npc,EUGBALLION_OPEN_DIALOG);

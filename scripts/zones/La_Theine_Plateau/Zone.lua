@@ -124,7 +124,9 @@ end;
 -----------------------------------
 
 function onInitialize(zone)
-    local fallenEgg = GetNPCByID(17195584);
+    require("scripts/globals/mog_tablets");
+    MOG_TABLET.onZoneInitialize(zone);
+    local fallenEgg = GetNPCByID(17195583);
     local newPosition = npcUtil.pickNewPosition(fallenEgg:getID(), fallenEggPositions);
 
     fallenEgg:setPos(newPosition.x, newPosition.y, newPosition.z);
@@ -136,6 +138,8 @@ end;
 -----------------------------------
 
 function onZoneIn( player, prevZone)
+    require("scripts/globals/mog_tablets");
+    MOG_TABLET.onZoneIn(player);
     local cs = -1;
 
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
