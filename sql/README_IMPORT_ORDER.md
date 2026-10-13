@@ -15,3 +15,5 @@ Rules
 - Never edit the live DB npc_list by hand without also putting the row in `npc_list.sql` in the same change.
 - Never change an npcid without running `tools/check_npc_ids.py` (finds Lua / spawn-point references to missing ids).
 - `slices/voidwatch-vwnm/rekey_*.sql` and `npc_id_realign_190_208.sql` are RETIRED, do not run.
+
+7. `mob_id_realign_apply.sql` (after `mob_spawn_points.sql` is imported): moves 28 battlefield/campaign mob rows onto client DAT slots. Run before `tools/check_mob_ids.py`.
