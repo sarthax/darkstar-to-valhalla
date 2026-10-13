@@ -7,12 +7,22 @@ require("scripts/globals/conquest");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
 require("scripts/globals/status");
+require("scripts/globals/caskets");
 
 -----------------------------------
 -- onMobDeathEx
 -----------------------------------
 
 function onMobDeathEx(mob, player, isKiller, isWeaponSkillKill)
+
+    -- Treasure Caskets: only the killer rolls; spawnCasket gives the chest to the killer's party
+    if (isKiller == true and casket_zone_data[player:getZoneID()] ~= nil) then
+        local master = mob:getMaster();
+        if (master == nil or master:isMob()) then -- ignore mobs that are a player's pet
+            local pos = mob:getPos();
+            caskets.spawnCasket(player, mob, pos.x, pos.y, pos.z, pos.rot);
+        end
+    end
 
     -- Things that happen only to the person who landed killing blow
     if (isKiller == true) then
