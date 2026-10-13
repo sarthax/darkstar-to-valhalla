@@ -34,6 +34,11 @@ function onMagicHit(caster, target, spell)
     return 0;
 end;
 
+function onWeaponskillHit(mob, attacker, wsid)
+    vwOnWeaponskillHit(mob, attacker, wsid, VWMSG);
+    return 0;
+end
+
 local function tick(mob)
     vwWeaknessTick(mob, VWMSG);
     local left = mob:getLocalVar("VW_DEADLINE") - os.time();
@@ -76,8 +81,10 @@ function onMobDeath(mob, player, isKiller)
     local idx = mob:getID() - 17146510;
     vwOnKill(mob, player, {
         region = "THREE", stage = 3, -- [C] 12300 cruor = 6000 * 205% green
+        atmacite = {1810}, -- white-light drop [W/J, ATMACITE-DATA.md]
         pyxisId = 17146654 + idx,
         drops = {11815}, -- Appetence Crown [B #176]; id checked vs live item_basic. Rate [D]. Silver Mirror/Black Rock/Darksteel Ingot [B #106,#1357] are commons, not modelled (placeholder pool)
+        dropRates = {[11815]=5}, -- Rare 5% [W 2026-10-09; BG wiki tier labels, NOT measured]; Anger Bomblet / Moira's Molar (also Rare) not yet in drops
         keyitem = ATMACITE_OF_INCURSION, -- 1810 [W/F]; KI-VERIFICATION.md: client id OK
         msgKeyItem = 8170,
         msgCruor = 8166, msgFinalBR = 8163, msgFinalYG = 8161, msgFinalW = 8162,

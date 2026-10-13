@@ -34,6 +34,11 @@ function onMagicHit(caster, target, spell)
     return 0;
 end;
 
+function onWeaponskillHit(mob, attacker, wsid)
+    vwOnWeaponskillHit(mob, attacker, wsid, VWMSG);
+    return 0;
+end
+
 local function tick(mob)
     vwWeaknessTick(mob, VWMSG);
     local left = mob:getLocalVar("VW_DEADLINE") - os.time();
@@ -91,6 +96,7 @@ function onMobDeath(mob, player, isKiller)
     local idx = mob:getID() - 17199612;
     vwOnKill(mob, player, {
         region = "JEUNO", stage = 6, -- [C] White VI; 10000 cruor base
+        atmacite = {1827}, -- white-light drop [W/J, ATMACITE-DATA.md]
         pyxisId = 17199767 + idx,
         drops = {19174, 19175, 18908, 18558, 10450, 3509, 3498, 3499}, -- Borealis, Hoarfrost Blade, Dhampyr Sword, Wroth Scythe, Ogier's Surcoat, Plate of Heavy Metal, Riftdross, Riftcinder [F]; ids vs DSP item_basic
         dropRates = {[19174]=0.2, [19175]=4.1, [18908]=5.7, [18558]=18.5, [10450]=2.6, [3509]=12.8, [3498]=3.6, [3499]=1.0}, -- Borealis, Hoarfrost Blade, Dhampyr Sword, Wroth Scythe, Ogier's Surcoat, Heavy Metal, Riftdross, Riftcinder [U 2026-10-07, % per item]

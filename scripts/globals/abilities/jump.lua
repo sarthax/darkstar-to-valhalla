@@ -23,6 +23,7 @@ end;
 -----------------------------------
 
 function onUseAbility(player,target,ability,action)
+    vwOnAbility(player, target, ability);
 
     local params = {};
     params.numHits = 1;

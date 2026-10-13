@@ -447,3 +447,6 @@ Open items for Cottus: level, mobType, job, second HP capture, Mercurial Strike 
 | Pyxis drops | 11856 0.76%, 17360 1.76%, 17273 13.8%, 3449 0.82%, 2875 0.06%, 3510 27.5% | FFXIDB | yes | dropRates in percent |
 | key item | Atmacite of Enticement | V | partial | client-id check pending |
 | rift event params | 14,16 | C | yes |  |
+
+## Crimson/Indigo/Jade audit 2026-10-12
+SQL: sql/slices/voidwatch-vwnm/nm_audit_20261012.sql. Cottus mobType 0->2 (all 18 now impossible-to-gauge). HP 45000 ESTIMATE [U] for Pancimanci/Akupara/Voidwrought (no source found). Sarimanok own list 1184. Added live skills: Belphoebe 2196-2199, Hahava 2715/2719/2721, Kholomodumo 629, Ushumgal 2153, Lorbulcrud 1319. Not buildable (commented/no Lua/no row): see systems_backlog s01-s13.

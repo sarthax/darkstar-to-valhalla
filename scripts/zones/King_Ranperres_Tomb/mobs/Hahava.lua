@@ -33,6 +33,11 @@ function onMagicHit(caster, target, spell)
     return 0;
 end;
 
+function onWeaponskillHit(mob, attacker, wsid)
+    vwOnWeaponskillHit(mob, attacker, wsid, VWMSG);
+    return 0;
+end
+
 local function tick(mob)
     vwWeaknessTick(mob, VWMSG);
     local left = mob:getLocalVar("VW_DEADLINE") - os.time();
@@ -129,8 +134,10 @@ function onMobDeath(mob, player, isKiller)
     local idx = mob:getID() - 17555901;
     vwOnKill(mob, player, {
         region = "THREE", stage = 4, -- [F] stage table; cruor/EXP base (6500 cruor confirmed [C])
+        atmacite = {1808}, -- white-light drop [W/J, ATMACITE-DATA.md]
         pyxisId = 17555964 + idx,
         drops = {11855, 10928, 11814, 3445, 3510}, -- Mextli Harness, Ganesha's Mala, Ganesha's Mask, Suit of Hahava's Mail, Silver Mirror [F]; ids checked vs DSP item_basic
+        dropRates = {[11855]=1, [10928]=5, [11814]=5, [3445]=5, [3510]=10}, -- BG wiki tiers (Very Rare 1 / Rare 5 / Uncommon 10) [W 2026-10-09; tier labels, NOT measured]
         keyitem = ATMACITE_OF_EMINENCE, -- 1808 [W/F]; DSP keyitems.lua name; client-id check pending
         msgKeyItem = 7479,
         msgCruor = 7475, msgFinalBR = 7472, msgFinalYG = 7470, msgFinalW = 7471,

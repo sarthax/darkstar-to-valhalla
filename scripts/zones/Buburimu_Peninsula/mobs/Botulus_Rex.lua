@@ -34,6 +34,11 @@ function onMagicHit(caster, target, spell)
     return 0;
 end;
 
+function onWeaponskillHit(mob, attacker, wsid)
+    vwOnWeaponskillHit(mob, attacker, wsid, VWMSG);
+    return 0;
+end
+
 local function tick(mob)
     vwWeaknessTick(mob, VWMSG);
     local left = mob:getLocalVar("VW_DEADLINE") - os.time();
@@ -97,6 +102,7 @@ function onMobDeath(mob, player, isKiller)
     local idx = mob:getID() - 17261047;
     vwOnKill(mob, player, {
         region = "JEUNO", stage = 6, -- [C] White VI; 10000 cruor base
+        atmacite = {1828}, -- white-light drop [W/J, ATMACITE-DATA.md]
         pyxisId = 17261222 + idx,
         drops = {19145, 19146, 18625, 18882, 10451, 10452, 3509, 3498, 3499}, -- Asteria, Supernal Knife, Gerra's Staff, Beaivi's Scepter, Athos's Tabard, Rubeus Jacket, Plate of Heavy Metal, Riftdross, Riftcinder [F]; ids vs DSP item_basic
         dropRates = {[19145]=0.1, [19146]=12.2, [18625]=16.0, [18882]=0.1, [10451]=1.8, [10452]=2.1, [3509]=21.1, [3498]=0.8, [3499]=3.3}, -- Asteria, Supernal Knife, Gerra's Staff, Beaivi's Scepter, Athos's Tabard, Rubeus Jacket, Heavy Metal, Riftdross, Riftcinder [U 2026-10-07, % per item]

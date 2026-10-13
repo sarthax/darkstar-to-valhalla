@@ -875,7 +875,7 @@
   "tier": "",
   "ki_id": null,
   "ki_name": "",
-  "status": "not built",
+  "status": "base (placeholder)",
   "rifts": [
    [
     17118042,
@@ -999,7 +999,7 @@
   "tier": "",
   "ki_id": null,
   "ki_name": "",
-  "status": "not built",
+  "status": "base (placeholder)",
   "rifts": [
    [
     17142618,
@@ -2055,7 +2055,7 @@
   "tier": "",
   "ki_id": null,
   "ki_name": "",
-  "status": "not built",
+  "status": "base (placeholder)",
   "rifts": [],
   "gaps": "Abyssite path/tier not extracted from wiki roster. Zone id missing from roster. DSP mob data: partial (group [13750])."
  },

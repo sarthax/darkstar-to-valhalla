@@ -26,6 +26,7 @@ end;
 -----------------------------------
 
 function onUseAbility(player, target, ability)
+    vwOnAbility(player, target, ability);
 
     local shieldSize = player:getShieldSize();
     local damage = 0;

@@ -33,6 +33,11 @@ function onMagicHit(caster, target, spell)
     return 0;
 end;
 
+function onWeaponskillHit(mob, attacker, wsid)
+    vwOnWeaponskillHit(mob, attacker, wsid, VWMSG);
+    return 0;
+end
+
 local function tick(mob)
     vwWeaknessTick(mob, VWMSG);
     local left = mob:getLocalVar("VW_DEADLINE") - os.time();
@@ -99,8 +104,10 @@ function onMobDeath(mob, player, isKiller)
     local idx = mob:getID() - 17265130;
     vwOnKill(mob, player, {
         region = "THREE", stage = 3, -- [C] Jade III capture, 6000 cruor base; Windurst Stage III
+        atmacite = {1812}, -- white-light drop [W/J, ATMACITE-DATA.md]
         pyxisId = 17265318 + idx,
         drops = {18810, 18539, 3510}, -- Cadushi Grip, Tonatiuh Axe, Silver Mirror [F]; ids vs DSP item_basic
+        dropRates = {[18810]=5, [18539]=5}, -- BG wiki Rare tier = 5% [W 2026-10-09; tier label]; Silver Mirror 3510 is not on the wiki page -> never rolls, verify
         petrifact = true, -- Jade (Windurst) path: Maddening Petrifact rare [U 2026-10-07]
         keyitem = ATMACITE_OF_DESTRUCTION, -- DSP id 1812; client-id check pending
         msgKeyItem = 11840,
