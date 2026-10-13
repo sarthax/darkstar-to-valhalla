@@ -38,6 +38,7 @@
 #include "../packets/synth_message.h"
 #include "../packets/synth_result.h"
 
+#include "../status_effect_container.h"
 #include "../item_container.h"
 #include "../map.h"
 #include "../trade_container.h"
