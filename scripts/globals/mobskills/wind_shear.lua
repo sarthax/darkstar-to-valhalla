@@ -13,6 +13,9 @@ require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------
 function onMobSkillCheck(target,mob,skill)
+    if (mob:getName() == "Sarimanok") then -- Voidwatch NM: above 50% HP only [W]
+        return (mob:getHPP() >= 50) and 0 or 1;
+    end
   if(mob:getFamily() == 91) then
     local mobSkin = mob:getModelId();
 

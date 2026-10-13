@@ -10,3 +10,4 @@ NOTHING_OUT_OF_ORDINARY = 7698; -- There is nothing out of the ordinary here.
 
 -- Harvesting
 HARVESTING_IS_POSSIBLE_HERE = 7685; -- Harvesting is possible here if you have
+COMMON_SENSE_SURVIVAL = 9290; -- new survival guide registered (client DAT, verified)

@@ -86,3 +86,18 @@
   - Hahava (472): 16 skills (dark_*, yaksha_*, raksha_*) in SQL, NO Lua; 2 commented-out (2501, 2555) unnamed. Needs mobskill Lua.
 - Slice order consequence: Sarimanok, Krabimanjaro, Belphoebe can run first with existing skills; Aello/Hahava need new mobskill Lua.
 - Next: pull per-zone dialog/events for East Ronfaure (101), Jugner/Ordelle etc. (193, 104, 190).
+
+## 2026-10-06 (later) — slice zone pulls
+- research/MESSAGE-IDS-SLICE-ZONES.md: fresh pulls for 101/193/104/190; 3 anchor msg ids per zone, identical spacing to Ru'Aun.
+- FINDING: DSP npc_list Rift/Pyxis ids in East Ronfaure (-2) and Jugner Forest (+9) don't match client events dat; Ordelle's and Ranperre's match. Re-key before building Sarimanok/Belphoebe. Krabimanjaro (193) is therefore the cleanest first slice.
+
+## 2026-10-06 (later) — Rift params correlated
+- research/RIFT-PARAM-CORRELATION.md: params[0] is a bit field (bits 0-4,5-7,8-10,11) per client script; captured (p0,p1) pairs by abyssite KI tabulated; meaning unproven, MVP can replay by abyssite (flagged). Fixes older naming (p1/p2 = params[0]/[1]).
+
+## 2026-10-06 (later) — first draft Lua
+- draft_lua/Ordelles_Caves/npcs/Planar_Rift.lua: Rift trigger+spawn for Krabimanjaro (NOT installed in dsp-master, untested). Per-player clearance rules found in 7503-7509. Clearance/party/status 475/timer/weakness/Pyxis still TODO.
+
+## 2026-10-07 — BlueGartr thread mined
+- research/VWNM-FORUM-OBSERVATIONS.md: per-NM skills/spells/behavior/defenses (~45 NMs), general mechanics (lights, TH formula, stagger tiers, drinks, rewards, KI routes), cross-check vs Krabimanjaro. Source scrape: research/bluegartr/ (voidwatch_thread.md, posts.json, by_nm/). Player reports, not verified data.
+- Thread supports Krabimanjaro defense/evasion boost past 50%; regain at low HP, weakness values, blitz trigger, clearance range, status id, Pyxis options remain unverified.
+- Krabimanjaro slice tagged slice/voidwatch-vwnm-v2 (awaiting in-game test).

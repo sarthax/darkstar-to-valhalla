@@ -9,3 +9,4 @@ ITEM_CANNOT_BE_OBTAINED = 6382; -- You cannot obtain the item <item>. Come back 
 
 -- Mining
 MINING_IS_POSSIBLE_HERE = 7542; -- Mining is possible here if you have
+COMMON_SENSE_SURVIVAL = 9074; -- new survival guide registered (client DAT, verified)

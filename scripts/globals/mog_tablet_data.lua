@@ -4,13 +4,13 @@
 
 MOG_TABLET_DATA = {
     zones = {
-        [100] = { name = "West_Ronfaure", npc = 17187553,
+        [100] = { name = "West_Ronfaure", npc = 17187586,
             spots = {
             } },
         [101] = { name = "East_Ronfaure", npc = 17191546,
             spots = {
             } },
-        [102] = { name = "La_Theine_Plateau", npc = 17195690,
+        [102] = { name = "La_Theine_Plateau", npc = 17195689,
             spots = {
                 { 205.534, 15.828, 113.809, 7, "npc_list seed" },
             } },
@@ -30,11 +30,11 @@ MOG_TABLET_DATA = {
             spots = {
                 { 186.950, -40.494, 521.095, 6, "npc_list seed" },
             } },
-        [107] = { name = "South_Gustaberg", npc = 17216193,
+        [107] = { name = "South_Gustaberg", npc = 17216226,
             spots = {
                 { 367.085, -0.529, -623.744, 7, "npc_list seed" },
             } },
-        [108] = { name = "Konschtat_Highlands", npc = 17220178,
+        [108] = { name = "Konschtat_Highlands", npc = 17220177,
             spots = {
             } },
         [109] = { name = "Pashhow_Marshlands", npc = 17224362,
@@ -58,7 +58,7 @@ MOG_TABLET_DATA = {
             spots = {
                 { -42.003, -7.668, 303.374, 7, "npc_list seed" },
             } },
-        [115] = { name = "West_Sarutabaruta", npc = 17248857,
+        [115] = { name = "West_Sarutabaruta", npc = 17248890,
             spots = {
                 { 165.678, -29.143, 265.130, 6, "npc_list seed" },
             } },

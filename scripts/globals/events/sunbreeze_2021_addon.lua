@@ -21,7 +21,7 @@ SUNBREEZE2021.TEXT_OFFSET = {
 
 -- Show timeline, built from capture 479 (Windurst, Perfect run): {ms, speaker, CLIENT dialog id}.
 -- Waits for players are compressed to <= 15 s; the live show is player-paced (see README, "Missing pieces").
-SUNBREEZE2021.SHOW = {
+SUNBREEZE2021.SHOW_MAIN = {
         { 0, "Mumor", 10016 },
         { 3000, "Mumor", 10017 },
         { 7000, "Mumor", 10018 },
@@ -90,6 +90,96 @@ SUNBREEZE2021.SHOW = {
         { 327000, "Mumor", 10102 }
 };
 
+-- Bongo's announcement opens the show (capture 479: 13 lines, +0..+43 s; Mumor's greeting follows at +53 s). [C]
+SUNBREEZE2021.SHOW_INTRO_OFFSETS = { 0, 4000, 7000, 10000, 14000, 18000, 21000, 25000, 28000, 32000, 35000, 39000, 43000 };
+SUNBREEZE2021.SHOW_MAIN_DELAY = 53000;
+SUNBREEZE2021.SHOW = {};
+for i, t in ipairs(SUNBREEZE2021.SHOW_INTRO_OFFSETS) do
+    table.insert(SUNBREEZE2021.SHOW, { t, "Bongo", 10146 + i });
+end
+for _, b in ipairs(SUNBREEZE2021.SHOW_MAIN) do
+    table.insert(SUNBREEZE2021.SHOW, { b[1] + SUNBREEZE2021.SHOW_MAIN_DELAY, b[2], b[3] });
+end
+
+require("scripts/globals/events/sunbreeze_2021_curtain_call_anims");
+
+-- Show-time home positions (match npc_list rows; capture 479 / 473 positions). {x, y, z, rot}
+SUNBREEZE2021.HOME = {
+    Mumor    = { 4.310, -9.670, 1.620, 247 },   Uka      = { 6.727, -9.090, 2.143, 119 },
+    Diva     = { 2.687, -9.490, 0.450, 239 },   Ullegore = { 9.026, -10.000, 2.759, 118 },
+    blank    = { 8.272, -10.000, 1.489, 152 },  Foudeel  = { 1.403, -9.370, 1.122, 248 },
+    Bashraf  = { 1.768, -9.540, 2.466, 248 },   Wahboud  = { 1.037, -9.210, -0.215, 248 },
+    Tango    = { 15.490, -10.020, 6.142, 120 }, Bongo    = { 16.062, -10.000, 5.050, 120 },
+    Fandango = { 12.875, -10.000, 2.957, 120 },
+};
+-- Tango, Bongo and Fandango run in when Bongo cries "D-d-don't!" and run back out before the fade [C 479 0x00E, 16:40:08 / 16:40:49].
+SUNBREEZE2021.RUN_IN = { Tango = { 7.8, -10.0, 4.1 }, Bongo = { 8.3, -10.0, 3.0 }, Fandango = { 9.0, -10.0, 1.9 } };
+-- Foudeel, Bashraf and Wahboud run west at the end [C 479 0x00E, 16:40:49-56].
+SUNBREEZE2021.RUN_OFF = { Foudeel = { -6.8, -7.8, 0.9 }, Bashraf = { -6.44, -8.65, 2.18 }, Wahboud = { -8.43, -7.92, -0.48 } };
+-- After the curtain closes Mumor and Uka stand here selling fireworks [C 479 0x00E from 16:41:03]. Wahboud's spot is not
+-- in the capture (his entity is a run-away at that point); he stands at his show position [U: "appear in the spot the show was at"].
+SUNBREEZE2021.VENDOR_SPOT = { Mumor = { 6.89, -9.91, 3.83, 61 }, Uka = { 4.31, -9.70, 3.59, 50 }, Wahboud = { 1.037, -9.21, -0.215, 248 } };
+-- Vendor chatter: client dialog 10108 (Mumor) / 10109 (Uka), repeated about every 20 s with emote 10 / 11 [C 479 16:41:16-16:42:42].
+SUNBREEZE2021.VENDOR_LINES = { Mumor = { 10108, 10, 0 }, Uka = { 10109, 11, 9000 } };
+-- Fireworks shop [C 479 0x03C 16:41:09]: price/item pairs in packet order (ids verified against item_basic).
+SUNBREEZE2021.SHOP = { 5883, 125, 5881, 125, 5882, 125, 3643, 10000, 3644, 10000, 3645, 10000 };
+
+local function stand(npc, h, visible)
+    npc:setPos(h[1], h[2], h[3], h[4]);
+    npc:setStatus(visible and STATUS_NORMAL or STATUS_DISAPPEAR);
+end
+
+-- Run to (x,y,z); the final setPos guarantees arrival even if the NPC path fails.
+local function runTo(npc, d, rot)
+    if (npc.pathTo ~= nil) then npc:pathTo(d[1], d[2], d[3], 9); end -- RUN|SCRIPT
+    npc:timer(3500, function(n) n:setPos(d[1], d[2], d[3], rot or n:getRotPos()); end);
+end
+
+function SUNBREEZE2021.placeCast(cast)
+    for name, id in pairs(cast) do
+        local npc = GetNPCByID(id);
+        local h = SUNBREEZE2021.HOME[name];
+        if (npc ~= nil and h ~= nil) then stand(npc, h, true); end
+    end
+end
+
+-- Post-show vendor phase: Mumor, Uka and Wahboud stand at the stage; Mumor and Uka repeat their pitch until the next show.
+function SUNBREEZE2021.startVendors(zoneId, cast)
+    local st = SUNBREEZE2021.state[zoneId];
+    if (st == nil) then return; end
+    st.vendorRun = (st.vendorRun or 0) + 1;
+    local token = st.vendorRun;
+    for name, spot in pairs(SUNBREEZE2021.VENDOR_SPOT) do
+        local npc = cast[name] and GetNPCByID(cast[name]) or nil;
+        if (npc ~= nil) then stand(npc, spot, true); end
+    end
+    for name, line in pairs(SUNBREEZE2021.VENDOR_LINES) do
+        local id = cast[name];
+        local function tick(m)
+            local cur = SUNBREEZE2021.state[zoneId];
+            local npc = id and GetNPCByID(id) or nil;
+            if (cur == nil or cur.vendorRun ~= token or npc == nil) then return; end
+            SUNBREEZE2021.say(npc, zoneId, line[1]);
+            npc:sendEntityEmote(npc, line[2], 2);
+            npc:timer(20000, tick);
+        end
+        local npc = id and GetNPCByID(id) or nil;
+        if (npc ~= nil) then npc:timer(20000 + line[3], tick); end
+    end
+end
+
+-- Shared onTrigger for the post-show vendors (Mumor.lua, Uka_Totlihn.lua, Wahboud.lua in the zone's npcs/).
+function SUNBREEZE2021.vendorTrigger(player, npc, name)
+    if (not isSunbreeze2021AddonEnabled()) then return; end
+    local zoneId = player:getZoneID();
+    local st = SUNBREEZE2021.state[zoneId];
+    if (st == nil or (st.showEnd or 0) > os.time() or st.vendorRun == nil) then return; end -- only after the show
+    local line = SUNBREEZE2021.VENDOR_LINES[name == "Wahboud" and "Mumor" or name];
+    local off = SUNBREEZE2021.TEXT_OFFSET[zoneId];
+    if (line ~= nil and off ~= nil) then player:showText(npc, line[1] + off); end
+    showShop(player, STATIC, SUNBREEZE2021.SHOP);
+end
+
 -- Speak one line from `npc` to every player in the zone within 50 yalms of it.
 function SUNBREEZE2021.say(npc, zoneId, dialogId)
     local off = SUNBREEZE2021.TEXT_OFFSET[zoneId];
@@ -102,19 +192,121 @@ function SUNBREEZE2021.say(npc, zoneId, dialogId)
     end
 end;
 
--- Start the fixed-beat show. `cast` = {Mumor=npc, Uka=npc, Diva=npc, Ullegore=npc, Foudeel=npc, Bongo=npc}
--- (Bongo speaks the explainer in the capture; the first entry may be adjusted per zone).
-function SUNBREEZE2021.startShow(zoneId, cast)
+-- Start the fixed-beat show. `cast` = {name=npcId,...} (server NPC ids, not entities: every timed step re-resolves its NPC so a
+-- stale entity is skipped, never dereferenced). Every started run gets a new token; steps from an older run do nothing.
+-- Timeline: dialog beats (SHOW) + emote/animation cues (ANIMS, anchored to a dialog line) + the finale (run off, fade) + vendors.
+function SUNBREEZE2021.startShow(zoneId, cast, beats)
     if (not isSunbreeze2021AddonEnabled()) then return; end
+    local st = SUNBREEZE2021.state[zoneId];
+    if (st == nil) then return; end
+    beats = beats or SUNBREEZE2021.SHOW;
+    st.run = (st.run or 0) + 1;
+    st.vendorRun = (st.vendorRun or 0) + 1; -- stops the previous vendor chatter
+    local run = st.run;
+    local finaleMs = beats[#beats][1];
+    st.showEnd = os.time() + (finaleMs + 16000) / 1000;
+    local anchor = GetNPCByID(cast.Mumor);
+    if (anchor == nil) then return; end
+    SUNBREEZE2021.placeCast(cast);
+    local function at(ms, fn)
+        -- timers hang off the Mumor anchor NPC; closures capture only ids and the run token, never players
+        anchor:timer(math.max(ms, 1), function(m)
+            local cur = SUNBREEZE2021.state[zoneId];
+            if (cur ~= nil and cur.run == run) then fn(); end
+        end);
+    end
+    local function npcOf(name) local id = cast[name]; return id and GetNPCByID(id) or nil; end
     local key = { ["Uka Totlihn"] = "Uka" };
-    for _, beat in ipairs(SUNBREEZE2021.SHOW) do
+    local off = {};
+    for _, beat in ipairs(beats) do
         local ms, who, dialogId = beat[1], beat[2], beat[3];
-        local npc = cast[key[who] or who];
-        if (npc ~= nil) then
-            -- timers hang off the speaking NPC entity, cumulative from show start (no player-captured closures)
-            npc:timer(ms, function(n) SUNBREEZE2021.say(n, zoneId, dialogId); end);
+        if (off[dialogId] == nil) then off[dialogId] = ms; end
+        local name = key[who] or who;
+        at(ms, function()
+            local npc = npcOf(name);
+            if (npc ~= nil) then SUNBREEZE2021.say(npc, zoneId, dialogId); end
+        end);
+    end
+    for _, a in ipairs(SUNBREEZE2021.ANIMS) do
+        local base = off[a[1]];
+        if (base ~= nil and cast[a[3]] ~= nil) then
+            local name, kind, value = a[3], a[4], a[5];
+            at(base + a[2], function()
+                local npc = npcOf(name);
+                if (npc == nil) then return; end
+                if (kind == "e") then
+                    npc:sendEntityEmote(npc, value, 2);
+                else
+                    npc:entityAnimationPacket(value);
+                    if (value == "kesu") then
+                        npc:timer(1500, function(n) n:setStatus(STATUS_DISAPPEAR); end);
+                    end
+                end
+            end);
         end
     end
+    -- finale: the three henchmen run in at Bongo's "D-d-don't!", everyone runs/fades after "enjoy the festival!"
+    local runIn = off[10092];
+    if (runIn ~= nil) then
+        at(runIn, function()
+            for name, d in pairs(SUNBREEZE2021.RUN_IN) do
+                local npc = npcOf(name);
+                if (npc ~= nil) then runTo(npc, d, 117); end
+            end
+        end);
+    end
+    at(finaleMs + 4000, function()
+        for name, h in pairs(SUNBREEZE2021.HOME) do
+            if (SUNBREEZE2021.RUN_IN[name] ~= nil) then
+                local npc = npcOf(name);
+                if (npc ~= nil) then runTo(npc, h, h[4]); end
+            end
+        end
+        for name, d in pairs(SUNBREEZE2021.RUN_OFF) do
+            local npc = npcOf(name);
+            if (npc ~= nil) then runTo(npc, d, 126); end
+        end
+    end);
+    at(finaleMs + 16000, function() SUNBREEZE2021.startVendors(zoneId, cast); end);
+end;
+
+-- ---------------------------------------------------------------------------
+-- Framework: data-driven variants + per-zone schedule (design: docs/sunbreeze-event/DESIGN.md, decided 2026-10-07).
+-- Each stage zone loops its own show every `interval` seconds. A variant supplies the beats, so new shows
+-- (new dialog/models, same mechanic) are added as data here, not code. Only Curtain Call exists today.
+-- cast holds SERVER npc ids and stays nil until allocated (sql/slices/sunbreeze-2021-addon/); a zone with no
+-- cast is skipped. Never put capture ids here.
+-- ---------------------------------------------------------------------------
+SUNBREEZE2021.VARIANTS = {
+    curtain_call = { beats = SUNBREEZE2021.SHOW },
+};
+
+SUNBREEZE2021.SCHEDULE = {
+    -- [zoneId] = { variant = "curtain_call", interval = 3600, cast = { Mumor = <npcid>, Uka = ..., Diva = ..., Ullegore = ..., Foudeel = ..., Bongo = ... } }
+    [239] = { variant = "curtain_call", interval = 3600,
+        cast = { Mumor = 17756358, Uka = 17756359, Diva = 17756360, Ullegore = 17756361, Foudeel = 17756363, Bongo = 17756367, Tango = 17756366, Fandango = 17756368,
+            Bashraf = 17756364, Wahboud = 17756365, blank = 17756362 } }, -- server npc_list ids (== capture 477 ids in this zone)
+};
+
+-- Call from each stage zone's Zone.lua onGameHour(zone). Starts that zone's show when the interval has elapsed
+-- and no run is in progress. Scheduling itself uses no timers.
+function SUNBREEZE2021.onGameHour(zone)
+    if (not isSunbreeze2021AddonEnabled()) then return; end
+    local zoneId = zone:getID();
+    local sch = SUNBREEZE2021.SCHEDULE[zoneId];
+    if (sch == nil or sch.cast == nil or sch.cast.Mumor == nil) then return; end
+    local mumor = GetNPCByID(sch.cast.Mumor);
+    if (mumor == nil) then return; end
+    if (SUNBREEZE2021.state[zoneId] == nil) then
+        SUNBREEZE2021.registerMumor(zoneId, mumor);
+    end
+    local st = SUNBREEZE2021.state[zoneId];
+    local now = os.time();
+    if ((st.showEnd or 0) > now) then return; end
+    if (st.lastStart ~= nil and now - st.lastStart < sch.interval) then return; end
+    st.lastStart = now;
+    st.mumor = mumor;
+    SUNBREEZE2021.startShow(zoneId, sch.cast, SUNBREEZE2021.VARIANTS[sch.variant].beats);
 end;
 
 -- ---------------------------------------------------------------------------

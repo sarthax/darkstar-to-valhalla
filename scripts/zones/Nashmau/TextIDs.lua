@@ -29,3 +29,4 @@ WATAKHAMAZOM_SHOP_DIALOG = 10493; -- Looking for some bows and bolts to strrrike
 
 -- Porter Moogle
       RETRIEVE_DIALOG_ID = 11884; -- You retrieve$ from the porter moogle's care.
+COMMON_SENSE_SURVIVAL = 11923; -- new survival guide registered (client DAT, verified)

@@ -15,3 +15,4 @@ LAYTON_SHOP_DIALOG = 7101; -- Might you be a student of the same field as I? If 
 -- Quest Dialog
  YOU_CAN_NOW_BECOME_A_SCHOLAR = 7710; -- You can now become a scholar!
 YOU_LEARN_EMBRAVA_AND_KAUSTRA = 7894; -- Player Name learns Embrava and Kaustra!
+COMMON_SENSE_SURVIVAL = 8927; -- new survival guide registered (client DAT, verified)

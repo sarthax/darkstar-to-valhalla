@@ -26,6 +26,7 @@ end;
 -----------------------------------
 
 function onUseAbility(player,target,ability,action)
+    vwOnAbility(player, target, ability);
 
     if (player:getWeaponSkillType(SLOT_RANGED) == SKILL_MRK) then -- can't have your crossbow/gun held like a bow, now can we?
         action:animation(target:getID(), action:animation(target:getID()) + 1);

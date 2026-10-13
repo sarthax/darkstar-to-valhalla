@@ -41,3 +41,4 @@ HATE_RESET = 7423; -- The built-up hate has been cleansed...!
 
 -- conquest Base
 CONQUEST_BASE = 7047; -- Tallying conquest results...
+COMMON_SENSE_SURVIVAL = 11583; -- new survival guide registered (client DAT, verified)
