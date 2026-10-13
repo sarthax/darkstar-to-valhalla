@@ -1,3 +1,4 @@
+-- RETIRED 2026-10-12: superseded by the full ID realignment in sql/npc_list.sql. Do NOT run; targets already exist and re-running can shuffle same-named neighbours.
 -- Voidwatch re-key of West Ronfaure (z100) npc_list to client ids (+33) [V: z100 entities.yml pull]
 -- Descending order so no id collides mid-update. Unusually large offset: verify in game.
 UPDATE npc_list SET npcid=17187594 WHERE npcid=17187561 AND name='Survival_Guide';

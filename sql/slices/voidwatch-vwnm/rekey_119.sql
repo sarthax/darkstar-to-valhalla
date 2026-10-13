@@ -1,3 +1,4 @@
+-- RETIRED 2026-10-12: superseded by the full ID realignment in sql/npc_list.sql. Do NOT run; targets already exist and re-running can shuffle same-named neighbours.
 -- Voidwatch re-key of Meriphataud Mountains (z119) npc_list to client ids (+2) [V: z119 entities.yml pull]
 -- Descending order so no id collides mid-update.
 UPDATE npc_list SET npcid=17265322 WHERE npcid=17265320 AND name='Survival_Guide';

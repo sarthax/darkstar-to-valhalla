@@ -661,7 +661,7 @@ switch (region): caseof {
   ---------------------------------
     --print("RONFAURE");
 
-    local Doladepaiton = 17187525;
+    local Doladepaiton = 17187558;
 
     npc  = {
     --
@@ -816,7 +816,7 @@ switch (region): caseof {
   ---------------------------------
     --print("SARUTABARUTA");
 
-    local Naguipeillont = 17248825;
+    local Naguipeillont = 17248858;
 
     npc  = {
     --
