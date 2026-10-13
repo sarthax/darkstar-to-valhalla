@@ -141,3 +141,7 @@ Order-matched same-name groups (104: -11/-9 shift block, 235: -13 block) onto cl
 ## Corrective pass 3 (2026-10-13): zones 288, 289, 291
 
 Order-matched same-name groups (+1/-1 block shifts, e.g. 291 Unity/Achieve Master, Trust NPCs 772-796, 289 Siren..Undulating Conqueror, Eschan Portals): 83 moves + 16 relocations of blank/qm/NPC[xx] rows. Script: `sql/slices/npc-id-realign/npc_id_realign_corrective_288_289_291.sql`. Mismatches 629 -> 549. Left: 289 Unity_Master (DAT slot 691 is a mob), 291 Moogle (747->755), 291 Emblazoned_Reliquary (842->875), 291 fep1-3 (+1 shift, treated as placeholders), 288/291 Grimslight, 288 Moogle (594->602), 289 Moogle (717->709).
+
+## Corrective pass 4 (2026-10-13): all remaining zones
+
+Order-matched same-name groups for every zone: moves allowed when the shift is within +-4 or the same shift occurs at least 3 times in that zone (a consistent block shift). 223 moves + 57 relocations of placeholder/Conquest_Banner rows. Script: `sql/slices/npc-id-realign/npc_id_realign_corrective_rest.sql`. Conflicting moves (target held by a real DAT-named row, a mob, or a row whose own move was dropped) were dropped, not forced, e.g. zone 115 Riftworn_Pyxis/Moogle, 118/119 Planar_Rift vs Survival_Guide, 179 Rughadjeen/Moogle, Smile_Helper rows in 101/110/117/120. Remaining mismatch list: see the classification in the commit message / rerun `classify`. No new duplicate ids; the 5 pre-existing ones are unchanged.

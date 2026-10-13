@@ -1038,3 +1038,283 @@ zone,old_id,new_id,old_slot,new_slot,name,reason
 288,17957429,17957502,565,638,blank,corrective pass 288_289_291: relocated out of a DAT slot
 288,17957434,17957503,570,639,blank,corrective pass 288_289_291: relocated out of a DAT slot
 288,17957457,17957504,593,640,NPC[251],corrective pass 288_289_291: relocated out of a DAT slot
+20,16859446,16859444,310,308,Achieve_Master,corrective pass rest: name matches client entity at new slot
+20,16859447,16859445,311,309,Unity_Master,corrective pass rest: name matches client entity at new slot
+20,16859467,16859465,331,329,kiokudama_a,corrective pass rest: name matches client entity at new slot
+20,16859468,16859466,332,330,kiokudama_b,corrective pass rest: name matches client entity at new slot
+20,16859469,16859467,333,331,kiokudama_c,corrective pass rest: name matches client entity at new slot
+69,17060107,17060115,267,275,Moogle,corrective pass rest: name matches client entity at new slot
+69,17060108,17060116,268,276,Moogle,corrective pass rest: name matches client entity at new slot
+69,17060109,17060117,269,277,Moogle,corrective pass rest: name matches client entity at new slot
+69,17060110,17060118,270,278,Moogle,corrective pass rest: name matches client entity at new slot
+69,17060115,17060119,275,279,DOOR_MASTER,corrective pass rest: name matches client entity at new slot
+100,17187484,17187517,668,701,Achieve_Master,corrective pass rest: name matches client entity at new slot
+100,17187485,17187518,669,702,Unity_Master,corrective pass rest: name matches client entity at new slot
+100,17187517,17187550,701,734,Moogle,corrective pass rest: name matches client entity at new slot
+100,17187518,17187551,702,735,Moogle,corrective pass rest: name matches client entity at new slot
+100,17187520,17187553,704,737,Moogle,corrective pass rest: name matches client entity at new slot
+100,17187521,17187554,705,738,Moogle,corrective pass rest: name matches client entity at new slot
+100,17187522,17187555,706,739,Moogle,corrective pass rest: name matches client entity at new slot
+101,17191555,17191557,643,645,Moogle,corrective pass rest: name matches client entity at new slot
+101,17191575,17191578,663,666,Planar_Rift,corrective pass rest: name matches client entity at new slot
+101,17191576,17191579,664,667,Planar_Rift,corrective pass rest: name matches client entity at new slot
+101,17191578,17191581,666,669,Riftworn_Pyxis,corrective pass rest: name matches client entity at new slot
+101,17191579,17191582,667,670,Riftworn_Pyxis,corrective pass rest: name matches client entity at new slot
+102,17195602,17195601,594,593,Achieve_Master,corrective pass rest: name matches client entity at new slot
+102,17195603,17195602,595,594,Unity_Master,corrective pass rest: name matches client entity at new slot
+102,17195663,17195662,655,654,Chapi_Galepilai,corrective pass rest: name matches client entity at new slot
+102,17195696,17195698,688,690,Moogle,corrective pass rest: name matches client entity at new slot
+102,17195732,17195733,724,725,Lion,corrective pass rest: name matches client entity at new slot
+102,17195735,17195738,727,730,Selh_teus,corrective pass rest: name matches client entity at new slot
+102,17195738,17195739,730,731,Balamor,corrective pass rest: name matches client entity at new slot
+103,17199770,17199772,666,668,Cavernous_Maw,corrective pass rest: name matches client entity at new slot
+103,17199773,17199775,669,671,Kuchi_Eyjhann,corrective pass rest: name matches client entity at new slot
+105,17207852,17207853,556,557,Lycopodium,corrective pass rest: name matches client entity at new slot
+105,17207944,17207946,648,650,Moogle,corrective pass rest: name matches client entity at new slot
+106,17212123,17212125,731,733,Moogle,corrective pass rest: name matches client entity at new slot
+106,17212131,17212134,739,742,Moogle,corrective pass rest: name matches client entity at new slot
+106,17212132,17212135,740,743,Moogle,corrective pass rest: name matches client entity at new slot
+106,17212146,17212148,754,756,Geomagnetic_Fount,corrective pass rest: name matches client entity at new slot
+107,17216157,17216190,669,702,Achieve_Master,corrective pass rest: name matches client entity at new slot
+107,17216158,17216191,670,703,Unity_Master,corrective pass rest: name matches client entity at new slot
+107,17216164,17216197,676,709,Moogle,corrective pass rest: name matches client entity at new slot
+107,17216165,17216198,677,710,Moogle,corrective pass rest: name matches client entity at new slot
+107,17216166,17216199,678,711,Moogle,corrective pass rest: name matches client entity at new slot
+107,17216167,17216200,679,712,Moogle,corrective pass rest: name matches client entity at new slot
+107,17216168,17216201,680,713,Moogle,corrective pass rest: name matches client entity at new slot
+107,17216169,17216202,681,714,Moogle,corrective pass rest: name matches client entity at new slot
+107,17216170,17216203,682,715,Moogle,corrective pass rest: name matches client entity at new slot
+107,17216171,17216204,683,716,Moogle,corrective pass rest: name matches client entity at new slot
+107,17216179,17216212,691,724,Talking_Doll,corrective pass rest: name matches client entity at new slot
+107,17216192,17216225,704,737,Mogball-Local,corrective pass rest: name matches client entity at new slot
+108,17220129,17220128,545,544,Achieve_Master,corrective pass rest: name matches client entity at new slot
+108,17220130,17220129,546,545,Unity_Master,corrective pass rest: name matches client entity at new slot
+108,17220164,17220163,580,579,Chapi_Galepilai,corrective pass rest: name matches client entity at new slot
+108,17220216,17220217,632,633,Lion,corrective pass rest: name matches client entity at new slot
+109,17224363,17224365,683,685,Moogle,corrective pass rest: name matches client entity at new slot
+109,17224369,17224372,689,692,Planar_Rift,corrective pass rest: name matches client entity at new slot
+109,17224370,17224373,690,693,Planar_Rift,corrective pass rest: name matches client entity at new slot
+109,17224372,17224375,692,695,Riftworn_Pyxis,corrective pass rest: name matches client entity at new slot
+109,17224373,17224376,693,696,Riftworn_Pyxis,corrective pass rest: name matches client entity at new slot
+109,17224376,17224378,696,698,Suspicioushume,corrective pass rest: name matches client entity at new slot
+112,17236363,17236365,395,397,Alberic,corrective pass rest: name matches client entity at new slot
+112,17236365,17236367,397,399,Geomantic_Reservoir,corrective pass rest: name matches client entity at new slot
+115,17248943,17248854,687,598,Moogle,corrective pass rest: name matches client entity at new slot
+115,17248944,17248855,688,599,Moogle,corrective pass rest: name matches client entity at new slot
+115,17248946,17248857,690,601,Moogle,corrective pass rest: name matches client entity at new slot
+117,17257117,17257119,669,671,Geomanticfount,corrective pass rest: name matches client entity at new slot
+117,17257118,17257120,670,672,Ergonlocus???,corrective pass rest: name matches client entity at new slot
+117,17257119,17257121,671,673,Geomantic_Reservoir,corrective pass rest: name matches client entity at new slot
+117,17257124,17257126,676,678,Iroha,corrective pass rest: name matches client entity at new slot
+117,17257125,17257127,677,679,Lion,corrective pass rest: name matches client entity at new slot
+117,17257126,17257128,678,680,Zeid,corrective pass rest: name matches client entity at new slot
+117,17257128,17257131,680,683,Selh_teus,corrective pass rest: name matches client entity at new slot
+117,17257129,17257132,681,684,Selh_teus,corrective pass rest: name matches client entity at new slot
+117,17257131,17257133,683,685,Balamor,corrective pass rest: name matches client entity at new slot
+118,17261211,17261213,667,669,Cavernous_Maw,corrective pass rest: name matches client entity at new slot
+118,17261218,17261221,674,677,Planar_Rift,corrective pass rest: name matches client entity at new slot
+118,17261221,17261224,677,680,Riftworn_Pyxis,corrective pass rest: name matches client entity at new slot
+119,17265313,17265316,673,676,Planar_Rift,corrective pass rest: name matches client entity at new slot
+119,17265316,17265319,676,679,Riftworn_Pyxis,corrective pass rest: name matches client entity at new slot
+120,17269280,17269282,544,546,Moogle,corrective pass rest: name matches client entity at new slot
+123,17281675,17281677,651,653,Siren,corrective pass rest: name matches client entity at new slot
+123,17281676,17281678,652,654,Siren,corrective pass rest: name matches client entity at new slot
+123,17281678,17281680,654,656,Zeid,corrective pass rest: name matches client entity at new slot
+126,17293818,17293820,506,508,Iroha,corrective pass rest: name matches client entity at new slot
+126,17293819,17293821,507,509,Lion,corrective pass rest: name matches client entity at new slot
+126,17293824,17293826,512,514,Undunlating_Confluence,corrective pass rest: name matches client entity at new slot
+126,17293825,17293827,513,515,HomePoint#1,corrective pass rest: name matches client entity at new slot
+139,17347035,17347113,475,553,Achieve_Master,corrective pass rest: name matches client entity at new slot
+139,17347036,17347114,476,554,Unity_Master,corrective pass rest: name matches client entity at new slot
+139,17347066,17347144,506,584,Moogle,corrective pass rest: name matches client entity at new slot
+139,17347067,17347145,507,585,Moogle,corrective pass rest: name matches client entity at new slot
+139,17347068,17347146,508,586,Moogle,corrective pass rest: name matches client entity at new slot
+139,17347069,17347147,509,587,Moogle,corrective pass rest: name matches client entity at new slot
+139,17347070,17347148,510,588,Moogle,corrective pass rest: name matches client entity at new slot
+139,17347071,17347149,511,589,Moogle,corrective pass rest: name matches client entity at new slot
+139,17347072,17347150,512,590,Moogle,corrective pass rest: name matches client entity at new slot
+139,17347073,17347151,513,591,Moogle,corrective pass rest: name matches client entity at new slot
+144,17367699,17367777,659,737,Achieve_Master,corrective pass rest: name matches client entity at new slot
+144,17367700,17367778,660,738,Unity_Master,corrective pass rest: name matches client entity at new slot
+144,17367720,17367798,680,758,Moogle,corrective pass rest: name matches client entity at new slot
+144,17367721,17367799,681,759,Moogle,corrective pass rest: name matches client entity at new slot
+144,17367722,17367800,682,760,Moogle,corrective pass rest: name matches client entity at new slot
+144,17367723,17367801,683,761,Moogle,corrective pass rest: name matches client entity at new slot
+144,17367724,17367802,684,762,Moogle,corrective pass rest: name matches client entity at new slot
+144,17367725,17367803,685,763,Moogle,corrective pass rest: name matches client entity at new slot
+144,17367726,17367804,686,764,Moogle,corrective pass rest: name matches client entity at new slot
+144,17367727,17367805,687,765,Moogle,corrective pass rest: name matches client entity at new slot
+146,17375738,17375816,506,584,Unity_Master,corrective pass rest: name matches client entity at new slot
+146,17375757,17375835,525,603,Moogle,corrective pass rest: name matches client entity at new slot
+146,17375758,17375836,526,604,Moogle,corrective pass rest: name matches client entity at new slot
+146,17375759,17375837,527,605,Moogle,corrective pass rest: name matches client entity at new slot
+146,17375760,17375838,528,606,Moogle,corrective pass rest: name matches client entity at new slot
+146,17375761,17375839,529,607,Moogle,corrective pass rest: name matches client entity at new slot
+146,17375762,17375840,530,608,Moogle,corrective pass rest: name matches client entity at new slot
+146,17375763,17375841,531,609,Moogle,corrective pass rest: name matches client entity at new slot
+146,17375764,17375842,532,610,Moogle,corrective pass rest: name matches client entity at new slot
+158,17424540,17424541,156,157,Achieve_Master,corrective pass rest: name matches client entity at new slot
+158,17424541,17424542,157,158,Unity_Master,corrective pass rest: name matches client entity at new slot
+158,17424570,17424571,186,187,HomePoint#1,corrective pass rest: name matches client entity at new slot
+165,17453267,17453279,211,223,Achieve_Master,corrective pass rest: name matches client entity at new slot
+165,17453268,17453280,212,224,Unity_Master,corrective pass rest: name matches client entity at new slot
+165,17453281,17453293,225,237,ShadowLord,corrective pass rest: name matches client entity at new slot
+165,17453282,17453294,226,238,ShadowLord,corrective pass rest: name matches client entity at new slot
+165,17453284,17453296,228,240,Raogrimm,corrective pass rest: name matches client entity at new slot
+165,17453285,17453297,229,241,Cornelia,corrective pass rest: name matches client entity at new slot
+165,17453290,17453302,234,246,Moogle,corrective pass rest: name matches client entity at new slot
+165,17453291,17453303,235,247,Moogle,corrective pass rest: name matches client entity at new slot
+165,17453292,17453304,236,248,Moogle,corrective pass rest: name matches client entity at new slot
+165,17453293,17453305,237,249,Moogle,corrective pass rest: name matches client entity at new slot
+165,17453294,17453306,238,250,Moogle,corrective pass rest: name matches client entity at new slot
+165,17453295,17453307,239,251,Moogle,corrective pass rest: name matches client entity at new slot
+165,17453296,17453308,240,252,Moogle,corrective pass rest: name matches client entity at new slot
+165,17453297,17453309,241,253,Moogle,corrective pass rest: name matches client entity at new slot
+165,17453299,17453311,243,255,Volker,corrective pass rest: name matches client entity at new slot
+165,17453300,17453312,244,256,Naji,corrective pass rest: name matches client entity at new slot
+165,17453301,17453313,245,257,Ayame,corrective pass rest: name matches client entity at new slot
+165,17453308,17453320,252,264,Schultz,corrective pass rest: name matches client entity at new slot
+165,17453317,17453329,261,273,RikoKupenreich,corrective pass rest: name matches client entity at new slot
+165,17453318,17453330,262,274,RikoKupenreich,corrective pass rest: name matches client entity at new slot
+179,17510671,17510683,271,283,Achieve_Master,corrective pass rest: name matches client entity at new slot
+179,17510672,17510684,272,284,Unity_Master,corrective pass rest: name matches client entity at new slot
+179,17510677,17510689,277,289,Kam lanaut,corrective pass rest: name matches client entity at new slot
+179,17510678,17510690,278,290,Kam lanaut,corrective pass rest: name matches client entity at new slot
+179,17510680,17510678,280,278,Zeid,corrective pass rest: name matches client entity at new slot
+179,17510681,17510679,281,279,Aldo,corrective pass rest: name matches client entity at new slot
+179,17510685,17510697,285,297,CrystalKnight,corrective pass rest: name matches client entity at new slot
+179,17510686,17510698,286,298,CrystalKnight,corrective pass rest: name matches client entity at new slot
+179,17510687,17510699,287,299,CrystalKnight,corrective pass rest: name matches client entity at new slot
+179,17510689,17510701,289,301,CrystalKnight,corrective pass rest: name matches client entity at new slot
+179,17510699,17510711,299,311,Moogle,corrective pass rest: name matches client entity at new slot
+179,17510701,17510713,301,313,Moogle,corrective pass rest: name matches client entity at new slot
+179,17510702,17510714,302,314,Moogle,corrective pass rest: name matches client entity at new slot
+179,17510703,17510715,303,315,Moogle,corrective pass rest: name matches client entity at new slot
+179,17510704,17510716,304,316,Moogle,corrective pass rest: name matches client entity at new slot
+179,17510705,17510717,305,317,Moogle,corrective pass rest: name matches client entity at new slot
+179,17510706,17510718,306,318,Moogle,corrective pass rest: name matches client entity at new slot
+179,17510707,17510719,307,319,Ramblix,corrective pass rest: name matches client entity at new slot
+179,17510708,17510720,308,320,Goblin_Footprint,corrective pass rest: name matches client entity at new slot
+179,17510711,17510723,311,323,Serpent_Generals,corrective pass rest: name matches client entity at new slot
+179,17510713,17510725,313,325,Gadalar,corrective pass rest: name matches client entity at new slot
+179,17510721,17510733,321,333,SeedCrystal,corrective pass rest: name matches client entity at new slot
+179,17510725,17510737,325,337,NPC01,corrective pass rest: name matches client entity at new slot
+179,17510729,17510741,329,341,NPC05,corrective pass rest: name matches client entity at new slot
+179,17510734,17510746,334,346,Jyujin05,corrective pass rest: name matches client entity at new slot
+179,17510736,17510748,336,348,Verena,corrective pass rest: name matches client entity at new slot
+179,17510737,17510749,337,349,mob01,corrective pass rest: name matches client entity at new slot
+179,17510747,17510759,347,359,mob11,corrective pass rest: name matches client entity at new slot
+179,17510749,17510761,349,361,mob13,corrective pass rest: name matches client entity at new slot
+183,17526900,17526899,116,115,Achieve_Master,corrective pass rest: name matches client entity at new slot
+183,17526907,17526905,123,121,Legion_Portal,corrective pass rest: name matches client entity at new slot
+183,17526908,17526907,124,123,Legion_Tome,corrective pass rest: name matches client entity at new slot
+183,17526909,17526908,125,124,Legion_Libretto,corrective pass rest: name matches client entity at new slot
+183,17526910,17526909,126,125,Monthly_Master,corrective pass rest: name matches client entity at new slot
+236,17744188,17744189,316,317,Achieve_Master,corrective pass rest: name matches client entity at new slot
+236,17744189,17744190,317,318,Unity_Master,corrective pass rest: name matches client entity at new slot
+236,17744191,17744192,319,320,Iroha,corrective pass rest: name matches client entity at new slot
+236,17744192,17744193,320,321,Lion,corrective pass rest: name matches client entity at new slot
+236,17744193,17744194,321,322,Zeid,corrective pass rest: name matches client entity at new slot
+236,17744195,17744198,323,326,Selh_teus,corrective pass rest: name matches client entity at new slot
+236,17744198,17744199,326,327,Balamor,corrective pass rest: name matches client entity at new slot
+236,17744212,17744213,340,341,CurioVendorMoogle,corrective pass rest: name matches client entity at new slot
+238,17752609,17752508,545,444,Unity_Master,corrective pass rest: name matches client entity at new slot
+238,17752611,17752510,547,446,Iroha,corrective pass rest: name matches client entity at new slot
+238,17752612,17752511,548,447,Lion,corrective pass rest: name matches client entity at new slot
+241,17764798,17764799,446,447,Achieve_Master,corrective pass rest: name matches client entity at new slot
+241,17764802,17764803,450,451,Unity_Master,corrective pass rest: name matches client entity at new slot
+241,17764804,17764805,452,453,Iroha,corrective pass rest: name matches client entity at new slot
+241,17764805,17764806,453,454,Lion,corrective pass rest: name matches client entity at new slot
+241,17764806,17764807,454,455,Zeid,corrective pass rest: name matches client entity at new slot
+241,17764808,17764811,456,459,Selh_teus,corrective pass rest: name matches client entity at new slot
+241,17764811,17764812,459,460,Balamor,corrective pass rest: name matches client entity at new slot
+241,17764825,17764827,473,475,Ephemeral_Moogle,corrective pass rest: name matches client entity at new slot
+277,17911898,17911948,90,140,Moogle,corrective pass rest: name matches client entity at new slot
+277,17911899,17911949,91,141,Moogle,corrective pass rest: name matches client entity at new slot
+277,17911900,17911950,92,142,Moogle,corrective pass rest: name matches client entity at new slot
+277,17911901,17911951,93,143,Moogle,corrective pass rest: name matches client entity at new slot
+277,17911902,17911952,94,144,Moogle,corrective pass rest: name matches client entity at new slot
+277,17911903,17911953,95,145,Moogle,corrective pass rest: name matches client entity at new slot
+277,17911904,17911954,96,146,Moogle,corrective pass rest: name matches client entity at new slot
+277,17911905,17911955,97,147,Moogle,corrective pass rest: name matches client entity at new slot
+277,17911915,17911965,107,157,Arciela,corrective pass rest: name matches client entity at new slot
+277,17911916,17911966,108,158,Arciela,corrective pass rest: name matches client entity at new slot
+277,17911917,17911967,109,159,Hades,corrective pass rest: name matches client entity at new slot
+277,17911928,17911978,120,170,Resume_Point,corrective pass rest: name matches client entity at new slot
+277,17911929,17911979,121,171,Ramblix,corrective pass rest: name matches client entity at new slot
+277,17911930,17911980,122,172,Goblin_Footprint,corrective pass rest: name matches client entity at new slot
+277,17911931,17911981,123,173,Ominous_Postern,corrective pass rest: name matches client entity at new slot
+277,17911932,17911982,124,174,Exit,corrective pass rest: name matches client entity at new slot
+293,17977440,17977465,96,121,Moogle,corrective pass rest: name matches client entity at new slot
+293,17977441,17977466,97,122,Moogle,corrective pass rest: name matches client entity at new slot
+293,17977442,17977467,98,123,Moogle,corrective pass rest: name matches client entity at new slot
+293,17977443,17977468,99,124,Moogle,corrective pass rest: name matches client entity at new slot
+293,17977444,17977469,100,125,Moogle,corrective pass rest: name matches client entity at new slot
+293,17977445,17977470,101,126,Moogle,corrective pass rest: name matches client entity at new slot
+293,17977446,17977471,102,127,Moogle,corrective pass rest: name matches client entity at new slot
+293,17977447,17977472,103,128,Moogle,corrective pass rest: name matches client entity at new slot
+293,17977448,17977473,104,129,Ramblix,corrective pass rest: name matches client entity at new slot
+293,17977449,17977474,105,130,Goblin_Footprint,corrective pass rest: name matches client entity at new slot
+293,17977450,17977475,106,131,Etched_Rock,corrective pass rest: name matches client entity at new slot
+293,17977459,17977484,115,140,Selh_teus,corrective pass rest: name matches client entity at new slot
+293,17977461,17977486,117,142,Tenzen,corrective pass rest: name matches client entity at new slot
+293,17977462,17977454,118,110,Lion,corrective pass rest: name matches client entity at new slot
+293,17977463,17977455,119,111,Prishe,corrective pass rest: name matches client entity at new slot
+293,17977464,17977456,120,112,Nashmeira,corrective pass rest: name matches client entity at new slot
+20,16859465,16859448,329,312,_0kc,corrective pass rest: relocated out of a DAT slot
+20,16859466,16859449,330,313,_0kd,corrective pass rest: relocated out of a DAT slot
+69,17060116,17060100,276,260,_1x1,corrective pass rest: relocated out of a DAT slot
+69,17060118,17060105,278,265,_1x3,corrective pass rest: relocated out of a DAT slot
+69,17060119,17060106,279,266,_1x4,corrective pass rest: relocated out of a DAT slot
+102,17195739,17195579,731,571,???,corrective pass rest: relocated out of a DAT slot
+103,17199772,17199669,668,565,blank,corrective pass rest: relocated out of a DAT slot
+103,17199775,17199691,671,587,???,corrective pass rest: relocated out of a DAT slot
+105,17207853,17207788,557,492,qm6,corrective pass rest: relocated out of a DAT slot
+105,17207946,17207789,650,493,qm,corrective pass rest: relocated out of a DAT slot
+106,17212125,17212018,733,626,qm5,corrective pass rest: relocated out of a DAT slot
+106,17212134,17212019,742,627,blank,corrective pass rest: relocated out of a DAT slot
+112,17236367,17236250,399,282,NPC[182],corrective pass rest: relocated out of a DAT slot
+117,17257120,17257004,672,556,NPC[93],corrective pass rest: relocated out of a DAT slot
+117,17257121,17257005,673,557,NPC[94],corrective pass rest: relocated out of a DAT slot
+117,17257127,17257027,679,579,csnpc,corrective pass rest: relocated out of a DAT slot
+117,17257132,17257028,684,580,???,corrective pass rest: relocated out of a DAT slot
+118,17261213,17261107,669,563,csnpc,corrective pass rest: relocated out of a DAT slot
+120,17269282,17269184,546,448,qm,corrective pass rest: relocated out of a DAT slot
+123,17281677,17281553,653,529,csnpc,corrective pass rest: relocated out of a DAT slot
+123,17281680,17281554,656,530,???,corrective pass rest: relocated out of a DAT slot
+126,17293820,17293673,508,361,csnpc,corrective pass rest: relocated out of a DAT slot
+126,17293821,17293674,509,362,csnpc,corrective pass rest: relocated out of a DAT slot
+165,17453279,17453337,223,281,NPC[dd],corrective pass rest: relocated out of a DAT slot
+165,17453280,17453338,224,282,NPC[de],corrective pass rest: relocated out of a DAT slot
+165,17453305,17453339,249,283,qm1,corrective pass rest: relocated out of a DAT slot
+165,17453306,17453340,250,284,4,corrective pass rest: relocated out of a DAT slot
+165,17453307,17453341,251,285,5,corrective pass rest: relocated out of a DAT slot
+165,17453309,17453342,253,286,6,corrective pass rest: relocated out of a DAT slot
+165,17453311,17453343,255,287,8,corrective pass rest: relocated out of a DAT slot
+165,17453312,17453344,256,288,blank,corrective pass rest: relocated out of a DAT slot
+165,17453313,17453345,257,289,???,corrective pass rest: relocated out of a DAT slot
+165,17453320,17453346,264,290,blank,corrective pass rest: relocated out of a DAT slot
+179,17510690,17510421,290,21,_4z0,corrective pass rest: relocated out of a DAT slot
+179,17510717,17510427,317,27,blank,corrective pass rest: relocated out of a DAT slot
+179,17510723,17510433,323,33,15,corrective pass rest: relocated out of a DAT slot
+179,17510761,17510775,361,375,qm3,corrective pass rest: relocated out of a DAT slot
+183,17526905,17526897,121,113,blank,corrective pass rest: relocated out of a DAT slot
+236,17744190,17744214,318,342,blank,corrective pass rest: relocated out of a DAT slot
+236,17744194,17744215,322,343,csnpc,corrective pass rest: relocated out of a DAT slot
+236,17744199,17744216,327,344,qm3,corrective pass rest: relocated out of a DAT slot
+241,17764799,17764831,447,479,blank,corrective pass rest: relocated out of a DAT slot
+241,17764803,17764832,451,480,blank,corrective pass rest: relocated out of a DAT slot
+241,17764807,17764833,455,481,blank,corrective pass rest: relocated out of a DAT slot
+241,17764812,17764834,460,482,qm7,corrective pass rest: relocated out of a DAT slot
+293,17977469,17977509,125,165,csnpc,corrective pass rest: relocated out of a DAT slot
+293,17977470,17977510,126,166,csnpc,corrective pass rest: relocated out of a DAT slot
+293,17977471,17977511,127,167,csnpc,corrective pass rest: relocated out of a DAT slot
+293,17977472,17977512,128,168,csnpc,corrective pass rest: relocated out of a DAT slot
+293,17977473,17977513,129,169,csnpc,corrective pass rest: relocated out of a DAT slot
+293,17977474,17977514,130,170,csnpc,corrective pass rest: relocated out of a DAT slot
+293,17977475,17977515,131,171,csnpc,corrective pass rest: relocated out of a DAT slot
+293,17977484,17977516,140,172,NPC[88],corrective pass rest: relocated out of a DAT slot
+293,17977486,17977517,142,173,NPC[8a],corrective pass rest: relocated out of a DAT slot
+293,17977454,17977396,110,52,???,corrective pass rest: relocated out of a DAT slot
+293,17977455,17977507,111,163,???,corrective pass rest: relocated out of a DAT slot
+293,17977456,17977508,112,164,csnpc,corrective pass rest: relocated out of a DAT slot
