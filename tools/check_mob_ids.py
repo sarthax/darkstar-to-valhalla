@@ -15,4 +15,5 @@ q.execute("select mobid,mobname,polutils_name from mob_spawn_points")
 bad = [(i, mn, dat.get(i)) for i, mn, pn in q.fetchall()
        if (i >> 12) & 0xfff in zones and dat.get(i) is not None and N(dat[i]) not in (N(mn), N(pn))]
 print(len(bad), "mob rows named differently in the client DAT")
-for b in bad[:40]: print("  ", b)
+cnt=collections.Counter((b[0]>>12)&0xfff for b in bad)
+print(sorted(cnt.items(), key=lambda x:-x[1]))
