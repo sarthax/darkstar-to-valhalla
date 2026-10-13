@@ -34,6 +34,11 @@ function onMagicHit(caster, target, spell)
     return 0;
 end;
 
+function onWeaponskillHit(mob, attacker, wsid)
+    vwOnWeaponskillHit(mob, attacker, wsid, VWMSG);
+    return 0;
+end
+
 -- Accursed Armor (skill 2390) adds curse spikes for 60 s [D]; drop them when the timer lapses.
 local function tickArmor(mob)
     local e = mob:getLocalVar("ARMOR_END");
@@ -119,8 +124,10 @@ function onMobDeath(mob, player, isKiller)
     local idx = mob:getID() - 17113826;
     vwOnKill(mob, player, {
         region = "THREE", stage = 3, -- [C] 9660 cruor = 6000 * 161% green
+        atmacite = {1807}, -- white-light drop [W/J, ATMACITE-DATA.md]
         pyxisId = 17114043 + idx,
         drops = {16201, 10927}, -- Genesis Shield, Genesis Locket [B #292]; ids checked vs live item_basic. Rates [D]
+        dropRates = {[16201]=5, [10927]=5}, -- BG wiki "Rare" tier = 5% each [W 2026-10-09; tier label, NOT a measured rate]
         keyitem = ATMACITE_OF_PERSISTENCE, -- 1807 [W/F]; DSP keyitems.lua name; client-id check pending
         msgKeyItem = 8736,
         msgCruor = 8732, msgFinalBR = 8729, msgFinalYG = 8727, msgFinalW = 8728,

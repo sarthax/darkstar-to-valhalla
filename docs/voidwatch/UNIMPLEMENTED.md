@@ -44,6 +44,7 @@ Status: MISSING = no DB row/Lua, WRONG = live row differs from retail, GUESS = b
 ## Stage table / lights (voidwatch.lua)
 - Stage table applied [F]: cruor = base x (100+green)/100, EXP = base x (100+yellow)/100 via addExp (no EXP message id known, silent). Weakness-hit formula and per-hit values still [D]
 - Ascent cells: Planar Rift onTrade accepts cells 3434-3437 (max 3 each; bonuses blue/red +50, yellow/green +25 [F]); item ids from DSP item_basic, client check pending; no trade message ids known (silent); cells cleared when the Pyxis is claimed; wipe/timeout keeps them on the rift
+- Cell trade/expend messages (2026-10-09): retail lines "X expends a rubicund/cobalt cell and increases red/blue spectral alignment by 150%! Current value: +150%" and "...to its maximum value" (Siknawz Kaggen capture, Qufim 0x2A, ids 0xAD59/0xAD5C = 11609/11612) are NOT in the zone dialog.yml (fresh Qufim pull: those ids are "obtains the key item"/"Relinquish all reward items?"), so no verified id; left silent. Also retail shows ONE cell = +150% (max) per colour, vs our 3 x +50; same cap, different feel. Not changed.
 - Blue/red cell bonus is per player but the Pyxis item list is shared: best bonus among participants used [D]
 - Aello set to Zilart III (8000 cruor) per table; her real stage unconfirmed
 
@@ -160,3 +161,14 @@ Status: MISSING = no DB row/Lua, WRONG = live row differs from retail, GUESS = b
 - Baneberry Tonberry Coat (1119) drop rate unknown, not modelled
 - Pashhow (z109) npc_list tail rekeyed +2 to match client ids; verify Fount/Hume/Passage/Survival Guide still work
 - Pyxis/KI client ids and rift positions (!checknav) unverified for all four
+
+## Jeuno VI [S] base NMs (2026-10-09)
+Gaunab, Ocythoe, Kalasutrax: built as base NMs (see research/JEUNO-T6-DATA-PASS.md). Missing: real gating, level/HP, drops/pyxis pool, skills/spells (Immolating Claw; Keraunos Quill, Wings of Woe; Raksha moves), rift event params, `!checknav`.
+Skills+spells added 2026-10-09 (sql/slices/voidwatch-vwnm/jeuno_vi_s_skills.sql): Immolating Claw, Keraunos Quill = effects invented [D]; Ocythoe lightning / Kalasutrax water spell tiers [D].
+
+## Drop rates added 2026-10-09 (BG wiki tier labels, not measured)
+Kholomodumo, Hahava, Lord Asag, Akupara, Voidwrought, Melancholic Moira, Aello now have `dropRates` (Ultra Rare 0.1 / Very Rare 1 /
+Rare 5 / Uncommon 10). Open: Lord Asag Silver Mirror (3510) is not on the wiki page so it never rolls; Voidwrought 11856 is
+item_basic "anhur_robe" vs wiki "Fazheluo R. Mail"; Moira's Anger Bomblet / Moira's Molar not in `drops`; Uncommon/Common
+rewards (scrolls, crafting, Silver Mirror, Riftsand, seals, Petrifact) are not modelled.
+Lights: white accrual (+25/hit) and WS / JA / avatar weakness hooks added, all [D]; see LIGHTS-TEST-PLAN.md.

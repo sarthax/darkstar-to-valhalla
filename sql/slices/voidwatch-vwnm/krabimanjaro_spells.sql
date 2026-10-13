@@ -19,5 +19,5 @@ UPDATE mob_pools SET spellList = 439 WHERE poolid = 5168;
 
 -- [C] 2026-10-07: HP 47578 (hptrack 47104-50085); Sleepga (363) seen.
 UPDATE mob_groups SET HP=47578 WHERE groupid=13809;
+-- 2026-10-12: spell 363 removed. It has no spell_list row (no name), and Sleepga is already 273 in this list; the 2026-10-07 "Sleepga (363)" note was a wrong id.
 DELETE FROM mob_spell_lists WHERE spell_list_id=439 AND spell_id=363;
-INSERT INTO mob_spell_lists (spell_list_name,spell_list_id,spell_id,min_level,max_level) VALUES ('Krabimanjaro',439,363,1,255);

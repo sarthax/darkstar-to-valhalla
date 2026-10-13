@@ -34,6 +34,11 @@ function onMagicHit(caster, target, spell)
     return 0;
 end;
 
+function onWeaponskillHit(mob, attacker, wsid)
+    vwOnWeaponskillHit(mob, attacker, wsid, VWMSG);
+    return 0;
+end
+
 local function tick(mob)
     vwWeaknessTick(mob, VWMSG);
     local left = mob:getLocalVar("VW_DEADLINE") - os.time();

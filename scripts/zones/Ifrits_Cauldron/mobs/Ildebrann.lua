@@ -33,6 +33,11 @@ function onMagicHit(caster, target, spell)
     return 0;
 end;
 
+function onWeaponskillHit(mob, attacker, wsid)
+    vwOnWeaponskillHit(mob, attacker, wsid, VWMSG);
+    return 0;
+end
+
 function onMobInitialize(mob)
     -- BLM main job defaults to HP_STANDBACK 70 (mobutils SetupJob): mob would stay at range above 70% HP.
     -- Voidwatch NMs must close to melee; -1 disables standback (precedent: Bahamut).

@@ -131,12 +131,17 @@ function vwOnKill(mob, player, cfg)
     for id, pct in pairs(ov.add or {}) do -- per-NM additions, percent, rolled independently like dropRates
         if (math.random() * 100 < pct * (1 + r / 100)) then table.insert(items, 1, id); end
     end
-    if (cfg.keyitem) then
-        local kiChance = 0.05 * (1 + r / 100); -- [D] unknown
+    -- White light = chance of the NM's periapt / atmacite, rolled per alliance member; 100% white = guaranteed [W/J: ATMACITE-DATA.md].
+    -- JP wiki: a Void Stone must be held when the NM dies (not enforced here). Red no longer scales this roll.
+    local white = select(5, vwAlignment(mob));
+    local whiteKIs = {};
+    if (cfg.keyitem) then table.insert(whiteKIs, cfg.keyitem); end
+    for _, ki in ipairs(cfg.atmacite or {}) do table.insert(whiteKIs, ki); end
+    for _, ki in ipairs(whiteKIs) do
         for _, m in pairs(allianceInZone(player)) do
-            if (not m:hasKeyItem(cfg.keyitem) and math.random() < kiChance) then
-                m:addKeyItem(cfg.keyitem);
-                m:messageSpecial(cfg.msgKeyItem, cfg.keyitem);
+            if (not m:hasKeyItem(ki) and math.random(1, 100) <= white) then
+                m:addKeyItem(ki);
+                m:messageSpecial(cfg.msgKeyItem, ki);
             end
         end
     end
@@ -325,10 +330,21 @@ end
 -- "Alignment increases by N% across the spectrum". NOT known: retail weakness-set size/degree rule, per-hit
 -- values (wiki: normal 20/40%), blitz trigger. Judgement: ONE random elemental-magic weakness per fight,
 -- +20% blue/red per hit (+10% yellow/green), blitz starts every 3rd hit and lasts 15s.
--- Weapon-skill / JA / pet weaknesses are not hooked yet.
+-- Weapon skills hooked (vwOnWeaponskillHit, one random weapon type, [D]). JA / pet / avatar weaknesses are not hooked yet.
 -----------------------------------
 local CAP = {BLUE = 350, RED = 350, YELLOW = 225, GREEN = 225, WHITE = 100};
 local BLITZ_LEN = 15;
+-- job-ability weakness pool (ability ids from sql/abilities.sql): Provoke, Weapon Bash, Jump, High Jump, Chi Blast, Shield Bash,
+-- Shadowbind, six Quick Draw shots, Quickstep, Stutter Step, Box Step, four Flourishes. Not in this server: Enmity Douse,
+-- Feather Step, Spirit/Soul Jump, Libra, Bully.
+-- Client weakness-message params [V: RuAun_Gardens dialog.yml 10897-10903, choice lists start with an EMPTY index 0].
+-- Message ids are relative to cfg.msgWeakElem (= the 10899 "elemental magic" line): weapon -2, job ability -1, element+blood pact +2.
+local CLIENT_ELE = {[1] = 1, [2] = 4, [3] = 6, [4] = 3, [5] = 2, [6] = 5, [7] = 7, [8] = 8}; -- DSP ELE_* -> client element index
+local CLIENT_WS_TYPE = {[1] = 1, [2] = 2, [3] = 3, [4] = 4, [5] = 5, [6] = 6, [7] = 7, [8] = 8, [9] = 9, [10] = 10, [11] = 11, [12] = 12, [25] = 13, [26] = 14};
+local VW_JA_JOB = {[19] = 1, [61] = 8, [50] = 14, [51] = 14, [66] = 2, [30] = 7, [41] = 11, [109] = 17, [110] = 17, [111] = 17,
+                   [112] = 17, [113] = 17, [114] = 17, [185] = 19, [187] = 19, [186] = 19, [188] = 19, [189] = 19, [191] = 19, [190] = 19}; -- ability id -> job id (== client job index)
+local VW_JA_POOL = {19, 61, 50, 51, 66, 30, 41, 109, 110, 111, 112, 113, 114, 185, 187, 186, 188, 189, 191, 190};
+local VW_WS_TYPES = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 25, 26}; -- SKILL_H2H..SKILL_STF, SKILL_ARC, SKILL_MRK
 
 local function vwNotify(mob, msgid, ...)
     local p = GetPlayerByID(mob:getLocalVar("VW_SPAWNER"));
@@ -350,6 +366,13 @@ end
 
 function vwWeaknessInit(mob)
     mob:setLocalVar("VW_WEAK_ELEM", math.random(1, 8)); -- ELE_FIRE..ELE_DARK = 1..8
+    mob:setLocalVar("VW_WEAK_JA", VW_JA_POOL[math.random(1, #VW_JA_POOL)]);
+    mob:setLocalVar("VW_WEAK_AVATAR", math.random(1, 6)); -- element of the avatar "<Element> IV" blood pact (fire..water)
+    local cats = {"ELEM", "WS", "JA", "AVATAR"};
+    for _, c in ipairs(cats) do mob:setLocalVar("VW_TIER_" .. c, 0); end
+    local e = math.random(1, 4); local h = math.random(1, 3); if (h >= e) then h = h + 1; end
+    mob:setLocalVar("VW_TIER_" .. cats[e], 2); mob:setLocalVar("VW_TIER_" .. cats[h], 1);
+    mob:setLocalVar("VW_WEAK_WS", VW_WS_TYPES[math.random(1, #VW_WS_TYPES)]);
     for k in pairs(CAP) do mob:setLocalVar("VW_" .. k, 0); end
     mob:setLocalVar("VW_HITS", 0);
     mob:setLocalVar("VW_BLITZ_END", 0);
@@ -357,14 +380,38 @@ function vwWeaknessInit(mob)
 end
 
 -- cfg: {msgWeakElem=7627, msgBlitzOn=7634, msgBlitzOff=7635, msgBlitzGain=7636, msgBR=7637, msgW=7638}
-function vwOnMagicHit(mob, caster, spell, cfg)
-    if (not caster:isPC() or spell:getSkillType() ~= 36) then return; end -- elemental magic only
-    if (spell:getElement() ~= mob:getLocalVar("VW_WEAK_ELEM")) then return; end
-    vwNotify(mob, cfg.msgWeakElem, spell:getElement(), 0);
+-- Tiers [D]: 4 weakness categories (ELEM, WS, JA, AVATAR); at fight start one is extreme (tier 2), one high (tier 1), the rest
+-- normal (0). Retail is 6 normal / 2 high / 1 extreme out of 9 specific triggers; we only have 4 slots. Per hit [bg-wiki digest]:
+-- normal 20 (blue/red), high 100, extreme 250; yellow/green are half of that, white +25 / +25 / +100 (forum: white only from
+-- "highly" procs, ~4 = 100%). Blitz doubles everything except white. Extreme can hit once (then it becomes normal); a high
+-- weakness moves to a random normal category after it is hit. The tier is also the "degree" param (0/1/2) of the client line.
+local TIER_BLUE = {[0] = 20, [1] = 100, [2] = 250};
+local TIER_WHITE = {[0] = 0, [1] = 25, [2] = 100};
+
+-- msgid: weakness line (or nil); ... = its params WITHOUT the trailing degree, which is appended from the category tier
+local function vwWeaknessHit(mob, cfg, cat, msgid, ...)
+    local tier = mob:getLocalVar("VW_TIER_" .. cat);
+    if (msgid ~= nil and msgid > 0) then
+        local args = {...}; -- NB: "..." in the middle of an arg list is truncated to one value in Lua
+        table.insert(args, tier);
+        vwNotify(mob, msgid, unpack(args));
+    end
     local blitz = mob:getLocalVar("VW_BLITZ_END") > os.time();
     local mult = blitz and 2 or 1;
-    bump(mob, "BLUE", 20 * mult); bump(mob, "RED", 20 * mult);
-    bump(mob, "YELLOW", 10 * mult); bump(mob, "GREEN", 10 * mult);
+    local v = TIER_BLUE[tier];
+    bump(mob, "BLUE", v * mult); bump(mob, "RED", v * mult);
+    bump(mob, "YELLOW", v / 2 * mult); bump(mob, "GREEN", v / 2 * mult);
+    bump(mob, "WHITE", TIER_WHITE[tier]);
+    if (tier > 0) then -- extreme: one-shot; high: moves to another (normal) category
+        mob:setLocalVar("VW_TIER_" .. cat, 0);
+        if (tier == 1) then
+            local normal = {};
+            for _, c in ipairs({"ELEM", "WS", "JA", "AVATAR"}) do
+                if (c ~= cat and mob:getLocalVar("VW_TIER_" .. c) == 0) then table.insert(normal, c); end
+            end
+            if (#normal > 0) then mob:setLocalVar("VW_TIER_" .. normal[math.random(1, #normal)], 1); end
+        end
+    end
     local hits = mob:getLocalVar("VW_HITS") + 1;
     mob:setLocalVar("VW_HITS", hits);
     if (not blitz and hits % 3 == 0) then
@@ -373,8 +420,67 @@ function vwOnMagicHit(mob, caster, spell, cfg)
     end
 end
 
+-- Periapt hints [D]: bg-wiki says an offensive action by a holder has "a chance" to reveal one weakness (rate unknown; HINT_CHANCE is
+-- a guess). Guidance (1777) -> weapon-skill / job-ability weakness, Percipience (1778) -> magic element. The reveal prints the same
+-- client line as a hit but raises no lights. Clarity (school) and Sapience (avatar element) are not built.
+local HINT_CHANCE = 15;
+local function vwPeriaptHint(mob, player, kind, cfg)
+    if (math.random(1, 100) > HINT_CHANCE) then return; end
+    local tier = mob:getLocalVar("VW_TIER_" .. kind);
+    if (kind == "ELEM" and player:hasKeyItem(PERIAPT_OF_PERCIPIENCE)) then
+        vwNotify(mob, cfg.msgWeakElem, CLIENT_ELE[mob:getLocalVar("VW_WEAK_ELEM")] or 0, tier);
+    elseif (kind == "WS" and player:hasKeyItem(PERIAPT_OF_GUIDANCE)) then
+        vwNotify(mob, cfg.msgWeakElem - 2, CLIENT_WS_TYPE[mob:getLocalVar("VW_WEAK_WS")] or 0, 0, tier);
+    elseif (kind == "JA" and player:hasKeyItem(PERIAPT_OF_GUIDANCE)) then
+        vwNotify(mob, cfg.msgWeakElem - 1, VW_JA_JOB[mob:getLocalVar("VW_WEAK_JA")] or 0, tier);
+    end
+end
+
+function vwOnMagicHit(mob, caster, spell, cfg)
+    if (not caster:isPC() or spell:getSkillType() ~= 36) then return; end -- elemental magic only
+    if (spell:getElement() ~= mob:getLocalVar("VW_WEAK_ELEM")) then vwPeriaptHint(mob, caster, "ELEM", cfg); return; end
+    vwWeaknessHit(mob, cfg, "ELEM", cfg.msgWeakElem, CLIENT_ELE[spell:getElement()] or 0);
+end
+
+-- Weapon skills [D]: ONE random weapon type per fight (retail: 8-12 specific WS per type, per bg-wiki; the
+-- specific lists are not sourced, so any WS of the weakness type counts; Relic/Mythic/Empyrean/Aeonic exclusion
+-- not implemented). Weakness line: msgWeakElem-2 [V].
+-- Call from the mob's onWeaponskillHit(mob, attacker, wsid); the hook must return 0.
+function vwOnWeaponskillHit(mob, attacker, wsid, cfg)
+    if (not attacker:isPC()) then return; end
+    if (attacker:getWeaponSkillType(SLOT_MAIN) ~= mob:getLocalVar("VW_WEAK_WS")) then vwPeriaptHint(mob, attacker, "WS", cfg); return; end
+    vwWeaknessHit(mob, cfg, "WS", cfg.msgWeakElem - 2, CLIENT_WS_TYPE[mob:getLocalVar("VW_WEAK_WS")] or 0, 0); -- type, kind 0 = weapon skills
+end
+
+-- Job abilities [D]: ONE random ability from VW_JA_POOL per fight. Called from the ability scripts themselves (the engine
+-- has no mob-side ability hook). Retail's "no effect / full resist / miss doesn't count" rule is NOT checked. Weakness line: msgWeakElem-1 [V].
+-- No-op on non-Voidwatch targets.
+function vwOnAbility(user, target, ability)
+    if (target == nil or not user:isPC() or target:getLocalVar("VW_NO_REBUFF") ~= 1) then return; end
+    local w = target:getLocalVar("VW_MSG_WEAK");
+    if (ability:getID() ~= target:getLocalVar("VW_WEAK_JA")) then
+        if (w > 0) then vwPeriaptHint(target, user, "JA", {msgWeakElem = w}); end
+        return;
+    end
+    vwWeaknessHit(target, {msgBlitzOn = target:getLocalVar("VW_MSG_BLITZON")}, "JA", w > 0 and w - 1 or 0, VW_JA_JOB[ability:getID()] or 0);
+end
+
+-- Avatar blood pacts [D]: ONE random element among the six "<Element> IV" pacts (bg-wiki: Ifrit/Shiva/Garuda/Titan/Ramuh/
+-- Leviathan). Light/Dark pacts (Holy Mist, Night Terror, Lunar Bay) have no pet script on this server, so can't trigger.
+-- Called from the top of each pets/<element>_iv.lua onPetAbility. Needs a PC master. Miss/resist not checked; weakness line: msgWeakElem+2 [V].
+function vwOnPetAbility(target, pet, element)
+    if (target == nil or target:getLocalVar("VW_NO_REBUFF") ~= 1) then return; end
+    local master = pet:getMaster();
+    if (master == nil or not master:isPC()) then return; end
+    if (element ~= target:getLocalVar("VW_WEAK_AVATAR")) then return; end
+    local w = target:getLocalVar("VW_MSG_WEAK");
+    vwWeaknessHit(target, {msgBlitzOn = target:getLocalVar("VW_MSG_BLITZON")}, "AVATAR", w > 0 and w + 2 or 0, CLIENT_ELE[element], 0); -- element, kind 0 = blood pacts
+end
+
 -- call from the mob's tick: ends a blitz window
 function vwWeaknessTick(mob, cfg)
+    mob:setLocalVar("VW_MSG_BLITZON", cfg.msgBlitzOn);
+    mob:setLocalVar("VW_MSG_WEAK", cfg.msgWeakElem); -- lets ability scripts (no cfg) announce a blitz
     local e = mob:getLocalVar("VW_BLITZ_END");
     if (e ~= 0 and e <= os.time()) then
         mob:setLocalVar("VW_BLITZ_END", 0);
