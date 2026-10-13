@@ -1,0 +1,12 @@
+[[Cruor]] is the currency of [[Abyssea]].  A naturally occurring red mineral found in the monsters that overrun Abyssea. It's used as a power source for the Resistance's efforts.
+
+Cruor can be gained from completing Abyssean quests, from defeating Abyssean monsters while under Visitant Status and found within Blue [[Sturdy Pyxis]], as well as from completing [[Voidwatch]] battles. 
+
+Cruor can be used to obtain items, equipment and {{KI}} key items by speaking with [[Cruor Prospector]]s, to activate [[Veridical Conflux]]es for teleportation across Abyssea areas, and on [[Martello]]. It is also exchanged for [[:Category:Transportation#Voidwatch Teleportation|Voidwatch Teleportation]].
+
+The balance can always be checked [[Main Menu|under Currencies in the Main Menu]].
+
+== Lore ==
+Cruor, as a word, means coagulated blood. That is, of a fluid (blood) to change to a solid or semi-solid state.
+
+[[Category:Game Terms]] [[Category:Abyssea]] [[Category:Voidwatch]] [[Category:Currencies]]

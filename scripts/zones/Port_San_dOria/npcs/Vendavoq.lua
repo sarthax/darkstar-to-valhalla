@@ -8,6 +8,7 @@ package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/shop");
+require("scripts/globals/mog_tablets");
 require("scripts/globals/conquest");
 require("scripts/globals/quests");
 require("scripts/zones/Port_San_dOria/TextIDs");
@@ -37,7 +38,7 @@ function onTrigger(player,npc)
 
     local RegionOwner = GetRegionOwner(MOVALPOLOS);
 
-if (RegionOwner ~= NATION_SANDORIA) then 
+if (RegionOwner ~= NATION_SANDORIA and not MOG_TABLET.hasPower(MOG_TABLET.POWERS.BOUNTIFUL_BAZAAR)) then 
     player:showText(npc,VENDAVOQ_CLOSED_DIALOG);
 else
     player:showText(npc,VENDAVOQ_OPEN_DIALOG);

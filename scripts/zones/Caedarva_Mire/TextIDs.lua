@@ -37,5 +37,5 @@ IMPERIAL_CONTROL         = 7311; -- This gate guards an area under Imperial cont
 STAGING_POINT_AZOUPH     = 7312; -- Azouph Isle Staging Point.
 STAGING_POINT_DVUCCA     = 7315; -- Dvucca Isle Staging Point.
 CANNOT_LEAVE             = 7321; -- You cannot leave this area while in the possession of <keyitem>.
-COMMON_SENSE_SURVIVAL    = 9055; -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
+COMMON_SENSE_SURVIVAL = 9054; -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
 HOOFPRINT_FOUND          = 6398;

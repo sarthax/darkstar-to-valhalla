@@ -23,3 +23,4 @@ LOGGING_IS_POSSIBLE_HERE = 7726; -- Logging is possible here if you have
 
 -- conquest Base
 CONQUEST_BASE = 7047; -- Tallying conquest results...
+COMMON_SENSE_SURVIVAL = 8734; -- new survival guide registered (client DAT, verified)

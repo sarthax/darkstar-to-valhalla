@@ -17,6 +17,8 @@ require("scripts/globals/conquest");
 -----------------------------------
 
 function onInitialize(zone)
+    require("scripts/globals/mog_tablets");
+    MOG_TABLET.onZoneInitialize(zone);
     -- Kreutzet
     SetRespawnTime(17240413, 900, 10800);
 
@@ -40,6 +42,8 @@ end;
 -----------------------------------
 
 function onZoneIn( player, prevZone)
+    require("scripts/globals/mog_tablets");
+    MOG_TABLET.onZoneIn(player);
     local cs = -1;
 
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then

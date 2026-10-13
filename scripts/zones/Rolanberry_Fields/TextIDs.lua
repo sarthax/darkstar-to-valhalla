@@ -24,3 +24,4 @@ AWAIT_YOUR_CHALLENGE = 12163; -- We await your challenge
  -- chocobo digging
 DIG_THROW_AWAY = 7241; -- You dig up ?Possible Special Code: 01??Possible Special Code: 01??Possible Special Code: 01? ?Possible Special Code: 01??Possible Special Code: 05?$?BAD CHAR: 8280??BAD CHAR: 80??BAD CHAR: 80?, but your inventory is full.
 FIND_NOTHING = 7243; -- You dig and you dig, but find nothing.
+COMMON_SENSE_SURVIVAL = 12256; -- new survival guide registered (client DAT, verified)

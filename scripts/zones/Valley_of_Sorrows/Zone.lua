@@ -15,6 +15,8 @@ require("scripts/zones/Valley_of_Sorrows/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
+    require("scripts/globals/mog_tablets");
+    MOG_TABLET.onZoneInitialize(zone);
     if (LandKingSystem_NQ ~= 1) then
         SetRespawnTime(17301537, 900, 10800); -- Adamantoise
     end
@@ -37,6 +39,8 @@ end;
 -----------------------------------
 
 function onZoneIn(player,prevZone)
+    require("scripts/globals/mog_tablets");
+    MOG_TABLET.onZoneIn(player);
     local cs = -1;
 
     if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then

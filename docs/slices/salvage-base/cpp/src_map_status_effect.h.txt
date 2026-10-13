@@ -1,0 +1,12 @@
+// excerpt of src/map/status_effect.h (from main @ eff415776b); lines 340,349
+    EFFECT_SANCTION                 = 256,
+    EFFECT_BESIEGED                 = 257,
+    EFFECT_ILLUSION                 = 258,
+    EFFECT_ENCUMBRANCE              = 259,
+    EFFECT_OBLIVISCENCE             = 260,
+    EFFECT_IMPAIRMENT               = 261,
+    EFFECT_OMERTA                   = 262,
+    EFFECT_DEBILITATION             = 263,
+    EFFECT_PATHOS                   = 264,
+    EFFECT_FLURRY                   = 265,
+// ...

@@ -7,6 +7,7 @@ package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/shop");
+require("scripts/globals/mog_tablets");
 require("scripts/globals/conquest");
 require("scripts/zones/Metalworks/TextIDs");
 
@@ -23,7 +24,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (GetRegionOwner(QUFIMISLAND) ~= NATION_BASTOK) then 
+    if (GetRegionOwner(QUFIMISLAND) ~= NATION_BASTOK and not MOG_TABLET.hasPower(MOG_TABLET.POWERS.BOUNTIFUL_BAZAAR)) then 
         player:showText(npc,TAKIYAH_CLOSED_DIALOG);
     else
         player:showText(npc,TAKIYAH_OPEN_DIALOG);

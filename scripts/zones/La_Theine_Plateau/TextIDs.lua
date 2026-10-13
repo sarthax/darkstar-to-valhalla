@@ -42,3 +42,4 @@ FIND_NOTHING =  7225; -- You dig and you dig, but find nothing.
 
 -- FallenEgg
 BROKEN_EGG = 7817; -- There is a broken egg on the ground here. Perhaps there is a nest in the boughs of this tree.
+COMMON_SENSE_SURVIVAL = 12323; -- new survival guide registered (client DAT, verified)

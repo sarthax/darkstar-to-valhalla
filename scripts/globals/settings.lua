@@ -157,6 +157,8 @@ HALLOWEEN_YEAR_ROUND = 0; -- Set to 1 to have Harvest Festival initialize outsid
 HOMEPOINT_HEAL = 0; --Set to 1 if you want Home Points to heal you like in single-player Final Fantasy games.
 RIVERNE_PORTERS = 120; -- Time in seconds that Unstable Displacements in Cape Riverne stay open after trading a scale.
 LANTERNS_STAY_LIT = 1200; -- time in seconds that lanterns in the Den of Rancor stay lit.
+CASKET_DROP_RATE = 0.1; -- chance a field mob kill spawns a Treasure Casket (retail 10%, 0 disables, clamped to 1.0)
+-- BlueGartr 2011 player reports (docs/treasure-caskets/research/bluegartr/FINDINGS.md) saw about 2% base and about 5% with Casket Discovery lvl 1; 10% is kept deliberately.
 ENABLE_COP_ZONE_CAP=1; -- enable or disable lvl cap
 TIMEZONE_OFFSET = 9.0; -- Offset from UTC used to determine when "JP Midnight" is for the server.  Default is JST (+9.0).
 ALLOW_MULTIPLE_EXP_RINGS = 0; -- Set to 1 to remove ownership restrictions on the Chariot/Empress/Emperor Band trio.
@@ -174,3 +176,11 @@ DIMENSIONAL_PORTAL_UNLOCK = false; -- Set true to bypass requirements for using 
 
 -- ABYSSEA
 VISITANT_BONUS = 1.00; -- Default: 1.00 - (retail) - Multiplies the base time value of each Traverser Stone.
+-- MOG TABLETS / SUPER KUPOWERS
+MOG_TABLET_ALL_POWERS = 0; -- Set 1 to activate all 11 Super Kupowers when the tablet set is complete (retail: Adventurer Appreciation Campaign)
+MOG_TABLET_GATE_EXPLORER_MOOGLES = 0; -- 1 = city Explorer Moogles only appear during Thrifty Transit (retail); 0 = always
+MOG_TABLET_SKILLUP_RATE = 25; -- Martial Master skill-up bonus in percent; retail magnitude unknown, 0 = no effect until set
+MOG_TABLET_CRYSTAL_RATE = 100; -- Crystal Caboodle: percent increase to the crystal drop chance (base 20% -> 40%)
+MOG_TABLET_CLUSTER_RATE = 10; -- Crystal Caboodle: percent of crystal drops that become a cluster
+MOG_TABLET_ARTISAN_LOSS_SUPPORT = 20; -- Artisan's Advantage: percent reduction of failed-synth ingredient loss chance, ADVANCED Synthesis Image Support only. JP wiki gives no number; ffxilogdialy measured ~53.5% -> ~43.7% loss per failure (about -18%), so 20
+MOG_TABLET_FOOD_DURATION = 100; -- Dilatory Digestion: percent added to food effect duration (100 = twice as long)

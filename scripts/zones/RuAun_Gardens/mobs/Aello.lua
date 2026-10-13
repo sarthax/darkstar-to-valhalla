@@ -1,0 +1,110 @@
+-----------------------------------
+-- Area: Ru'Aun Gardens
+--  MOB: Aello (Voidwatch, Ashen III)
+-- Voidwatch slice: 30 minute limit + cleanup. Ticks via onMobRoam/onMobFight
+-- (open-zone mob, no instance). Message ids from research/MESSAGE-IDS-SLICE-ZONES.md
+-- (anchor verified, offsets inferred).
+-----------------------------------
+
+require("scripts/globals/voidwatch");
+require("scripts/globals/voidwatch_ki");
+require("scripts/globals/status");
+require("scripts/globals/magic");
+require("scripts/globals/msg");
+local VW_MINUTES_TO_COMPLETE = 10785;
+local VW_MINUTES_REMAINING   = 10786;
+local VW_SECONDS_REMAINING   = 10787;
+local VW_TIME_UP             = 10788;
+local VW_FADES               = 10789;
+local LIMIT = 1800; -- 30 min [C]
+
+local function notify(mob, msgid, param)
+    local p = GetPlayerByID(mob:getLocalVar("VW_SPAWNER"));
+    if (p == nil or p:getZoneID() ~= mob:getZoneID()) then return; end
+    for _, m in pairs(p:getAlliance()) do
+        if (m:isPC() and m:getZoneID() == mob:getZoneID()) then
+            m:messageSpecial(msgid, param or 0);
+        end
+    end
+end
+
+local VWMSG = {msgWeakElem = 10899, msgBlitzOn = 10906, msgBlitzOff = 10907, msgBlitzGain = 10908, msgBR = 10909, msgW = 10910};
+
+function onMagicHit(caster, target, spell)
+    vwOnMagicHit(target, caster, spell, VWMSG);
+    return 0;
+end;
+
+function onWeaponskillHit(mob, attacker, wsid)
+    vwOnWeaponskillHit(mob, attacker, wsid, VWMSG);
+    return 0;
+end
+
+local function tick(mob)
+    vwWeaknessTick(mob, VWMSG);
+    local left = mob:getLocalVar("VW_DEADLINE") - os.time();
+    if (left <= 0) then
+        notify(mob, VW_TIME_UP);
+        notify(mob, VW_FADES);
+        mob:setLocalVar("VW_DEADLINE", 0);
+        vwEndOperation(mob);
+        DespawnMob(mob:getID());
+        return;
+    end
+    local warned = mob:getLocalVar("VW_WARNED");
+    local marks = {600, 300, 120, 60, 30, 10};
+    for _, s in ipairs(marks) do
+        if (left <= s and warned > s) then
+            mob:setLocalVar("VW_WARNED", s);
+            if (s >= 60) then notify(mob, VW_MINUTES_REMAINING, s / 60);
+            else notify(mob, VW_SECONDS_REMAINING, s); end
+            break;
+        end
+    end
+end
+
+function onMobInitialize(mob)
+    -- BLM main job defaults to HP_STANDBACK 70 (mobutils SetupJob): mob would stay at range above 70% HP.
+    -- Voidwatch NMs must close to melee; -1 disables standback (precedent: Bahamut).
+    mob:setMobMod(MOBMOD_HP_STANDBACK, -1);
+end;
+
+function onMobSpawn(mob)
+    mob:setLocalVar("VW_DEADLINE", os.time() + LIMIT);
+    mob:setLocalVar("VW_WARNED", LIMIT + 1);
+    mob:setMobMod(MOBMOD_NO_DESPAWN, 1);
+    vwWeaknessInit(mob);
+end;
+
+function onMobRoam(mob) tick(mob); end;
+
+function onMobFight(mob, target)
+    tick(mob);
+    -- Handmaiden resummon: when any is dead Aello uses Shrieking Gale (dispel + hate reset + resummon) [forum #1140]
+    if (os.time() - mob:getLocalVar("GALE_T") >= 30) then
+        for i = 1, 3 do
+            local h = GetMobByID(mob:getID() + i);
+            if (h ~= nil and not h:isSpawned()) then
+                mob:setLocalVar("GALE_T", os.time());
+                mob:useMobAbility(2726); -- shrieking_gale
+                break;
+            end
+        end
+    end
+end;
+
+function onMobDeath(mob, player, isKiller)
+    mob:setLocalVar("VW_DEADLINE", 0);
+
+    vwEndOperation(mob);
+    local idx = (mob:getID() - 17309985) / 4;
+    vwOnKill(mob, player, {
+        region = "ZILART", stage = 3, -- [F] Zilart III: 5000 EXP / 8000 cruor
+        atmacite = {1822}, -- white-light drop [W/J, ATMACITE-DATA.md]
+        pyxisId = 17310114 + idx,
+        drops = {11035, 11964, 18905, 18904, 5910}, -- Strophadic Earring, Whirlwind Dirs, Swiftwing, Ephemeron, Heavy Metal Pouch [F ffxiclopedia Aello]; ids checked vs DSP item_basic
+        dropRates = {[18904]=0.1, [18905]=1, [11035]=5, [11964]=5, [5910]=5}, -- [W 2026-10-09; BG wiki tier labels, NOT measured]
+        msgKeyItem = 10883,
+        msgCruor = 10879, msgFinalBR = 10876, msgFinalYG = 10874, msgFinalW = 10875,
+    });
+end;

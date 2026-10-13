@@ -6,6 +6,7 @@ ITEM_CANNOT_BE_OBTAINED = 6382; -- You cannot obtain the item <item> come back a
           ITEM_OBTAINED = 6388; -- Obtained: <item>
            GIL_OBTAINED = 6389; -- Obtained <number> gil
        KEYITEM_OBTAINED = 6391; -- Obtained key item: <keyitem>
+    HOMEPOINT_SET = 11109; -- Home point set!
 
            ALLIED_SIGIL = 12911; -- You have received the Allied Sigil!
 
@@ -17,3 +18,4 @@ WYATT_DIALOG = 11079; -- Ahhh, sorry, sorry. The name's Wyatt, an' I be an armor
 
 -- Porter Moogle
     RETRIEVE_DIALOG_ID = 15574; -- You retrieve$ from the porter moogle's care.
+COMMON_SENSE_SURVIVAL = 15646; -- new survival guide registered (client DAT, verified)
