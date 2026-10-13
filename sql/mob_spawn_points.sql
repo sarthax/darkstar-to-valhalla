@@ -40937,14 +40937,14 @@ INSERT INTO `mob_spawn_points` VALUES (17346748,'Aries','Aries',7693,0,0,0,0);
 INSERT INTO `mob_spawn_points` VALUES (17346750,'Evil_Oscar','Evil Oscar',7705,-396,94,-63,46);
 INSERT INTO `mob_spawn_points` VALUES (17346752,'Evil_Oscar','Evil Oscar',7705,-156,-25,115,46);
 INSERT INTO `mob_spawn_points` VALUES (17346754,'Evil_Oscar','Evil Oscar',7705,83,-145,295,46);
-INSERT INTO `mob_spawn_points` VALUES (17347046,'Spotter','Spotter',7726,0,0,0,0);
-INSERT INTO `mob_spawn_points` VALUES (17347047,'Dread_Dragon','Dread Dragon',7704,0,0,0,0);
-INSERT INTO `mob_spawn_points` VALUES (17347056,'Darokbok_of_Clan_Reaper','Darokbok of Clan Reaper',7700,0,0,0,0);
-INSERT INTO `mob_spawn_points` VALUES (17347057,'Jagidbod_of_Clan_Reaper','Jagidbod of Clan Reaper',7712,0,0,0,0);
-INSERT INTO `mob_spawn_points` VALUES (17347058,'Derakbak_of_Clan_Wolf','Derakbak of Clan Wolf',7701,0,0,0,0);
-INSERT INTO `mob_spawn_points` VALUES (17347059,'Reaper_Clan_Warmachine','Reaper Clan Warmachine',7723,0,0,0,0);
-INSERT INTO `mob_spawn_points` VALUES (17347060,'Wolf_Clan_Warmachine','Wolf Clan Warmachine',7728,0,0,0,0);
-INSERT INTO `mob_spawn_points` VALUES (17347075,'Lhu_Mhakaracca','Lhu Mhakaracca',7715,0,0,0,0);
+INSERT INTO `mob_spawn_points` VALUES (17347127,'Spotter','Spotter',7726,0,0,0,0);
+INSERT INTO `mob_spawn_points` VALUES (17347128,'Dread_Dragon','Dread Dragon',7704,0,0,0,0);
+INSERT INTO `mob_spawn_points` VALUES (17347137,'Darokbok_of_Clan_Reaper','Darokbok of Clan Reaper',7700,0,0,0,0);
+INSERT INTO `mob_spawn_points` VALUES (17347138,'Jagidbod_of_Clan_Reaper','Jagidbod of Clan Reaper',7712,0,0,0,0);
+INSERT INTO `mob_spawn_points` VALUES (17347139,'Derakbak_of_Clan_Wolf','Derakbak of Clan Wolf',7701,0,0,0,0);
+INSERT INTO `mob_spawn_points` VALUES (17347140,'Reaper_Clan_Warmachine','Reaper Clan Warmachine',7723,0,0,0,0);
+INSERT INTO `mob_spawn_points` VALUES (17347141,'Wolf_Clan_Warmachine','Wolf Clan Warmachine',7728,0,0,0,0);
+INSERT INTO `mob_spawn_points` VALUES (17347160,'Lhu_Mhakaracca','Lhu Mhakaracca',7715,0,0,0,0);
 
 -- ------------------------------------------------------------
 -- Ghelsba Outpost (Zone 140)
@@ -42900,9 +42900,9 @@ INSERT INTO `mob_spawn_points` VALUES (17375446,'Giant_Moa','Giant Moa',7907,0,0
 INSERT INTO `mob_spawn_points` VALUES (17375447,'Giant_Moa','Giant Moa',7907,0,0,0,0);
 INSERT INTO `mob_spawn_points` VALUES (17375449,'Giant_Moa','Giant Moa',7907,0,0,0,0);
 INSERT INTO `mob_spawn_points` VALUES (17375450,'Giant_Moa','Giant Moa',7907,0,0,0,0);
-INSERT INTO `mob_spawn_points` VALUES (17375748,'Searcher','Searcher',7935,0,0,0,0);
-INSERT INTO `mob_spawn_points` VALUES (17375749,'Black_Dragon','Black Dragon',7900,-139,56,-226,192);
-INSERT INTO `mob_spawn_points` VALUES (17375760,'Buu_Xolo_the_Bloodfaced','Buu Xolo the Bloodfaced',7901,0,0,0,0);
+INSERT INTO `mob_spawn_points` VALUES (17375829,'Searcher','Searcher',7935,0,0,0,0);
+INSERT INTO `mob_spawn_points` VALUES (17375830,'Black_Dragon','Black Dragon',7900,-139,56,-226,192);
+INSERT INTO `mob_spawn_points` VALUES (17375845,'Buu_Xolo_the_Bloodfaced','Buu Xolo the Bloodfaced',7901,0,0,0,0);
 
 -- ------------------------------------------------------------
 -- Beadeaux (Zone 147)
@@ -43397,7 +43397,7 @@ INSERT INTO `mob_spawn_points` VALUES (17383447,'De_Pha_Unscarred','De\'Pha Unsc
 INSERT INTO `mob_spawn_points` VALUES (17383448,'So_Hyu_Quakemaker','So\'Hyu Quakemaker',7999,0,0,0,0);
 INSERT INTO `mob_spawn_points` VALUES (17383449,'Ka_Ghi_Trovetaker','Ka\'Ghi Trovetaker',7993,0,0,0,0);
 INSERT INTO `mob_spawn_points` VALUES (17383450,'No_Bhu_Unyielding','No\'Bhu Unyielding',7995,0,0,0,0);
-INSERT INTO `mob_spawn_points` VALUES (17383482,'Diamond_Quadav','Diamond Quadav',7991,0,0,0,0);
+INSERT INTO `mob_spawn_points` VALUES (17383486,'Diamond_Quadav','Diamond Quadav',7991,0,0,0,0);
 INSERT INTO `mob_spawn_points` VALUES (17383443,'Za_Dha_Adamantking','Za\'Dha Adamantking',8000,281,43,96,127);
 
 -- ------------------------------------------------------------
@@ -44514,8 +44514,8 @@ INSERT INTO `mob_spawn_points` VALUES (17399834,'Yagudo_High_Priest','Yagudo Hig
 INSERT INTO `mob_spawn_points` VALUES (17399835,'Yagudo_High_Priest','Yagudo High Priest',8133,0,0,0,0);
 INSERT INTO `mob_spawn_points` VALUES (17399836,'Yagudo_High_Priest','Yagudo High Priest',8133,0,0,0,0);
 
-INSERT INTO `mob_spawn_points` VALUES (17399851,'Yagudo_Avatar','Yagudo Avatar',8132,0,0,0,0);
-INSERT INTO `mob_spawn_points` VALUES (17399852,'Tzee_Xicu_the_Manifest','Tzee Xicu the Manifest',8131,0,0,0,0);
+INSERT INTO `mob_spawn_points` VALUES (17399855,'Yagudo_Avatar','Yagudo Avatar',8132,0,0,0,0);
+INSERT INTO `mob_spawn_points` VALUES (17399856,'Tzee_Xicu_the_Manifest','Tzee Xicu the Manifest',8131,0,0,0,0);
 
 -- ------------------------------------------------------------
 -- The Boyahda Tree (Zone 153)
@@ -47107,9 +47107,9 @@ INSERT INTO `mob_spawn_points` VALUES (17444923,'Shantotto','Shantotto',8597,0,0
 INSERT INTO `mob_spawn_points` VALUES (17445152,'Grav_iton','Grav\'iton',8588,0,0,0,0);
 INSERT INTO `mob_spawn_points` VALUES (17445155,'Eald_narche','Eald\'narche',8587,0,0,0,0);
 INSERT INTO `mob_spawn_points` VALUES (17445156,'Kam_lanaut','Kam\'lanaut',8590,0,0,0,0);
-INSERT INTO `mob_spawn_points` VALUES (17445214,'Shantotto','Shantotto',8597,0,0,0,0);
-INSERT INTO `mob_spawn_points` VALUES (17445215,'Shantotto','Shantotto',8597,0,0,0,0);
-INSERT INTO `mob_spawn_points` VALUES (17445216,'Shantotto','Shantotto',8597,0,0,0,0);
+INSERT INTO `mob_spawn_points` VALUES (17445218,'Shantotto','Shantotto',8597,0,0,0,0);
+INSERT INTO `mob_spawn_points` VALUES (17445219,'Shantotto','Shantotto',8597,0,0,0,0);
+INSERT INTO `mob_spawn_points` VALUES (17445220,'Shantotto','Shantotto',8597,0,0,0,0);
 
 
 -- ------------------------------------------------------------
@@ -47613,10 +47613,10 @@ INSERT INTO `mob_spawn_points` VALUES (17453131,'Henchman_Moogle','Henchman Moog
 INSERT INTO `mob_spawn_points` VALUES (17453281,'Shadow_Lord','Shadow Lord',8740,0,0,0,0);
 INSERT INTO `mob_spawn_points` VALUES (17453282,'Shadow_Lord','Shadow Lord',8740,0,0,0,0);
 INSERT INTO `mob_spawn_points` VALUES (17453283,'Zeid','Zeid',8743,0,0,0,0);
-INSERT INTO `mob_spawn_points` VALUES (17453295,'Volker','Volker',8742,0,0,0,0);
-INSERT INTO `mob_spawn_points` VALUES (17453297,'Ayame','Ayame',8729,0,0,0,0);
-INSERT INTO `mob_spawn_points` VALUES (17453313,'Riko_Kupenreich','Riko Kupenreich',8739,0,0,0,0);
-INSERT INTO `mob_spawn_points` VALUES (17453314,'Riko_Kupenreich','Riko Kupenreich',8739,0,0,0,0);
+INSERT INTO `mob_spawn_points` VALUES (17453311,'Volker','Volker',8742,0,0,0,0);
+INSERT INTO `mob_spawn_points` VALUES (17453313,'Ayame','Ayame',8729,0,0,0,0);
+INSERT INTO `mob_spawn_points` VALUES (17453329,'Riko_Kupenreich','Riko Kupenreich',8739,0,0,0,0);
+INSERT INTO `mob_spawn_points` VALUES (17453330,'Riko_Kupenreich','Riko Kupenreich',8739,0,0,0,0);
 
 -- ------------------------------------------------------------
 -- Ranguemont Pass (Zone 166)
@@ -48085,13 +48085,13 @@ INSERT INTO `mob_spawn_points` VALUES (17465431,'Goblin_Enforcer','Goblin Enforc
 INSERT INTO `mob_spawn_points` VALUES (17465527,'Zeid','Zeid',8813,0,0,0,0);
 INSERT INTO `mob_spawn_points` VALUES (17465528,'Eald_narche','Eald\'narche',8794,-221.246,-10,26.307,127);
 INSERT INTO `mob_spawn_points` VALUES (17465529,'Kam_lanaut','Kam\'lanaut',8800,0,0,0,0);
-INSERT INTO `mob_spawn_points` VALUES (17465568,'Grav_iton','Grav\'iton',8798,0,0,0,0);
-INSERT INTO `mob_spawn_points` VALUES (17465569,'Eald_narche','Eald\'narche',8794,0,0,0,0);
-INSERT INTO `mob_spawn_points` VALUES (17465570,'Kam_lanaut','Kam\'lanaut',8800,0,0,0,0);
-INSERT INTO `mob_spawn_points` VALUES (17465594,'Nanaa_Mihgo','Nanaa Mihgo',8804,0,0,0,0);
-INSERT INTO `mob_spawn_points` VALUES (17465595,'Goblin_Repossessor','Goblin Repossessor',8797,0,0,0,0);
-INSERT INTO `mob_spawn_points` VALUES (17465596,'Goblin_Intimidator','Goblin Intimidator',8796,0,0,0,0);
-INSERT INTO `mob_spawn_points` VALUES (17465597,'Goblin_Enforcer','Goblin Enforcer',8795,0,0,0,0);
+INSERT INTO `mob_spawn_points` VALUES (17465572,'Grav_iton','Grav\'iton',8798,0,0,0,0);
+INSERT INTO `mob_spawn_points` VALUES (17465573,'Eald_narche','Eald\'narche',8794,0,0,0,0);
+INSERT INTO `mob_spawn_points` VALUES (17465574,'Kam_lanaut','Kam\'lanaut',8800,0,0,0,0);
+INSERT INTO `mob_spawn_points` VALUES (17465598,'Nanaa_Mihgo','Nanaa Mihgo',8804,0,0,0,0);
+INSERT INTO `mob_spawn_points` VALUES (17465599,'Goblin_Repossessor','Goblin Repossessor',8797,0,0,0,0);
+INSERT INTO `mob_spawn_points` VALUES (17465600,'Goblin_Intimidator','Goblin Intimidator',8796,0,0,0,0);
+INSERT INTO `mob_spawn_points` VALUES (17465601,'Goblin_Enforcer','Goblin Enforcer',8795,0,0,0,0);
 
 -- ------------------------------------------------------------
 -- Toraimarai Canal (Zone 169)
