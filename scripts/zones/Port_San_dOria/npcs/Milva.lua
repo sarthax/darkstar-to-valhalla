@@ -10,6 +10,7 @@ require("scripts/globals/conquest");
 require("scripts/globals/quests");
 require("scripts/globals/shop");
 
+require("scripts/globals/mog_tablets");
 -----------------------------------
 -- onTrade Action
 -----------------------------------
@@ -34,7 +35,7 @@ end;
 function onTrigger(player,npc)
     local RegionOwner = GetRegionOwner(SARUTABARUTA);
 
-    if (RegionOwner ~= NATION_SANDORIA) then 
+    if (RegionOwner ~= NATION_SANDORIA and not MOG_TABLET.hasPower(MOG_TABLET.POWERS.BOUNTIFUL_BAZAAR)) then 
         player:showText(npc,MILVA_CLOSED_DIALOG);
     else
         player:showText(npc,MILVA_OPEN_DIALOG);

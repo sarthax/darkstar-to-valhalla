@@ -1,3 +1,4 @@
+-- RETIRED 2026-10-12: superseded by the full ID realignment in sql/npc_list.sql. Do NOT run; targets already exist and re-running can shuffle same-named neighbours.
 -- Jugner Forest (104) tail re-key: DSP rows 597-734 -> client -11, Moogle 738 -> 729. Apply AFTER rekey_101_104.sql. Names verified 1:1 vs client pull.
 UPDATE npc_list SET npcid=17203786 WHERE npcid=17203797 AND name='Treasure_Casket';
 UPDATE npc_list SET npcid=17203787 WHERE npcid=17203798 AND name='Treasure_Casket';
