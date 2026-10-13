@@ -22,3 +22,9 @@ Rule: an id change is not done until everything referencing it is checked (see m
 - Stale in SQL: `instance_entities` instance 6 (Leujaoam, 5 door/prop ids) -> remapped in `sql/instance_entities.sql`; live DB: `sql/slices/npc-id-realign/instance_entities_leujaoam_6.sql`.
 - The 28 mob moves: no literal references anywhere. Not covered: ids built at runtime from non-literal sources, and `conquest.lua` leader-offset rows that point at `Moogle`/blank rows (pre-existing).
 - Known dead branch: West_Ronfaure Signpost `17187569` points at a Conquest_Banner (never a Signpost).
+
+## Zone 69 chain resolved live (2026-10-13)
+- Deleted the live-only placeholder `NPC[104]` (17060100, 0,0,0, unregistered, no Lua/treasure refs, absent from DAT). Backup: `bak_z69_20261013`.
+- Then moved `_1x1` 17060116 -> 17060100 and Moogle 17060108 -> 17060116, and ran `sql/slices/npc-id-realign/instance_entities_leujaoam_6.sql` live (backup `bak_ie6_20261013`). Instance 6 now registers 100, 105, 106, 118, 119.
+- Zone 104 Treasure_Casket "target-occupied" skips need no action: live already holds Treasure_Casket at 586-601, matching the DAT list exactly.
+- The Selh_teus / Disjoined_One skips are zone 230 (Southern San d'Oria), not 69; see the findings below (unresolved).
