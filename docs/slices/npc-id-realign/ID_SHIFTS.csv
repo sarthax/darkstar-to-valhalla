@@ -939,3 +939,102 @@ zone,old_id,new_id,old_slot,new_slot,name,reason
 235,17740136,17740185,360,409,blank,corrective pass 2: relocated out of a DAT slot
 235,17740142,17740186,366,410,blank,corrective pass 2: relocated out of a DAT slot
 235,17740148,17740187,372,411,blank,corrective pass 2: relocated out of a DAT slot
+291,17969880,17969881,728,729,Unity_Master,corrective pass 288_289_291: name matches client entity at new slot
+291,17969882,17969883,730,731,Achieve_Master,corrective pass 288_289_291: name matches client entity at new slot
+291,17969908,17969909,756,757,Ramblix,corrective pass 288_289_291: name matches client entity at new slot
+291,17969909,17969910,757,758,Goblin_Footprint,corrective pass 288_289_291: name matches client entity at new slot
+291,17969910,17969911,758,759,Etched_Rock,corrective pass 288_289_291: name matches client entity at new slot
+291,17969912,17969913,760,761,Resume_Point,corrective pass 288_289_291: name matches client entity at new slot
+291,17969913,17969914,761,762,Dimensional_Portal,corrective pass 288_289_291: name matches client entity at new slot
+291,17969914,17969915,762,763,Mystic_Retriever,corrective pass 288_289_291: name matches client entity at new slot
+291,17969924,17969925,772,773,Iroha,corrective pass 288_289_291: name matches client entity at new slot
+291,17969951,17969953,799,801,Iroha,corrective pass 288_289_291: name matches client entity at new slot
+291,17969925,17969926,773,774,Disjoined_One,corrective pass 288_289_291: name matches client entity at new slot
+291,17969927,17969928,775,776,Tenzen,corrective pass 288_289_291: name matches client entity at new slot
+291,17969928,17969929,776,777,Lion,corrective pass 288_289_291: name matches client entity at new slot
+291,17969929,17969930,777,778,Prishe,corrective pass 288_289_291: name matches client entity at new slot
+291,17969930,17969931,778,779,nashmeira,corrective pass 288_289_291: name matches client entity at new slot
+291,17969931,17969932,779,780,Lilisette,corrective pass 288_289_291: name matches client entity at new slot
+291,17969932,17969933,780,781,Arciela,corrective pass 288_289_291: name matches client entity at new slot
+291,17969933,17969934,781,782,Aldo,corrective pass 288_289_291: name matches client entity at new slot
+291,17969934,17969935,782,783,maat,corrective pass 288_289_291: name matches client entity at new slot
+291,17969935,17969936,783,784,Zeid,corrective pass 288_289_291: name matches client entity at new slot
+291,17969936,17969937,784,785,Volker,corrective pass 288_289_291: name matches client entity at new slot
+291,17969937,17969938,785,786,Trion,corrective pass 288_289_291: name matches client entity at new slot
+291,17969938,17969939,786,787,Curilla,corrective pass 288_289_291: name matches client entity at new slot
+291,17969939,17969940,787,788,Shantotto,corrective pass 288_289_291: name matches client entity at new slot
+291,17969940,17969941,788,789,Ajido-Marujido,corrective pass 288_289_291: name matches client entity at new slot
+291,17969941,17969942,789,790,StarSibyl,corrective pass 288_289_291: name matches client entity at new slot
+291,17969942,17969943,790,791,Semih_Lafihna,corrective pass 288_289_291: name matches client entity at new slot
+291,17969943,17969944,791,792,Gilgamesh,corrective pass 288_289_291: name matches client entity at new slot
+291,17969944,17969945,792,793,Ovjang,corrective pass 288_289_291: name matches client entity at new slot
+291,17969945,17969946,793,794,Mnejing,corrective pass 288_289_291: name matches client entity at new slot
+291,17969946,17969947,794,795,Luzaf,corrective pass 288_289_291: name matches client entity at new slot
+291,17969947,17969948,795,796,Ulmia,corrective pass 288_289_291: name matches client entity at new slot
+291,17969973,17969974,821,822,Shiftrix,corrective pass 288_289_291: name matches client entity at new slot
+291,17970034,17970035,882,883,Temprix,corrective pass 288_289_291: name matches client entity at new slot
+289,17961654,17961653,694,693,Achieve_Master,corrective pass 288_289_291: name matches client entity at new slot
+289,17961680,17961679,720,719,Goblin_Footprint,corrective pass 288_289_291: name matches client entity at new slot
+289,17961684,17961683,724,723,Tenzen,corrective pass 288_289_291: name matches client entity at new slot
+289,17961685,17961684,725,724,Siren,corrective pass 288_289_291: name matches client entity at new slot
+289,17961686,17961685,726,725,SirenPrime,corrective pass 288_289_291: name matches client entity at new slot
+289,17961689,17961688,729,728,Cid,corrective pass 288_289_291: name matches client entity at new slot
+289,17961690,17961689,730,729,Naji,corrective pass 288_289_291: name matches client entity at new slot
+289,17961691,17961690,731,730,Ayame,corrective pass 288_289_291: name matches client entity at new slot
+289,17961692,17961691,732,731,Selh_teus,corrective pass 288_289_291: name matches client entity at new slot
+289,17961693,17961692,733,732,Balamor,corrective pass 288_289_291: name matches client entity at new slot
+289,17961695,17961694,735,734,Iroha,corrective pass 288_289_291: name matches client entity at new slot
+289,17961696,17961695,736,735,Volto_Oscuro,corrective pass 288_289_291: name matches client entity at new slot
+289,17961697,17961696,737,736,Kagero,corrective pass 288_289_291: name matches client entity at new slot
+289,17961698,17961697,738,737,Undulating_Confluencee,corrective pass 288_289_291: name matches client entity at new slot
+289,17961711,17961710,751,750,Dremi,corrective pass 288_289_291: name matches client entity at new slot
+289,17961712,17961711,752,751,Register_Of_Deeds,corrective pass 288_289_291: name matches client entity at new slot
+289,17961713,17961712,753,752,EschanPortal#1,corrective pass 288_289_291: name matches client entity at new slot
+289,17961714,17961713,754,753,EschanPortal#2,corrective pass 288_289_291: name matches client entity at new slot
+289,17961715,17961714,755,754,EschanPortal#3,corrective pass 288_289_291: name matches client entity at new slot
+289,17961716,17961715,756,755,EschanPortal#4,corrective pass 288_289_291: name matches client entity at new slot
+289,17961717,17961716,757,756,EschanPortal#5,corrective pass 288_289_291: name matches client entity at new slot
+289,17961718,17961717,758,757,EschanPortal#6,corrective pass 288_289_291: name matches client entity at new slot
+289,17961719,17961718,759,758,EschanPortal#7,corrective pass 288_289_291: name matches client entity at new slot
+289,17961720,17961719,760,759,EschanPortal#8,corrective pass 288_289_291: name matches client entity at new slot
+289,17961721,17961720,761,760,EschanPortal#9,corrective pass 288_289_291: name matches client entity at new slot
+289,17961722,17961721,762,761,EschanPortal#10,corrective pass 288_289_291: name matches client entity at new slot
+289,17961723,17961722,763,762,EschanPortal#11,corrective pass 288_289_291: name matches client entity at new slot
+289,17961724,17961723,764,763,EschanPortal#12,corrective pass 288_289_291: name matches client entity at new slot
+289,17961725,17961724,765,764,EschanPortal#13,corrective pass 288_289_291: name matches client entity at new slot
+289,17961726,17961725,766,765,EschanPortal#14,corrective pass 288_289_291: name matches client entity at new slot
+289,17961727,17961726,767,766,EschanPortal#15,corrective pass 288_289_291: name matches client entity at new slot
+288,17957409,17957410,545,546,Achieve_Master,corrective pass 288_289_291: name matches client entity at new slot
+288,17957411,17957412,547,548,Unity_Master,corrective pass 288_289_291: name matches client entity at new slot
+288,17957427,17957428,563,564,Grumblix,corrective pass 288_289_291: name matches client entity at new slot
+288,17957428,17957429,564,565,Goblin_Footprint,corrective pass 288_289_291: name matches client entity at new slot
+288,17957430,17957431,566,567,Iroha,corrective pass 288_289_291: name matches client entity at new slot
+288,17957431,17957432,567,568,Lion,corrective pass 288_289_291: name matches client entity at new slot
+288,17957432,17957433,568,569,Zeid,corrective pass 288_289_291: name matches client entity at new slot
+288,17957433,17957434,569,570,Undulating_Confluence,corrective pass 288_289_291: name matches client entity at new slot
+288,17957447,17957448,583,584,Affi,corrective pass 288_289_291: name matches client entity at new slot
+288,17957448,17957449,584,585,Register_of_deed,corrective pass 288_289_291: name matches client entity at new slot
+288,17957449,17957450,585,586,EschanPortal#1,corrective pass 288_289_291: name matches client entity at new slot
+288,17957450,17957451,586,587,EschanPortal#2,corrective pass 288_289_291: name matches client entity at new slot
+288,17957451,17957452,587,588,EschanPortal#3,corrective pass 288_289_291: name matches client entity at new slot
+288,17957452,17957453,588,589,EschanPortal#4,corrective pass 288_289_291: name matches client entity at new slot
+288,17957453,17957454,589,590,EschanPortal#5,corrective pass 288_289_291: name matches client entity at new slot
+288,17957454,17957455,590,591,EschanPortal#6,corrective pass 288_289_291: name matches client entity at new slot
+288,17957455,17957456,591,592,EschanPortal#7,corrective pass 288_289_291: name matches client entity at new slot
+288,17957456,17957457,592,593,EschanPortal#8,corrective pass 288_289_291: name matches client entity at new slot
+291,17969881,17970042,729,890,blank,corrective pass 288_289_291: relocated out of a DAT slot
+291,17969883,17970043,731,891,blank,corrective pass 288_289_291: relocated out of a DAT slot
+291,17969911,17970044,759,892,???,corrective pass 288_289_291: relocated out of a DAT slot
+291,17969915,17970045,763,893,???,corrective pass 288_289_291: relocated out of a DAT slot
+291,17969953,17970048,801,896,blank,corrective pass 288_289_291: relocated out of a DAT slot
+291,17969926,17970046,774,894,csnpc,corrective pass 288_289_291: relocated out of a DAT slot
+291,17969948,17970047,796,895,blank,corrective pass 288_289_291: relocated out of a DAT slot
+289,17961683,17961655,723,695,???,corrective pass 288_289_291: relocated out of a DAT slot
+289,17961688,17961656,728,696,blank,corrective pass 288_289_291: relocated out of a DAT slot
+289,17961694,17961657,734,697,csnpc,corrective pass 288_289_291: relocated out of a DAT slot
+289,17961710,17961658,750,698,???,corrective pass 288_289_291: relocated out of a DAT slot
+288,17957410,17957500,546,636,NPC[222],corrective pass 288_289_291: relocated out of a DAT slot
+288,17957412,17957501,548,637,NPC[224],corrective pass 288_289_291: relocated out of a DAT slot
+288,17957429,17957502,565,638,blank,corrective pass 288_289_291: relocated out of a DAT slot
+288,17957434,17957503,570,639,blank,corrective pass 288_289_291: relocated out of a DAT slot
+288,17957457,17957504,593,640,NPC[251],corrective pass 288_289_291: relocated out of a DAT slot

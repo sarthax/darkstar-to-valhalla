@@ -137,3 +137,7 @@ Still open: ~730 other rows whose name differs from the DAT entity at their slot
 
 Order-matched same-name groups (104: -11/-9 shift block, 235: -13 block) onto client-DAT slots: 89 moves + 45 relocations of blank/qm/NPC[xx]/Conquest_Banner/Fireworks rows that sat on DAT slots (they have no DAT entity, so they went to free non-DAT slots). Zone 104's 16 Treasure_Casket rows now occupy DAT slots 586-601. Script: `sql/slices/npc-id-realign/npc_id_realign_corrective_104_235.sql` (run after the first corrective script). Mismatch count 743 -> 629. Not touched: 235 door rows (no DAT entity), Eruditemoogle/Proctormoogle, 235 Moogle group (DAT has 23 slots, ambiguous).
 5 duplicate npc ids existed before this work and are unchanged.
+
+## Corrective pass 3 (2026-10-13): zones 288, 289, 291
+
+Order-matched same-name groups (+1/-1 block shifts, e.g. 291 Unity/Achieve Master, Trust NPCs 772-796, 289 Siren..Undulating Conqueror, Eschan Portals): 83 moves + 16 relocations of blank/qm/NPC[xx] rows. Script: `sql/slices/npc-id-realign/npc_id_realign_corrective_288_289_291.sql`. Mismatches 629 -> 549. Left: 289 Unity_Master (DAT slot 691 is a mob), 291 Moogle (747->755), 291 Emblazoned_Reliquary (842->875), 291 fep1-3 (+1 shift, treated as placeholders), 288/291 Grimslight, 288 Moogle (594->602), 289 Moogle (717->709).
