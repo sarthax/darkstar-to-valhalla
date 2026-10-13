@@ -6,3 +6,4 @@ ITEM_CANNOT_BE_OBTAINED = 6382; -- You cannot obtain the item <item> come back a
            GIL_OBTAINED = 6389; -- Obtained <number> gil
        KEYITEM_OBTAINED = 6391; -- Obtained key item: <keyitem>
  FISHING_MESSAGE_OFFSET = 7067; -- You can't fish here
+COMMON_SENSE_SURVIVAL = 9247; -- new survival guide registered (client DAT, verified)

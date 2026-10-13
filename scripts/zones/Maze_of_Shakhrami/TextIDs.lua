@@ -29,3 +29,4 @@ CONQUEST_BASE = 7075; -- Tallying conquest results...
 DEVICE_NOT_WORKING = 7248; -- The device is not working.
       SYS_OVERLOAD = 7257; -- arning! Sys...verload! Enterin...fety mode. ID eras...d 
       YOU_LOST_THE = 7262; -- You lost the #. 
+COMMON_SENSE_SURVIVAL = 11421; -- new survival guide registered (client DAT, verified)

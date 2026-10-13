@@ -21,3 +21,4 @@ HEAVY_DOOR = 7304; -- It is a solid stone door.
 
 -- conquest Base
 CONQUEST_BASE = 0;
+COMMON_SENSE_SURVIVAL = 11418; -- new survival guide registered (client DAT, verified)

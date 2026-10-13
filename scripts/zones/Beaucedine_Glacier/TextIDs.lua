@@ -23,3 +23,4 @@ UNUSUAL_ARRANGEMENT_OF_BRANCHES = 7873; -- There is an unusual arrangement of br
 
 -- conquest Base
 CONQUEST_BASE = 0;
+COMMON_SENSE_SURVIVAL = 12767; -- new survival guide registered (client DAT, verified)

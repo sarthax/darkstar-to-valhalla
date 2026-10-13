@@ -97,4 +97,4 @@ OBTAIN_SCYLDS                 = 1498; -- You obtain <number> [scyld/scylds]! Cur
 HUNT_CANCELED                 = 1502; -- Hunt canceled.
 YOU_CAN_BECOME_PUP            = 5833; -- You can now become a puppetmaster!
 GATHWEEDA_SHOP_DIALOG         = 9280; -- Only members of the Alchemists' Guild have the vision to create such fine products... Would you like to purchase something?
-COMMON_SENSE_SURVIVAL         = 14380; -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
+COMMON_SENSE_SURVIVAL = 14380; -- It appears that you have arrived at a new survival guide provided by the Adventurers' Mutual Aid Network. Common sense dictates that you should now be able to teleport here from similar tomes throughout the world.
