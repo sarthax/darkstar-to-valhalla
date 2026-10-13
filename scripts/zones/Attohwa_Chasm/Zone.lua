@@ -113,10 +113,9 @@ end;
 -----------------------------------
 
 function onGameHour(zone)
-    local npc = GetNPCByID(16806283);
-    if (npc ~= nil) then
-        npc:openDoor(); -- Attohwa Chasm miasma
-    end
+    -- The hard-coded id that was here (16806283) is not an NPC in the client DAT or npc_list.
+    -- There are 22 miasma doors (_071 and following, zone 7); their open/closed state per hour is
+    -- unverified against retail, so none are toggled here (same conclusion as LSB).
 end;
 
 -----------------------------------
