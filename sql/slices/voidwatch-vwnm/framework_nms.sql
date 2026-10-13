@@ -59,11 +59,11 @@ REPLACE INTO `mob_spawn_points` VALUES (17179264,'Gugalanna','Gugalanna',13780,8
 -- Cherufe (zone 105): 
 REPLACE INTO `mob_spawn_points` VALUES (17207725,'Cherufe','Cherufe',13825,-320.000,-16.500,-42.000,0);
 
--- Bhishani (zone 107): group 18303 added; fresh id block 17216233-17216235 (LSB ids taken or fewer rows than rifts); script base id must follow
+-- Bhishani (zone 107): group 18303 added; fresh id block 17216270-17216272 (LSB ids taken or fewer rows than rifts); script base id must follow
 REPLACE INTO `mob_groups` (`groupid`,`poolid`,`zoneid`,`respawntime`,`spawntype`,`dropid`,`HP`,`MP`,`minLevel`,`maxLevel`,`allegiance`) VALUES (18303,4688,107,0,128,0,0,0,99,99,0);
-REPLACE INTO `mob_spawn_points` VALUES (17216233,'Bhishani','Bhishani',18303,605.000,-0.964,-520.000,198);
-REPLACE INTO `mob_spawn_points` VALUES (17216234,'Bhishani','Bhishani',18303,615.652,-3.213,-519.283,112);
-REPLACE INTO `mob_spawn_points` VALUES (17216235,'Bhishani','Bhishani',18303,0.000,0.000,0.000,0);
+REPLACE INTO `mob_spawn_points` VALUES (17216270,'Bhishani','Bhishani',18303,605.000,-0.964,-520.000,198);
+REPLACE INTO `mob_spawn_points` VALUES (17216271,'Bhishani','Bhishani',18303,615.652,-3.213,-519.283,112);
+REPLACE INTO `mob_spawn_points` VALUES (17216272,'Bhishani','Bhishani',18303,0.000,0.000,0.000,0);
 
 -- Gwynn Ap Nudd (zone 108): 
 REPLACE INTO `mob_spawn_points` VALUES (17220020,'Gwynn_ap_Nudd','Gwynn ap Nudd',13804,-125.000,71.549,720.000,231);

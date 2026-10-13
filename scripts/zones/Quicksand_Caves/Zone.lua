@@ -11,7 +11,7 @@ require("scripts/globals/keyitems");
 require("scripts/globals/npc_util");
 require("scripts/globals/zone");
 
-local base_id = 17629694;
+local base_id = 17629685;
 
 local anticanTagPositions =
 {
@@ -67,9 +67,9 @@ function onInitialize(zone)
     SetServerVariable("BastokFight8_1" ,0);
     SetServerVariable("Bastok8-1LastClear", os.time()-QM_RESET_TIME); -- Set a delay on ??? mission NM pop.
 
-    UpdateTreasureSpawnPoint(17629748);
+    UpdateTreasureSpawnPoint(17629739);
 
-    npcUtil.UpdateNPCSpawnPoint(17629770, 60, 120, anticanTagPositions, "[POP]Antican_Tag");
+    npcUtil.UpdateNPCSpawnPoint(17629761, 60, 120, anticanTagPositions, "[POP]Antican_Tag");
 end;
 
 -----------------------------------
