@@ -8,7 +8,7 @@ require("scripts/globals/survival_guide");
 require("scripts/zones/Eastern_Adoulin/TextIDs");
 
 function onTrigger(player,npc)
-    SURVIVAL_GUIDE.onTrigger(player, COMMON_SENSE_SURVIVAL);
+    SURVIVAL_GUIDE.onTrigger(player, nil); -- client has no registration text for this zone
 end;
 
 function onEventUpdate(player,csid,option)
