@@ -126,3 +126,9 @@ The npc moved onto a client DAT slot that a mob_spawn_points row also uses. The 
 
 ## 190 / 208
 27 shift-only rows in zones 190 and 208 have no ledger entry and no DAT name verification; they were left unmoved. Non-casket cleanup for those zones is a separate task.
+
+## Corrective commit (2026-10-13)
+
+Moved 42 npc rows onto the client-DAT slot with the matching entity name (cities 230/238/243, plus rows 100-119/146/179/288/291 that the old `-139-146` / `-dat-rest` / `-cities` variants had right). Script: `sql/slices/npc-id-realign/npc_id_realign_corrective.sql` (run once, after `npc_id_realign.sql`). Ledger rows are appended to `ID_SHIFTS.csv`. Also ported the Memory_Receptacle door ids and the Attohwa Zone.lua fix from 87f1d4f8a9. The old 28-mob remap (127007154a) was deliberately NOT ported.
+
+Still open: ~730 other rows whose name differs from the DAT entity at their slot (many are placeholders or other slices' rows, e.g. zones 104, 235, 291, 293, 115, 165); 230/238 unresolved name groups and 243 Unity_Master have no unambiguous DAT slot. Downstream rechecks needed: survival-guides-v2 blocked rows, kupowers `mog_tablet_data.lua`, caskets, vwnm rekeys.
