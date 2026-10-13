@@ -9,3 +9,4 @@ ITEM_CANNOT_BE_OBTAINED = 6904; -- You cannot obtain the item
 
 -- Other Texts
 ITEM_DELIVERY_DIALOG = 7675; -- Hello! Any packages to sendy-wend
+COMMON_SENSE_SURVIVAL = 8640; -- new survival guide registered (client DAT, verified)

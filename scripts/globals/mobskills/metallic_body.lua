@@ -5,11 +5,13 @@
 -- Type: Magical
 ---------------------------------------------
 require("scripts/globals/monstertpmoves");
+require("scripts/globals/voidwatch");
 require("scripts/globals/settings");
 require("scripts/globals/status");
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
+    if (vwBuffActive ~= nil and vwBuffActive(mob, EFFECT_STONESKIN)) then return 1; end -- Voidwatch NMs: no re-buff while active
     return 0;
 end;
 

@@ -71,3 +71,4 @@ CONQUEST_BASE = 4424;
 
 -- Porter Moogle
             RETRIEVE_DIALOG_ID = 15873; -- You retrieve$ from the porter moogle's care.
+COMMON_SENSE_SURVIVAL = 16276; -- new survival guide registered (client DAT, verified)
