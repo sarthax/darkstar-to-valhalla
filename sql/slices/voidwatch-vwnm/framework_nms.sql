@@ -30,11 +30,11 @@ REPLACE INTO `mob_spawn_points` VALUES (17043905,'Yalungur','Yalungur',18300,61.
 -- Morta (zone 68): 
 REPLACE INTO `mob_spawn_points` VALUES (17056194,'Morta','Morta',13651,-153.000,8.212,44.000,0);
 
--- Brekekekex (zone 79): group 18301 added; fresh id block 17101352-17101354 (LSB ids taken or fewer rows than rifts); script base id must follow
+-- Brekekekex (zone 79): group 18301 added; fresh id block 17101608-17101610 (LSB ids taken or fewer rows than rifts); script base id must follow
 REPLACE INTO `mob_groups` (`groupid`,`poolid`,`zoneid`,`respawntime`,`spawntype`,`dropid`,`HP`,`MP`,`minLevel`,`maxLevel`,`allegiance`) VALUES (18301,5207,79,0,128,0,0,0,95,96,0);
-REPLACE INTO `mob_spawn_points` VALUES (17101352,'Brekekekex','Brekekekex',18301,242.949,-4.942,-491.421,66);
-REPLACE INTO `mob_spawn_points` VALUES (17101353,'Brekekekex','Brekekekex',18301,254.210,-2.500,-725.390,152);
-REPLACE INTO `mob_spawn_points` VALUES (17101354,'Brekekekex','Brekekekex',18301,-314.613,-4.758,-748.020,117);
+REPLACE INTO `mob_spawn_points` VALUES (17101608,'Brekekekex','Brekekekex',18301,242.949,-4.942,-491.421,66);
+REPLACE INTO `mob_spawn_points` VALUES (17101609,'Brekekekex','Brekekekex',18301,254.210,-2.500,-725.390,152);
+REPLACE INTO `mob_spawn_points` VALUES (17101610,'Brekekekex','Brekekekex',18301,-314.613,-4.758,-748.020,117);
 
 -- Gaunab (zone 83): 
 REPLACE INTO `mob_spawn_points` VALUES (17117891,'Gaunab','Gaunab',13814,0.000,0.000,0.000,0);
@@ -59,11 +59,11 @@ REPLACE INTO `mob_spawn_points` VALUES (17179264,'Gugalanna','Gugalanna',13780,8
 -- Cherufe (zone 105): 
 REPLACE INTO `mob_spawn_points` VALUES (17207725,'Cherufe','Cherufe',13825,-320.000,-16.500,-42.000,0);
 
--- Bhishani (zone 107): group 18303 added; fresh id block 17216233-17216235 (LSB ids taken or fewer rows than rifts); script base id must follow
+-- Bhishani (zone 107): group 18303 added; fresh id block 17216274-17216276 (LSB ids taken or fewer rows than rifts); script base id must follow
 REPLACE INTO `mob_groups` (`groupid`,`poolid`,`zoneid`,`respawntime`,`spawntype`,`dropid`,`HP`,`MP`,`minLevel`,`maxLevel`,`allegiance`) VALUES (18303,4688,107,0,128,0,0,0,99,99,0);
-REPLACE INTO `mob_spawn_points` VALUES (17216233,'Bhishani','Bhishani',18303,605.000,-0.964,-520.000,198);
-REPLACE INTO `mob_spawn_points` VALUES (17216234,'Bhishani','Bhishani',18303,615.652,-3.213,-519.283,112);
-REPLACE INTO `mob_spawn_points` VALUES (17216235,'Bhishani','Bhishani',18303,0.000,0.000,0.000,0);
+REPLACE INTO `mob_spawn_points` VALUES (17216274,'Bhishani','Bhishani',18303,605.000,-0.964,-520.000,198);
+REPLACE INTO `mob_spawn_points` VALUES (17216275,'Bhishani','Bhishani',18303,615.652,-3.213,-519.283,112);
+REPLACE INTO `mob_spawn_points` VALUES (17216276,'Bhishani','Bhishani',18303,0.000,0.000,0.000,0);
 
 -- Gwynn Ap Nudd (zone 108): 
 REPLACE INTO `mob_spawn_points` VALUES (17220020,'Gwynn_ap_Nudd','Gwynn ap Nudd',13804,-125.000,71.549,720.000,231);
@@ -106,11 +106,11 @@ REPLACE INTO `mob_spawn_points` VALUES (17428818,'Neith','Neith',18306,179.723,0
 REPLACE INTO `mob_spawn_points` VALUES (17428824,'Neith','Neith',18306,259.972,0.000,60.831,22);
 REPLACE INTO `mob_spawn_points` VALUES (17428830,'Neith','Neith',18306,-143.783,0.985,-23.117,37);
 
--- Laidly Laurence (zone 164): group 18307 added; fresh id block 17449569-17449571 (LSB ids taken or fewer rows than rifts); script base id must follow
+-- Laidly Laurence (zone 164): group 18307 added; fresh id block 17449570-17449572 (LSB ids taken or fewer rows than rifts); script base id must follow
 REPLACE INTO `mob_groups` (`groupid`,`poolid`,`zoneid`,`respawntime`,`spawntype`,`dropid`,`HP`,`MP`,`minLevel`,`maxLevel`,`allegiance`) VALUES (18307,5146,164,0,128,0,0,0,91,93,0);
-REPLACE INTO `mob_spawn_points` VALUES (17449569,'Laidly_Laurence','Laidly Laurence',18307,-260.000,-0.580,-20.000,223);
-REPLACE INTO `mob_spawn_points` VALUES (17449570,'Laidly_Laurence','Laidly Laurence',18307,-190.068,-0.579,139.325,9);
-REPLACE INTO `mob_spawn_points` VALUES (17449571,'Laidly_Laurence','Laidly Laurence',18307,-59.667,-0.500,-61.870,10);
+REPLACE INTO `mob_spawn_points` VALUES (17449570,'Laidly_Laurence','Laidly Laurence',18307,-260.000,-0.580,-20.000,223);
+REPLACE INTO `mob_spawn_points` VALUES (17449571,'Laidly_Laurence','Laidly Laurence',18307,-190.068,-0.579,139.325,9);
+REPLACE INTO `mob_spawn_points` VALUES (17449572,'Laidly_Laurence','Laidly Laurence',18307,-59.667,-0.500,-61.870,10);
 
 -- Nympha Eunomia (zone 171): 
 REPLACE INTO `mob_spawn_points` VALUES (17478059,'Nympha_Eunomia','Nympha Eunomia',13759,-187.910,-0.673,200.811,207);
