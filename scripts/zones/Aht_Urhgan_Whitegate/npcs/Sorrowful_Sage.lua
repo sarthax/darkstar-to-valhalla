@@ -28,6 +28,7 @@ require("scripts/globals/keyitems")
 require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs")
 require("scripts/globals/besieged")
 require("scripts/globals/missions")
+require("scripts/globals/nyzul")
 -----------------------------------
 function onTrade(player, npc, trade)
 end
@@ -36,7 +37,6 @@ function onTrigger(player, npc)
     local rank = getMercenaryRank(player)
     local haveimperialIDtag
     local tokens = player:getAssaultPoint(NYZUL_ISLE_ASSAULT_POINT)
-    local floorProgress = player:getVar("NyzulFloorProgress")
 
     if player:hasKeyItem(IMPERIAL_ARMY_ID_TAG) then
         haveimperialIDtag = 1
@@ -50,11 +50,16 @@ function onTrigger(player, npc)
     -- text search) reads ${number:4} and ${number:5} -- two slots this call never populated at
     -- all, so the client always displayed its own uninitialized default (0). Both real floor
     -- lines (6164/6165 "Nyzul Isle Investigation", 6166 "Uncharted Region") use the exact same
-    -- real per-character tracker, scripts/globals/nyzul.lua's own "NyzulFloorProgress" charvar --
-    -- Topaz has no separate Investigation-vs-Uncharted-Region floor value, so the same real
-    -- number is supplied for both slots rather than fabricating a second one.
+    -- real per-character tracker, scripts/globals/nyzul.lua's own "NyzulFloorProgress" charvar.
+    -- 2026-09-22: NyzulFloorProgress is now mission-scoped (Nyzul.floorProgressVar) -- Topaz
+    -- previously had no separate Investigation-vs-Uncharted-Region floor value so the same number
+    -- was supplied for both slots, but now that each mission tracks its own progress separately,
+    -- each of the two display lines (6164/6165 Investigation = assault 51, 6166 Uncharted = 52)
+    -- gets its own real value instead.
+    local floorProgress51 = player:getVar(Nyzul.floorProgressVar(51))
+    local floorProgress52 = player:getVar(Nyzul.floorProgressVar(52))
     if (rank > 0) then
-        player:startEvent(278, rank, haveimperialIDtag, tokens, player:getCurrentAssault(), floorProgress, floorProgress)
+        player:startEvent(278, rank, haveimperialIDtag, tokens, player:getCurrentAssault(), floorProgress51, floorProgress52)
     else
         player:startEvent(284) -- no rank
     end

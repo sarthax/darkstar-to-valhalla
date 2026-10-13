@@ -17,6 +17,8 @@ require("scripts/globals/conquest");
 -----------------------------------
 
 function onInitialize(zone)
+    require("scripts/globals/mog_tablets");
+    MOG_TABLET.onZoneInitialize(zone);
     SetRegionalConquestOverseers(zone:getRegionID())
 end;
 
@@ -25,6 +27,8 @@ end;
 -----------------------------------
 
 function onZoneIn( player, prevZone)
+    require("scripts/globals/mog_tablets");
+    MOG_TABLET.onZoneIn(player);
     local cs = -1;
 
     if (prevZone == 134) then -- warp player to a correct position after dynamis

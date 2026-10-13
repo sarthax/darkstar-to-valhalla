@@ -1,19 +1,21 @@
 -- Variable TextID   Description text
+           ALLIED_SIGIL = 12911; -- You have received the Allied Sigil!
 
 -- General Texts
-ITEM_CANNOT_BE_OBTAINED = 6380; -- You cannot obtain the item <item> come back again after sorting your inventory
-          ITEM_OBTAINED = 6386; -- Obtained: <item>
-           GIL_OBTAINED = 6387; -- Obtained <number> gil
-       KEYITEM_OBTAINED = 6389; -- Obtained key item: <keyitem>
-    HOMEPOINT_SET = 11107; -- Home point set!
+ITEM_CANNOT_BE_OBTAINED = 6382; -- You cannot obtain the item <item> come back again after sorting your inventory
+          ITEM_OBTAINED = 6388; -- Obtained: <item>
+           GIL_OBTAINED = 6389; -- Obtained <number> gil
+       KEYITEM_OBTAINED = 6391; -- Obtained key item: <keyitem>
+    HOMEPOINT_SET = 11109; -- Home point set!
 
-           ALLIED_SIGIL = 12909; -- You have received the Allied Sigil!
+           ALLIED_SIGIL = 12911; -- You have received the Allied Sigil!
 
 -- Other Texts
-ITEM_DELIVERY_DIALOG = 11208; -- If'n ye have goods tae deliver, then Nembet be yer man!
+ITEM_DELIVERY_DIALOG = 11210; -- If'n ye have goods tae deliver, then Nembet be yer man!
 
 -- NPC Dialogs
-WYATT_DIALOG = 11077; -- Ahhh, sorry, sorry. The name's Wyatt, an' I be an armor merchant from Jeuno. Ended up 'ere in San d'Oria some way or another, though.
+WYATT_DIALOG = 11079; -- Ahhh, sorry, sorry. The name's Wyatt, an' I be an armor merchant from Jeuno. Ended up 'ere in San d'Oria some way or another, though.
 
 -- Porter Moogle
-    RETRIEVE_DIALOG_ID = 15572; -- You retrieve$ from the porter moogle's care.
+    RETRIEVE_DIALOG_ID = 15574; -- You retrieve$ from the porter moogle's care.
+COMMON_SENSE_SURVIVAL = 15646; -- new survival guide registered (client DAT, verified)

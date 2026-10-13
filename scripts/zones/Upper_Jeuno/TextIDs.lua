@@ -1,12 +1,12 @@
 -- Variable TextID   Description text
 
 -- General Texts
-ITEM_CANNOT_BE_OBTAINED = 6539; -- You cannot obtain the item <item>. Come back after sorting your inventory.
-          ITEM_OBTAINED = 6545; -- Obtained: <item>.
-           GIL_OBTAINED = 6546; -- Obtained <number> gil.
-       KEYITEM_OBTAINED = 6548; -- Obtained key item: <keyitem>.
-           KEYITEM_LOST = 6549; -- Lost key item:
-    NOT_HAVE_ENOUGH_GIL = 6550; -- You do not have enough gil.
+ITEM_CANNOT_BE_OBTAINED = 6541; -- You cannot obtain the item <item>. Come back after sorting your inventory.
+          ITEM_OBTAINED = 6547; -- Obtained: <item>.
+           GIL_OBTAINED = 6548; -- Obtained <number> gil.
+       KEYITEM_OBTAINED = 6550; -- Obtained key item: <keyitem>.
+           KEYITEM_LOST = 6551; -- Lost key item:
+    NOT_HAVE_ENOUGH_GIL = 6552; -- You do not have enough gil.
           HOMEPOINT_SET = 6674; -- Home point set!
 NOTHING_OUT_OF_ORDINARY = 6559; -- There is nothing out of the ordinary here.
 

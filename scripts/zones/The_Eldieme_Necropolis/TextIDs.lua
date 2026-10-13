@@ -1,10 +1,10 @@
 -- Variable TextID   Description text
 
 -- General Texts
-ITEM_CANNOT_BE_OBTAINED = 6539; -- You cannot obtain the item <item> come back again after sorting your inventory
-          ITEM_OBTAINED = 6545; -- Obtained: <item>
-           GIL_OBTAINED = 6546; -- Obtained <number> gil
-       KEYITEM_OBTAINED = 6548; -- Obtained key item: <keyitem>
+ITEM_CANNOT_BE_OBTAINED = 6541; -- You cannot obtain the item <item> come back again after sorting your inventory
+          ITEM_OBTAINED = 6547; -- Obtained: <item>
+           GIL_OBTAINED = 6548; -- Obtained <number> gil
+       KEYITEM_OBTAINED = 6550; -- Obtained key item: <keyitem>
             SOLID_STONE = 7380; -- This door is made of solid stone.
 
 -- Treasure Coffer/Chest Dialog
@@ -42,3 +42,4 @@ CONQUEST_BASE = 0;
 DEVICE_NOT_WORKING = 7316; -- The device is not working.
       SYS_OVERLOAD = 7325; -- arning! Sys...verload! Enterin...fety mode. ID eras...d 
       YOU_LOST_THE = 7330; -- You lost the #. 
+COMMON_SENSE_SURVIVAL = 11625; -- new survival guide registered (client DAT, verified)

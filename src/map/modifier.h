@@ -665,7 +665,30 @@ enum class Mod
 
     ALL_WSDMG_ALL_HITS        = 840, // Generic (all Weaponskills) damage, on all hits.
     // Per https://www.bg-wiki.com/bg/Weapon_Skill_Damage we need all 3..
-    ALL_WSDMG_FIRST_HIT       = 841 // Generic (all Weaponskills) damage, first hit only.
+    ALL_WSDMG_FIRST_HIT       = 841, // Generic (all Weaponskills) damage, first hit only.
+
+    GARDENING_WILT_BONUS      = 861, // Increases the number of Vanadays a Mog House plant can survive before it wilts
+
+    // Moghancement effects (Mog House furniture aura)
+    EXPERIENCE_RETAINED       = 862, // Percent of the experience loss on KO that is retained
+    DESYNTH_SUCCESS           = 863, // Rate of desynthesis success
+    CONQUEST_BONUS            = 864, // Percent bonus to individual conquest points
+    CONQUEST_REGION_BONUS     = 865, // Percent bonus to region (influence) points
+    GILFINDER                 = 866, // Percent bonus to gil dropped by mobs
+    CAMPAIGN_BONUS            = 867, // Campaign evaluation bonus (no consumer yet)
+    CAPACITY_BONUS            = 868, // Percent bonus to capacity points (no consumer yet)
+
+    // Super Kupower: Crystal Caboodle (set by MOG_TABLET.syncMods)
+    CRYSTAL_DROP_RATE         = 869, // Percent increase to the mob crystal drop chance; any value > 0 also lifts the beastmen-region restriction
+    CLUSTER_DROP_RATE         = 870, // Percent chance that a dropped crystal is a cluster instead
+
+    // Super Kupower: Blood of the Vampyr (set by MOG_TABLET.syncMods); latent, stacks with REGEN/REFRESH
+    VAMPYR_REGEN              = 871, // HP per tick while HP is below 51%
+    VAMPYR_REFRESH            = 872, // MP per tick while MP is below 51%
+
+    // Super Kupower: Artisan's Advantage (set by MOG_TABLET.syncMods)
+    ARTISAN_LOSS_SUPPORT      = 873, // Percent reduction of the failed-synthesis ingredient loss chance while Synthesis Image Support is active
+    FOOD_DURATION             = 874, // Dilatory Digestion: percent added to food effect duration
 
     // 570 through 825 used by WS DMG mods these are not spares.
     // SPARE = 860, // stuff

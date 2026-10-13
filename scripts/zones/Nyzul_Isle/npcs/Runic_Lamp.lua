@@ -19,6 +19,7 @@
 -- table. This SUPERSEDES an earlier packet-capture-inferred pass that got several of these ids
 -- wrong (notably LAMP_ALREADY_ACTIVE/LAMP_NEEDS_OTHER_ACTION were off by a few slots).
 -----------------------------------
+require("scripts/globals/debug_print")
 require("scripts/globals/nyzul")
 require("scripts/zones/Nyzul_Isle/IDs")
 require("scripts/globals/status")
@@ -26,8 +27,18 @@ require("scripts/globals/status")
 local ACTIVATE_LAMP_TIME = 300000 -- 5 minutes, per BG Wiki's updated real value
 
 function onTrigger(player, npc)
+    -- 2026-09-23, debug logging added live per user request -- "lamps not responding at all,"
+    -- no error/abnormal server output. Prints unconditionally at entry so it's visible even if a
+    -- lamp is untargetable (CUTSCENE_ONLY, the expected state on any floor that didn't roll
+    -- ACTIVATE_ALL_LAMPS as its objective -- see Nyzul.resetLamps) and onTrigger never runs at
+    -- all -- that silence is itself the diagnostic signal, distinguishing "click never dispatched"
+    -- from "dispatched but the objective/state branch did nothing."
+    dbgPrint(string.format("[LAMP DEBUG] onTrigger: player=%s npc=%d status=%s animSub=%s",
+        player:getName(), npc:getID(), tostring(npc:getStatus()), tostring(npc:AnimationSub())))
+
     local instance = npc:getInstance()
     if not instance then
+        dbgPrint("[LAMP DEBUG] onTrigger: npc:getInstance() returned nil -- aborting")
         return
     end
 
@@ -35,6 +46,10 @@ function onTrigger(player, npc)
     local lampRegister = instance:getLocalVar("[Lamp]lampRegister")
     local lampOrder = npc:getLocalVar("[Lamp]order")
     local wait = npc:getLocalVar("[Lamp]Wait") - os.time()
+
+    dbgPrint(string.format(
+        "[LAMP DEBUG] onTrigger: instanceStage=%s [Lamp]Objective=%s [Lamp]lampRegister=%s [Lamp]order=%s wait=%s",
+        tostring(instance:getStage()), tostring(lampObjective), tostring(lampRegister), tostring(lampOrder), tostring(wait)))
 
     if lampObjective == Nyzul.lampsObjective.REGISTER then
         if player:getLocalVar("Register") == 0 then
@@ -77,6 +92,16 @@ function onTrigger(player, npc)
             -- doors), not printed a second time via a flat Lua messageText call. Removed the
             -- redundant call -- startEvent(3, 5) alone now shows the real interactive prompt once.
             npc:messageText(player, NyzulIsle.text.LAMP_UNLIT_DESCRIPTION)
+            -- 2026-09-27: REVERTED the 2026-09-27 padding change below (was briefly
+            -- startEvent(3, 5, 0,0,0,0,0,0,0,0)). That padding was a mistake -- it was based on
+            -- comparing to Arrapago_Remnants/Bhaflau_Remnants' OWN csid 3, but those are different
+            -- zones, and csids are zone-scoped (events DAT = 5820+zoneid) -- their csid 3 is an
+            -- unrelated compiled event, not a real sibling of THIS zone's csid 3. The bare call
+            -- here was already confirmed live-working (see the 2026-09-03/09-12 comments above:
+            -- "startEvent(3, 5) alone now shows the real interactive prompt once. Confirmed
+            -- live."). Padding it regressed a working call -- caught while root-causing the
+            -- unrelated-but-same-class Heroine_Rune_of_Transfer.lua bug (see
+            -- [[topaz_startevent_padding_required]]).
             player:startEvent(3, 5)
         end
     elseif lampObjective == Nyzul.lampsObjective.ORDER then
@@ -85,6 +110,7 @@ function onTrigger(player, npc)
             -- live (option 2 activates). See the ACTIVATE_ALL branch above for why
             -- LAMP_ACTIVATE_PROMPT is no longer printed via messageText here too.
             npc:messageText(player, NyzulIsle.text.LAMP_UNLIT_DESCRIPTION)
+            -- 2026-09-27: reverted, same reason as the ACTIVATE_ALL branch above.
             player:startEvent(3, 6)
         elseif npc:AnimationSub() == 1 then
             npc:messageText(player, NyzulIsle.text.LAMP_ALREADY_ACTIVE)

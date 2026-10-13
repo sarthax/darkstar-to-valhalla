@@ -130,7 +130,10 @@ enum MSGBASIC_ID : uint16
 	MSGBASIC_DEBUG_RECOVERED_STATUS	= 74, /* Debug: <target> recovers from .. */
 	MSGBASIC_DEBUG_DBLATK_PROC		= 79, /* Debug: <target> uses Double Attack (..%) */
 	MSGBASIC_DEBUG_TRPATK_PROC		= 80, /* Debug: <target> uses Triple Attack (..%) */
-	MSGBASIC_DEBUG_SUCCESS_CHANCE	= 255 /* DEBUG: ..% chance of success */
+	MSGBASIC_DEBUG_SUCCESS_CHANCE	= 255, /* DEBUG: ..% chance of success */
+	MSGBASIC_GARDENING_SEED_SOWN	= 256, /* Topaz-derived id, unverified for DSP client */
+	MSGBASIC_GARDENING_CRYSTAL_NONE	= 257, /* Topaz-derived id, unverified for DSP client */
+	MSGBASIC_GARDENING_CRYSTAL_USED	= 258 /* Topaz-derived id, unverified for DSP client */
 };
 
 /************************************************************************

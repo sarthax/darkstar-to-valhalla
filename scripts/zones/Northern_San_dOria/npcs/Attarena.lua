@@ -12,6 +12,7 @@ require("scripts/globals/conquest");
 require("scripts/globals/quests");
 require("scripts/globals/shop");
 
+require("scripts/globals/mog_tablets");
 -----------------------------------
 -- onTrade Action
 -----------------------------------
@@ -35,7 +36,7 @@ function onTrigger(player,npc)
 
 RegionOwner = GetRegionOwner(LITELOR);
 
-        if (RegionOwner ~= NATION_SANDORIA) then
+        if (RegionOwner ~= NATION_SANDORIA and not MOG_TABLET.hasPower(MOG_TABLET.POWERS.BOUNTIFUL_BAZAAR)) then
                 player:showText(npc,ATTARENA_CLOSED_DIALOG);
         else
                 player:showText(npc,ATTARENA_OPEN_DIALOG);

@@ -1,10 +1,10 @@
 -- Variable TextID   Description text
 
 -- General Texts
-ITEM_CANNOT_BE_OBTAINED = 6393; -- You cannot obtain the item <item>. Come back after sorting your inventory.
-          ITEM_OBTAINED = 6399; -- Obtained: <item>.
-           GIL_OBTAINED = 6400; -- Obtained <number> gil.
-       KEYITEM_OBTAINED = 6402; -- Obtained key item: <keyitem>.
+ITEM_CANNOT_BE_OBTAINED = 6395; -- You cannot obtain the item <item>. Come back after sorting your inventory.
+          ITEM_OBTAINED = 6401; -- Obtained: <item>.
+           GIL_OBTAINED = 6402; -- Obtained <number> gil.
+       KEYITEM_OBTAINED = 6404; -- Obtained key item: <keyitem>.
         BEASTMEN_BANNER = 7139; -- There was a curse on the beastmen's banner!
   ALREADY_OBTAINED_TELE = 7369; -- You already possess the gate crystal for this telepoint.
 
@@ -26,3 +26,4 @@ NOTHING_OUT_OF_ORDINARY = 6413; -- There is nothing out of the ordinary here.
 -- conquest Base
 CONQUEST_BASE = 7060; -- Tallying conquest results...
 
+COMMON_SENSE_SURVIVAL = 11528; -- new survival guide registered (client DAT, verified)

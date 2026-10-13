@@ -18,6 +18,7 @@
 require("scripts/globals/keyitems")
 require("scripts/globals/status")
 require("scripts/globals/besieged")
+require("scripts/globals/nyzul")
 require("scripts/zones/Alzadaal_Undersea_Ruins/TextIDs")
 -----------------------------------
 -- 2026-09-09: real fix -- user reported Shahayl (and Sorrowful Sage) always show "0 floors
@@ -47,7 +48,10 @@ function onTrigger(player, npc)
     if player:hasKeyItem(NYZUL_ISLE_ASSAULT_ORDERS) and not player:hasKeyItem(ASSAULT_ARMBAND) then
         local IPpoint = player:getCurrency("imperial_standing")
         local tokens = player:getAssaultPoint(NYZUL_ISLE_ASSAULT_POINT)
-        local floorProgress = player:getVar("NyzulFloorProgress")
+        -- 2026-09-22: NyzulFloorProgress is now mission-scoped (Nyzul.floorProgressVar) --
+        -- read via the player's real current assault id (51 Investigation or 52 Uncharted) rather
+        -- than the old flat shared charvar, so this staging point shows that mission's own progress.
+        local floorProgress = player:getVar(Nyzul.floorProgressVar(player:getCurrentAssault()))
         player:startEvent(412, 50, IPpoint, tokens, floorProgress)
     else
         -- Real flavor-only dialogue (csid 413, text 7505): "This is the Nyzul Isle staging

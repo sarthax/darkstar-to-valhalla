@@ -34,6 +34,7 @@ function onTrigger(player,npc)
     -- See notes below
     player:setVar("NyzulLoopGuard",0); -- Reset Latch 1
     player:setVar("NyzulReady",0); -- Reset Latch 2
+    player:setVar("HeroinesHoldfast",0); -- clear a stale flag from a cancelled earlier attempt
 
     if (player:getCurrentMission(TOAU) == PATH_OF_DARKNESS and player:hasKeyItem(NYZUL_ISLE_ROUTE) and player:getVar("AhtUrganStatus") == 1) then
         player:setVar("PathOfDarkness",1);
@@ -49,6 +50,11 @@ function onTrigger(player,npc)
             armband = 1;
         end
         player:startEvent(0x0195, assaultid, -4, 0, recommendedLevel, 5, armband);
+    -- Heroines' Holdfast entry (capture #237): Athena Orb (item 3557) held. startEvent params are the
+    -- capture's real 8-value 0x034 for csid 405 (0, -66, 1757, 0, 5, 1, 0, 11); -66 selects the mission name.
+    elseif (player:hasItem(3557)) then
+        player:setVar("HeroinesHoldfast",1);
+        player:startEvent(0x0195, 0, -66, 1757, 0, 5, 1, 0, 11);
     -- DSP-PORT-MERGE (real bug fix, ported from Topaz's rewrite): a character holding a stale
     -- NYZUL_ISLE_ASSAULT_ORDERS (left over from an earlier run, with their real "current assault"
     -- slot since overwritten/cleared by entering a DIFFERENT assault instance elsewhere -- only one
@@ -117,6 +123,7 @@ function onEventUpdate(player,csid,option,target)
 
     local pathOfDarkness = player:getVar("PathOfDarkness");
     local nashmeirasPlea = player:getVar("NashmeirasPlea");
+    local heroines = player:getVar("HeroinesHoldfast");
 
     if(pathOfDarkness == 1) then
         local party = player:getParty();
@@ -158,6 +165,20 @@ function onEventUpdate(player,csid,option,target)
         end
 
         player:createInstance(59, 77);
+    elseif (heroines == 1) then
+        local party = player:getParty();
+
+        if (party ~= nil) then
+            for i,v in ipairs(party) do
+                if (v:getID() ~= player:getID() and v:getZone() == player:getZone() and v:checkDistance(player) > 50) then
+                    player:messageText(target,MEMBER_TOO_FAR, false);
+                    player:instanceEntry(target,1);
+                    return;
+                end
+            end
+        end
+
+        player:createInstance(80, 77);
     else
         local party = player:getParty();
 
@@ -205,6 +226,7 @@ end;
 function onInstanceCreated(player,target,instance)
     local pathOfDarkness = player:getVar("PathOfDarkness");
     local nashmeirasPlea = player:getVar("NashmeirasPlea");
+    local heroines = player:getVar("HeroinesHoldfast");
 
     if (instance) then
         if (pathOfDarkness == 1) then
@@ -213,8 +235,13 @@ function onInstanceCreated(player,target,instance)
         elseif (nashmeirasPlea == 1) then
             player:setVar("NashmeirasPlea", 0);
             player:delKeyItem(MYTHRIL_MIRROR);
+        elseif (heroines == 1) then
+            -- Athena Orb is consumed on entry; explicit container arg is required by DSP's delItem binding
+            player:setVar("HeroinesHoldfast", 0);
+            player:delItem(3557, 1, 0);
         else
-            instance:setLevelCap(player:getVar("AssaultCap"));
+            -- besieged.lua assaultLevels is a ceiling: AssaultCap may only cap LOWER than the designed target
+            instance:setLevelCap(math.min(player:getVar("AssaultCap"), getRecommendedAssaultLevel(player:getCurrentAssault())));
             player:setVar("AssaultCap", 0);
             player:delKeyItem(NYZUL_ISLE_ASSAULT_ORDERS);
             player:delKeyItem(ASSAULT_ARMBAND);

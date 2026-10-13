@@ -10,6 +10,7 @@ package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/shop");
+require("scripts/globals/mog_tablets");
 require("scripts/globals/conquest");
 require("scripts/zones/Port_Bastok/TextIDs");
 
@@ -26,7 +27,7 @@ end;
 
 function onTrigger(player,npc)
     RegionOwner = GetRegionOwner(ELSHIMOUPLANDS);
-    if (RegionOwner ~= NATION_BASTOK) then
+    if (RegionOwner ~= NATION_BASTOK and not MOG_TABLET.hasPower(MOG_TABLET.POWERS.BOUNTIFUL_BAZAAR)) then
         player:showText(npc,DHENTEVRYUKOH_CLOSED_DIALOG);
     else
         player:showText(npc,DHENTEVRYUKOH_OPEN_DIALOG);

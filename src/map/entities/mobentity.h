@@ -227,6 +227,8 @@ public:
     uint16	  m_Detects;                // mobs detection methods, sight, sound, etc
     uint8     m_Link;                     // link with mobs of it's family
     uint16    m_Behaviour;                // mob behaviour
+    uint8     m_lastKillKind;             // 0 none/melee, 1 spell, 2 weaponskill (last hit that took HP to 0)
+    uint16    m_lastKillId;               // spell id / weaponskill id for m_lastKillKind
     SPAWNTYPE m_SpawnType;                // condition for mob to spawn
 
     int8      m_battlefieldID;            // battlefield belonging to

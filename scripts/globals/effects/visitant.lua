@@ -5,6 +5,9 @@
 -----------------------------------
 
 -----------------------------------
+require("scripts/globals/abyssea_lights");
+
+-----------------------------------
 -- onEffectGain Action
 -----------------------------------
 
@@ -30,4 +33,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
+    resetAbysseaLights(target);
 end;

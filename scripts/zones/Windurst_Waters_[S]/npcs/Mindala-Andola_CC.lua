@@ -1,45 +1,28 @@
 -----------------------------------
---  Area: Windurst Waters (S)
---   NPC: Mindala-Andola, C.C.
---  Type: Sigil
--- @zone 94
--- !pos -31.869 -6.009 226.793
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
+-- Area: Windurst Waters [S]
+--  NPC: Mindala-Andola, C.C.
+-- Type: Sigil NPC
+-- !pos -31.869 -6.009 226.793 94 (unverified)
+-- Logic lives in scripts/globals/campaign.lua (sigilOn*)
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;
 -----------------------------------
 
------------------------------------
--- onTrade Action
------------------------------------
+require("scripts/globals/status");
+require("scripts/globals/campaign");
+require("scripts/zones/Windurst_Waters_[S]/TextIDs");
 
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
-    player:startEvent(0x000d, npc);
+    sigilOnTrigger(player, npc);
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+    sigilOnEventUpdate(player, csid, option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+    sigilOnEventFinish(player, csid, option);
 end;
-

@@ -1,0 +1,13 @@
+// excerpt of src/map/ai/states/ability_state.cpp (from main @ eff415776b); lines 136,146
+        {
+            PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_WAIT_LONGER));
+            return false;
+        }
+        // IMPAIRMENT (Nyzul pathos): power bit 0x01 = job abilities restricted, 0x02 = weapon skills (see player_controller.cpp)
+        bool impairmentBlocksAbility = false;
+        if (auto* PImpairment = PChar->StatusEffectContainer->GetStatusEffect(EFFECT_IMPAIRMENT))
+        {
+            impairmentBlocksAbility = (PImpairment->GetPower() & 0x01) != 0;
+        }
+        if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_AMNESIA) || impairmentBlocksAbility)
+// ...

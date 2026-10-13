@@ -1,10 +1,10 @@
 -- Variable TextID   Description text
 
 -- General Texts
-ITEM_CANNOT_BE_OBTAINED = 6380;  -- You cannot obtain the item <item> come back again after sorting your inventory
-          ITEM_OBTAINED = 6386;  -- Obtained: <item>
-           GIL_OBTAINED = 6387;  -- Obtained <number> gil
-       KEYITEM_OBTAINED = 6389;  -- Obtained key item: <keyitem>
+ITEM_CANNOT_BE_OBTAINED = 6382;  -- You cannot obtain the item <item> come back again after sorting your inventory
+          ITEM_OBTAINED = 6388;  -- Obtained: <item>
+           GIL_OBTAINED = 6389;  -- Obtained <number> gil
+       KEYITEM_OBTAINED = 6391;  -- Obtained key item: <keyitem>
           HOMEPOINT_SET = 10916; -- Home point set!
  FISHING_MESSAGE_OFFSET = 10255; -- You can't fish here
 
@@ -33,3 +33,4 @@ CONQUEST_BASE = 6534; -- Tallying conquest results...
 
 -- Porter Moogle
     RETRIEVE_DIALOG_ID = 12251; -- You retrieve$ from the porter moogle's care.
+COMMON_SENSE_SURVIVAL = 13327; -- new survival guide registered (client DAT, verified)

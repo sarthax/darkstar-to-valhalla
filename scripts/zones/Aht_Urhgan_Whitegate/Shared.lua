@@ -5,6 +5,13 @@ require("scripts/globals/settings")
 require("scripts/globals/common")
 -----------------------------------
 
+-- DSP has no global set{} helper (Topaz-only); local membership-set builder used by this file.
+local function set(list)
+    local s = {}
+    for _, v in ipairs(list) do s[v] = true end
+    return s
+end
+
 -- Set of Royal Palace Approved Armor
 local ROYAL_PALACE_ALLOWED_BODY_ARMORS = set{
     12548, -- Adaman Cuirass Lv. 73 WAR / PLD

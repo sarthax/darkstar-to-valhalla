@@ -1,10 +1,10 @@
 -- Variable TextID   Description text
 
 -- General Texts
-ITEM_CANNOT_BE_OBTAINED = 6402; -- You cannot obtain the item <item>. Come back after sorting your inventory.
-          ITEM_OBTAINED = 6408; -- Obtained: <item>.
-           GIL_OBTAINED = 6409; -- Obtained <number> gil.
-       KEYITEM_OBTAINED = 6411; -- Obtained key item: <keyitem>.
+ITEM_CANNOT_BE_OBTAINED = 6404; -- You cannot obtain the item <item>. Come back after sorting your inventory.
+          ITEM_OBTAINED = 6410; -- Obtained: <item>.
+           GIL_OBTAINED = 6411; -- Obtained <number> gil.
+       KEYITEM_OBTAINED = 6413; -- Obtained key item: <keyitem>.
  FISHING_MESSAGE_OFFSET = 7236; -- You can't fish here.
 
 -- Quest Dialogs
@@ -25,3 +25,4 @@ CONQUEST_BASE = 7069; -- Tallying conquest results...
 -- chocobo digging
 DIG_THROW_AWAY = 7249; -- You dig up ?Possible Special Code: 01??Possible Special Code: 01??Possible Special Code: 01? ?Possible Special Code: 01??Possible Special Code: 05?$?BAD CHAR: 8280??BAD CHAR: 80??BAD CHAR: 80?, but your inventory is full.
 FIND_NOTHING = 7251; -- You dig and you dig, but find nothing.
+COMMON_SENSE_SURVIVAL = 12491; -- new survival guide registered (client DAT, verified)

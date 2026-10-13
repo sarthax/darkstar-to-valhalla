@@ -58,6 +58,8 @@ CMobEntity::CMobEntity()
     objtype = TYPE_MOB;
 
     m_DropID = 0;
+    m_lastKillKind = 0;
+    m_lastKillId = 0;
 
     m_minLevel = 1;
     m_maxLevel = 1;
@@ -565,6 +567,8 @@ bool CMobEntity::ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags)
 void CMobEntity::Spawn()
 {
     CBattleEntity::Spawn();
+    m_lastKillKind = 0;
+    m_lastKillId = 0;
     m_giveExp = true;
     m_HiPCLvl = 0;
     m_THLvl = 0;
@@ -847,12 +851,17 @@ void CMobEntity::DropItems()
 
             if (validZone && charutils::GetRealExp(PChar->GetMLevel(), GetMLevel()) > 0)
             {
-                if (((PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) && conquest::GetInfluenceGraphics(PChar->loc.zone->GetRegionID()) < 64) ||
+                // Crystal Caboodle (Super Kupower): more crystals, beastmen-controlled regions allowed, occasional cluster instead
+                int16 crystalRate = PChar->getMod(Mod::CRYSTAL_DROP_RATE);
+                int16 clusterRate = PChar->getMod(Mod::CLUSTER_DROP_RATE);
+
+                if (((PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SIGNET) && (crystalRate > 0 || conquest::GetInfluenceGraphics(PChar->loc.zone->GetRegionID()) < 64)) ||
                     (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SANCTION) && PChar->loc.zone->GetRegionID() >= 28 && PChar->loc.zone->GetRegionID() <= 32) ||
                     (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SIGIL) && PChar->loc.zone->GetRegionID() >= 33 && PChar->loc.zone->GetRegionID() <= 40)) &&
-                    m_Element > 0 && dsprand::GetRandomNumber(100) < 20) // Need to move to CRYSTAL_CHANCE constant
+                    m_Element > 0 && dsprand::GetRandomNumber(10000) < 20 * (100 + (crystalRate > 0 ? crystalRate : 0))) // Need to move to CRYSTAL_CHANCE constant
                 {
-                    PChar->PTreasurePool->AddItem(4095 + m_Element, this);
+                    bool cluster = clusterRate > 0 && dsprand::GetRandomNumber(100) < clusterRate;
+                    PChar->PTreasurePool->AddItem((cluster ? 4103 : 4095) + m_Element, this);
                 }
 
                 // Todo: Avatarite and Geode drops during day/weather. Much higher chance during weather than day.

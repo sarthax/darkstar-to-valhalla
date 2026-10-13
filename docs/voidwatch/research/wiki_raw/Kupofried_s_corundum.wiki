@@ -1,0 +1,39 @@
+{{Key Item Header
+|Name=Kupofried's corundum
+|Type=Voidwatch
+|Description=This crystalline concoction,<br /> fashioned from voidstones by the<br /> clever Kupofried, seems to resonate<br /> with a strange entity that resides<br /> beyond the distortion within the<br /> Walk of Echoes.
+}}
+{{Key Item Usage Table
+|Insert Key Item Acquisition Instance Template=
+{{Key Item Acquisition Instance
+|npcname=Kupofried
+|zone=[[Walk of Echoes]]
+|cost=Accumulates at x1 per Earth Day
+
+Obtainable when interacting with the glimmering '''???''' location.
+}}
+{{Key Item Acquisition Instance
+|npcname=Kupofried
+|zone=[[Walk of Echoes]]
+|cost=Obtainable by trading x4 [[Crystal Petrifact]]s to the glimmering '''???''' location.
+}}
+|Insert Key Item Use Instance Template=
+{{Key Item Use Instance
+|usage=[[Voidwatch]] - [[Provenance]]
+|name=[[Beguiling Radiance]]
+}}
+{{Key Item Use Instance
+|usage=[[Voidwatch]] - [[Provenance]]
+|name=[[Maddening Radiance]]
+}}
+{{Key Item Use Instance
+|usage=[[Voidwatch]] - [[Provenance]]
+|name=[[Seductive Radiance]]
+}}
+}}
+
+==Notes==
+* Kupofried's corundum are similar to [[voidstone]]s used exclusively for [[Provenance]]: once you have obtained the first (in exchange for one [[voidstone]]), they will regenerate automatically at a rate of one per 24 hours and will be held by Kupofried at the glimmering ??? in [[Walk of Echoes]].
+* You can receive one additional corundum for every four [[Crystal Petrifact]]s traded to the glimmering ???. You can hold up to three [[Kupofried's corundum]] at once, but Kupofried will retain additional stock if you trade extra [[Crystal Petrifact]]s.
+* Kupofried's corundum are required to enter the [[Provenance Crystal]] battlefields in [[Provenance]]: [[Beguiling Radiance]], [[Maddening Radiance]], and [[Seductive Radiance]]. They are not required for the [[Provenance Watcher]] battle.
+[[Category:Voidwatch]]
