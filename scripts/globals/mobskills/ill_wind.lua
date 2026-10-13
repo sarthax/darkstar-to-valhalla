@@ -13,6 +13,9 @@ require("scripts/globals/monstertpmoves");
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
+    if (mob:getName() == "Sarimanok") then -- Voidwatch NM: below 50% HP only [W]
+        return (mob:getHPP() < 50) and 0 or 1;
+    end
     if (mob:getFamily() == 316 and mob:getModelId() == 1746) then
         return 0;
     else
@@ -27,6 +30,12 @@ function onMobWeaponSkill(target, mob, skill)
 
     target:dispelStatusEffect();
     target:delHP(dmg);
+
+    -- Voidwatch Sarimanok [W]: Ill Wind is followed by an instant-cast Aeroga III and a hate reset
+    if (mob:getName() == "Sarimanok") then
+        mob:castSpell(186);
+        mob:resetEnmity(target);
+    end
 
     --printf("[TP MOVE] Zone: %u Monster: %u Mob lvl: %u TP: %u TP Move: %u Damage: %u on Player: %u Level: %u HP: %u",mob:getZoneID(),mob:getID(),mob:getMainLvl(),skill:getTP(),skill:getID(),dmg,target:getID(),target:getMainLvl(),target:getMaxHP());
 

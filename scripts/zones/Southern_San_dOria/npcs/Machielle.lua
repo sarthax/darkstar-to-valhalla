@@ -5,6 +5,7 @@
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
+require("scripts/globals/mog_tablets");
 require("scripts/zones/Southern_San_dOria/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
@@ -32,7 +33,7 @@ function onTrigger(player,npc)
 
     local RegionOwner = GetRegionOwner(NORVALLEN);
 
-if (RegionOwner ~= NATION_SANDORIA) then
+if (RegionOwner ~= NATION_SANDORIA and not MOG_TABLET.hasPower(MOG_TABLET.POWERS.BOUNTIFUL_BAZAAR)) then
         player:showText(npc,MACHIELLE_CLOSED_DIALOG);
 else
         player:showText(npc,MACHIELLE_OPEN_DIALOG);

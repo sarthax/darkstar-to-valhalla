@@ -1,0 +1,101 @@
+<title>Voidwatch NM Details</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Layout: dense scan-and-expand ledger. Summary strip, filter row, one expandable row per NM. */
+:root{
+  --bg:#f3f4f1; --panel:#fbfbf9; --fg:#1d2420; --mute:#5d675f; --line:#d9ddd5;
+  --ok:#2f7d4f; --part:#a8741a; --bad:#b53a2e; --unk:#9aa39b; --na:#c9cec6; --accent:#2a5f6f;
+  --sans:'IBM Plex Sans',system-ui,sans-serif; --mono:'IBM Plex Mono',ui-monospace,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#131815; --panel:#1b221e; --fg:#e6eae4; --mute:#97a299; --line:#2c3630;
+  --ok:#5fbf86; --part:#e0b04c; --bad:#ec7b6e; --unk:#66706a; --na:#3b453f; --accent:#7ec1d3; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#131815; --panel:#1b221e; --fg:#e6eae4; --mute:#97a299; --line:#2c3630;
+  --ok:#5fbf86; --part:#e0b04c; --bad:#ec7b6e; --unk:#66706a; --na:#3b453f; --accent:#7ec1d3; color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:14px;line-height:1.45}
+.wrap{max-width:1040px;margin:0 auto;padding:20px 16px 48px}
+h1{font-size:22px;font-weight:600;margin:0 0 4px;text-wrap:balance}
+.sub{color:var(--mute);margin:0 0 16px;max-width:70ch}
+.tot{display:flex;flex-wrap:wrap;gap:8px 20px;align-items:center;margin-bottom:14px}
+.tot .bar{flex:1 1 260px;min-width:0}
+.legend{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12px;color:var(--mute)}
+.legend i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:5px;vertical-align:baseline}
+.bar{display:flex;height:8px;border-radius:2px;overflow:hidden;background:var(--na)}
+.bar span{display:block;min-width:0}
+.ok{background:var(--ok)}.part{background:var(--part)}.bad{background:var(--bad)}.unk{background:var(--unk)}.na{background:var(--na)}
+.ctl{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.ctl input{flex:1 1 180px;min-width:0;font:inherit;padding:6px 9px;border:1px solid var(--line);border-radius:4px;background:var(--panel);color:var(--fg)}
+.chip{font:inherit;font-size:12px;padding:5px 10px;border:1px solid var(--line);border-radius:4px;background:var(--panel);color:var(--fg);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.nm{border:1px solid var(--line);background:var(--panel);border-radius:4px;margin-bottom:6px}
+.nm>button{all:unset;box-sizing:border-box;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,3fr) 120px;gap:6px 14px;align-items:center;width:100%;padding:9px 12px;cursor:pointer}
+.nm>button:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.nm .t b{font-weight:600}.nm .t small{display:block;color:var(--mute);font-size:12px}
+.stats{display:flex;flex-wrap:wrap;gap:2px 14px;font-family:var(--mono);font-size:12px;color:var(--mute)}
+.stats em{font-style:normal;color:var(--fg)}
+.flag{font-family:var(--mono);font-size:11px;color:var(--bad)}
+.body{padding:2px 12px 12px;border-top:1px solid var(--line)}
+.body p{margin:10px 0;color:var(--mute);font-size:13px;max-width:80ch}
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:13px}
+th{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);text-align:left;font-weight:500;padding:6px 8px;border-bottom:1px solid var(--line)}
+td{padding:6px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+td.f{font-weight:500;white-space:nowrap}td.v,td.s{font-family:var(--mono);font-size:12px}
+.pill{display:inline-block;font-size:11px;padding:1px 7px;border-radius:9px;color:#fff;white-space:nowrap}
+.pill.part{color:#1d2420}.pill.na{color:var(--fg)}
+.hint{color:var(--mute);font-size:12px;margin-top:18px;max-width:80ch}
+@media (max-width:640px){.nm>button{grid-template-columns:1fr}.nm>button .bar{max-width:none}}
+@media (prefers-reduced-motion:no-preference){.chip{transition:background .12s}}
+</style>
+<div class="wrap">
+  <h1>Voidwatch NM Details</h1>
+  <p class="sub">Stats, skills, spells and drops for every built Voidwatch NM, with a source and verification flag per value. Companion to the NM tracker, which covers presence, rift positions and gating. Ledger last updated 2026-10-07.</p>
+  <div class="tot"><div class="bar" id="totbar" aria-hidden="true"></div><div class="legend" id="legend"></div></div>
+  <div class="ctl">
+    <input id="q" type="search" placeholder="Filter by NM or zone" aria-label="Filter by NM or zone">
+    <button class="chip" data-f="all" aria-pressed="true">All</button>
+    <button class="chip" data-f="bad" aria-pressed="false">Has contradictions or gaps</button>
+    <button class="chip" data-f="done" aria-pressed="false">Any verified rows</button>
+    <button class="chip" data-f="none" aria-pressed="false">Nothing verified yet</button>
+  </div>
+  <div id="list"></div>
+  <p class="hint">Source tags: C capture, V client dat, J wikiwiki.jp, F FFXIclopedia, W BG Wiki, B BG forum, D design guess, U user-stated. HP 0 means no override: the server computes HP from level, job and family. Rows read "no" until checked against a source.</p>
+</div>
+<script>
+var DATA = __DATA__;
+var LAB = {ok:'verified', part:'partial', bad:'contradicted / missing', unk:'unchecked', na:'n/a'};
+var ORDER = ['ok','part','bad','unk','na'];
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function count(rows){var c={ok:0,part:0,bad:0,unk:0,na:0};rows.forEach(function(r){c[r.c]++});return c}
+function bar(c){var t=ORDER.reduce(function(a,k){return a+c[k]},0)||1;return ORDER.map(function(k){return c[k]?'<span class="'+k+'" style="width:'+(100*c[k]/t)+'%" title="'+c[k]+' '+LAB[k]+'"></span>':''}).join('')}
+var all={ok:0,part:0,bad:0,unk:0,na:0};
+DATA.forEach(function(d){d.c=count(d.rows);ORDER.forEach(function(k){all[k]+=d.c[k]})});
+document.getElementById('totbar').innerHTML=bar(all);
+document.getElementById('legend').innerHTML=ORDER.map(function(k){return '<span><i class="'+k+'"></i>'+all[k]+' '+LAB[k]+'</span>'}).join('');
+var open={}, filt='all', q='';
+function render(){
+  var out=DATA.filter(function(d){
+    if(q && (d.name+' '+d.zone).toLowerCase().indexOf(q)<0) return false;
+    if(filt==='bad') return d.c.bad>0;
+    if(filt==='done') return d.c.ok+d.c.part>0;
+    if(filt==='none') return d.c.ok+d.c.part===0;
+    return true;
+  }).map(function(d,i){
+    var id='n'+DATA.indexOf(d), o=open[id];
+    var rows=d.rows.map(function(r){return '<tr><td class="f">'+esc(r.f)+'</td><td class="v">'+esc(r.v)+'</td><td class="s">'+esc(r.s)+'</td><td><span class="pill '+r.c+'">'+esc(r.ok)+'</span></td><td>'+esc(r.n)+'</td></tr>'}).join('');
+    return '<div class="nm"><button aria-expanded="'+(!!o)+'" data-id="'+id+'"><span class="t"><b>'+esc(d.name)+'</b><small>'+esc(d.zone)+'</small></span>'
+     +'<span><span class="stats"><span>Lv <em>'+esc(d.lv)+'</em></span><span>HP <em>'+esc(d.hp)+'</em></span><span>type <em>'+esc(d.mt)+'</em></span><span><em>'+esc(d.job)+'</em></span><span>'+esc(d.sk)+'</span></span><span class="stats" style="margin-top:2px">'+esc(d.dr)+'</span></span>'
+     +'<span><span class="bar">'+bar(d.c)+'</span>'+(d.c.bad?'<span class="flag">'+d.c.bad+' to fix</span>':'')+'</span></button>'
+     +(o?'<div class="body">'+(d.prose?'<p>'+esc(d.prose)+'</p>':'')+'<div class="scroll"><table><thead><tr><th>Field</th><th>Value in DSP</th><th>Source</th><th>Status</th><th>Note</th></tr></thead><tbody>'+rows+'</tbody></table></div></div>':'')+'</div>';
+  }).join('');
+  document.getElementById('list').innerHTML=out||'<p class="sub">No NMs match this filter.</p>';
+}
+document.getElementById('list').addEventListener('click',function(e){var b=e.target.closest('button[data-id]');if(!b)return;open[b.dataset.id]=!open[b.dataset.id];render();var nb=document.querySelector('button[data-id="'+b.dataset.id+'"]');if(nb)nb.focus()});
+document.querySelectorAll('.chip').forEach(function(c){c.addEventListener('click',function(){filt=c.dataset.f;document.querySelectorAll('.chip').forEach(function(x){x.setAttribute('aria-pressed',x===c)});render()})});
+document.getElementById('q').addEventListener('input',function(e){q=e.target.value.toLowerCase();render()});
+(function(){var c=DATA.filter(function(d){return d.name==='Cottus'})[0];if(c)open['n'+DATA.indexOf(c)]=true})();
+render();
+</script>

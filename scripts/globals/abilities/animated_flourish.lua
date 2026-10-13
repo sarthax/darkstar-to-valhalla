@@ -39,6 +39,7 @@ end;
 -----------------------------------
 
 function onUseAbility(player,target,ability)
+    vwOnAbility(player, target, ability);
     if (player:hasStatusEffect(EFFECT_FINISHING_MOVE_1)) then
         player:delStatusEffect(EFFECT_FINISHING_MOVE_1);
 
