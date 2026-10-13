@@ -760,3 +760,182 @@ zone,old_id,new_id,old_slot,new_slot,name,reason
 291,17970036,17970037,884,885,Emporox,corrective: name matches client entity at new slot
 230,17719913,17719873,617,577,blank,corrective: name matches client entity at new slot
 243,17772815,17772827,271,283,???,corrective: name matches client entity at new slot
+104,17203813,17203802,613,602,Treasure_Coffer,corrective pass 2: name matches client entity at new slot
+104,17203814,17203803,614,603,Achieve_Master,corrective pass 2: name matches client entity at new slot
+104,17203815,17203804,615,604,Unity_Master,corrective pass 2: name matches client entity at new slot
+104,17203820,17203809,620,609,Signpost,corrective pass 2: name matches client entity at new slot
+104,17203821,17203810,621,610,Signpost,corrective pass 2: name matches client entity at new slot
+104,17203822,17203811,622,611,Signpost,corrective pass 2: name matches client entity at new slot
+104,17203823,17203812,623,612,Signpost,corrective pass 2: name matches client entity at new slot
+104,17203824,17203813,624,613,Alexius,corrective pass 2: name matches client entity at new slot
+104,17203825,17203814,625,614,Stone_Monument,corrective pass 2: name matches client entity at new slot
+104,17203826,17203815,626,615,Crystwater_Spring,corrective pass 2: name matches client entity at new slot
+104,17203829,17203818,629,618,Exoroche,corrective pass 2: name matches client entity at new slot
+104,17203830,17203819,630,619,Vilbert,corrective pass 2: name matches client entity at new slot
+104,17203831,17203820,631,620,OrcishFighter,corrective pass 2: name matches client entity at new slot
+104,17203832,17203821,632,621,Millechairale,corrective pass 2: name matches client entity at new slot
+104,17203833,17203822,633,622,Vijartal,corrective pass 2: name matches client entity at new slot
+104,17203834,17203823,634,623,Roido,corrective pass 2: name matches client entity at new slot
+104,17203837,17203826,637,626,Herald,corrective pass 2: name matches client entity at new slot
+104,17203838,17203827,638,627,Marshal,corrective pass 2: name matches client entity at new slot
+104,17203839,17203828,639,628,San_d_Orian_Pursuivant,corrective pass 2: name matches client entity at new slot
+104,17203840,17203829,640,629,Bastokan_Pursuivant,corrective pass 2: name matches client entity at new slot
+104,17203841,17203830,641,630,Windurstian_Pursuivant,corrective pass 2: name matches client entity at new slot
+104,17203842,17203831,642,631,Perevie,corrective pass 2: name matches client entity at new slot
+104,17203843,17203832,643,632,Rook,corrective pass 2: name matches client entity at new slot
+104,17203844,17203833,644,633,Rook,corrective pass 2: name matches client entity at new slot
+104,17203845,17203834,645,634,Rook,corrective pass 2: name matches client entity at new slot
+104,17203846,17203835,646,635,Rook,corrective pass 2: name matches client entity at new slot
+104,17203847,17203836,647,636,Rook,corrective pass 2: name matches client entity at new slot
+104,17203848,17203837,648,637,Rook,corrective pass 2: name matches client entity at new slot
+104,17203849,17203838,649,638,Rook,corrective pass 2: name matches client entity at new slot
+104,17203851,17203840,651,640,Moogle,corrective pass 2: name matches client entity at new slot
+104,17203852,17203841,652,641,Moogle,corrective pass 2: name matches client entity at new slot
+104,17203853,17203842,653,642,Moogle,corrective pass 2: name matches client entity at new slot
+104,17203854,17203843,654,643,Moogle,corrective pass 2: name matches client entity at new slot
+104,17203855,17203844,655,644,Moogle,corrective pass 2: name matches client entity at new slot
+104,17203856,17203845,656,645,Moogle,corrective pass 2: name matches client entity at new slot
+104,17203857,17203846,657,646,Moogle,corrective pass 2: name matches client entity at new slot
+104,17203858,17203847,658,647,Moogle,corrective pass 2: name matches client entity at new slot
+104,17203938,17203929,738,729,Moogle,corrective pass 2: name matches client entity at new slot
+104,17203859,17203848,659,648,Chaplion_RK,corrective pass 2: name matches client entity at new slot
+104,17203860,17203849,660,649,Takamoto_IM,corrective pass 2: name matches client entity at new slot
+104,17203861,17203850,661,650,Bubchu-Bibinchu_WW,corrective pass 2: name matches client entity at new slot
+104,17203870,17203861,670,661,Conquest_Banner,corrective pass 2: name matches client entity at new slot
+104,17203866,17203855,666,655,Taumiale_RK,corrective pass 2: name matches client entity at new slot
+104,17203867,17203856,667,656,Pure_Heart_IM,corrective pass 2: name matches client entity at new slot
+104,17203868,17203857,668,657,Geruru_WW,corrective pass 2: name matches client entity at new slot
+104,17203869,17203858,669,658,Mionie,corrective pass 2: name matches client entity at new slot
+104,17203875,17203864,675,664,Logging_Point,corrective pass 2: name matches client entity at new slot
+104,17203876,17203865,676,665,Logging_Point,corrective pass 2: name matches client entity at new slot
+104,17203877,17203866,677,666,Logging_Point,corrective pass 2: name matches client entity at new slot
+104,17203878,17203867,678,667,Logging_Point,corrective pass 2: name matches client entity at new slot
+104,17203879,17203868,679,668,Logging_Point,corrective pass 2: name matches client entity at new slot
+104,17203880,17203869,680,669,Logging_Point,corrective pass 2: name matches client entity at new slot
+104,17203881,17203870,681,670,Semih_Lafihna,corrective pass 2: name matches client entity at new slot
+104,17203882,17203871,682,671,Shikaree_M,corrective pass 2: name matches client entity at new slot
+104,17203884,17203873,684,673,Beastmen_s_Banner,corrective pass 2: name matches client entity at new slot
+104,17203885,17203874,685,674,EFFECTER,corrective pass 2: name matches client entity at new slot
+104,17203886,17203875,686,675,Carbuncle,corrective pass 2: name matches client entity at new slot
+104,17203887,17203876,687,676,Talking_Doll,corrective pass 2: name matches client entity at new slot
+104,17203888,17203877,688,677,Ramblix,corrective pass 2: name matches client entity at new slot
+104,17203889,17203878,689,678,Goblin_Footprint,corrective pass 2: name matches client entity at new slot
+104,17203893,17203882,693,682,Palometa,corrective pass 2: name matches client entity at new slot
+104,17203894,17203883,694,683,Luto_Mewrilah,corrective pass 2: name matches client entity at new slot
+104,17203897,17203886,697,686,Cavernous_Maw,corrective pass 2: name matches client entity at new slot
+104,17203944,17203935,744,735,Cavernous_Maw_2,corrective pass 2: name matches client entity at new slot
+104,17203898,17203887,698,687,Field_Manual,corrective pass 2: name matches client entity at new slot
+104,17203899,17203888,699,688,Field_Manual,corrective pass 2: name matches client entity at new slot
+104,17203900,17203889,700,689,Humus-rich_Earth,corrective pass 2: name matches client entity at new slot
+104,17203901,17203890,701,690,Lilisette,corrective pass 2: name matches client entity at new slot
+104,17203902,17203891,702,691,NMTreant,corrective pass 2: name matches client entity at new slot
+104,17203906,17203895,706,695,Field_Parchment,corrective pass 2: name matches client entity at new slot
+104,17203910,17203899,710,699,Mogball-Local,corrective pass 2: name matches client entity at new slot
+104,17203914,17203903,714,703,Excenmille,corrective pass 2: name matches client entity at new slot
+104,17203928,17203917,728,717,KingslayerDoggvdegg,corrective pass 2: name matches client entity at new slot
+104,17203929,17203918,729,718,Pignoit,corrective pass 2: name matches client entity at new slot
+104,17203930,17203919,730,719,Fransont,corrective pass 2: name matches client entity at new slot
+104,17203931,17203920,731,720,Orcishfodder,corrective pass 2: name matches client entity at new slot
+104,17203932,17203921,732,721,Zogbog,corrective pass 2: name matches client entity at new slot
+104,17203934,17203923,734,723,MettalicHodgepodge,corrective pass 2: name matches client entity at new slot
+104,17203946,17203937,746,737,Moniquaurie,corrective pass 2: name matches client entity at new slot
+104,17203948,17203939,748,739,Planar_Rift,corrective pass 2: name matches client entity at new slot
+104,17203949,17203940,749,740,Planar_Rift,corrective pass 2: name matches client entity at new slot
+104,17203950,17203941,750,741,Planar_Rift,corrective pass 2: name matches client entity at new slot
+104,17203951,17203942,751,742,Riftworn_Pyxis,corrective pass 2: name matches client entity at new slot
+104,17203952,17203943,752,743,Riftworn_Pyxis,corrective pass 2: name matches client entity at new slot
+104,17203953,17203944,753,744,Riftworn_Pyxis,corrective pass 2: name matches client entity at new slot
+104,17203954,17203945,754,745,Arfdrick,corrective pass 2: name matches client entity at new slot
+104,17203955,17203946,755,746,Geomagnetic_Fount,corrective pass 2: name matches client entity at new slot
+235,17740046,17740033,270,257,Moogle,corrective pass 2: name matches client entity at new slot
+235,17740089,17740076,313,300,Moogle,corrective pass 2: name matches client entity at new slot
+235,17740143,17740130,367,354,Moogle,corrective pass 2: name matches client entity at new slot
+235,17740144,17740131,368,355,Moogle,corrective pass 2: name matches client entity at new slot
+235,17740145,17740132,369,356,Moogle,corrective pass 2: name matches client entity at new slot
+235,17740047,17740034,271,258,Prince_Yahiko,corrective pass 2: name matches client entity at new slot
+235,17740048,17740035,272,259,Princess_Amdina,corrective pass 2: name matches client entity at new slot
+235,17740049,17740036,273,260,Hiltrude,corrective pass 2: name matches client entity at new slot
+235,17740092,17740079,316,303,Uka_Totlihn,corrective pass 2: name matches client entity at new slot
+235,17740093,17740080,317,304,Diva,corrective pass 2: name matches client entity at new slot
+235,17740094,17740081,318,305,Ullegore,corrective pass 2: name matches client entity at new slot
+235,17740096,17740083,320,307,Foudeel,corrective pass 2: name matches client entity at new slot
+235,17740098,17740085,322,309,Wahboud,corrective pass 2: name matches client entity at new slot
+235,17740099,17740086,323,310,Tango,corrective pass 2: name matches client entity at new slot
+235,17740100,17740087,324,311,Bongo,corrective pass 2: name matches client entity at new slot
+235,17740101,17740088,325,312,Fandango,corrective pass 2: name matches client entity at new slot
+235,17740102,17740089,326,313,Bashraf,corrective pass 2: name matches client entity at new slot
+235,17740103,17740090,327,314,Mumor,corrective pass 2: name matches client entity at new slot
+235,17740107,17740094,331,318,Selma,corrective pass 2: name matches client entity at new slot
+235,17740108,17740095,332,319,Pretty_Heart,corrective pass 2: name matches client entity at new slot
+235,17740109,17740096,333,320,Brian,corrective pass 2: name matches client entity at new slot
+235,17740115,17740102,339,326,Ensemble_Maven,corrective pass 2: name matches client entity at new slot
+235,17740117,17740104,341,328,Fashionista,corrective pass 2: name matches client entity at new slot
+235,17740118,17740105,342,329,Fashionista,corrective pass 2: name matches client entity at new slot
+235,17740119,17740106,343,330,Fashionista,corrective pass 2: name matches client entity at new slot
+235,17740147,17740134,371,358,Sludge,corrective pass 2: name matches client entity at new slot
+235,17740149,17740136,373,360,Horro,corrective pass 2: name matches client entity at new slot
+235,17740155,17740142,379,366,Achieve_Master,corrective pass 2: name matches client entity at new slot
+235,17740159,17740146,383,370,Unity_Master,corrective pass 2: name matches client entity at new slot
+235,17740161,17740148,385,372,Iroha,corrective pass 2: name matches client entity at new slot
+235,17740182,17740169,406,393,Ephemeral_Moogle,corrective pass 2: name matches client entity at new slot
+104,17203797,17203786,597,586,Treasure_Casket,corrective pass 2: name matches client entity at new slot
+104,17203798,17203787,598,587,Treasure_Casket,corrective pass 2: name matches client entity at new slot
+104,17203799,17203788,599,588,Treasure_Casket,corrective pass 2: name matches client entity at new slot
+104,17203800,17203789,600,589,Treasure_Casket,corrective pass 2: name matches client entity at new slot
+104,17203801,17203790,601,590,Treasure_Casket,corrective pass 2: name matches client entity at new slot
+104,17203802,17203791,602,591,Treasure_Casket,corrective pass 2: name matches client entity at new slot
+104,17203803,17203792,603,592,Treasure_Casket,corrective pass 2: name matches client entity at new slot
+104,17203804,17203793,604,593,Treasure_Casket,corrective pass 2: name matches client entity at new slot
+104,17203805,17203794,605,594,Treasure_Casket,corrective pass 2: name matches client entity at new slot
+104,17203806,17203795,606,595,Treasure_Casket,corrective pass 2: name matches client entity at new slot
+104,17203807,17203796,607,596,Treasure_Casket,corrective pass 2: name matches client entity at new slot
+104,17203808,17203797,608,597,Treasure_Casket,corrective pass 2: name matches client entity at new slot
+104,17203809,17203798,609,598,Treasure_Casket,corrective pass 2: name matches client entity at new slot
+104,17203810,17203799,610,599,Treasure_Casket,corrective pass 2: name matches client entity at new slot
+104,17203811,17203800,611,600,Treasure_Casket,corrective pass 2: name matches client entity at new slot
+104,17203812,17203801,612,601,Treasure_Casket,corrective pass 2: name matches client entity at new slot
+104,17203818,17203780,618,580,NPC[59],corrective pass 2: relocated out of a DAT slot
+104,17203819,17203781,619,581,NPC[5a],corrective pass 2: relocated out of a DAT slot
+104,17203835,17203782,635,582,qm1,corrective pass 2: relocated out of a DAT slot
+104,17203836,17203783,636,583,blank,corrective pass 2: relocated out of a DAT slot
+104,17203850,17203784,650,584,NPC[79],corrective pass 2: relocated out of a DAT slot
+104,17203864,17203785,664,585,Conquest_Banner,corrective pass 2: relocated out of a DAT slot
+104,17203865,17203957,665,757,Conquest_Banner,corrective pass 2: relocated out of a DAT slot
+104,17203871,17203958,671,758,Conquest_Banner,corrective pass 2: relocated out of a DAT slot
+104,17203873,17203959,673,759,Conquest_Banner,corrective pass 2: relocated out of a DAT slot
+104,17203874,17203960,674,760,blank,corrective pass 2: relocated out of a DAT slot
+104,17203883,17203961,683,761,qm2,corrective pass 2: relocated out of a DAT slot
+104,17203890,17203962,690,762,blank,corrective pass 2: relocated out of a DAT slot
+104,17203891,17203963,691,763,qm3,corrective pass 2: relocated out of a DAT slot
+104,17203895,17203964,695,764,qm4,corrective pass 2: relocated out of a DAT slot
+104,17203903,17203965,703,765,qm5,corrective pass 2: relocated out of a DAT slot
+104,17203917,17203966,717,766,blank,corrective pass 2: relocated out of a DAT slot
+104,17203921,17203967,721,767,o02,corrective pass 2: relocated out of a DAT slot
+104,17203923,17203968,723,768,o04,corrective pass 2: relocated out of a DAT slot
+104,17203935,17203969,735,769,blank,corrective pass 2: relocated out of a DAT slot
+104,17203937,17203970,737,770,blank,corrective pass 2: relocated out of a DAT slot
+104,17203939,17203971,739,771,blank,corrective pass 2: relocated out of a DAT slot
+104,17203940,17203972,740,772,blank,corrective pass 2: relocated out of a DAT slot
+104,17203941,17203973,741,773,blank,corrective pass 2: relocated out of a DAT slot
+104,17203942,17203974,742,774,blank,corrective pass 2: relocated out of a DAT slot
+104,17203943,17203975,743,775,blank,corrective pass 2: relocated out of a DAT slot
+104,17203945,17203976,745,776,blank,corrective pass 2: relocated out of a DAT slot
+235,17740076,17739879,300,103,blank,corrective pass 2: relocated out of a DAT slot
+235,17740079,17739894,303,118,blank,corrective pass 2: relocated out of a DAT slot
+235,17740080,17739905,304,129,blank,corrective pass 2: relocated out of a DAT slot
+235,17740081,17739949,305,173,blank,corrective pass 2: relocated out of a DAT slot
+235,17740083,17740172,307,396,blank,corrective pass 2: relocated out of a DAT slot
+235,17740085,17740173,309,397,blank,corrective pass 2: relocated out of a DAT slot
+235,17740086,17740174,310,398,blank,corrective pass 2: relocated out of a DAT slot
+235,17740087,17740175,311,399,blank,corrective pass 2: relocated out of a DAT slot
+235,17740088,17740176,312,400,blank,corrective pass 2: relocated out of a DAT slot
+235,17740090,17740177,314,401,qm5,corrective pass 2: relocated out of a DAT slot
+235,17740105,17740178,329,402,Fireworks,corrective pass 2: relocated out of a DAT slot
+235,17740106,17740179,330,403,blank,corrective pass 2: relocated out of a DAT slot
+235,17740130,17740180,354,404,blank,corrective pass 2: relocated out of a DAT slot
+235,17740131,17740181,355,405,blank,corrective pass 2: relocated out of a DAT slot
+235,17740132,17740183,356,407,blank,corrective pass 2: relocated out of a DAT slot
+235,17740134,17740184,358,408,blank,corrective pass 2: relocated out of a DAT slot
+235,17740136,17740185,360,409,blank,corrective pass 2: relocated out of a DAT slot
+235,17740142,17740186,366,410,blank,corrective pass 2: relocated out of a DAT slot
+235,17740148,17740187,372,411,blank,corrective pass 2: relocated out of a DAT slot

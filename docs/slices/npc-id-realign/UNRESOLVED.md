@@ -132,3 +132,8 @@ The npc moved onto a client DAT slot that a mob_spawn_points row also uses. The 
 Moved 42 npc rows onto the client-DAT slot with the matching entity name (cities 230/238/243, plus rows 100-119/146/179/288/291 that the old `-139-146` / `-dat-rest` / `-cities` variants had right). Script: `sql/slices/npc-id-realign/npc_id_realign_corrective.sql` (run once, after `npc_id_realign.sql`). Ledger rows are appended to `ID_SHIFTS.csv`. Also ported the Memory_Receptacle door ids and the Attohwa Zone.lua fix from 87f1d4f8a9. The old 28-mob remap (127007154a) was deliberately NOT ported.
 
 Still open: ~730 other rows whose name differs from the DAT entity at their slot (many are placeholders or other slices' rows, e.g. zones 104, 235, 291, 293, 115, 165); 230/238 unresolved name groups and 243 Unity_Master have no unambiguous DAT slot. Downstream rechecks needed: survival-guides-v2 blocked rows, kupowers `mog_tablet_data.lua`, caskets, vwnm rekeys.
+
+## Corrective pass 2 (2026-10-13): zones 104 and 235
+
+Order-matched same-name groups (104: -11/-9 shift block, 235: -13 block) onto client-DAT slots: 89 moves + 45 relocations of blank/qm/NPC[xx]/Conquest_Banner/Fireworks rows that sat on DAT slots (they have no DAT entity, so they went to free non-DAT slots). Zone 104's 16 Treasure_Casket rows now occupy DAT slots 586-601. Script: `sql/slices/npc-id-realign/npc_id_realign_corrective_104_235.sql` (run after the first corrective script). Mismatch count 743 -> 629. Not touched: 235 door rows (no DAT entity), Eruditemoogle/Proctormoogle, 235 Moogle group (DAT has 23 slots, ambiguous).
+5 duplicate npc ids existed before this work and are unchanged.
