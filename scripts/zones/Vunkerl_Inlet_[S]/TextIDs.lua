@@ -7,3 +7,4 @@ ITEM_CANNOT_BE_OBTAINED = 6380; -- You cannot obtain the item <item> come back a
        KEYITEM_OBTAINED = 6389; -- Obtained key item: <keyitem>
  FISHING_MESSAGE_OFFSET = 7047; -- You can't fish here
 NOTHING_OUT_OF_ORDINARY = 6400; -- There is nothing out of the ordinary here
+COMMON_SENSE_SURVIVAL = 9016; -- new survival guide registered (client DAT, verified)

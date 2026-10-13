@@ -16,3 +16,4 @@ MINING_IS_POSSIBLE_HERE = 7345; -- Mining is possible here if you have
 
 -- conquest Base
 CONQUEST_BASE = 0;
+COMMON_SENSE_SURVIVAL = 10538; -- new survival guide registered (client DAT, verified)

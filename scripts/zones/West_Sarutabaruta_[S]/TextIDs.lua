@@ -16,3 +16,4 @@ DOOR_OFFSET = 7432; -- The door is sealed shut...
 --  +2        7417; -- This door has already been repaired with ?Possible Special Code: 01??Possible Special Code: 05?3?BAD CHAR: 8280??BAD CHAR: 80??BAD CHAR: 80?.?Possible Special Code: 00?
 --  +3        7418; -- The door is badly cracked...?Possible Special Code: 00?
 --  +4        7419; -- You apply the remaining ?Possible Special Code: 01??Possible Special Code: 05?3?BAD CHAR: 8280??BAD CHAR: 80??BAD CHAR: 80? to the cracks on the entrance.?Possible Special Code: 00?
+COMMON_SENSE_SURVIVAL = 9256; -- new survival guide registered (client DAT, verified)

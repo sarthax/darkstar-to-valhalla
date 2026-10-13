@@ -17,3 +17,4 @@ DOOR_SEALED_SHUT = 7209; -- The door above you is sealed shut.
 
 -- conquest Base
 CONQUEST_BASE = 7047; -- Tallying conquest results...
+COMMON_SENSE_SURVIVAL = 7408; -- new survival guide registered (client DAT, verified)

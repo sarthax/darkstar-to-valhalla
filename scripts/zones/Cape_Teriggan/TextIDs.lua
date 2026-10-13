@@ -28,3 +28,4 @@ NOTHING_HAPPENS = 119; -- Nothing happens...?Possible Special Code: 00?
 
 -- conquest Base
 CONQUEST_BASE = 7047; -- Tallying conquest results...
+COMMON_SENSE_SURVIVAL = 11225; -- new survival guide registered (client DAT, verified)

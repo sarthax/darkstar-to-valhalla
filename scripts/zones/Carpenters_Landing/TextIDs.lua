@@ -20,3 +20,4 @@ BEUGUNGEL_SHOP_DIALOG = 7417; -- I'm selling goods direct from the Carpenters' G
 
 -- conquest Base
 CONQUEST_BASE = 7047; -- Tallying conquest results...
+COMMON_SENSE_SURVIVAL = 7557; -- new survival guide registered (client DAT, verified)

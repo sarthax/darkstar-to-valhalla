@@ -26,3 +26,4 @@ PORTAL_NOT_OPEN_THAT_SIDE = 9; -- The Sealed Portal cannot be opened from this s
 
 -- conquest Base
 CONQUEST_BASE = 10;
+COMMON_SENSE_SURVIVAL = 10535; -- new survival guide registered (client DAT, verified)

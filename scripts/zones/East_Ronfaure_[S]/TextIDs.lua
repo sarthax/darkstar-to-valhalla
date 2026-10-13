@@ -10,3 +10,4 @@ NOTHING_OUT_OF_ORDINARY = 6400; -- There is nothing out of the ordinary here.
 
 -- Logging
 LOGGING_IS_POSSIBLE_HERE = 7144; -- Logging is possible here if you have
+COMMON_SENSE_SURVIVAL = 8955; -- new survival guide registered (client DAT, verified)

@@ -18,3 +18,4 @@ FULL_INVENTORY_AFTER_TRADE = 6384; -- You cannot obtain the <item>. Try trading 
 
 -- conquest Base
 CONQUEST_BASE = 7047; -- Tallying conquest results...
+COMMON_SENSE_SURVIVAL = 10803; -- new survival guide registered (client DAT, verified)

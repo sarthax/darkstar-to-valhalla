@@ -5,3 +5,4 @@ ITEM_CANNOT_BE_OBTAINED = 6380; -- You cannot obtain the item <item> come back a
           ITEM_OBTAINED = 6386; -- Obtained: <item>
            GIL_OBTAINED = 6387; -- Obtained <number> gil
        KEYITEM_OBTAINED = 6389; -- Obtained key item: <keyitem>
+COMMON_SENSE_SURVIVAL = 8685; -- new survival guide registered (client DAT, verified)

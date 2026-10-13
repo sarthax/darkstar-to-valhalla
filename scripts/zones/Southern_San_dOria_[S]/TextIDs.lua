@@ -16,3 +16,4 @@ WYATT_DIALOG = 11077; -- Ahhh, sorry, sorry. The name's Wyatt, an' I be an armor
 
 -- Porter Moogle
     RETRIEVE_DIALOG_ID = 15572; -- You retrieve$ from the porter moogle's care.
+COMMON_SENSE_SURVIVAL = 15646; -- new survival guide registered (client DAT, verified)

@@ -20,3 +20,4 @@ EZURAROMAZURA_SHOP_DIALOG = 10880; -- A potent spelly-well or two can be the key
 
 -- Porter Moogle
     RETRIEVE_DIALOG_ID = 14972; -- You retrieve$ from the porter moogle's care.
+COMMON_SENSE_SURVIVAL = 15033; -- new survival guide registered (client DAT, verified)

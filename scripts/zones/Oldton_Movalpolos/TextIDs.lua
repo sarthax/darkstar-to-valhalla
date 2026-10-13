@@ -25,3 +25,4 @@ RAKOROK_DIALOGUE = 7721; -- Nsy pipul. Gattohre! I bisynw!
 
 -- conquest Base
 CONQUEST_BASE = 7047; -- Tallying conquest results...
+COMMON_SENSE_SURVIVAL = 8105; -- new survival guide registered (client DAT, verified)

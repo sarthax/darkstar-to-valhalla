@@ -18,3 +18,4 @@ ALREADY_OBTAINED_FRAG = 7317; -- You have already obtained this monument's
 
 -- conquest Base
 CONQUEST_BASE = 7047; -- Tallying conquest results...
+COMMON_SENSE_SURVIVAL = 11524; -- new survival guide registered (client DAT, verified)

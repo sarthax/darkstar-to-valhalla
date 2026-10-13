@@ -14,3 +14,4 @@ FULL_INVENTORY_AFTER_TRADE = 6384; -- You cannot obtain the #. Try trading again
 
 -- conquest Base
 CONQUEST_BASE = 7149; -- Tallying conquest results...
+COMMON_SENSE_SURVIVAL = 7495; -- new survival guide registered (client DAT, verified)

@@ -11,3 +11,4 @@ ITEM_CANNOT_BE_OBTAINED = 6380; -- You cannot obtain the item <item> come back a
 CONQUEST_BASE = 7047; -- Tallying conquest results...
 
 NOTHING_OUT_OF_ORDINARY = 6400; -- There is nothing out of the ordinary here
+COMMON_SENSE_SURVIVAL = 10662; -- new survival guide registered (client DAT, verified)

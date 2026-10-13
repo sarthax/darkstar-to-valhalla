@@ -23,3 +23,4 @@ NOTHING_OUT_OF_ORDINARY = 6400; -- There is nothing out of the ordinary here.
 -- conquest Base
 CONQUEST_BASE = 7147; -- Tallying conquest results...
 
+COMMON_SENSE_SURVIVAL = 10541; -- new survival guide registered (client DAT, verified)

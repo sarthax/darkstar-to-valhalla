@@ -31,3 +31,4 @@ IT_IS_ALREADY_FUNCTIONING = 7307; -- It is already functioning.
 
 -- conquest Base
 CONQUEST_BASE = 7147; -- Tallying conquest results...
+COMMON_SENSE_SURVIVAL = 11667; -- new survival guide registered (client DAT, verified)

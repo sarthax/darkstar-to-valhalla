@@ -12,3 +12,4 @@ LOGGING_IS_POSSIBLE_HERE = 7532; -- Logging is possible here if you have
 
 -- Other Texts
 NOTHING_HAPPENS = 119; -- Nothing happens...
+COMMON_SENSE_SURVIVAL = 9537; -- new survival guide registered (client DAT, verified)

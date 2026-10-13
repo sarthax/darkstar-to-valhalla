@@ -33,3 +33,4 @@ YAGUDO_AVATAR_ENGAGE = 7442; -- Kahk-ka-ka... You filthy, dim-witted heretics! Y
 
 -- conquest Base
 CONQUEST_BASE = 26;
+COMMON_SENSE_SURVIVAL = 8293; -- new survival guide registered (client DAT, verified)

@@ -29,3 +29,4 @@ PLAYERS_HAVE_NOT_REACHED_LEVEL = 7846; -- Players who have not reached levelare 
 
 -- conquest Base
 CONQUEST_BASE = 7047; -- Tallying conquest results...
+COMMON_SENSE_SURVIVAL = 12650; -- new survival guide registered (client DAT, verified)

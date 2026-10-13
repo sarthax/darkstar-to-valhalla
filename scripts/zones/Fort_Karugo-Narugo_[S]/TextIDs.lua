@@ -15,3 +15,4 @@ LOGGING_IS_POSSIBLE_HERE = 7669; -- Logging is possible here if you have
 
 -- Other Texts
 ITEM_DELIVERY_DIALOG = 8108; -- Deliveries! We're open for business!
+COMMON_SENSE_SURVIVAL = 9187; -- new survival guide registered (client DAT, verified)

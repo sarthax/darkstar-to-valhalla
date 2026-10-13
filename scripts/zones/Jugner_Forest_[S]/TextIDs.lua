@@ -14,3 +14,4 @@ LOGGING_IS_POSSIBLE_HERE = 7067; -- Logging is possible here if you have
 -- Other Texts
       NOTHING_HAPPENS = 119; -- Nothing happens.
 ALREADY_OBTAINED_TELE = 7696; -- You already possess the gate crystal for this telepoint.
+COMMON_SENSE_SURVIVAL = 9498; -- new survival guide registered (client DAT, verified)

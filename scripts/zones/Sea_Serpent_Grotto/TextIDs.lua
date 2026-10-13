@@ -41,3 +41,4 @@ COMPLETED_CHECK = 7345; -- It is a door you can open using
 -- conquest Base
 CONQUEST_BASE = 7047; -- Tallying conquest results...
 
+COMMON_SENSE_SURVIVAL = 10742; -- new survival guide registered (client DAT, verified)

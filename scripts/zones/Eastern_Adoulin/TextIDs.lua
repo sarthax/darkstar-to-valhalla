@@ -6,3 +6,4 @@ ITEM_CANNOT_BE_OBTAINED = 6379; -- You cannot obtain the item <item> come back a
            GIL_OBTAINED = 6386; -- Obtained <number> gil
        KEYITEM_OBTAINED = 6388; -- Obtained key item: <keyitem>
           HOMEPOINT_SET = 8282; -- Home point set!
+COMMON_SENSE_SURVIVAL = 13845; -- new survival guide registered (client ROM9/5/102.DAT, verified by POLUtils)
