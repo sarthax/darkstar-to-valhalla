@@ -27,3 +27,4 @@ CONQUEST_BASE = 7047; -- Tallying conquest results...
 --chocobo digging
 DIG_THROW_AWAY = 7219; -- You dig up$, but your inventory is full. You regretfully throw the # away.
 FIND_NOTHING = 7221; -- You dig and you dig, but find nothing.
+COMMON_SENSE_SURVIVAL = 11796; -- new survival guide registered (client DAT, verified)

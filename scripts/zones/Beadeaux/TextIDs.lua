@@ -25,3 +25,4 @@ YOU_CAN_NOW_BECOME_A_DARK_KNIGHT = 7347; -- You can now become a dark knight!
 -- conquest Base
 CONQUEST_BASE = 7047; -- Tallying conquest results...
 
+COMMON_SENSE_SURVIVAL = 7784; -- new survival guide registered (client DAT, verified)

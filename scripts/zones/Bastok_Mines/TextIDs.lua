@@ -83,3 +83,4 @@ ITEM_DELIVERY_DIALOG = 10433; -- Need something sent to a friend's house? Sendin
 -- conquest Base
 CONQUEST_BASE = 6579; -- Tallying conquest results...
 
+COMMON_SENSE_SURVIVAL = 15991; -- new survival guide registered (client DAT, verified)

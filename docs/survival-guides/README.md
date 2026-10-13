@@ -22,3 +22,11 @@ LSB snapshot: `DSP-LSB-Gap-Audit/evidence/lsb_snapshot/server-base/scripts/globa
 ## Capture facts (Survival_Guide capture)
 - csid 8500 via 0x034, param[0] low word = 2 or 0x081c.. (menu state), param[2] 0x4000000 (+0x20 once registered), param[3] 0xfff.
 - Client replies (0x05B): option 7 = open teleport menu, 3 = set layout (high word = layout index), 1 = teleport (high word = destination index in the group, e.g. 2, 28), final EndPara 0 closes.
+
+## Built (2026-10-12)
+- `scripts/globals/survival_guide.lua` (+ `survival_guide_map.lua`, 98 destinations from LSB, zone ids resolved via zone_settings.sql); per-zone `npcs/Survival_Guide.lua` in all 98 zones; `COMMON_SENSE_SURVIVAL` set in every zone's TextIDs from the client dialog.yml (Eastern Adoulin: none in client, no register message).
+- State in player vars (`SG_Reg<group>a/b`, `SG_Fav1..9`, `SG_Layout`). Update reply packing (0xFF for empty favorites) matches the capture.
+- Fee: 1000 gil / 50 tabs, Rhapsody in White = 1/5 (key item 2884, matched by name), Thrifty Transit = free (guarded call to `MOG_TABLET.hasPower`; no effect until the kupopower branch is merged).
+- `sql/npc_list.sql` updated; `sql/survival_guides_apply.sql` is the one-shot live import (deletes old Survival Guide rows, inserts the 98 verified ones).
+- 39 rows (previously NOT_CAPTURED) use the LSB arrival position as a provisional placement, default look/flags: check in game.
+- Not supported: tutorial free warp; DSP onEventFinish has no npc argument, so no distance check.

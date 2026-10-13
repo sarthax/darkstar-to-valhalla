@@ -14,3 +14,4 @@ CHUMIA_DIALOG = 7306; -- Welcome to Bostaunieux Oubliette...
 
 -- conquest Base
 CONQUEST_BASE = 0;
+COMMON_SENSE_SURVIVAL = 10622; -- new survival guide registered (client DAT, verified)
