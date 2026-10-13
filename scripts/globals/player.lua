@@ -5,6 +5,7 @@
 -----------------------------------
 
 require("scripts/globals/keyitems");
+require("scripts/globals/mog_tablets");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
 require("scripts/globals/settings");
@@ -19,6 +20,7 @@ require("scripts/globals/gear_sets");
 
 function onGameIn(player, firstlogin, zoning)
     if (not zoning) then -- Things checked ONLY during logon go here.
+        MOG_TABLET.onLogin(player);
         if (firstlogin) then
             CharCreate(player);
         end
@@ -30,6 +32,7 @@ function onGameIn(player, firstlogin, zoning)
 
     -- Things checked BOTH during logon AND zone in below this line.
     checkForGearSet(player);
+    MOG_TABLET.syncMods(player);
 
     if (player:getVar("GodMode") == 1) then
         -- Add bonus effects to the player..

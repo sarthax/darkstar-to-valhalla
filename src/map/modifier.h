@@ -678,6 +678,18 @@ enum class Mod
     CAMPAIGN_BONUS            = 867, // Campaign evaluation bonus (no consumer yet)
     CAPACITY_BONUS            = 868, // Percent bonus to capacity points (no consumer yet)
 
+    // Super Kupower: Crystal Caboodle (set by MOG_TABLET.syncMods)
+    CRYSTAL_DROP_RATE         = 869, // Percent increase to the mob crystal drop chance; any value > 0 also lifts the beastmen-region restriction
+    CLUSTER_DROP_RATE         = 870, // Percent chance that a dropped crystal is a cluster instead
+
+    // Super Kupower: Blood of the Vampyr (set by MOG_TABLET.syncMods); latent, stacks with REGEN/REFRESH
+    VAMPYR_REGEN              = 871, // HP per tick while HP is below 51%
+    VAMPYR_REFRESH            = 872, // MP per tick while MP is below 51%
+
+    // Super Kupower: Artisan's Advantage (set by MOG_TABLET.syncMods)
+    ARTISAN_LOSS_SUPPORT      = 873, // Percent reduction of the failed-synthesis ingredient loss chance while Synthesis Image Support is active
+    FOOD_DURATION             = 874, // Dilatory Digestion: percent added to food effect duration
+
     // 570 through 825 used by WS DMG mods these are not spares.
     // SPARE = 860, // stuff
 };

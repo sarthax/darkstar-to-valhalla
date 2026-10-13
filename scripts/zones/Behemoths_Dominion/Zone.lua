@@ -15,6 +15,8 @@ require("scripts/zones/Behemoths_Dominion/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
+    require("scripts/globals/mog_tablets");
+    MOG_TABLET.onZoneInitialize(zone);
     if (LandKingSystem_NQ ~= 1) then
         SetRespawnTime(17297440, 900, 10800); -- Behemoth
     end
@@ -37,6 +39,8 @@ end;
 -----------------------------------
 
 function onZoneIn(player,prevZone)
+    require("scripts/globals/mog_tablets");
+    MOG_TABLET.onZoneIn(player);
     local cs = -1;
     if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
         player:setPos(358.134,24.806,-60.001,123);
