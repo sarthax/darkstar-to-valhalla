@@ -1378,6 +1378,12 @@ MOD_CONQUEST_REGION_BONUS = 865 -- Percent bonus to region (influence) points
 MOD_GILFINDER             = 866 -- Percent bonus to gil dropped by mobs
 MOD_CAMPAIGN_BONUS        = 867 -- Campaign evaluation bonus (no consumer yet)
 MOD_CAPACITY_BONUS        = 868 -- Percent bonus to capacity points (no consumer yet)
+MOD_CRYSTAL_DROP_RATE     = 869 -- Percent increase to mob crystal drop chance (>0 also lifts beastmen-region restriction)
+MOD_CLUSTER_DROP_RATE     = 870 -- Percent chance a dropped crystal is a cluster instead
+MOD_VAMPYR_REGEN          = 871 -- Blood of the Vampyr: HP/tick while HP < 51%
+MOD_VAMPYR_REFRESH        = 872 -- Blood of the Vampyr: MP/tick while MP < 51%
+MOD_ARTISAN_LOSS_SUPPORT  = 873 -- Artisan's Advantage: % reduction of failed-synth ingredient loss chance with Image Support
+MOD_FOOD_DURATION          = 874 -- Dilatory Digestion: % added to food effect duration
 
 MOD_WEAPONSKILL_DAMAGE_BASE = 570 -- Specific to 1 Weaponskill: See modifier.h for how this is used
 MOD_ALL_WSDMG_ALL_HITS      = 840 -- Generic (all Weaponskills) damage, on all hits.

@@ -22,6 +22,8 @@ end;
 -----------------------------------
 
 function onZoneIn(player,prevZone)
+    require("scripts/globals/mog_tablets");
+    MOG_TABLET.onZoneIn(player);
     local cs = -1;
     -- MOG HOUSE EXIT
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then

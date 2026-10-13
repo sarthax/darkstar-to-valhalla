@@ -1,3 +1,4 @@
+-- RETIRED 2026-10-12: superseded by the full ID realignment in sql/npc_list.sql. Do NOT run; targets already exist and re-running can shuffle same-named neighbours.
 -- Voidwatch re-key of zones 101/104 to client ids (see docs/voidwatch/research/REKEY-CHANGELOG.md)
 UPDATE npc_list SET npcid=17191583 WHERE npcid=17191581 AND name='Geomantic_Reservoir';
 UPDATE npc_list SET npcid=17191582 WHERE npcid=17191580 AND name='Riftworn_Pyxis';

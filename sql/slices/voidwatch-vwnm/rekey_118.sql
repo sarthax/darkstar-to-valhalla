@@ -1,3 +1,4 @@
+-- RETIRED 2026-10-12: superseded by the full ID realignment in sql/npc_list.sql. Do NOT run; targets already exist and re-running can shuffle same-named neighbours.
 -- Voidwatch re-key of Buburimu Peninsula (z118) npc_list to client ids (+2) [V: z118 entities.yml pull]
 -- Descending order so no id collides mid-update.
 UPDATE npc_list SET npcid=17261225 WHERE npcid=17261223 AND name='Survival_Guide';

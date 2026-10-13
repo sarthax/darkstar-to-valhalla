@@ -9,3 +9,4 @@ NOTHING_OUT_OF_ORDINARY = 6400; -- There is nothing out of the ordinary here.
 
 -- Other Texts
 ALREADY_OBTAINED_TELE = 7589; -- You already possess the gate crystal for this telepoint.
+COMMON_SENSE_SURVIVAL = 8938; -- new survival guide registered (client DAT, verified)

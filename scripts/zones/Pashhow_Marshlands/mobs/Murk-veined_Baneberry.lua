@@ -35,6 +35,11 @@ function onMagicHit(caster, target, spell)
     return 0;
 end;
 
+function onWeaponskillHit(mob, attacker, wsid)
+    vwOnWeaponskillHit(mob, attacker, wsid, VWMSG);
+    return 0;
+end
+
 local function tick(mob)
     vwWeaknessTick(mob, VWMSG);
     local left = mob:getLocalVar("VW_DEADLINE") - os.time();
@@ -88,6 +93,7 @@ function onMobDeath(mob, player, isKiller)
     local idx = mob:getID() - 17224185;
     vwOnKill(mob, player, {
         region = "THREE", stage = 3, -- stage = Indigo tier
+        atmacite = {1809}, -- white-light drop [W/J, ATMACITE-DATA.md]
         pyxisId = 17224374 + idx,
         dropRates = {[19172] = 5.7, [10931] = 20}, -- Jingang Greatsword ~5.7%, Rancor Collar ~20% [F]; Tonberry Coat (1119) rate unknown, not modelled
         keyitem = ATMACITE_OF_ONSLAUGHT, -- DSP keyitems.lua name; client-id check pending

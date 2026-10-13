@@ -66,7 +66,7 @@ Cross-check against captures [C]: class A (1810 all steps; 1807 L14/L15), class 
 
 - Infuse cost: static 100 cruor per atmacite regardless of level [W2; level-1 case also C].
 - Slots: one per periapt of emergence, max 3; effects stack. Switching only at a refiner or Planar Rift. Infused atmacite persists for all VW fights until switched.
-- Purge option id: NOT captured [U].
+- Purge option: Finish `(pos<<16)|4`; clears the infuse position only, level and KI kept [T 2026-10-09, in-game]. See REFINER-CAPTURE-DECODE.md section 6.
 
 ## Table
 

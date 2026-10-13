@@ -11,6 +11,7 @@ require("scripts/globals/conquest");
 require("scripts/globals/quests");
 require("scripts/globals/shop");
 
+require("scripts/globals/mog_tablets");
 -----------------------------------
 -- onTrade Action
 -----------------------------------
@@ -38,7 +39,7 @@ function onTrigger(player,npc)
 cop = 40; --player:getVar("chainsOfPromathiaMissions");
 
 if (cop >= 40) then
-    if (RegionOwner ~= NATION_SANDORIA) then 
+    if (RegionOwner ~= NATION_SANDORIA and not MOG_TABLET.hasPower(MOG_TABLET.POWERS.BOUNTIFUL_BAZAAR)) then 
         player:showText(npc,DEGUERENDARS_CLOSED_DIALOG);
     else
         player:showText(npc,DEGUERENDARS_OPEN_DIALOG);
