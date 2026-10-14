@@ -450,3 +450,6 @@ Open items for Cottus: level, mobType, job, second HP capture, Mercurial Strike 
 
 ## Crimson/Indigo/Jade audit 2026-10-12
 SQL: sql/slices/voidwatch-vwnm/nm_audit_20261012.sql. Cottus mobType 0->2 (all 18 now impossible-to-gauge). HP 45000 ESTIMATE [U] for Pancimanci/Akupara/Voidwrought (no source found). Sarimanok own list 1184. Added live skills: Belphoebe 2196-2199, Hahava 2715/2719/2721, Kholomodumo 629, Ushumgal 2153, Lorbulcrud 1319. Not buildable (commented/no Lua/no row): see systems_backlog s01-s13.
+
+## Voidwatch Purveyor 2026-10-13
+Built from the client event decompile; see scripts/globals/voidwatch_purveyor.lua header and backlog rows p01-p07 on the domain page. Client ids differ from npc_list in 7 zones (p04).
