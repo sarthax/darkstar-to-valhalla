@@ -34,3 +34,6 @@ After the zone 230 fills (606/618/632-635; 632 blank prop moved to 636) and the 
 
 ## Held-target cleanup (2026-10-13)
 Removed 6 redundant copies whose DAT target slot already held the same-named row (115:526, 115:527 identical; 102:673, 202:61, 258:388, 267:383 same position, differing only by empty polutils_name / lower entityFlags). Swapped 3 Smile_Helper/NPC pairs onto their DAT slots (110:629<->631 Marlena, 117:652<->654 Yvantoine, 120:550<->552 Neriss). Backup `bak_dedupe_20261013`. Left as evidence: digit-named rows with differing looks (zones 13, 81, 85, 163), 102:636 Chocobo, zone 291 fep chain, and the one-off holds (20, 152, 179, 260, 267 Veil, 289, 136).
+
+## Rows owned by other slices (2026-10-13)
+The earlier "56 rows owned by other slices" group had shrunk to 5 against the live DB. Handed off, not changed here: zone 208 slots 495 and 496 (zero-position Treasure_Casket on the Achieve Master / Unity Master DAT slots; real DAT casket slots start at 479; belongs to the treasure-caskets rework) and the three Erudite Moogle rows on Treasure Coffer DAT slots (230:429, 235:250, 238:365; unidentified model 0x056E-0x0570, deliberately left as recorded). No Survival_Guide mismatches remain in the live state.
