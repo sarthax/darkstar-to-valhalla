@@ -11,6 +11,8 @@ require("scripts/globals/survival_guide_map");
 SURVIVAL_GUIDE = {};
 
 SURVIVAL_GUIDE.EVENT = 8500;
+-- Expansion mask sent to the client. Retail capture sends 0xFFF; gating by ENABLE_* hid group-2 entries (Carpenters Landing, Bibiki Bay) after registering. Only registered guides are selectable anyway.
+SURVIVAL_GUIDE.EXPANSIONS = 0xFFF;
 SURVIVAL_GUIDE.OPT = { TELEPORT = 1, SET_LAYOUT = 3, ADD_FAV = 4, REMOVE_FAV = 5, REPLACE_FAV = 6, MENU = 7 };
 
 SURVIVAL_GUIDE.COST_GIL  = 1000;
@@ -82,7 +84,7 @@ function SURVIVAL_GUIDE.onTrigger(player, registerText)
     if (player:getVar("SG_Layout") == 1) then param = bit.bor(param, 0x0800); end
     if (player:hasKeyItem(RHAPSODY_IN_WHITE)) then param = bit.bor(param, 0x2000); end
 
-    local expansions = 3 + 4 * ENABLE_COP + 8 * ENABLE_TOAU + 16 * ENABLE_WOTG + 2048 * ENABLE_SOA;
+    local expansions = SURVIVAL_GUIDE.EXPANSIONS;
     player:startEvent(SURVIVAL_GUIDE.EVENT, 0, param, player:getGil(),
         groupParam(player, 1), groupParam(player, 2), groupParam(player, 3), groupParam(player, 4), expansions);
 end
