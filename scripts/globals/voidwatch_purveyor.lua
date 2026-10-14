@@ -3,7 +3,9 @@
 -- Evidence tags: [V] client event decompile (FFXI-EventsDump, all 20 Purveyor dumps are structurally identical, same prices)
 --                [W] BG-wiki  [D] design choice (flagged)
 --
--- Event params [V]: p2 = currency (0 Conquest Points, 1 Imperial Standing, 2 Allied Notes), p3 = current balance.
+-- Event params [V, in-game test 2026-10-14]: param 1 = current balance ($1 in the client text). The currency (0 Conquest Points,
+--   1 Imperial Standing, 2 Allied Notes) is read from one of the even params 0/2/4/6 (exact slot not isolated, we send it in all four);
+--   the event fills the item prices itself from the currency. Odd params 3,5,7.. are price slots and must stay 0.
 -- Menu slots [V]: 1 Cobalt Cell 3434, 2 Rubicund Cell 3435, 3 Xanthous Cell 3436, 4 Jade Cell 3437, 5 Pouch of Voiddust 3450.
 -- Prices baked into the client event [V] (user rule: use these): cells 2000 for CP and Imperial Standing, 3000 for Allied Notes; voiddust 2000 for all.
 --   (the BG-wiki table says 3000 for every cell, which disagrees with the baked code for CP / Imperial Standing.)
@@ -49,10 +51,17 @@ end
 
 -- cfg = {csid = <event id for this npc>, currency = 0|1|2}
 function vwpTrigger(player, cfg)
-    player:startEvent(cfg.csid, 0, 0, cfg.currency, balance(player, cfg.currency), 0, 0, 0, 0);
+    local bal = balance(player, cfg.currency);
+    -- TEMP DIAGNOSTIC (remove before commit): shows what each currency reads for this character
+    player:PrintToPlayer(string.format("[VWP debug] zone %u csid %u uses %s (%u) -> sent balance %d", player:getZoneID(), cfg.csid, VWP.CURRENCY_NAME[cfg.currency], cfg.currency, bal));
+    player:PrintToPlayer(string.format("[VWP debug] all balances: CP %d | Imperial Standing %d | Allied Notes %d", player:getCP(), player:getCurrency("imperial_standing"), player:getCurrency("allied_notes")));
+    local c = cfg.currency;
+    -- balance is param 1 ($1 in the client text) [V probe 2026-10-14]; currency slot unknown, tried in every even slot
+    player:startEvent(cfg.csid, c, bal, c, 0, c, 0, c, 0);
 end
 
 function vwpFinish(player, cfg, option)
+    player:PrintToPlayer(string.format("[VWP debug] finish csid %u option %u (slot %u qty %u)", cfg.csid, option, bit.band(bit.rshift(option, 16), 0x3F), bit.rshift(option, 22))); -- TEMP DIAGNOSTIC
     if (bit.band(option, 0xFFFF) ~= 1) then
         return;
     end
@@ -69,6 +78,7 @@ function vwpFinish(player, cfg, option)
     end
     local cost = VWP.PRICE[cfg.currency][slot] * qty;
     if (balance(player, cfg.currency) < cost) then
+        player:PrintToPlayer(string.format("[VWP debug] server refused: cost %d > balance %d", cost, balance(player, cfg.currency))); -- TEMP DIAGNOSTIC
         return;
     end
     if (player:getFreeSlotsCount() < math.ceil(qty / STACK)) then
