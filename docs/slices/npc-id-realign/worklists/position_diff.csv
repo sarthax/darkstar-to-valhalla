@@ -4664,7 +4664,7 @@ mob,16937289,39,Goblin_Statue,Goblin Statue,501.0,158.0,106.7
 mob,17330353,135,Duke_Berith,Duke Berith,158.285,-43.306,106.7
 npc,17867116,266,Mining_Point,Mining Point,297.294,-253.5,106.6
 mob,17326749,134,Hydra_Dark_Knight,Hydra Dark Knight,-307.423,54.0,106.6
-mob,16859395,20,Wanderer,Wanderer,-5.94,168.821,106.5
+mob,16859393,20,Wanderer,Wanderer,-5.94,168.821,106.5
 mob,17236180,112,Shadow_Eye,Shadow Eye,-238.0,83.0,106.5
 mob,17961016,289,EschanIl_aern,Eschan Il aern,80.166,-150.55,106.5
 mob,17093267,77,Papa_Monkey,Papa Monkey,-106.479,61.398,106.5
@@ -5310,7 +5310,7 @@ mob,17543171,187,Muu_Febi_the_Steadfast,Muu Febi the Steadfast,44.34,-62.903,84.
 mob,16797947,5,Scowlenkos,Scowlenkos,-242.0,479.0,84.7
 mob,16945325,41,Nightmare_Gaylas,Nightmare Gaylas,154.0,-206.0,84.6
 mob,16945327,41,Nightmare_Gaylas,Nightmare Gaylas,150.0,-206.0,84.6
-mob,16859270,20,Craver,Craver,-189.459,-3.169,84.5
+mob,16859268,20,Craver,Craver,-189.459,-3.169,84.5
 npc,17510694,179,Eald_narche,Eald'narche,0.111,75.943,84.4
 mob,17330302,135,Vanguard_Eye,Vanguard Eye,412.0,-181.0,84.3
 mob,17543392,187,Avatar_Icon,Avatar Icon,85.336,53.503,84.3
@@ -5349,7 +5349,7 @@ mob,17535298,185,Serjeant_Tombstone,,0.068,-32.329,83.6
 mob,17535360,185,Serjeant_Tombstone,,0.061,-31.935,83.6
 mob,17555876,190,Spartoi_Sorcerer,Spartoi Sorcerer,143.175,-283.86,83.6
 mob,17326931,134,Avatar_Icon,,220.263,120.972,83.5
-mob,16859393,20,Weeper,Weeper,-52.56,212.107,83.4
+mob,16859391,20,Weeper,Weeper,-52.56,212.107,83.4
 mob,16941442,40,Adamantking_Effigy,Adamantking Effigy,404.0,32.0,83.4
 mob,16937390,39,Nightmare_Hippogryph,Nightmare Hippogryph,-178.5,-79.0,83.1
 npc,17162639,94,Adder_Coffer,Adder Coffer,-65.0,83.0,83.0
@@ -5642,7 +5642,7 @@ mob,17342712,138,Demon_s_Elemental,Demon's Elemental,1.0,1.0,77.0
 mob,17342721,138,Demon_s_Elemental,Demon's Elemental,1.0,1.0,77.0
 mob,17342724,138,Demon_s_Elemental,Demon's Elemental,1.0,1.0,77.0
 mob,17342728,138,Demon_s_Elemental,Demon's Elemental,1.0,1.0,77.0
-mob,16859391,20,Seether,Seether,-30.508,209.501,76.9
+mob,16859389,20,Seether,Seether,-30.508,209.501,76.9
 mob,16941175,40,Vanguard_Sentinel,Vanguard Sentinel,1.0,1.0,76.9
 mob,16941176,40,Vanguard_Sentinel,Vanguard Sentinel,1.0,1.0,76.9
 mob,16941459,40,Vanguard_Sentinel,Vanguard Sentinel,1.0,1.0,76.9
@@ -5908,7 +5908,7 @@ mob,16945391,41,Nightmare_Snoll,Nightmare Snoll,-103.0,264.0,75.9
 mob,17093263,77,Auspicious_Tiger,Auspicious Tiger,-75.873,33.205,75.9
 mob,16945603,41,Vanguard_Ogresoother,Vanguard Ogresoother,1.0,1.0,75.5
 mob,16945218,41,Vanguard_Ogresoother,Vanguard Ogresoother,1.0,1.0,75.5
-mob,16859271,20,Craver,Craver,-151.064,41.801,75.4
+mob,16859269,20,Craver,Craver,-151.064,41.801,75.4
 mob,17326355,134,Vanguard_Pitfighter,Vanguard Pitfighter,0.001,0.001,75.4
 mob,17326377,134,Vanguard_Pitfighter,Vanguard Pitfighter,0.001,0.001,75.4
 mob,17326378,134,Vanguard_Pitfighter,Vanguard Pitfighter,0.001,0.001,75.4
@@ -6095,7 +6095,7 @@ mob,17326404,134,Vanguard_Hitman,Vanguard Hitman,0.001,0.001,70.4
 mob,17535295,185,Serjeant_Tombstone,,-14.034,-30.551,70.4
 mob,16830536,13,Elvaan_Automaton,Elvaan Automaton,19.86,-47.449,70.3
 mob,17326785,134,Hydra_Monk,Hydra Monk,-347.786,95.177,70.3
-mob,16859318,20,Seether,Seether,214.02,-180.373,70.2
+mob,16859316,20,Seether,Seether,214.02,-180.373,70.2
 mob,16900197,30,Hippogryph,Hippogryph,244.82,314.464,70.2
 mob,17539469,186,Adamantking_Effigy,,79.696,-82.015,70.2
 mob,17182796,99,Yagudo_s_Elemental,Yagudo's Elemental,8.87,-15.047,70.1
@@ -6331,7 +6331,7 @@ npc,17740090,235,Mumor,Mumor,-253.55,-66.487,64.6
 mob,16936991,39,Nightmare_Manticore,Nightmare Manticore,312.0,-87.0,64.6
 mob,16936992,39,Nightmare_Manticore,Nightmare Manticore,312.0,-87.5,64.6
 mob,16842837,16,Thinker,Thinker,-204.746,-131.716,64.5
-mob,16859392,20,Weeper,Weeper,-33.657,222.947,64.5
+mob,16859390,20,Weeper,Weeper,-33.657,222.947,64.5
 mob,16949274,42,Nightmare_Hornet,Nightmare Hornet,30.0,31.0,64.5
 mob,17535285,185,Serjeant_Tombstone,,19.138,-2.147,64.5
 mob,16797916,5,Kindred_Dark_Knight,Kindred Dark Knight,-242.226,371.278,64.4
@@ -6495,7 +6495,7 @@ mob,17543518,187,Avatar_Icon,,86.974,85.454,59.3
 npc,17814110,253,Frostbloom,Frostbloom,-124.864,29.377,59.2
 mob,16797755,5,Polar_Hare,Polar Hare,295.808,-272.415,59.2
 mob,16842797,16,Thinker,Thinker,-118.566,-106.176,59.2
-mob,16859441,20,Craver,Craver,238.522,221.277,59.2
+mob,16859439,20,Craver,Craver,238.522,221.277,59.2
 mob,16945416,41,Nightmare_Stirge,Nightmare Stirge,-12.0,77.0,59.2
 mob,16945418,41,Nightmare_Stirge,Nightmare Stirge,-9.0,77.0,59.2
 npc,16990608,52,Harvesting_Point,Harvesting Point,335.562,448.904,59.1
@@ -6816,8 +6816,8 @@ mob,17535336,185,Serjeant_Tombstone,,-213.153,98.015,53.6
 npc,17879373,269,Mining_Point,Mining Point,135.0,-241.5,53.5
 npc,16982155,50,_1e1,Salaheem's Sentinels,24.0,-60.674,53.4
 mob,16887953,27,Eba,Eba,-139.212,-23.191,53.4
-mob,16859396,20,Weeper,Weeper,7.745,153.839,53.3
-mob,16859397,20,Weeper,Weeper,7.743,175.53,53.3
+mob,16859394,20,Weeper,Weeper,7.745,153.839,53.3
+mob,16859395,20,Weeper,Weeper,7.743,175.53,53.3
 mob,16941177,40,Vanguard_Priest,Vanguard Priest,1.0,1.0,53.3
 mob,16941178,40,Vanguard_Priest,Vanguard Priest,1.0,1.0,53.3
 mob,16941460,40,Vanguard_Priest,Vanguard Priest,1.0,1.0,53.3
@@ -7128,7 +7128,7 @@ mob,17535319,185,Serjeant_Tombstone,,-100.9,20.701,46.9
 npc,17662717,216,Logging_Point,Logging Point,-213.362,150.466,46.8
 npc,17662721,216,Logging_Point,Logging Point,-213.362,150.466,46.8
 mob,16797830,5,Fachan,Fachan,444.992,254.601,46.8
-mob,16859394,20,Seether,Seether,2.222,160.467,46.8
+mob,16859392,20,Seether,Seether,2.222,160.467,46.8
 mob,16867681,22,Gorger,Gorger,-332.156,40.9,46.7
 mob,16879756,25,Orcish_Gladiator,Orcish Gladiator,87.181,-133.355,46.7
 mob,16941636,40,Nightmare_Raven,Nightmare Raven,145.0,1.0,46.7
@@ -7189,7 +7189,7 @@ npc,17142586,89,Indescript_Markings,Indescript Markings,-517.0,209.0,45.2
 mob,16879768,25,Gigas_Braver,Gigas Braver,-33.206,2.709,45.2
 mob,17543565,187,Avatar_Icon,,-56.762,228.704,45.2
 npc,17842717,260,Shellfish,Shellfish,338.132,154.095,45.0
-mob,16859438,20,Craver,Craver,-37.804,284.83,45.0
+mob,16859436,20,Craver,Craver,-37.804,284.83,45.0
 mob,17330513,135,Satellite_Guns,Satellite Guns,-323.451,-81.981,45.0
 mob,17330514,135,Satellite_Guns,Satellite Guns,-323.451,-81.981,45.0
 mob,17330515,135,Satellite_Guns,Satellite Guns,-323.451,-81.981,45.0
@@ -8229,7 +8229,7 @@ npc,17175342,97,Indescript_Markings,Indescript Markings,-392.0,88.0,33.3
 npc,17187613,100,blank,,-178.0,282.001,33.3
 npc,17248879,115,Harvesting_Point,Harvesting Point,-159.075,394.371,33.3
 mob,16793684,4,Coastal_Opo-opo,Coastal Opo-opo,-425.0,-509.0,33.3
-mob,16859250,20,Wanderer,Wanderer,-266.83,83.358,33.3
+mob,16859248,20,Wanderer,Wanderer,-266.83,83.358,33.3
 mob,16879770,25,Gigas_Warwolf,Gigas Warwolf,9.974,-27.887,33.3
 mob,17326477,134,Hydra_Thief,Hydra Thief,0.001,0.001,33.3
 mob,17326524,134,Hydra_Thief,Hydra Thief,0.001,0.001,33.3
@@ -8316,7 +8316,7 @@ mob,16900122,30,Hawkertrap,Hawkertrap,391.337,-876.378,32.1
 mob,17330877,135,Vanguard_Eye,,25.028,140.099,32.1
 mob,17547663,188,Goblin_Statue,,21.01,-3.774,32.1
 npc,17002655,55,Rune_of_Release,Rune of Release,412.0,54.0,32.0
-mob,16859439,20,Craver,Craver,70.571,287.866,32.0
+mob,16859437,20,Craver,Craver,70.571,287.866,32.0
 mob,16879884,25,Mantrap,Mantrap,-79.988,678.014,32.0
 mob,16949319,42,Nightmare_Makara,Nightmare Makara,-77.0,-31.0,32.0
 mob,17518595,181,Eald_narche,Eald'narche,-32.0,-25.0,32.0
@@ -8447,7 +8447,7 @@ mob,17535036,185,Vanguard_Pillager,Vanguard Pillager,-51.0,-18.0,30.4
 npc,17388025,149,Storage_Hole,Storage Hole,-51.57,-216.462,30.3
 mob,16838795,15,Sods_Limule,Sods Limule,-430.0,58.0,30.3
 mob,16838938,15,Morboling,Morboling,323.0,168.0,30.3
-mob,16859443,20,Coveter,Coveter,297.036,-91.995,30.3
+mob,16859441,20,Coveter,Coveter,297.036,-91.995,30.3
 mob,16879736,25,Gigantobugard,Gigantobugard,178.099,269.087,30.3
 mob,16900243,30,Atomic_Cluster,Atomic Cluster,-313.255,-758.593,30.3
 mob,17535072,185,Vanguard_Impaler,Vanguard Impaler,-260.0,112.0,30.3
@@ -8595,7 +8595,7 @@ mob,17535334,185,Serjeant_Tombstone,,-188.946,87.053,29.4
 mob,17543583,187,Avatar_Icon,,48.472,216.492,29.4
 mob,17543624,187,Avatar_Icon,,-0.082,194.644,29.4
 mob,16806027,7,Ogrefly,Ogrefly,518.216,-84.104,29.3
-mob,16859321,20,Weeper,Weeper,223.097,-188.075,29.3
+mob,16859319,20,Weeper,Weeper,223.097,-188.075,29.3
 mob,16887949,27,Fomor_Ranger,Fomor Ranger,-141.075,-41.265,29.3
 mob,16941367,40,Aitvaras,Aitvaras,166.0,-29.0,29.3
 mob,17535271,185,Serjeant_Tombstone,,89.895,1.904,29.3
@@ -8708,7 +8708,7 @@ npc,17113860,82,Infomation,Infomation,71.5,-7.731,28.3
 mob,16785478,2,Battrap,Battrap,-216.384,63.08,28.3
 mob,16805908,7,Gallinipper,Gallinipper,189.144,99.721,28.3
 mob,16838975,15,Ypotrill,Ypotryll,63.0,253.0,28.3
-mob,16859346,20,Craver,Craver,247.281,-71.208,28.3
+mob,16859344,20,Craver,Craver,247.281,-71.208,28.3
 mob,17461395,167,Blind_Bat,Blind Bat,77.003,-55.795,28.3
 mob,17543514,187,Avatar_Icon,,27.652,8.739,28.3
 npc,17101242,79,Warhorse_Hoofprint,Warhorse Hoofprint,420.568,-85.785,28.2
@@ -9347,7 +9347,7 @@ mob,17535107,185,Vanguard_Mesmerizer,Vanguard Mesmerizer,124.0,74.0,23.5
 mob,16797739,5,Snoll,Snoll,-204.207,-344.031,23.4
 mob,16798012,5,Nightmare_Bats,Nightmare Bats,-221.184,-117.261,23.4
 mob,16842794,16,Wanderer,Wanderer,-189.643,10.15,23.4
-mob,16859404,20,Wanderer,Wanderer,98.991,250.297,23.4
+mob,16859402,20,Wanderer,Wanderer,98.991,250.297,23.4
 mob,16879701,25,Gigantobugard,Gigantobugard,442.37,144.682,23.4
 mob,16896140,29,Nitro_Cluster,Nitro Cluster,-531.553,707.604,23.4
 mob,16896147,29,Strato_Hippogryph,Strato Hippogryph,-852.282,327.27,23.4
@@ -9611,7 +9611,7 @@ mob,16806117,7,Sargas,Sargas,-247.0,-128.0,21.6
 mob,16806154,7,Monarch_Ogrefly,Monarch Ogrefly,-339.744,37.023,21.6
 mob,16826450,12,Goblin_Packman,Goblin Packman,-127.78,-91.049,21.6
 mob,16838759,15,Razorback,Razorback,-266.0,-115.0,21.6
-mob,16859322,20,Weeper,Weeper,249.167,-178.617,21.6
+mob,16859320,20,Weeper,Weeper,249.167,-178.617,21.6
 mob,17084456,75,Bifrons,Bifrons,216.69,-367.54,21.6
 mob,17367062,144,Onibi,Onibi,1.0,1.0,21.6
 mob,17367067,144,Onibi,Onibi,1.0,1.0,21.6
@@ -9648,7 +9648,7 @@ npc,17257060,117,Excavation_Point,Excavation Point,-409.019,436.944,21.4
 npc,17350974,140,Logging_Point,Logging Point,23.524,53.766,21.4
 mob,16785610,2,Stag_Beetle,Stag Beetle,-136.01,-488.296,21.4
 mob,16842754,16,Wanderer,Wanderer,-10.542,77.325,21.4
-mob,16859319,20,Weeper,Weeper,213.727,-180.144,21.4
+mob,16859317,20,Weeper,Weeper,213.727,-180.144,21.4
 mob,16879797,25,Overgrown_Rose,Overgrown Rose,-204.762,96.332,21.4
 mob,16941531,40,Nightmare_Uragnite,Nightmare Uragnite,388.0,127.0,21.4
 mob,17330815,135,Vanguard_Eye,,180.844,-242.087,21.4
@@ -9873,7 +9873,7 @@ mob,16797896,5,Agloolik,Agloolik,25.711,461.323,19.8
 mob,16810020,8,Race_Runner,Race Runner,37.554,58.256,19.8
 mob,16826550,12,Moblin_Aidman,Moblin Aidman,273.166,-60.481,19.8
 mob,16838776,15,Hoary_Ragwort,Hoary Ragwort,-498.0,-148.0,19.8
-mob,16859440,20,Craver,Craver,122.304,255.579,19.8
+mob,16859438,20,Craver,Craver,122.304,255.579,19.8
 mob,16875773,24,Leshachikha,Leshachikha,-261.916,360.33,19.8
 mob,16879640,25,Miner_Bee,Miner Bee,476.637,-315.903,19.8
 mob,16879707,25,Orcish_Bowshooter,Orcish Bowshooter,460.784,121.204,19.8
@@ -10065,7 +10065,7 @@ mob,16785625,2,Battrap,Battrap,-109.525,-518.78,18.3
 mob,16838736,15,Trotting_sapling,Trotting Sapling,-178.0,-441.0,18.3
 mob,16838740,15,Trotting_sapling,Trotting Sapling,-355.0,-308.0,18.3
 mob,16838844,15,Highland_Rafflesia,Highland Rafflesia,-265.0,327.0,18.3
-mob,16859420,20,Weeper,Weeper,221.958,200.634,18.3
+mob,16859418,20,Weeper,Weeper,221.958,200.634,18.3
 mob,16875539,24,Miner_Bee,Miner Bee,-171.447,-183.676,18.3
 mob,16879827,25,Seaboard_Vulture,Seaboard Vulture,-28.876,285.922,18.3
 mob,16887836,27,Diremite,Diremite,61.356,-20.66,18.3
@@ -10148,7 +10148,7 @@ mob,16838746,15,Trotting_sapling,Trotting Sapling,-414.0,-229.0,17.7
 mob,16838989,15,Deep_eye,Deep Eye,385.0,289.0,17.7
 mob,16839031,15,Qaitu,Qaitu,520.0,424.0,17.7
 mob,16851233,18,Gorger,Gorger,295.158,296.4,17.7
-mob,16859401,20,Weeper,Weeper,73.866,265.717,17.7
+mob,16859399,20,Weeper,Weeper,73.866,265.717,17.7
 mob,16875618,24,Gigas_Wrestler,Gigas Wrestler,505.944,-223.772,17.7
 mob,16879856,25,Bigclaw,Bigclaw,237.66,457.988,17.7
 mob,16941352,40,Nightmare_Eft,Nightmare Eft,-447.0,-229.0,17.7
@@ -10205,7 +10205,7 @@ mob,16806185,7,Monarch_Ogrefly,Monarch Ogrefly,-474.42,173.201,17.3
 mob,16838749,15,Trotting_sapling,Trotting Sapling,-453.0,-200.0,17.3
 mob,16838974,15,Ypotrill,Ypotryll,74.0,280.0,17.3
 mob,16851061,18,Wanderer,Wanderer,-115.469,-309.574,17.3
-mob,16859421,20,Weeper,Weeper,226.4,196.211,17.3
+mob,16859419,20,Weeper,Weeper,226.4,196.211,17.3
 mob,16937201,39,Vanguard_Neckchopper,Vanguard Neckchopper,1.0,1.0,17.3
 mob,16937478,39,Vanguard_Neckchopper,Vanguard Neckchopper,1.0,1.0,17.3
 mob,16941258,40,Nightmare_Uragnite,Nightmare Uragnite,432.0,110.0,17.3
@@ -10318,7 +10318,7 @@ mob,16793608,4,Coralline_Urganite,Coralline Uragnite,-383.0,-450.0,16.7
 mob,16797766,5,Nival_Raptor,Nival Raptor,294.883,-361.041,16.7
 mob,16830509,13,Fantoccini,Fantoccini,-460.877,3.321,16.7
 mob,16851003,18,Wanderer,Wanderer,-145.582,35.675,16.7
-mob,16859427,20,Wanderer,Wanderer,239.575,235.309,16.7
+mob,16859425,20,Wanderer,Wanderer,239.575,235.309,16.7
 mob,16879812,25,Fomor_Ranger,Fomor Ranger,-280.896,174.15,16.7
 mob,16896154,29,Book_Browser_Bokabraq,Book Browser Bokabraq,289.313,828.107,16.7
 mob,16904201,31,Mammet-19_Epsilon,Mammet-19 Epsilon,616.727,10.345,16.7
@@ -10489,8 +10489,8 @@ mob,16822382,11,Goblin_Hammerman,Goblin Hammerman,-109.702,-61.195,15.6
 mob,16838930,15,Morboling,Morboling,98.0,189.0,15.6
 mob,16838953,15,Highland_Treant,Highland Treant,240.0,36.0,15.6
 mob,16839042,15,Dapifer_Imp,Dapifer Imp,378.0,514.0,15.6
-mob,16859418,20,Wanderer,Wanderer,205.243,190.276,15.6
-mob,16859433,20,Weeper,Weeper,276.506,292.731,15.6
+mob,16859416,20,Wanderer,Wanderer,205.243,190.276,15.6
+mob,16859431,20,Weeper,Weeper,276.506,292.731,15.6
 mob,16879675,25,Dark_Elemental,Dark Elemental,425.363,-322.601,15.6
 mob,16896027,29,Pyrodrake,Pyrodrake,651.705,-690.234,15.6
 mob,16896033,29,Lesser_Roc,Lesser Roc,442.295,-542.456,15.6
@@ -10534,7 +10534,7 @@ mob,16797856,5,Srei_Ap,Srei Ap,470.54,219.0,15.3
 mob,16838694,15,Ley_clionid,Ley Clionid,501.0,-444.0,15.3
 mob,16842764,16,Weeper,Weeper,-29.181,151.434,15.3
 mob,16851159,18,Stray,Stray,-39.072,304.686,15.3
-mob,16859343,20,Weeper,Weeper,347.456,-85.998,15.3
+mob,16859341,20,Weeper,Weeper,347.456,-85.998,15.3
 mob,16892000,28,Fomor_Ninja,Fomor Ninja,8.577,-119.422,15.3
 mob,16896152,29,Spell_Spitter_Spilospok,Spell Spitter Spilospok,293.671,825.778,15.3
 mob,16941214,40,Nightmare_Crab,Nightmare Crab,-55.0,-273.0,15.3
@@ -10554,7 +10554,7 @@ mob,16822356,11,Ancient_Bomb,Ancient Bomb,-123.209,-140.667,15.2
 mob,16826381,12,Goblin_Foreman,Goblin Foreman,-184.704,132.289,15.2
 mob,16842936,16,Thinker,Thinker,107.073,267.809,15.2
 mob,16851027,18,Stray,Stray,-95.152,-84.634,15.2
-mob,16859428,20,Weeper,Weeper,240.046,222.866,15.2
+mob,16859426,20,Weeper,Weeper,240.046,222.866,15.2
 mob,16875729,24,Orcish_Footsoldier,Orcish Footsoldier,-119.404,17.246,15.2
 mob,16879680,25,Fomor_Dark_Knight,Fomor Dark Knight,442.46,-332.225,15.2
 mob,16879682,25,Fomor_Paladin,Fomor Paladin,444.624,-336.812,15.2
@@ -10582,7 +10582,7 @@ mob,16806057,7,Air_Elemental,Air Elemental,-43.024,-99.252,15.1
 mob,16810027,8,Nepionic_Parata,Nepionic Parata,-552.944,-452.943,15.1
 mob,16838832,15,Shadow_Fungar,Shadow Funguar,-200.0,125.0,15.1
 mob,16843022,16,Seether,Seether,257.672,-186.887,15.1
-mob,16859354,20,Stray,Stray,198.82,-15.121,15.1
+mob,16859352,20,Stray,Stray,198.82,-15.121,15.1
 mob,16867522,22,Weeper,Weeper,272.033,170.316,15.1
 mob,16879783,25,Gigas_Warwolf,Gigas Warwolf,94.281,78.703,15.1
 mob,16892067,28,Dark_Elemental,Dark Elemental,179.735,-77.256,15.1
@@ -10677,7 +10677,7 @@ mob,16798069,5,Snoll,Snoll,-523.246,-84.278,14.7
 mob,16838779,15,Hoary_Ragwort,Hoary Ragwort,-450.0,-40.0,14.7
 mob,16842875,16,Weeper,Weeper,-321.252,193.871,14.7
 mob,16842878,16,Seether,Seether,-403.114,214.095,14.7
-mob,16859254,20,Wanderer,Wanderer,-194.447,-17.602,14.7
+mob,16859252,20,Wanderer,Wanderer,-194.447,-17.602,14.7
 mob,16875744,24,Gigantobugard,Gigantobugard,-84.85,-39.115,14.7
 mob,16879769,25,Gigas_Martialist,Gigas Martialist,-3.884,-30.965,14.7
 mob,16941351,40,Nightmare_Eft,Nightmare Eft,-424.0,-233.0,14.7
@@ -10724,7 +10724,7 @@ mob,16838778,15,Hoary_Ragwort,Hoary Ragwort,-480.0,-54.0,14.4
 mob,16838801,15,Ley_clionid,Ley Clionid,383.0,-439.0,14.4
 mob,16843030,16,Seether,Seether,236.724,-7.771,14.4
 mob,16851056,18,Wanderer,Wanderer,-80.633,-361.416,14.4
-mob,16859399,20,Weeper,Weeper,46.669,209.512,14.4
+mob,16859397,20,Weeper,Weeper,46.669,209.512,14.4
 mob,16879801,25,Mantrap,Mantrap,-281.805,168.953,14.4
 mob,17084565,75,Troll_Lapidarist,Troll Lapidarist,-228.8,-289.44,14.4
 mob,17391699,150,Orcish_Zerker,Orcish Zerker,-8.002,-139.271,14.4
@@ -10740,7 +10740,7 @@ mob,16822285,11,Moblin_Witchman,Moblin Witchman,-339.601,309.783,14.3
 mob,16822404,11,Moblin_Gasman,Moblin Gasman,-24.221,115.363,14.3
 mob,16822418,11,Ancient_Bomb,Ancient Bomb,19.683,-10.264,14.3
 mob,16859141,20,Wanderer,Wanderer,-211.186,261.568,14.3
-mob,16859313,20,Weeper,Weeper,267.163,-86.523,14.3
+mob,16859311,20,Weeper,Weeper,267.163,-86.523,14.3
 mob,16875545,24,Orcish_Brawler,Orcish Brawler,-43.909,-237.766,14.3
 mob,16896104,29,Nimbus_Hippogryph,Nimbus Hippogryph,691.504,583.884,14.3
 mob,16941508,40,Nightmare_Dhalmel,Nightmare Dhalmel,202.0,131.0,14.3
@@ -10798,7 +10798,7 @@ mob,17547550,188,Goblin_Statue,,-25.764,-62.986,14.1
 mob,17547557,188,Goblin_Statue,,-27.438,-31.466,14.1
 mob,16793686,4,Coralline_Urganite,Coralline Uragnite,-631.0,-711.0,14.0
 mob,16838955,15,Highland_Treant,Highland Treant,276.0,114.5,14.0
-mob,16859411,20,Weeper,Weeper,149.276,222.001,14.0
+mob,16859409,20,Weeper,Weeper,149.276,222.001,14.0
 mob,16867617,22,Weeper,Weeper,35.764,92.168,14.0
 mob,16891918,28,Mummy,Mummy,-116.3,-16.764,14.0
 mob,16891954,28,Fomor_Dragoon,Fomor Dragoon,62.989,69.532,14.0
@@ -10837,8 +10837,8 @@ mob,16826452,12,Moblin_Tankman,Moblin Tankman,-148.858,-100.771,13.8
 mob,16826499,12,Moblin_Engineman,Moblin Engineman,-4.755,-18.004,13.8
 mob,16838903,15,Licorice,Licorice,-219.0,640.0,13.8
 mob,16859188,20,Weeper,Weeper,-192.669,-343.086,13.8
-mob,16859275,20,Stray,Stray,-318.752,-53.807,13.8
-mob,16859344,20,Wanderer,Wanderer,369.988,-157.2,13.8
+mob,16859273,20,Stray,Stray,-318.752,-53.807,13.8
+mob,16859342,20,Wanderer,Wanderer,369.988,-157.2,13.8
 mob,16879683,25,Fomor_Bard,Fomor Bard,445.02,-338.033,13.8
 mob,16891973,28,Fomor_Ranger,Fomor Ranger,9.07,105.308,13.8
 mob,16896053,29,Ignidrake,Ignidrake,175.255,-717.02,13.8
@@ -10872,7 +10872,7 @@ mob,16781314,1,Snipper,Snipper,-4.696,14.614,13.6
 mob,16785587,2,Forest_Tiger,Forest Tiger,-233.614,-237.999,13.6
 mob,16822354,11,Stirge,Stirge,-140.778,-154.863,13.6
 mob,16838721,15,Shadow_lizard,Shadow Lizard,-119.0,-645.0,13.6
-mob,16859353,20,Stray,Stray,195.644,-13.591,13.6
+mob,16859351,20,Stray,Stray,195.644,-13.591,13.6
 mob,16867392,22,Wanderer,Wanderer,121.924,249.845,13.6
 mob,16875755,24,Leshy,Leshy,-220.012,261.451,13.6
 mob,16887896,27,Makara,Makara,-93.524,139.117,13.6
@@ -10989,7 +10989,7 @@ mob,16838887,15,Gneiss_Leech,Gneiss Leech,-151.0,566.0,13.0
 mob,16838956,15,Highland_Treant,Highland Treant,316.0,101.0,13.0
 mob,16859168,20,Weeper,Weeper,35.448,-219.906,13.0
 mob,16859177,20,Wanderer,Wanderer,-169.668,-186.045,13.0
-mob,16859277,20,Stray,Stray,-321.507,-53.025,13.0
+mob,16859275,20,Stray,Stray,-321.507,-53.025,13.0
 mob,16867447,22,Weeper,Weeper,391.878,-176.257,13.0
 mob,16891949,28,Stegotaur,Stegotaur,-73.802,35.677,13.0
 mob,16891988,28,Greater_Gaylas,Greater Gaylas,62.707,109.125,13.0
@@ -11006,7 +11006,7 @@ mob,16797885,5,Molech,Molech,158.58,553.986,12.9
 mob,16822333,11,Goblin_Hammerman,Goblin Hammerman,-133.556,58.565,12.9
 mob,16851075,18,Stray,Stray,52.875,-203.717,12.9
 mob,16851215,18,Seether,Seether,166.446,72.015,12.9
-mob,16859310,20,Weeper,Weeper,183.886,-63.195,12.9
+mob,16859308,20,Weeper,Weeper,183.886,-63.195,12.9
 mob,16875556,24,Orcish_Brawler,Orcish Brawler,4.677,-240.32,12.9
 mob,16875583,24,Orcish_Brawler,Orcish Brawler,175.36,-164.524,12.9
 mob,16875622,24,Air_Elemental,Air Elemental,511.731,-215.654,12.9
@@ -11104,7 +11104,7 @@ mob,16838798,15,Ley_clionid,Ley Clionid,387.0,-440.0,12.5
 mob,16843028,16,Wanderer,Wanderer,229.363,-2.34,12.5
 mob,16851042,18,Stray,Stray,-267.529,-193.114,12.5
 mob,16859170,20,Wanderer,Wanderer,-104.383,-151.682,12.5
-mob,16859425,20,Weeper,Weeper,237.865,129.62,12.5
+mob,16859423,20,Weeper,Weeper,237.865,129.62,12.5
 mob,16867647,22,Wanderer,Wanderer,-250.281,140.458,12.5
 mob,16879864,25,Bigclaw,Bigclaw,57.697,540.965,12.5
 mob,16891982,28,Fomor_Warrior,Fomor Warrior,70.715,109.683,12.5
@@ -11166,7 +11166,7 @@ mob,16806207,7,Monarch_Ogrefly,Monarch Ogrefly,-379.342,342.932,12.2
 mob,16826488,12,Bugbear_Deathsman,Bugbear Deathsman,140.638,-64.984,12.2
 mob,16842795,16,Wanderer,Wanderer,-128.343,-22.115,12.2
 mob,16859175,20,Seether,Seether,-180.827,-174.982,12.2
-mob,16859442,20,Craver,Craver,156.251,220.05,12.2
+mob,16859440,20,Craver,Craver,156.251,220.05,12.2
 mob,16867439,22,Stray,Stray,-160.851,132.208,12.2
 mob,16875782,24,Gloam_Servitor,Gloam Servitor,-399.324,57.182,12.2
 mob,16892013,28,Greater_Gaylas,Greater Gaylas,65.58,-127.706,12.2
@@ -11187,7 +11187,7 @@ mob,16842935,16,Thinker,Thinker,147.693,313.94,12.1
 mob,16842960,16,Stray,Stray,277.809,212.148,12.1
 mob,16842962,16,Stray,Stray,267.876,210.241,12.1
 mob,16851172,18,Stray,Stray,-121.053,147.858,12.1
-mob,16859237,20,Weeper,Weeper,-165.153,62.514,12.1
+mob,16859235,20,Weeper,Weeper,-165.153,62.514,12.1
 mob,16879873,25,Diatryma,Diatryma,-73.796,590.468,12.1
 mob,16891993,28,Fomor_Monk,Fomor Monk,112.082,118.169,12.1
 mob,16900110,30,Heliodromos,Heliodromos,749.721,-873.713,12.1
@@ -11215,7 +11215,7 @@ mob,16826454,12,Bugbear_Trashman,Bugbear Trashman,-148.607,-100.968,12.0
 mob,16826459,12,Goblin_Foreman,Goblin Foreman,-5.562,-100.585,12.0
 mob,16838758,15,Razorback,Razorback,-285.0,-106.0,12.0
 mob,16839020,15,Dybbuk,Dybbuk,437.0,421.0,12.0
-mob,16859242,20,Wanderer,Wanderer,-209.045,92.462,12.0
+mob,16859240,20,Wanderer,Wanderer,-209.045,92.462,12.0
 mob,16867519,22,Stray,Stray,372.012,-80.296,12.0
 mob,16867613,22,Wanderer,Wanderer,27.259,17.615,12.0
 mob,17264759,119,Yagudo_s_Elemental,Yagudo's Elemental,1.0,1.0,12.0
@@ -11234,9 +11234,9 @@ mob,16838842,15,Highland_Rafflesia,Highland Rafflesia,-275.0,260.0,11.9
 mob,16838867,15,Mesa_Wivre,Mesa Wivre,-40.0,441.0,11.9
 mob,16842920,16,Weeper,Weeper,91.884,237.323,11.9
 mob,16850996,18,Wanderer,Wanderer,-210.195,-134.551,11.9
-mob,16859356,20,Stray,Stray,211.858,2.104,11.9
-mob,16859371,20,Stray,Stray,228.055,-325.469,11.9
-mob,16859424,20,Weeper,Weeper,242.953,129.011,11.9
+mob,16859354,20,Stray,Stray,211.858,2.104,11.9
+mob,16859369,20,Stray,Stray,228.055,-325.469,11.9
+mob,16859422,20,Weeper,Weeper,242.953,129.011,11.9
 mob,16867549,22,Weeper,Weeper,379.144,86.197,11.9
 mob,16875752,24,Orcish_Nightraider,Orcish Nightraider,-10.793,-23.254,11.9
 mob,16879677,25,Fomor_Black_Mage,Fomor Black Mage,439.741,-340.192,11.9
@@ -11305,7 +11305,7 @@ mob,16822362,11,Moblin_Pickman,Moblin Pickman,-139.391,-292.889,11.6
 mob,16838731,15,Shadow_lizard,Shadow Lizard,-96.0,-630.0,11.6
 mob,16842784,16,Stray,Stray,-51.648,198.884,11.6
 mob,16851044,18,Stray,Stray,-268.419,-200.966,11.6
-mob,16859280,20,Stray,Stray,-313.453,-51.635,11.6
+mob,16859278,20,Stray,Stray,-313.453,-51.635,11.6
 mob,16887996,27,Fomor_Warrior,Fomor Warrior,-67.487,98.196,11.6
 mob,16896148,29,Lunantishee,Lunantishee,-859.45,319.511,11.6
 mob,16900201,30,Hawkertrap,Hawkertrap,224.929,542.671,11.6
@@ -11331,8 +11331,8 @@ mob,16838698,15,Ley_clionid,Ley Clionid,442.0,-454.0,11.5
 mob,16842963,16,Stray,Stray,284.041,188.484,11.5
 mob,16850974,18,Stray,Stray,131.458,-285.67,11.5
 mob,16851160,18,Stray,Stray,-42.4,308.483,11.5
-mob,16859315,20,Weeper,Weeper,217.29,-147.239,11.5
-mob,16859374,20,Stray,Stray,236.83,-331.548,11.5
+mob,16859313,20,Weeper,Weeper,217.29,-147.239,11.5
+mob,16859372,20,Stray,Stray,236.83,-331.548,11.5
 mob,16875709,24,Gigantobugard,Gigantobugard,-219.842,111.42,11.5
 mob,16875780,24,Abununnu,Abununnu,-401.034,55.888,11.5
 mob,16879721,25,Death_Jacket,Death Jacket,349.735,183.841,11.5
@@ -11349,7 +11349,7 @@ mob,16822338,11,Goblin_Gutterman,Goblin Gutterman,-83.871,100.021,11.4
 mob,16826554,12,Moblin_Roadman,Moblin Roadman,316.332,-21.206,11.4
 mob,16842807,16,Weeper,Weeper,-34.378,-203.671,11.4
 mob,16851174,18,Stray,Stray,-128.802,171.352,11.4
-mob,16859283,20,Stray,Stray,-241.19,-51.426,11.4
+mob,16859281,20,Stray,Stray,-241.19,-51.426,11.4
 mob,16867593,22,Stray,Stray,123.165,28.639,11.4
 mob,16875601,24,Miner_Bee,Miner Bee,276.938,-139.416,11.4
 mob,16879803,25,Mantrap,Mantrap,-257.876,158.073,11.4
@@ -11385,7 +11385,7 @@ mob,16838907,15,Licorice,Licorice,-138.0,657.0,11.2
 mob,16842756,16,Wanderer,Wanderer,-47.473,70.414,11.2
 mob,16850969,18,Weeper,Weeper,211.881,-233.63,11.2
 mob,16851084,18,Stray,Stray,-123.733,-228.824,11.2
-mob,16859276,20,Stray,Stray,-308.787,-39.645,11.2
+mob,16859274,20,Stray,Stray,-308.787,-39.645,11.2
 mob,16879694,25,Seaboard_Vulture,Seaboard Vulture,414.968,66.431,11.2
 mob,16887977,27,Fomor_Paladin,Fomor Paladin,111.95,20.608,11.2
 mob,16896045,29,Strato_Hippogryph,Strato Hippogryph,259.419,-550.037,11.2
@@ -11406,7 +11406,7 @@ mob,16842909,16,Stray,Stray,-371.127,112.15,11.1
 mob,16842927,16,Seether,Seether,154.014,315.077,11.1
 mob,16851058,18,Weeper,Weeper,-123.403,-344.293,11.1
 mob,16859184,20,Wanderer,Wanderer,-187.99,-259.776,11.1
-mob,16859284,20,Stray,Stray,-235.47,-28.909,11.1
+mob,16859282,20,Stray,Stray,-235.47,-28.909,11.1
 mob,16867430,22,Stray,Stray,-160.803,188.925,11.1
 mob,16867587,22,Stray,Stray,131.079,33.185,11.1
 mob,16867641,22,Weeper,Weeper,-286.526,51.102,11.1
@@ -11438,7 +11438,7 @@ mob,16822465,11,Bugbear_Porterman,Bugbear Porterman,-142.0,142.0,11.0
 mob,16822466,11,Bugbear_Porterman,Bugbear Porterman,-138.0,142.0,11.0
 mob,16826423,12,Moblin_Yardman,Moblin Yardman,131.597,108.013,11.0
 mob,16838908,15,Licorice,Licorice,-112.0,673.0,11.0
-mob,16859361,20,Stray,Stray,365.71,-28.998,11.0
+mob,16859359,20,Stray,Stray,365.71,-28.998,11.0
 mob,16867529,22,Wanderer,Wanderer,158.511,122.567,11.0
 mob,16875751,24,Gigas_Slinger,Gigas Slinger,-7.156,-22.935,11.0
 mob,16879700,25,Seaboard_Vulture,Seaboard Vulture,456.532,71.153,11.0
@@ -11464,7 +11464,7 @@ mob,16842959,16,Stray,Stray,290.851,191.986,10.9
 mob,16850981,18,Wanderer,Wanderer,-164.282,-8.81,10.9
 mob,16851050,18,Stray,Stray,-352.653,50.857,10.9
 mob,16851165,18,Stray,Stray,-38.627,309.146,10.9
-mob,16859413,20,Seether,Seether,194.391,236.743,10.9
+mob,16859411,20,Seether,Seether,194.391,236.743,10.9
 mob,16867367,22,Wanderer,Wanderer,1.04,-230.573,10.9
 mob,16867384,22,Stray,Stray,-35.896,-349.082,10.9
 mob,16879630,25,Tavnazian_Sheep,Tavnazian Sheep,543.167,-408.143,10.9
@@ -11488,8 +11488,8 @@ mob,16842998,16,Seether,Seether,60.396,-96.845,10.8
 mob,16851048,18,Stray,Stray,-349.229,37.652,10.8
 mob,16851062,18,Weeper,Weeper,-115.695,-305.733,10.8
 mob,16851094,18,Stray,Stray,-130.817,-395.864,10.8
-mob,16859285,20,Stray,Stray,-235.553,-50.795,10.8
-mob,16859289,20,Stray,Stray,-250.774,-40.149,10.8
+mob,16859283,20,Stray,Stray,-235.553,-50.795,10.8
+mob,16859287,20,Stray,Stray,-250.774,-40.149,10.8
 mob,16867385,22,Stray,Stray,-35.68,-349.168,10.8
 mob,16867630,22,Weeper,Weeper,-184.74,34.664,10.8
 mob,16879711,25,Seaboard_Vulture,Seaboard Vulture,479.864,265.142,10.8
@@ -11532,7 +11532,7 @@ mob,16839045,15,Bakka,Bakka,430.0,532.0,10.6
 mob,16842880,16,Seether,Seether,-329.357,237.207,10.6
 mob,16842954,16,Stray,Stray,157.333,349.367,10.6
 mob,16850980,18,Weeper,Weeper,-223.954,-69.992,10.6
-mob,16859235,20,Weeper,Weeper,-156.676,93.687,10.6
+mob,16859233,20,Weeper,Weeper,-156.676,93.687,10.6
 mob,16875687,24,Gigantobugard,Gigantobugard,-436.707,39.068,10.6
 mob,16879859,25,Makara,Makara,207.305,490.584,10.6
 mob,16900222,30,Hawker,Hawker,30.73,356.301,10.6
@@ -11560,7 +11560,7 @@ mob,16851095,18,Stray,Stray,-109.535,-396.488,10.5
 mob,16851164,18,Stray,Stray,-34.276,309.487,10.5
 mob,16851173,18,Stray,Stray,-130.513,170.127,10.5
 mob,16859202,20,Stray,Stray,-82.452,-29.517,10.5
-mob,16859248,20,Seether,Seether,-234.512,121.851,10.5
+mob,16859246,20,Seether,Seether,-234.512,121.851,10.5
 mob,16875549,24,Tavnazian_Sheep,Tavnazian Sheep,-73.708,-216.692,10.5
 mob,16887950,27,Fomor_Ninja,Fomor Ninja,-165.451,-86.819,10.5
 mob,16888002,27,Stegotaur,Stegotaur,-121.003,21.115,10.5
@@ -11582,7 +11582,7 @@ mob,16842874,16,Wanderer,Wanderer,-309.114,191.507,10.4
 mob,16842911,16,Stray,Stray,-349.608,122.851,10.4
 mob,16851093,18,Stray,Stray,-130.379,-407.51,10.4
 mob,16851218,18,Weeper,Weeper,152.568,-0.094,10.4
-mob,16859368,20,Stray,Stray,242.211,-309.64,10.4
+mob,16859366,20,Stray,Stray,242.211,-309.64,10.4
 mob,16867335,22,Wanderer,Wanderer,35.879,-99.157,10.4
 mob,16867440,22,Stray,Stray,-149.592,124.521,10.4
 mob,16879638,25,Bugard,Bugard,352.178,-441.96,10.4
@@ -11650,7 +11650,7 @@ mob,16838876,15,Gunge_slug,Gunge Slug,-237.396,374.715,10.2
 mob,16851041,18,Stray,Stray,-269.809,-207.922,10.2
 mob,16851162,18,Stray,Stray,-36.528,330.231,10.2
 mob,16859143,20,Wanderer,Wanderer,-199.362,300.787,10.2
-mob,16859431,20,Seether,Seether,243.396,276.426,10.2
+mob,16859429,20,Seether,Seether,243.396,276.426,10.2
 mob,16867608,22,Stray,Stray,440.16,269.793,10.2
 mob,16875760,24,Leshy,Leshy,-162.452,294.936,10.2
 mob,16887994,27,Fomor_Samurai,Fomor Samurai,-47.146,91.087,10.2
@@ -11677,8 +11677,8 @@ mob,16806188,7,Tracker_Antlion,Tracker Antlion,-340.748,160.021,10.1
 mob,16814335,9,Diremite,Diremite,114.908,69.501,10.1
 mob,16842856,16,Stray,Stray,-149.934,-199.271,10.1
 mob,16859201,20,Stray,Stray,-78.568,-29.947,10.1
-mob,16859274,20,Stray,Stray,-309.894,-45.206,10.1
-mob,16859419,20,Weeper,Weeper,193.544,187.13,10.1
+mob,16859272,20,Stray,Stray,-309.894,-45.206,10.1
+mob,16859417,20,Weeper,Weeper,193.544,187.13,10.1
 mob,16867610,22,Stray,Stray,447.161,269.915,10.1
 mob,16867634,22,Weeper,Weeper,-259.434,-31.996,10.1
 mob,16887835,27,Canal_Bats,Canal Bats,51.965,-20.745,10.1
@@ -11722,7 +11722,7 @@ mob,16838761,15,Razorback,Razorback,-186.0,-171.0,10.0
 mob,16838821,15,Shadow_Fungar,Shadow Funguar,-154.0,135.0,10.0
 mob,16838958,15,Highland_Treant,Highland Treant,334.0,124.0,10.0
 mob,16842912,16,Weeper,Weeper,240.959,241.143,10.0
-mob,16859241,20,Weeper,Weeper,-219.264,64.849,10.0
+mob,16859239,20,Weeper,Weeper,-219.264,64.849,10.0
 mob,16867635,22,Weeper,Weeper,-259.513,-30.153,10.0
 mob,16891964,28,Fomor_Dark_Knight,Fomor Dark Knight,67.02,-70.348,10.0
 mob,16896037,29,Nimbus_Hippogryph,Nimbus Hippogryph,462.032,-572.373,10.0
@@ -11746,7 +11746,7 @@ mob,16838826,15,Shadow_Fungar,Shadow Funguar,-53.0,101.0,9.9
 mob,16839061,15,Cryptonberry_Occultist,Cryptonberry Occultist,521.0,661.0,9.9
 mob,16843014,16,Weeper,Weeper,189.092,-221.92,9.9
 mob,16851200,18,Seether,Seether,311.126,171.4,9.9
-mob,16859294,20,Stray,Stray,-30.104,-1.14,9.9
+mob,16859292,20,Stray,Stray,-30.104,-1.14,9.9
 mob,16879643,25,Miner_Bee,Miner Bee,429.09,-358.246,9.9
 mob,16879671,25,Crimson_Knight_Crab,Crimson Knight Crab,679.591,-488.766,9.9
 mob,16900233,30,Carmine_Dobsonfly,Carmine Dobsonfly,-204.132,-836.828,9.9
@@ -11796,7 +11796,7 @@ mob,16842945,16,Stray,Stray,49.724,324.535,9.7
 mob,16843034,16,Seether,Seether,315.656,-0.674,9.7
 mob,16851153,18,Stray,Stray,-310.256,155.581,9.7
 mob,16851223,18,Weeper,Weeper,139.738,250.928,9.7
-mob,16859429,20,Weeper,Weeper,215.171,238.758,9.7
+mob,16859427,20,Weeper,Weeper,215.171,238.758,9.7
 mob,16875740,24,Gigantobugard,Gigantobugard,-176.351,21.201,9.7
 mob,16891975,28,Fomor_Dragoon,Fomor Dragoon,21.183,116.769,9.7
 mob,16892065,28,Air_Elemental,Air Elemental,171.398,-58.742,9.7
@@ -11827,7 +11827,7 @@ mob,16851066,18,Weeper,Weeper,-39.389,-233.116,9.6
 mob,16851155,18,Stray,Stray,-310.422,157.942,9.6
 mob,16859155,20,Wanderer,Wanderer,-136.509,-257.472,9.6
 mob,16859172,20,Weeper,Weeper,-144.598,-71.48,9.6
-mob,16859295,20,Stray,Stray,-43.082,-9.562,9.6
+mob,16859293,20,Stray,Stray,-43.082,-9.562,9.6
 mob,16875781,24,Gloam_Servitor,Gloam Servitor,-399.72,54.591,9.6
 mob,16879807,25,Overgrown_Rose,Overgrown Rose,-272.655,181.528,9.6
 mob,16879826,25,Seaboard_Vulture,Seaboard Vulture,-26.602,294.633,9.6
@@ -11869,9 +11869,9 @@ mob,16851029,18,Stray,Stray,-83.601,-89.465,9.5
 mob,16851034,18,Stray,Stray,-89.525,81.961,9.5
 mob,16851182,18,Weeper,Weeper,307.407,279.055,9.5
 mob,16859152,20,Stray,Stray,-275.333,249.46,9.5
-mob,16859288,20,Stray,Stray,-240.026,-30.512,9.5
-mob,16859292,20,Stray,Stray,-49.517,-3.692,9.5
-mob,16859305,20,Wanderer,Wanderer,141.352,-122.371,9.5
+mob,16859286,20,Stray,Stray,-240.026,-30.512,9.5
+mob,16859290,20,Stray,Stray,-49.517,-3.692,9.5
+mob,16859303,20,Wanderer,Wanderer,141.352,-122.371,9.5
 mob,16867441,22,Stray,Stray,-153.526,129.458,9.5
 mob,16875640,24,Abraxas,Abraxas,472.787,187.341,9.5
 mob,16879779,25,Gigantobugard,Gigantobugard,58.171,26.889,9.5
@@ -11893,7 +11893,7 @@ mob,16822445,11,Moblin_Coalman,Moblin Coalman,154.628,-60.391,9.4
 mob,16826549,12,Moblin_Topsman,Moblin Topsman,226.06,-22.524,9.4
 mob,16842949,16,Stray,Stray,157.571,350.603,9.4
 mob,16851104,18,Wanderer,Wanderer,-284.557,322.394,9.4
-mob,16859369,20,Stray,Stray,249.371,-320.378,9.4
+mob,16859367,20,Stray,Stray,249.371,-320.378,9.4
 mob,16867452,22,Wanderer,Wanderer,270.483,-244.328,9.4
 mob,16867496,22,Stray,Stray,158.344,-169.377,9.4
 mob,16867606,22,Stray,Stray,449.416,285.537,9.4
@@ -11978,8 +11978,8 @@ mob,16842944,16,Stray,Stray,47.206,310.865,9.1
 mob,16843001,16,Weeper,Weeper,71.698,-79.387,9.1
 mob,16851208,18,Weeper,Weeper,194.216,123.852,9.1
 mob,16859154,20,Stray,Stray,-270.918,232.273,9.1
-mob,16859251,20,Weeper,Weeper,-257.948,75.032,9.1
-mob,16859437,20,Weeper,Weeper,71.083,205.944,9.1
+mob,16859249,20,Weeper,Weeper,-257.948,75.032,9.1
+mob,16859435,20,Weeper,Weeper,71.083,205.944,9.1
 mob,16867438,22,Stray,Stray,-161.954,129.092,9.1
 mob,16887849,27,Diremite,Diremite,99.618,45.861,9.1
 mob,16887971,27,Stegotaur,Stegotaur,168.612,101.242,9.1
@@ -12011,7 +12011,7 @@ mob,16843011,16,Wanderer,Wanderer,196.337,-239.459,9.0
 mob,16851040,18,Stray,Stray,-274.998,-209.008,9.0
 mob,16851087,18,Stray,Stray,-111.049,-232.721,9.0
 mob,16851110,18,Wanderer,Wanderer,-197.519,210.487,9.0
-mob,16859253,20,Weeper,Weeper,-212.371,11.279,9.0
+mob,16859251,20,Weeper,Weeper,-212.371,11.279,9.0
 mob,16867465,22,Wanderer,Wanderer,288.709,-93.974,9.0
 mob,16887918,27,Makara,Makara,-60.892,79.999,9.0
 mob,16896144,29,Strato_Hippogryph,Strato Hippogryph,-722.33,510.879,9.0
@@ -12044,7 +12044,7 @@ mob,16842855,16,Stray,Stray,-151.076,-204.238,8.9
 mob,16851125,18,Weeper,Weeper,-244.064,168.846,8.9
 mob,16851201,18,Weeper,Weeper,326.136,171.986,8.9
 mob,16859208,20,Stray,Stray,-328.27,-351.093,8.9
-mob,16859372,20,Stray,Stray,247.629,-328.871,8.9
+mob,16859370,20,Stray,Stray,247.629,-328.871,8.9
 mob,16867511,22,Stray,Stray,238.723,-231.06,8.9
 mob,16867550,22,Weeper,Weeper,376.12,96.991,8.9
 mob,16867611,22,Stray,Stray,431.134,282.275,8.9
@@ -12072,7 +12072,7 @@ mob,16822310,11,Goblin_Leadman,Goblin Leadman,-204.737,20.663,8.8
 mob,16822360,11,Bugbear_Servingman,Bugbear Servingman,-132.708,-259.142,8.8
 mob,16822410,11,Goblin_Oilman,Goblin Doorman,20.964,74.008,8.8
 mob,16822417,11,Dark_Bats,Dark Bats,18.393,13.115,8.8
-mob,16859296,20,Stray,Stray,-31.19,-2.92,8.8
+mob,16859294,20,Stray,Stray,-31.19,-2.92,8.8
 mob,16867412,22,Weeper,Weeper,-40.167,155.932,8.8
 mob,16867602,22,Stray,Stray,437.224,31.192,8.8
 mob,16867648,22,Weeper,Weeper,-242.396,135.967,8.8
@@ -12095,8 +12095,8 @@ mob,16814374,9,Maledict_Millstone,Maledict Millstone,-340.78,328.697,8.7
 mob,16838841,15,Highland_Rafflesia,Highland Rafflesia,-256.0,244.0,8.7
 mob,16838895,15,Gneiss_Leech,Gneiss Leech,-166.0,593.0,8.7
 mob,16851036,18,Stray,Stray,-81.724,88.676,8.7
-mob,16859308,20,Weeper,Weeper,171.991,-85.071,8.7
-mob,16859342,20,Wanderer,Wanderer,339.56,-104.426,8.7
+mob,16859306,20,Weeper,Weeper,171.991,-85.071,8.7
+mob,16859340,20,Wanderer,Wanderer,339.56,-104.426,8.7
 mob,16867372,22,Wanderer,Wanderer,-20.33,-288.228,8.7
 mob,16867499,22,Stray,Stray,166.402,-168.723,8.7
 mob,16867509,22,Stray,Stray,231.343,-237.256,8.7
@@ -12156,7 +12156,7 @@ mob,16822450,11,Moblin_Ashman,Moblin Ashman,172.31,-59.064,8.5
 mob,16826472,12,Goblin_Lengthman,Goblin Lengthman,32.273,-182.36,8.5
 mob,16838757,15,Razorback,Razorback,-259.0,-90.0,8.5
 mob,16842961,16,Stray,Stray,271.505,195.52,8.5
-mob,16859339,20,Weeper,Weeper,331.601,-121.115,8.5
+mob,16859337,20,Weeper,Weeper,331.601,-121.115,8.5
 mob,16867388,22,Stray,Stray,79.943,-31.534,8.5
 mob,16867477,22,Weeper,Weeper,200.477,-148.031,8.5
 mob,16867597,22,Stray,Stray,438.51,31.515,8.5
@@ -12188,8 +12188,8 @@ mob,16822357,11,Goblin_Hammerman,Goblin Hammerman,-135.515,-213.963,8.4
 mob,16826551,12,Moblin_Roadman,Moblin Roadman,270.892,-60.278,8.4
 mob,16830475,13,Movamuq,Movamuq,504.0,22.0,8.4
 mob,16842892,16,Stray,Stray,-286.984,271.565,8.4
-mob,16859243,20,Wanderer,Wanderer,-187.436,46.738,8.4
-mob,16859293,20,Stray,Stray,-41.151,8.359,8.4
+mob,16859241,20,Wanderer,Wanderer,-187.436,46.738,8.4
+mob,16859291,20,Stray,Stray,-41.151,8.359,8.4
 mob,16867506,22,Stray,Stray,231.627,-33.158,8.4
 mob,16875602,24,Miner_Bee,Miner Bee,279.934,-140.521,8.4
 mob,16879747,25,Death_Jacket,Death Jacket,176.516,142.335,8.4
@@ -12220,9 +12220,9 @@ mob,16838879,15,Gunge_slug,Gunge Slug,-282.0,436.0,8.3
 mob,16843017,16,Weeper,Weeper,212.34,-123.001,8.3
 mob,16843025,16,Weeper,Weeper,228.907,-121.811,8.3
 mob,16851170,18,Stray,Stray,-123.725,168.316,8.3
-mob,16859244,20,Weeper,Weeper,-208.696,47.346,8.3
-mob,16859303,20,Weeper,Weeper,139.591,-104.974,8.3
-mob,16859351,20,Stray,Stray,194.268,8.305,8.3
+mob,16859242,20,Weeper,Weeper,-208.696,47.346,8.3
+mob,16859301,20,Weeper,Weeper,139.591,-104.974,8.3
+mob,16859349,20,Stray,Stray,194.268,8.305,8.3
 mob,16875568,24,Tavnazian_Sheep,Tavnazian Sheep,11.901,-126.639,8.3
 mob,16875571,24,Orcish_Brawler,Orcish Brawler,77.271,-28.175,8.3
 mob,16875750,24,Orcish_Footsoldier,Orcish Footsoldier,-141.783,-64.267,8.3
@@ -12255,7 +12255,7 @@ mob,16842796,16,Wanderer,Wanderer,-140.453,-23.754,8.2
 mob,16850962,18,Wanderer,Wanderer,187.08,-285.989,8.2
 mob,16851051,18,Stray,Stray,-358.965,31.828,8.2
 mob,16851097,18,Stray,Stray,-118.011,-391.782,8.2
-mob,16859364,20,Stray,Stray,360.805,-48.203,8.2
+mob,16859362,20,Stray,Stray,360.805,-48.203,8.2
 mob,16867528,22,Wanderer,Wanderer,201.79,173.367,8.2
 mob,16867601,22,Stray,Stray,439.965,48.194,8.2
 mob,16871467,23,Memory_Receptacle,Memory Receptacle,248.148,8.154,8.2
@@ -12279,7 +12279,7 @@ mob,16851049,18,Stray,Stray,-352.212,31.881,8.1
 mob,16851085,18,Stray,Stray,-123.137,-248.102,8.1
 mob,16851086,18,Stray,Stray,-128.104,-237.832,8.1
 mob,16859209,20,Stray,Stray,-315.828,-368.088,8.1
-mob,16859430,20,Seether,Seether,231.834,243.818,8.1
+mob,16859428,20,Seether,Seether,231.834,243.818,8.1
 mob,16867433,22,Stray,Stray,-151.861,200.335,8.1
 mob,16867541,22,Weeper,Weeper,308.002,109.443,8.1
 mob,16867622,22,Wanderer,Wanderer,-27.704,29.752,8.1
@@ -12314,7 +12314,7 @@ mob,16842844,16,Stray,Stray,-233.104,47.956,8.0
 mob,16842851,16,Stray,Stray,-273.129,-48.029,8.0
 mob,16851067,18,Seether,Seether,-41.386,-245.241,8.0
 mob,16851156,18,Stray,Stray,-317.311,151.99,8.0
-mob,16859299,20,Weeper,Weeper,113.179,-156.44,8.0
+mob,16859297,20,Weeper,Weeper,113.179,-156.44,8.0
 mob,16867368,22,Weeper,Weeper,-5.956,-233.113,8.0
 mob,16867456,22,Wanderer,Wanderer,286.548,-186.639,8.0
 mob,16867646,22,Weeper,Weeper,-272.117,84.527,8.0
@@ -12393,7 +12393,7 @@ mob,16826533,12,Bugbear_Deathsman,Bugbear Deathsman,141.665,-20.561,7.8
 mob,16842896,16,Stray,Stray,-357.691,232.181,7.8
 mob,16859200,20,Stray,Stray,-87.698,-47.842,7.8
 mob,16859203,20,Stray,Stray,-72.245,-39.771,7.8
-mob,16859347,20,Craver,Craver,117.174,-198.018,7.8
+mob,16859345,20,Craver,Craver,117.174,-198.018,7.8
 mob,16867445,22,Wanderer,Wanderer,390.975,-164.604,7.8
 mob,16887827,27,Taurus,Taurus,112.343,-109.906,7.8
 mob,16888021,27,Aqueduct_Spider,Aqueduct Spider,139.42,40.445,7.8
@@ -12419,7 +12419,7 @@ mob,16826405,12,Goblin_Fireman,Goblin Fireman,22.163,210.71,7.7
 mob,16851017,18,Weeper,Weeper,-306.557,77.405,7.7
 mob,16851030,18,Stray,Stray,-72.282,-82.883,7.7
 mob,16859210,20,Stray,Stray,-314.756,-367.704,7.7
-mob,16859304,20,Weeper,Weeper,153.311,-100.359,7.7
+mob,16859302,20,Weeper,Weeper,153.311,-100.359,7.7
 mob,16867364,22,Weeper,Weeper,33.773,-288.757,7.7
 mob,16867379,22,Gorger,Gorger,37.891,-144.171,7.7
 mob,16867517,22,Stray,Stray,367.665,-82.635,7.7
@@ -12454,7 +12454,7 @@ mob,16851109,18,Weeper,Weeper,-205.099,224.996,7.6
 mob,16851124,18,Weeper,Weeper,-192.433,204.886,7.6
 mob,16851204,18,Seether,Seether,269.101,94.034,7.6
 mob,16859156,20,Wanderer,Wanderer,-99.204,-261.551,7.6
-mob,16859256,20,Weeper,Weeper,-273.118,29.459,7.6
+mob,16859254,20,Weeper,Weeper,-273.118,29.459,7.6
 mob,16867516,22,Stray,Stray,365.289,-72.367,7.6
 mob,16896049,29,Lunantishee,Lunantishee,243.094,-571.019,7.6
 mob,16945277,41,Nightmare_Kraken,Nightmare Kraken,-282.0,43.0,7.6
@@ -12489,7 +12489,7 @@ mob,16850949,18,Wanderer,Wanderer,199.114,-189.588,7.5
 mob,16850965,18,Weeper,Weeper,213.635,-267.152,7.5
 mob,16850968,18,Weeper,Weeper,142.881,-297.819,7.5
 mob,16850972,18,Stray,Stray,112.453,-272.518,7.5
-mob,16859352,20,Stray,Stray,192.472,6.402,7.5
+mob,16859350,20,Stray,Stray,192.472,6.402,7.5
 mob,16867331,22,Offspring,Offspring,189.375,-71.869,7.5
 mob,16867434,22,Stray,Stray,-167.452,195.666,7.5
 mob,16867472,22,Wanderer,Wanderer,255.814,-137.391,7.5
@@ -12521,7 +12521,7 @@ mob,16826425,12,Moblin_Draftsman,Moblin Draftsman,-116.386,98.785,7.4
 mob,16838716,15,Sods_Limule,Sods Limule,503.0,-418.0,7.4
 mob,16839014,15,Dybbuk,Dybbuk,411.0,425.0,7.4
 mob,16850998,18,Wanderer,Wanderer,-243.462,-168.787,7.4
-mob,16859362,20,Stray,Stray,352.564,-38.665,7.4
+mob,16859360,20,Stray,Stray,352.564,-38.665,7.4
 mob,16867432,22,Stray,Stray,-152.607,200.362,7.4
 mob,16867523,22,Weeper,Weeper,300.748,134.554,7.4
 mob,16875590,24,Acrophies,Acrophies,76.058,8.524,7.4
@@ -12557,7 +12557,7 @@ mob,16838979,15,Alkonost,Alkonost,53.0,413.0,7.3
 mob,16842891,16,Stray,Stray,-285.544,287.311,7.3
 mob,16850945,18,Wanderer,Wanderer,117.845,-126.946,7.3
 mob,16859199,20,Stray,Stray,-79.329,-47.329,7.3
-mob,16859234,20,Wanderer,Wanderer,-167.937,102.816,7.3
+mob,16859232,20,Wanderer,Wanderer,-167.937,102.816,7.3
 mob,16867483,22,Weeper,Weeper,215.819,-73.213,7.3
 mob,16867502,22,Stray,Stray,239.963,-32.733,7.3
 mob,16875591,24,Acrophies,Acrophies,75.816,8.602,7.3
@@ -12587,7 +12587,7 @@ mob,16822320,11,Bugbear_Servingman,Bugbear Servingman,-229.463,-28.687,7.2
 mob,16851016,18,Wanderer,Wanderer,-263.797,76.303,7.2
 mob,16851119,18,Weeper,Weeper,-125.543,235.978,7.2
 mob,16851171,18,Stray,Stray,-112.804,167.133,7.2
-mob,16859286,20,Stray,Stray,-239.279,-32.834,7.2
+mob,16859284,20,Stray,Stray,-239.279,-32.834,7.2
 mob,16887874,27,Diremite,Diremite,-22.449,181.002,7.2
 mob,16887915,27,Foul_Meat,Foul Meat,-220.962,113.039,7.2
 mob,16900102,30,Riverne_Vulture,Riverne Vulture,715.769,-548.255,7.2
@@ -12647,7 +12647,7 @@ mob,16826446,12,Moblin_Workman,Moblin Workman,-73.975,-139.917,7.0
 mob,16838724,15,Shadow_lizard,Shadow Lizard,-141.0,-699.0,7.0
 mob,16838997,15,Viridis_Wyvern,Viridis Wyvern,570.0,159.0,7.0
 mob,16843033,16,Weeper,Weeper,311.31,3.594,7.0
-mob,16859247,20,Seether,Seether,-240.429,66.228,7.0
+mob,16859245,20,Seether,Seether,-240.429,66.228,7.0
 mob,16867605,22,Stray,Stray,439.551,287.04,7.0
 mob,16871438,23,Cumulator,Cumulator,7.0,-6.0,7.0
 mob,16871440,23,Procreator,Procreator,247.0,-7.0,7.0
@@ -12683,9 +12683,9 @@ mob,16842995,16,Seether,Seether,44.818,-112.988,6.9
 mob,16850947,18,Wanderer,Wanderer,173.125,-207.701,6.9
 mob,16851035,18,Stray,Stray,-86.869,85.27,6.9
 mob,16859224,20,Stray,Stray,86.91,-241.467,6.9
-mob,16859238,20,Weeper,Weeper,-177.732,42.45,6.9
-mob,16859249,20,Wanderer,Wanderer,-241.957,131.379,6.9
-mob,16859373,20,Stray,Stray,233.075,-320.911,6.9
+mob,16859236,20,Weeper,Weeper,-177.732,42.45,6.9
+mob,16859247,20,Wanderer,Wanderer,-241.957,131.379,6.9
+mob,16859371,20,Stray,Stray,233.075,-320.911,6.9
 mob,16875632,24,Abraxas,Abraxas,285.879,168.533,6.9
 mob,16879693,25,Seaboard_Vulture,Seaboard Vulture,408.626,45.758,6.9
 mob,16896032,29,Lesser_Roc,Lesser Roc,450.692,-551.232,6.9
@@ -12712,7 +12712,7 @@ mob,16814364,9,Diremite,Diremite,-329.786,281.294,6.8
 mob,16842897,16,Stray,Stray,-353.63,246.793,6.8
 mob,16843029,16,Weeper,Weeper,244.691,-14.879,6.8
 mob,16851057,18,Weeper,Weeper,-79.377,-358.981,6.8
-mob,16859402,20,Weeper,Weeper,100.709,263.961,6.8
+mob,16859400,20,Weeper,Weeper,100.709,263.961,6.8
 mob,16867570,22,Wanderer,Wanderer,441.54,211.099,6.8
 mob,16879684,25,Miner_Bee,Miner Bee,315.928,-321.513,6.8
 mob,16879863,25,Bigclaw,Bigclaw,45.057,538.244,6.8
@@ -12764,8 +12764,8 @@ mob,16851199,18,Wanderer,Wanderer,316.124,200.401,6.6
 mob,16851213,18,Weeper,Weeper,216.695,61.103,6.6
 mob,16859185,20,Weeper,Weeper,-186.232,-303.11,6.6
 mob,16859220,20,Stray,Stray,86.61,-239.732,6.6
-mob,16859298,20,Stray,Stray,-33.36,-0.561,6.6
-mob,16859363,20,Stray,Stray,366.568,-46.495,6.6
+mob,16859296,20,Stray,Stray,-33.36,-0.561,6.6
+mob,16859361,20,Stray,Stray,366.568,-46.495,6.6
 mob,16867334,22,Wanderer,Wanderer,29.397,-106.333,6.6
 mob,16867458,22,Weeper,Weeper,265.449,-195.305,6.6
 mob,16867476,22,Wanderer,Wanderer,201.99,-141.478,6.6
@@ -12795,8 +12795,8 @@ mob,16846852,17,Cogitator,Cogitator,-242.064,-6.482,6.5
 mob,16851088,18,Stray,Stray,-120.846,-233.497,6.5
 mob,16851220,18,Weeper,Weeper,334.094,-73.077,6.5
 mob,16859153,20,Stray,Stray,-284.936,246.534,6.5
-mob,16859240,20,Weeper,Weeper,-215.795,62.249,6.5
-mob,16859360,20,Stray,Stray,353.531,-39.15,6.5
+mob,16859238,20,Weeper,Weeper,-215.795,62.249,6.5
+mob,16859358,20,Stray,Stray,353.531,-39.15,6.5
 mob,16867431,22,Stray,Stray,-159.183,206.488,6.5
 mob,16887834,27,Diremite,Diremite,61.784,-60.978,6.5
 mob,16949264,42,Nightmare_Worm,Nightmare Worm,-11.0,22.0,6.5
@@ -12861,8 +12861,8 @@ mob,16851037,18,Stray,Stray,-86.268,85.852,6.3
 mob,16851065,18,Weeper,Weeper,11.28,-196.136,6.3
 mob,16859190,20,Weeper,Weeper,-218.465,-292.709,6.3
 mob,16859223,20,Stray,Stray,86.305,-241.408,6.3
-mob,16859345,20,Weeper,Weeper,362.72,-159.116,6.3
-mob,16859417,20,Seether,Seether,216.988,177.638,6.3
+mob,16859343,20,Weeper,Weeper,362.72,-159.116,6.3
+mob,16859415,20,Seether,Seether,216.988,177.638,6.3
 mob,16867427,22,Seether,Seether,-97.068,156.236,6.3
 mob,16867466,22,Weeper,Weeper,283.518,-97.68,6.3
 mob,16879685,25,Miner_Bee,Miner Bee,205.677,-300.146,6.3
@@ -12893,8 +12893,8 @@ mob,16838737,15,Trotting_sapling,Trotting Sapling,381.0,-177.0,6.2
 mob,16838747,15,Trotting_sapling,Trotting Sapling,-430.0,-215.0,6.2
 mob,16838755,15,Razorback,Razorback,-198.0,-122.0,6.2
 mob,16851107,18,Weeper,Weeper,-251.465,279.979,6.2
-mob,16859287,20,Stray,Stray,-239.868,-46.247,6.2
-mob,16859341,20,Weeper,Weeper,318.2,-94.074,6.2
+mob,16859285,20,Stray,Stray,-239.868,-46.247,6.2
+mob,16859339,20,Weeper,Weeper,318.2,-94.074,6.2
 mob,16867588,22,Stray,Stray,113.829,39.078,6.2
 mob,16887825,27,Taurus,Taurus,113.814,-131.408,6.2
 mob,16891941,28,Lich,Lich,-10.581,-23.9,6.2
@@ -12915,7 +12915,7 @@ mob,16838840,15,Highland_Rafflesia,Highland Rafflesia,-258.0,252.0,6.1
 mob,16842966,16,Seether,Seether,76.861,-225.849,6.1
 mob,16842997,16,Weeper,Weeper,71.654,-110.068,6.1
 mob,16851228,18,Weeper,Weeper,75.978,145.179,6.1
-mob,16859314,20,Weeper,Weeper,224.533,-110.644,6.1
+mob,16859312,20,Weeper,Weeper,224.533,-110.644,6.1
 mob,16875557,24,Bugard,Bugard,-26.119,-276.386,6.1
 mob,16879664,25,Tavnazian_Sheep,Tavnazian Sheep,699.412,-462.468,6.1
 mob,16879872,25,Mantrap,Mantrap,-10.05,602.093,6.1
@@ -12951,9 +12951,9 @@ mob,16842788,16,Weeper,Weeper,-153.4,-58.931,6.0
 mob,16842849,16,Stray,Stray,-280.938,-46.0,6.0
 mob,16851112,18,Weeper,Weeper,-180.588,209.144,6.0
 mob,16851169,18,Stray,Stray,-119.243,166.022,6.0
-mob,16859297,20,Stray,Stray,-33.978,-0.672,6.0
-mob,16859302,20,Weeper,Weeper,246.188,-278.906,6.0
-mob,16859435,20,Wanderer,Wanderer,102.336,208.517,6.0
+mob,16859295,20,Stray,Stray,-33.978,-0.672,6.0
+mob,16859300,20,Weeper,Weeper,246.188,-278.906,6.0
+mob,16859433,20,Wanderer,Wanderer,102.336,208.517,6.0
 mob,16867548,22,Seether,Seether,381.586,99.707,6.0
 mob,16871425,23,Agonizer,Agonizer,-239.0,1.0,6.0
 mob,16871431,23,Cumulator,Cumulator,-246.0,-5.0,6.0
@@ -12994,8 +12994,8 @@ mob,16850958,18,Wanderer,Wanderer,181.106,-250.421,5.9
 mob,16851033,18,Stray,Stray,-79.916,74.083,5.9
 mob,16851099,18,Wanderer,Wanderer,-195.218,370.405,5.9
 mob,16851105,18,Wanderer,Wanderer,-281.034,321.708,5.9
-mob,16859301,20,Weeper,Weeper,185.034,-275.616,5.9
-mob,16859312,20,Weeper,Weeper,245.85,-98.217,5.9
+mob,16859299,20,Weeper,Weeper,185.034,-275.616,5.9
+mob,16859310,20,Weeper,Weeper,245.85,-98.217,5.9
 mob,16867468,22,Wanderer,Wanderer,277.609,-84.455,5.9
 mob,16879672,25,Crimson_Knight_Crab,Crimson Knight Crab,647.72,-518.554,5.9
 mob,16900259,30,Hawker,Hawker,-449.826,-550.822,5.9
@@ -13052,7 +13052,7 @@ mob,16838729,15,Shadow_lizard,Shadow Lizard,-122.0,-693.0,5.7
 mob,16838988,15,Deep_eye,Deep Eye,411.0,286.0,5.7
 mob,16842888,16,Stray,Stray,-274.32,279.218,5.7
 mob,16851211,18,Seether,Seether,209.465,49.706,5.7
-mob,16859370,20,Stray,Stray,239.282,-314.339,5.7
+mob,16859368,20,Stray,Stray,239.282,-314.339,5.7
 mob,16879861,25,Makara,Makara,213.653,484.705,5.7
 mob,16887926,27,Makara,Makara,-40.509,59.37,5.7
 mob,16887979,27,Fomor_Ranger,Fomor Ranger,88.565,18.205,5.7
@@ -13094,7 +13094,7 @@ mob,16842964,16,Weeper,Weeper,69.487,-284.74,5.6
 mob,16850973,18,Stray,Stray,120.416,-274.408,5.6
 mob,16850987,18,Wanderer,Wanderer,-132.515,-52.362,5.6
 mob,16851118,18,Weeper,Weeper,-155.061,227.662,5.6
-mob,16859279,20,Stray,Stray,-325.569,-40.573,5.6
+mob,16859277,20,Stray,Stray,-325.569,-40.573,5.6
 mob,16867373,22,Weeper,Weeper,-27.646,-298.804,5.6
 mob,16867437,22,Stray,Stray,-159.822,114.407,5.6
 mob,16867481,22,Seether,Seether,228.358,-64.514,5.6
@@ -13248,7 +13248,7 @@ mob,16822460,11,Goblin_Preceptor,Goblin Preceptor,-140.0,146.0,5.2
 mob,16826432,12,Moblin_Tankman,Moblin Tankman,-59.367,86.048,5.2
 mob,16850961,18,Wanderer,Wanderer,190.162,-260.013,5.2
 mob,16851178,18,Seether,Seether,282.813,286.659,5.2
-mob,16859311,20,Seether,Seether,253.183,-102.911,5.2
+mob,16859309,20,Seether,Seether,253.183,-102.911,5.2
 mob,16867442,22,Wanderer,Wanderer,377.06,-236.088,5.2
 mob,16867649,22,Seether,Seether,-234.755,159.795,5.2
 mob,16875569,24,Bugard,Bugard,125.713,-22.757,5.2
@@ -13415,7 +13415,7 @@ mob,16842916,16,Weeper,Weeper,186.279,265.24,4.9
 mob,16850964,18,Weeper,Weeper,192.111,-280.201,4.9
 mob,16851175,18,Seether,Seether,246.245,379.188,4.9
 mob,16859183,20,Weeper,Weeper,-244.41,-248.898,4.9
-mob,16859252,20,Weeper,Weeper,-150.757,39.636,4.9
+mob,16859250,20,Weeper,Weeper,-150.757,39.636,4.9
 mob,16867370,22,Wanderer,Wanderer,8.373,-253.472,4.9
 mob,16867482,22,Seether,Seether,201.686,-40.178,4.9
 mob,16867537,22,Weeper,Weeper,272.804,68.907,4.9
@@ -13472,7 +13472,7 @@ mob,16814427,9,Ice_Elemental,Ice Elemental,-353.686,368.596,4.7
 mob,16822291,11,Moblin_Chapman,Moblin Chapman,-288.073,181.377,4.7
 mob,16822408,11,Goblin_Oilman,Goblin Oilman,-9.879,62.559,4.7
 mob,16826556,12,Moblin_Topsman,Moblin Topsman,370.367,-20.742,4.7
-mob,16859300,20,Weeper,Weeper,122.5,-182.387,4.7
+mob,16859298,20,Weeper,Weeper,122.5,-182.387,4.7
 mob,16867475,22,Seether,Seether,194.421,-143.891,4.7
 mob,16875629,24,Wingrats,Wingrats,298.976,7.264,4.7
 mob,16875633,24,Abraxas,Abraxas,319.753,198.31,4.7
@@ -13503,7 +13503,7 @@ mob,16830478,13,Swipostik,Swipostik,504.0,28.0,4.6
 mob,16842915,16,Weeper,Weeper,186.546,265.294,4.6
 mob,16850960,18,Weeper,Weeper,184.129,-274.728,4.6
 mob,16851068,18,Weeper,Weeper,-74.072,-240.813,4.6
-mob,16859246,20,Weeper,Weeper,-249.452,86.626,4.6
+mob,16859244,20,Weeper,Weeper,-249.452,86.626,4.6
 mob,16879734,25,Gigas_Martialist,Gigas Martialist,264.486,178.746,4.6
 mob,16891986,28,Fomor_Thief,Fomor Thief,57.956,104.801,4.6
 mob,16900108,30,Hippogryph,Hippogryph,740.838,-857.409,4.6
@@ -13542,7 +13542,7 @@ mob,16842930,16,Weeper,Weeper,163.509,310.323,4.5
 mob,16851078,18,Stray,Stray,40.374,-204.523,4.5
 mob,16851183,18,Seether,Seether,315.224,251.052,4.5
 mob,16859176,20,Wanderer,Wanderer,-172.54,-177.559,4.5
-mob,16859306,20,Wanderer,Wanderer,169.647,-109.546,4.5
+mob,16859304,20,Wanderer,Wanderer,169.647,-109.546,4.5
 mob,16867471,22,Weeper,Weeper,263.689,-117.806,4.5
 mob,16867503,22,Stray,Stray,235.512,-39.297,4.5
 mob,16887999,27,Fomor_Ranger,Fomor Ranger,-63.956,22.912,4.5
@@ -13688,7 +13688,7 @@ mob,16826500,12,Goblin_Hangman,Goblin Hangman,-8.552,-7.898,4.1
 mob,16842866,16,Wanderer,Wanderer,-201.264,117.605,4.1
 mob,16843003,16,Weeper,Weeper,77.469,-171.519,4.1
 mob,16851083,18,Stray,Stray,-115.922,-239.282,4.1
-mob,16859400,20,Weeper,Weeper,93.512,258.735,4.1
+mob,16859398,20,Weeper,Weeper,93.512,258.735,4.1
 mob,16879846,25,Mantrap,Mantrap,-106.182,527.889,4.1
 mob,16887917,27,Diremite,Diremite,-160.715,99.58,4.1
 mob,16892068,28,Balor,Balor,28.0,116.0,4.1
@@ -13722,7 +13722,7 @@ mob,16838768,15,Hoary_Ragwort,Hoary Ragwort,-525.0,-155.0,4.0
 mob,16839012,15,Dybbuk,Dybbuk,367.0,400.0,4.0
 mob,16842965,16,Weeper,Weeper,81.274,-229.116,4.0
 mob,16859189,20,Weeper,Weeper,-199.746,-365.71,4.0
-mob,16859307,20,Weeper,Weeper,157.702,-79.434,4.0
+mob,16859305,20,Weeper,Weeper,157.702,-79.434,4.0
 mob,16879748,25,Death_Jacket,Death Jacket,159.164,139.068,4.0
 mob,16879866,25,Makara,Makara,33.172,559.72,4.0
 mob,16879889,25,Fomor_Ranger,Fomor Ranger,-87.552,675.811,4.0
@@ -13856,8 +13856,8 @@ mob,16851113,18,Seether,Seether,-176.67,210.682,3.7
 mob,16851121,18,Seether,Seether,-132.877,220.109,3.7
 mob,16851122,18,Weeper,Weeper,-143.397,206.162,3.7
 mob,16851203,18,Seether,Seether,332.629,84.016,3.7
-mob,16859403,20,Seether,Seether,109.34,250.284,3.7
-mob,16859426,20,Seether,Seether,240.494,239.203,3.7
+mob,16859401,20,Seether,Seether,109.34,250.284,3.7
+mob,16859424,20,Seether,Seether,240.494,239.203,3.7
 mob,16867391,22,Weeper,Weeper,118.122,234.72,3.7
 mob,16875641,24,Abraxas,Abraxas,477.012,166.282,3.7
 mob,16879717,25,Seaboard_Vulture,Seaboard Vulture,500.323,323.273,3.7
@@ -13901,7 +13901,7 @@ mob,16838881,15,Gunge_slug,Gunge Slug,-202.0,423.0,3.6
 mob,16838973,15,Ypotrill,Ypotryll,77.0,322.0,3.6
 mob,16843007,16,Seether,Seether,101.554,-41.53,3.6
 mob,16850966,18,Wanderer,Wanderer,177.36,-272.399,3.6
-mob,16859412,20,Weeper,Weeper,187.061,224.729,3.6
+mob,16859410,20,Weeper,Weeper,187.061,224.729,3.6
 mob,16875624,24,Tavnazian_Sheep,Tavnazian Sheep,391.258,-83.619,3.6
 mob,16875745,24,Gigantobugard,Gigantobugard,-114.617,-28.697,3.6
 mob,16879686,25,Vampire_Bat,Vampire Bat,140.969,-238.037,3.6
@@ -14023,8 +14023,8 @@ mob,16822292,11,Goblin_Craftsman,Goblin Craftsman,-289.639,181.996,3.3
 mob,16822463,11,Bugbear_Porterman,Bugbear Porterman,-143.0,150.0,3.3
 mob,16842861,16,Stray,Stray,0.639,-36.694,3.3
 mob,16850990,18,Weeper,Weeper,-155.577,-111.897,3.3
-mob,16859340,20,Seether,Seether,342.531,-101.41,3.3
-mob,16859398,20,Seether,Seether,-2.973,318.091,3.3
+mob,16859338,20,Seether,Seether,342.531,-101.41,3.3
+mob,16859396,20,Seether,Seether,-2.973,318.091,3.3
 mob,16867460,22,Seether,Seether,335.447,-142.382,3.3
 mob,16867464,22,Seether,Seether,307.997,-89.998,3.3
 mob,16875785,24,Gloam_Servitor,Gloam Servitor,-70.585,-190.828,3.3
@@ -14056,7 +14056,7 @@ mob,16826539,12,Moblin_Topsman,Moblin Topsman,182.884,10.512,3.2
 mob,16826557,12,Moblin_Topsman,Moblin Topsman,362.459,-21.093,3.2
 mob,16842792,16,Wanderer,Wanderer,-189.682,-65.234,3.2
 mob,16851224,18,Seether,Seether,124.02,233.858,3.2
-mob,16859317,20,Wanderer,Wanderer,245.39,-158.588,3.2
+mob,16859315,20,Wanderer,Wanderer,245.39,-158.588,3.2
 mob,16867393,22,Weeper,Weeper,112.094,193.227,3.2
 mob,16867400,22,Weeper,Weeper,32.863,237.852,3.2
 mob,16867533,22,Seether,Seether,178.154,78.07,3.2
@@ -14140,7 +14140,7 @@ mob,16843012,16,Wanderer,Wanderer,193.126,-231.016,3.0
 mob,16851209,18,Wanderer,Wanderer,276.83,54.121,3.0
 mob,16859142,20,Weeper,Weeper,-190.115,293.423,3.0
 mob,16859206,20,Stray,Stray,-323.034,-360.29,3.0
-mob,16859239,20,Seether,Seether,-186.911,61.734,3.0
+mob,16859237,20,Seether,Seether,-186.911,61.734,3.0
 mob,16867374,22,Wanderer,Wanderer,7.44,-295.336,3.0
 mob,16867542,22,Seether,Seether,343.243,88.373,3.0
 mob,16879668,25,Fomor_Warrior,Fomor Warrior,750.799,-487.299,3.0
@@ -14212,8 +14212,8 @@ mob,16826560,12,Moblin_Engineman,Moblin Engineman,349.717,-43.664,2.9
 mob,16838838,15,Highland_Rafflesia,Highland Rafflesia,-223.0,193.0,2.9
 mob,16842762,16,Weeper,Weeper,-66.302,122.134,2.9
 mob,16851126,18,Seether,Seether,-236.669,156.074,2.9
-mob,16859320,20,Wanderer,Wanderer,278.815,-155.7,2.9
-mob,16859323,20,Weeper,Weeper,292.183,-161.121,2.9
+mob,16859318,20,Wanderer,Wanderer,278.815,-155.7,2.9
+mob,16859321,20,Weeper,Weeper,292.183,-161.121,2.9
 mob,16867341,22,Wanderer,Wanderer,27.29,-202.119,2.9
 mob,16867363,22,Wanderer,Wanderer,30.032,-290.14,2.9
 mob,16867463,22,Weeper,Weeper,320.195,-131.984,2.9
@@ -14346,8 +14346,8 @@ mob,16826538,12,Moblin_Engineman,Moblin Engineman,174.667,9.855,2.6
 mob,16842761,16,Wanderer,Wanderer,-72.437,124.149,2.6
 mob,16842905,16,Stray,Stray,-360.25,122.574,2.6
 mob,16850948,18,Wanderer,Wanderer,163.562,-215.313,2.6
-mob,16859408,20,Weeper,Weeper,141.514,242.13,2.6
-mob,16859432,20,Seether,Seether,279.283,286.033,2.6
+mob,16859406,20,Weeper,Weeper,141.514,242.13,2.6
+mob,16859430,20,Seether,Seether,279.283,286.033,2.6
 mob,16867419,22,Seether,Seether,-154.805,147.756,2.6
 mob,16875564,24,Crimson_Knight_Crab,Crimson Knight Crab,23.05,-281.08,2.6
 mob,16887985,27,Fomor_Red_Mage,Fomor Red Mage,106.729,21.212,2.6
@@ -14437,7 +14437,7 @@ mob,16826506,12,Nightmare_Bats,Nightmare Bats,43.806,-19.07,2.4
 mob,16842918,16,Weeper,Weeper,81.294,251.134,2.4
 mob,16851098,18,Weeper,Weeper,-200.47,395.64,2.4
 mob,16859178,20,Seether,Seether,-221.981,-244.427,2.4
-mob,16859414,20,Weeper,Weeper,160.589,202.569,2.4
+mob,16859412,20,Weeper,Weeper,160.589,202.569,2.4
 mob,16875783,24,Abununnu,Abununnu,-69.0,-193.0,2.4
 mob,16879629,25,Tavnazian_Sheep,Tavnazian Sheep,544.969,-396.009,2.4
 mob,16879735,25,Orcish_Gladiator,Orcish Gladiator,268.533,186.561,2.4
@@ -14469,9 +14469,9 @@ mob,16818222,10,Diremite_Dominator,Diremite Dominator,284.0,-280.0,2.3
 mob,16822327,11,Stirge,Stirge,-260.693,-87.689,2.3
 mob,16842758,16,Weeper,Weeper,-46.092,114.253,2.3
 mob,16859139,20,Weeper,Weeper,-195.349,257.15,2.3
-mob,16859245,20,Weeper,Weeper,-242.563,69.663,2.3
-mob,16859309,20,Seether,Seether,185.003,-56.851,2.3
-mob,16859365,20,Stray,Stray,357.736,-39.525,2.3
+mob,16859243,20,Weeper,Weeper,-242.563,69.663,2.3
+mob,16859307,20,Seether,Seether,185.003,-56.851,2.3
+mob,16859363,20,Stray,Stray,357.736,-39.525,2.3
 mob,16867336,22,Weeper,Weeper,44.005,-79.189,2.3
 mob,16887880,27,Canal_Bats,Canal Bats,68.669,180.568,2.3
 mob,16941270,40,Nightmare_Scorpion,Nightmare Scorpion,483.0,-8.0,2.3
@@ -14503,7 +14503,7 @@ mob,16822342,11,Goblin_Craftsman,Goblin Craftsman,-86.615,61.223,2.2
 mob,16826410,12,Moblin_Yardman,Moblin Yardman,99.195,163.205,2.2
 mob,16826486,12,Goblin_Junkman,Goblin Junkman,149.913,-54.711,2.2
 mob,16859158,20,Weeper,Weeper,-88.422,-277.896,2.2
-mob,16859359,20,Stray,Stray,359.955,-37.79,2.2
+mob,16859357,20,Stray,Stray,359.955,-37.79,2.2
 mob,16867612,22,Seether,Seether,16.187,13.982,2.2
 mob,16887846,27,Stegotaur,Stegotaur,133.155,6.993,2.2
 mob,16887873,27,Diremite,Diremite,-59.567,171.492,2.2
@@ -14566,7 +14566,7 @@ npc,17027550,61,qm6,???,848.86,316.642,2.0
 mob,16785578,2,Stag_Beetle,Stag Beetle,-352.396,-514.294,2.0
 mob,16797719,5,Snoll,Snoll,-211.505,-475.139,2.0
 mob,16842900,16,Stray,Stray,-358.748,237.99,2.0
-mob,16859410,20,Seether,Seether,161.352,222.534,2.0
+mob,16859408,20,Seether,Seether,161.352,222.534,2.0
 mob,16879673,25,Crimson_Knight_Crab,Crimson Knight Crab,690.198,-487.673,2.0
 mob,16887833,27,Canal_Bats,Canal Bats,60.456,-49.547,2.0
 mob,16941221,40,Nightmare_Crab,Nightmare Crab,-115.0,-281.0,2.0

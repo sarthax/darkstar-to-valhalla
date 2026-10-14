@@ -36,7 +36,7 @@ function onMobFight(mob, target)
              GetMobByID(i):updateEnmity(target);
            end
         end
-     elseif (Mem_Recep == 16859273 or Mem_Recep == 16859282 or Mem_Recep == 16859291 or Mem_Recep == 16859349 or Mem_Recep == 16859358 or Mem_Recep == 16859367) then -- Floor 3
+     elseif (Mem_Recep == 16859271 or Mem_Recep == 16859280 or Mem_Recep == 16859289 or Mem_Recep == 16859347 or Mem_Recep == 16859356 or Mem_Recep == 16859365) then -- Floor 3
        for i = Mem_Recep+1, Mem_Recep+7 do
           if (GetMobAction(i) == 16) then
              GetMobByID(i):updateEnmity(target);
@@ -65,8 +65,8 @@ function onMobFight(mob, target)
             return;
          end
       end
-   elseif (mob:getBattleTime() % 30 < 3 and mob:getBattleTime() > 3 and (Mem_Recep == 16859273 or Mem_Recep == 16859282 or Mem_Recep == 16859291 or -- Floor 3
-    Mem_Recep == 16859349 or Mem_Recep == 16859358 or Mem_Recep == 16859367) and mob:AnimationSub() == 2) then
+   elseif (mob:getBattleTime() % 30 < 3 and mob:getBattleTime() > 3 and (Mem_Recep == 16859271 or Mem_Recep == 16859280 or Mem_Recep == 16859289 or -- Floor 3
+    Mem_Recep == 16859347 or Mem_Recep == 16859356 or Mem_Recep == 16859365) and mob:AnimationSub() == 2) then
       for i = Mem_Recep+1, Mem_Recep+7 do
          if (GetMobAction(i) == 0) then
                  mob:AnimationSub(1);
@@ -149,37 +149,37 @@ function onMobDeath(mob, player, isKiller)
                 end
             end
         end,
-        [16859273] = function (x)
+        [16859271] = function (x)
         GetNPCByID(16859452):openDoor(180);
             if (Distance <4 and killeranimation == 0) then
                     player:startEvent(31);
             end
         end,
-        [16859282] = function (x)
+        [16859280] = function (x)
         GetNPCByID(16859453):openDoor(180);
             if (Distance <4 and killeranimation == 0) then
                     player:startEvent(31);
             end
         end,
-        [16859291] = function (x)
+        [16859289] = function (x)
         GetNPCByID(16859455):openDoor(180);
             if (Distance <4 and killeranimation == 0) then
                     player:startEvent(31);
             end
         end,
-        [16859349] = function (x)
+        [16859347] = function (x)
         GetNPCByID(16859456):openDoor(180);
             if (Distance <4 and killeranimation == 0) then
                     player:startEvent(31);
             end
         end,
-        [16859358] = function (x)
+        [16859356] = function (x)
         GetNPCByID(16859457):openDoor(180);
             if (Distance <4 and killeranimation == 0) then
                     player:startEvent(31);
             end
         end,
-        [16859367] = function (x)
+        [16859365] = function (x)
         GetNPCByID(16859461):openDoor(180);
             if (Distance <4 and killeranimation == 0) then
                     player:startEvent(31);
