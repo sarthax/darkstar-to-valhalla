@@ -40,3 +40,16 @@ The earlier "56 rows owned by other slices" group had shrunk to 5 against the li
 
 ## Live-vs-repo differences (2026-10-13)
 Of the 32 listed in `LIVE_VS_REPO_DIFFS_2026-10-13.md`, 8 were already identical (zone 104 rifts, fixed earlier). Repo now mirrors live for the rest with LSB evidence: 12 rift rows in zones 101/109/118/119 (live is a consistent permutation; each zone's 3 positions match LSB) and the 11 zone 104 Treasure_Casket rows (live flag 7 matches LSB). Live 119 Riftworn_Pyxis 17265320 pos_x -519.0 -> -519.9 per LSB. Backup `bak_lvr_20261013`. Left as evidence (no LSB basis): look-only rows 102:17195738 Selh_teus and 104:17203861 Conquest_Banner, Moogle 17248854 speed 40 vs 50, and zone 243 Survival_Guide 17772807 / `???` 17772827 (survival-guides slice).
+
+## Source-absent rows with name not at target (2026-10-13)
+
+38 `SKIP-src-absent` rows in `LIVE_RUN_2026-10-13_applied.csv` where the name was not at the target after the run (the other 230 were already satisfied). Checked against live `dspdb_fresh` and the client DAT. No changes made.
+
+| Group | Rows | Finding | Action |
+|---|---|---|---|
+| Already satisfied | 2 | Ardrick (zone 104) live at 17203945 (ledger misspelled "Arfdrick"); Ephemeral Moogle (zone 243) live at 17764827 as `Ephemeral_Moogle_CC`, nameplate matches DAT | none |
+| Survival guides | 3 | Kuchi Eyjhann 17199775, Iroha 17257126, Siren 17281677: target empty, old slot still a `Survival_Guide` row | left to survival-guides-v2 slice |
+| Zone 104 corrective block | 26 | Targets empty, no DAT entity there; old ids hold other real rows (Rook, Logging_Point, Planar_Rift, Riftworn_Pyxis, ...), so the ledger lines are stale. Blank-named props untouched | none |
+| Single stragglers | 7 | `???`, blank, `_4z0`, Balamor rows (zones 104, 113, 162, 191, 203, 258): empty target, no DAT entity, different row at old id | none |
+
+Nothing was placed into an empty target slot: the DAT has no entity for those slots, so any placement would invent an id.
