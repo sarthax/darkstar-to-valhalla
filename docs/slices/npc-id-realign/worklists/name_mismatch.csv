@@ -1,0 +1,522 @@
+kind,id,zone,slot,live_name,live_polutils,dat_name
+mob,16859232,20,96,Idle_Wanderer,Idle Wanderer,Wanderer
+mob,16859233,20,97,Idle_Wanderer,Idle Wanderer,Weeper
+mob,16859234,20,98,Wanderer,Wanderer,Weeper
+mob,16859237,20,101,Weeper,Weeper,Seether
+mob,16859239,20,103,Seether,Seether,Weeper
+mob,16859240,20,104,Weeper,Weeper,Wanderer
+mob,16859241,20,105,Weeper,Weeper,Wanderer
+mob,16859242,20,106,Wanderer,Wanderer,Weeper
+mob,16859243,20,107,Wanderer,Wanderer,Weeper
+mob,16859245,20,109,Weeper,Weeper,Seether
+mob,16859246,20,110,Weeper,Weeper,Seether
+mob,16859247,20,111,Seether,Seether,Wanderer
+mob,16859248,20,112,Seether,Seether,Wanderer
+mob,16859249,20,113,Wanderer,Wanderer,Weeper
+mob,16859250,20,114,Wanderer,Wanderer,Weeper
+mob,16859252,20,116,Weeper,Weeper,Wanderer
+mob,16859253,20,117,Weeper,Weeper,Wanderer
+mob,16859254,20,118,Wanderer,Wanderer,Weeper
+mob,16859255,20,119,Wanderer,Wanderer,Seether
+mob,16859257,20,121,Seether,Seether,Idle Wanderer
+mob,16859258,20,122,Weeper,Weeper,Woeful Weeper
+mob,16859260,20,124,Woeful_Weeper,Woeful Weeper,Idle Wanderer
+mob,16859265,20,129,Idle_Wanderer,Idle Wanderer,Woeful Weeper
+mob,16859267,20,131,Woeful_Weeper,Woeful Weeper,Idle Wanderer
+mob,16859268,20,132,Idle_Wanderer,Idle Wanderer,Craver
+mob,16859269,20,133,Idle_Wanderer,Idle Wanderer,Craver
+mob,16859270,20,134,Craver,Craver,
+mob,16859271,20,135,Craver,Craver,Memory Receptacle
+npc,16859272,20,136,6,,Stray
+mob,16859272,20,136,6,     ,Stray
+mob,16859273,20,137,Memory_Receptacle,Memory Receptacle,Stray
+mob,16859279,20,143,Stray,Stray,
+mob,16859280,20,144,Stray,Stray,Memory Receptacle
+npc,16859281,20,145,7,,Stray
+mob,16859281,20,145,7,     ,Stray
+mob,16859282,20,146,Memory_Receptacle,Memory Receptacle,Stray
+mob,16859288,20,152,Stray,Stray,
+mob,16859289,20,153,Stray,Stray,Memory Receptacle
+npc,16859290,20,154,8,,Stray
+mob,16859290,20,154,8,     ,Stray
+mob,16859291,20,155,Memory_Receptacle,Memory Receptacle,Stray
+mob,16859297,20,161,Stray,Stray,Weeper
+mob,16859298,20,162,Stray,Stray,Weeper
+mob,16859303,20,167,Weeper,Weeper,Wanderer
+mob,16859304,20,168,Weeper,Weeper,Wanderer
+mob,16859305,20,169,Wanderer,Wanderer,Weeper
+mob,16859306,20,170,Wanderer,Wanderer,Weeper
+mob,16859307,20,171,Weeper,Weeper,Seether
+mob,16859311,20,175,Seether,Seether,Weeper
+mob,16859315,20,179,Weeper,Weeper,Wanderer
+mob,16859316,20,180,Weeper,Weeper,Seether
+mob,16859317,20,181,Wanderer,Wanderer,Weeper
+mob,16859318,20,182,Seether,Seether,Wanderer
+mob,16859320,20,184,Wanderer,Wanderer,Weeper
+mob,16859322,20,186,Weeper,Weeper,Idle Wanderer
+mob,16859323,20,187,Weeper,Weeper,Idle Wanderer
+mob,16859329,20,193,Idle_Wanderer,Idle Wanderer,Woeful Weeper
+mob,16859331,20,195,Woeful_Weeper,Woeful Weeper,Idle Wanderer
+mob,16859333,20,197,Idle_Wanderer,Idle Wanderer,Woeful Weeper
+mob,16859335,20,199,Woeful_Weeper,Woeful Weeper,Idle Wanderer
+mob,16859337,20,201,Idle_Wanderer,Idle Wanderer,Weeper
+mob,16859338,20,202,Idle_Wanderer,Idle Wanderer,Seether
+mob,16859340,20,204,Seether,Seether,Wanderer
+mob,16859344,20,208,Wanderer,Wanderer,Craver
+mob,16859345,20,209,Weeper,Weeper,Craver
+mob,16859346,20,210,Craver,Craver,
+mob,16859347,20,211,Craver,Craver,Memory Receptacle
+npc,16859348,20,212,9,,Stray
+mob,16859348,20,212,9,     ,Stray
+mob,16859349,20,213,Memory_Receptacle,Memory Receptacle,Stray
+mob,16859355,20,219,Stray,Stray,
+mob,16859356,20,220,Stray,Stray,Memory Receptacle
+npc,16859357,20,221,10,,Stray
+mob,16859357,20,221,10,     ,Stray
+mob,16859358,20,222,Memory_Receptacle,Memory Receptacle,Stray
+mob,16859364,20,228,Stray,Stray,
+mob,16859365,20,229,Stray,Stray,Memory Receptacle
+npc,16859366,20,230,11,,Stray
+mob,16859366,20,230,11,     ,Stray
+mob,16859367,20,231,Memory_Receptacle,Memory Receptacle,Stray
+mob,16859373,20,237,Stray,Stray,Idle Wanderer
+mob,16859374,20,238,Stray,Stray,Idle Wanderer
+mob,16859378,20,242,Idle_Wanderer,Idle Wanderer,Livid Seether
+mob,16859380,20,244,Livid_Seether,Livid Seether,Idle Wanderer
+mob,16859382,20,246,Idle_Wanderer,Idle Wanderer,Livid Seether
+mob,16859384,20,248,Livid_Seether,Livid Seether,Idle Wanderer
+mob,16859386,20,250,Idle_Wanderer,Idle Wanderer,Livid Seether
+mob,16859388,20,252,Livid_Seether,Livid Seether,Idle Wanderer
+mob,16859389,20,253,Idle_Wanderer,Idle Wanderer,Seether
+mob,16859390,20,254,Idle_Wanderer,Idle Wanderer,Weeper
+mob,16859391,20,255,Seether,Seether,Weeper
+mob,16859392,20,256,Weeper,Weeper,Seether
+mob,16859393,20,257,Weeper,Weeper,Wanderer
+mob,16859394,20,258,Seether,Seether,Weeper
+mob,16859395,20,259,Wanderer,Wanderer,Weeper
+mob,16859396,20,260,Weeper,Weeper,Seether
+mob,16859398,20,262,Seether,Seether,Weeper
+mob,16859401,20,265,Weeper,Weeper,Seether
+mob,16859402,20,266,Weeper,Weeper,Wanderer
+mob,16859403,20,267,Seether,Seether,Weeper
+mob,16859404,20,268,Wanderer,Wanderer,Weeper
+mob,16859407,20,271,Weeper,Weeper,Seether
+mob,16859408,20,272,Weeper,Weeper,Seether
+mob,16859409,20,273,Seether,Seether,Weeper
+mob,16859410,20,274,Seether,Seether,Weeper
+mob,16859411,20,275,Weeper,Weeper,Seether
+mob,16859413,20,277,Seether,Seether,Weeper
+mob,16859415,20,279,Weeper,Weeper,Seether
+mob,16859416,20,280,Weeper,Weeper,Wanderer
+mob,16859417,20,281,Seether,Seether,Weeper
+mob,16859418,20,282,Wanderer,Wanderer,Weeper
+mob,16859421,20,285,Weeper,Weeper,Seether
+mob,16859423,20,287,Seether,Seether,Weeper
+mob,16859424,20,288,Weeper,Weeper,Seether
+mob,16859425,20,289,Weeper,Weeper,Wanderer
+mob,16859426,20,290,Seether,Seether,Weeper
+mob,16859427,20,291,Wanderer,Wanderer,Weeper
+mob,16859428,20,292,Weeper,Weeper,Seether
+mob,16859429,20,293,Weeper,Weeper,Seether
+mob,16859431,20,295,Seether,Seether,Weeper
+mob,16859432,20,296,Seether,Seether,Weeper
+mob,16859433,20,297,Weeper,Weeper,Wanderer
+mob,16859434,20,298,Weeper,Weeper,Wanderer
+mob,16859435,20,299,Wanderer,Wanderer,Weeper
+mob,16859436,20,300,Wanderer,Wanderer,Craver
+mob,16859437,20,301,Weeper,Weeper,Craver
+mob,16859441,20,305,Craver,Craver,Coveter
+npc,16859453,20,317,_0k1,warp_01,warp_03
+npc,16859454,20,318,_0k2,warp_02,warp_04
+npc,16859455,20,319,_0k3,warp_03,warp_05
+npc,16859456,20,320,_0k4,warp_04,warp_06
+npc,16859457,20,321,_0k5,warp_05,warp_07
+npc,16859458,20,322,_0k6,warp_06,warp_08
+npc,16859459,20,323,_0k7,warp_07,warp_09
+npc,16859460,20,324,_0k8,warp_08,warp_10
+npc,16859461,20,325,_0k9,warp_09,warp_11
+npc,16859462,20,326,_0ka,warp_10,Memory Flux
+npc,16859463,20,327,_0kb,warp_11,Memory Flux
+npc,16859470,20,334,qm1,???,Moogle
+npc,16859478,20,342,Moogle,Moogle,Rendezvous Point
+npc,16859479,20,343,Moogle,Moogle,???
+npc,16859480,20,344,Rendezvous_Point,Rendezvous Point,???
+mob,16998618,54,218,Nergal,Nergal,Nirgali
+mob,16998619,54,219,Nergal,Nergal,Nirgali
+mob,16998620,54,220,Nergal,Nergal,Nirgali
+mob,16998621,54,221,Nergal,Nergal,Nirgali
+mob,16998622,54,222,Nergal,Nergal,Nirgali
+mob,16998623,54,223,Nergal,Nergal,Nirgali
+mob,16998624,54,224,Nergal,Nergal,Nirgali
+mob,16998625,54,225,Nergal,Nergal,Nirgali
+mob,16998626,54,226,Nergal,Nergal,Nirgali
+mob,16998627,54,227,Nergal,Nergal,Nirgali
+mob,16998628,54,228,Nergal,Nergal,Nirgali
+mob,16998629,54,229,Nergal,Nergal,Nirgali
+mob,16998630,54,230,Nergal,Nergal,Nirgali
+mob,16998631,54,231,Nergal,Nergal,Nirgali
+mob,16998632,54,232,Nergal,Nergal,Nirgali
+mob,16998633,54,233,Nergal,Nergal,Nirgali
+mob,16998634,54,234,Nergal,Nergal,Nirgali
+mob,16998635,54,235,Nergal,Nergal,Nirgali
+npc,17060120,69,280,_1x5,_1x5,_1x1
+npc,17060124,69,284,_1x9,_1x9,_1x5
+npc,17060135,69,295,_1xk,_1xk,_1xg
+npc,17060136,69,296,_1xl,_1xl,_1xh
+npc,17060138,69,298,_1xn,_1xn,_1xj
+npc,17060139,69,299,_1xo,_1xo,_1xk
+npc,17060147,69,307,_1xw,_1xw,_1xs
+npc,17060148,69,308,_1xx,_1xx,_1xt
+npc,17060149,69,309,_1xy,_1xy,_1xu
+npc,17060164,69,324,_jxd,_jxd,_jx9
+npc,17060171,69,331,_jxk,_jxk,_jxg
+npc,17060172,69,332,blank,,_jxh
+mob,17084721,75,305,Demented_Jalawaa,Demented Jalawaa,Demented Jalaawa
+mob,17088617,76,105,Powderkek_Yanadahn,Powderkek Yanadahn,Powderkeg Yanadahn
+mob,17129613,86,141,Fangmonger,Fangmonger,Fangmonger Colossus
+mob,17158224,93,80,Ancient_Quadav,Ancient Quadav,Gold Quadav
+npc,17199666,103,562,NPC[2F],Mirthful Hatchling,Lucky Rat
+npc,17207945,105,649,qm,???,Summoner
+npc,17212124,106,732,qm4,???,Summoner
+npc,17220184,108,600,Moogle,Moogle,Summoner
+npc,17228405,110,629,Smile_Helper,Smile Helper,???
+npc,17228406,110,630,Smile_Helper,Smile Helper,???
+npc,17236362,112,394,blank,,Summoner
+npc,17244666,114,506,Fireworks,,Summoner
+npc,17248785,115,529,NPC[230],,Morbol Groupie
+npc,17248901,115,645,Moogle,Moogle,Summoner
+npc,17257100,117,652,Smile Helper,Smile Helper,???
+npc,17257101,117,653,Smile Helper,Smile Helper,???
+npc,17261103,118,559,JoyousAlicorn,Felicitous Chocobo,Lucky Rat
+npc,17261104,118,560,JoyfulAlicorn,Felicitous Chocobo,Lucky Rat
+npc,17261105,118,561,MirthfulIxion,Elated Cockatrice,Lucky Rat
+npc,17261212,118,668,blank,,Summoner
+npc,17269281,120,545,qm,???,Summoner
+npc,17269286,120,550,Smile_Helper,Smile Helper,???
+npc,17269287,120,551,Smile_Helper,Smile Helper,???
+npc,17273331,121,499,NPC[1f0],Mirthful Hatchling,Lucky Rat
+npc,17281674,123,650,blank,,Summoner
+npc,17281679,123,655,csnpc,,Volto Oscuro
+npc,17285609,124,489,NPC[1e9],Felicitous Chocobo,Lucky Rat
+npc,17285610,124,490,NPC[1ea],Felicitous Chocobo,Lucky Rat
+npc,17285611,124,491,NPC[1eb],Elated Cockatrice,Lucky Rat
+npc,17285612,124,492,NPC[1ec],Mirthful Hatchling,Lucky Rat
+npc,17289814,125,598,Fireworks,,Summoner
+npc,17293670,126,358,NPC[166],Elated Cockatrice,Lucky Rat
+npc,17293671,126,359,NPC[167],Mirthful Hatchling,Lucky Rat
+npc,17293817,126,505,blank,,Summoner
+mob,17305779,129,179,Bloodwing_Maimers,Bloodwing Maimers,Bloodwing Maimer
+mob,17305780,129,180,Bloodwing_Maimers,Bloodwing Maimers,Bloodwing Maimer
+mob,17305781,129,181,Bloodwing_Maimers,Bloodwing Maimers,Bloodwing Maimer
+mob,17305782,129,182,Bloodwing_Maimers,Bloodwing Maimers,Bloodwing Maimer
+mob,17305783,129,183,Bloodwing_Deathrainers,Bloodwing Deathrainers,Bloodwing Deathrainer
+mob,17305784,129,184,Bloodwing_Deathrainers,Bloodwing Deathrainers,Bloodwing Deathrainer
+mob,17428500,159,20,Temple_Opo-opo,Temple Opo-opo,Wespe
+mob,17428854,159,374,Grav_iton,Treasure Casket,Clawberry's Avatar
+npc,17453271,165,215,NPC[d5],,Zeid
+npc,17453272,165,216,NPC[d6],,Aldo
+npc,17453273,165,217,_4l1,Throne Room,Lion
+npc,17453274,165,218,_4l2,Ore Door,Zeid
+npc,17453275,165,219,_4l3,Ore Door,Aldo
+npc,17453276,165,220,_4l4,Ore Door,Lion
+npc,17453277,165,221,NPC[db],,Zeid
+npc,17453278,165,222,NPC[dc],,Aldo
+npc,17453286,165,230,Lion,Lion,Ore Door
+npc,17453287,165,231,1,,Ore Door
+npc,17453288,165,232,csnpc,,Ore Door
+npc,17453298,165,242,_4l0,Ore Door,Lion
+npc,17453310,165,254,7,,Ore Door
+npc,17453319,165,263,blank,1,
+npc,17453321,165,265,blank,3,
+npc,17453322,165,266,blank,4,
+npc,17453323,165,267,blank,5,
+npc,17453324,165,268,blank,6,
+npc,17510674,179,274,blank,,Lion
+npc,17510675,179,275,blank,,Zeid
+npc,17510693,179,293,_4z3,Qo'Tav Gate,Aldo
+npc,17510700,179,300,Moogle,Moogle,CrystalKnight
+npc,17510712,179,312,Rughadjeen,Rughadjeen,Moogle
+npc,17510724,179,324,Trion,,Rughadjeen
+npc,17526911,183,127,blank,,Moogle
+mob,17543490,187,322,Avatar_Icon,,Moogle
+mob,17543491,187,323,Avatar_Icon,,Moogle
+mob,17543492,187,324,Avatar_Icon,,Moogle
+mob,17543493,187,325,Avatar_Icon,,Moogle
+npc,17629679,208,495,Treasure_Casket,Treasure Casket,Achieve Master
+npc,17629680,208,496,Treasure_Casket,Treasure Casket,Unity Master
+npc,17719725,230,429,blank,Erudite Moogle,Treasure Coffer
+npc,17719726,230,430,blank,Proctor Moogle,
+npc,17719738,230,442,blank,Treasure Coffer,
+npc,17719790,230,494,csnpc,,Ensemble Maven
+npc,17719830,230,534,blank,,Estiliphire
+npc,17719874,230,578,blank,,Shard of Sunlight
+npc,17719875,230,579,blank,,Shard of Sunlight
+npc,17719876,230,580,blank,,Shard of Sunlight
+npc,17719877,230,581,blank,,Shard of Sunlight
+npc,17719878,230,582,blank,,Shard of Sunlight
+npc,17719879,230,583,blank,,Shard of Sunlight
+npc,17740026,235,250,blank,Erudite Moogle,Treasure Coffer
+npc,17740027,235,251,blank,Proctor Moogle,
+npc,17740078,235,302,blank,,Mumor
+npc,17740084,235,308,blank,,Bashraf
+npc,17740150,235,374,blank,,Zeid
+npc,17740152,235,376,blank,,Selh'teus
+npc,17740153,235,377,unknpc,,Selh'teus
+npc,17740154,235,378,unknpc,,Selh'teus
+npc,17740160,235,384,blank,,Disjoined One
+npc,17740164,235,388,unknpc,,Disjoined One
+npc,17740170,235,394,blank,,Puyutete
+npc,17744202,236,330,Disjoined_One,Disjoined One,
+npc,17744210,236,338,blank,,Disjoined One
+npc,17752429,238,365,blank,Erudite Moogle,Treasure Coffer
+npc,17752430,238,366,blank,Proctor Moogle,
+npc,17752471,238,407,Fireworks,,Fashionista
+npc,17752484,238,420,Fashionista,Fashionista,
+npc,17752532,238,468,blank,,Isanie
+npc,17764815,241,463,Disjoined_One,Disjoined One,
+npc,17764823,241,471,blank,,Disjoined One
+npc,17797271,249,151,NPC[93],,Layer Reserve
+mob,17874995,268,51,Speleothem_Gefryst,Speleothem_Gefryst,Speleothem Gefyrst
+mob,17875007,268,63,Speleothem_Gefryst,Speleothem_Gefryst,Speleothem Gefyrst
+mob,17875016,268,72,Speleothem_Gefryst,Speleothem_Gefryst,Speleothem Gefyrst
+mob,17875032,268,88,Speleothem_Gefryst,Speleothem_Gefryst,Speleothem Gefyrst
+mob,17899622,274,102,Legionless_Draugar,Legionless Draugar,Dreadhound
+npc,17957418,288,554,GrimsLight,Grimslight,
+mob,17960998,289,38,Eschan_Zdei,Eschan Zdei,Eschan Il'aern
+mob,17960999,289,39,Eschan_Zdei,Eschan Zdei,Eschan Il'aern
+mob,17961001,289,41,Eschan_Ilaern,Eschan Il aern,Eschan Il'aern's Wynav
+mob,17961003,289,43,Eschan_Ilaerns_Wynav,Eschan Il aern s Wynav,Eschan Il'aern
+mob,17961007,289,47,EschanIl_aern,Eschan Il aern,Eschan Il'aern's Wynav
+mob,17961012,289,52,Eschan_Ilaern,Eschan Il aern,Eschan Phuabo
+mob,17961013,289,53,Eschan_Ilaerns_Wynav,Eschan Il aern s Wynav,Eschan Il'aern
+mob,17961014,289,54,Eschan_Phuabo,Eschan Phuabo,Eschan Il'aern
+mob,17961015,289,55,EschanIl_aern,Eschan Il aern,Eschan Phuabo
+mob,17961016,289,56,EschanIl_aern,Eschan Il aern,Eschan Phuabo
+mob,17961019,289,59,Eschan_Phuabo,Eschan Phuabo,Eschan Il'aern
+mob,17961020,289,60,Eschan_Phuabo,Eschan Phuabo,Eschan Il'aern
+mob,17961022,289,62,EschanIl_aern,Eschan Il aern,Eschan Il'aern's Wynav
+mob,17961023,289,63,EschanIl_aern,Eschan Il aern,Eschan Phuabo
+mob,17961024,289,64,EschanIl_aern,Eschan Il aern,Eschan Phuabo
+mob,17961026,289,66,Eschan_Phuabo,Eschan Phuabo,Eschan Il'aern
+mob,17961027,289,67,Eschan_Phuabo,Eschan Phuabo,Eschan Il'aern
+mob,17961031,289,71,EschanIl_aern,Eschan Il aern,Eschan Il'aern's Wynav
+mob,17961034,289,74,EschanIl_aern,Eschan Il aern,Eschan Phuabo
+mob,17961035,289,75,Eschan_Ilaerns_Wynav,Eschan Il aern s Wynav,Eschan Il'aern
+mob,17961036,289,76,Eschan_Phuabo,Eschan Phuabo,Eschan Il'aern
+mob,17961037,289,77,Eschan_Zdei,Eschan Zdei,Eschan Phuabo
+mob,17961038,289,78,EschanIl_aern,Eschan Il aern,Eschan Phuabo
+mob,17961041,289,81,Eschan_Phuabo,Eschan Phuabo,Eschan Il'aern
+mob,17961042,289,82,Eschan_Phuabo,Eschan Phuabo,Eschan Il'aern
+mob,17961044,289,84,EschanIl_aern,Eschan Il aern,Eschan Il'aern's Wynav
+mob,17961045,289,85,Eschan_Ilaern,Eschan Il aern,Eschan Phuabo
+mob,17961046,289,86,Eschan_Ilaerns_Wynav,Eschan Il aern s Wynav,Eschan Phuabo
+mob,17961048,289,88,Eschan_Phuabo,Eschan Phuabo,Eschan Il'aern
+mob,17961049,289,89,Eschan_Phuabo,Eschan Phuabo,Eschan Il'aern
+mob,17961052,289,92,EschanIl_aern,Eschan Il aern,Eschan Yovra
+mob,17961054,289,94,Eschan_Yovra,Eschan Yovra,Eschan Il'aern
+mob,17961058,289,98,EschanIl_aern,Eschan Il aern,Eschan Il'aern's Euvhi
+mob,17961059,289,99,Eschan_Ilaern,Eschan Il aern,Eschan Euvhi
+mob,17961060,289,100,Eschan_Il_aerns_Euvhi,Eschan Il aern s Euvhi,Eschan Euvhi
+mob,17961062,289,102,Eschan_Euvhi,Eschan Euvhi,Eschan Il'aern
+mob,17961063,289,103,Eschan_Euvhi,Eschan Euvhi,Eschan Il'aern
+mob,17961064,289,104,EschanIl_aern,Eschan Il aern,Eschan Euvhi
+mob,17961065,289,105,EschanIl_aern,Eschan Il aern,Eschan Euvhi
+mob,17961066,289,106,Eschan_Euvhi,Eschan Euvhi,Eschan Il'aern
+mob,17961067,289,107,Eschan_Euvhi,Eschan Euvhi,Eschan Il'aern
+mob,17961069,289,109,EschanIl_aern,Eschan Il aern,Eschan Il'aern's Euvhi
+mob,17961071,289,111,Eschan_Il_aerns_Euvhi,Eschan Il aern s Euvhi,Eschan Il'aern
+mob,17961076,289,116,EschanIl_aern,Eschan Il aern,Eschan Euvhi
+mob,17961077,289,117,EschanIl_aern,Eschan Il aern,Eschan Euvhi
+mob,17961078,289,118,Eschan_Euvhi,Eschan Euvhi,Eschan Il'aern
+mob,17961079,289,119,Eschan_Euvhi,Eschan Euvhi,Eschan Il'aern's Euvhi
+mob,17961080,289,120,Eschan_Ilaern,Eschan Il aern,Eschan Euvhi
+mob,17961081,289,121,Eschan_Il_aerns_Euvhi,Eschan Il aern s Euvhi,Eschan Euvhi
+mob,17961082,289,122,Eschan_Euvhi,Eschan Euvhi,Eschan Il'aern
+mob,17961083,289,123,Eschan_Euvhi,Eschan Euvhi,Eschan Il'aern's Euvhi
+mob,17961084,289,124,Eschan_Ilaern,Eschan Il aern,Eschan Euvhi
+mob,17961085,289,125,Eschan_Il_aerns_Euvhi,Eschan Il aern s Euvhi,Eschan Euvhi
+mob,17961086,289,126,Eschan_Euvhi,Eschan Euvhi,Eschan Il'aern
+mob,17961087,289,127,Eschan_Euvhi,Eschan Euvhi,Eschan Il'aern
+mob,17961088,289,128,EschanIl_aern,Eschan Il aern,Eschan Euvhi
+mob,17961089,289,129,EschanIl_aern,Eschan Il aern,Eschan Euvhi
+mob,17961090,289,130,Eschan_Euvhi,Eschan Euvhi,Eschan Il'aern
+mob,17961091,289,131,Eschan_Euvhi,Eschan Euvhi,Eschan Il'aern
+mob,17961093,289,133,EschanIl_aern,Eschan Il aern,Eschan Il'aern's Euvhi
+mob,17961095,289,135,Eschan_Il_aerns_Euvhi,Eschan Il aern s Euvhi,Eschan Il'aern
+mob,17961100,289,140,EschanIl_aern,Eschan Il aern,Eschan Euvhi
+mob,17961101,289,141,EschanIl_aern,Eschan Il aern,Eschan Euvhi
+mob,17961102,289,142,Eschan_Euvhi,Eschan Euvhi,Eschan Il'aern
+mob,17961103,289,143,Eschan_Euvhi,Eschan Euvhi,Eschan Il'aern's Euvhi
+mob,17961104,289,144,Eschan_Ilaern,Eschan Il aern,Eschan Euvhi
+mob,17961105,289,145,Eschan_Il_aerns_Euvhi,Eschan Il aern s Euvhi,Eschan Euvhi
+mob,17961106,289,146,Eschan_Euvhi,Eschan Euvhi,Eschan Clionid
+mob,17961107,289,147,Eschan_Euvhi,Eschan Euvhi,Eschan Clionid
+mob,17961114,289,154,Eschan_Clionid,Eschan Clionid,Eschan Yovra
+mob,17961115,289,155,Eschan_Clionid,Eschan Clionid,Eschan Il'aern
+mob,17961116,289,156,Eschan_Yovra,Eschan Yovra,Eschan Il'aern
+mob,17961120,289,160,EschanIl_aern,Eschan Il aern,Eschan Hpemde
+mob,17961121,289,161,EschanIl_aern,Eschan Il aern,Eschan Hpemde
+mob,17961123,289,163,Eschan_Hpemde,Eschan Hpemde,Eschan Il'aern
+mob,17961124,289,164,Eschan_Hpemde,Eschan Hpemde,Eschan Il'aern
+mob,17961125,289,165,EschanIl_aern,Eschan Il aern,Eschan Hpemde
+mob,17961126,289,166,EschanIl_aern,Eschan Il aern,Eschan Hpemde
+mob,17961127,289,167,Eschan_Hpemde,Eschan Hpemde,Eschan Il'aern
+mob,17961128,289,168,Eschan_Hpemde,Eschan Hpemde,Eschan Il'aern
+mob,17961136,289,176,EschanIl_aern,Eschan Il aern,Eschan Hpemde
+mob,17961137,289,177,EschanIl_aern,Eschan Il aern,Eschan Hpemde
+mob,17961138,289,178,Eschan_Hpemde,Eschan Hpemde,Eschan Il'aern
+mob,17961140,289,180,EschanIl_aern,Eschan Il aern,Eschan Hpemde
+mob,17961141,289,181,Eschan_Hpemde,Eschan Hpemde,Eschan Il'aern
+mob,17961142,289,182,Eschan_Hpemde,Eschan Hpemde,Eschan Il'aern
+mob,17961143,289,183,EschanIl_aern,Eschan Il aern,Eschan Hpemde
+mob,17961145,289,185,Eschan_Hpemde,Eschan Hpemde,Eschan Il'aern
+mob,17961146,289,186,EschanIl_aern,Eschan Il aern,Eschan Hpemde
+mob,17961147,289,187,EschanIl_aern,Eschan Il aern,Eschan Hpemde
+mob,17961148,289,188,Eschan_Hpemde,Eschan Hpemde,Eschan Il'aern
+mob,17961149,289,189,Eschan_Hpemde,Eschan Hpemde,Eschan Il'aern
+mob,17961157,289,197,EschanIl_aern,Eschan Il aern,Eschan Hpemde
+mob,17961158,289,198,EschanIl_aern,Eschan Il aern,Eschan Hpemde
+mob,17961159,289,199,Eschan_Hpemde,Eschan Hpemde,Eschan Il'aern
+mob,17961161,289,201,EschanIl_aern,Eschan Il aern,Eschan Hpemde
+mob,17961162,289,202,Eschan_Hpemde,Eschan Hpemde,Eschan Amoeban
+mob,17961163,289,203,Eschan_Hpemde,Eschan Hpemde,Eschan Amoeban
+mob,17961170,289,210,Eschan_Amoeban,Eschan Amoeban,Eschan Yovra
+mob,17961171,289,211,Eschan_Amoeban,Eschan Amoeban,Eschan Il'aern
+mob,17961172,289,212,Eschan_Yovra,Eschan Yovra,Eschan Il'aern
+mob,17961176,289,216,EschanIl_aern,Eschan Il aern,Eschan Xzomit
+mob,17961177,289,217,EschanIl_aern,Eschan Il aern,Eschan Xzomit
+mob,17961179,289,219,Eschan_Xzomit,Eschan Xzomit,Eschan Il'aern
+mob,17961180,289,220,Eschan_Xzomit,Eschan Xzomit,Eschan Il'aern
+mob,17961181,289,221,EschanIl_aern,Eschan Il aern,Eschan Xzomit
+mob,17961182,289,222,EschanIl_aern,Eschan Il aern,Eschan Xzomit
+mob,17961183,289,223,Eschan_Xzomit,Eschan Xzomit,Eschan Il'aern
+mob,17961184,289,224,Eschan_Xzomit,Eschan Xzomit,Eschan Il'aern
+mob,17961191,289,231,EschanIl_aern,Eschan Il aern,Eschan Xzomit
+mob,17961193,289,233,Eschan_Xzomit,Eschan Xzomit,Eschan Il'aern
+mob,17961194,289,234,EschanIl_aern,Eschan Il aern,Eschan Xzomit
+mob,17961195,289,235,EschanIl_aern,Eschan Il aern,Eschan Xzomit
+mob,17961196,289,236,Eschan_Xzomit,Eschan Xzomit,Eschan Il'aern
+mob,17961198,289,238,EschanIl_aern,Eschan Il aern,Eschan Xzomit
+mob,17961199,289,239,Eschan_Xzomit,Eschan Xzomit,Eschan Il'aern
+mob,17961200,289,240,Eschan_Xzomit,Eschan Xzomit,Eschan Il'aern
+mob,17961201,289,241,EschanIl_aern,Eschan Il aern,Eschan Xzomit
+mob,17961202,289,242,EschanIl_aern,Eschan Il aern,Eschan Xzomit
+mob,17961203,289,243,Eschan_Xzomit,Eschan Xzomit,Eschan Il'aern
+mob,17961204,289,244,Eschan_Xzomit,Eschan Xzomit,Eschan Il'aern
+mob,17961211,289,251,EschanIl_aern,Eschan Il aern,Eschan Xzomit
+mob,17961213,289,253,Eschan_Xzomit,Eschan Xzomit,Eschan Il'aern
+mob,17961214,289,254,EschanIl_aern,Eschan Il aern,Eschan Xzomit
+mob,17961215,289,255,EschanIl_aern,Eschan Il aern,Eschan Xzomit
+mob,17961216,289,256,Eschan_Xzomit,Eschan Xzomit,Eschan Il'aern
+mob,17961218,289,258,EschanIl_aern,Eschan Il aern,Eschan Xzomit
+mob,17961219,289,259,Eschan_Xzomit,Eschan Xzomit,Eschan Murex
+mob,17961220,289,260,Eschan_Xzomit,Eschan Xzomit,Eschan Murex
+mob,17961227,289,267,Eschan_Murex,Eschan Murex,Eschan Yovra
+mob,17961228,289,268,Eschan_Murex,Eschan Murex,Eschan Il'aern
+mob,17961229,289,269,Eschan_Yovra,Eschan Yovra,Eschan Il'aern
+mob,17961233,289,273,EschanIl_aern,Eschan Il aern,Eschan Il'aern's Spirit
+mob,17961234,289,274,Eschan_Ilaern,Eschan Il aern,Eschan Ghrah
+mob,17961235,289,275,Eschan_Il_aerns_Spirit,Eschan Il aern s Spirit,Eschan Ghrah
+mob,17961237,289,277,Eschan_Ghrah,Eschan Ghrah,Eschan Il'aern
+mob,17961238,289,278,Eschan_Ghrah,Eschan Ghrah,Eschan Il'aern
+mob,17961239,289,279,EschanIl_aern,Eschan Il aern,Eschan Ghrah
+mob,17961240,289,280,EschanIl_aern,Eschan Il aern,Eschan Ghrah
+mob,17961241,289,281,Eschan_Ghrah,Eschan Ghrah,Eschan Il'aern
+mob,17961242,289,282,Eschan_Ghrah,Eschan Ghrah,Eschan Il'aern
+mob,17961244,289,284,EschanIl_aern,Eschan Il aern,Eschan Il'aern's Spirit
+mob,17961246,289,286,Eschan_Il_aerns_Spirit,Eschan Il aern s Spirit,Eschan Il'aern
+mob,17961251,289,291,EschanIl_aern,Eschan Il aern,Eschan Ghrah
+mob,17961252,289,292,EschanIl_aern,Eschan Il aern,Eschan Ghrah
+mob,17961253,289,293,Eschan_Ghrah,Eschan Ghrah,Eschan Il'aern
+mob,17961254,289,294,Eschan_Ghrah,Eschan Ghrah,Eschan Il'aern's Spirit
+mob,17961255,289,295,Eschan_Ilaern,Eschan Il aern,Eschan Ghrah
+mob,17961256,289,296,Eschan_Il_aerns_Spirit,Eschan Il aern s Spirit,Eschan Ghrah
+mob,17961257,289,297,Eschan_Ghrah,Eschan Ghrah,Eschan Il'aern
+mob,17961258,289,298,Eschan_Ghrah,Eschan Ghrah,Eschan Il'aern's Spirit
+mob,17961259,289,299,Eschan_Ilaern,Eschan Il aern,Eschan Ghrah
+mob,17961260,289,300,Eschan_Il_aerns_Spirit,Eschan Il aern s Spirit,Eschan Ghrah
+mob,17961261,289,301,Eschan_Ghrah,Eschan Ghrah,Eschan Il'aern
+mob,17961262,289,302,Eschan_Ghrah,Eschan Ghrah,Eschan Il'aern
+mob,17961263,289,303,EschanIl_aern,Eschan Il aern,Eschan Ghrah
+mob,17961264,289,304,EschanIl_aern,Eschan Il aern,Eschan Ghrah
+mob,17961265,289,305,Eschan_Ghrah,Eschan Ghrah,Eschan Il'aern
+mob,17961266,289,306,Eschan_Ghrah,Eschan Ghrah,Eschan Il'aern
+mob,17961268,289,308,EschanIl_aern,Eschan Il aern,Eschan Il'aern's Spirit
+mob,17961270,289,310,Eschan_Il_aerns_Spirit,Eschan Il aern s Spirit,Eschan Il'aern
+mob,17961275,289,315,EschanIl_aern,Eschan Il aern,Eschan Ghrah
+mob,17961276,289,316,EschanIl_aern,Eschan Il aern,Eschan Ghrah
+mob,17961277,289,317,Eschan_Ghrah,Eschan Ghrah,Eschan Il'aern
+mob,17961278,289,318,Eschan_Ghrah,Eschan Ghrah,Eschan Il'aern's Spirit
+mob,17961279,289,319,Eschan_Ilaern,Eschan Il aern,Eschan Ghrah
+mob,17961280,289,320,Eschan_Il_aerns_Spirit,Eschan Il aern s Spirit,Eschan Ghrah
+mob,17961281,289,321,Eschan_Ghrah,Eschan Ghrah,Eschan Limule
+mob,17961282,289,322,Eschan_Ghrah,Eschan Ghrah,Eschan Limule
+mob,17961291,289,331,Eschan_Yovra,Eschan Yovra,Eschan Gargouille
+mob,17961330,289,370,Eschan_Gargouille,Eschan Gargouille,Warder of Temperance
+mob,17961331,289,371,Eschan_Gargouille,Eschan Gargouille,Warder of Fortitude
+mob,17961332,289,372,Warder_of_temperance,Warder of temperance,Warder's Ghrah
+mob,17961333,289,373,Warder_of_temperance,Warder of temperance,Warder's Ghrah
+mob,17961334,289,374,Warders_Ghrah,Warder s ghrah,Warder of Faith
+mob,17961335,289,375,Warders_Ghrah,Warder s ghrah,Warder of Justice
+mob,17961336,289,376,Warder_of_faith,Warder of faith,Warder's Xzomit
+mob,17961337,289,377,Warder_of_justice,Warder of justice,Warder's Xzomit
+mob,17961342,289,382,Warders_Xzomit,Warder s Xzomit,Warder of Hope
+mob,17961343,289,383,Warders_Xzomit,Warder s Xzomit,Warder of Prudence
+mob,17961344,289,384,Warder_of_Hope,Warder of Hope,Warder of Prudence
+mob,17961345,289,385,Warder_of_Prudence,Warder of Prudence,Warder of Love
+mob,17961346,289,386,Warder_of_Prudence,Warder of Prudence,Warder's Phuabo
+mob,17961347,289,387,Warder_of_Love,Warder of Love,Warder's Phuabo
+mob,17961355,289,395,Warders_Phuabo,Warder s Phuabo,Warder's Xzomit
+mob,17961356,289,396,Warders_Phuabo,Warder s Phuabo,Warder's Xzomit
+mob,17961364,289,404,Warders_Xzomit,Warder s Xzomit,Warder's Hpedme
+mob,17961365,289,405,Warders_Xzomit,Warder s Xzomit,Warder's Hpedme
+mob,17961366,289,406,Warders_Hpemde,Warder s Hpemde,Warder's Hpedme
+mob,17961367,289,407,Warders_Hpemde,Warder s Hpemde,Warder's Hpedme
+mob,17961368,289,408,Warders_Hpemde,Warder s Hpemde,Warder's Hpedme
+mob,17961369,289,409,Warders_Hpemde,Warder s Hpemde,Warder's Hpedme
+mob,17961370,289,410,Warders_Hpemde,Warder s Hpemde,Warder's Hpedme
+mob,17961371,289,411,Warders_Hpemde,Warder s Hpemde,Warder's Hpedme
+mob,17961372,289,412,Warders_Hpemde,Warder s Hpemde,Warder's Hpedme
+mob,17961373,289,413,Warders_Hpemde,Warder s Hpemde,Warder of Dignity
+mob,17961374,289,414,Warders_Hpemde,Warder s Hpemde,Warder of Loyalty
+mob,17961375,289,415,Warder_of_Dignity,Warder of Dignity,Warder of Mercy
+mob,17961376,289,416,Warder_of_Loyalty,Warder of Loyalty,Eschan Porxie
+mob,17961377,289,417,Warder_of_Mercy,Warder of Mercy,Eschan Porxie
+mob,17961379,289,419,Eschan_Porxie,Eschan Porxie,Bia
+mob,17961414,289,454,Sava_Savanovi,Sava Savanovi,Sava Savanovic
+mob,17961415,289,455,Sava_Savanovi,Sava Savanovi,Palila
+mob,17961439,289,479,Hanbi,Hanbi,Hanbi's Demon
+mob,17961455,289,495,Yilan,Yilan,Yilan's Dragon
+mob,17961460,289,500,Yilans_Dragon,Yilan s Dragon,Amymone
+mob,17961461,289,501,Yilans_Dragon,Yilan s Dragon,Amymone
+mob,17961476,289,516,Naphula,Naphula,Naphula's Corpselight
+mob,17961486,289,526,Kammavacas_Limule,Kammavaca s Limule,Kammavaca's Murex
+mob,17961487,289,527,Kammavacas_Clionid,Kammavaca s Clionid,Kammavaca's Amoeban
+mob,17961488,289,528,Kammavacas_Murex,Kammavaca s Murex,Kammavaca's Limule
+mob,17961489,289,529,Kammavacas_Amoeban,Kammavaca s Amoeban,Kammavaca's Clionid
+mob,17961606,289,646,ArkAngelMRs_Karakul,Ark Angel MR s Karakul,Ark Angel's Karakul
+mob,17961619,289,659,Warder_of_Courage,Warder of Courage,Warder's Wynav
+mob,17961639,289,679,Balamor,Balamor,Naga Raja's Lamia
+mob,17961640,289,680,Naga_Raja,Naga Raja,Naga Raja's Lamia
+mob,17961650,289,690,Naga_Rajas_Lamia,Naga Raja s Lamia,.
+mob,17961651,289,691,Naga_Rajas_Lamia,Naga Raja s Lamia,Unity Master
+npc,17961677,289,717,Moogle,Moogle,
+mob,17969823,291,671,Onycophora,Onycophora,Onychophora
+npc,17969907,291,755,blank,,Moogle
+npc,17969994,291,842,Emblazoned_Reliquary,Emblazoned Reliquary,???
+npc,17970027,291,875,blank,,Emblazoned Reliquary
+npc,17970028,291,876,fep1,fep1,
+npc,17970029,291,877,fep2,fep2,fep1
+npc,17970030,291,878,fep3,fep3,fep2
+npc,17970031,291,879,_830,,fep3
+mob,17977398,293,54,Cloud_of_Darkness,Cloud of Darkness,Achieve Master
+mob,17977399,293,55,Darkness,Darkness,Cloud of Darkness
+npc,17977435,293,91,NPC[5b],,Iroha
+npc,17977436,293,92,NPC[5c],,Iroha
+npc,17977437,293,93,NPC[5d],,Iroha
+npc,17977438,293,94,NPC[5e],,Iroha
+npc,17977439,293,95,NPC[5f],,Iroha
+npc,17977458,293,114,Iroha,Iroha,Arciela
+npc,17977483,293,139,NPC[87],,Iroha
+npc,17977485,293,141,NPC[89],,Disjoined One
+npc,17977487,293,143,NPC[8b],,Lion
