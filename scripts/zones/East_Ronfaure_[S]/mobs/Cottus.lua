@@ -72,8 +72,26 @@ end;
 
 function onMobRoam(mob) tick(mob); end;
 
+-- Mercurial Strike chain [W]: every ~45s, follow-up chosen by the damage value rolled (mercurial_strike.lua sets MS_VAL).
+local FOLLOW = {[111]=664, [222]=665, [333]=665, [444]=666, [555]=1636, [666]=1636, [777]=2576, [888]=2578, [999]=2578};
+
 function onMobFight(mob, target)
     tick(mob);
+    local chain = mob:getLocalVar("MS_CHAIN");
+    if (chain == 1 and mob:getTP() >= 0) then
+        mob:setLocalVar("MS_CHAIN", 0);
+        local v = mob:getLocalVar("MS_VAL");
+        if (v == 1111) then
+            mob:addStatusEffect(EFFECT_MEIKYO_SHISUI, 1, 0, 30);
+            for i = 1, 3 do mob:useMobAbility(2578); end
+        elseif (FOLLOW[v]) then
+            if (v == 777) then target:resetRecasts(); end
+            mob:useMobAbility(FOLLOW[v]);
+        end
+    elseif (os.time() - mob:getLocalVar("MS_T") >= 45 and mob:getHPP() < 100) then
+        mob:setLocalVar("MS_T", os.time());
+        mob:useMobAbility(2576);
+    end
 end;
 
 function onMobDeath(mob, player, isKiller)
