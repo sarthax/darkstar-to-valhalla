@@ -19,7 +19,7 @@ MOG_TABLET_DATA = {
                 { 288.756, -0.262, 2.605, 6, "npc_list seed" },
                 { -75.106, -1.236, -47.984, 0, "capture Valkurm idview/NPCLogger (Fortitude)" },
             } },
-        [104] = { name = "Jugner_Forest", npc = 17203911,
+        [104] = { name = "Jugner_Forest", npc = 17203900,
             spots = {
                 { 191.951, 0.202, 295.998, 7, "npc_list seed" },
             } },
