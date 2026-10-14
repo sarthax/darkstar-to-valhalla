@@ -37,3 +37,6 @@ Removed 6 redundant copies whose DAT target slot already held the same-named row
 
 ## Rows owned by other slices (2026-10-13)
 The earlier "56 rows owned by other slices" group had shrunk to 5 against the live DB. Handed off, not changed here: zone 208 slots 495 and 496 (zero-position Treasure_Casket on the Achieve Master / Unity Master DAT slots; real DAT casket slots start at 479; belongs to the treasure-caskets rework) and the three Erudite Moogle rows on Treasure Coffer DAT slots (230:429, 235:250, 238:365; unidentified model 0x056E-0x0570, deliberately left as recorded). No Survival_Guide mismatches remain in the live state.
+
+## Live-vs-repo differences (2026-10-13)
+Of the 32 listed in `LIVE_VS_REPO_DIFFS_2026-10-13.md`, 8 were already identical (zone 104 rifts, fixed earlier). Repo now mirrors live for the rest with LSB evidence: 12 rift rows in zones 101/109/118/119 (live is a consistent permutation; each zone's 3 positions match LSB) and the 11 zone 104 Treasure_Casket rows (live flag 7 matches LSB). Live 119 Riftworn_Pyxis 17265320 pos_x -519.0 -> -519.9 per LSB. Backup `bak_lvr_20261013`. Left as evidence (no LSB basis): look-only rows 102:17195738 Selh_teus and 104:17203861 Conquest_Banner, Moogle 17248854 speed 40 vs 50, and zone 243 Survival_Guide 17772807 / `???` 17772827 (survival-guides slice).
