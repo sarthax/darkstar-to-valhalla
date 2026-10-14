@@ -146,8 +146,64 @@ function vwoOfficerUpdate(player, cfg, option)
     end
 end
 
+-- Cruor exchange [V: Bastok Markets officer event decompile; client DAT]: menu slot 1-3 = cells (3434-3436, 3000 cruor each, items),
+-- slots 9-16 = key items (prices baked into the event). Result option: bits 0-15 = 2, bits 16-21 = slot, bits 22-31 = quantity (0 = 1).
+VWO.EXCHANGE = {
+    [1]  = {item = 3434, price = 3000,   name = "Cobalt Cell"},
+    [2]  = {item = 3435, price = 3000,   name = "Rubicund Cell"},
+    [3]  = {item = 3436, price = 3000,   name = "Xanthous Cell"},
+    [9]  = {ki = 1774,   price = 50000},   -- Periapt of Emergence (keyitems.lua PERIAPT_OF_EMERGENCE1)
+    [10] = {ki = 1777,   price = 150000},  -- Periapt of Guidance
+    [11] = {ki = 1778,   price = 150000},  -- Periapt of Percipience
+    [12] = {ki = 1854,   price = 50000},   -- Periapt of Sapience
+    [13] = {ki = 1855,   price = 50000},   -- Periapt of Clarity
+    [14] = {ki = 1556,   price = 330000},  -- Beguiling Petrifact
+    [15] = {ki = 1557,   price = 330000},  -- Seductive Petrifact
+    [16] = {ki = 1558,   price = 330000},  -- Maddening Petrifact
+};
+
+local function vwoExchange(player, cfg, option)
+    local slot = bit.band(bit.rshift(option, 16), 0x3F);
+    local qty = bit.rshift(option, 22);
+    local e = VWO.EXCHANGE[slot];
+    if (e == nil) then
+        return;
+    end
+    if (e.ki) then
+        qty = 1;
+    elseif (qty < 1) then
+        qty = 1;
+    elseif (qty > 99) then
+        qty = 99;
+    end
+    local cost = e.price * qty;
+    if (player:getCurrency("cruor") < cost) then
+        return;
+    end
+    if (e.ki) then
+        if (player:hasKeyItem(e.ki)) then
+            return;
+        end
+        player:delCurrency("cruor", cost);
+        player:addKeyItem(e.ki);
+        if (cfg and cfg.kiMsg) then player:messageSpecial(cfg.kiMsg, e.ki); end
+    else
+        if (player:getFreeSlotsCount() < math.ceil(qty / 12)) then
+            player:PrintToPlayer("Your inventory is full.", 0xD);
+            return;
+        end
+        if (player:addItem(e.item, qty)) then
+            player:delCurrency("cruor", cost);
+            player:PrintToPlayer("Obtained " .. qty .. " x " .. e.name .. " (" .. cost .. " cruor).", 0xD);
+        end
+    end
+end
+
 function vwoOfficerFinish(player, cfg, option)
-    if (option == 5) then
+    player:PrintToPlayer(string.format("[VWO debug] officer finish option %u", option)); -- TEMP DIAGNOSTIC
+    if (bit.band(option, 0xFFFF) == 2) then
+        vwoExchange(player, cfg, option);
+    elseif (option == 5) then
         local first = cfg.grantPath and VWO.PATHS[cfg.grantPath].ki[1] or nil; -- sub-quest NPCs (Hildegard, Gushing Spring) have no grant
         if (first ~= nil and vwoHeldTier(player, cfg.grantPath - 1) == 0 and player:getMainLvl() >= 75) then
             player:addKeyItem(first);
