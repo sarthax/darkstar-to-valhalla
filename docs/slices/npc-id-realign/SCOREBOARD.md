@@ -9,13 +9,13 @@ Not assessed by design: rows at 0,0,0 (placed dynamically by CS/battlefield/cond
 | rows | 29994 | 68961 |
 | name = DAT | 27668 | 67790 |
 | name differs from DAT | 119 | 260 |
-| position = LSB | 14387 | 44818 |
+| position = LSB | 14391 | 44818 |
 | position differs from LSB | 1458 | 13118 |
-| look = LSB | 15253 | 0 |
+| look = LSB | 15257 | 0 |
 | look differs from LSB | 592 | 0 |
 | no LSB same-name row | 1190 | 687 |
 | no DAT entity at id (not assessed) | 1964 | 911 |
-| at 0,0,0 (not assessed) | 12716 | 10338 |
+| at 0,0,0 (not assessed) | 12712 | 10338 |
 | blank (props, not assessed) | 243 | 0 |
 
 DAT named entities with no row in either table (unbuilt, deferred): **18178**
@@ -33,3 +33,4 @@ DAT named entities with no row in either table (unbuilt, deferred): **18178**
 | 2026-10-13 19:12 | 140 | 381 | 1458 | 13118 | 592 |
 | 2026-10-13 19:16 | 129 | 381 | 1458 | 13118 | 592 |
 | 2026-10-13 19:56 | 119 | 260 | 1458 | 13118 | 592 |
+| 2026-10-13 20:51 | 119 | 260 | 1458 | 13118 | 592 |
