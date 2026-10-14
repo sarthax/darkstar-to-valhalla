@@ -223,7 +223,7 @@ function vwoOfficerFinish(player, cfg, option)
 end
 
 -- [H] refiner params (see header of Atmacite_Refiner.lua)
-VWO_PROBE = false; -- set false/remove after refiner menu gating is decoded
+VWO_PROBE = true; -- refiner menu/teleport mapping debug: set false when done
 local function refinerParams(player, cfg)
     local held = anyStratum(player);
     local p0 = (cfg.nation or 0) * 262144 + 2 -- nation unknown for outland refiners [D=0]
