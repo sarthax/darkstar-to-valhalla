@@ -82,7 +82,7 @@ end;
 
 -- Fixed ability order [J, F]: Spring -> Summer -> Autumn -> Winter Breeze -> Cyclonic Turmoil -> (Norn Arrows: NOT BUILT, see UNIMPLEMENTED.md).
 -- Skills 2195-2199; pool skill list is empty so the engine never picks one at random.
-local BREEZES = {2195, 2196, 2197, 2198, 2199};
+local BREEZES = {2195, 2196, 2197, 2198, 2199, 2518}; -- 2518 Norn Arrows [W], 6th step [D]
 
 -- Spells [J wikiwiki.jp Belphoebe]: -ga/-ja tiers by HP; Death only below 50% (infrequent) [J,B; F says 25%].
 function onMonsterMagicPrepare(mob, target)
