@@ -1,0 +1,46 @@
+## LSB has a different name at our position 11
+  z20:136  ours=6  DAT=Stray  (-320,-1,-40)
+  z20:145  ours=7  DAT=Stray  (-240,-1,-40)
+  z20:154  ours=8  DAT=Stray  (-40,-1,0)
+  z20:212  ours=9  DAT=Stray  (200,-1,0)
+  z20:221  ours=10  DAT=Stray  (360,-1,-40)
+  z20:230  ours=11  DAT=Stray  (240,-1,-320)
+  z165:231  ours=1  DAT=Ore Door  (-483,-172,-240)
+  z235:377  ours=unknpc  DAT=Selh'teus  (-156,-4,-88)
+  z235:378  ours=unknpc  DAT=Selh'teus  (-148,-4,-104)
+  z235:388  ours=unknpc  DAT=Disjoined One  (-51,-6,-87)
+  z238:407  ours=Fireworks  DAT=Fashionista  (343,39,165)
+## NAME EXISTS IN LSB ELSEWHERE 15
+  z20:334  ours=???  DAT=Moogle  (280,-2,280)
+  z20:342  ours=Moogle  DAT=Rendezvous Point  zeropos
+  z105:649  ours=???  DAT=Summoner  zeropos
+  z106:732  ours=???  DAT=Summoner  zeropos
+  z115:527  ours=Unity Master  DAT=Morbol Groupie  zeropos
+  z117:667  ours=???  DAT=Kocchi-Arocchi  zeropos
+  z118:671  ours=???  DAT=Reinhard  zeropos
+  z120:545  ours=???  DAT=Summoner  zeropos
+  z179:300  ours=Moogle  DAT=CrystalKnight  zeropos
+  z179:312  ours=Rughadjeen  DAT=Moogle  zeropos
+  z208:495  ours=Treasure Casket  DAT=Achieve Master  zeropos
+  z208:496  ours=Treasure Casket  DAT=Unity Master  zeropos
+  z291:833  ours=???  DAT=Ethereal Ingress #10  zeropos
+  z293:113  ours=???  DAT=Lilisette  zeropos
+  z293:114  ours=Iroha  DAT=Arciela  zeropos
+## LSB AGREES WITH OURS (DAT differs) 11
+  z108:600  ours=Moogle  DAT=Summoner  (200,24,297)
+  z110:631  ours=Smile Helper  DAT=Marlena  (-64,10,238)
+  z114:506  ours=Fireworks  DAT=Summoner  (399,16,597)
+  z115:526  ours=Achieve Master  DAT=Morbol Groupie  (135,0,-305)
+  z115:645  ours=Moogle  DAT=Summoner  (309,-5,-18)
+  z117:654  ours=Smile Helper  DAT=Yvantoine  (-109,9,116)
+  z120:552  ours=Smile Helper  DAT=Neriss  (-172,16,312)
+  z125:598  ours=Fireworks  DAT=Summoner  (437,-12,388)
+  z165:230  ours=Lion  DAT=Ore Door  (-408,-167,-243)
+  z291:877  ours=fep2  DAT=fep1  (-439,-42,26)
+  z291:878  ours=fep3  DAT=fep2  (106,-66,264)
+## NO EVIDENCE 5
+  z118:559  ours=Felicitous Chocobo  DAT=Lucky Rat  (-182,-23,87)
+  z118:560  ours=Felicitous Chocobo  DAT=Lucky Rat  (-194,-24,95)
+  z118:561  ours=Elated Cockatrice  DAT=Lucky Rat  (-202,-23,106)
+  z165:254  ours=7  DAT=Ore Door  zeropos
+  z179:324  ours=Trion  DAT=Rughadjeen  zeropos

@@ -3813,218 +3813,218 @@ INSERT INTO `mob_spawn_points` VALUES (16859228,'Idle_Wanderer','Idle Wanderer',
 INSERT INTO `mob_spawn_points` VALUES (16859229,'Idle_Wanderer','Idle Wanderer',0,0,0,0,0);
 INSERT INTO `mob_spawn_points` VALUES (16859230,'Idle_Wanderer','Idle Wanderer',0,0,0,0,0);
 INSERT INTO `mob_spawn_points` VALUES (16859231,'Idle_Wanderer','Idle Wanderer',0,0,0,0,0);
-INSERT INTO `mob_spawn_points` VALUES (16859232,'Idle_Wanderer','Idle Wanderer',0,0,0,0,0);
-INSERT INTO `mob_spawn_points` VALUES (16859233,'Idle_Wanderer','Idle Wanderer',0,0,0,0,0);
-INSERT INTO `mob_spawn_points` VALUES (16859234,'Wanderer','Wanderer',510,14561);-167.937,-0.5,102.816,149
-INSERT INTO `mob_spawn_points` VALUES (16859235,'Weeper','Weeper',511,14577);-156.676,-0.5,93.687,24
-INSERT INTO `mob_spawn_points` VALUES (16859236,'Weeper','Weeper',511,14577);-156.750,-0.5,77.143,237
-INSERT INTO `mob_spawn_points` VALUES (16859237,'Weeper','Weeper',511,14577);-165.153,-0.5,62.514,79
-INSERT INTO `mob_spawn_points` VALUES (16859238,'Weeper','Weeper',511,14577);-177.732,-0.5,42.450,76
-INSERT INTO `mob_spawn_points` VALUES (16859239,'Seether','Seether',508,14603);-186.911,-0.5,61.734,16
-INSERT INTO `mob_spawn_points` VALUES (16859240,'Weeper','Weeper',511,14577);-215.795,-0.5,62.249,68
-INSERT INTO `mob_spawn_points` VALUES (16859241,'Weeper','Weeper',511,14577);-219.264,-0.5,64.849,169
-INSERT INTO `mob_spawn_points` VALUES (16859242,'Wanderer','Wanderer',510,14561);-209.045,-0.5,92.462,153
-INSERT INTO `mob_spawn_points` VALUES (16859243,'Wanderer','Wanderer',510,14561);-187.436,-0.5,46.738,233
-INSERT INTO `mob_spawn_points` VALUES (16859244,'Weeper','Weeper',511,14577);-208.696,-0.5,47.346,197
-INSERT INTO `mob_spawn_points` VALUES (16859245,'Weeper','Weeper',511,14577);-242.563,-0.5,69.663,113
-INSERT INTO `mob_spawn_points` VALUES (16859246,'Weeper','Weeper',511,14577);-249.452,-0.5,86.626,185
-INSERT INTO `mob_spawn_points` VALUES (16859247,'Seether','Seether',508,14603);-240.429,-0.5,66.228,235
-INSERT INTO `mob_spawn_points` VALUES (16859248,'Seether','Seether',508,14603);-234.512,-0.5,121.851,39
-INSERT INTO `mob_spawn_points` VALUES (16859249,'Wanderer','Wanderer',510,14561);-241.957,-0.5,131.379,84
-INSERT INTO `mob_spawn_points` VALUES (16859250,'Wanderer','Wanderer',510,14561);-266.830,-0.5,83.358,36
-INSERT INTO `mob_spawn_points` VALUES (16859251,'Weeper','Weeper',511,14577);-257.948,-0.5,75.032,33
-INSERT INTO `mob_spawn_points` VALUES (16859252,'Weeper','Weeper',511,14577);-150.757,-0.412,39.636,75
-INSERT INTO `mob_spawn_points` VALUES (16859253,'Weeper','Weeper',511,14577);-212.371,-0.5,11.279,94
-INSERT INTO `mob_spawn_points` VALUES (16859254,'Wanderer','Wanderer',510,14561);-194.447,-0.5,-17.602,42
-INSERT INTO `mob_spawn_points` VALUES (16859255,'Wanderer','Wanderer',510,14561);-210.875,-0.5,-8.482,127
-INSERT INTO `mob_spawn_points` VALUES (16859256,'Weeper','Weeper',511,14577);-273.118,-0.5,29.459,35
-INSERT INTO `mob_spawn_points` VALUES (16859257,'Seether','Seether',508,14603);-278.117,-0.5,14.342,220
-INSERT INTO `mob_spawn_points` VALUES (16859258,'Weeper','Weeper',511,14577);-115.938,-0.5,43.951,45
+-- PARKED (no client DAT slot; zone 20 has only 7 Idle Wanderers): INSERT INTO `mob_spawn_points` VALUES (16859232,'Idle_Wanderer','Idle Wanderer',0,0,0,0,0);
+-- PARKED (no client DAT slot; zone 20 has only 7 Idle Wanderers): INSERT INTO `mob_spawn_points` VALUES (16859233,'Idle_Wanderer','Idle Wanderer',0,0,0,0,0);
+INSERT INTO `mob_spawn_points` VALUES (16859232,'Wanderer','Wanderer',510,14561);-167.937,-0.5,102.816,149
+INSERT INTO `mob_spawn_points` VALUES (16859233,'Weeper','Weeper',511,14577);-156.676,-0.5,93.687,24
+INSERT INTO `mob_spawn_points` VALUES (16859234,'Weeper','Weeper',511,14577);-156.750,-0.5,77.143,237
+INSERT INTO `mob_spawn_points` VALUES (16859235,'Weeper','Weeper',511,14577);-165.153,-0.5,62.514,79
+INSERT INTO `mob_spawn_points` VALUES (16859236,'Weeper','Weeper',511,14577);-177.732,-0.5,42.450,76
+INSERT INTO `mob_spawn_points` VALUES (16859237,'Seether','Seether',508,14603);-186.911,-0.5,61.734,16
+INSERT INTO `mob_spawn_points` VALUES (16859238,'Weeper','Weeper',511,14577);-215.795,-0.5,62.249,68
+INSERT INTO `mob_spawn_points` VALUES (16859239,'Weeper','Weeper',511,14577);-219.264,-0.5,64.849,169
+INSERT INTO `mob_spawn_points` VALUES (16859240,'Wanderer','Wanderer',510,14561);-209.045,-0.5,92.462,153
+INSERT INTO `mob_spawn_points` VALUES (16859241,'Wanderer','Wanderer',510,14561);-187.436,-0.5,46.738,233
+INSERT INTO `mob_spawn_points` VALUES (16859242,'Weeper','Weeper',511,14577);-208.696,-0.5,47.346,197
+INSERT INTO `mob_spawn_points` VALUES (16859243,'Weeper','Weeper',511,14577);-242.563,-0.5,69.663,113
+INSERT INTO `mob_spawn_points` VALUES (16859244,'Weeper','Weeper',511,14577);-249.452,-0.5,86.626,185
+INSERT INTO `mob_spawn_points` VALUES (16859245,'Seether','Seether',508,14603);-240.429,-0.5,66.228,235
+INSERT INTO `mob_spawn_points` VALUES (16859246,'Seether','Seether',508,14603);-234.512,-0.5,121.851,39
+INSERT INTO `mob_spawn_points` VALUES (16859247,'Wanderer','Wanderer',510,14561);-241.957,-0.5,131.379,84
+INSERT INTO `mob_spawn_points` VALUES (16859248,'Wanderer','Wanderer',510,14561);-266.830,-0.5,83.358,36
+INSERT INTO `mob_spawn_points` VALUES (16859249,'Weeper','Weeper',511,14577);-257.948,-0.5,75.032,33
+INSERT INTO `mob_spawn_points` VALUES (16859250,'Weeper','Weeper',511,14577);-150.757,-0.412,39.636,75
+INSERT INTO `mob_spawn_points` VALUES (16859251,'Weeper','Weeper',511,14577);-212.371,-0.5,11.279,94
+INSERT INTO `mob_spawn_points` VALUES (16859252,'Wanderer','Wanderer',510,14561);-194.447,-0.5,-17.602,42
+INSERT INTO `mob_spawn_points` VALUES (16859253,'Wanderer','Wanderer',510,14561);-210.875,-0.5,-8.482,127
+INSERT INTO `mob_spawn_points` VALUES (16859254,'Weeper','Weeper',511,14577);-273.118,-0.5,29.459,35
+INSERT INTO `mob_spawn_points` VALUES (16859255,'Seether','Seether',508,14603);-278.117,-0.5,14.342,220
+INSERT INTO `mob_spawn_points` VALUES (16859256,'Weeper','Weeper',511,14577);-115.938,-0.5,43.951,45
+INSERT INTO `mob_spawn_points` VALUES (16859257,'Idle_Wanderer','Idle Wanderer',0,0,0,0,0);
+INSERT INTO `mob_spawn_points` VALUES (16859258,'Woeful_Weeper','Woeful Weeper',0,0,0,0,0);
 INSERT INTO `mob_spawn_points` VALUES (16859259,'Idle_Wanderer','Idle Wanderer',0,0,0,0,0);
-INSERT INTO `mob_spawn_points` VALUES (16859260,'Woeful_Weeper','Woeful Weeper',0,0,0,0,0);
+INSERT INTO `mob_spawn_points` VALUES (16859260,'Idle_Wanderer','Idle Wanderer',0,0,0,0,0);
 INSERT INTO `mob_spawn_points` VALUES (16859261,'Idle_Wanderer','Idle Wanderer',0,0,0,0,0);
 INSERT INTO `mob_spawn_points` VALUES (16859262,'Idle_Wanderer','Idle Wanderer',0,0,0,0,0);
 INSERT INTO `mob_spawn_points` VALUES (16859263,'Idle_Wanderer','Idle Wanderer',0,0,0,0,0);
 INSERT INTO `mob_spawn_points` VALUES (16859264,'Idle_Wanderer','Idle Wanderer',0,0,0,0,0);
-INSERT INTO `mob_spawn_points` VALUES (16859265,'Idle_Wanderer','Idle Wanderer',0,0,0,0,0);
+INSERT INTO `mob_spawn_points` VALUES (16859265,'Woeful_Weeper','Woeful Weeper',0,0,0,0,0);
 INSERT INTO `mob_spawn_points` VALUES (16859266,'Idle_Wanderer','Idle Wanderer',0,0,0,0,0);
-INSERT INTO `mob_spawn_points` VALUES (16859267,'Woeful_Weeper','Woeful Weeper',0,0,0,0,0);
-INSERT INTO `mob_spawn_points` VALUES (16859268,'Idle_Wanderer','Idle Wanderer',0,0,0,0,0);
-INSERT INTO `mob_spawn_points` VALUES (16859269,'Idle_Wanderer','Idle Wanderer',0,0,0,0,0);
-INSERT INTO `mob_spawn_points` VALUES (16859270,'Craver','Craver',505,14626);-189.459,-0.499,-3.169,81
-INSERT INTO `mob_spawn_points` VALUES (16859271,'Craver','Craver',505,14626);-151.064,-0.499,41.801,28
-INSERT INTO `mob_spawn_points` VALUES (16859272,6,'     ',0,-320,-1,-40,0);
-INSERT INTO `mob_spawn_points` VALUES (16859273,'Memory_Receptacle','Memory Receptacle',507,-320,-1,-40,0);
-INSERT INTO `mob_spawn_points` VALUES (16859274,'Stray','Stray',509,14591);-309.894,-0.5,-45.206,41
-INSERT INTO `mob_spawn_points` VALUES (16859275,'Stray','Stray',509,14591);-318.752,-0.5,-53.807,109
-INSERT INTO `mob_spawn_points` VALUES (16859276,'Stray','Stray',509,14591);-308.787,-0.5,-39.645,201
-INSERT INTO `mob_spawn_points` VALUES (16859277,'Stray','Stray',509,14591);-321.507,-0.5,-53.025,26
-INSERT INTO `mob_spawn_points` VALUES (16859278,'Stray','Stray',509,14591);-319.326,-0.5,-41.493,190
-INSERT INTO `mob_spawn_points` VALUES (16859279,'Stray','Stray',509,14591);-325.569,-0.5,-40.573,126
-INSERT INTO `mob_spawn_points` VALUES (16859280,'Stray','Stray',509,14591);-313.453,-0.5,-51.635,252
-INSERT INTO `mob_spawn_points` VALUES (16859281,7,'     ',0,-240,-1,-40,0);
-INSERT INTO `mob_spawn_points` VALUES (16859282,'Memory_Receptacle','Memory Receptacle',507,-240,-1,-40,0);
-INSERT INTO `mob_spawn_points` VALUES (16859283,'Stray','Stray',509,14591);-241.190,-0.499,-51.426,124
-INSERT INTO `mob_spawn_points` VALUES (16859284,'Stray','Stray',509,14591);-235.470,-0.470,-28.909,245
-INSERT INTO `mob_spawn_points` VALUES (16859285,'Stray','Stray',509,14591);-235.553,-0.498,-50.795,6
-INSERT INTO `mob_spawn_points` VALUES (16859286,'Stray','Stray',509,14591);-239.279,-0.378,-32.834,65
-INSERT INTO `mob_spawn_points` VALUES (16859287,'Stray','Stray',509,14591);-239.868,-0.499,-46.247,236
-INSERT INTO `mob_spawn_points` VALUES (16859288,'Stray','Stray',509,14591);-240.026,-0.391,-30.512,54
-INSERT INTO `mob_spawn_points` VALUES (16859289,'Stray','Stray',509,14591);-250.774,-0.489,-40.149,173
-INSERT INTO `mob_spawn_points` VALUES (16859290,8,'     ',0,-40,-1,0,0);
-INSERT INTO `mob_spawn_points` VALUES (16859291,'Memory_Receptacle','Memory Receptacle',507,-40,-1,0.001,0);
-INSERT INTO `mob_spawn_points` VALUES (16859292,'Stray','Stray',509,14591);-49.517,-0.5,-3.692,89
-INSERT INTO `mob_spawn_points` VALUES (16859293,'Stray','Stray',509,14591);-41.151,-0.5,8.359,25
-INSERT INTO `mob_spawn_points` VALUES (16859294,'Stray','Stray',509,14591);-30.104,-0.5,-1.140,61
-INSERT INTO `mob_spawn_points` VALUES (16859295,'Stray','Stray',509,14591);-43.082,-0.5,-9.562,119
-INSERT INTO `mob_spawn_points` VALUES (16859296,'Stray','Stray',509,14591);-31.190,-0.5,-2.920,46
-INSERT INTO `mob_spawn_points` VALUES (16859297,'Stray','Stray',509,14591);-33.978,-0.5,-0.672,185
-INSERT INTO `mob_spawn_points` VALUES (16859298,'Stray','Stray',509,14591);-33.360,-0.5,-0.561,158
-INSERT INTO `mob_spawn_points` VALUES (16859299,'Weeper','Weeper',511,14577);113.179,-0.434,-156.440,71
-INSERT INTO `mob_spawn_points` VALUES (16859300,'Weeper','Weeper',511,14577);122.5,-0.499,-182.387,81
-INSERT INTO `mob_spawn_points` VALUES (16859301,'Weeper','Weeper',511,14577);185.034,-0.469,-275.616,99
-INSERT INTO `mob_spawn_points` VALUES (16859302,'Weeper','Weeper',511,14577);246.188,-0.402,-278.906,202
-INSERT INTO `mob_spawn_points` VALUES (16859303,'Weeper','Weeper',511,14577);139.591,-0.499,-104.974,58
-INSERT INTO `mob_spawn_points` VALUES (16859304,'Weeper','Weeper',511,14577);153.311,-0.475,-100.359,125
-INSERT INTO `mob_spawn_points` VALUES (16859305,'Wanderer','Wanderer',510,14561);141.352,-0.481,-122.371,22
-INSERT INTO `mob_spawn_points` VALUES (16859306,'Wanderer','Wanderer',510,14561);169.647,-0.5,-109.546,8
-INSERT INTO `mob_spawn_points` VALUES (16859307,'Weeper','Weeper',511,14577);157.702,-0.493,-79.434,37
-INSERT INTO `mob_spawn_points` VALUES (16859308,'Weeper','Weeper',511,14577);171.991,-0.5,-85.071,215
-INSERT INTO `mob_spawn_points` VALUES (16859309,'Seether','Seether',508,14603);185.003,-0.496,-56.851,141
-INSERT INTO `mob_spawn_points` VALUES (16859310,'Weeper','Weeper',511,14577);183.886,-0.499,-63.195,201
-INSERT INTO `mob_spawn_points` VALUES (16859311,'Seether','Seether',508,14603);253.183,-0.979,-102.911,114
-INSERT INTO `mob_spawn_points` VALUES (16859312,'Weeper','Weeper',511,14577);245.850,-0.5,-98.217,246
-INSERT INTO `mob_spawn_points` VALUES (16859313,'Weeper','Weeper',511,14577);267.163,-0.381,-86.523,128
-INSERT INTO `mob_spawn_points` VALUES (16859314,'Weeper','Weeper',511,14577);224.533,-0.463,-110.644,153
-INSERT INTO `mob_spawn_points` VALUES (16859315,'Weeper','Weeper',511,14577);217.290,-0.499,-147.239,33
-INSERT INTO `mob_spawn_points` VALUES (16859316,'Weeper','Weeper',511,14577);228.364,-0.671,-160.024,105
-INSERT INTO `mob_spawn_points` VALUES (16859317,'Wanderer','Wanderer',510,14561);245.390,-0.5,-158.588,230
-INSERT INTO `mob_spawn_points` VALUES (16859318,'Seether','Seether',508,14603);214.02,-0.626,-180.373,157
-INSERT INTO `mob_spawn_points` VALUES (16859319,'Weeper','Weeper',511,14577);213.727,-0.598,-180.144,240
-INSERT INTO `mob_spawn_points` VALUES (16859320,'Wanderer','Wanderer',510,14561);278.815,-0.5,-155.7,2
-INSERT INTO `mob_spawn_points` VALUES (16859321,'Weeper','Weeper',511,14577);223.097,-1.076,-188.075,76
-INSERT INTO `mob_spawn_points` VALUES (16859322,'Weeper','Weeper',511,14577);249.167,-0.502,-178.617,14
-INSERT INTO `mob_spawn_points` VALUES (16859323,'Weeper','Weeper',511,14577);292.183,-0.5,-161.121,161
+INSERT INTO `mob_spawn_points` VALUES (16859267,'Idle_Wanderer','Idle Wanderer',0,0,0,0,0);
+INSERT INTO `mob_spawn_points` VALUES (16859268,'Craver','Craver',505,14626);-189.459,-0.499,-3.169,81
+INSERT INTO `mob_spawn_points` VALUES (16859269,'Craver','Craver',505,14626);-151.064,-0.499,41.801,28
+INSERT INTO `mob_spawn_points` VALUES (16859270,6,'     ',0,-320,-1,-40,0);
+INSERT INTO `mob_spawn_points` VALUES (16859271,'Memory_Receptacle','Memory Receptacle',507,-320,-1,-40,0);
+INSERT INTO `mob_spawn_points` VALUES (16859272,'Stray','Stray',509,14591);-309.894,-0.5,-45.206,41
+INSERT INTO `mob_spawn_points` VALUES (16859273,'Stray','Stray',509,14591);-318.752,-0.5,-53.807,109
+INSERT INTO `mob_spawn_points` VALUES (16859274,'Stray','Stray',509,14591);-308.787,-0.5,-39.645,201
+INSERT INTO `mob_spawn_points` VALUES (16859275,'Stray','Stray',509,14591);-321.507,-0.5,-53.025,26
+INSERT INTO `mob_spawn_points` VALUES (16859276,'Stray','Stray',509,14591);-319.326,-0.5,-41.493,190
+INSERT INTO `mob_spawn_points` VALUES (16859277,'Stray','Stray',509,14591);-325.569,-0.5,-40.573,126
+INSERT INTO `mob_spawn_points` VALUES (16859278,'Stray','Stray',509,14591);-313.453,-0.5,-51.635,252
+INSERT INTO `mob_spawn_points` VALUES (16859279,7,'     ',0,-240,-1,-40,0);
+INSERT INTO `mob_spawn_points` VALUES (16859280,'Memory_Receptacle','Memory Receptacle',507,-240,-1,-40,0);
+INSERT INTO `mob_spawn_points` VALUES (16859281,'Stray','Stray',509,14591);-241.190,-0.499,-51.426,124
+INSERT INTO `mob_spawn_points` VALUES (16859282,'Stray','Stray',509,14591);-235.470,-0.470,-28.909,245
+INSERT INTO `mob_spawn_points` VALUES (16859283,'Stray','Stray',509,14591);-235.553,-0.498,-50.795,6
+INSERT INTO `mob_spawn_points` VALUES (16859284,'Stray','Stray',509,14591);-239.279,-0.378,-32.834,65
+INSERT INTO `mob_spawn_points` VALUES (16859285,'Stray','Stray',509,14591);-239.868,-0.499,-46.247,236
+INSERT INTO `mob_spawn_points` VALUES (16859286,'Stray','Stray',509,14591);-240.026,-0.391,-30.512,54
+INSERT INTO `mob_spawn_points` VALUES (16859287,'Stray','Stray',509,14591);-250.774,-0.489,-40.149,173
+INSERT INTO `mob_spawn_points` VALUES (16859288,8,'     ',0,-40,-1,0,0);
+INSERT INTO `mob_spawn_points` VALUES (16859289,'Memory_Receptacle','Memory Receptacle',507,-40,-1,0.001,0);
+INSERT INTO `mob_spawn_points` VALUES (16859290,'Stray','Stray',509,14591);-49.517,-0.5,-3.692,89
+INSERT INTO `mob_spawn_points` VALUES (16859291,'Stray','Stray',509,14591);-41.151,-0.5,8.359,25
+INSERT INTO `mob_spawn_points` VALUES (16859292,'Stray','Stray',509,14591);-30.104,-0.5,-1.140,61
+INSERT INTO `mob_spawn_points` VALUES (16859293,'Stray','Stray',509,14591);-43.082,-0.5,-9.562,119
+INSERT INTO `mob_spawn_points` VALUES (16859294,'Stray','Stray',509,14591);-31.190,-0.5,-2.920,46
+INSERT INTO `mob_spawn_points` VALUES (16859295,'Stray','Stray',509,14591);-33.978,-0.5,-0.672,185
+INSERT INTO `mob_spawn_points` VALUES (16859296,'Stray','Stray',509,14591);-33.360,-0.5,-0.561,158
+INSERT INTO `mob_spawn_points` VALUES (16859297,'Weeper','Weeper',511,14577);113.179,-0.434,-156.440,71
+INSERT INTO `mob_spawn_points` VALUES (16859298,'Weeper','Weeper',511,14577);122.5,-0.499,-182.387,81
+INSERT INTO `mob_spawn_points` VALUES (16859299,'Weeper','Weeper',511,14577);185.034,-0.469,-275.616,99
+INSERT INTO `mob_spawn_points` VALUES (16859300,'Weeper','Weeper',511,14577);246.188,-0.402,-278.906,202
+INSERT INTO `mob_spawn_points` VALUES (16859301,'Weeper','Weeper',511,14577);139.591,-0.499,-104.974,58
+INSERT INTO `mob_spawn_points` VALUES (16859302,'Weeper','Weeper',511,14577);153.311,-0.475,-100.359,125
+INSERT INTO `mob_spawn_points` VALUES (16859303,'Wanderer','Wanderer',510,14561);141.352,-0.481,-122.371,22
+INSERT INTO `mob_spawn_points` VALUES (16859304,'Wanderer','Wanderer',510,14561);169.647,-0.5,-109.546,8
+INSERT INTO `mob_spawn_points` VALUES (16859305,'Weeper','Weeper',511,14577);157.702,-0.493,-79.434,37
+INSERT INTO `mob_spawn_points` VALUES (16859306,'Weeper','Weeper',511,14577);171.991,-0.5,-85.071,215
+INSERT INTO `mob_spawn_points` VALUES (16859307,'Seether','Seether',508,14603);185.003,-0.496,-56.851,141
+INSERT INTO `mob_spawn_points` VALUES (16859308,'Weeper','Weeper',511,14577);183.886,-0.499,-63.195,201
+INSERT INTO `mob_spawn_points` VALUES (16859309,'Seether','Seether',508,14603);253.183,-0.979,-102.911,114
+INSERT INTO `mob_spawn_points` VALUES (16859310,'Weeper','Weeper',511,14577);245.850,-0.5,-98.217,246
+INSERT INTO `mob_spawn_points` VALUES (16859311,'Weeper','Weeper',511,14577);267.163,-0.381,-86.523,128
+INSERT INTO `mob_spawn_points` VALUES (16859312,'Weeper','Weeper',511,14577);224.533,-0.463,-110.644,153
+INSERT INTO `mob_spawn_points` VALUES (16859313,'Weeper','Weeper',511,14577);217.290,-0.499,-147.239,33
+INSERT INTO `mob_spawn_points` VALUES (16859314,'Weeper','Weeper',511,14577);228.364,-0.671,-160.024,105
+INSERT INTO `mob_spawn_points` VALUES (16859315,'Wanderer','Wanderer',510,14561);245.390,-0.5,-158.588,230
+INSERT INTO `mob_spawn_points` VALUES (16859316,'Seether','Seether',508,14603);214.02,-0.626,-180.373,157
+INSERT INTO `mob_spawn_points` VALUES (16859317,'Weeper','Weeper',511,14577);213.727,-0.598,-180.144,240
+INSERT INTO `mob_spawn_points` VALUES (16859318,'Wanderer','Wanderer',510,14561);278.815,-0.5,-155.7,2
+INSERT INTO `mob_spawn_points` VALUES (16859319,'Weeper','Weeper',511,14577);223.097,-1.076,-188.075,76
+INSERT INTO `mob_spawn_points` VALUES (16859320,'Weeper','Weeper',511,14577);249.167,-0.502,-178.617,14
+INSERT INTO `mob_spawn_points` VALUES (16859321,'Weeper','Weeper',511,14577);292.183,-0.5,-161.121,161
+INSERT INTO `mob_spawn_points` VALUES (16859322,'Idle_Wanderer','Idle Wanderer',0,0,0,0,0);
+INSERT INTO `mob_spawn_points` VALUES (16859323,'Idle_Wanderer','Idle Wanderer',0,0,0,0,0);
 INSERT INTO `mob_spawn_points` VALUES (16859324,'Idle_Wanderer','Idle Wanderer',0,0,0,0,0);
 INSERT INTO `mob_spawn_points` VALUES (16859325,'Idle_Wanderer','Idle Wanderer',0,0,0,0,0);
 INSERT INTO `mob_spawn_points` VALUES (16859326,'Idle_Wanderer','Idle Wanderer',0,0,0,0,0);
 INSERT INTO `mob_spawn_points` VALUES (16859327,'Idle_Wanderer','Idle Wanderer',0,0,0,0,0);
 INSERT INTO `mob_spawn_points` VALUES (16859328,'Idle_Wanderer','Idle Wanderer',0,0,0,0,0);
-INSERT INTO `mob_spawn_points` VALUES (16859329,'Idle_Wanderer','Idle Wanderer',0,0,0,0,0);
+INSERT INTO `mob_spawn_points` VALUES (16859329,'Woeful_Weeper','Woeful Weeper',0,0,0,0,0);
 INSERT INTO `mob_spawn_points` VALUES (16859330,'Idle_Wanderer','Idle Wanderer',0,0,0,0,0);
-INSERT INTO `mob_spawn_points` VALUES (16859331,'Woeful_Weeper','Woeful Weeper',0,0,0,0,0);
+INSERT INTO `mob_spawn_points` VALUES (16859331,'Idle_Wanderer','Idle Wanderer',0,0,0,0,0);
 INSERT INTO `mob_spawn_points` VALUES (16859332,'Idle_Wanderer','Idle Wanderer',0,0,0,0,0);
-INSERT INTO `mob_spawn_points` VALUES (16859333,'Idle_Wanderer','Idle Wanderer',0,0,0,0,0);
+INSERT INTO `mob_spawn_points` VALUES (16859333,'Woeful_Weeper','Woeful Weeper',0,0,0,0,0);
 INSERT INTO `mob_spawn_points` VALUES (16859334,'Idle_Wanderer','Idle Wanderer',0,0,0,0,0);
-INSERT INTO `mob_spawn_points` VALUES (16859335,'Woeful_Weeper','Woeful Weeper',0,0,0,0,0);
+INSERT INTO `mob_spawn_points` VALUES (16859335,'Idle_Wanderer','Idle Wanderer',0,0,0,0,0);
 INSERT INTO `mob_spawn_points` VALUES (16859336,'Idle_Wanderer','Idle Wanderer',0,0,0,0,0);
-INSERT INTO `mob_spawn_points` VALUES (16859337,'Idle_Wanderer','Idle Wanderer',0,0,0,0,0);
-INSERT INTO `mob_spawn_points` VALUES (16859338,'Idle_Wanderer','Idle Wanderer',0,0,0,0,0);
-INSERT INTO `mob_spawn_points` VALUES (16859339,'Weeper','Weeper',511,14577);331.601,-0.5,-121.115,206
-INSERT INTO `mob_spawn_points` VALUES (16859340,'Seether','Seether',508,14603);342.531,-0.5,-101.410,228
-INSERT INTO `mob_spawn_points` VALUES (16859341,'Weeper','Weeper',511,14577);318.2,-0.5,-94.074,108
-INSERT INTO `mob_spawn_points` VALUES (16859342,'Wanderer','Wanderer',510,14561);339.560,-0.5,-104.426,192
-INSERT INTO `mob_spawn_points` VALUES (16859343,'Weeper','Weeper',511,14577);347.456,-0.542,-85.998,59
-INSERT INTO `mob_spawn_points` VALUES (16859344,'Wanderer','Wanderer',510,14561);369.988,-0.499,-157.2,54
-INSERT INTO `mob_spawn_points` VALUES (16859345,'Weeper','Weeper',511,14577);362.720,-0.499,-159.116,39
-INSERT INTO `mob_spawn_points` VALUES (16859346,'Craver','Craver',505,14626);247.281,-0.494,-71.208,120
-INSERT INTO `mob_spawn_points` VALUES (16859347,'Craver','Craver',505,14626);117.174,-0.481,-198.018,221
-INSERT INTO `mob_spawn_points` VALUES (16859348,9,'     ',0,200,-1,0,0);
-INSERT INTO `mob_spawn_points` VALUES (16859349,'Memory_Receptacle','Memory Receptacle',507,200,-1,0.001,32);
-INSERT INTO `mob_spawn_points` VALUES (16859350,'Stray','Stray',509,14591);201.175,-0.693,0.430,137
-INSERT INTO `mob_spawn_points` VALUES (16859351,'Stray','Stray',509,14591);194.268,-0.439,8.305,92
-INSERT INTO `mob_spawn_points` VALUES (16859352,'Stray','Stray',509,14591);192.472,-0.351,6.402,73
-INSERT INTO `mob_spawn_points` VALUES (16859353,'Stray','Stray',509,14591);195.644,-0.418,-13.591,20
-INSERT INTO `mob_spawn_points` VALUES (16859354,'Stray','Stray',509,14591);198.820,-0.256,-15.121,91
-INSERT INTO `mob_spawn_points` VALUES (16859355,'Stray','Stray',509,14591);200.111,-0.419,-0.928,57
-INSERT INTO `mob_spawn_points` VALUES (16859356,'Stray','Stray',509,14591);211.858,-0.330,2.104,71
-INSERT INTO `mob_spawn_points` VALUES (16859357,10,'     ',0,360,-1,-40,0);
-INSERT INTO `mob_spawn_points` VALUES (16859358,'Memory_Receptacle','Memory Receptacle',507,360,-1,-40,0);
-INSERT INTO `mob_spawn_points` VALUES (16859359,'Stray','Stray',509,14591);359.955,-0.5,-37.790,63
-INSERT INTO `mob_spawn_points` VALUES (16859360,'Stray','Stray',509,14591);353.531,-0.5,-39.150,131
-INSERT INTO `mob_spawn_points` VALUES (16859361,'Stray','Stray',509,14591);365.710,-0.5,-28.998,165
-INSERT INTO `mob_spawn_points` VALUES (16859362,'Stray','Stray',509,14591);352.564,-0.5,-38.665,39
-INSERT INTO `mob_spawn_points` VALUES (16859363,'Stray','Stray',509,14591);366.568,-0.5,-46.495,96
-INSERT INTO `mob_spawn_points` VALUES (16859364,'Stray','Stray',509,14591);360.805,-0.5,-48.203,38
-INSERT INTO `mob_spawn_points` VALUES (16859365,'Stray','Stray',509,14591);357.736,-0.5,-39.525,3
-INSERT INTO `mob_spawn_points` VALUES (16859366,11,'     ',0,240,-1,-320,0);
-INSERT INTO `mob_spawn_points` VALUES (16859367,'Memory_Receptacle','Memory Receptacle',507,240,-1,-320,0);
-INSERT INTO `mob_spawn_points` VALUES (16859368,'Stray','Stray',509,14591);242.211,-0.499,-309.640,217
-INSERT INTO `mob_spawn_points` VALUES (16859369,'Stray','Stray',509,14591);249.371,-0.417,-320.378,10
-INSERT INTO `mob_spawn_points` VALUES (16859370,'Stray','Stray',509,14591);239.282,-0.499,-314.339,192
-INSERT INTO `mob_spawn_points` VALUES (16859371,'Stray','Stray',509,14591);228.055,-0.480,-325.469,58
-INSERT INTO `mob_spawn_points` VALUES (16859372,'Stray','Stray',509,14591);247.629,-0.499,-328.871,237
-INSERT INTO `mob_spawn_points` VALUES (16859373,'Stray','Stray',509,14591);233.075,-0.499,-320.911,220
-INSERT INTO `mob_spawn_points` VALUES (16859374,'Stray','Stray',509,14591);236.830,-0.499,-331.548,88
-INSERT INTO `mob_spawn_points` VALUES (16859375,'Idle_Wanderer','Idle Wanderer',0,0,0,0,0);  -- Level 4
+INSERT INTO `mob_spawn_points` VALUES (16859337,'Weeper','Weeper',511,14577);331.601,-0.5,-121.115,206
+INSERT INTO `mob_spawn_points` VALUES (16859338,'Seether','Seether',508,14603);342.531,-0.5,-101.410,228
+INSERT INTO `mob_spawn_points` VALUES (16859339,'Weeper','Weeper',511,14577);318.2,-0.5,-94.074,108
+INSERT INTO `mob_spawn_points` VALUES (16859340,'Wanderer','Wanderer',510,14561);339.560,-0.5,-104.426,192
+INSERT INTO `mob_spawn_points` VALUES (16859341,'Weeper','Weeper',511,14577);347.456,-0.542,-85.998,59
+INSERT INTO `mob_spawn_points` VALUES (16859342,'Wanderer','Wanderer',510,14561);369.988,-0.499,-157.2,54
+INSERT INTO `mob_spawn_points` VALUES (16859343,'Weeper','Weeper',511,14577);362.720,-0.499,-159.116,39
+INSERT INTO `mob_spawn_points` VALUES (16859344,'Craver','Craver',505,14626);247.281,-0.494,-71.208,120
+INSERT INTO `mob_spawn_points` VALUES (16859345,'Craver','Craver',505,14626);117.174,-0.481,-198.018,221
+INSERT INTO `mob_spawn_points` VALUES (16859346,9,'     ',0,200,-1,0,0);
+INSERT INTO `mob_spawn_points` VALUES (16859347,'Memory_Receptacle','Memory Receptacle',507,200,-1,0.001,32);
+INSERT INTO `mob_spawn_points` VALUES (16859348,'Stray','Stray',509,14591);201.175,-0.693,0.430,137
+INSERT INTO `mob_spawn_points` VALUES (16859349,'Stray','Stray',509,14591);194.268,-0.439,8.305,92
+INSERT INTO `mob_spawn_points` VALUES (16859350,'Stray','Stray',509,14591);192.472,-0.351,6.402,73
+INSERT INTO `mob_spawn_points` VALUES (16859351,'Stray','Stray',509,14591);195.644,-0.418,-13.591,20
+INSERT INTO `mob_spawn_points` VALUES (16859352,'Stray','Stray',509,14591);198.820,-0.256,-15.121,91
+INSERT INTO `mob_spawn_points` VALUES (16859353,'Stray','Stray',509,14591);200.111,-0.419,-0.928,57
+INSERT INTO `mob_spawn_points` VALUES (16859354,'Stray','Stray',509,14591);211.858,-0.330,2.104,71
+INSERT INTO `mob_spawn_points` VALUES (16859355,10,'     ',0,360,-1,-40,0);
+INSERT INTO `mob_spawn_points` VALUES (16859356,'Memory_Receptacle','Memory Receptacle',507,360,-1,-40,0);
+INSERT INTO `mob_spawn_points` VALUES (16859357,'Stray','Stray',509,14591);359.955,-0.5,-37.790,63
+INSERT INTO `mob_spawn_points` VALUES (16859358,'Stray','Stray',509,14591);353.531,-0.5,-39.150,131
+INSERT INTO `mob_spawn_points` VALUES (16859359,'Stray','Stray',509,14591);365.710,-0.5,-28.998,165
+INSERT INTO `mob_spawn_points` VALUES (16859360,'Stray','Stray',509,14591);352.564,-0.5,-38.665,39
+INSERT INTO `mob_spawn_points` VALUES (16859361,'Stray','Stray',509,14591);366.568,-0.5,-46.495,96
+INSERT INTO `mob_spawn_points` VALUES (16859362,'Stray','Stray',509,14591);360.805,-0.5,-48.203,38
+INSERT INTO `mob_spawn_points` VALUES (16859363,'Stray','Stray',509,14591);357.736,-0.5,-39.525,3
+INSERT INTO `mob_spawn_points` VALUES (16859364,11,'     ',0,240,-1,-320,0);
+INSERT INTO `mob_spawn_points` VALUES (16859365,'Memory_Receptacle','Memory Receptacle',507,240,-1,-320,0);
+INSERT INTO `mob_spawn_points` VALUES (16859366,'Stray','Stray',509,14591);242.211,-0.499,-309.640,217
+INSERT INTO `mob_spawn_points` VALUES (16859367,'Stray','Stray',509,14591);249.371,-0.417,-320.378,10
+INSERT INTO `mob_spawn_points` VALUES (16859368,'Stray','Stray',509,14591);239.282,-0.499,-314.339,192
+INSERT INTO `mob_spawn_points` VALUES (16859369,'Stray','Stray',509,14591);228.055,-0.480,-325.469,58
+INSERT INTO `mob_spawn_points` VALUES (16859370,'Stray','Stray',509,14591);247.629,-0.499,-328.871,237
+INSERT INTO `mob_spawn_points` VALUES (16859371,'Stray','Stray',509,14591);233.075,-0.499,-320.911,220
+INSERT INTO `mob_spawn_points` VALUES (16859372,'Stray','Stray',509,14591);236.830,-0.499,-331.548,88
+INSERT INTO `mob_spawn_points` VALUES (16859373,'Idle_Wanderer','Idle Wanderer',0,0,0,0,0);  -- Level 4
+INSERT INTO `mob_spawn_points` VALUES (16859374,'Idle_Wanderer','Idle Wanderer',0,0,0,0,0);
+INSERT INTO `mob_spawn_points` VALUES (16859375,'Idle_Wanderer','Idle Wanderer',0,0,0,0,0);
 INSERT INTO `mob_spawn_points` VALUES (16859376,'Idle_Wanderer','Idle Wanderer',0,0,0,0,0);
 INSERT INTO `mob_spawn_points` VALUES (16859377,'Idle_Wanderer','Idle Wanderer',0,0,0,0,0);
-INSERT INTO `mob_spawn_points` VALUES (16859378,'Idle_Wanderer','Idle Wanderer',0,0,0,0,0);
+INSERT INTO `mob_spawn_points` VALUES (16859378,'Livid_Seether','Livid Seether',0,0,0,0,0);
 INSERT INTO `mob_spawn_points` VALUES (16859379,'Idle_Wanderer','Idle Wanderer',0,0,0,0,0);
-INSERT INTO `mob_spawn_points` VALUES (16859380,'Livid_Seether','Livid Seether',0,0,0,0,0);
+INSERT INTO `mob_spawn_points` VALUES (16859380,'Idle_Wanderer','Idle Wanderer',0,0,0,0,0);
 INSERT INTO `mob_spawn_points` VALUES (16859381,'Idle_Wanderer','Idle Wanderer',0,0,0,0,0);
-INSERT INTO `mob_spawn_points` VALUES (16859382,'Idle_Wanderer','Idle Wanderer',0,0,0,0,0);
+INSERT INTO `mob_spawn_points` VALUES (16859382,'Livid_Seether','Livid Seether',0,0,0,0,0);
 INSERT INTO `mob_spawn_points` VALUES (16859383,'Idle_Wanderer','Idle Wanderer',0,0,0,0,0);
-INSERT INTO `mob_spawn_points` VALUES (16859384,'Livid_Seether','Livid Seether',0,0,0,0,0);
+INSERT INTO `mob_spawn_points` VALUES (16859384,'Idle_Wanderer','Idle Wanderer',0,0,0,0,0);
 INSERT INTO `mob_spawn_points` VALUES (16859385,'Idle_Wanderer','Idle Wanderer',0,0,0,0,0);
-INSERT INTO `mob_spawn_points` VALUES (16859386,'Idle_Wanderer','Idle Wanderer',0,0,0,0,0);
+INSERT INTO `mob_spawn_points` VALUES (16859386,'Livid_Seether','Livid Seether',0,0,0,0,0);
 INSERT INTO `mob_spawn_points` VALUES (16859387,'Idle_Wanderer','Idle Wanderer',0,0,0,0,0);
-INSERT INTO `mob_spawn_points` VALUES (16859388,'Livid_Seether','Livid Seether',0,0,0,0,0);
-INSERT INTO `mob_spawn_points` VALUES (16859389,'Idle_Wanderer','Idle Wanderer',0,0,0,0,0);
-INSERT INTO `mob_spawn_points` VALUES (16859390,'Idle_Wanderer','Idle Wanderer',0,0,0,0,0);
-INSERT INTO `mob_spawn_points` VALUES (16859391,'Seether','Seether',508,14604);-30.508,-0.5,209.501,143
-INSERT INTO `mob_spawn_points` VALUES (16859392,'Weeper','Weeper',511,14578);-33.657,-0.5,222.947,89
-INSERT INTO `mob_spawn_points` VALUES (16859393,'Weeper','Weeper',511,14578);-52.560,-0.5,212.107,250
-INSERT INTO `mob_spawn_points` VALUES (16859394,'Seether','Seether',508,14604);2.222,-0.5,160.467,116
-INSERT INTO `mob_spawn_points` VALUES (16859395,'Wanderer','Wanderer',510,14562);-5.940,-0.5,168.821,89
-INSERT INTO `mob_spawn_points` VALUES (16859396,'Weeper','Weeper',511,14578);7.745,-0.5,153.839,118
-INSERT INTO `mob_spawn_points` VALUES (16859397,'Weeper','Weeper',511,14578);7.743,-0.5,175.530,212
-INSERT INTO `mob_spawn_points` VALUES (16859398,'Seether','Seether',508,14604);-2.973,-0.5,318.091,65
-INSERT INTO `mob_spawn_points` VALUES (16859399,'Weeper','Weeper',511,14578);46.669,-0.5,209.512,172
-INSERT INTO `mob_spawn_points` VALUES (16859400,'Weeper','Weeper',511,14578);93.512,-0.5,258.735,38
-INSERT INTO `mob_spawn_points` VALUES (16859401,'Weeper','Weeper',511,14578);73.866,-0.5,265.717,32
-INSERT INTO `mob_spawn_points` VALUES (16859402,'Weeper','Weeper',511,14578);100.709,-0.5,263.961,64
-INSERT INTO `mob_spawn_points` VALUES (16859403,'Seether','Seether',508,14604);109.340,-0.5,250.284,134
-INSERT INTO `mob_spawn_points` VALUES (16859404,'Wanderer','Wanderer',510,14562);98.991,-0.5,250.297,94
+INSERT INTO `mob_spawn_points` VALUES (16859388,'Idle_Wanderer','Idle Wanderer',0,0,0,0,0);
+INSERT INTO `mob_spawn_points` VALUES (16859389,'Seether','Seether',508,14604);-30.508,-0.5,209.501,143
+INSERT INTO `mob_spawn_points` VALUES (16859390,'Weeper','Weeper',511,14578);-33.657,-0.5,222.947,89
+INSERT INTO `mob_spawn_points` VALUES (16859391,'Weeper','Weeper',511,14578);-52.560,-0.5,212.107,250
+INSERT INTO `mob_spawn_points` VALUES (16859392,'Seether','Seether',508,14604);2.222,-0.5,160.467,116
+INSERT INTO `mob_spawn_points` VALUES (16859393,'Wanderer','Wanderer',510,14562);-5.940,-0.5,168.821,89
+INSERT INTO `mob_spawn_points` VALUES (16859394,'Weeper','Weeper',511,14578);7.745,-0.5,153.839,118
+INSERT INTO `mob_spawn_points` VALUES (16859395,'Weeper','Weeper',511,14578);7.743,-0.5,175.530,212
+INSERT INTO `mob_spawn_points` VALUES (16859396,'Seether','Seether',508,14604);-2.973,-0.5,318.091,65
+INSERT INTO `mob_spawn_points` VALUES (16859397,'Weeper','Weeper',511,14578);46.669,-0.5,209.512,172
+INSERT INTO `mob_spawn_points` VALUES (16859398,'Weeper','Weeper',511,14578);93.512,-0.5,258.735,38
+INSERT INTO `mob_spawn_points` VALUES (16859399,'Weeper','Weeper',511,14578);73.866,-0.5,265.717,32
+INSERT INTO `mob_spawn_points` VALUES (16859400,'Weeper','Weeper',511,14578);100.709,-0.5,263.961,64
+INSERT INTO `mob_spawn_points` VALUES (16859401,'Seether','Seether',508,14604);109.340,-0.5,250.284,134
+INSERT INTO `mob_spawn_points` VALUES (16859402,'Wanderer','Wanderer',510,14562);98.991,-0.5,250.297,94
+INSERT INTO `mob_spawn_points` VALUES (16859403,'Weeper','Weeper',511,0.000,0.000,0.000,0);
+INSERT INTO `mob_spawn_points` VALUES (16859404,'Weeper','Weeper',511,14578);114.777,-0.5,227.028,23
 INSERT INTO `mob_spawn_points` VALUES (16859405,'Weeper','Weeper',511,0.000,0.000,0.000,0);
-INSERT INTO `mob_spawn_points` VALUES (16859406,'Weeper','Weeper',511,14578);114.777,-0.5,227.028,23
-INSERT INTO `mob_spawn_points` VALUES (16859407,'Weeper','Weeper',511,0.000,0.000,0.000,0);
-INSERT INTO `mob_spawn_points` VALUES (16859408,'Weeper','Weeper',511,14578);141.514,-0.5,242.130,70
-INSERT INTO `mob_spawn_points` VALUES (16859409,'Seether','Seether',508,14604);142.184,-0.5,230.811,120
-INSERT INTO `mob_spawn_points` VALUES (16859410,'Seether','Seether',508,14604);161.352,-0.5,222.534,30
-INSERT INTO `mob_spawn_points` VALUES (16859411,'Weeper','Weeper',511,14578);149.276,-0.5,222.001,201
-INSERT INTO `mob_spawn_points` VALUES (16859412,'Weeper','Weeper',511,14578);187.061,-0.5,224.729,221
-INSERT INTO `mob_spawn_points` VALUES (16859413,'Seether','Seether',508,14604);194.391,-0.5,236.743,230
-INSERT INTO `mob_spawn_points` VALUES (16859414,'Weeper','Weeper',511,14578);160.589,-0.5,202.569,58
-INSERT INTO `mob_spawn_points` VALUES (16859415,'Weeper','Weeper',511,14578);170.955,-0.5,193.664,247
-INSERT INTO `mob_spawn_points` VALUES (16859416,'Weeper','Weeper',511,0.000,0.000,0.000,0);
-INSERT INTO `mob_spawn_points` VALUES (16859417,'Seether','Seether',508,14604);216.988,-0.5,177.638,51
-INSERT INTO `mob_spawn_points` VALUES (16859418,'Wanderer','Wanderer',510,14562);205.243,-0.5,190.276,62
-INSERT INTO `mob_spawn_points` VALUES (16859419,'Weeper','Weeper',511,14578);193.544,-0.5,187.130,190
-INSERT INTO `mob_spawn_points` VALUES (16859420,'Weeper','Weeper',511,14578);221.958,-0.5,200.634,177
-INSERT INTO `mob_spawn_points` VALUES (16859421,'Weeper','Weeper',511,14578);226.4,-0.5,196.211,0
-INSERT INTO `mob_spawn_points` VALUES (16859422,'Weeper','Weeper',511,14578);206.072,-0.5,161.737,187
-INSERT INTO `mob_spawn_points` VALUES (16859423,'Seether','Seether',508,14604);244.791,-0.5,119.973,210
-INSERT INTO `mob_spawn_points` VALUES (16859424,'Weeper','Weeper',511,14578);242.953,-0.5,129.011,195
-INSERT INTO `mob_spawn_points` VALUES (16859425,'Weeper','Weeper',511,14578);237.865,-0.5,129.620,178
-INSERT INTO `mob_spawn_points` VALUES (16859426,'Seether','Seether',508,14604);240.494,-0.5,239.203,184
-INSERT INTO `mob_spawn_points` VALUES (16859427,'Wanderer','Wanderer',510,14562);239.575,-0.5,235.309,245
-INSERT INTO `mob_spawn_points` VALUES (16859428,'Weeper','Weeper',511,14578);240.046,-0.499,222.866,94
-INSERT INTO `mob_spawn_points` VALUES (16859429,'Weeper','Weeper',511,14578);215.171,-0.5,238.758,61
-INSERT INTO `mob_spawn_points` VALUES (16859430,'Seether','Seether',508,14604);231.834,-0.499,243.818,70
-INSERT INTO `mob_spawn_points` VALUES (16859431,'Seether','Seether',508,14604);243.396,-0.487,276.426,197
-INSERT INTO `mob_spawn_points` VALUES (16859432,'Seether','Seether',508,14604);279.283,-0.5,286.033,147
-INSERT INTO `mob_spawn_points` VALUES (16859433,'Weeper','Weeper',511,14578);276.506,-0.5,292.731,231
-INSERT INTO `mob_spawn_points` VALUES (16859434,'Weeper','Weeper',511,0.000,0.000,0.000,0);
-INSERT INTO `mob_spawn_points` VALUES (16859435,'Wanderer','Wanderer',510,14562);102.336,-0.5,208.517,192
-INSERT INTO `mob_spawn_points` VALUES (16859436,'Wanderer','Wanderer',510,0.000,0.000,0.000,0);
-INSERT INTO `mob_spawn_points` VALUES (16859437,'Weeper','Weeper',511,14578);71.083,-0.5,205.944,190
-INSERT INTO `mob_spawn_points` VALUES (16859438,'Craver','Craver',505,14627);-37.804,-0.499,284.830,32
-INSERT INTO `mob_spawn_points` VALUES (16859439,'Craver','Craver',505,14627);70.571,-0.499,287.866,220
-INSERT INTO `mob_spawn_points` VALUES (16859440,'Craver','Craver',505,14627);122.304,-0.5,255.579,94
-INSERT INTO `mob_spawn_points` VALUES (16859441,'Craver','Craver',505,14627);238.522,-0.499,221.277,47
-INSERT INTO `mob_spawn_points` VALUES (16859442,'Craver','Craver',505,14627);156.251,-0.499,220.05,126
-INSERT INTO `mob_spawn_points` VALUES (16859443,'Coveter','Coveter',504,297.036,-0.5,-91.995,149);
+INSERT INTO `mob_spawn_points` VALUES (16859406,'Weeper','Weeper',511,14578);141.514,-0.5,242.130,70
+INSERT INTO `mob_spawn_points` VALUES (16859407,'Seether','Seether',508,14604);142.184,-0.5,230.811,120
+INSERT INTO `mob_spawn_points` VALUES (16859408,'Seether','Seether',508,14604);161.352,-0.5,222.534,30
+INSERT INTO `mob_spawn_points` VALUES (16859409,'Weeper','Weeper',511,14578);149.276,-0.5,222.001,201
+INSERT INTO `mob_spawn_points` VALUES (16859410,'Weeper','Weeper',511,14578);187.061,-0.5,224.729,221
+INSERT INTO `mob_spawn_points` VALUES (16859411,'Seether','Seether',508,14604);194.391,-0.5,236.743,230
+INSERT INTO `mob_spawn_points` VALUES (16859412,'Weeper','Weeper',511,14578);160.589,-0.5,202.569,58
+INSERT INTO `mob_spawn_points` VALUES (16859413,'Weeper','Weeper',511,14578);170.955,-0.5,193.664,247
+INSERT INTO `mob_spawn_points` VALUES (16859414,'Weeper','Weeper',511,0.000,0.000,0.000,0);
+INSERT INTO `mob_spawn_points` VALUES (16859415,'Seether','Seether',508,14604);216.988,-0.5,177.638,51
+INSERT INTO `mob_spawn_points` VALUES (16859416,'Wanderer','Wanderer',510,14562);205.243,-0.5,190.276,62
+INSERT INTO `mob_spawn_points` VALUES (16859417,'Weeper','Weeper',511,14578);193.544,-0.5,187.130,190
+INSERT INTO `mob_spawn_points` VALUES (16859418,'Weeper','Weeper',511,14578);221.958,-0.5,200.634,177
+INSERT INTO `mob_spawn_points` VALUES (16859419,'Weeper','Weeper',511,14578);226.4,-0.5,196.211,0
+INSERT INTO `mob_spawn_points` VALUES (16859420,'Weeper','Weeper',511,14578);206.072,-0.5,161.737,187
+INSERT INTO `mob_spawn_points` VALUES (16859421,'Seether','Seether',508,14604);244.791,-0.5,119.973,210
+INSERT INTO `mob_spawn_points` VALUES (16859422,'Weeper','Weeper',511,14578);242.953,-0.5,129.011,195
+INSERT INTO `mob_spawn_points` VALUES (16859423,'Weeper','Weeper',511,14578);237.865,-0.5,129.620,178
+INSERT INTO `mob_spawn_points` VALUES (16859424,'Seether','Seether',508,14604);240.494,-0.5,239.203,184
+INSERT INTO `mob_spawn_points` VALUES (16859425,'Wanderer','Wanderer',510,14562);239.575,-0.5,235.309,245
+INSERT INTO `mob_spawn_points` VALUES (16859426,'Weeper','Weeper',511,14578);240.046,-0.499,222.866,94
+INSERT INTO `mob_spawn_points` VALUES (16859427,'Weeper','Weeper',511,14578);215.171,-0.5,238.758,61
+INSERT INTO `mob_spawn_points` VALUES (16859428,'Seether','Seether',508,14604);231.834,-0.499,243.818,70
+INSERT INTO `mob_spawn_points` VALUES (16859429,'Seether','Seether',508,14604);243.396,-0.487,276.426,197
+INSERT INTO `mob_spawn_points` VALUES (16859430,'Seether','Seether',508,14604);279.283,-0.5,286.033,147
+INSERT INTO `mob_spawn_points` VALUES (16859431,'Weeper','Weeper',511,14578);276.506,-0.5,292.731,231
+INSERT INTO `mob_spawn_points` VALUES (16859432,'Weeper','Weeper',511,0.000,0.000,0.000,0);
+INSERT INTO `mob_spawn_points` VALUES (16859433,'Wanderer','Wanderer',510,14562);102.336,-0.5,208.517,192
+INSERT INTO `mob_spawn_points` VALUES (16859434,'Wanderer','Wanderer',510,0.000,0.000,0.000,0);
+INSERT INTO `mob_spawn_points` VALUES (16859435,'Weeper','Weeper',511,14578);71.083,-0.5,205.944,190
+INSERT INTO `mob_spawn_points` VALUES (16859436,'Craver','Craver',505,14627);-37.804,-0.499,284.830,32
+INSERT INTO `mob_spawn_points` VALUES (16859437,'Craver','Craver',505,14627);70.571,-0.499,287.866,220
+INSERT INTO `mob_spawn_points` VALUES (16859438,'Craver','Craver',505,14627);122.304,-0.5,255.579,94
+INSERT INTO `mob_spawn_points` VALUES (16859439,'Craver','Craver',505,14627);238.522,-0.499,221.277,47
+INSERT INTO `mob_spawn_points` VALUES (16859440,'Craver','Craver',505,14627);156.251,-0.499,220.05,126
+INSERT INTO `mob_spawn_points` VALUES (16859441,'Coveter','Coveter',504,297.036,-0.5,-91.995,149);
 
 -- ------------------------------------------------------------
 -- Spire of Mea (Zone 21)

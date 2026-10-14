@@ -1,0 +1,34 @@
+[
+ {
+  "date": "2026-10-13 19:12",
+  "npc_name_bad": 140,
+  "mob_name_bad": 381,
+  "npc_pos_bad": 1458,
+  "mob_pos_bad": 13118,
+  "npc_look_bad": 592
+ },
+ {
+  "date": "2026-10-13 19:16",
+  "npc_name_bad": 129,
+  "mob_name_bad": 381,
+  "npc_pos_bad": 1458,
+  "mob_pos_bad": 13118,
+  "npc_look_bad": 592
+ },
+ {
+  "date": "2026-10-13 19:56",
+  "npc_name_bad": 119,
+  "mob_name_bad": 260,
+  "npc_pos_bad": 1458,
+  "mob_pos_bad": 13118,
+  "npc_look_bad": 592
+ },
+ {
+  "date": "2026-10-13 20:51",
+  "npc_name_bad": 119,
+  "mob_name_bad": 260,
+  "npc_pos_bad": 1458,
+  "mob_pos_bad": 13118,
+  "npc_look_bad": 592
+ }
+]

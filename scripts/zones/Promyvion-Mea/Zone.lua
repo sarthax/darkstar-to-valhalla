@@ -95,7 +95,7 @@ function onRegionEnter(player,region)
                 player:startEvent(0x002e);
             end,
             [12] = function (x)
-                if (GetNPCByID(16859453):getAnimation() == 8) then
+                if (GetNPCByID(16859451):getAnimation() == 8) then
                     player:startEvent(30);
                 end
             end, -- player:setPos(-70,0,-233,105);
@@ -103,7 +103,7 @@ function onRegionEnter(player,region)
                 player:startEvent(41); -- player:setPos(-96,0,174,155);
             end,
             [22] = function (x)
-                if (GetNPCByID(16859456):getAnimation() == 8) then
+                if (GetNPCByID(16859454):getAnimation() == 8) then
                     if (player:getVar("MemoryReceptacle") == 2) then
                         player:startEvent(37); -- player:setPos(-167,0,172,38);
                     else
@@ -112,7 +112,7 @@ function onRegionEnter(player,region)
                 end
             end,
             [23] = function (x)
-                if (GetNPCByID(16859460):getAnimation() == 8) then
+                if (GetNPCByID(16859458):getAnimation() == 8) then
                     if (player:getVar("MemoryReceptacle") == 2) then
                         player:startEvent(37); -- player:setPos(-167,0,172,38);
                     else
@@ -121,7 +121,7 @@ function onRegionEnter(player,region)
                 end
             end,
             [24] = function (x)
-                if (GetNPCByID(16859461):getAnimation() == 8) then
+                if (GetNPCByID(16859459):getAnimation() == 8) then
                     if (player:getVar("MemoryReceptacle") == 2) then
                         player:startEvent(37); -- player:setPos(-167,0,172,38);
                     else
@@ -130,7 +130,7 @@ function onRegionEnter(player,region)
                 end
             end,
             [25] = function (x)
-                if (GetNPCByID(16859462):getAnimation() == 8) then
+                if (GetNPCByID(16859460):getAnimation() == 8) then
                     if (player:getVar("MemoryReceptacle") == 2) then
                         player:startEvent(37); -- player:setPos(-167,0,172,38);
                     else
@@ -145,12 +145,12 @@ function onRegionEnter(player,region)
                 player:startEvent(31); -- player:setPos(-106,0,384,38);
             end,
             [33] = function (x)
-                if (GetNPCByID(16859455):getAnimation() == 8) then
+                if (GetNPCByID(16859453):getAnimation() == 8) then
                     player:startEvent(31); -- player:setPos(-106,0,384,38);
                 end
             end,
             [34] = function (x)
-                if (GetNPCByID(16859454):getAnimation() == 8) then
+                if (GetNPCByID(16859452):getAnimation() == 8) then
                     player:startEvent(31); -- player:setPos(-106,0,384,38);
                 end
             end,
@@ -158,17 +158,17 @@ function onRegionEnter(player,region)
                 player:startEvent(30); -- player:setPos(-70,0,-233,105);
             end,
             [36] = function (x)
-                if (GetNPCByID(16859463):getAnimation() == 8) then
+                if (GetNPCByID(16859461):getAnimation() == 8) then
                     player:startEvent(31); -- player:setPos(-106,0,384,38);
                 end
             end,
             [37] = function (x)
-                if (GetNPCByID(16859458):getAnimation() == 8) then
+                if (GetNPCByID(16859456):getAnimation() == 8) then
                     player:startEvent(31); -- player:setPos(-106,0,384,38);
                 end
             end,
             [38] = function (x)
-                if (GetNPCByID(16859459):getAnimation() == 8) then
+                if (GetNPCByID(16859457):getAnimation() == 8) then
                     player:startEvent(31); -- player:setPos(-106,0,384,38);
                 end
             end,

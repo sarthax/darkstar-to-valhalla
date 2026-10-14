@@ -1,0 +1,601 @@
+result,script,old_id,new_id,name,detail1,detail2
+SKIP-src-absent,npc_id_realign_corrective.sql,17719915,17719903,Achieve_Master,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective.sql,17719916,17719904,Unity_Master,name now at target: True,row at old: None
+SKIP-target-occupied,npc_id_realign_corrective.sql,17719923,17719911,Selh_teus,holder: ['Selh_teus'],
+SKIP-src-absent,npc_id_realign_corrective.sql,17719925,17719913,Balamor,name now at target: True,row at old: None
+SKIP-target-occupied,npc_id_realign_corrective.sql,17719935,17719923,Disjoined_One,holder: ['Selh_teus'],
+SKIP-src-absent,npc_id_realign_corrective.sql,17752520,17752507,Achieve_Master,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective.sql,17752529,17752516,Selh_teus,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective.sql,17752530,17752517,Balamor,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective.sql,17772802,17772804,Achieve_Master,name now at target: True,row at old: ['HomePoint#4']
+SKIP-src-absent,npc_id_realign_corrective.sql,17772804,17772807,Survival_Guide,name now at target: True,row at old: ['Achieve_Master']
+SKIP-src-absent,npc_id_realign_corrective.sql,17772812,17772815,Iroha,name now at target: True,row at old: ['Unity_Master']
+SKIP-src-absent,npc_id_realign_corrective.sql,17248781,17248814,Treasure_Coffer,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective.sql,17187507,17187540,Signpost,name now at target: True,row at old: ['Treasure_Casket']
+SKIP-src-absent,npc_id_realign_corrective.sql,17191547,17191549,Moogle,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective.sql,17191571,17191573,Debug,name now at target: True,row at old: ['Smile_Helper']
+SKIP-src-absent,npc_id_realign_corrective.sql,17191581,17191583,Geomantic_Reservoir,name now at target: True,row at old: ['Riftworn_Pyxis']
+SKIP-src-absent,npc_id_realign_corrective.sql,17203827,17203816,Ailbeche,name now at target: True,row at old: ['Marshal']
+SKIP-src-absent,npc_id_realign_corrective.sql,17203828,17203817,Exoroche,name now at target: True,row at old: ['San_d_Orian_Pursuivant']
+SKIP-src-absent,npc_id_realign_corrective.sql,17203918,17203907,csnpc,name now at target: True,row at old: ['Pignoit']
+SKIP-src-absent,npc_id_realign_corrective.sql,17203919,17203908,csnpc,name now at target: True,row at old: ['Fransont']
+SKIP-src-absent,npc_id_realign_corrective.sql,17203920,17203909,o01,name now at target: True,row at old: ['Orcishfodder']
+SKIP-src-absent,npc_id_realign_corrective.sql,17212135,17212137,Magivore_Ternion,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective.sql,17212142,17212144,Rurukaka,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective.sql,17216156,17216189,Treasure_Coffer,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective.sql,17216198,17216231,Riftworn_Pyxis,name now at target: True,row at old: ['Moogle']
+SKIP-src-absent,npc_id_realign_corrective.sql,17216200,17216233,Cavernous_Maw,name now at target: True,row at old: ['Moogle']
+SKIP-src-absent,npc_id_realign_corrective.sql,17220209,17220210,Ergon_Locus,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective.sql,17224375,17224377,Geomagnetic_Fount,name now at target: True,row at old: ['Riftworn_Pyxis']
+SKIP-src-absent,npc_id_realign_corrective.sql,17224378,17224380,Odysseanpassage,name now at target: True,row at old: ['Suspicioushume']
+SKIP-src-absent,npc_id_realign_corrective.sql,17228399,17228401,Moogle,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective.sql,17228416,17228418,Debug,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective.sql,17248853,17248886,Field_Manual,name now at target: True,row at old: ['Moogle']
+SKIP-src-absent,npc_id_realign_corrective.sql,17248854,17248887,Field_Manual,name now at target: True,row at old: ['Moogle']
+SKIP-src-absent,npc_id_realign_corrective.sql,17257111,17257113,Debug,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective.sql,17265307,17265309,Moogle,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective.sql,17265319,17265321,Geomagnetic_Fount,name now at target: True,row at old: ['Riftworn_Pyxis']
+SKIP-src-absent,npc_id_realign_corrective.sql,17375737,17375815,Achieve_Master,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective.sql,17510682,17510694,Eald_narche,name now at target: True,row at old: ['Seed_Fragment']
+SKIP-src-absent,npc_id_realign_corrective.sql,17957466,17957467,Emblazoned_Reliquary,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective.sql,17970036,17970037,Emporox,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective.sql,17719913,17719873,blank,name now at target: False,row at old: ['Balamor']
+SKIP-src-absent,npc_id_realign_corrective.sql,17772815,17772827,???,name now at target: True,row at old: ['Iroha']
+MOVED,npc_id_realign_corrective_104_235.sql,17740046,17740033,Moogle,,
+MOVED,npc_id_realign_corrective_104_235.sql,17740047,17740034,Prince_Yahiko,,
+MOVED,npc_id_realign_corrective_104_235.sql,17740048,17740035,Princess_Amdina,,
+MOVED,npc_id_realign_corrective_104_235.sql,17740049,17740036,Hiltrude,,
+MOVED,npc_id_realign_corrective_104_235.sql,17740108,17740095,Pretty_Heart,,
+MOVED,npc_id_realign_corrective_104_235.sql,17740117,17740104,Fashionista,,
+MOVED,npc_id_realign_corrective_104_235.sql,17740076,17739879,blank,,
+MOVED,npc_id_realign_corrective_104_235.sql,17740079,17739894,blank,,
+MOVED,npc_id_realign_corrective_104_235.sql,17740080,17739905,blank,,
+MOVED,npc_id_realign_corrective_104_235.sql,17740081,17739949,blank,,
+MOVED,npc_id_realign_corrective_104_235.sql,17740083,17740172,blank,,
+MOVED,npc_id_realign_corrective_104_235.sql,17740085,17740173,blank,,
+MOVED,npc_id_realign_corrective_104_235.sql,17740086,17740174,blank,,
+MOVED,npc_id_realign_corrective_104_235.sql,17740087,17740175,blank,,
+MOVED,npc_id_realign_corrective_104_235.sql,17740088,17740176,blank,,
+MOVED,npc_id_realign_corrective_104_235.sql,17740090,17740177,qm5,,
+MOVED,npc_id_realign_corrective_104_235.sql,17740105,17740178,Fireworks,,
+MOVED,npc_id_realign_corrective_104_235.sql,17740106,17740179,blank,,
+MOVED,npc_id_realign_corrective_104_235.sql,17740130,17740180,blank,,
+MOVED,npc_id_realign_corrective_104_235.sql,17740131,17740181,blank,,
+MOVED,npc_id_realign_corrective_104_235.sql,17740132,17740183,blank,,
+MOVED,npc_id_realign_corrective_104_235.sql,17740134,17740184,blank,,
+MOVED,npc_id_realign_corrective_104_235.sql,17740136,17740185,blank,,
+MOVED,npc_id_realign_corrective_104_235.sql,17740142,17740186,blank,,
+MOVED,npc_id_realign_corrective_104_235.sql,17740148,17740187,blank,,
+MOVED,npc_id_realign_corrective_104_235.sql,17740089,17740076,Moogle,,
+MOVED,npc_id_realign_corrective_104_235.sql,17740143,17740130,Moogle,,
+MOVED,npc_id_realign_corrective_104_235.sql,17740144,17740131,Moogle,,
+MOVED,npc_id_realign_corrective_104_235.sql,17740145,17740132,Moogle,,
+MOVED,npc_id_realign_corrective_104_235.sql,17740092,17740079,Uka_Totlihn,,
+MOVED,npc_id_realign_corrective_104_235.sql,17740093,17740080,Diva,,
+MOVED,npc_id_realign_corrective_104_235.sql,17740094,17740081,Ullegore,,
+MOVED,npc_id_realign_corrective_104_235.sql,17740096,17740083,Foudeel,,
+MOVED,npc_id_realign_corrective_104_235.sql,17740098,17740085,Wahboud,,
+MOVED,npc_id_realign_corrective_104_235.sql,17740099,17740086,Tango,,
+MOVED,npc_id_realign_corrective_104_235.sql,17740100,17740087,Bongo,,
+MOVED,npc_id_realign_corrective_104_235.sql,17740101,17740088,Fandango,,
+MOVED,npc_id_realign_corrective_104_235.sql,17740102,17740089,Bashraf,,
+MOVED,npc_id_realign_corrective_104_235.sql,17740103,17740090,Mumor,,
+MOVED,npc_id_realign_corrective_104_235.sql,17740107,17740094,Selma,,
+MOVED,npc_id_realign_corrective_104_235.sql,17740109,17740096,Brian,,
+MOVED,npc_id_realign_corrective_104_235.sql,17740115,17740102,Ensemble_Maven,,
+MOVED,npc_id_realign_corrective_104_235.sql,17740118,17740105,Fashionista,,
+MOVED,npc_id_realign_corrective_104_235.sql,17740119,17740106,Fashionista,,
+MOVED,npc_id_realign_corrective_104_235.sql,17740147,17740134,Sludge,,
+MOVED,npc_id_realign_corrective_104_235.sql,17740149,17740136,Horro,,
+MOVED,npc_id_realign_corrective_104_235.sql,17740155,17740142,Achieve_Master,,
+MOVED,npc_id_realign_corrective_104_235.sql,17740161,17740148,Iroha,,
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203813,17203802,Treasure_Coffer,name now at target: True,row at old: ['Alexius']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203814,17203803,Achieve_Master,name now at target: True,row at old: ['Stone_Monument']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203815,17203804,Unity_Master,name now at target: True,row at old: ['Crystwater_Spring']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203820,17203809,Signpost,name now at target: True,row at old: ['OrcishFighter']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203821,17203810,Signpost,name now at target: True,row at old: ['Millechairale']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203822,17203811,Signpost,name now at target: True,row at old: ['Vijartal']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203823,17203812,Signpost,name now at target: True,row at old: ['Roido']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203824,17203813,Alexius,name now at target: True,row at old: ['qm1']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203825,17203814,Stone_Monument,name now at target: True,row at old: ['blank']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203826,17203815,Crystwater_Spring,name now at target: True,row at old: ['Herald']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203829,17203818,Exoroche,name now at target: True,row at old: ['Bastokan_Pursuivant']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203830,17203819,Vilbert,name now at target: True,row at old: ['Windurstian_Pursuivant']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203831,17203820,OrcishFighter,name now at target: True,row at old: ['Perevie']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203832,17203821,Millechairale,name now at target: True,row at old: ['Rook']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203833,17203822,Vijartal,name now at target: True,row at old: ['Rook']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203834,17203823,Roido,name now at target: True,row at old: ['Rook']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203837,17203826,Herald,name now at target: True,row at old: ['Rook']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203838,17203827,Marshal,name now at target: True,row at old: ['Rook']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203839,17203828,San_d_Orian_Pursuivant,name now at target: True,row at old: ['NPC[79]']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203840,17203829,Bastokan_Pursuivant,name now at target: True,row at old: ['Moogle']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203841,17203830,Windurstian_Pursuivant,name now at target: True,row at old: ['Moogle']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203842,17203831,Perevie,name now at target: True,row at old: ['Moogle']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203843,17203832,Rook,name now at target: True,row at old: ['Moogle']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203844,17203833,Rook,name now at target: True,row at old: ['Moogle']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203845,17203834,Rook,name now at target: True,row at old: ['Moogle']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203846,17203835,Rook,name now at target: True,row at old: ['Moogle']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203847,17203836,Rook,name now at target: True,row at old: ['Moogle']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203848,17203837,Rook,name now at target: True,row at old: ['Chaplion_RK']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203849,17203838,Rook,name now at target: True,row at old: ['Takamoto_IM']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203851,17203840,Moogle,name now at target: True,row at old: ['Conquest_Banner']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203852,17203841,Moogle,name now at target: True,row at old: ['Conquest_Banner']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203853,17203842,Moogle,name now at target: True,row at old: ['Conquest_Banner']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203854,17203843,Moogle,name now at target: True,row at old: ['Conquest_Banner']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203855,17203844,Moogle,name now at target: True,row at old: ['Taumiale_RK']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203856,17203845,Moogle,name now at target: True,row at old: ['Pure_Heart_IM']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203857,17203846,Moogle,name now at target: True,row at old: ['Geruru_WW']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203858,17203847,Moogle,name now at target: True,row at old: ['Mionie']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203938,17203929,Moogle,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203859,17203848,Chaplion_RK,name now at target: True,row at old: ['Conquest_Banner']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203860,17203849,Takamoto_IM,name now at target: True,row at old: ['Conquest_Banner']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203861,17203850,Bubchu-Bibinchu_WW,name now at target: True,row at old: ['Conquest_Banner']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203870,17203861,Conquest_Banner,name now at target: True,row at old: ['Semih_Lafihna']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203866,17203855,Taumiale_RK,name now at target: True,row at old: ['Logging_Point']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203867,17203856,Pure_Heart_IM,name now at target: True,row at old: ['Logging_Point']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203868,17203857,Geruru_WW,name now at target: True,row at old: ['Logging_Point']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203869,17203858,Mionie,name now at target: True,row at old: ['Logging_Point']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203875,17203864,Logging_Point,name now at target: True,row at old: ['Carbuncle']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203876,17203865,Logging_Point,name now at target: True,row at old: ['Talking_Doll']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203877,17203866,Logging_Point,name now at target: True,row at old: ['Ramblix']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203878,17203867,Logging_Point,name now at target: True,row at old: ['Goblin_Footprint']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203879,17203868,Logging_Point,name now at target: True,row at old: ['blank']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203880,17203869,Logging_Point,name now at target: True,row at old: ['qm3']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203881,17203870,Semih_Lafihna,name now at target: True,row at old: ['csnpc']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203882,17203871,Shikaree_M,name now at target: True,row at old: ['Palometa']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203884,17203873,Beastmen_s_Banner,name now at target: True,row at old: ['qm4']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203885,17203874,EFFECTER,name now at target: True,row at old: ['blank']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203886,17203875,Carbuncle,name now at target: True,row at old: ['Cavernous_Maw']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203887,17203876,Talking_Doll,name now at target: True,row at old: ['Field_Manual']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203888,17203877,Ramblix,name now at target: True,row at old: ['Field_Manual']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203889,17203878,Goblin_Footprint,name now at target: True,row at old: ['Humus-rich_Earth']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203893,17203882,Palometa,name now at target: True,row at old: ['blank']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203894,17203883,Luto_Mewrilah,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203897,17203886,Cavernous_Maw,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203944,17203935,Cavernous_Maw_2,name now at target: True,row at old: ['Riftworn_Pyxis']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203898,17203887,Field_Manual,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203899,17203888,Field_Manual,name now at target: True,row at old: ['Mogball-Local']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203900,17203889,Humus-rich_Earth,name now at target: True,row at old: ['Mog-Tablet']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203901,17203890,Lilisette,name now at target: True,row at old: ['blank']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203902,17203891,NMTreant,name now at target: True,row at old: ['blank']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203906,17203895,Field_Parchment,name now at target: True,row at old: ['blank']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203910,17203899,Mogball-Local,name now at target: True,row at old: ['o02']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203914,17203903,Excenmille,name now at target: True,row at old: ['e02']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203928,17203917,KingslayerDoggvdegg,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203929,17203918,Pignoit,name now at target: True,row at old: ['Moogle']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203930,17203919,Fransont,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203931,17203920,Orcishfodder,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203932,17203921,Zogbog,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203934,17203923,MettalicHodgepodge,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203946,17203937,Moniquaurie,name now at target: True,row at old: ['Geomagnetic_Fount']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203948,17203939,Planar_Rift,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203949,17203940,Planar_Rift,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203950,17203941,Planar_Rift,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203951,17203942,Riftworn_Pyxis,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203952,17203943,Riftworn_Pyxis,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203953,17203944,Riftworn_Pyxis,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203954,17203945,Arfdrick,name now at target: False,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203955,17203946,Geomagnetic_Fount,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17740159,17740146,Unity_Master,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17740182,17740169,Ephemeral_Moogle,name now at target: True,row at old: None
+SKIP-target-occupied,npc_id_realign_corrective_104_235.sql,17203797,17203786,Treasure_Casket,holder: ['Treasure_Casket'],
+SKIP-target-occupied,npc_id_realign_corrective_104_235.sql,17203798,17203787,Treasure_Casket,holder: ['Treasure_Casket'],
+SKIP-target-occupied,npc_id_realign_corrective_104_235.sql,17203799,17203788,Treasure_Casket,holder: ['Treasure_Casket'],
+SKIP-target-occupied,npc_id_realign_corrective_104_235.sql,17203800,17203789,Treasure_Casket,holder: ['Treasure_Casket'],
+SKIP-target-occupied,npc_id_realign_corrective_104_235.sql,17203801,17203790,Treasure_Casket,holder: ['Treasure_Casket'],
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203802,17203791,Treasure_Casket,name now at target: True,row at old: ['Treasure_Coffer']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203803,17203792,Treasure_Casket,name now at target: True,row at old: ['Achieve_Master']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203804,17203793,Treasure_Casket,name now at target: True,row at old: ['Unity_Master']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203805,17203794,Treasure_Casket,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203806,17203795,Treasure_Casket,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203807,17203796,Treasure_Casket,name now at target: True,row at old: ['NPC[59]']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203808,17203797,Treasure_Casket,name now at target: True,row at old: ['NPC[5a]']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203809,17203798,Treasure_Casket,name now at target: True,row at old: ['Signpost']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203810,17203799,Treasure_Casket,name now at target: True,row at old: ['Signpost']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203811,17203800,Treasure_Casket,name now at target: True,row at old: ['Signpost']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203812,17203801,Treasure_Casket,name now at target: True,row at old: ['Signpost']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203818,17203780,NPC[59],name now at target: False,row at old: ['Exoroche']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203819,17203781,NPC[5a],name now at target: False,row at old: ['Vilbert']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203835,17203782,qm1,name now at target: False,row at old: ['Rook']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203836,17203783,blank,name now at target: False,row at old: ['Rook']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203850,17203784,NPC[79],name now at target: False,row at old: ['Bubchu-Bibinchu_WW']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203864,17203785,Conquest_Banner,name now at target: False,row at old: ['Logging_Point']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203865,17203957,Conquest_Banner,name now at target: False,row at old: ['Logging_Point']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203871,17203958,Conquest_Banner,name now at target: False,row at old: ['Shikaree_M']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203873,17203959,Conquest_Banner,name now at target: False,row at old: ['Beastmen_s_Banner']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203874,17203960,blank,name now at target: False,row at old: ['EFFECTER']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203883,17203961,qm2,name now at target: False,row at old: ['Luto_Mewrilah']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203890,17203962,blank,name now at target: False,row at old: ['Lilisette']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203891,17203963,qm3,name now at target: False,row at old: ['NMTreant']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203895,17203964,qm4,name now at target: False,row at old: ['Field_Parchment']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203903,17203965,qm5,name now at target: False,row at old: ['Excenmille']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203917,17203966,blank,name now at target: False,row at old: ['KingslayerDoggvdegg']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203921,17203967,o02,name now at target: False,row at old: ['Zogbog']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203923,17203968,o04,name now at target: False,row at old: ['MettalicHodgepodge']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203935,17203969,blank,name now at target: False,row at old: ['Cavernous_Maw_2']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203937,17203970,blank,name now at target: False,row at old: ['Moniquaurie']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203939,17203971,blank,name now at target: False,row at old: ['Planar_Rift']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203940,17203972,blank,name now at target: False,row at old: ['Planar_Rift']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203941,17203973,blank,name now at target: False,row at old: ['Planar_Rift']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203942,17203974,blank,name now at target: False,row at old: ['Riftworn_Pyxis']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203943,17203975,blank,name now at target: False,row at old: ['Riftworn_Pyxis']
+SKIP-src-absent,npc_id_realign_corrective_104_235.sql,17203945,17203976,blank,name now at target: False,row at old: ['Ardrick']
+MOVED,npc_id_realign_corrective_288_289_291.sql,17969973,17969974,Shiftrix,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17970034,17970035,Temprix,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17961654,17961653,Achieve_Master,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17961680,17961679,Goblin_Footprint,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17969881,17970042,blank,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17969883,17970043,blank,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17969911,17970044,???,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17969915,17970045,???,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17969953,17970048,blank,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17969926,17970046,csnpc,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17969948,17970047,blank,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17961683,17961655,???,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17961688,17961656,blank,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17961694,17961657,csnpc,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17961710,17961658,???,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17957410,17957500,NPC[222],,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17957412,17957501,NPC[224],,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17957429,17957502,blank,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17957434,17957503,blank,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17957457,17957504,NPC[251],,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17969880,17969881,Unity_Master,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17969882,17969883,Achieve_Master,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17969910,17969911,Etched_Rock,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17969914,17969915,Mystic_Retriever,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17969951,17969953,Iroha,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17969925,17969926,Disjoined_One,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17969947,17969948,Ulmia,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17961684,17961683,Tenzen,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17961685,17961684,Siren,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17961686,17961685,SirenPrime,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17961689,17961688,Cid,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17961690,17961689,Naji,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17961691,17961690,Ayame,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17961692,17961691,Selh_teus,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17961693,17961692,Balamor,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17961695,17961694,Iroha,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17961696,17961695,Volto_Oscuro,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17961697,17961696,Kagero,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17961698,17961697,Undulating_Confluencee,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17961711,17961710,Dremi,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17961712,17961711,Register_Of_Deeds,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17961713,17961712,EschanPortal#1,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17961714,17961713,EschanPortal#2,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17961715,17961714,EschanPortal#3,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17961716,17961715,EschanPortal#4,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17961717,17961716,EschanPortal#5,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17961718,17961717,EschanPortal#6,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17961719,17961718,EschanPortal#7,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17961720,17961719,EschanPortal#8,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17961721,17961720,EschanPortal#9,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17961722,17961721,EschanPortal#10,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17961723,17961722,EschanPortal#11,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17961724,17961723,EschanPortal#12,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17961725,17961724,EschanPortal#13,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17961726,17961725,EschanPortal#14,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17961727,17961726,EschanPortal#15,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17957409,17957410,Achieve_Master,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17957411,17957412,Unity_Master,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17957428,17957429,Goblin_Footprint,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17957433,17957434,Undulating_Confluence,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17957456,17957457,EschanPortal#8,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17969909,17969910,Goblin_Footprint,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17969913,17969914,Dimensional_Portal,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17969924,17969925,Iroha,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17969946,17969947,Luzaf,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17957427,17957428,Grumblix,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17957432,17957433,Zeid,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17957455,17957456,EschanPortal#7,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17969908,17969909,Ramblix,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17969912,17969913,Resume_Point,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17969945,17969946,Mnejing,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17957431,17957432,Lion,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17957454,17957455,EschanPortal#6,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17969944,17969945,Ovjang,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17957430,17957431,Iroha,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17957453,17957454,EschanPortal#5,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17969943,17969944,Gilgamesh,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17957452,17957453,EschanPortal#4,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17969942,17969943,Semih_Lafihna,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17957451,17957452,EschanPortal#3,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17969941,17969942,StarSibyl,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17957450,17957451,EschanPortal#2,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17969940,17969941,Ajido-Marujido,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17957449,17957450,EschanPortal#1,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17969939,17969940,Shantotto,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17957448,17957449,Register_of_deed,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17969938,17969939,Curilla,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17957447,17957448,Affi,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17969937,17969938,Trion,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17969936,17969937,Volker,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17969935,17969936,Zeid,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17969934,17969935,maat,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17969933,17969934,Aldo,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17969932,17969933,Arciela,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17969931,17969932,Lilisette,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17969930,17969931,nashmeira,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17969929,17969930,Prishe,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17969928,17969929,Lion,,
+MOVED,npc_id_realign_corrective_288_289_291.sql,17969927,17969928,Tenzen,,
+MOVED,npc_id_realign_corrective_rest.sql,16859446,16859444,Achieve_Master,,
+MOVED,npc_id_realign_corrective_rest.sql,16859447,16859445,Unity_Master,,
+MOVED,npc_id_realign_corrective_rest.sql,17060109,17060117,Moogle,,
+MOVED,npc_id_realign_corrective_rest.sql,17195696,17195698,Moogle,,
+MOVED,npc_id_realign_corrective_rest.sql,17212131,17212134,Moogle,,
+MOVED,npc_id_realign_corrective_rest.sql,17212132,17212135,Moogle,,
+MOVED,npc_id_realign_corrective_rest.sql,17212146,17212148,Geomagnetic_Fount,,
+MOVED,npc_id_realign_corrective_rest.sql,17224363,17224365,Moogle,,
+MOVED,npc_id_realign_corrective_rest.sql,17257128,17257131,Selh_teus,,
+MOVED,npc_id_realign_corrective_rest.sql,17293824,17293826,Undunlating_Confluence,,
+MOVED,npc_id_realign_corrective_rest.sql,17293825,17293827,HomePoint#1,,
+MOVED,npc_id_realign_corrective_rest.sql,17453290,17453302,Moogle,,
+MOVED,npc_id_realign_corrective_rest.sql,17453291,17453303,Moogle,,
+MOVED,npc_id_realign_corrective_rest.sql,17453292,17453304,Moogle,,
+MOVED,npc_id_realign_corrective_rest.sql,17453301,17453313,Ayame,,
+MOVED,npc_id_realign_corrective_rest.sql,17453317,17453329,RikoKupenreich,,
+MOVED,npc_id_realign_corrective_rest.sql,17453318,17453330,RikoKupenreich,,
+MOVED,npc_id_realign_corrective_rest.sql,17510680,17510678,Zeid,,
+MOVED,npc_id_realign_corrective_rest.sql,17510681,17510679,Aldo,,
+MOVED,npc_id_realign_corrective_rest.sql,17510685,17510697,CrystalKnight,,
+MOVED,npc_id_realign_corrective_rest.sql,17510686,17510698,CrystalKnight,,
+MOVED,npc_id_realign_corrective_rest.sql,17510706,17510718,Moogle,,
+MOVED,npc_id_realign_corrective_rest.sql,17510707,17510719,Ramblix,,
+MOVED,npc_id_realign_corrective_rest.sql,17510708,17510720,Goblin_Footprint,,
+MOVED,npc_id_realign_corrective_rest.sql,17510721,17510733,SeedCrystal,,
+MOVED,npc_id_realign_corrective_rest.sql,17510729,17510741,NPC05,,
+MOVED,npc_id_realign_corrective_rest.sql,17510734,17510746,Jyujin05,,
+MOVED,npc_id_realign_corrective_rest.sql,17510736,17510748,Verena,,
+MOVED,npc_id_realign_corrective_rest.sql,17510747,17510759,mob11,,
+MOVED,npc_id_realign_corrective_rest.sql,17526900,17526899,Achieve_Master,,
+MOVED,npc_id_realign_corrective_rest.sql,17744212,17744213,CurioVendorMoogle,,
+MOVED,npc_id_realign_corrective_rest.sql,17911898,17911948,Moogle,,
+MOVED,npc_id_realign_corrective_rest.sql,17911899,17911949,Moogle,,
+MOVED,npc_id_realign_corrective_rest.sql,17911900,17911950,Moogle,,
+MOVED,npc_id_realign_corrective_rest.sql,17911901,17911951,Moogle,,
+MOVED,npc_id_realign_corrective_rest.sql,17911902,17911952,Moogle,,
+MOVED,npc_id_realign_corrective_rest.sql,17911903,17911953,Moogle,,
+MOVED,npc_id_realign_corrective_rest.sql,17911904,17911954,Moogle,,
+MOVED,npc_id_realign_corrective_rest.sql,17911905,17911955,Moogle,,
+MOVED,npc_id_realign_corrective_rest.sql,17911915,17911965,Arciela,,
+MOVED,npc_id_realign_corrective_rest.sql,17911916,17911966,Arciela,,
+MOVED,npc_id_realign_corrective_rest.sql,17911917,17911967,Hades,,
+MOVED,npc_id_realign_corrective_rest.sql,17911928,17911978,Resume_Point,,
+MOVED,npc_id_realign_corrective_rest.sql,17911929,17911979,Ramblix,,
+MOVED,npc_id_realign_corrective_rest.sql,17911930,17911980,Goblin_Footprint,,
+MOVED,npc_id_realign_corrective_rest.sql,17911931,17911981,Ominous_Postern,,
+MOVED,npc_id_realign_corrective_rest.sql,17911932,17911982,Exit,,
+MOVED,npc_id_realign_corrective_rest.sql,17977462,17977454,Lion,,
+MOVED,npc_id_realign_corrective_rest.sql,17977463,17977455,Prishe,,
+MOVED,npc_id_realign_corrective_rest.sql,16859465,16859448,_0kc,,
+MOVED,npc_id_realign_corrective_rest.sql,16859466,16859449,_0kd,,
+MOVED,npc_id_realign_corrective_rest.sql,17060118,17060105,_1x3,,
+MOVED,npc_id_realign_corrective_rest.sql,17060119,17060106,_1x4,,
+MOVED,npc_id_realign_corrective_rest.sql,17199772,17199669,blank,,
+MOVED,npc_id_realign_corrective_rest.sql,17199775,17199691,???,,
+MOVED,npc_id_realign_corrective_rest.sql,17207853,17207788,qm6,,
+MOVED,npc_id_realign_corrective_rest.sql,17207946,17207789,qm,,
+MOVED,npc_id_realign_corrective_rest.sql,17212125,17212018,qm5,,
+MOVED,npc_id_realign_corrective_rest.sql,17236367,17236250,NPC[182],,
+MOVED,npc_id_realign_corrective_rest.sql,17257120,17257004,NPC[93],,
+MOVED,npc_id_realign_corrective_rest.sql,17257121,17257005,NPC[94],,
+MOVED,npc_id_realign_corrective_rest.sql,17257127,17257027,csnpc,,
+MOVED,npc_id_realign_corrective_rest.sql,17257132,17257028,???,,
+MOVED,npc_id_realign_corrective_rest.sql,17261213,17261107,csnpc,,
+MOVED,npc_id_realign_corrective_rest.sql,17269282,17269184,qm,,
+MOVED,npc_id_realign_corrective_rest.sql,17281677,17281553,csnpc,,
+MOVED,npc_id_realign_corrective_rest.sql,17281680,17281554,???,,
+MOVED,npc_id_realign_corrective_rest.sql,17293820,17293673,csnpc,,
+MOVED,npc_id_realign_corrective_rest.sql,17293821,17293674,csnpc,,
+MOVED,npc_id_realign_corrective_rest.sql,17453279,17453337,NPC[dd],,
+MOVED,npc_id_realign_corrective_rest.sql,17453280,17453338,NPC[de],,
+MOVED,npc_id_realign_corrective_rest.sql,17453305,17453339,qm1,,
+MOVED,npc_id_realign_corrective_rest.sql,17453306,17453340,4,,
+MOVED,npc_id_realign_corrective_rest.sql,17453307,17453341,5,,
+MOVED,npc_id_realign_corrective_rest.sql,17453309,17453342,6,,
+MOVED,npc_id_realign_corrective_rest.sql,17453311,17453343,8,,
+MOVED,npc_id_realign_corrective_rest.sql,17453312,17453344,blank,,
+MOVED,npc_id_realign_corrective_rest.sql,17453320,17453346,blank,,
+MOVED,npc_id_realign_corrective_rest.sql,17510717,17510427,blank,,
+MOVED,npc_id_realign_corrective_rest.sql,17510723,17510433,15,,
+MOVED,npc_id_realign_corrective_rest.sql,17510761,17510775,qm3,,
+MOVED,npc_id_realign_corrective_rest.sql,17526905,17526897,blank,,
+MOVED,npc_id_realign_corrective_rest.sql,17744190,17744214,blank,,
+MOVED,npc_id_realign_corrective_rest.sql,17744194,17744215,csnpc,,
+MOVED,npc_id_realign_corrective_rest.sql,17744199,17744216,qm3,,
+MOVED,npc_id_realign_corrective_rest.sql,17764799,17764831,blank,,
+MOVED,npc_id_realign_corrective_rest.sql,17764803,17764832,blank,,
+MOVED,npc_id_realign_corrective_rest.sql,17764807,17764833,blank,,
+MOVED,npc_id_realign_corrective_rest.sql,17764812,17764834,qm7,,
+MOVED,npc_id_realign_corrective_rest.sql,17977469,17977509,csnpc,,
+MOVED,npc_id_realign_corrective_rest.sql,17977470,17977510,csnpc,,
+MOVED,npc_id_realign_corrective_rest.sql,17977471,17977511,csnpc,,
+MOVED,npc_id_realign_corrective_rest.sql,17977472,17977512,csnpc,,
+MOVED,npc_id_realign_corrective_rest.sql,17977473,17977513,csnpc,,
+MOVED,npc_id_realign_corrective_rest.sql,17977474,17977514,csnpc,,
+MOVED,npc_id_realign_corrective_rest.sql,17977475,17977515,csnpc,,
+MOVED,npc_id_realign_corrective_rest.sql,17977484,17977516,NPC[88],,
+MOVED,npc_id_realign_corrective_rest.sql,17977486,17977517,NPC[8a],,
+MOVED,npc_id_realign_corrective_rest.sql,17977456,17977508,csnpc,,
+MOVED,npc_id_realign_corrective_rest.sql,16859467,16859465,kiokudama_a,,
+MOVED,npc_id_realign_corrective_rest.sql,16859468,16859466,kiokudama_b,,
+MOVED,npc_id_realign_corrective_rest.sql,16859469,16859467,kiokudama_c,,
+MOVED,npc_id_realign_corrective_rest.sql,17060110,17060118,Moogle,,
+MOVED,npc_id_realign_corrective_rest.sql,17060115,17060119,DOOR_MASTER,,
+MOVED,npc_id_realign_corrective_rest.sql,17199770,17199772,Cavernous_Maw,,
+MOVED,npc_id_realign_corrective_rest.sql,17207852,17207853,Lycopodium,,
+MOVED,npc_id_realign_corrective_rest.sql,17207944,17207946,Moogle,,
+MOVED,npc_id_realign_corrective_rest.sql,17212123,17212125,Moogle,,
+MOVED,npc_id_realign_corrective_rest.sql,17236365,17236367,Geomantic_Reservoir,,
+MOVED,npc_id_realign_corrective_rest.sql,17257118,17257120,Ergonlocus???,,
+MOVED,npc_id_realign_corrective_rest.sql,17257119,17257121,Geomantic_Reservoir,,
+MOVED,npc_id_realign_corrective_rest.sql,17257125,17257127,Lion,,
+MOVED,npc_id_realign_corrective_rest.sql,17257126,17257128,Zeid,,
+MOVED,npc_id_realign_corrective_rest.sql,17257129,17257132,Selh_teus,,
+MOVED,npc_id_realign_corrective_rest.sql,17261211,17261213,Cavernous_Maw,,
+MOVED,npc_id_realign_corrective_rest.sql,17269280,17269282,Moogle,,
+MOVED,npc_id_realign_corrective_rest.sql,17281678,17281680,Zeid,,
+MOVED,npc_id_realign_corrective_rest.sql,17293818,17293820,Iroha,,
+MOVED,npc_id_realign_corrective_rest.sql,17293819,17293821,Lion,,
+MOVED,npc_id_realign_corrective_rest.sql,17453267,17453279,Achieve_Master,,
+MOVED,npc_id_realign_corrective_rest.sql,17453268,17453280,Unity_Master,,
+MOVED,npc_id_realign_corrective_rest.sql,17453293,17453305,Moogle,,
+MOVED,npc_id_realign_corrective_rest.sql,17453294,17453306,Moogle,,
+MOVED,npc_id_realign_corrective_rest.sql,17453295,17453307,Moogle,,
+MOVED,npc_id_realign_corrective_rest.sql,17453297,17453309,Moogle,,
+MOVED,npc_id_realign_corrective_rest.sql,17453299,17453311,Volker,,
+MOVED,npc_id_realign_corrective_rest.sql,17453300,17453312,Naji,,
+MOVED,npc_id_realign_corrective_rest.sql,17453308,17453320,Schultz,,
+MOVED,npc_id_realign_corrective_rest.sql,17510705,17510717,Moogle,,
+MOVED,npc_id_realign_corrective_rest.sql,17510711,17510723,Serpent_Generals,,
+MOVED,npc_id_realign_corrective_rest.sql,17510749,17510761,mob13,,
+MOVED,npc_id_realign_corrective_rest.sql,17526907,17526905,Legion_Portal,,
+MOVED,npc_id_realign_corrective_rest.sql,17526908,17526907,Legion_Tome,,
+MOVED,npc_id_realign_corrective_rest.sql,17526909,17526908,Legion_Libretto,,
+MOVED,npc_id_realign_corrective_rest.sql,17526910,17526909,Monthly_Master,,
+MOVED,npc_id_realign_corrective_rest.sql,17744189,17744190,Unity_Master,,
+MOVED,npc_id_realign_corrective_rest.sql,17744193,17744194,Zeid,,
+MOVED,npc_id_realign_corrective_rest.sql,17744198,17744199,Balamor,,
+MOVED,npc_id_realign_corrective_rest.sql,17764798,17764799,Achieve_Master,,
+MOVED,npc_id_realign_corrective_rest.sql,17764802,17764803,Unity_Master,,
+MOVED,npc_id_realign_corrective_rest.sql,17764806,17764807,Zeid,,
+MOVED,npc_id_realign_corrective_rest.sql,17764811,17764812,Balamor,,
+MOVED,npc_id_realign_corrective_rest.sql,17977444,17977469,Moogle,,
+MOVED,npc_id_realign_corrective_rest.sql,17977445,17977470,Moogle,,
+MOVED,npc_id_realign_corrective_rest.sql,17977446,17977471,Moogle,,
+MOVED,npc_id_realign_corrective_rest.sql,17977447,17977472,Moogle,,
+MOVED,npc_id_realign_corrective_rest.sql,17977448,17977473,Ramblix,,
+MOVED,npc_id_realign_corrective_rest.sql,17977449,17977474,Goblin_Footprint,,
+MOVED,npc_id_realign_corrective_rest.sql,17977450,17977475,Etched_Rock,,
+MOVED,npc_id_realign_corrective_rest.sql,17977459,17977484,Selh_teus,,
+MOVED,npc_id_realign_corrective_rest.sql,17977461,17977486,Tenzen,,
+MOVED,npc_id_realign_corrective_rest.sql,17977464,17977456,Nashmeira,,
+MOVED,npc_id_realign_corrective_rest.sql,17060107,17060115,Moogle,,
+MOVED,npc_id_realign_corrective_rest.sql,17236363,17236365,Alberic,,
+MOVED,npc_id_realign_corrective_rest.sql,17257117,17257119,Geomanticfount,,
+MOVED,npc_id_realign_corrective_rest.sql,17281676,17281678,Siren,,
+MOVED,npc_id_realign_corrective_rest.sql,17453281,17453293,ShadowLord,,
+MOVED,npc_id_realign_corrective_rest.sql,17453282,17453294,ShadowLord,,
+MOVED,npc_id_realign_corrective_rest.sql,17453285,17453297,Cornelia,,
+MOVED,npc_id_realign_corrective_rest.sql,17453296,17453308,Moogle,,
+MOVED,npc_id_realign_corrective_rest.sql,17510699,17510711,Moogle,,
+MOVED,npc_id_realign_corrective_rest.sql,17510737,17510749,mob01,,
+MOVED,npc_id_realign_corrective_rest.sql,17744188,17744189,Achieve_Master,,
+MOVED,npc_id_realign_corrective_rest.sql,17744192,17744193,Lion,,
+MOVED,npc_id_realign_corrective_rest.sql,17744195,17744198,Selh_teus,,
+MOVED,npc_id_realign_corrective_rest.sql,17764805,17764806,Lion,,
+MOVED,npc_id_realign_corrective_rest.sql,17764808,17764811,Selh_teus,,
+MOVED,npc_id_realign_corrective_rest.sql,17453284,17453296,Raogrimm,,
+MOVED,npc_id_realign_corrective_rest.sql,17510687,17510699,CrystalKnight,,
+MOVED,npc_id_realign_corrective_rest.sql,17510725,17510737,NPC01,,
+MOVED,npc_id_realign_corrective_rest.sql,17744191,17744192,Iroha,,
+MOVED,npc_id_realign_corrective_rest.sql,17764804,17764805,Iroha,,
+MOVED,npc_id_realign_corrective_rest.sql,17510713,17510725,Gadalar,,
+MOVED,npc_id_realign_corrective_rest.sql,17510701,17510713,Moogle,,
+MOVED,npc_id_realign_corrective_rest.sql,17510689,17510701,CrystalKnight,,
+MOVED,npc_id_realign_corrective_rest.sql,17510677,17510689,Kam lanaut,,
+SKIP-target-occupied,npc_id_realign_corrective_rest.sql,17060108,17060116,Moogle,holder: ['_1x1'],
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17187484,17187517,Achieve_Master,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17187485,17187518,Unity_Master,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17187517,17187550,Moogle,name now at target: True,row at old: ['Achieve_Master']
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17187518,17187551,Moogle,name now at target: True,row at old: ['Unity_Master']
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17187520,17187553,Moogle,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17187521,17187554,Moogle,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17187522,17187555,Moogle,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17191555,17191557,Moogle,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17191575,17191578,Planar_Rift,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17191576,17191579,Planar_Rift,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17191578,17191581,Riftworn_Pyxis,name now at target: True,row at old: ['Planar_Rift']
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17191579,17191582,Riftworn_Pyxis,name now at target: True,row at old: ['Planar_Rift']
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17195602,17195601,Achieve_Master,name now at target: True,row at old: ['Unity_Master']
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17195603,17195602,Unity_Master,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17195663,17195662,Chapi_Galepilai,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17195732,17195733,Lion,name now at target: True,row at old: ['Iroha']
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17195735,17195738,Selh_teus,name now at target: True,row at old: ['blank']
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17195738,17195739,Balamor,name now at target: True,row at old: ['Selh_teus']
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17199773,17199775,Kuchi_Eyjhann,name now at target: False,row at old: ['Survival_Guide']
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17216157,17216190,Achieve_Master,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17216158,17216191,Unity_Master,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17216164,17216197,Moogle,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17216165,17216198,Moogle,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17216166,17216199,Moogle,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17216167,17216200,Moogle,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17216168,17216201,Moogle,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17216169,17216202,Moogle,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17216170,17216203,Moogle,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17216171,17216204,Moogle,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17216179,17216212,Talking_Doll,name now at target: True,row at old: ['Treasure_Casket']
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17216192,17216225,Mogball-Local,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17220129,17220128,Achieve_Master,name now at target: True,row at old: ['Unity_Master']
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17220130,17220129,Unity_Master,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17220164,17220163,Chapi_Galepilai,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17220216,17220217,Lion,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17224369,17224372,Planar_Rift,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17224370,17224373,Planar_Rift,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17224372,17224375,Riftworn_Pyxis,name now at target: True,row at old: ['Planar_Rift']
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17224373,17224376,Riftworn_Pyxis,name now at target: True,row at old: ['Planar_Rift']
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17224376,17224378,Suspicioushume,name now at target: True,row at old: ['Riftworn_Pyxis']
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17248943,17248854,Moogle,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17248944,17248855,Moogle,name now at target: True,row at old: ['Planar_Rift']
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17248946,17248857,Moogle,name now at target: True,row at old: ['Planar_Rift']
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17257124,17257126,Iroha,name now at target: False,row at old: ['Survival_Guide']
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17257131,17257133,Balamor,name now at target: True,row at old: ['Selh_teus']
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17261218,17261221,Planar_Rift,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17261221,17261224,Riftworn_Pyxis,name now at target: True,row at old: ['Planar_Rift']
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17265313,17265316,Planar_Rift,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17265316,17265319,Riftworn_Pyxis,name now at target: True,row at old: ['Planar_Rift']
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17281675,17281677,Siren,name now at target: False,row at old: ['Survival_Guide']
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17347035,17347113,Achieve_Master,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17347036,17347114,Unity_Master,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17347066,17347144,Moogle,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17347067,17347145,Moogle,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17347068,17347146,Moogle,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17347069,17347147,Moogle,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17347070,17347148,Moogle,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17347071,17347149,Moogle,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17347072,17347150,Moogle,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17347073,17347151,Moogle,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17367699,17367777,Achieve_Master,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17367700,17367778,Unity_Master,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17367720,17367798,Moogle,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17367721,17367799,Moogle,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17367722,17367800,Moogle,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17367723,17367801,Moogle,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17367724,17367802,Moogle,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17367725,17367803,Moogle,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17367726,17367804,Moogle,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17367727,17367805,Moogle,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17375738,17375816,Unity_Master,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17375757,17375835,Moogle,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17375758,17375836,Moogle,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17375759,17375837,Moogle,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17375760,17375838,Moogle,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17375761,17375839,Moogle,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17375762,17375840,Moogle,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17375763,17375841,Moogle,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17375764,17375842,Moogle,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17424540,17424541,Achieve_Master,name now at target: True,row at old: ['Treasure_Casket']
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17424541,17424542,Unity_Master,name now at target: True,row at old: ['Achieve_Master']
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17424570,17424571,HomePoint#1,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17510671,17510683,Achieve_Master,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17510672,17510684,Unity_Master,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17510678,17510690,Kam lanaut,name now at target: True,row at old: ['Zeid']
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17510702,17510714,Moogle,name now at target: True,row at old: ['_4z0']
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17510703,17510715,Moogle,name now at target: True,row at old: ['_4z1']
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17510704,17510716,Moogle,name now at target: True,row at old: ['_4z2']
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17752609,17752508,Unity_Master,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17752611,17752510,Iroha,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17752612,17752511,Lion,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17764825,17764827,Ephemeral_Moogle,name now at target: False,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17977440,17977465,Moogle,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17977441,17977466,Moogle,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17977442,17977467,Moogle,name now at target: True,row at old: None
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17977443,17977468,Moogle,name now at target: True,row at old: None
+SKIP-target-occupied,npc_id_realign_corrective_rest.sql,17060116,17060100,_1x1,holder: ['NPC[104]'],
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17195739,17195579,???,name now at target: False,row at old: ['Balamor']
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17212134,17212019,blank,name now at target: False,row at old: ['Moogle']
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17453313,17453345,???,name now at target: False,row at old: ['Ayame']
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17510690,17510421,_4z0,name now at target: False,row at old: ['Kam lanaut']
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17977454,17977396,???,name now at target: False,row at old: ['Lion']
+SKIP-src-absent,npc_id_realign_corrective_rest.sql,17977455,17977507,???,name now at target: False,row at old: ['Prishe']
