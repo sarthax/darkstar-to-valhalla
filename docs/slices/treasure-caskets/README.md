@@ -24,3 +24,10 @@ Quicksand Caves weight doors (open/close with weight) and Antican tag/qm6 spawns
 
 ## Zone-exclusive items (v7)
 Each zone has a `regionalItems` list in `casket_loot.lua`; a locked-casket item roll has a 5% chance to become one of them. The wiki's "one exclusive per zone" is inconsistent with the item pages, so the list is the union of both: items can appear in several zones and zones can have several. Kept as-is (user-confirmed valid): 112 Negoroshiki, 157 Iron Ingot (Middle Delkfutt's Tower; Rebel Earring 11042 added there per BG-Wiki), 177 Dragon Ring, 184 Giant's Earring. Added: Negoroshiki in 125 (Western Altepa Desert), Dragon Ring in 172 (Zeruhn Mines) and 192 (Inner Horutoto Ruins). Slot bug fixed: the exclusive now replaces the rolled slot instead of always overwriting slot 1 (which left a slot empty).
+
+## Realign update (2026-10-13)
+`main`'s `sql/npc_list.sql` now holds a `Treasure_Casket` row for every real casket slot (965 rows, 60 zones; 16 per zone, zone 208 has 21), so the "37 slots left unwired" and "923 of 960" notes above are obsolete: the displaced DSP npcs moved to their DAT-correct ids in the npc-id-realign slices (e.g. FallenEgg 17195584 -> 17195583).
+- `sql/slices/treasure-caskets/treasure_caskets.sql` is regenerated from `main`'s `npc_list.sql` (REPLACE of the casket rows only). It replaces the v2 file, which restored displaced npcs onto pre-realign ids and deleted casket rows.
+- `removed_rows.sql` (restore of displaced rows at old ids) was removed for the same reason; do not recreate it.
+- `sql/npc_id_realign_190_208.sql` is superseded by the realign slices and should not be run.
+- Reimport via `py -3 dbtool.py`, or on an existing DB run `sql/slices/treasure-caskets/treasure_caskets.sql`, then restart map-server.
