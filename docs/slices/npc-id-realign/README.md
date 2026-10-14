@@ -53,3 +53,7 @@ Of the 32 listed in `LIVE_VS_REPO_DIFFS_2026-10-13.md`, 8 were already identical
 | Single stragglers | 7 | `???`, blank, `_4z0`, Balamor rows (zones 104, 113, 162, 191, 203, 258): empty target, no DAT entity, different row at old id | none |
 
 Nothing was placed into an empty target slot: the DAT has no entity for those slots, so any placement would invent an id.
+
+## Zone 20 warp shift (2026-10-13)
+
+Promyvion-Mea warp doors (`_0k1`..`_0k9`, `_0ka`, `_0kb`; nameplates warp_01..warp_11) sat 2 slots above the DAT slots that carry the same names (warp_01 = slot 315 ... warp_11 = slot 325). Moved slots 317-327 down by 2 (live and `sql/npc_list.sql`); backup `bak_z20warp_20261013`. Targets were empty; no mob/instance/treasure rows in range. Lua updated in lockstep: `Promyvion-Mea/Zone.lua` (10 refs) and `mobs/Memory_Receptacle.lua` (11 refs) now use ids 16859451..461. `_0k0` (Memory Flux, slot 328) left alone. Scoreboard NPC name mismatches 140 -> 129.

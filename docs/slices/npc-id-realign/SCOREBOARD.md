@@ -7,8 +7,8 @@ Not assessed by design: rows at 0,0,0 (placed dynamically by CS/battlefield/cond
 | Check | NPC | Mob |
 |---|---:|---:|
 | rows | 29994 | 68963 |
-| name = DAT | 27645 | 67669 |
-| name differs from DAT | 140 | 381 |
+| name = DAT | 27656 | 67669 |
+| name differs from DAT | 129 | 381 |
 | position = LSB | 14387 | 44818 |
 | position differs from LSB | 1458 | 13118 |
 | look = LSB | 15253 | 0 |
@@ -31,3 +31,4 @@ DAT named entities with no row in either table (unbuilt, deferred): **18179**
 | Date | NPC name bad | Mob name bad | NPC pos bad | Mob pos bad | NPC look bad |
 |---|---:|---:|---:|---:|---:|
 | 2026-10-13 19:12 | 140 | 381 | 1458 | 13118 | 592 |
+| 2026-10-13 19:16 | 129 | 381 | 1458 | 13118 | 592 |

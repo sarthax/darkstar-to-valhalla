@@ -126,17 +126,6 @@ mob,16859435,20,299,Wanderer,Wanderer,Weeper
 mob,16859436,20,300,Wanderer,Wanderer,Craver
 mob,16859437,20,301,Weeper,Weeper,Craver
 mob,16859441,20,305,Craver,Craver,Coveter
-npc,16859453,20,317,_0k1,warp_01,warp_03
-npc,16859454,20,318,_0k2,warp_02,warp_04
-npc,16859455,20,319,_0k3,warp_03,warp_05
-npc,16859456,20,320,_0k4,warp_04,warp_06
-npc,16859457,20,321,_0k5,warp_05,warp_07
-npc,16859458,20,322,_0k6,warp_06,warp_08
-npc,16859459,20,323,_0k7,warp_07,warp_09
-npc,16859460,20,324,_0k8,warp_08,warp_10
-npc,16859461,20,325,_0k9,warp_09,warp_11
-npc,16859462,20,326,_0ka,warp_10,Memory Flux
-npc,16859463,20,327,_0kb,warp_11,Memory Flux
 npc,16859470,20,334,qm1,???,Moogle
 npc,16859478,20,342,Moogle,Moogle,Rendezvous Point
 npc,16859479,20,343,Moogle,Moogle,???
