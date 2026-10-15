@@ -364,3 +364,38 @@ function RUNEFENCER.useSwipeLunge(player, target, ability, action, isLunge)
     total = takeAbilityDamage(target, player, {}, true, total, SLOT_MAIN, (total > 0) and 1 or 0, 0, shadowsAbsorbed, 0, action, nil);
     return total;
 end
+
+-----------------------------------
+-- Vivacious Pulse (slice run-geo-jobs)
+-- Job points, potency mod and AF3 debuff-removal augment are not ported.
+-----------------------------------
+RUNEFENCER.runeHealStat =
+{
+    [EFFECT_IGNIS]  = MOD_STR,
+    [EFFECT_GELUS]  = MOD_DEX,
+    [EFFECT_FLABRA] = MOD_VIT,
+    [EFFECT_TELLUS] = MOD_AGI,
+    [EFFECT_SULPOR] = MOD_INT,
+    [EFFECT_UNDA]   = MOD_MND,
+    [EFFECT_LUX]    = MOD_CHR,
+};
+
+function RUNEFENCER.useVivaciousPulse(player, target, ability)
+    local divine = target:getSkillLevel(SKILL_DIV);
+    local heal = 10 + math.floor(divine / 2);
+    local tenebrae = 0;
+    for _, rune in ipairs(target:getAllRuneEffects()) do
+        local stat = RUNEFENCER.runeHealStat[rune];
+        if (stat ~= nil) then
+            heal = heal + math.floor(target:getStat(stat) * 0.5);
+        elseif (rune == EFFECT_TENEBRAE) then
+            tenebrae = tenebrae + 1;
+        end
+    end
+    if (tenebrae > 0) then
+        target:addMP(math.floor(divine / 10) * (tenebrae + 1));
+    end
+    heal = math.min(heal, target:getMaxHP() - target:getHP());
+    target:restoreHP(heal);
+    return heal;
+end
