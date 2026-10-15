@@ -23,3 +23,10 @@ P5 Integration: job change/unlock quests, equipment (job masks), packets (job/ef
 Each phase = commit + tag slice/run-geo-jobs-vN on this branch; SQL as sql/slices/run-geo-jobs/*.sql with exact import commands.
 ## Risks
 Job points absent in DSP (LSB reads them); unknown animation ids; client version gate; C++ pet/aura changes touch shared engine files (hunk-level ownership per BRANCH_PLAN).
+
+## P0 result 1 - effect ids (docs/slices/run-geo-jobs/effect_id_diff.csv, LSB data/status_effects.yaml vs DSP status_effect.h)
+- 37 RUN/GEO effects already MATCH by name+id (all rune effects 523-530, RUN 531-538, 568-571, Bolster, Entrust, etc.).
+- 31 "ID-CONFLICT" are NOT drift: LSB names them geo_* (539-567, 580), DSP names the same numeric ids REGEN_II...WEIGHT_II / HASTE_II / RUNEIST_S_ROLL(600 = runeists_roll). Same client id, name-only difference. No remap needed; Lua should use DSP's names or add aliases.
+- Only truly MISSING: colure_active = 612 (add EFFECT_COLURE_ACTIVE = 612 to status_effect.h; confirm in client before use).
+- Correction to earlier claim: the GEO aura effects are NOT absent from the enum; only COLURE_ACTIVE is.
+- Still to do in P0: Mod ids (F07_mod_remap.csv has 21 exceptions) used by rune_fencer/geomancer.lua, ability/spell/pet ids, client-ships-RUN/GEO check.
