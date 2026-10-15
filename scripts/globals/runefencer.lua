@@ -272,3 +272,19 @@ function RUNEFENCER.onGambitLose(target, effect)
         target:addMod(RUNEFENCER.gambitResistMod[rune], power);
     end);
 end
+
+-----------------------------------
+-- One for All: party-wide flat magic damage cut = 20% max HP, 30s (job points not wired)
+-- Consumed in magic.lua finalMagicAdjustments.
+-----------------------------------
+function RUNEFENCER.useOneForAll(player, target, ability)
+    if (player:getID() ~= target:getID()) then
+        return nil;
+    end
+    local power = math.floor(player:getMaxHP() * 0.2);
+    for _, member in pairs(player:getParty()) do
+        member:delStatusEffectSilent(EFFECT_ONE_FOR_ALL);
+        member:addStatusEffect(EFFECT_ONE_FOR_ALL, power, 0, 30);
+    end
+    return EFFECT_ONE_FOR_ALL;
+end
