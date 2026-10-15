@@ -40,3 +40,10 @@ Job points absent in DSP (LSB reads them); unknown animation ids; client version
 - DSP staged rows are NOT retail: levels, recast, recastId wrong (e.g. vallation lvl20/300s vs LSB lvl10/180s/recastId 23; battuta has recastTime/recastId swapped). Use LSB values; DSP recastId=0 on every RUN row must be fixed (client recast timers).
 - Animation ids: DSP's 291-302/327 equal LSB's (no drift). LSB's own animation values for vallation/pflug/valiance/gambit/liement/rayke/battuta/lunge are 0-8 (low, likely placeholders) -> mark UNVERIFIED, need client/capture.
 - Message ids 660-672 (luopan/rune/swordplay/vallation...) come from LSB msg_basic.h; DSP message_basic.h lacks them. Must verify they exist in client 30170905_5 before use (open).
+
+## P0/P1 results 4 (data tables)
+- skill_ranks: identical to LSB for geo/run; only skill 45 handbell is commented out in DSP ("Does not display correctly in-game"). skill_caps/exp_base: same shape, rows exist for skills 44/45.
+- traits: DSP 443 rows vs LSB 719. DSP has some job 21/22 traits; LSB adds tiers, accuracy bonus, cardinal chant (mod 959), elemental celerity (mod 901). LSB max HP/MP boost use mods 1095/1096 vs DSP 2/5 (mod-id drift): trait rows must be remapped, not copied.
+- spell_list: DSP's 58 Indi/Geo rows (768+) are commented placeholders; LSB rows are real but have extra columns (family, radius, status_effect, status_effect_tier). Needs column-adapted import (P3).
+- merit ids: DSP merit.h already has GEO/RUN merit enums (e.g. MERIT_LUNGE_EFFECT, MERIT_BATTUTA, MERIT_RAYKE); LSB merit.h grep returned nothing at that path (not compared yet).
+- sql/slices/run-geo-jobs/run_abilities.sql and geo_abilities.sql: generated from LSB (id = LSB-16, radius column dropped, runes/ward/effusion/rune_enchantment excluded because DSP rows already exist). Import with `REPLACE INTO`; apply via `py -3 dbtool.py` or direct MariaDB. message1 (660-672), animation and recastId values are UNVERIFIED against the client. Not live until the user runs them.
