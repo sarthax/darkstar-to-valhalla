@@ -232,7 +232,7 @@ local function refinerParams(player, cfg)
     if (vwoAtmaParams) then p0, p1, p2, p3 = vwoAtmaParams(player, p0); end -- atmacite ownership/infusion words [C Wiggo, see ATMACITE-DATA.md]
     -- p5 = 0x800000 + one bit per HELD stratum stone, bit = path*4 + tier-1 [C: 12 Raguza refine captures; a player holding Crimson IV + Indigo IV + Jade I read 0x188]
     -- p6 = 2 bits per path, set only when the held stone is ready to refine: 01 for even tiers, 11 for odd tiers; 00 = held but not ready [C]
-    local p5 = 0; -- EXPERIMENT: was 0x800000 (unexplained constant in captures; suspected client "Hyacinth" bit 23). Restore if atmacite menu breaks.
+    local p5 = 0; -- [T 2026-10-15] the 0x800000 seen in captures made the client list "Hyacinth Stratum Abyssite" (bit 23); dropping it fixed it in-game, other menu sections unaffected
     local p6 = 0;
     for p = 0, 2 do -- Crimson/Indigo/Jade only; other paths' bits not captured
         local t = vwoHeldTier(player, p);
