@@ -223,7 +223,7 @@ function vwoOfficerFinish(player, cfg, option)
 end
 
 -- [H] refiner params (see header of Atmacite_Refiner.lua)
-VWO_PROBE = true; -- refiner menu/teleport mapping debug: set false when done
+VWO_PROBE = false; -- refiner menu/teleport mapping debug: set false when done
 local function refinerParams(player, cfg)
     local held = anyStratum(player);
     local p0 = (cfg.nation or 0) * 262144 + 2 -- nation unknown for outland refiners [D=0]
@@ -232,7 +232,7 @@ local function refinerParams(player, cfg)
     if (vwoAtmaParams) then p0, p1, p2, p3 = vwoAtmaParams(player, p0); end -- atmacite ownership/infusion words [C Wiggo, see ATMACITE-DATA.md]
     -- p5 = 0x800000 + one bit per HELD stratum stone, bit = path*4 + tier-1 [C: 12 Raguza refine captures; a player holding Crimson IV + Indigo IV + Jade I read 0x188]
     -- p6 = 2 bits per path, set only when the held stone is ready to refine: 01 for even tiers, 11 for odd tiers; 00 = held but not ready [C]
-    local p5 = 0x800000;
+    local p5 = 0; -- EXPERIMENT: was 0x800000 (unexplained constant in captures; suspected client "Hyacinth" bit 23). Restore if atmacite menu breaks.
     local p6 = 0;
     for p = 0, 2 do -- Crimson/Indigo/Jade only; other paths' bits not captured
         local t = vwoHeldTier(player, p);
@@ -243,6 +243,8 @@ local function refinerParams(player, cfg)
             end
         end
     end
+    local forceP5 = player:getVar("VWO_P5"); -- TEMP DIAGNOSTIC: !setplayervar VWO_P5 <n> overrides p5 to decode the client's stone bits; remove when decoded
+    if (forceP5 ~= 0) then p5 = forceP5; end
     if (VWO_PROBE) then -- TEMPORARY diagnostic: all menu-gating bits set to see which sections the client unlocks
         p5, p6 = 0xFFFFFF, 0xFFFFFFF;
         printf("[VWO refiner probe] p5=%d p6=%d (normal p5/p6 overwritten)", p5, p6);

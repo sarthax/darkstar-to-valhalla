@@ -727,6 +727,7 @@ EFFECT_NEGATE_VIRUS             = 608
 EFFECT_NEGATE_CURSE             = 609
 EFFECT_NEGATE_CHARM             = 610
 EFFECT_MAGIC_EVASION_BOOST_II   = 611
+EFFECT_COLURE_ACTIVE            = 612
 -- Effect icons in packet can go from 0-767, so no custom effects should go in that range.
 
 -- Purchased from Cruor Prospector
@@ -1384,6 +1385,39 @@ MOD_VAMPYR_REGEN          = 871 -- Blood of the Vampyr: HP/tick while HP < 51%
 MOD_VAMPYR_REFRESH        = 872 -- Blood of the Vampyr: MP/tick while MP < 51%
 MOD_ARTISAN_LOSS_SUPPORT  = 873 -- Artisan's Advantage: % reduction of failed-synth ingredient loss chance with Image Support
 MOD_FOOD_DURATION          = 874 -- Dilatory Digestion: % added to food effect duration
+-- Slice run-geo-jobs: RUN/GEO mods (match modifier.h)
+MOD_AUGMENTS_SLEIGHT_OF_SWORD = 277
+MOD_AUGMENTS_VIVACIOUS_PULSE = 1013
+MOD_AURA_SIZE                = 1030
+MOD_BOLSTER_EFFECT           = 1028
+MOD_CURATIVE_RECANTATION     = 970
+MOD_DARK_RES_RANK            = 199
+MOD_EARTH_RES_RANK           = 195
+MOD_ENHANCES_BATTUTA         = 1004
+MOD_ENHANCES_INSPIRATION     = 1007
+MOD_FIRE_RES_RANK            = 192
+MOD_FULL_CIRCLE              = 1025
+MOD_GAMBIT_DURATION          = 1018
+MOD_GEOMANCY_BONUS           = 961
+MOD_GEOMANCY_SKILL           = 123
+MOD_ICE_RES_RANK             = 193
+MOD_INDI_DURATION            = 960
+MOD_INQUARTATA               = 963
+MOD_LIEMENT_DURATION         = 1017
+MOD_LIEMENT_EXTENDS_TO_AREA  = 1020
+MOD_LIFE_CYCLE_EFFECT        = 1029
+MOD_LIGHT_RES_RANK           = 198
+MOD_PARRY_SPIKES             = 1022
+MOD_PARRY_SPIKES_DMG         = 1023
+MOD_RAYKE_DURATION           = 1014
+MOD_SWIPE                    = 1016
+MOD_SWORDPLAY                = 1008
+MOD_THUNDER_RES_RANK         = 196
+MOD_VIVACIOUS_PULSE_POTENCY  = 1012
+MOD_WATER_RES_RANK           = 197
+MOD_WIND_RES_RANK            = 194
+MOD_ELEMENTAL_CELERITY       = 901
+MOD_CARDINAL_CHANT           = 959
 
 MOD_WEAPONSKILL_DAMAGE_BASE = 570 -- Specific to 1 Weaponskill: See modifier.h for how this is used
 MOD_ALL_WSDMG_ALL_HITS      = 840 -- Generic (all Weaponskills) damage, on all hits.

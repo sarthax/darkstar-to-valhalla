@@ -47,3 +47,9 @@ Job points absent in DSP (LSB reads them); unknown animation ids; client version
 - spell_list: DSP's 58 Indi/Geo rows (768+) are commented placeholders; LSB rows are real but have extra columns (family, radius, status_effect, status_effect_tier). Needs column-adapted import (P3).
 - merit ids: DSP merit.h already has GEO/RUN merit enums (e.g. MERIT_LUNGE_EFFECT, MERIT_BATTUTA, MERIT_RAYKE); LSB merit.h grep returned nothing at that path (not compared yet).
 - sql/slices/run-geo-jobs/run_abilities.sql and geo_abilities.sql: generated from LSB (id = LSB-16, radius column dropped, runes/ward/effusion/rune_enchantment excluded because DSP rows already exist). Import with `REPLACE INTO`; apply via `py -3 dbtool.py` or direct MariaDB. message1 (660-672), animation and recastId values are UNVERIFIED against the client. Not live until the user runs them.
+
+## P0 foundations applied (code)
+- modifier.h/status.lua: 32 mods added (RES_RANK 192-199 + single-id mods + ELEMENTAL_CELERITY 901, CARDINAL_CHANT 959). *_SDT mods deliberately NOT added (collide with FIRERES..DARKRES 54-61; scale decision pending).
+- status_effect.h/status.lua: EFFECT_COLURE_ACTIVE = 612 (unverified vs client).
+- ability.h: ABILITY_SWIPE 328, VIVACIOUS_PULSE 367, ENTRUST 370.
+- Not compiled yet.

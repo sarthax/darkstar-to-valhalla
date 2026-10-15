@@ -690,6 +690,40 @@ enum class Mod
     ARTISAN_LOSS_SUPPORT      = 873, // Percent reduction of the failed-synthesis ingredient loss chance while Synthesis Image Support is active
     FOOD_DURATION             = 874, // Dilatory Digestion: percent added to food effect duration
 
+    // Slice run-geo-jobs: RUN/GEO mods (ids match LSB; verified free in this tree)
+    AUGMENTS_SLEIGHT_OF_SWORD = 277,
+    AUGMENTS_VIVACIOUS_PULSE  = 1013,
+    AURA_SIZE                 = 1030,
+    BOLSTER_EFFECT            = 1028,
+    CURATIVE_RECANTATION      = 970,
+    DARK_RES_RANK             = 199,
+    EARTH_RES_RANK            = 195,
+    ENHANCES_BATTUTA          = 1004,
+    ENHANCES_INSPIRATION      = 1007,
+    FIRE_RES_RANK             = 192,
+    FULL_CIRCLE               = 1025,
+    GAMBIT_DURATION           = 1018,
+    GEOMANCY_BONUS            = 961,
+    GEOMANCY_SKILL            = 123,
+    ICE_RES_RANK              = 193,
+    INDI_DURATION             = 960,
+    INQUARTATA                = 963,
+    LIEMENT_DURATION          = 1017,
+    LIEMENT_EXTENDS_TO_AREA   = 1020,
+    LIFE_CYCLE_EFFECT         = 1029,
+    LIGHT_RES_RANK            = 198,
+    PARRY_SPIKES              = 1022,
+    PARRY_SPIKES_DMG          = 1023,
+    RAYKE_DURATION            = 1014,
+    SWIPE                     = 1016,
+    SWORDPLAY                 = 1008,
+    THUNDER_RES_RANK          = 196,
+    VIVACIOUS_PULSE_POTENCY   = 1012,
+    WATER_RES_RANK            = 197,
+    WIND_RES_RANK             = 194,
+    ELEMENTAL_CELERITY        = 901,
+    CARDINAL_CHANT            = 959,
+
     // 570 through 825 used by WS DMG mods these are not spares.
     // SPARE = 860, // stuff
 };

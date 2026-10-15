@@ -1,5 +1,5 @@
 -- DRAFT (slice run-geo-jobs, P2): mechanical port of LSB rune_fencer.lua. NOT loaded by anything; not runnable.
--- Applied: xi.effect.X -> EFFECT_X, xi.mod.X -> X. Remaining xi.* references are TODO (see docs/slices/run-geo-jobs/RUN_LUA_GAPS.md).
+-- Applied: xi.effect.X -> EFFECT_X, xi.mod.X -> MOD_X. Remaining xi.* references are TODO (see RUN_LUA_GAPS.md).
 -----------------------------------
 -- Rune Fencer Job Utilities
 -----------------------------------
@@ -49,13 +49,13 @@ local function getRuneHealAmount(type, target)
 
         local runeStatMap =
         {
-            [EFFECT_IGNIS]  = STR,
-            [EFFECT_GELUS]  = DEX,
-            [EFFECT_FLABRA] = VIT,
-            [EFFECT_TELLUS] = AGI,
-            [EFFECT_SULPOR] = INT,
-            [EFFECT_UNDA]   = MND,
-            [EFFECT_LUX]    = CHR,
+            [EFFECT_IGNIS]  = MOD_STR,
+            [EFFECT_GELUS]  = MOD_DEX,
+            [EFFECT_FLABRA] = MOD_VIT,
+            [EFFECT_TELLUS] = MOD_AGI,
+            [EFFECT_SULPOR] = MOD_INT,
+            [EFFECT_UNDA]   = MOD_MND,
+            [EFFECT_LUX]    = MOD_CHR,
         }
 
         return math.floor(target:getStat(runeStatMap[type]) * 0.5)
@@ -69,7 +69,7 @@ local function calculateVivaciousPulseHealing(target)
     local divineMagicSkillLevel = target:getSkillLevel(xi.skill.DIVINE_MAGIC)
     local hpHealAmount          = 10 + math.floor(divineMagicSkillLevel / 2 * (100 + target:getJobPointLevel(xi.jp.VIVACIOUS_PULSE_EFFECT)) / 100) -- Bonus of 1-20%  from Vivacious pulse job points.
     local tenebraeRuneCount     = 0
-    local bonusPct              = (100 + target:getMod(VIVACIOUS_PULSE_POTENCY)) / 100
+    local bonusPct              = (100 + target:getMod(MOD_VIVACIOUS_PULSE_POTENCY)) / 100
     local debuffs               = {}
     local debuffCount           = 0
 
@@ -109,7 +109,7 @@ local function calculateVivaciousPulseHealing(target)
         target:addMP(mpHealAmount) -- augment bonusPct does not apply here according to testing.
     end
 
-    if debuffCount > 0 and target:getMod(AUGMENTS_VIVACIOUS_PULSE) > 0 then -- add random removal of Poison, Paralyze, Blind, Silence, Mute, Curse, Bane, Doom, Virus, Plague, Petrification via AF3 head (source: https://www.bg-wiki.com/ffxi/Erilaz_Galea)
+    if debuffCount > 0 and target:getMod(MOD_AUGMENTS_VIVACIOUS_PULSE) > 0 then -- add random removal of Poison, Paralyze, Blind, Silence, Mute, Curse, Bane, Doom, Virus, Plague, Petrification via AF3 head (source: https://www.bg-wiki.com/ffxi/Erilaz_Galea)
         target:delStatusEffect(debuffs[math.randomInt(1, debuffCount)])
     end
 
@@ -126,14 +126,14 @@ end
 local function getVallationValianceSDTType(type)
     local runeSDTMap =
     {
-        [EFFECT_IGNIS]    = ICE_SDT,
-        [EFFECT_GELUS]    = WIND_SDT,
-        [EFFECT_FLABRA]   = EARTH_SDT,
-        [EFFECT_TELLUS]   = THUNDER_SDT,
-        [EFFECT_SULPOR]   = WATER_SDT,
-        [EFFECT_UNDA]     = FIRE_SDT,
-        [EFFECT_LUX]      = DARK_SDT,
-        [EFFECT_TENEBRAE] = LIGHT_SDT,
+        [EFFECT_IGNIS]    = MOD_ICE_SDT,
+        [EFFECT_GELUS]    = MOD_WIND_SDT,
+        [EFFECT_FLABRA]   = MOD_EARTH_SDT,
+        [EFFECT_TELLUS]   = MOD_THUNDER_SDT,
+        [EFFECT_SULPOR]   = MOD_WATER_SDT,
+        [EFFECT_UNDA]     = MOD_FIRE_SDT,
+        [EFFECT_LUX]      = MOD_DARK_SDT,
+        [EFFECT_TENEBRAE] = MOD_LIGHT_SDT,
     }
 
     return runeSDTMap[type]
@@ -158,14 +158,14 @@ end
 local function getGambitSDTType(type)
     local runeSDTMap =
     {
-        [EFFECT_IGNIS]    = FIRE_SDT,
-        [EFFECT_GELUS]    = ICE_SDT,
-        [EFFECT_FLABRA]   = WIND_SDT,
-        [EFFECT_TELLUS]   = EARTH_SDT,
-        [EFFECT_SULPOR]   = THUNDER_SDT,
-        [EFFECT_UNDA]     = WATER_SDT,
-        [EFFECT_LUX]      = LIGHT_SDT,
-        [EFFECT_TENEBRAE] = DARK_SDT,
+        [EFFECT_IGNIS]    = MOD_FIRE_SDT,
+        [EFFECT_GELUS]    = MOD_ICE_SDT,
+        [EFFECT_FLABRA]   = MOD_WIND_SDT,
+        [EFFECT_TELLUS]   = MOD_EARTH_SDT,
+        [EFFECT_SULPOR]   = MOD_THUNDER_SDT,
+        [EFFECT_UNDA]     = MOD_WATER_SDT,
+        [EFFECT_LUX]      = MOD_LIGHT_SDT,
+        [EFFECT_TENEBRAE] = MOD_DARK_SDT,
     }
 
     return runeSDTMap[type]
@@ -190,14 +190,14 @@ end
 local function getRaykeResistanceRankMod(type)
     local runeModMap =
     {
-        [EFFECT_IGNIS]    = FIRE_RES_RANK,
-        [EFFECT_GELUS]    = ICE_RES_RANK,
-        [EFFECT_FLABRA]   = WIND_RES_RANK,
-        [EFFECT_TELLUS]   = EARTH_RES_RANK,
-        [EFFECT_SULPOR]   = THUNDER_RES_RANK,
-        [EFFECT_UNDA]     = WATER_RES_RANK,
-        [EFFECT_LUX]      = LIGHT_RES_RANK,
-        [EFFECT_TENEBRAE] = DARK_RES_RANK,
+        [EFFECT_IGNIS]    = MOD_FIRE_RES_RANK,
+        [EFFECT_GELUS]    = MOD_ICE_RES_RANK,
+        [EFFECT_FLABRA]   = MOD_WIND_RES_RANK,
+        [EFFECT_TELLUS]   = MOD_EARTH_RES_RANK,
+        [EFFECT_SULPOR]   = MOD_THUNDER_RES_RANK,
+        [EFFECT_UNDA]     = MOD_WATER_RES_RANK,
+        [EFFECT_LUX]      = MOD_LIGHT_RES_RANK,
+        [EFFECT_TENEBRAE] = MOD_DARK_RES_RANK,
     }
 
     return runeModMap[type]
@@ -321,11 +321,11 @@ end
 xi.job_utils.rune_fencer.useSwordplay = function(player, target, ability)
     -- Calculate power. (Accuracy and Evasion) https://www.bg-wiki.com/ffxi/Swordplay
     local power = 3                                               -- Naked swordplay starts at 3. Retail confirmed.
-    power       = power + power * player:getMod(SWORDPLAY) -- "Swordplay + X" Where X is TICKS.
+    power       = power + power * player:getMod(MOD_SWORDPLAY) -- "Swordplay + X" Where X is TICKS.
 
     -- Calculate subPower. (Subtle blow) https://www.bg-wiki.com/ffxi/Sleight_of_Sword
     local subPower = player:getMerit(xi.merit.SLEIGHT_OF_SWORD)                            -- Each merit adds 5 "Subtle Blow".
-    subPower       = subPower + (subPower / 5) * player:getMod(AUGMENTS_SLEIGHT_OF_SWORD) -- Add augment effect IF player has augment.
+    subPower       = subPower + (subPower / 5) * player:getMod(MOD_AUGMENTS_SLEIGHT_OF_SWORD) -- Add augment effect IF player has augment.
 
     player:addStatusEffect(EFFECT_SWORDPLAY, { power = power, duration = 120, origin = player, tick = 3, subPower = subPower })
 
@@ -337,12 +337,12 @@ xi.job_utils.rune_fencer.onSwordplayEffectGain = function(target, effect)
     local subPower = effect:getSubPower()
 
     if power > 0 then
-        target:addMod(ACC, power)
-        target:addMod(EVASION, power)
+        target:addMod(MOD_ACC, power)
+        target:addMod(MOD_EVASION, power)
     end
 
     if subPower > 0 then
-        target:addMod(SUBTLE_BLOW, subPower)
+        target:addMod(MOD_SUBTLE_BLOW, subPower)
     end
 end
 
@@ -359,8 +359,8 @@ xi.job_utils.rune_fencer.onSwordplayEffectTick = function(target, effect)
         end
 
         if tickPower > 0 then
-            target:addMod(ACC, tickPower)
-            target:addMod(EVA, tickPower)
+            target:addMod(MOD_ACC, tickPower)
+            target:addMod(MOD_EVA, tickPower)
         end
 
         power = math.min(power + tickPower, maxPower)
@@ -372,11 +372,11 @@ xi.job_utils.rune_fencer.onSwordplayEffectLose = function(target, effect)
     local power    = effect:getPower()
     local subPower = effect:getSubPower()
 
-    target:delMod(ACC, power)
-    target:delMod(EVA, power)
+    target:delMod(MOD_ACC, power)
+    target:delMod(MOD_EVA, power)
 
     if subPower > 0 then
-        target:delMod(SUBTLE_BLOW, subPower)
+        target:delMod(MOD_SUBTLE_BLOW, subPower)
     end
 end
 
@@ -420,7 +420,7 @@ xi.job_utils.rune_fencer.useVallationValiance = function(player, target, ability
     local sdtPower              = 15
     local meritBonus            = player:getMerit(xi.merit.VALLATION_EFFECT)
     local inspirationMerits     = player:getMerit(xi.merit.INSPIRATION)
-    local inspirationFCBonus    = inspirationMerits + inspirationMerits / 10 * player:getMod(ENHANCES_INSPIRATION)  -- 10 FC per merit level, plus 2% per level from AF2 leg aug
+    local inspirationFCBonus    = inspirationMerits + inspirationMerits / 10 * player:getMod(MOD_ENHANCES_INSPIRATION)  -- 10 FC per merit level, plus 2% per level from AF2 leg aug
     local jobPointBonusDuration = player:getJobPointLevel(xi.jp.VALLATION_DURATION)
 
     sdtPower = (sdtPower + meritBonus) * 100
@@ -483,7 +483,7 @@ end
 -- see https://www.bg-wiki.com/ffxi/Battuta
 xi.job_utils.rune_fencer.useBattuta = function(player, target, ability, action)
     local meritPower      = player:getMerit(xi.merit.BATTUTA) -- power is 4
-    local modBonus        = 1 + (player:getMod(ENHANCES_BATTUTA) * meritPower / 4) / 100
+    local modBonus        = 1 + (player:getMod(MOD_ENHANCES_BATTUTA) * meritPower / 4) / 100
     local inquartataPower = 36 + meritPower -- base 36% + merit power of 4% each = max of 56%
     local spikesPower     = 6 + meritPower  -- damage is static 26 per rune barring SDT/MDT at 5/5 Battuta merits. 6 + 4*5 = 26.
     local runeCount       = target:getActiveRuneCount()
@@ -502,12 +502,12 @@ xi.job_utils.rune_fencer.onBattutaEffectGain = function(target, effect)
     local highestRune = target:getHighestRuneEffect()
     local spikesType  = getBattutaSpikesType(highestRune)
 
-    effect:addMod(INQUARTATA, effect:getPower())
+    effect:addMod(MOD_INQUARTATA, effect:getPower())
 
     local spikesPower = effect:getSubPower()
     if spikesPower > 0 then
-        effect:addMod(PARRY_SPIKES, spikesType)
-        effect:addMod(PARRY_SPIKES_DMG, effect:getSubPower())
+        effect:addMod(MOD_PARRY_SPIKES, spikesType)
+        effect:addMod(MOD_PARRY_SPIKES_DMG, effect:getSubPower())
     end
 end
 
@@ -542,7 +542,7 @@ end
 local function calculateSwipeLungeDamage(player, target, skillModifier, gearBonus, numHits, multipliers)
     local damage = math.floor(skillModifier * (0.50 + 0.25 * numHits + gearBonus / 100))
 
-    damage = damage + player:getMod(MAGIC_DAMAGE) -- add mdamage to base damage
+    damage = damage + player:getMod(MOD_MAGIC_DAMAGE) -- add mdamage to base damage
 
     damage = math.floor(damage * multipliers.eleStaffBonus)
     damage = math.floor(damage * multipliers.eleAffinityBonus)
@@ -572,7 +572,7 @@ xi.job_utils.rune_fencer.useSwipeLunge = function(player, target, ability, actio
     local highestRuneEffect      = player:getHighestRuneEffect()
     local highestRuneEffectCount = player:countEffect(highestRuneEffect)
     local weaponSkillType        = player:getWeaponSkillType(xi.slot.MAIN)
-    local gearBonus              = player:getMod(SWIPE)
+    local gearBonus              = player:getMod(MOD_SWIPE)
     local jobPointBonus          = player:getJobPointLevel(xi.jp.SWIPE_EFFECT)
     local bonusMacc              = player:getMerit(xi.merit.RUNE_ENHANCE)
     local numHits                = 1
@@ -687,14 +687,14 @@ end
 local function addPflugResistType(type, effect, power)
     local pflugResistTypes =
     {
-        [EFFECT_IGNIS]    = { PARALYZERES, BINDRES },
-        [EFFECT_GELUS]    = { SILENCERES, GRAVITYRES },
-        [EFFECT_FLABRA]   = { PETRIFYRES, SLOWRES },
-        [EFFECT_TELLUS]   = { STUNRES },
-        [EFFECT_SULPOR]   = { POISONRES },
-        [EFFECT_UNDA]     = { AMNESIARES, VIRUSRES },
-        [EFFECT_LUX]      = { SLEEPRES, BLINDRES, CURSERES },
-        [EFFECT_TENEBRAE] = { CHARMRES },
+        [EFFECT_IGNIS]    = { MOD_PARALYZERES, MOD_BINDRES },
+        [EFFECT_GELUS]    = { MOD_SILENCERES, MOD_GRAVITYRES },
+        [EFFECT_FLABRA]   = { MOD_PETRIFYRES, MOD_SLOWRES },
+        [EFFECT_TELLUS]   = { MOD_STUNRES },
+        [EFFECT_SULPOR]   = { MOD_POISONRES },
+        [EFFECT_UNDA]     = { MOD_AMNESIARES, MOD_VIRUSRES },
+        [EFFECT_LUX]      = { MOD_SLEEPRES, MOD_BLINDRES, MOD_CURSERES },
+        [EFFECT_TENEBRAE] = { MOD_CHARMRES },
     }
 
     local resistTypes = pflugResistTypes[type]
@@ -739,7 +739,7 @@ xi.job_utils.rune_fencer.useGambit = function(player, target, ability, action)
     local runeEffects           = player:getAllRuneEffects()
     local sdtPower              = -10
     local jobPointBonusDuration = player:getJobPointLevel(xi.jp.GAMBIT_DURATION)
-    local gearBonusDuration     = player:getMod(GAMBIT_DURATION)
+    local gearBonusDuration     = player:getMod(MOD_GAMBIT_DURATION)
 
     action:info(target:getID(), getSpecEffectElementEffusion(highestRune)) -- set element color for animation.
     action:setAnimation(target:getID(), getAnimationEffusion(weaponSkillType, 10)) -- set animation for currently equipped weapon
@@ -771,7 +771,7 @@ xi.job_utils.rune_fencer.useRayke = function(player, target, ability, action)
     local weaponSkillType = player:getWeaponSkillType(xi.slot.MAIN)
     local meritValue      = player:getMerit(xi.merit.RAYKE)
     local duration        = 27 + player:getMerit(xi.merit.RAYKE)              -- 1 merit = 30 seconds (27 + 3)
-    local modDuration     = player:getMod(RAYKE_DURATION) * meritValue / 3 -- Futhark boots aug
+    local modDuration     = player:getMod(MOD_RAYKE_DURATION) * meritValue / 3 -- Futhark boots aug
 
     action:info(target:getID(), getSpecEffectElementEffusion(highestRune)) -- set element color for animation.
     action:setAnimation(target:getID(), getAnimationEffusion(weaponSkillType, 20)) -- set animation for currently equipped weapon
@@ -857,7 +857,7 @@ xi.job_utils.rune_fencer.useLiement = function(player, target, ability, action)
 
     local runeEffects = target:getAllRuneEffects()
     local absorbPower = 15 -- in core -> 85 + 15 * (1, 2, or 3) = 100, 115, 130
-    local duration    = 10 + player:getMod(LIEMENT_DURATION)
+    local duration    = 10 + player:getMod(MOD_LIEMENT_DURATION)
     local absorbTypes = {} -- one absorb type per rune which can be additive
     local i           = 0
 
@@ -867,7 +867,7 @@ xi.job_utils.rune_fencer.useLiement = function(player, target, ability, action)
         i = i + 1
     end
 
-    if player:getMod(LIEMENT_EXTENDS_TO_AREA) > 0 then -- apply effects to entire party (including target)
+    if player:getMod(MOD_LIEMENT_EXTENDS_TO_AREA) > 0 then -- apply effects to entire party (including target)
         local party = player:getParty()
 
         for _, member in pairs(party) do
