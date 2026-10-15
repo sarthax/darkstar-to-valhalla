@@ -63,7 +63,7 @@
   },
   "campaign-ops": {
    "status": "final",
-   "branch": "feature/WotG-campaign-ops",
+   "branch": "feature/campaign-ops",
    "finalTag": "slice/campaign-ops-v1",
    "finalDate": "2026-10-06",
    "mergedToMain": true,
@@ -114,6 +114,9 @@
    "versions": 2,
    "supersededTags": [
     "slice/heroines-holdfast-v1"
+   ],
+   "alsoBranches": [
+    "feature/mumor-heroines-holdfast"
    ]
   },
   "homepoint-audit-fixes": {
@@ -164,7 +167,10 @@
    "finalDate": "2026-10-06",
    "mergedToMain": true,
    "versions": 1,
-   "supersededTags": []
+   "supersededTags": [],
+   "alsoBranches": [
+    "feature/moghancement"
+   ]
   },
   "mumor-sunbreeze-festival": {
    "status": "final",
@@ -305,7 +311,10 @@
    "finalDate": "2026-10-06",
    "mergedToMain": true,
    "versions": 1,
-   "supersededTags": []
+   "supersededTags": [],
+   "alsoBranches": [
+    "feature/symphonic-curator"
+   ]
   },
   "textids-256plus-survival-guides": {
    "status": "final",
