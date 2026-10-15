@@ -58,3 +58,8 @@ Job points absent in DSP (LSB reads them); unknown animation ids; client version
 - scripts/globals/runefencer.lua (global table RUNEFENCER), 8 rune ability scripts + 8 rune effect scripts, swordplay ability/effect.
 - Resist mapping: LSB MEVA -> DSP *RES mods; scale UNVERIFIED (bar spells add power directly, so same here). Merit/job-point bonuses are 0 (TODO). REQUIRE_RUNE message id 660 unverified.
 - Not syntax-checked with a Lua interpreter (none found in the shell) and not tested in game. Needs the abilities SQL imported first.
+
+## Vallation / Valiance ported
+- LSB `*_SDT` (-15%/rune element) is approximated with DSP `*RES` evasion points: `RUNEFENCER.RES_PER_PERCENT = 2` (tunable). DSP formula reads slightly more damage than LSB per resist_curves.py; adjust the constant after in-game testing.
+- Rune ids packed as nibbles into effect subpower so gain/lose are symmetric. Untested in-game (no Lua interpreter in shell).
+- Remaining: Gambit, Rayke, Liement, Pflug, Battuta, Embolden, Elemental Sforzo, Odyllic Subterfuge, Lunge/Swipe/Vivacious Pulse.

@@ -107,3 +107,86 @@ function RUNEFENCER.onSwordplayLose(target, effect)
         target:delMod(MOD_SUBTLE_BLOW, subPower);
     end
 end
+
+-----------------------------------
+-- Vallation / Valiance (slice run-geo-jobs)
+-- LSB applies *_SDT (-15% damage per rune element). DSP has no SDT mods, so the
+-- ward grants *RES (magic-evasion points). RES_PER_PERCENT is the tuning knob:
+-- ~2 evasion points per 1% LSB reduction (see docs/slices/run-geo-jobs resist_curves.py).
+-----------------------------------
+RUNEFENCER.RES_PER_PERCENT = 2;
+
+-- ward resist element: opposing element of the rune (matches LSB getVallationValianceSDTType)
+RUNEFENCER.wardResistMod =
+{
+    [EFFECT_IGNIS]    = MOD_ICERES,
+    [EFFECT_GELUS]    = MOD_WINDRES,
+    [EFFECT_FLABRA]   = MOD_EARTHRES,
+    [EFFECT_TELLUS]   = MOD_THUNDERRES,
+    [EFFECT_SULPOR]   = MOD_WATERRES,
+    [EFFECT_UNDA]     = MOD_FIRERES,
+    [EFFECT_LUX]      = MOD_DARKRES,
+    [EFFECT_TENEBRAE] = MOD_LIGHTRES,
+};
+
+-- pack up to 3 rune effect ids as (id - EFFECT_IGNIS + 1) nibbles into subpower
+local function packRunes(runes)
+    local packed = 0;
+    for i, rune in ipairs(runes) do
+        packed = packed + (rune - EFFECT_IGNIS + 1) * (16 ^ (i - 1));
+    end
+    return packed;
+end
+
+local function forEachPackedRune(subpower, fn)
+    local v = subpower;
+    while (v > 0) do
+        local nib = v % 16;
+        if (nib > 0) then
+            fn(EFFECT_IGNIS + nib - 1);
+        end
+        v = math.floor(v / 16);
+    end
+end
+
+function RUNEFENCER.onWardGain(target, effect)
+    local power = effect:getPower() * RUNEFENCER.RES_PER_PERCENT;
+    forEachPackedRune(effect:getSubPower(), function(rune)
+        target:addMod(RUNEFENCER.wardResistMod[rune], power);
+    end);
+end
+
+function RUNEFENCER.onWardLose(target, effect)
+    local power = effect:getPower() * RUNEFENCER.RES_PER_PERCENT;
+    forEachPackedRune(effect:getSubPower(), function(rune)
+        target:delMod(RUNEFENCER.wardResistMod[rune], power);
+    end);
+end
+
+local function applyWard(target, effectId, power, duration, runes)
+    target:delStatusEffectSilent(EFFECT_VALIANCE);
+    if (effectId == EFFECT_VALIANCE) then
+        target:delStatusEffectSilent(EFFECT_VALLATION);
+    end
+    target:addStatusEffect(effectId, power, 0, duration, 0, packRunes(runes));
+end
+
+-- returns true if the ward was applied to the caster/target
+function RUNEFENCER.useVallationValiance(player, target, ability, isValiance)
+    local runes = player:getAllRuneEffects();
+    if (#runes == 0) then
+        return nil;
+    end
+    local power = 15; -- percent per rune element (merits not wired)
+    if (isValiance) then
+        for _, member in pairs(player:getParty()) do
+            if (not member:hasStatusEffect(EFFECT_VALLATION)) then
+                applyWard(member, EFFECT_VALIANCE, power, 180, runes);
+            end
+        end
+    else
+        target:delStatusEffectSilent(EFFECT_VALIANCE);
+        target:addStatusEffect(EFFECT_VALLATION, power, 0, 120, 0, packRunes(runes));
+    end
+    return isValiance and EFFECT_VALIANCE or EFFECT_VALLATION;
+end
