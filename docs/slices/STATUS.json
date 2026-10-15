@@ -34,28 +34,28 @@
    "versions": 1,
    "supersededTags": []
   },
-  "assault-ilrusi-atoll": {
+  "assault-ilrusi-atoll-missions-1-4": {
    "status": "active",
-   "branch": "feature/assault-ilrusi-atoll",
-   "finalTag": "slice/assault-ilrusi-atoll-v1",
+   "branch": "feature/assault-ilrusi-atoll-missions-1-4",
+   "finalTag": "slice/assault-ilrusi-atoll-missions-1-4-v1",
    "finalDate": "2026-10-15",
    "mergedToMain": true,
    "versions": 1,
    "supersededTags": []
   },
-  "assault-lebros-cavern": {
+  "assault-lebros-cavern-missions-1-4": {
    "status": "active",
-   "branch": "feature/assault-lebros-cavern",
-   "finalTag": "slice/assault-lebros-cavern-v1",
+   "branch": "feature/assault-lebros-cavern-missions-1-4",
+   "finalTag": "slice/assault-lebros-cavern-missions-1-4-v1",
    "finalDate": "2026-10-15",
    "mergedToMain": true,
    "versions": 1,
    "supersededTags": []
   },
-  "assault-leujaoam-sanctum": {
+  "assault-leujaoam-sanctum-missions-1-4": {
    "status": "active",
-   "branch": "feature/assault-leujaoam-sanctum",
-   "finalTag": "slice/assault-leujaoam-sanctum-v1",
+   "branch": "feature/assault-leujaoam-sanctum-missions-1-4",
+   "finalTag": "slice/assault-leujaoam-sanctum-missions-1-4-v1",
    "finalDate": "2026-10-15",
    "mergedToMain": true,
    "versions": 1,
@@ -70,10 +70,10 @@
    "versions": 1,
    "supersededTags": []
   },
-  "assault-mamool-ja": {
+  "assault-mamool-ja-missions-1-4": {
    "status": "active",
-   "branch": "feature/assault-mamool-ja",
-   "finalTag": "slice/assault-mamool-ja-v1",
+   "branch": "feature/assault-mamool-ja-missions-1-4",
+   "finalTag": "slice/assault-mamool-ja-missions-1-4-v1",
    "finalDate": "2026-10-15",
    "mergedToMain": true,
    "versions": 1,
@@ -88,10 +88,10 @@
    "versions": 1,
    "supersededTags": []
   },
-  "assault-periqia": {
+  "assault-periqia-missions-1-4": {
    "status": "active",
-   "branch": "feature/assault-periqia",
-   "finalTag": "slice/assault-periqia-v1",
+   "branch": "feature/assault-periqia-missions-1-4",
+   "finalTag": "slice/assault-periqia-missions-1-4-v1",
    "finalDate": "2026-10-15",
    "mergedToMain": true,
    "versions": 1,
