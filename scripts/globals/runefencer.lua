@@ -288,3 +288,79 @@ function RUNEFENCER.useOneForAll(player, target, ability)
     end
     return EFFECT_ONE_FOR_ALL;
 end
+
+-----------------------------------
+-- Swipe / Lunge (slice run-geo-jobs)
+-- LSB computes a long multiplier chain; here DSP's addBonusesAbility (affinity,
+-- weather/day, MDT), applyResistanceAbility and adjustForTarget stand in for it.
+-- Not ported: magic burst, Rune Enhance merit macc, Swipe gear/jp bonus,
+-- Phalanx/Stoneskin interplay beyond what takeAbilityDamage does, absorb healing.
+-----------------------------------
+RUNEFENCER.runeElement =
+{
+    [EFFECT_IGNIS]    = ELE_FIRE,
+    [EFFECT_GELUS]    = ELE_ICE,
+    [EFFECT_FLABRA]   = ELE_WIND,
+    [EFFECT_TELLUS]   = ELE_EARTH,
+    [EFFECT_SULPOR]   = ELE_THUNDER,
+    [EFFECT_UNDA]     = ELE_WATER,
+    [EFFECT_LUX]      = ELE_LIGHT,
+    [EFFECT_TENEBRAE] = ELE_DARK,
+};
+
+local function countRune(runes, id)
+    local n = 0;
+    for _, r in ipairs(runes) do
+        if (r == id) then n = n + 1; end
+    end
+    return n;
+end
+
+function RUNEFENCER.useSwipeLunge(player, target, ability, action, isLunge)
+    local runes = player:getAllRuneEffects();
+    if (#runes == 0) then
+        return 0;
+    end
+    local highest = player:getHighestRuneEffect();
+    local highestCount = countRune(runes, highest);
+    local numHits = 1;
+    if (isLunge) then
+        numHits = #runes;
+    end
+    local weaponSkill = player:getWeaponSkillType(SLOT_MAIN);
+    local skillMod = player:getSkillLevel(weaponSkill);
+
+    target:updateClaim(player);
+    local total, used = 0, 0;
+    local shadowsAbsorbed = 0;
+
+    for i = 1, numHits do
+        local rune = player:getNewestRuneEffect();
+        local ele = RUNEFENCER.runeElement[rune];
+        player:removeNewestRune();
+        used = used + 1;
+
+        if (shadowAbsorb(target)) then
+            shadowsAbsorbed = shadowsAbsorbed + 1;
+        else
+            local strength = 1;
+            if (rune == highest) then
+                strength = highestCount;
+            end
+            local dmg = math.floor(skillMod * (0.50 + 0.25 * strength));
+            dmg = dmg + player:getMod(MOD_MAGIC_DAMAGE);
+            dmg = addBonusesAbility(player, ele, target, dmg, {});
+            dmg = dmg * applyResistanceAbility(player, target, ele, 0, 0);
+            dmg = adjustForTarget(target, dmg, ele);
+            if (dmg > 0) then
+                total = total + dmg;
+                if (target:getHP() - total <= 0) then
+                    break;
+                end
+            end
+        end
+    end
+
+    total = takeAbilityDamage(target, player, {}, true, total, SLOT_MAIN, (total > 0) and 1 or 0, 0, shadowsAbsorbed, 0, action, nil);
+    return total;
+end

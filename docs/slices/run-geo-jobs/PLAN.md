@@ -63,3 +63,8 @@ Job points absent in DSP (LSB reads them); unknown animation ids; client version
 - LSB `*_SDT` (-15%/rune element) is approximated with DSP `*RES` evasion points: `RUNEFENCER.RES_PER_PERCENT = 2` (tunable). DSP formula reads slightly more damage than LSB per resist_curves.py; adjust the constant after in-game testing.
 - Rune ids packed as nibbles into effect subpower so gain/lose are symmetric. Untested in-game (no Lua interpreter in shell).
 - Remaining: Gambit, Rayke, Liement, Pflug, Battuta, Embolden, Elemental Sforzo, Odyllic Subterfuge, Lunge/Swipe/Vivacious Pulse.
+
+## Pflug, Gambit, One for All, Swipe, Lunge ported
+- Swipe/Lunge use DSP's Quick Draw pipeline (addBonusesAbility, applyResistanceAbility, adjustForTarget, takeAbilityDamage) rather than the C++ takeSwipeLungeDamage binding (left in, unused). Skill 0 passed to applyResistanceAbility; check accuracy in game. Message 110 from SQL unverified.
+- One for All is consumed in magic.lua finalMagicAdjustments.
+- Still open: Rayke (res-rank), Liement (absorb), Battuta, Embolden, Elemental Sforzo, Vivacious Pulse, Odyllic Subterfuge, Inspiration FC.
