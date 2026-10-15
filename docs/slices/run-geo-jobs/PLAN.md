@@ -30,3 +30,13 @@ Job points absent in DSP (LSB reads them); unknown animation ids; client version
 - Only truly MISSING: colure_active = 612 (add EFFECT_COLURE_ACTIVE = 612 to status_effect.h; confirm in client before use).
 - Correction to earlier claim: the GEO aura effects are NOT absent from the enum; only COLURE_ACTIVE is.
 - Still to do in P0: Mod ids (F07_mod_remap.csv has 21 exceptions) used by rune_fencer/geomancer.lua, ability/spell/pet ids, client-ships-RUN/GEO check.
+
+## P0 result 2 - Mod ids (mod_id_diff.csv)
+- 66 Mods referenced by LSB rune_fencer/geomancer/luopan Lua: 28 SAME id in DSP, 38 MISSING from modifier.h (RUN/GEO-specific ones: SWORDPLAY 1008, INQUARTATA 963, PARRY_SPIKES 1022/1023, GAMBIT/LIEMENT/RAYKE_DURATION, GEOMANCY_SKILL 123, GEOMANCY_BONUS 961, INDI_DURATION 960, BOLSTER_EFFECT 1028, LIFE_CYCLE_EFFECT 1029, FULL_CIRCLE 1025, AURA_SIZE 1030, ...). All 38 target ids verified FREE in DSP modifier.h (Mods are server-internal, not client ids, so same numbers can be used).
+- TRAP: LSB FIRE/ICE/WIND/EARTH/THUNDER/WATER/LIGHT/DARK_SDT = 54-61 share ids with DSP's FIRERES..DARKRES but SEMANTICS DIFFER: DSP stores damage reduction in 1000ths ("875=87.5%"), LSB SDT is base 10000 signed (positive = less damage). RES_RANK mods (192-199) do not exist in DSP at all. Vallation/Valiance/Gambit/Rayke/Pflug must be adapted with an explicit scale conversion (decide in P2), not a blind rename.
+## P0 result 3 - ability ids (ability_id_diff.csv)
+- LSB id - 16 == DSP id holds for all 40 LSB RUN/GEO abilities; DSP ability.h enum has all except swipe(328), vivacious_pulse(367), entrust(370).
+- DSP sql/abilities.sql: 22 active (bolster, sforzo, runes, swordplay, one_for_all, ward, effusion, vivacious_pulse), 9 RUN commented (vallation, lunge, pflug, embolden, valiance, gambit, liement, rayke, battuta), 12 GEO + swipe + entrust absent.
+- DSP staged rows are NOT retail: levels, recast, recastId wrong (e.g. vallation lvl20/300s vs LSB lvl10/180s/recastId 23; battuta has recastTime/recastId swapped). Use LSB values; DSP recastId=0 on every RUN row must be fixed (client recast timers).
+- Animation ids: DSP's 291-302/327 equal LSB's (no drift). LSB's own animation values for vallation/pflug/valiance/gambit/liement/rayke/battuta/lunge are 0-8 (low, likely placeholders) -> mark UNVERIFIED, need client/capture.
+- Message ids 660-672 (luopan/rune/swordplay/vallation...) come from LSB msg_basic.h; DSP message_basic.h lacks them. Must verify they exist in client 30170905_5 before use (open).
