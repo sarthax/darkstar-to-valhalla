@@ -68,7 +68,10 @@
    "finalDate": "2026-10-06",
    "mergedToMain": true,
    "versions": 1,
-   "supersededTags": []
+   "supersededTags": [],
+   "alsoBranches": [
+    "feature/WotG-campaign-ops"
+   ]
   },
   "dev-tools-sqlcheck": {
    "status": "final",

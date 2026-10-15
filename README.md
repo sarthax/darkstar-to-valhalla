@@ -16,7 +16,7 @@ Slice status for this repository. The source of truth is [`docs/slices/STATUS.js
 | assault-sql-fixes | final | `feature/assault-sql-fixes` | `slice/assault-sql-fixes-v1` | yes |
 | assault-timeout-blackscreen-fix | final | `feature/assault-timeout-blackscreen-fix` | `slice/assault-timeout-blackscreen-fix-v1` | yes |
 | base-debug-print | final | `base/debug-print` | `slice/base-debug-print-v1` | yes |
-| campaign-ops | final | `feature/campaign-ops` | `slice/campaign-ops-v1` | yes |
+| campaign-ops | final | `feature/campaign-ops`, `feature/WotG-campaign-ops` | `slice/campaign-ops-v1` | yes |
 | dev-tools-sqlcheck | final | `feature/dev-tools-sqlcheck` | `slice/dev-tools-sqlcheck-v1` | yes |
 | ephemeral-moogle | active | `feature/ephemeral-moogle` | `slice/ephemeral-moogle-v5` | yes |
 | gardening | final | `feature/mog-house-gardening` | `slice/gardening-v3` | yes |
