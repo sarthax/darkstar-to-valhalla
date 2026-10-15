@@ -187,6 +187,8 @@ local function refinerParams(player, cfg)
             end
         end
     end
+    local forceP5 = player:getVar("VWO_P5"); -- TEMP DIAGNOSTIC: !setplayervar VWO_P5 <n> overrides p5 to decode the client's stone bits; remove when decoded
+    if (forceP5 ~= 0) then p5 = forceP5; end
     if (VWO_PROBE) then -- TEMPORARY diagnostic: all menu-gating bits set to see which sections the client unlocks
         p5, p6 = 0xFFFFFF, 0xFFFFFFF;
         printf("[VWO refiner probe] p5=%d p6=%d (normal p5/p6 overwritten)", p5, p6);
