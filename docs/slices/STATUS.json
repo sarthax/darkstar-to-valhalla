@@ -1,9 +1,9 @@
 {
  "_readme": "Slice status manifest. status: active (still being worked), final (finished, merged to main, branch kept as the slice's record), review (not merged to main). Seeded 2026-10-14 from the branch inventory; update status here when a slice is done. finalTag is the newest slice/* tag. Branch deletions and renames are recorded in docs/project-memory.",
- "generated": "2026-10-14",
+ "generated": "2026-10-15",
  "slices": {
   "abyssea-lights-pyxis": {
-   "status": "final",
+   "status": "active",
    "branch": "feature/abyssea-lights-pyxis",
    "finalTag": "slice/abyssea-lights-pyxis-v2",
    "finalDate": "2026-10-06",
@@ -62,7 +62,7 @@
    "supersededTags": []
   },
   "campaign-ops": {
-   "status": "final",
+   "status": "active",
    "branch": "feature/campaign-ops",
    "finalTag": "slice/campaign-ops-v1",
    "finalDate": "2026-10-06",
@@ -83,7 +83,7 @@
    "supersededTags": []
   },
   "ephemeral-moogle": {
-   "status": "active",
+   "status": "final",
    "branch": "feature/ephemeral-moogle",
    "finalTag": "slice/ephemeral-moogle-v5",
    "finalDate": "2026-10-11",
@@ -109,7 +109,7 @@
    ]
   },
   "heroines-holdfast": {
-   "status": "final",
+   "status": "active",
    "branch": "feature/heroines-holdfast",
    "finalTag": "slice/heroines-holdfast-v2",
    "finalDate": "2026-10-06",
@@ -123,7 +123,7 @@
    ]
   },
   "homepoint-audit-fixes": {
-   "status": "active",
+   "status": "review",
    "branch": "feature/homepoint-audit-fixes",
    "finalTag": "slice/homepoint-audit-fixes-v2",
    "finalDate": "2026-10-11",
@@ -143,7 +143,7 @@
    "supersededTags": []
   },
   "mog-tablets-jugner-fix": {
-   "status": "final",
+   "status": "active",
    "branch": "feature/mog-tablets-jugner-fix",
    "finalTag": "slice/mog-tablets-jugner-fix-v1",
    "finalDate": "2026-10-13",
@@ -176,7 +176,7 @@
    ]
   },
   "mumor-sunbreeze-festival": {
-   "status": "final",
+   "status": "active",
    "branch": "feature/mumor-sunbreeze-festival",
    "finalTag": "slice/mumor-sunbreeze-festival-v1",
    "finalDate": "2026-10-06",
@@ -224,7 +224,7 @@
    "supersededTags": []
   },
   "salvage-arrapago": {
-   "status": "final",
+   "status": "review",
    "branch": "feature/salvage-arrapago-v4",
    "finalTag": "slice/salvage-arrapago-v4",
    "finalDate": "2026-10-13",
@@ -237,7 +237,7 @@
    ]
   },
   "salvage-base": {
-   "status": "final",
+   "status": "review",
    "branch": "feature/salvage-base-v2",
    "finalTag": "slice/salvage-base-v2",
    "finalDate": "2026-10-13",
@@ -248,7 +248,7 @@
    ]
   },
   "salvage-bhaflau": {
-   "status": "final",
+   "status": "review",
    "branch": "feature/salvage-bhaflau-v4",
    "finalTag": "slice/salvage-bhaflau-v4",
    "finalDate": "2026-10-13",
@@ -261,7 +261,7 @@
    ]
   },
   "salvage-silversea": {
-   "status": "final",
+   "status": "review",
    "branch": "feature/salvage-silversea-v4",
    "finalTag": "slice/salvage-silversea-v4",
    "finalDate": "2026-10-13",
@@ -274,7 +274,7 @@
    ]
   },
   "salvage-zhayolm": {
-   "status": "final",
+   "status": "review",
    "branch": "feature/salvage-zhayolm-v4",
    "finalTag": "slice/salvage-zhayolm-v4",
    "finalDate": "2026-10-13",
@@ -287,7 +287,7 @@
    ]
   },
   "sunbreeze-event": {
-   "status": "final",
+   "status": "review",
    "branch": "feature/sunbreeze-event-v2",
    "finalTag": "slice/sunbreeze-event-v1",
    "finalDate": "2026-10-13",
@@ -361,7 +361,7 @@
    ]
   },
   "voidwatch-officers": {
-   "status": "active",
+   "status": "review",
    "branch": "feature/voidwatch-officers-v2",
    "finalTag": "slice/voidwatch-officers-v6",
    "finalDate": "2026-10-13",
@@ -376,7 +376,7 @@
    ]
   },
   "voidwatch-vwnm": {
-   "status": "active",
+   "status": "review",
    "branch": "feature/voidwatch-vwnm-v3",
    "finalTag": "slice/voidwatch-vwnm-v4",
    "finalDate": "2026-10-13",
