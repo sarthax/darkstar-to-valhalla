@@ -11065,6 +11065,72 @@ inline int32 CLuaBaseEntity::removeOldestManeuver(lua_State* L)
     return 0;
 }
 
+inline int32 CLuaBaseEntity::getActiveRuneCount(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+
+    CBattleEntity* PEntity = (CBattleEntity*)m_PBaseEntity;
+
+    lua_pushinteger(L, PEntity->StatusEffectContainer->GetActiveRuneCount());
+
+    return 1;
+}
+
+inline int32 CLuaBaseEntity::getHighestRuneEffect(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+
+    CBattleEntity* PEntity = (CBattleEntity*)m_PBaseEntity;
+
+    lua_pushinteger(L, PEntity->StatusEffectContainer->GetHighestRuneEffect());
+
+    return 1;
+}
+
+inline int32 CLuaBaseEntity::getNewestRuneEffect(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+
+    CBattleEntity* PEntity = (CBattleEntity*)m_PBaseEntity;
+
+    lua_pushinteger(L, PEntity->StatusEffectContainer->GetNewestRuneEffect());
+
+    return 1;
+}
+
+inline int32 CLuaBaseEntity::removeOldestRune(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+
+    CBattleEntity* PEntity = (CBattleEntity*)m_PBaseEntity;
+
+    PEntity->StatusEffectContainer->RemoveOldestRune();
+
+    return 0;
+}
+
+inline int32 CLuaBaseEntity::removeNewestRune(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+
+    CBattleEntity* PEntity = (CBattleEntity*)m_PBaseEntity;
+
+    PEntity->StatusEffectContainer->RemoveNewestRune();
+
+    return 0;
+}
+
+inline int32 CLuaBaseEntity::removeAllRunes(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+
+    CBattleEntity* PEntity = (CBattleEntity*)m_PBaseEntity;
+
+    PEntity->StatusEffectContainer->RemoveAllRunes();
+
+    return 0;
+}
+
 inline int32 CLuaBaseEntity::addBurden(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
@@ -12149,6 +12215,12 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getActiveManeuvers),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,removeOldestManeuver),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,removeAllManeuvers),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getActiveRuneCount),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getHighestRuneEffect),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getNewestRuneEffect),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,removeOldestRune),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,removeNewestRune),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,removeAllRunes),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addBurden),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setElevator),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,storeWithPorterMoogle),

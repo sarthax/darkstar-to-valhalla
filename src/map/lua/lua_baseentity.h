@@ -591,6 +591,12 @@ public:
     int32 getActiveManeuvers(lua_State*);
     int32 removeOldestManeuver(lua_State*);
     int32 removeAllManeuvers(lua_State*);
+    int32 getActiveRuneCount(lua_State*);
+    int32 getHighestRuneEffect(lua_State*);
+    int32 getNewestRuneEffect(lua_State*);
+    int32 removeOldestRune(lua_State*);
+    int32 removeNewestRune(lua_State*);
+    int32 removeAllRunes(lua_State*);
     int32 addBurden(lua_State* L);
 
     int32 setElevator(lua_State* L);

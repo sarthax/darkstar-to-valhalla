@@ -90,6 +90,12 @@ public:
     uint8 GetActiveManeuvers();
     void RemoveOldestManeuver();
     void RemoveAllManeuvers();
+    uint8 GetActiveRuneCount();
+    EFFECT GetHighestRuneEffect();
+    EFFECT GetNewestRuneEffect();
+    void RemoveOldestRune();
+    void RemoveNewestRune();
+    void RemoveAllRunes();
 
     void WakeUp(); // remove sleep effects
     bool IsAsleep();

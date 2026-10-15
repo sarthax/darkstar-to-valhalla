@@ -985,6 +985,120 @@ void CStatusEffectContainer::RemoveAllManeuvers()
 }
 
 /************************************************************************
+*  Runes (slice run-geo-jobs): EFFECT_IGNIS..EFFECT_TENEBRAE            *
+************************************************************************/
+
+uint8 CStatusEffectContainer::GetActiveRuneCount()
+{
+    uint8 count = 0;
+    for (auto PStatusEffect : m_StatusEffectList)
+    {
+        if (PStatusEffect->GetStatusID() >= EFFECT_IGNIS && PStatusEffect->GetStatusID() <= EFFECT_TENEBRAE)
+        {
+            count++;
+        }
+    }
+    return count;
+}
+
+// the rune element with the most stacks; ties go to the first found
+EFFECT CStatusEffectContainer::GetHighestRuneEffect()
+{
+    uint8 counts[EFFECT_TENEBRAE - EFFECT_IGNIS + 1] = {};
+    for (auto PStatusEffect : m_StatusEffectList)
+    {
+        EFFECT id = PStatusEffect->GetStatusID();
+        if (id >= EFFECT_IGNIS && id <= EFFECT_TENEBRAE)
+        {
+            counts[id - EFFECT_IGNIS]++;
+        }
+    }
+    EFFECT best = EFFECT_NONE;
+    uint8  bestCount = 0;
+    for (int i = 0; i <= EFFECT_TENEBRAE - EFFECT_IGNIS; ++i)
+    {
+        if (counts[i] > bestCount)
+        {
+            bestCount = counts[i];
+            best = (EFFECT)(EFFECT_IGNIS + i);
+        }
+    }
+    return best;
+}
+
+EFFECT CStatusEffectContainer::GetNewestRuneEffect()
+{
+    CStatusEffect* newest = nullptr;
+    for (auto PStatusEffect : m_StatusEffectList)
+    {
+        if (PStatusEffect->GetStatusID() >= EFFECT_IGNIS && PStatusEffect->GetStatusID() <= EFFECT_TENEBRAE)
+        {
+            if (!newest || PStatusEffect->GetStartTime() > newest->GetStartTime())
+            {
+                newest = PStatusEffect;
+            }
+        }
+    }
+    return newest ? newest->GetStatusID() : EFFECT_NONE;
+}
+
+void CStatusEffectContainer::RemoveOldestRune()
+{
+    CStatusEffect* oldest = nullptr;
+    int index = 0;
+    for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
+    {
+        CStatusEffect* PStatusEffect = m_StatusEffectList.at(i);
+        if (PStatusEffect->GetStatusID() >= EFFECT_IGNIS && PStatusEffect->GetStatusID() <= EFFECT_TENEBRAE)
+        {
+            if (!oldest || PStatusEffect->GetStartTime() < oldest->GetStartTime())
+            {
+                oldest = PStatusEffect;
+                index = i;
+            }
+        }
+    }
+    if (oldest)
+    {
+        RemoveStatusEffect(index, true);
+    }
+}
+
+void CStatusEffectContainer::RemoveNewestRune()
+{
+    CStatusEffect* newest = nullptr;
+    int index = 0;
+    for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
+    {
+        CStatusEffect* PStatusEffect = m_StatusEffectList.at(i);
+        if (PStatusEffect->GetStatusID() >= EFFECT_IGNIS && PStatusEffect->GetStatusID() <= EFFECT_TENEBRAE)
+        {
+            if (!newest || PStatusEffect->GetStartTime() > newest->GetStartTime())
+            {
+                newest = PStatusEffect;
+                index = i;
+            }
+        }
+    }
+    if (newest)
+    {
+        RemoveStatusEffect(index, true);
+    }
+}
+
+void CStatusEffectContainer::RemoveAllRunes()
+{
+    for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
+    {
+        if (m_StatusEffectList.at(i)->GetStatusID() >= EFFECT_IGNIS &&
+            m_StatusEffectList.at(i)->GetStatusID() <= EFFECT_TENEBRAE)
+        {
+            RemoveStatusEffect(i--, true);
+        }
+    }
+}
+
+/************************************************************************
 *                                                                       *
 *  Проверяем наличие статус-эффекта	в контейнере с уникальным subid     *
 *                                                                       *
