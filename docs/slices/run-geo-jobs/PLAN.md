@@ -53,3 +53,8 @@ Job points absent in DSP (LSB reads them); unknown animation ids; client version
 - status_effect.h/status.lua: EFFECT_COLURE_ACTIVE = 612 (unverified vs client).
 - ability.h: ABILITY_SWIPE 328, VIVACIOUS_PULSE 367, ENTRUST 370.
 - Not compiled yet.
+
+## P2 started: runes + Swordplay (Lua, DSP-style)
+- scripts/globals/runefencer.lua (global table RUNEFENCER), 8 rune ability scripts + 8 rune effect scripts, swordplay ability/effect.
+- Resist mapping: LSB MEVA -> DSP *RES mods; scale UNVERIFIED (bar spells add power directly, so same here). Merit/job-point bonuses are 0 (TODO). REQUIRE_RUNE message id 660 unverified.
+- Not syntax-checked with a Lua interpreter (none found in the shell) and not tested in game. Needs the abilities SQL imported first.
