@@ -1,0 +1,24 @@
+-- Live-verified DSP mob_groups rows for Lebros Cavern missions 21-24 (zoneid 63). Pulled directly
+-- from the running dspdb on 2026-09-17.
+--
+-- The original automated conversion pass minted fresh, unused groupid values 1-10 for this
+-- content instead of recognizing it already exists live under different real groupids. Per the
+-- Nyzul Isle incident precedent (see reports/dsp_repair_2026-09-15/INCIDENT_REPORT.md), a
+-- `mob_groups` row's real identity is (poolid, zoneid), NOT the storage-level `groupid` PK --
+-- inserting this file as originally generated would have created 10 duplicate rows and split
+-- mob_spawn_points/instance content across two parallel, inconsistent group ids. No INSERT is
+-- needed here: every one of these (poolid, zoneid) pairs already exists live under the groupid
+-- shown below (kept as a reference comment, not an INSERT, so importing this file is a safe no-op
+-- against a DB that already has this data).
+--
+-- groupid, poolid, zoneid, respawntime, spawntype, dropid, HP, MP, minLevel, maxLevel, allegiance
+-- (17019, 4245, 63, 0, 128, 0, 0,     0,    77, 78, 0) -- Volcanic Bomb (Excavation Duty, 21)
+-- (17026, 3248, 63, 0, 128, 0, 0,     0,    77, 78, 0) -- Qiqirn Ceramist (Excavation Duty, 21)
+-- (17024, 3268, 63, 0, 128, 0, 0,     0,    77, 78, 0) -- Qiqirn Volcanist (Excavation Duty, 21)
+-- (2134,   534, 63, 0, 128, 0, 0,     0,    75, 75, 0) -- Brittle Rock (Excavation Duty, 21)
+-- (17027,  837, 63, 0, 128, 0, 0,     0,    77, 78, 0) -- Crimson Eruca (Lebros Supplies, 22)
+-- (17018, 5470, 63, 0, 128, 0, 0,  9999,    77, 80, 0) -- Broken Troll Soldier group A (Troll Fugitives, 23)
+-- (17025, 5471, 63, 0, 128, 0, 0,     0,    77, 80, 0) -- Broken Troll Soldier group B (Troll Fugitives, 23)
+-- (17023, 5472, 63, 0, 128, 0, 0,  9999,    77, 80, 0) -- Broken Troll Soldier group C (Troll Fugitives, 23)
+-- (17020,  535, 63, 0, 128, 0, 0,     0,    78, 80, 0) -- Broken Troll Soldier group D (Troll Fugitives, 23)
+-- (17022,  894, 63, 0, 128, 0, 16500, 0,    75, 75, 0) -- Dahak (Evade and Escape, 24)
