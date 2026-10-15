@@ -34,6 +34,69 @@
    "versions": 1,
    "supersededTags": []
   },
+  "assault-ilrusi-atoll": {
+   "status": "active",
+   "branch": "feature/assault-ilrusi-atoll",
+   "finalTag": "slice/assault-ilrusi-atoll-v1",
+   "finalDate": "2026-10-15",
+   "mergedToMain": true,
+   "versions": 1,
+   "supersededTags": []
+  },
+  "assault-lebros-cavern": {
+   "status": "active",
+   "branch": "feature/assault-lebros-cavern",
+   "finalTag": "slice/assault-lebros-cavern-v1",
+   "finalDate": "2026-10-15",
+   "mergedToMain": true,
+   "versions": 1,
+   "supersededTags": []
+  },
+  "assault-leujaoam-sanctum": {
+   "status": "active",
+   "branch": "feature/assault-leujaoam-sanctum",
+   "finalTag": "slice/assault-leujaoam-sanctum-v1",
+   "finalDate": "2026-10-15",
+   "mergedToMain": true,
+   "versions": 1,
+   "supersededTags": []
+  },
+  "assault-lockbox-appraisal": {
+   "status": "active",
+   "branch": "feature/assault-lockbox-appraisal",
+   "finalTag": "slice/assault-lockbox-appraisal-v1",
+   "finalDate": "2026-10-15",
+   "mergedToMain": true,
+   "versions": 1,
+   "supersededTags": []
+  },
+  "assault-mamool-ja": {
+   "status": "active",
+   "branch": "feature/assault-mamool-ja",
+   "finalTag": "slice/assault-mamool-ja-v1",
+   "finalDate": "2026-10-15",
+   "mergedToMain": true,
+   "versions": 1,
+   "supersededTags": []
+  },
+  "assault-mercenary-ranks": {
+   "status": "active",
+   "branch": "feature/assault-mercenary-ranks",
+   "finalTag": "slice/assault-mercenary-ranks-v1",
+   "finalDate": "2026-10-15",
+   "mergedToMain": true,
+   "versions": 1,
+   "supersededTags": []
+  },
+  "assault-periqia": {
+   "status": "active",
+   "branch": "feature/assault-periqia",
+   "finalTag": "slice/assault-periqia-v1",
+   "finalDate": "2026-10-15",
+   "mergedToMain": true,
+   "versions": 1,
+   "supersededTags": []
+  },
   "assault-sql-fixes": {
    "status": "final",
    "branch": "feature/assault-sql-fixes",
