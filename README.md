@@ -26,7 +26,6 @@ Slice status for this repository. The source of truth is [`docs/slices/STATUS.js
 | mog-tablets-jugner-fix | active | `feature/mog-tablets-jugner-fix` | `slice/mog-tablets-jugner-fix-v1` | yes |
 | mog-tablets-super-kupowers | active | `feature/mog-tablets-super-kupowers-v3` | `slice/mog-tablets-super-kupowers-v3` | yes |
 | moghancement | final | `feature/mog-house-moghancement`, `feature/moghancement` | `slice/moghancement-v1` | yes |
-| mumor-sunbreeze-festival | active | `feature/mumor-sunbreeze-festival` | `slice/mumor-sunbreeze-festival-v1` | yes |
 | npc-id-realign | final | `feature/npc-id-realign-v3` | `slice/npc-id-realign-v3` | yes |
 | nyzul-alzadaal | final | `feature/nyzul-alzadaal` | `slice/nyzul-alzadaal-v1` | yes |
 | nyzul-investigation | final | `feature/nyzul-investigation` | `slice/nyzul-investigation-v1` | yes |
@@ -36,7 +35,7 @@ Slice status for this repository. The source of truth is [`docs/slices/STATUS.js
 | salvage-bhaflau | review | `feature/salvage-bhaflau-v4` | `slice/salvage-bhaflau-v4` | yes |
 | salvage-silversea | review | `feature/salvage-silversea-v4` | `slice/salvage-silversea-v4` | yes |
 | salvage-zhayolm | review | `feature/salvage-zhayolm-v4` | `slice/salvage-zhayolm-v4` | yes |
-| sunbreeze-event | review | `feature/sunbreeze-event-v2` | `slice/sunbreeze-event-v1` | yes |
+| sunbreeze-event | review | `feature/sunbreeze-event-v2`, `feature/mumor-sunbreeze-festival` | `slice/sunbreeze-event-v1` | yes |
 | survival-guides | final | `feature/survival-guides-v3` | `slice/survival-guides-v4` | yes |
 | symphonic-curator | final | `feature/mog-house-symphonic-curator`, `feature/symphonic-curator` | `slice/symphonic-curator-v1` | yes |
 | textids-256plus-survival-guides | final | `feature/textids-256plus-survival-guides` | `slice/textids-256plus-survival-guides-v1` | yes |

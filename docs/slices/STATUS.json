@@ -175,15 +175,6 @@
     "feature/moghancement"
    ]
   },
-  "mumor-sunbreeze-festival": {
-   "status": "active",
-   "branch": "feature/mumor-sunbreeze-festival",
-   "finalTag": "slice/mumor-sunbreeze-festival-v1",
-   "finalDate": "2026-10-06",
-   "mergedToMain": true,
-   "versions": 1,
-   "supersededTags": []
-  },
   "npc-id-realign": {
    "status": "final",
    "branch": "feature/npc-id-realign-v3",
@@ -292,8 +283,13 @@
    "finalTag": "slice/sunbreeze-event-v1",
    "finalDate": "2026-10-13",
    "mergedToMain": true,
-   "versions": 1,
-   "supersededTags": []
+   "versions": 2,
+   "supersededTags": [
+    "slice/mumor-sunbreeze-festival-v1"
+   ],
+   "alsoBranches": [
+    "feature/mumor-sunbreeze-festival"
+   ]
   },
   "survival-guides": {
    "status": "final",
