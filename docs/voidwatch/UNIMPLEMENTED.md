@@ -20,7 +20,6 @@ Status: MISSING = no DB row/Lua, WRONG = live row differs from retail, GUESS = b
 - Cruor 5000 [F stage table]; Double Attack amount [D 10]
 ## Sallow Seymour (Indigo I, North Gustaberg, z106)
 - Mud Stream - MISSING: self-centred magic dmg + Bind, Slow, Magic Def Down, Drown (-30HP/3s), maybe hate reset; used in pairs in 2nd half [J,B #7]
-- Epuration - MISSING [J]
 - Tremors 427 / Sandspin 426 - GUESS: existing Worm rows, retail effects (DEX Down / Accuracy Down) unverified
 - Draw In - GUESS: MOBMOD_DRAW_IN=1 engine behaviour, retail trigger distance unverified
 - Earth resistance trait [F] - MISSING; does-not-move [J] - not enforced

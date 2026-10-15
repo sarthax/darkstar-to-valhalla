@@ -15,3 +15,8 @@ DELETE FROM `mob_skill_lists` WHERE `mob_skill_id` IN (2387,2645,2516,2517,2112,
 INSERT INTO `mob_skill_lists` (`skill_list_name`,`skill_list_id`,`mob_skill_id`) VALUES
  ('Pancimanci',1161,2387),('Sallow_Seymour',1163,2645),('Ogbunabali',1164,2516),('Ogbunabali',1164,2517),
  ('Lord_Asag',1165,2112),('Ushumgal',1180,2156),('Ushumgal',1180,2157),('Celaeno',1183,2730),('Baneberry',1182,788);
+
+-- Melancholic Moira: Extremely Bad Breath (LSB row 1332, anim 1076 unverified [D]); conal, 7y, 1.5s prepare (stunnable)
+REPLACE INTO `mob_skills` VALUES (1332,1076,'extremely_bad_breath',4,7.0,2000,1500,4,0,0,0,0,0,0);
+DELETE FROM `mob_skill_lists` WHERE `mob_skill_id`=1332 AND `skill_list_id`=1173;
+INSERT INTO `mob_skill_lists` (`skill_list_name`,`skill_list_id`,`mob_skill_id`) VALUES ('Melancholic_Moira',1173,1332);
