@@ -3166,6 +3166,35 @@ namespace battleutils
         return PDefender->getMod(defMod);
     }
 
+    // Slice run-geo-jobs: Swipe/Lunge damage application (DSP has no takeDamage(); mirrors the tail of TakeSkillchainDamage)
+    int32 TakeSwipeLungeDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int32 damage)
+    {
+        DSP_DEBUG_BREAK_IF(PAttacker == nullptr);
+        DSP_DEBUG_BREAK_IF(PDefender == nullptr);
+
+        damage = dsp_cap(damage, -99999, 99999);
+        PDefender->addHP(-damage);
+
+        if (PAttacker->PMaster != nullptr)
+        {
+            PDefender->m_OwnerID.id = PAttacker->PMaster->id;
+            PDefender->m_OwnerID.targid = PAttacker->PMaster->targid;
+        }
+        else
+        {
+            PDefender->m_OwnerID.id = PAttacker->id;
+            PDefender->m_OwnerID.targid = PAttacker->targid;
+        }
+        PDefender->updatemask |= UPDATE_STATUS;
+
+        if (damage > 0)
+        {
+            PDefender->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
+            BindBreakCheck(PAttacker, PDefender);
+        }
+        return damage;
+    }
+
     int32 TakeSkillchainDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int32 lastSkillDamage, CBattleEntity* taChar)
     {
         DSP_DEBUG_BREAK_IF(PAttacker == nullptr);

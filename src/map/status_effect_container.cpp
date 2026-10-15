@@ -1001,6 +1001,19 @@ uint8 CStatusEffectContainer::GetActiveRuneCount()
     return count;
 }
 
+std::vector<EFFECT> CStatusEffectContainer::GetAllRuneEffects()
+{
+    std::vector<EFFECT> runes;
+    for (auto PStatusEffect : m_StatusEffectList)
+    {
+        if (PStatusEffect->GetStatusID() >= EFFECT_IGNIS && PStatusEffect->GetStatusID() <= EFFECT_TENEBRAE)
+        {
+            runes.push_back(PStatusEffect->GetStatusID());
+        }
+    }
+    return runes;
+}
+
 // the rune element with the most stacks; ties go to the first found
 EFFECT CStatusEffectContainer::GetHighestRuneEffect()
 {

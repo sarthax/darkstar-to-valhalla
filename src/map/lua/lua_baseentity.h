@@ -597,6 +597,9 @@ public:
     int32 removeOldestRune(lua_State*);
     int32 removeNewestRune(lua_State*);
     int32 removeAllRunes(lua_State*);
+    int32 getAllRuneEffects(lua_State*);
+    int32 getJobPointLevel(lua_State*);
+    int32 takeSwipeLungeDamage(lua_State*);
     int32 addBurden(lua_State* L);
 
     int32 setElevator(lua_State* L);

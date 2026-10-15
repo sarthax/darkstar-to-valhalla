@@ -11131,6 +11131,45 @@ inline int32 CLuaBaseEntity::removeAllRunes(lua_State* L)
     return 0;
 }
 
+inline int32 CLuaBaseEntity::getAllRuneEffects(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+
+    CBattleEntity* PEntity = (CBattleEntity*)m_PBaseEntity;
+
+    lua_newtable(L);
+    int i = 1;
+    for (auto effect : PEntity->StatusEffectContainer->GetAllRuneEffects())
+    {
+        lua_pushinteger(L, i++);
+        lua_pushinteger(L, effect);
+        lua_settable(L, -3);
+    }
+    return 1;
+}
+
+// Job points are not implemented in this tree; always 0 so LSB job-point bonuses fall away.
+inline int32 CLuaBaseEntity::getJobPointLevel(lua_State* L)
+{
+    lua_pushinteger(L, 0);
+    return 1;
+}
+
+// takeSwipeLungeDamage(attacker, damage) -> applied damage
+inline int32 CLuaBaseEntity::takeSwipeLungeDamage(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isuserdata(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+
+    CLuaBaseEntity* PLuaAttacker = Lunar<CLuaBaseEntity>::check(L, 1);
+    CBattleEntity* PAttacker = (CBattleEntity*)PLuaAttacker->GetBaseEntity();
+    CBattleEntity* PDefender = (CBattleEntity*)m_PBaseEntity;
+
+    lua_pushinteger(L, battleutils::TakeSwipeLungeDamage(PAttacker, PDefender, (int32)lua_tointeger(L, 2)));
+    return 1;
+}
+
 inline int32 CLuaBaseEntity::addBurden(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
@@ -12221,6 +12260,9 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,removeOldestRune),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,removeNewestRune),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,removeAllRunes),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getAllRuneEffects),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getJobPointLevel),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,takeSwipeLungeDamage),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addBurden),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setElevator),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,storeWithPorterMoogle),

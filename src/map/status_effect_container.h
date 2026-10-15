@@ -91,6 +91,7 @@ public:
     void RemoveOldestManeuver();
     void RemoveAllManeuvers();
     uint8 GetActiveRuneCount();
+    std::vector<EFFECT> GetAllRuneEffects();
     EFFECT GetHighestRuneEffect();
     EFFECT GetNewestRuneEffect();
     void RemoveOldestRune();

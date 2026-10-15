@@ -2,7 +2,7 @@
 Draft: scripts/globals/job_utils_draft/rune_fencer.lua (not loaded).
 
 ## Missing C++ Lua bindings in DSP (lua_baseentity.cpp)
-DONE (slice): getActiveRuneCount, getHighestRuneEffect, getNewestRuneEffect, removeOldestRune, removeNewestRune, removeAllRunes (container + Lua bindings, syntax-checked with cl /Zs). STILL MISSING: getAllRuneEffects, takeSwipeLungeDamage, getJobPointLevel.
+DONE (slice, syntax-checked with cl /Zs): getActiveRuneCount, getHighestRuneEffect, getNewestRuneEffect, getAllRuneEffects, removeOldestRune, removeNewestRune, removeAllRunes, getJobPointLevel (stub, always 0), takeSwipeLungeDamage(attacker, damage) (DSP signature drops attackType/damageType; no takeDamage() in this tree).
 Job points are unused in DSP: replace jp bonuses with 0 (or stub getJobPointLevel to return 0).
 
 ## Missing Lua constants
