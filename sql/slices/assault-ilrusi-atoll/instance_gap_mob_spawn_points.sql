@@ -1,0 +1,32 @@
+-- Instance-gap rows for ilrusi_atoll_missions_1-4, from the tested live dspdb, 2026-09-20.
+-- These entities are referenced by this package's instance_entities.sql but were absent from the package's other sql-dsp files.
+-- Not INSERT IGNORE. Load after the package's npc_list / mob_spawn_points files.
+INSERT INTO `mob_spawn_points` (`mobid`, `mobname`, `polutils_name`, `groupid`, `pos_x`, `pos_y`, `pos_z`, `pos_rot`) VALUES
+(17002542, 'Undead_Leech', 'Undead Leech', 17006, 323.574, -6.361, 261.256, 0),
+(17002543, 'Undead_Slime', 'Undead Slime', 17008, 111.22, -10.232, -26.56, 188),
+(17002544, 'Undead_Toad', 'Undead Toad', 17011, 491.285, -5.183, 303.974, 90),
+(17002545, 'Demolition_Automaton', 'Demolition Automaton', 17005, 383, -6, -334, 14),
+(17002546, 'Wreckage', 'Wreckage', 17002, 210, -6, -274, 0),
+(17002547, 'Wreckage', 'Wreckage', 17002, 293, -6, -359, 0),
+(17002548, 'Wreckage', 'Wreckage', 17002, 343, -6, -361, 0),
+(17002549, 'Wreckage', 'Wreckage', 17002, 412, -6, -439, 0),
+(17002550, 'Wreckage', 'Wreckage', 17002, 464, -6, -437, 0),
+(17002551, 'Carrion_Crab', 'Carrion Crab', 17007, 210, -6, -274, 0),
+(17002552, 'Carrion_Crab', 'Carrion Crab', 17007, 294.376, -5.405, -362.647, 74),
+(17002553, 'Carrion_Crab', 'Carrion Crab', 17007, 342.105, -5.365, -360.958, 70),
+(17002554, 'Carrion_Crab', 'Carrion Crab', 17007, 413.687, -5.268, -444.683, 71),
+(17002555, 'Carrion_Crab', 'Carrion Crab', 17007, 462.742, -5.378, -434.045, 79),
+(17002556, 'Imp', 'Imp', 17003, 339.231, -5.989, -390.727, 171),
+(17002557, 'Imp', 'Imp', 17003, 303.074, -5.913, -406.425, 129),
+(17002558, 'Imp', 'Imp', 17003, 258.444, -5.008, -315.914, 38),
+(17002559, 'Imp', 'Imp', 17003, 265.315, -7.016, -328.32, 14),
+(17002560, 'Imp', 'Imp', 17003, 225.937, -1.445, -331.168, 231),
+(17002561, 'Imp', 'Imp', 17003, 394.871, -5.276, -338.254, 135),
+(17002562, 'Imp', 'Imp', 17003, 428.383, -4.533, -466.345, 250),
+(17002563, 'Imp', 'Imp', 17003, 450.177, -3.05, -466.905, 185),
+(17002900, 'Cursed_Chest', 'Cursed Chest', 17016, 454.148, -7.865, 131.854, 144),
+(17002902, 'Cursed_Chest', 'Cursed Chest', 17016, 335.96, -16.487, -141.673, 134),
+(17002903, 'Cursed_Chest', 'Cursed Chest', 17016, 432.799, -7.499, -125.802, 251),
+(17002904, 'Cursed_Chest', 'Cursed Chest', 17016, 347.386, -16.302, -13.217, 98),
+(17002905, 'Cursed_Chest', 'Cursed Chest', 17016, 259.472, -2.454, 24.611, 127),
+(17002906, 'Cursed_Chest', 'Cursed Chest', 17016, 311.695, -5.007, -22.351, 86);
