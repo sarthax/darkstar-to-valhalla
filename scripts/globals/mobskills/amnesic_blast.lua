@@ -9,6 +9,7 @@ require("scripts/globals/monstertpmoves");
 require("scripts/globals/msg");
 
 function onMobSkillCheck(target,mob,skill)
+    if (mob:getLocalVar("VW_DEADLINE") == 0) then return 1; end -- Voidwatch-only: base mobs sharing this skill stay inert (no Lua existed before VW)
     return 0;
 end;
 
