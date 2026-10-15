@@ -190,3 +190,85 @@ function RUNEFENCER.useVallationValiance(player, target, ability, isValiance)
     end
     return isValiance and EFFECT_VALIANCE or EFFECT_VALLATION;
 end
+
+-----------------------------------
+-- Pflug (slice run-geo-jobs): status resist per held rune; merits not wired
+-----------------------------------
+RUNEFENCER.pflugResistMods =
+{
+    [EFFECT_IGNIS]    = { MOD_PARALYZERES, MOD_BINDRES },
+    [EFFECT_GELUS]    = { MOD_SILENCERES, MOD_GRAVITYRES },
+    [EFFECT_FLABRA]   = { MOD_PETRIFYRES, MOD_SLOWRES },
+    [EFFECT_TELLUS]   = { MOD_STUNRES },
+    [EFFECT_SULPOR]   = { MOD_POISONRES },
+    [EFFECT_UNDA]     = { MOD_AMNESIARES, MOD_VIRUSRES },
+    [EFFECT_LUX]      = { MOD_SLEEPRES, MOD_BLINDRES, MOD_CURSERES },
+    [EFFECT_TENEBRAE] = { MOD_CHARMRES },
+};
+
+-- runes are packed into subpower (merit bonus is 0 in this tree)
+function RUNEFENCER.usePflug(player, target, ability)
+    local runes = player:getAllRuneEffects();
+    local power = 10;
+    if (player:getMainJob() == JOBS.RUN) then
+        power = 15;
+    end
+    player:addStatusEffect(EFFECT_PFLUG, power, 0, 120, 0, packRunes(runes));
+    return EFFECT_PFLUG;
+end
+
+function RUNEFENCER.onPflugGain(target, effect)
+    forEachPackedRune(effect:getSubPower(), function(rune)
+        for _, m in ipairs(RUNEFENCER.pflugResistMods[rune]) do
+            target:addMod(m, effect:getPower());
+        end
+    end);
+end
+
+function RUNEFENCER.onPflugLose(target, effect)
+    forEachPackedRune(effect:getSubPower(), function(rune)
+        for _, m in ipairs(RUNEFENCER.pflugResistMods[rune]) do
+            target:delMod(m, effect:getPower());
+        end
+    end);
+end
+
+-----------------------------------
+-- Gambit: enemy loses -10% (as RES points) in each held rune's element
+-----------------------------------
+RUNEFENCER.gambitResistMod =
+{
+    [EFFECT_IGNIS]    = MOD_FIRERES,
+    [EFFECT_GELUS]    = MOD_ICERES,
+    [EFFECT_FLABRA]   = MOD_WINDRES,
+    [EFFECT_TELLUS]   = MOD_EARTHRES,
+    [EFFECT_SULPOR]   = MOD_THUNDERRES,
+    [EFFECT_UNDA]     = MOD_WATERRES,
+    [EFFECT_LUX]      = MOD_LIGHTRES,
+    [EFFECT_TENEBRAE] = MOD_DARKRES,
+};
+
+function RUNEFENCER.useGambit(player, target, ability)
+    local runes = player:getAllRuneEffects();
+    if (#runes == 0) then
+        return nil;
+    end
+    target:delStatusEffectSilent(EFFECT_GAMBIT);
+    target:addStatusEffect(EFFECT_GAMBIT, 10, 0, 60, 0, packRunes(runes));
+    player:removeAllRunes();
+    return EFFECT_GAMBIT;
+end
+
+function RUNEFENCER.onGambitGain(target, effect)
+    local power = effect:getPower() * RUNEFENCER.RES_PER_PERCENT;
+    forEachPackedRune(effect:getSubPower(), function(rune)
+        target:delMod(RUNEFENCER.gambitResistMod[rune], power);
+    end);
+end
+
+function RUNEFENCER.onGambitLose(target, effect)
+    local power = effect:getPower() * RUNEFENCER.RES_PER_PERCENT;
+    forEachPackedRune(effect:getSubPower(), function(rune)
+        target:addMod(RUNEFENCER.gambitResistMod[rune], power);
+    end);
+end
