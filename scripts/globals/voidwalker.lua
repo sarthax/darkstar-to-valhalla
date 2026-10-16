@@ -208,11 +208,35 @@ end
 -----------------------------------
 -- Mob hooks (called from the per-NM scripts)
 -----------------------------------
+-- Skill Lua branches on this (like vwBuffActive for Voidwatch); false for ordinary mobs
+function vwkNM(mob)
+    return mob ~= nil and mob:getLocalVar("VWK_NM") == 1;
+end
+
 function voidwalker.onMobSpawn(mob)
+    mob:setLocalVar("VWK_NM", 1);
     hide(mob);
 end
 
+-- Capricornus: Mighty Strikes at 80/60/40/20% HP, Recoil Dive (skill 641) spammed without TP while it lasts (wiki)
+local CAPRI_STEPS = {80, 60, 40, 20};
+local function capricornus(mob, target)
+    if (mob:getName() ~= "Capricornus") then return; end
+    local step = mob:getLocalVar("VWK_MS_STEP");
+    local hpp = mob:getHPP();
+    if (step < #CAPRI_STEPS and hpp <= CAPRI_STEPS[step + 1]) then
+        mob:setLocalVar("VWK_MS_STEP", step + 1);
+        mob:addStatusEffect(EFFECT_MIGHTY_STRIKES, 1, 0, 45);
+        mob:setLocalVar("VWK_MS_END", os.time() + 45);
+    end
+    if (os.time() < mob:getLocalVar("VWK_MS_END") and os.time() >= mob:getLocalVar("VWK_MS_NEXT")) then
+        mob:setLocalVar("VWK_MS_NEXT", os.time() + 6);
+        mob:useMobAbility(641);
+    end
+end
+
 function voidwalker.onMobFight(mob, target)
+    capricornus(mob, target);
     local popAt = mob:getLocalVar(POPPED_AT);
     if (popAt ~= 0 and (os.time() > popAt + 7200 or mob:checkDistance(target) > 25)) then
         target:messageSpecial(VOIDWALKER_DATA[mob:getZoneID()].text.DESPAWN);
@@ -222,6 +246,8 @@ end
 
 function voidwalker.onMobDisengage(mob)
     reset(mob);
+    mob:setLocalVar("VWK_MS_STEP", 0);
+    mob:setLocalVar("VWK_MS_END", 0);
     hide(mob);
 end
 

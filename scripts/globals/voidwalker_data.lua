@@ -371,14 +371,14 @@ VOIDWALKER_DATA[95] = { -- West_Sarutabaruta_[S]
     },
     mobs = {
         [CLEAR_ABYSSITE] = {
-            17166778, -- Raker bee
-            17166777, -- Raker bee
-            17166776, -- Raker bee
-            17166775, -- Raker bee
-            17166774, -- Rummager beetle
-            17166773, -- Rummager beetle
-            17166772, -- Rummager beetle
-            17166771, -- Rummager beetle
+            17166778, -- Raker Bee
+            17166777, -- Raker Bee
+            17166776, -- Raker Bee
+            17166775, -- Raker Bee
+            17166774, -- Rummager Beetle
+            17166773, -- Rummager Beetle
+            17166772, -- Rummager Beetle
+            17166771, -- Rummager Beetle
         },
         [COLORFUL_ABYSSITE] = {
             17166770, -- Jyeshtha
@@ -430,14 +430,14 @@ VOIDWALKER_DATA[97] = { -- Meriphataud_Mountains_[S]
     },
     mobs = {
         [CLEAR_ABYSSITE] = {
-            17174917, -- Raker bee
-            17174916, -- Raker bee
-            17174915, -- Raker bee
-            17174914, -- Raker bee
-            17174913, -- Rummager beetle
-            17174912, -- Rummager beetle
-            17174911, -- Rummager beetle
-            17174910, -- Rummager beetle
+            17174917, -- Raker Bee
+            17174916, -- Raker Bee
+            17174915, -- Raker Bee
+            17174914, -- Raker Bee
+            17174913, -- Rummager Beetle
+            17174912, -- Rummager Beetle
+            17174911, -- Rummager Beetle
+            17174910, -- Rummager Beetle
         },
         [COLORFUL_ABYSSITE] = {
             17174909, -- Jyeshtha
@@ -1134,14 +1134,14 @@ VOIDWALKER_DATA[115] = { -- West_Sarutabaruta
     },
     mobs = {
         [CLEAR_ABYSSITE] = {
-            17248624, -- Raker bee
-            17248623, -- Raker bee
-            17248622, -- Raker bee
-            17248621, -- Raker bee
-            17248620, -- Rummager beetle
-            17248619, -- Rummager beetle
-            17248618, -- Rummager beetle
-            17248617, -- Rummager beetle
+            17248624, -- Raker Bee
+            17248623, -- Raker Bee
+            17248622, -- Raker Bee
+            17248621, -- Raker Bee
+            17248620, -- Rummager Beetle
+            17248619, -- Rummager Beetle
+            17248618, -- Rummager Beetle
+            17248617, -- Rummager Beetle
         },
         [COLORFUL_ABYSSITE] = {
             17248616, -- Jyeshtha
@@ -1251,14 +1251,14 @@ VOIDWALKER_DATA[119] = { -- Meriphataud_Mountains
     },
     mobs = {
         [CLEAR_ABYSSITE] = {
-            17265129, -- Raker bee
-            17265128, -- Raker bee
-            17265127, -- Raker bee
-            17265126, -- Raker bee
-            17265125, -- Rummager beetle
-            17265124, -- Rummager beetle
-            17265123, -- Rummager beetle
-            17265122, -- Rummager beetle
+            17265129, -- Raker Bee
+            17265128, -- Raker Bee
+            17265127, -- Raker Bee
+            17265126, -- Raker Bee
+            17265125, -- Rummager Beetle
+            17265124, -- Rummager Beetle
+            17265123, -- Rummager Beetle
+            17265122, -- Rummager Beetle
         },
         [COLORFUL_ABYSSITE] = {
             17265121, -- Jyeshtha
@@ -1379,14 +1379,14 @@ VOIDWALKER_DATA[136] = { -- Beaucedine_Glacier_[S]
             17334554, -- Gjenganger
         },
         [COLORFUL_ABYSSITE] = {
-            17334555, -- Erebus
-            17334556, -- Feuerunke
+            17334553, -- Erebus
+            17334552, -- Feuerunke
         },
         [PURPLE_ABYSSITE] = {
-            17334557, -- Lord Ruthven
+            17334551, -- Lord Ruthven
         },
         [BLACK_ABYSSITE] = {
-            17334558, -- Yilbegan
+            17334550, -- Yilbegan
         },
     },
     pos = {

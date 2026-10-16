@@ -1,6 +1,6 @@
 -----------------------------------
 --  Area: Rolanberry Fields
---   NM:  Beorth (Voidwalker)
+--   NM:  Beorht (Voidwalker)
 -----------------------------------
 
 require("scripts/globals/voidwalker");

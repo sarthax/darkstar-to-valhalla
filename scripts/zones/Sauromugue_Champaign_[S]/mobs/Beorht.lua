@@ -1,6 +1,6 @@
 -----------------------------------
---  Area: Batallia Downs
---   NM:  Beorth (Voidwalker)
+--  Area: Sauromugue Champaign [S]
+--   NM:  Beorht (Voidwalker)
 -----------------------------------
 
 require("scripts/globals/voidwalker");

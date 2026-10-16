@@ -19,5 +19,6 @@ function onMobWeaponSkill(target, mob, skill)
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_CRIT_VARIES,1,2,3);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,info.hitslanded);
     target:delHP(dmg);
+    if (vwkNM ~= nil and vwkNM(mob)) then mob:resetEnmity(target); end -- Voidwalker NM: resets hate
     return dmg;
 end;

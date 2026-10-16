@@ -1,6 +1,6 @@
 -----------------------------------
---  Area: Sauromugue Champaign
---   NM:  Beorth (Voidwalker)
+--  Area: Rolanberry Fields [S]
+--   NM:  Beorht (Voidwalker)
 -----------------------------------
 
 require("scripts/globals/voidwalker");

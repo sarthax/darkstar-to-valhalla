@@ -11,12 +11,14 @@ require("scripts/globals/status");
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
+    if (vwkNM ~= nil and vwkNM(mob) and mob:hasStatusEffect(EFFECT_STONESKIN)) then return 1; end
     if (vwBuffActive ~= nil and vwBuffActive(mob, EFFECT_STONESKIN)) then return 1; end -- Voidwatch NMs: no re-buff while active
     return 0;
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local power = 25; -- ffxiclopedia claims its always 25 on the crabs page. Tested on wootzshell in mt zhayolm..
+    local power = 25;
+    if (vwkNM ~= nil and vwkNM(mob)) then power = 1000; end -- Voidwalker NM: ~1000 HP stoneskin (wiki) -- ffxiclopedia claims its always 25 on the crabs page. Tested on wootzshell in mt zhayolm..
     --[[
     if (mob:isNM()) then
         power = ???  Betting NMs aren't 25 but I don't have data..
