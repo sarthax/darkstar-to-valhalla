@@ -9,4 +9,4 @@ INSERT INTO npc_list VALUES
 (17867251,'Geomantic_Reservoir','Geomantic Reservoir',0,189.015,-40.000,241.025,1,50,50,0,0,112,0,3,0x0000160900000000000000000000000000000000,0,'SOA',1);
 UPDATE npc_list SET name='Geomantic_Reservoir_2', pos_x=400.026, pos_y=70.700, pos_z=365.002 WHERE npcid=17195727;
 UPDATE npc_list SET name='Geomantic_Reservoir_2' WHERE npcid IN (17863465);
--- W3 live: INSERT INTO guild_shops VALUES (60416,4857,10428,10428,165,33,65);
+INSERT INTO guild_shops VALUES (60416,4857,10428,10428,165,33,65);
