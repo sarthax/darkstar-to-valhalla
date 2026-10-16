@@ -78,3 +78,4 @@ Job points absent in DSP (LSB reads them); unknown animation ids; client version
 - Rayke: no DSP resist-rank formula, so the rune element's *RES mod is lowered (RUNEFENCER.RAYKE_RES=60, tune). Retail nuke-wall halving not ported.
 - Inspiration: fast cast packed into Valiance power (thousands), applied as MOD_FASTCAST. Merit ids use literal 0x0444/0x0442 (RUN_2 category) and need merit-table rows to be nonzero.
 - Embolden: not done (per-spell enhancing-magic edits; needs a stronger source than guessing).
+- Embolden deferred: DSP has no central enhancing-spell hook (each white-magic buff script computes its own power/duration), so wiring needs edits to every white enhancing spell (x1.5 power, 0.5x duration, consumed after next cast). Ability/effect not added to avoid a visible no-op.
