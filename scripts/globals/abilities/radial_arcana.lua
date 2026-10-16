@@ -17,6 +17,7 @@ function onAbilityCheck(player,target,ability)
 end;
 
 function onUseAbility(player,target,ability)
+    ability:setMsg(451);
     local luopan = GEOMANCER.getLuopan(player);
     if (luopan == nil) then return 0; end
     local amount = GEOMANCER.RADIAL_PER_LEVEL * luopan:getMainLvl();

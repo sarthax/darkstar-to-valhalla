@@ -21,6 +21,7 @@ function onAbilityCheck(player,target,ability)
 end;
 
 function onUseAbility(player,target,ability)
+    ability:setMsg(110);
     local luopan = GEOMANCER.getLuopan(player);
     if (luopan == nil) then return 0; end
     local dmg = luopan:getHP();
