@@ -15,3 +15,9 @@ REPLACE INTO `abilities` VALUES (359,'rayke',22,75,4,300,119,320,0,4,2000,0,15,3
 REPLACE INTO `abilities` VALUES (360,'battuta',22,75,1,300,120,100,0,4,2000,0,15,0,0,450,900,3456,1,'SOA');
 REPLACE INTO `abilities` VALUES (362,'odyllic_subterfuge',22,96,4,3600,131,0,0,277,2000,0,6,10,6,1,318,0,0,'SOA');
 REPLACE INTO `abilities` VALUES (367,'vivacious_pulse',22,65,1,60,242,102,0,327,2000,0,6,0,0,0,0,0,0,'SOA');
+
+-- Recast ids for pre-existing DSP rows (were 0, sharing Elemental Sforzo's 1-hour timer). Client/LSB values.
+UPDATE `abilities` SET `recastId` = 92 WHERE `abilityId` = 341;
+UPDATE `abilities` SET `recastTime` = 5, `recastId` = 10 WHERE `abilityId` BETWEEN 342 AND 349;
+UPDATE `abilities` SET `recastId` = 142 WHERE `abilityId` = 363;
+UPDATE `abilities` SET `recastId` = 143 WHERE `abilityId` = 364;
