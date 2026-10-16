@@ -26,6 +26,10 @@ SPECIES_BASE = {"Blobdingnag": "Viscous_Clot", "Orcus": "Cave_Antlion", "Krabkat
                 "Dawon": "Cave_Tiger", "Lord_Ruthven": "Vampyr_Jarl"}
 
 
+# Own skill lists, ids observed in the Discord captures (docs/slices/voidwalker/CAPTURE_FINDINGS.md). list id, skill ids.
+SKILL_LISTS = {"Blobdingnag": (9001, [2514, 2548, 2549, 2550, 2551, 2552]), "Orcus": (9002, [1845, 2516, 2517])}
+
+
 def main(lsb, dsp):
     report = []
     data = open(os.path.join(dsp, "scripts/globals/voidwalker_data.lua"), encoding="utf-8").read()
@@ -104,6 +108,8 @@ def main(lsb, dsp):
             row[5], row[6] = str(JOBS[jobs[0]]), str(JOBS[jobs[-1]])
         if a.get("combat", {}).get("delay"):
             row[8] = str(a["combat"]["delay"])
+        if name in SKILL_LISTS:
+            row[24] = str(SKILL_LISTS[name][0])
         assert len(row) == 25
         pools.append("INSERT INTO `mob_pools` VALUES (%s);" % ",".join(row))
         report.append("pool %d %s <- base '%s' (model %d)%s" % (pid, name, cands[0][1].strip("'"), mdl, " [SPECIES FALLBACK: model from LSB, family/skills/spells from base]" if fallback else ""))
