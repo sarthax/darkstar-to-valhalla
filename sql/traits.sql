@@ -467,6 +467,38 @@ INSERT INTO `traits` VALUES ('6','magic def. bonus','22','70','4','29','16','SOA
 -- Auto Regen Tiers I ~ II --
 INSERT INTO `traits` VALUES ('9','auto regen','22','35','1','370','1','SOA');
 INSERT INTO `traits` VALUES ('9','auto regen','22','65','2','370','2','SOA');
+INSERT INTO `traits` VALUES (9,'auto regen',22,95,3,370,3,'SOA');
+INSERT INTO `traits` VALUES (6,'magic def. bonus',22,99,7,29,22,'SOA');
+INSERT INTO `traits` VALUES (6,'magic def. bonus',22,91,6,29,20,'SOA');
+INSERT INTO `traits` VALUES (6,'magic def. bonus',22,76,5,29,18,'SOA');
+INSERT INTO `traits` VALUES (1,'accuracy bonus',22,90,3,26,35,'SOA');
+INSERT INTO `traits` VALUES (1,'accuracy bonus',22,90,3,25,35,'SOA');
+INSERT INTO `traits` VALUES (1,'accuracy bonus',22,70,2,26,22,'SOA');
+INSERT INTO `traits` VALUES (1,'accuracy bonus',22,70,2,25,22,'SOA');
+INSERT INTO `traits` VALUES (1,'accuracy bonus',22,50,1,26,10,'SOA');
+INSERT INTO `traits` VALUES (1,'accuracy bonus',22,50,1,25,10,'SOA');
+INSERT INTO `traits` VALUES (117,'tenacity',22,80,5,240,13,'SOA');
+INSERT INTO `traits` VALUES (117,'tenacity',22,80,5,241,13,'SOA');
+INSERT INTO `traits` VALUES (117,'tenacity',22,80,5,242,13,'SOA');
+INSERT INTO `traits` VALUES (117,'tenacity',22,80,5,243,13,'SOA');
+INSERT INTO `traits` VALUES (117,'tenacity',22,80,5,244,13,'SOA');
+INSERT INTO `traits` VALUES (117,'tenacity',22,80,5,245,13,'SOA');
+INSERT INTO `traits` VALUES (117,'tenacity',22,80,5,246,13,'SOA');
+INSERT INTO `traits` VALUES (117,'tenacity',22,80,5,247,13,'SOA');
+INSERT INTO `traits` VALUES (117,'tenacity',22,80,5,248,13,'SOA');
+INSERT INTO `traits` VALUES (117,'tenacity',22,95,6,240,15,'SOA');
+INSERT INTO `traits` VALUES (117,'tenacity',22,95,6,241,15,'SOA');
+INSERT INTO `traits` VALUES (117,'tenacity',22,95,6,242,15,'SOA');
+INSERT INTO `traits` VALUES (117,'tenacity',22,95,6,243,15,'SOA');
+INSERT INTO `traits` VALUES (117,'tenacity',22,95,6,244,15,'SOA');
+INSERT INTO `traits` VALUES (117,'tenacity',22,95,6,245,15,'SOA');
+INSERT INTO `traits` VALUES (117,'tenacity',22,95,6,246,15,'SOA');
+INSERT INTO `traits` VALUES (117,'tenacity',22,95,6,247,15,'SOA');
+INSERT INTO `traits` VALUES (117,'tenacity',22,95,6,248,15,'SOA');
+INSERT INTO `traits` VALUES (118,'inquartata',22,15,1,963,5,'SOA');
+INSERT INTO `traits` VALUES (118,'inquartata',22,45,2,963,7,'SOA');
+INSERT INTO `traits` VALUES (118,'inquartata',22,75,3,963,9,'SOA');
+INSERT INTO `traits` VALUES (118,'inquartata',22,90,4,963,11,'SOA');
 
 -- --- GEOMANCER --- --
 -- Conserve MP Tiers I ~ V --
@@ -483,3 +515,19 @@ INSERT INTO `traits` VALUES ('24','clear mind','21','60','3','295','1','SOA');
 -- Max MP Boost Tiers I ~ II
 INSERT INTO `traits` VALUES ('8','max mp boost','21','30','1','5','10','SOA');
 INSERT INTO `traits` VALUES ('8','max mp boost','21','60','2','5','20','SOA');
+INSERT INTO `traits` VALUES (13,'conserve mp',21,99,7,296,43,'SOA');
+INSERT INTO `traits` VALUES (13,'conserve mp',21,85,6,296,40,'SOA');
+INSERT INTO `traits` VALUES (8,'max mp boost',21,90,3,5,40,'SOA');
+INSERT INTO `traits` VALUES (24,'clear mind',21,80,4,71,12,'SOA');
+INSERT INTO `traits` VALUES (24,'clear mind',21,80,4,295,1,'SOA');
+INSERT INTO `traits` VALUES (24,'clear mind',21,99,5,71,15,'SOA');
+INSERT INTO `traits` VALUES (24,'clear mind',21,99,5,295,2,'SOA');
+INSERT INTO `traits` VALUES (112,'elemental celerity',21,55,1,901,10,'SOA');
+INSERT INTO `traits` VALUES (112,'elemental celerity',21,75,2,901,15,'SOA');
+INSERT INTO `traits` VALUES (112,'elemental celerity',21,95,3,901,20,'SOA');
+INSERT INTO `traits` VALUES (116,'cardinal chant',21,25,1,959,1,'SOA');
+INSERT INTO `traits` VALUES (116,'cardinal chant',21,45,2,959,2,'SOA');
+INSERT INTO `traits` VALUES (116,'cardinal chant',21,65,3,959,3,'SOA');
+INSERT INTO `traits` VALUES (116,'cardinal chant',21,85,4,959,4,'SOA');
+INSERT INTO `traits` VALUES (119,'curative recantation',21,75,1,970,0,'SOA');
+INSERT INTO `traits` VALUES (120,'primeval zeal',21,75,1,971,0,'SOA');

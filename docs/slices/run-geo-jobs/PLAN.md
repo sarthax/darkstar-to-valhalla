@@ -105,6 +105,7 @@ Valhalla is the merge target and may already contain its own versions of these f
 | 8 | Spell levels, effect/ability/mod ids | slice SQL | Id collisions with anything Valhalla added; see the `*_id_diff.csv` files. |
 | 9 | Ability `actionType` 15 -> 6 for the nine SoA RUN abilities | `sql/slices/run-geo-jobs/run_abilities.sql` | LSB rows carry actionType 15, which DSP's action packet builder (`action.cpp`) never writes an ability id for, giving a blank name ("uses ."). If Valhalla ever backports other LSB ability rows, check their actionType is 6 (or 3/14). |
 | 10 | REQUIRE_RUNE message id 660 -> 666 | `scripts/globals/runefencer.lua` | 660 is the luopan message; unverified against the client text. |
+| 11 | Main `sql/*.sql` now carry the slice rows (abilities, spell_list, status_effects, traits, pet_list, mob_family_system) | `sql/*.sql` | Rows were folded in programmatically and verified against the slice result. The Luopan `mob_pools` row (poolid 7000) is NOT in main `sql/mob_pools.sql`: that file is behind the live table (24 vs 25 columns), so it stays slice-only in `geo_luopan_pet.sql`. |
 
 Items 1 and 2 are the most likely to conflict, because Valhalla's behavior there differs from stock DSP.
 
