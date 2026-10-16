@@ -8,6 +8,8 @@ require("scripts/globals/status");
 require("scripts/globals/geomancer");
 
 GEOMANCER.CONCENTRIC_RANGE = 10; -- yalms, luopan to target
+-- Bagua Galero +2/+3/+4 (item_basic ids): damage uses the luopan's max HP instead of current HP
+GEOMANCER.CONCENTRIC_MAXHP_HEADS = { [23083] = true, [23418] = true, [23938] = true };
 
 function onAbilityCheck(player,target,ability)
     local luopan = GEOMANCER.getLuopan(player);
@@ -25,6 +27,12 @@ function onUseAbility(player,target,ability)
     local luopan = GEOMANCER.getLuopan(player);
     if (luopan == nil) then return 0; end
     local dmg = luopan:getHP();
+    if (GEOMANCER.CONCENTRIC_MAXHP_HEADS[player:getEquipID(SLOT_HEAD)]) then
+        dmg = luopan:getMaxHP();
+    end
+    -- job point damage bonus: getJobPointLevel is a stub in DSP (returns 0); live when Valhalla provides it
+    local jp = player:getJobPointLevel(JP_CONCENTRIC_PULSE_EFFECT or 0) or 0;
+    dmg = dmg + math.floor(dmg * jp / 100);
     target:delHP(dmg);
     player:despawnPet();
     return dmg;
