@@ -143,7 +143,7 @@ def main(lsb, dsp):
         name = e["template"]
         if name not in pool_of:
             continue
-        if mid in taken and taken[mid] not in ("Aither", "Thunor", "Lacus", "Yilbegan", "Verthandi", "Urd", "Skuld",
+        if mid in taken and taken[mid].lower() != name.lower() and taken[mid] not in ("Aither", "Thunor", "Lacus", "Yilbegan", "Verthandi", "Urd", "Skuld",
                                                 name):
             report.append("CONFLICT: id %d already used in DSP by '%s', skipped %s" % (mid, taken[mid], name))
             continue

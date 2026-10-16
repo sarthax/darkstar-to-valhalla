@@ -1,6 +1,6 @@
 # Voidwalker generation report
 
-pools 25, drops 33 rows, groups 280, spawns 280; scripts written 0 (existing kept 186)
+pools 25, drops 33 rows, groups 284, spawns 284; scripts written 0 (existing kept 186)
 
 ## Skipped templates (no pool)
 
@@ -47,7 +47,3 @@ pools 25, drops 33 rows, groups 280, spawns 280; scripts written 0 (existing kep
 - drop: Orcus one_of block NOT ported
 - drop: Orcus one_of block NOT ported
 - drop: Orcus one_of block NOT ported
-- CONFLICT: id 17338604 already used in DSP by 'GoreHound', skipped Gorehound
-- CONFLICT: id 17338605 already used in DSP by 'GoreHound', skipped Gorehound
-- CONFLICT: id 17338606 already used in DSP by 'GoreHound', skipped Gorehound
-- CONFLICT: id 17338607 already used in DSP by 'GoreHound', skipped Gorehound
