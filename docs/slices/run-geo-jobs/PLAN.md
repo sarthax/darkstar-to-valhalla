@@ -103,6 +103,8 @@ Valhalla is the merge target and may already contain its own versions of these f
 | 6 | Luopan pet type (PETID 75) | `petutils`, `pet_controller`, `petentity` | Check pet id 75 and `PETTYPE_LUOPAN` are not already used on Valhalla. |
 | 7 | Handbell `skill_ranks` row enabled, `SKILL_HND` constant | `sql/skill_ranks.sql`, `status.lua` | Duplicate-key risk if Valhalla already enables skill 45. |
 | 8 | Spell levels, effect/ability/mod ids | slice SQL | Id collisions with anything Valhalla added; see the `*_id_diff.csv` files. |
+| 9 | Ability `actionType` 15 -> 6 for the nine SoA RUN abilities | `sql/slices/run-geo-jobs/run_abilities.sql` | LSB rows carry actionType 15, which DSP's action packet builder (`action.cpp`) never writes an ability id for, giving a blank name ("uses ."). If Valhalla ever backports other LSB ability rows, check their actionType is 6 (or 3/14). |
+| 10 | REQUIRE_RUNE message id 660 -> 666 | `scripts/globals/runefencer.lua` | 660 is the luopan message; unverified against the client text. |
 
 Items 1 and 2 are the most likely to conflict, because Valhalla's behavior there differs from stock DSP.
 
