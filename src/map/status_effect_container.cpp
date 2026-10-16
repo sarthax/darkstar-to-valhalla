@@ -1273,7 +1273,7 @@ void CStatusEffectContainer::SetEffectParams(CStatusEffect* StatusEffect)
 
     if (StatusEffect->GetSubID() == 0 || StatusEffect->GetSubID() > 20000 ||
         (effect >= EFFECT_REQUIEM && effect <= EFFECT_NOCTURNE) ||
-        (effect == EFFECT_DOUBLE_UP_CHANCE) || effect == EFFECT_BUST)
+        (effect == EFFECT_DOUBLE_UP_CHANCE) || effect == EFFECT_BUST || effect == EFFECT_COLURE_ACTIVE)
     {
         name.insert(0, "globals/effects/");
         name.insert(name.size(), effects::EffectsParams[effect].Name);
@@ -1287,7 +1287,8 @@ void CStatusEffectContainer::SetEffectParams(CStatusEffect* StatusEffect)
         }
     }
     StatusEffect->SetName(name);
-    StatusEffect->SetFlag(effects::EffectsParams[effect].Flag);
+    // aura children (see HandleAura) pre-set AURA / NO_LOSS_MESSAGE; keep those over the table flags
+    StatusEffect->SetFlag(effects::EffectsParams[effect].Flag | (StatusEffect->GetFlag() & (EFFECTFLAG_AURA | EFFECTFLAG_NO_LOSS_MESSAGE)));
     StatusEffect->SetType(effects::EffectsParams[effect].Type);
 
 
@@ -1487,9 +1488,96 @@ void CStatusEffectContainer::TickEffects(time_point tick)
                 PStatusEffect->GetElapsedTickCount() <= std::chrono::duration_cast<std::chrono::milliseconds>(tick - PStatusEffect->GetStartTime()).count() / PStatusEffect->GetTickTime())
             {
                 PStatusEffect->IncrementElapsedTickCount();
+                if (PStatusEffect->GetStatusID() == EFFECT_COLURE_ACTIVE)
+                {
+                    HandleAura(PStatusEffect);
+                }
                 luautils::OnEffectTick(m_POwner, PStatusEffect);
             }
         }
+    }
+}
+
+/************************************************************************
+*  Geomancy aura (Indi/Geo). The owning effect is EFFECT_COLURE_ACTIVE:  *
+*  subid = effect to grant, subpower = its power, tier = 0 allies /      *
+*  1 enemies. Targets in range receive a short effect that is refreshed  *
+*  every tick and lapses on its own once they leave the aura.            *
+************************************************************************/
+
+void CStatusEffectContainer::HandleAura(CStatusEffect* PAura)
+{
+    CBattleEntity* PMaster = m_POwner;
+    if (m_POwner->objtype == TYPE_PET && m_POwner->PMaster != nullptr)
+    {
+        PMaster = m_POwner->PMaster;
+    }
+    if (m_POwner->loc.zone == nullptr || PMaster == nullptr)
+    {
+        return;
+    }
+
+    const EFFECT  auraEffect = (EFFECT)PAura->GetSubID();
+    const uint16  auraPower  = PAura->GetSubPower();
+    const bool    enemies    = PAura->GetTier() == 1;
+    // AURA_SIZE is stored as range * 100
+    const int16   sizeMod    = std::max<int16>(m_POwner->getMod(Mod::AURA_SIZE), PMaster->getMod(Mod::AURA_SIZE));
+    const float   range      = 6.0f + sizeMod / 100.0f;
+
+    auto apply = [&](CBattleEntity* PTarget)
+    {
+        if (PTarget == nullptr || PTarget->isDead() || PTarget->loc.zone != m_POwner->loc.zone ||
+            distance(m_POwner->loc.p, PTarget->loc.p) > range + PTarget->m_ModelSize)
+        {
+            return;
+        }
+        CStatusEffect* PEffect = PTarget->StatusEffectContainer->GetStatusEffect(auraEffect);
+        if (PEffect != nullptr)
+        {
+            if ((PEffect->GetFlag() & EFFECTFLAG_AURA) == 0)
+            {
+                return; // a real (non-aura) copy of this effect is on the target; leave it alone
+            }
+            PEffect->SetStartTime(server_clock::now());
+            if (PEffect->GetPower() != auraPower)
+            {
+                // potency changed (Bolster, Ecliptic Attrition...): re-gain with the new power
+                luautils::OnEffectLose(PTarget, PEffect);
+                PEffect->SetPower(auraPower);
+                luautils::OnEffectGain(PTarget, PEffect);
+            }
+            return;
+        }
+        PEffect = new CStatusEffect(auraEffect, (uint16)auraEffect, auraPower, 3, 4);
+        PEffect->SetFlag(PEffect->GetFlag() | EFFECTFLAG_AURA | EFFECTFLAG_NO_LOSS_MESSAGE);
+        PTarget->StatusEffectContainer->AddStatusEffect(PEffect, true);
+    };
+
+    if (!enemies)
+    {
+        PMaster->ForParty(apply);
+    }
+    else
+    {
+        m_POwner->loc.zone->ForEachMob([&](CMobEntity* PMob)
+        {
+            if (PMob->isDead() || distance(m_POwner->loc.p, PMob->loc.p) > range + PMob->m_ModelSize)
+            {
+                return;
+            }
+            bool engaged = false;
+            PMaster->ForParty([&](CBattleEntity* PMember)
+            {
+                if (PMember != nullptr && PMob->PEnmityContainer->HasID(PMember->id))
+                {
+                    engaged = true;
+                }
+            });
+            if (engaged)
+            {
+                apply(PMob);
+            }
+        });
     }
 }
 

@@ -74,6 +74,7 @@ public:
     void UpdateStatusIcons();                                   // пересчитываем иконки эффектов
     void CheckEffectsExpiry(time_point tick);
     void TickEffects(time_point tick);
+    void HandleAura(CStatusEffect* PAura);
     void TickRegen(time_point tick);
 
     void LoadStatusEffects();                                   // загружаем эффекты персонажа

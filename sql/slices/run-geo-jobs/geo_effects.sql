@@ -1,0 +1,33 @@
+-- GEO aura effects. DSP names ids 539-567/580 REGEN_II..HASTE_II; LSB uses them as GEO_*. Renaming the script name only (ids unchanged).
+-- 612 colure_active owns the aura (flags: death + AURA). Children set their own AURA|NO_LOSS_MESSAGE in code.
+REPLACE INTO `status_effects` VALUES (539,'geo_regen',32,0,0,0,0,0,0,0);
+REPLACE INTO `status_effects` VALUES (540,'geo_poison',32,0,0,0,0,0,0,0);
+REPLACE INTO `status_effects` VALUES (541,'geo_refresh',32,0,0,0,0,0,0,0);
+REPLACE INTO `status_effects` VALUES (542,'geo_str_boost',32,0,0,0,0,0,0,0);
+REPLACE INTO `status_effects` VALUES (543,'geo_dex_boost',32,0,0,0,0,0,0,0);
+REPLACE INTO `status_effects` VALUES (544,'geo_vit_boost',32,0,0,0,0,0,0,0);
+REPLACE INTO `status_effects` VALUES (545,'geo_agi_boost',32,0,0,0,0,0,0,0);
+REPLACE INTO `status_effects` VALUES (546,'geo_int_boost',32,0,0,0,0,0,0,0);
+REPLACE INTO `status_effects` VALUES (547,'geo_mnd_boost',32,0,0,0,0,0,0,0);
+REPLACE INTO `status_effects` VALUES (548,'geo_chr_boost',32,0,0,0,0,0,0,0);
+REPLACE INTO `status_effects` VALUES (549,'geo_attack_boost',32,0,0,0,0,0,0,0);
+REPLACE INTO `status_effects` VALUES (550,'geo_defense_boost',32,0,0,0,0,0,0,0);
+REPLACE INTO `status_effects` VALUES (551,'geo_magic_atk_boost',32,0,0,0,0,0,0,0);
+REPLACE INTO `status_effects` VALUES (552,'geo_magic_def_boost',32,0,0,0,0,0,0,0);
+REPLACE INTO `status_effects` VALUES (553,'geo_accuracy_boost',32,0,0,0,0,0,0,0);
+REPLACE INTO `status_effects` VALUES (554,'geo_evasion_boost',32,0,0,0,0,0,0,0);
+REPLACE INTO `status_effects` VALUES (555,'geo_magic_acc_boost',32,0,0,0,0,0,0,0);
+REPLACE INTO `status_effects` VALUES (556,'geo_magic_evasion_boost',32,0,0,0,0,0,0,0);
+REPLACE INTO `status_effects` VALUES (557,'geo_attack_down',8388640,0,0,0,0,0,0,0);
+REPLACE INTO `status_effects` VALUES (558,'geo_defense_down',8388640,0,0,0,0,0,0,0);
+REPLACE INTO `status_effects` VALUES (559,'geo_magic_atk_down',8388640,0,0,0,0,0,0,0);
+REPLACE INTO `status_effects` VALUES (560,'geo_magic_def_down',8388640,0,0,0,0,0,0,0);
+REPLACE INTO `status_effects` VALUES (561,'geo_accuracy_down',8388640,0,0,0,0,0,0,0);
+REPLACE INTO `status_effects` VALUES (562,'geo_evasion_down',8388640,0,0,0,0,0,0,0);
+REPLACE INTO `status_effects` VALUES (563,'geo_magic_acc_down',8388640,0,0,0,0,0,0,0);
+REPLACE INTO `status_effects` VALUES (564,'geo_magic_evasion_down',8388640,0,0,0,0,0,0,0);
+REPLACE INTO `status_effects` VALUES (565,'geo_slow',8388640,0,0,0,0,0,0,0);
+REPLACE INTO `status_effects` VALUES (566,'geo_paralysis',8388640,0,0,0,0,0,0,0);
+REPLACE INTO `status_effects` VALUES (567,'geo_weight',8388640,0,0,0,0,0,0,0);
+REPLACE INTO `status_effects` VALUES (580,'geo_haste',32,0,0,0,0,0,0,0);
+REPLACE INTO `status_effects` VALUES (612,'colure_active',67108896,0,0,0,0,0,0,0);
