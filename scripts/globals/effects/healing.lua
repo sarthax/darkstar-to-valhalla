@@ -9,6 +9,7 @@ require("scripts/globals/status");
 require("scripts/globals/settings");
 require("scripts/globals/abyssea_lights");
 require("scripts/globals/mog_tablets");
+require("scripts/globals/voidwalker");
 
 -----------------------------------
 -- onEffectGain Action
@@ -18,6 +19,10 @@ function onEffectGain(target,effect)
     target:setAnimation(33);
     if (target:hasStatusEffect(EFFECT_VISITANT) and isAbysseaLightZone(target:getZoneID())) then
         displayAbysseaLights(target);
+    end
+
+    if (target:getObjType() == TYPE_PC) then
+        voidwalker.onHealing(target);
     end
 end;
 

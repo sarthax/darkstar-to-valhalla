@@ -1,6 +1,6 @@
 # Voidwalker (F-11e) - slice plan
 
-Branch: `feature/voidwalker` (cut from `main`). Status: planning, nothing ported yet.
+Branch: `feature/voidwalker` (cut from `main`). Status: Batallia Downs pilot written (Lua + SQL), untested in game. Nothing pushed.
 Not the same system as Voidwatch (`docs/voidwatch/`): Voidwalker is the older abyssite /heal-to-pop NM hunt.
 Overlap with Voidwatch is limited to the no-rebuff pattern and the new-NM checklist.
 
@@ -24,8 +24,8 @@ Overlap with Voidwatch is limited to the no-rebuff pattern and the new-NM checkl
 - Obtained-key-item message already exists in DSP TextIDs (`KEYITEM_OBTAINED`), so LSB's `VOIDWALKER_OBTAIN_KI` can map to it.
 
 ## Still missing in DSP (work list)
-1. Text ids per zone: re-pull each zone's dialog (`mission_toolkit.py <zone>`), map by TEXT, never by LSB number. 25 zones.
-2. NM data: mob_groups / mob_pools / mob_spawn_points / drops / levels / skill lists. Only 1 of 37 NM names exists. Not in LSB Lua.
+1. DONE (textids.csv, 25 zones, tool tools/voidwalker_textids.py). Was: re-pull each zone's dialog (`mission_toolkit.py <zone>`), map by TEXT, never by LSB number. 25 zones.
+2. NM data: CORRECTION - it IS in LSB `data/zones/*/mobs.yaml` (templates + spawn ids, levels, hp, loot). Convert per zone like `sql/slices/voidwalker/batallia_pilot.sql` (pools copied from the DSP base pool by name, model = LE16 at bytes 2-3, skill_list ids match DSP family ids).
    Sources: BG wiki dump (`wiki_lookup.py`), FFXIclopedia, wikiwiki.jp, FFXIDB drop rates, Discord scrapes, captures.
 3. Position set: validate ~520 positions with `!checknav` (Y inverted); drop any that fail.
 4. Engine methods the LSB globals call; check each exists in DSP (`hideHP`, `hideName`, `setUntargetable`, `updateClaim`, `AnimationSub()` traps).
