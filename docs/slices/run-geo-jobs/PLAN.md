@@ -114,6 +114,6 @@ Items 1 and 2 are the most likely to conflict, because Valhalla's behavior there
 
 ## Rune Enhancement (melee elemental additional effect)
 - Ported from LSB `CalculateEnspellDamage` Tier 4 into `src/map/utils/battleutils.cpp` (`Tier == 4` branch + rune block in `HandleEnspell`).
-- DPS = weapon damage * 60 / delay (cap 21, halved when dual wielding, 3/240 unarmed). Multipliers per rune count are in the static `RUNE_MULT` table (tunable).
+- DPS = weapon damage * 1000 / delay_ms (cap 21, halved when dual wielding, 3/240 unarmed). Multipliers per rune count are in the static `RUNE_MULT` table (tunable).
 - Element: newest rune if highest count is 1, else highest. Runs before enspell/weapon effects, skipped for Blood Weapon.
 - **Valhalla risk:** `battleutils.cpp` is shared; the rune block sits at the top of the enspell chain in `HandleEnspell` and will conflict textually with any Valhalla edit there. Day/weather/resist scaling reuses the existing enspell code.

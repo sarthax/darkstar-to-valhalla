@@ -581,7 +581,7 @@ namespace battleutils
             CItemWeapon* PMain = PAttacker->m_Weapons[SLOT_MAIN];
             if (PMain != nullptr && PMain->getDelay() > 0)
             {
-                runeDPS = (double)PMain->getDamage() * 60.0 / (double)PMain->getDelay();
+                runeDPS = (double)PMain->getDamage() * 1000.0 / (double)PMain->getDelay() /* delay is stored in ms */;
             }
             CItemWeapon* PSub = PAttacker->m_Weapons[SLOT_SUB];
             if (PSub != nullptr && PSub->getSkillType() != SKILL_NON && PSub->getDamage() > 0)
