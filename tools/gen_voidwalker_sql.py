@@ -21,6 +21,11 @@ PILOT_POOLS = {}  # filled from batallia_pilot.sql
 PILOT_DROPS = {}
 
 
+# No DSP pool carries these models: clone a same-species pool (family, skills, spells) and set the LSB model.
+SPECIES_BASE = {"Blobdingnag": "Viscous_Clot", "Orcus": "Cave_Antlion", "Krabkatoa": "Arrapago_Crab",
+                "Dawon": "Cave_Tiger", "Lord_Ruthven": "Vampyr_Jarl"}
+
+
 def main(lsb, dsp):
     report = []
     data = open(os.path.join(dsp, "scripts/globals/voidwalker_data.lua"), encoding="utf-8").read()
@@ -30,11 +35,12 @@ def main(lsb, dsp):
     ids = set(int(i) for i in re.findall(r"(\d{8}),", data))
 
     pools_sql = open(os.path.join(dsp, "sql/mob_pools.sql"), encoding="utf-8", errors="ignore").read()
-    bymodel = {}
+    bymodel, bypoolid = {}, {}
     for m in re.finditer(r"mob_pools` VALUES \((\d+,'[^']*','[^']*',\d+,(0x[0-9A-Fa-f]{40}),.*?)\);", pools_sql):
         row = re.findall(r"'[^']*'|[^,]+", m.group(1))
         if len(row) == 25 and row[14] == "0":
             bymodel.setdefault(m.group(2)[:10].upper(), []).append(row)
+            bypoolid[int(row[0])] = row
     pilot = open(os.path.join(dsp, "sql/slices/voidwalker/batallia_pilot.sql")).read()
     for m in re.finditer(r"mob_pools` VALUES \((\d+),'(\w+)'", pilot):
         PILOT_POOLS[m.group(2)] = int(m.group(1))
@@ -82,10 +88,16 @@ def main(lsb, dsp):
         mdl = lk["model"]
         key = "0X0000%02X%02X" % (mdl & 255, mdl >> 8)
         cands = bymodel.get(key)
+        fallback = False
+        if not cands and name in SPECIES_BASE:
+            cands = [r for r in bypoolid.values() if r[1].strip("'") == SPECIES_BASE[name]]
+            fallback = True
         if not cands:
             skipped.append((name, "no DSP pool with model %d" % mdl))
             continue
         row = list(cands[0])
+        if fallback:
+            row[4] = "0x0000%02X%02X" % (mdl & 255, mdl >> 8) + "0" * 32
         row[0], row[1], row[2], row[14] = str(pid), "'%s'" % name, "'%s'" % name, "2"
         jobs = a.get("jobs")
         if jobs:
@@ -94,7 +106,7 @@ def main(lsb, dsp):
             row[8] = str(a["combat"]["delay"])
         assert len(row) == 25
         pools.append("INSERT INTO `mob_pools` VALUES (%s);" % ",".join(row))
-        report.append("pool %d %s <- base '%s' (model %d)" % (pid, name, cands[0][1].strip("'"), mdl))
+        report.append("pool %d %s <- base '%s' (model %d)%s" % (pid, name, cands[0][1].strip("'"), mdl, " [SPECIES FALLBACK: model from LSB, family/skills/spells from base]" if fallback else ""))
         pool_of[name] = pid
         pid += 1
 
