@@ -149,15 +149,24 @@ local function forEachPackedRune(subpower, fn)
     end
 end
 
+-- Valiance packs Inspiration fast cast into power thousands: power = percent + 1000 * fastCast
 function RUNEFENCER.onWardGain(target, effect)
-    local power = effect:getPower() * RUNEFENCER.RES_PER_PERCENT;
+    local fc = math.floor(effect:getPower() / 1000);
+    if (fc > 0) then
+        target:addMod(MOD_FASTCAST, fc);
+    end
+    local power = (effect:getPower() % 1000) * RUNEFENCER.RES_PER_PERCENT;
     forEachPackedRune(effect:getSubPower(), function(rune)
         target:addMod(RUNEFENCER.wardResistMod[rune], power);
     end);
 end
 
 function RUNEFENCER.onWardLose(target, effect)
-    local power = effect:getPower() * RUNEFENCER.RES_PER_PERCENT;
+    local fc = math.floor(effect:getPower() / 1000);
+    if (fc > 0) then
+        target:delMod(MOD_FASTCAST, fc);
+    end
+    local power = (effect:getPower() % 1000) * RUNEFENCER.RES_PER_PERCENT;
     forEachPackedRune(effect:getSubPower(), function(rune)
         target:delMod(RUNEFENCER.wardResistMod[rune], power);
     end);
@@ -179,9 +188,12 @@ function RUNEFENCER.useVallationValiance(player, target, ability, isValiance)
     end
     local power = 15; -- percent per rune element (merits not wired)
     if (isValiance) then
+        -- Inspiration: 10 fast cast per merit level plus ENHANCES_INSPIRATION; only on members who actually receive Valiance
+        local inspiration = player:getMerit(0x0444);
+        local fc = inspiration + math.floor(inspiration / 10) * player:getMod(MOD_ENHANCES_INSPIRATION);
         for _, member in pairs(player:getParty()) do
             if (not member:hasStatusEffect(EFFECT_VALLATION)) then
-                applyWard(member, EFFECT_VALIANCE, power, 180, runes);
+                applyWard(member, EFFECT_VALIANCE, power + 1000 * fc, 180, runes);
             end
         end
     else
@@ -429,4 +441,83 @@ function RUNEFENCER.onBattutaGain(target, effect)
         effect:addMod(MOD_PARRY_SPIKES, RUNEFENCER.battutaSpikes[target:getHighestRuneEffect()]);
         effect:addMod(MOD_PARRY_SPIKES_DMG, effect:getSubPower());
     end
+end
+
+-----------------------------------
+-- Liement / Rayke (slice run-geo-jobs)
+-- Liement: C++ battleutils::CheckLiementAbsorb (MagicDmgTaken); subpower = element ids (1-8) in 4-bit nibbles.
+-- Rayke: DSP has no resist-rank formula, so the rune element's *RES mod is lowered on the target
+-- (more magic hits/less resist), tunable via RAYKE_RES. Retail's Rayke nuke-wall halving is not ported.
+-----------------------------------
+RUNEFENCER.RAYKE_RES = 60;
+
+RUNEFENCER.liementElement =
+{
+    [EFFECT_IGNIS]    = ELE_ICE,
+    [EFFECT_GELUS]    = ELE_WIND,
+    [EFFECT_FLABRA]   = ELE_EARTH,
+    [EFFECT_TELLUS]   = ELE_THUNDER,
+    [EFFECT_SULPOR]   = ELE_WATER,
+    [EFFECT_UNDA]     = ELE_FIRE,
+    [EFFECT_LUX]      = ELE_DARK,
+    [EFFECT_TENEBRAE] = ELE_LIGHT,
+};
+
+RUNEFENCER.raykeResistMod =
+{
+    [EFFECT_IGNIS]    = MOD_FIRERES,
+    [EFFECT_GELUS]    = MOD_ICERES,
+    [EFFECT_FLABRA]   = MOD_WINDRES,
+    [EFFECT_TELLUS]   = MOD_EARTHRES,
+    [EFFECT_SULPOR]   = MOD_THUNDERRES,
+    [EFFECT_UNDA]     = MOD_WATERRES,
+    [EFFECT_LUX]      = MOD_LIGHTRES,
+    [EFFECT_TENEBRAE] = MOD_DARKRES,
+};
+
+local function applyLiement(member, bits)
+    member:delStatusEffectSilent(EFFECT_VALLATION);
+    member:delStatusEffectSilent(EFFECT_VALIANCE);
+    member:delStatusEffectSilent(EFFECT_LIEMENT);
+    member:addStatusEffect(EFFECT_LIEMENT, 15, 0, 10 + member:getMod(MOD_LIEMENT_DURATION), 0, bits);
+end
+
+function RUNEFENCER.useLiement(player, target, ability)
+    if (player:getID() ~= target:getID()) then
+        return nil;
+    end
+    local bits = 0;
+    for i, rune in ipairs(player:getAllRuneEffects()) do
+        bits = bits + RUNEFENCER.liementElement[rune] * (16 ^ (i - 1));
+    end
+    if (player:getMod(MOD_LIEMENT_EXTENDS_TO_AREA) > 0) then
+        for _, member in pairs(player:getParty()) do
+            applyLiement(member, bits);
+        end
+    else
+        applyLiement(player, bits);
+    end
+    return EFFECT_LIEMENT;
+end
+
+function RUNEFENCER.useRayke(player, target, ability)
+    local merit = player:getMerit(0x0442); -- MERIT_RAYKE = MCATEGORY_RUN_2 + 0x02 (merit.h)
+    local duration = 27 + merit + math.floor(player:getMod(MOD_RAYKE_DURATION) * merit / 3);
+    local packed = packRunes(player:getAllRuneEffects());
+    if (target:addStatusEffect(EFFECT_RAYKE, RUNEFENCER.RAYKE_RES, 0, duration, 0, packed)) then
+        player:removeAllRunes();
+    end
+    return EFFECT_RAYKE;
+end
+
+function RUNEFENCER.onRaykeGain(target, effect)
+    forEachPackedRune(effect:getSubPower(), function(rune)
+        target:delMod(RUNEFENCER.raykeResistMod[rune], effect:getPower());
+    end);
+end
+
+function RUNEFENCER.onRaykeLose(target, effect)
+    forEachPackedRune(effect:getSubPower(), function(rune)
+        target:addMod(RUNEFENCER.raykeResistMod[rune], effect:getPower());
+    end);
 end

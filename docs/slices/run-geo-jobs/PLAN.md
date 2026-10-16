@@ -72,3 +72,9 @@ Job points absent in DSP (LSB reads them); unknown animation ids; client version
 ## Battuta + Elemental Sforzo + Vivacious Pulse
 - C++: GetParryRate adds MOD_INQUARTATA; HandleParrySpikesDamage (flat damage, Stoneskin only, message 44) called from battleentity.cpp on parry when Battuta is up. Syntax-checked with cl /Zs only; not built or run.
 - Spikes subeffect display ids for gale/clod/deluge/death are as DSP status.lua defines them; unverified in client. Elemental scaling of spikes damage (LSB CalculateSpikeDamage) is not ported.
+
+## Liement / Rayke / Inspiration / Embolden
+- Liement: battleutils::CheckLiementAbsorb hooked at the top of MagicDmgTaken (one absorb then expires; 85+15*count %). Syntax-checked only.
+- Rayke: no DSP resist-rank formula, so the rune element's *RES mod is lowered (RUNEFENCER.RAYKE_RES=60, tune). Retail nuke-wall halving not ported.
+- Inspiration: fast cast packed into Valiance power (thousands), applied as MOD_FASTCAST. Merit ids use literal 0x0444/0x0442 (RUN_2 category) and need merit-table rows to be nonzero.
+- Embolden: not done (per-spell enhancing-magic edits; needs a stronger source than guessing).

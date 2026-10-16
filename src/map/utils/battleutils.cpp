@@ -4279,8 +4279,30 @@ namespace battleutils
         return damage;
     }
 
+    // Liement: element ids (1-8) packed in 4-bit nibbles of subpower; absorbs once, then expires.
+    float CheckLiementAbsorb(CBattleEntity* PDefender, uint8 element)
+    {
+        CStatusEffect* liement = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_LIEMENT);
+        if (liement == nullptr || element == 0)
+            return 1.0f;
+        uint16 bits = liement->GetSubPower();
+        uint8 count = 0;
+        for (int i = 0; i < 4; ++i)
+            if (((bits >> (i * 4)) & 0xF) == element)
+                count++;
+        if (count == 0)
+            return 1.0f;
+        float mult = (85 + count * liement->GetPower()) / 100.0f;
+        PDefender->StatusEffectContainer->DelStatusEffectSilent(EFFECT_LIEMENT);
+        return -mult;
+    }
+
     int32 MagicDmgTaken(CBattleEntity* PDefender, int32 damage, ELEMENT element)
     {
+        float liement = CheckLiementAbsorb(PDefender, (uint8)element);
+        if (liement < 0)
+            return (int32)(damage * liement);
+
         Mod absorb[8] = { Mod::FIRE_ABSORB, Mod::EARTH_ABSORB, Mod::WATER_ABSORB, Mod::WIND_ABSORB, Mod::ICE_ABSORB, Mod::LTNG_ABSORB, Mod::LIGHT_ABSORB, Mod::DARK_ABSORB };
         Mod nullarray[8] = { Mod::FIRE_NULL, Mod::EARTH_NULL, Mod::WATER_NULL, Mod::WIND_NULL, Mod::ICE_NULL, Mod::LTNG_NULL, Mod::LIGHT_NULL, Mod::DARK_NULL };
 
