@@ -308,8 +308,52 @@ function voidwalker.onHealing(player)
 end
 
 -----------------------------------
--- Assai Nybaem (Ru'Lude Gardens). Event ids NOT verified for the DSP client yet: disabled until they are.
+-- Assai Nybaem (Ru'Lude Gardens). Event 10120 decompiled from the client (explore_event.py):
+-- params[0] = abyssite bitmask in (bit n-1 = ABYSSITE_BIT_ORDER[n]), params[1] = price (client shows 1000).
 -----------------------------------
+local ASSAI_EVENT = 10120;
+local ASSAI_PRICE = 1000;
+
 function voidwalker.abyssiteBits(player)
     return abyssiteBits(player);
+end
+
+function voidwalker.npcOnTrigger(player)
+    if (not enabled()) then
+        return;
+    end
+    player:startEvent(ASSAI_EVENT, abyssiteBits(player));
+end
+
+function voidwalker.npcOnEventUpdate(player, csid, option)
+    if (csid == ASSAI_EVENT and bit.band(option, 0xF) == 3) then
+        if (player:getGil() < ASSAI_PRICE) then
+            player:updateEvent(3);
+        elseif (player:hasKeyItem(CLEAR_ABYSSITE)) then
+            player:updateEvent(2);
+        else
+            player:updateEvent(1);
+        end
+    end
+end
+
+-- keyItemObtainedMsg: the zone's KEYITEM_OBTAINED text id (client-verified for Ru'Lude: 6531)
+function voidwalker.npcOnEventFinish(player, csid, option, keyItemObtainedMsg)
+    if (csid ~= ASSAI_EVENT) then
+        return;
+    end
+
+    local opt = bit.band(option, 0xF);
+    if (opt == 1) then
+        if (player:getGil() >= ASSAI_PRICE and not player:hasKeyItem(CLEAR_ABYSSITE)) then
+            player:delGil(ASSAI_PRICE);
+            player:addKeyItem(CLEAR_ABYSSITE);
+            player:messageSpecial(keyItemObtainedMsg, CLEAR_ABYSSITE);
+        end
+    elseif (opt == 2) then
+        local ki = ABYSSITE_BIT_ORDER[bit.rshift(option, 4)];
+        if (ki ~= nil and player:hasKeyItem(ki)) then
+            player:delKeyItem(ki);
+        end
+    end
 end
