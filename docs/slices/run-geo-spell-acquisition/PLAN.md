@@ -18,3 +18,9 @@ Rules: never invent ids (verify spell/item/csid/text ids from a fresh same-sessi
 
 ## Not in this slice
 Unlock quests (feature/run-geo-unlock-quests), job abilities/stats (feature/run-geo-jobs), gear acquisition.
+
+## W3 audit (2026-10-16)
+- Present: Hasim Bar-element scrolls (+ra), Tya Padolih Regen/II/Baramnesia, Zafif/Brave Ox Flash, Gekko Regen IV (50,400), Ledericus Foil.
+- Added: Brave Ox Crusade (item 5103, 143,451 per wiki research).
+- Missing, no per-item price in offline wiki dump (do not invent): Hasim Barsleep 4680, Barpoison 4681, Barparalyze 4682, Barblind 4683, Barsilence 4684, Barpetrify 4685, Barvirus 4686; Aquaveil 4663 (Regine/Kususu 368); Blaze Spikes 4857 (Amalasanda 10,428), Shock Spikes 4859 (Hilkomu-Makimu/Mamaroon 9,000, Chutarmire 8,280); Ice Spikes 4858, Temper 4705 are drop/quest only.
+- Needs live web price check (W7) before adding.
