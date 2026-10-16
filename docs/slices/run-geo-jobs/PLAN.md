@@ -89,3 +89,19 @@ Job points absent in DSP (LSB reads them); unknown animation ids; client version
 
 ## Also in this slice: keep TP when swapping ranged instruments (charutils.cpp EquipItem)
 - DSP zeroed TP on any main/sub/ranged equip. LSB keeps TP when swapping one string/wind instrument or handbell for another. `EquipItem` now captures TP and restores it for that case only. Not tested in-game; possible overlap with a Valhalla fix of the same defect (diff before merge).
+
+## Risk register: possible conflicts with Valhalla (target server)
+Valhalla is the merge target and may already contain its own versions of these fixes. Each item below edits shared engine code outside RUN/GEO, so it can conflict with, double-apply on top of, or change the behavior of their code. Diff against Valhalla before merging or pushing; drop our change if theirs is correct.
+
+| # | Change | File / function | Valhalla impact |
+|---|--------|-----------------|-----------------|
+| 1 | Skill-merit lookup now maps by skill id (was a shifted running counter; Handbell ran off the array) | `charutils.cpp` `BuildingCharSkillsTable` | Valhalla was tested and has no shifting bug, so it likely has its own fix. Same block, so expect a textual conflict or double handling. Changes skill-merit bonuses for any character with skill merits. |
+| 2 | Keep TP when swapping ranged instrument/handbell (LSB behavior) | `charutils.cpp` `EquipItem` | Valhalla is believed to have this TP-reset defect. Our fix touches the same TP-reset path and could clash with a fix of theirs. Affects BRD and COR-style instrument swaps as well as GEO. |
+| 3 | Handbell skill-up on Geomancy casts | `charentity.cpp` spell-finish path (next to the Singing skill-up) | Low. Only adds a branch, but would duplicate it if Valhalla already added one. |
+| 4 | Embolden power/duration hook | `battleentity.cpp` after `OnSpellCast` | Shared spell-cast path, so it affects every spell cast. Check for overlap with any Embolden or buff-modifier code on Valhalla. |
+| 5 | Aura engine (`EFFECT_COLURE_ACTIVE`) | `status_effect_container.cpp` `HandleAura` | Shared effect tick path. Check for existing aura or colure handling. |
+| 6 | Luopan pet type (PETID 75) | `petutils`, `pet_controller`, `petentity` | Check pet id 75 and `PETTYPE_LUOPAN` are not already used on Valhalla. |
+| 7 | Handbell `skill_ranks` row enabled, `SKILL_HND` constant | `sql/skill_ranks.sql`, `status.lua` | Duplicate-key risk if Valhalla already enables skill 45. |
+| 8 | Spell levels, effect/ability/mod ids | slice SQL | Id collisions with anything Valhalla added; see the `*_id_diff.csv` files. |
+
+Items 1 and 2 are the most likely to conflict, because Valhalla's behavior there differs from stock DSP.
