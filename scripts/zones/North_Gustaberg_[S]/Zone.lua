@@ -8,12 +8,14 @@ package.loaded["scripts/zones/North_Gustaberg_[S]/TextIDs"] = nil;
 
 require("scripts/globals/settings");
 require("scripts/zones/North_Gustaberg_[S]/TextIDs");
+require("scripts/globals/voidwalker");
 
 -----------------------------------
 -- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
+    voidwalker.zoneOnInit(zone);
 end;
 
 -----------------------------------

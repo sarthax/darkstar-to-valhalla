@@ -19,6 +19,7 @@ require("scripts/globals/common");
 ENABLE_COP     = 0;
 ENABLE_TOAU    = 0;
 ENABLE_WOTG    = 0;
+ENABLE_VOIDWALKER = 1; -- 1 = /heal abyssite NM hunt (needs the voidwalker slice SQL)
 ENABLE_ACP     = 0;
 ENABLE_AMK     = 0;
 ENABLE_ASA     = 0;

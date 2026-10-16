@@ -10,6 +10,7 @@ require("scripts/globals/settings");
 require("scripts/globals/abyssea_lights");
 require("scripts/globals/mog_tablets");
 require("scripts/globals/dances_with_luopans");
+require("scripts/globals/voidwalker");
 
 -----------------------------------
 -- onEffectGain Action
@@ -20,6 +21,10 @@ function onEffectGain(target,effect)
     DWL.onHealingGain(target);
     if (target:hasStatusEffect(EFFECT_VISITANT) and isAbysseaLightZone(target:getZoneID())) then
         displayAbysseaLights(target);
+    end
+
+    if (target:getObjType() == TYPE_PC) then
+        voidwalker.onHealing(target);
     end
 end;
 

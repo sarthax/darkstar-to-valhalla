@@ -1,21 +1,28 @@
 -----------------------------------
--- Area:
---  MOB: Verthandi
+--  Area: Sauromugue Champaign [S]
+--   NM:  Verthandi (Voidwalker)
 -----------------------------------
 
+require("scripts/globals/voidwalker");
 require("scripts/globals/titles");
 
------------------------------------
--- onMobSpawn Action
------------------------------------
-
 function onMobSpawn(mob)
+    voidwalker.onMobSpawn(mob);
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
+function onMobFight(mob, target)
+    voidwalker.onMobFight(mob, target);
+end;
+
+function onMobDisengage(mob)
+    voidwalker.onMobDisengage(mob);
+end;
+
+function onMobDespawn(mob)
+    voidwalker.onMobDespawn(mob);
+end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(VERTHANDI_ENSNARER);
+    if (player ~= nil) then player:addTitle(VERTHANDI_ENSNARER); end
+    voidwalker.onMobDeath(mob, player, isKiller, BLACK_ABYSSITE);
 end;

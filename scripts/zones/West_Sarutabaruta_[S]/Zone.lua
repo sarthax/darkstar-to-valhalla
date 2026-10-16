@@ -8,12 +8,14 @@ package.loaded["scripts/zones/West_Sarutabaruta_[S]/TextIDs"] = nil;
 
 require("scripts/globals/settings");
 require("scripts/zones/West_Sarutabaruta_[S]/TextIDs");
+require("scripts/globals/voidwalker");
 
 -----------------------------------
 -- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
+    voidwalker.zoneOnInit(zone);
 end;
 
 -----------------------------------

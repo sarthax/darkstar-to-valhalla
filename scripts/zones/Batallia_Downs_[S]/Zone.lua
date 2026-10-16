@@ -8,12 +8,14 @@ package.loaded["scripts/zones/Batallia_Downs_[S]/TextIDs"] = nil;
 
 require("scripts/globals/settings");
 require("scripts/zones/Batallia_Downs_[S]/TextIDs");
+require("scripts/globals/voidwalker");
 
 -----------------------------------
 -- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
+    voidwalker.zoneOnInit(zone);
 end;
 
 -----------------------------------

@@ -11,6 +11,7 @@ require( "scripts/zones/Batallia_Downs/TextIDs");
 require("scripts/globals/zone");
 require( "scripts/globals/icanheararainbow");
 require("scripts/globals/chocobo_digging");
+require("scripts/globals/voidwalker");
 
 -----------------------------------
 -- Chocobo Digging vars
@@ -60,6 +61,7 @@ function onInitialize(zone)
     MOG_TABLET.onZoneInitialize(zone);
     -- Ahtu
     SetRespawnTime(17207657, 900, 10800);
+    voidwalker.zoneOnInit(zone);
 end;
 
 -----------------------------------

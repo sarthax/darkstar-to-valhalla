@@ -10,12 +10,14 @@ require("scripts/zones/Pashhow_Marshlands_[S]/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/weather");
 require("scripts/globals/status");
+require("scripts/globals/voidwalker");
 
 -----------------------------------
 -- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
+    voidwalker.zoneOnInit(zone);
 end;
 
 -----------------------------------

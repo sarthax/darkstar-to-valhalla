@@ -13,6 +13,7 @@ require("scripts/globals/settings");
 require( "scripts/globals/icanheararainbow");
 require("scripts/zones/East_Ronfaure/TextIDs");
 require("scripts/globals/chocobo_digging");
+require("scripts/globals/voidwalker");
 
 -----------------------------------
 -- Chocobo Digging vars
@@ -55,6 +56,7 @@ end;
 -----------------------------------
 
 function onInitialize(zone)
+    voidwalker.zoneOnInit(zone);
     require("scripts/globals/mog_tablets");
     MOG_TABLET.onZoneInitialize(zone);
 end;
