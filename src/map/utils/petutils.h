@@ -59,7 +59,8 @@ enum PETID
     PETID_SHARPSHOTFRAME     = 71,
     PETID_STORMWAKERFRAME    = 72,
 	PETID_ADVENTURING_FELLOW = 73,
-	PETID_CHOCOBO            = 74
+	PETID_CHOCOBO            = 74,
+	PETID_LUOPAN             = 75
 };
 
 

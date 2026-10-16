@@ -62,6 +62,7 @@ When a status effect is gained twice on a player. It can do one or more of the f
 #include "utils/petutils.h"
 #include "utils/puppetutils.h"
 #include "utils/battleutils.h"
+#include "enmity_container.h"
 
 /************************************************************************
 *                                                                       *
@@ -985,6 +986,133 @@ void CStatusEffectContainer::RemoveAllManeuvers()
 }
 
 /************************************************************************
+*  Runes (slice run-geo-jobs): EFFECT_IGNIS..EFFECT_TENEBRAE            *
+************************************************************************/
+
+uint8 CStatusEffectContainer::GetActiveRuneCount()
+{
+    uint8 count = 0;
+    for (auto PStatusEffect : m_StatusEffectList)
+    {
+        if (PStatusEffect->GetStatusID() >= EFFECT_IGNIS && PStatusEffect->GetStatusID() <= EFFECT_TENEBRAE)
+        {
+            count++;
+        }
+    }
+    return count;
+}
+
+std::vector<EFFECT> CStatusEffectContainer::GetAllRuneEffects()
+{
+    std::vector<EFFECT> runes;
+    for (auto PStatusEffect : m_StatusEffectList)
+    {
+        if (PStatusEffect->GetStatusID() >= EFFECT_IGNIS && PStatusEffect->GetStatusID() <= EFFECT_TENEBRAE)
+        {
+            runes.push_back(PStatusEffect->GetStatusID());
+        }
+    }
+    return runes;
+}
+
+// the rune element with the most stacks; ties go to the first found
+EFFECT CStatusEffectContainer::GetHighestRuneEffect()
+{
+    uint8 counts[EFFECT_TENEBRAE - EFFECT_IGNIS + 1] = {};
+    for (auto PStatusEffect : m_StatusEffectList)
+    {
+        EFFECT id = PStatusEffect->GetStatusID();
+        if (id >= EFFECT_IGNIS && id <= EFFECT_TENEBRAE)
+        {
+            counts[id - EFFECT_IGNIS]++;
+        }
+    }
+    EFFECT best = EFFECT_NONE;
+    uint8  bestCount = 0;
+    for (int i = 0; i <= EFFECT_TENEBRAE - EFFECT_IGNIS; ++i)
+    {
+        if (counts[i] > bestCount)
+        {
+            bestCount = counts[i];
+            best = (EFFECT)(EFFECT_IGNIS + i);
+        }
+    }
+    return best;
+}
+
+EFFECT CStatusEffectContainer::GetNewestRuneEffect()
+{
+    CStatusEffect* newest = nullptr;
+    for (auto PStatusEffect : m_StatusEffectList)
+    {
+        if (PStatusEffect->GetStatusID() >= EFFECT_IGNIS && PStatusEffect->GetStatusID() <= EFFECT_TENEBRAE)
+        {
+            if (!newest || PStatusEffect->GetStartTime() > newest->GetStartTime())
+            {
+                newest = PStatusEffect;
+            }
+        }
+    }
+    return newest ? newest->GetStatusID() : EFFECT_NONE;
+}
+
+void CStatusEffectContainer::RemoveOldestRune()
+{
+    CStatusEffect* oldest = nullptr;
+    int index = 0;
+    for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
+    {
+        CStatusEffect* PStatusEffect = m_StatusEffectList.at(i);
+        if (PStatusEffect->GetStatusID() >= EFFECT_IGNIS && PStatusEffect->GetStatusID() <= EFFECT_TENEBRAE)
+        {
+            if (!oldest || PStatusEffect->GetStartTime() < oldest->GetStartTime())
+            {
+                oldest = PStatusEffect;
+                index = i;
+            }
+        }
+    }
+    if (oldest)
+    {
+        RemoveStatusEffect(index, true);
+    }
+}
+
+void CStatusEffectContainer::RemoveNewestRune()
+{
+    CStatusEffect* newest = nullptr;
+    int index = 0;
+    for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
+    {
+        CStatusEffect* PStatusEffect = m_StatusEffectList.at(i);
+        if (PStatusEffect->GetStatusID() >= EFFECT_IGNIS && PStatusEffect->GetStatusID() <= EFFECT_TENEBRAE)
+        {
+            if (!newest || PStatusEffect->GetStartTime() > newest->GetStartTime())
+            {
+                newest = PStatusEffect;
+                index = i;
+            }
+        }
+    }
+    if (newest)
+    {
+        RemoveStatusEffect(index, true);
+    }
+}
+
+void CStatusEffectContainer::RemoveAllRunes()
+{
+    for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
+    {
+        if (m_StatusEffectList.at(i)->GetStatusID() >= EFFECT_IGNIS &&
+            m_StatusEffectList.at(i)->GetStatusID() <= EFFECT_TENEBRAE)
+        {
+            RemoveStatusEffect(i--, true);
+        }
+    }
+}
+
+/************************************************************************
 *                                                                       *
 *  Проверяем наличие статус-эффекта	в контейнере с уникальным subid     *
 *                                                                       *
@@ -1146,7 +1274,7 @@ void CStatusEffectContainer::SetEffectParams(CStatusEffect* StatusEffect)
 
     if (StatusEffect->GetSubID() == 0 || StatusEffect->GetSubID() > 20000 ||
         (effect >= EFFECT_REQUIEM && effect <= EFFECT_NOCTURNE) ||
-        (effect == EFFECT_DOUBLE_UP_CHANCE) || effect == EFFECT_BUST)
+        (effect == EFFECT_DOUBLE_UP_CHANCE) || effect == EFFECT_BUST || effect == EFFECT_COLURE_ACTIVE)
     {
         name.insert(0, "globals/effects/");
         name.insert(name.size(), effects::EffectsParams[effect].Name);
@@ -1160,7 +1288,8 @@ void CStatusEffectContainer::SetEffectParams(CStatusEffect* StatusEffect)
         }
     }
     StatusEffect->SetName(name);
-    StatusEffect->SetFlag(effects::EffectsParams[effect].Flag);
+    // aura children (see HandleAura) pre-set AURA / NO_LOSS_MESSAGE; keep those over the table flags
+    StatusEffect->SetFlag(effects::EffectsParams[effect].Flag | (StatusEffect->GetFlag() & (EFFECTFLAG_AURA | EFFECTFLAG_NO_LOSS_MESSAGE)));
     StatusEffect->SetType(effects::EffectsParams[effect].Type);
 
 
@@ -1360,9 +1489,96 @@ void CStatusEffectContainer::TickEffects(time_point tick)
                 PStatusEffect->GetElapsedTickCount() <= std::chrono::duration_cast<std::chrono::milliseconds>(tick - PStatusEffect->GetStartTime()).count() / PStatusEffect->GetTickTime())
             {
                 PStatusEffect->IncrementElapsedTickCount();
+                if (PStatusEffect->GetStatusID() == EFFECT_COLURE_ACTIVE)
+                {
+                    HandleAura(PStatusEffect);
+                }
                 luautils::OnEffectTick(m_POwner, PStatusEffect);
             }
         }
+    }
+}
+
+/************************************************************************
+*  Geomancy aura (Indi/Geo). The owning effect is EFFECT_COLURE_ACTIVE:  *
+*  subid = effect to grant, subpower = its power, tier = 0 allies /      *
+*  1 enemies. Targets in range receive a short effect that is refreshed  *
+*  every tick and lapses on its own once they leave the aura.            *
+************************************************************************/
+
+void CStatusEffectContainer::HandleAura(CStatusEffect* PAura)
+{
+    CBattleEntity* PMaster = m_POwner;
+    if (m_POwner->objtype == TYPE_PET && m_POwner->PMaster != nullptr)
+    {
+        PMaster = m_POwner->PMaster;
+    }
+    if (m_POwner->loc.zone == nullptr || PMaster == nullptr)
+    {
+        return;
+    }
+
+    const EFFECT  auraEffect = (EFFECT)PAura->GetSubID();
+    const uint16  auraPower  = PAura->GetSubPower();
+    const bool    enemies    = PAura->GetTier() == 1;
+    // AURA_SIZE is stored as range * 100
+    const int16   sizeMod    = std::max<int16>(m_POwner->getMod(Mod::AURA_SIZE), PMaster->getMod(Mod::AURA_SIZE));
+    const float   range      = 6.0f + sizeMod / 100.0f;
+
+    auto apply = [&](CBattleEntity* PTarget)
+    {
+        if (PTarget == nullptr || PTarget->isDead() || PTarget->loc.zone != m_POwner->loc.zone ||
+            distance(m_POwner->loc.p, PTarget->loc.p) > range + PTarget->m_ModelSize)
+        {
+            return;
+        }
+        CStatusEffect* PEffect = PTarget->StatusEffectContainer->GetStatusEffect(auraEffect);
+        if (PEffect != nullptr)
+        {
+            if ((PEffect->GetFlag() & EFFECTFLAG_AURA) == 0)
+            {
+                return; // a real (non-aura) copy of this effect is on the target; leave it alone
+            }
+            PEffect->SetStartTime(server_clock::now());
+            if (PEffect->GetPower() != auraPower)
+            {
+                // potency changed (Bolster, Ecliptic Attrition...): re-gain with the new power
+                luautils::OnEffectLose(PTarget, PEffect);
+                PEffect->SetPower(auraPower);
+                luautils::OnEffectGain(PTarget, PEffect);
+            }
+            return;
+        }
+        PEffect = new CStatusEffect(auraEffect, (uint16)auraEffect, auraPower, 3, 4);
+        PEffect->SetFlag(PEffect->GetFlag() | EFFECTFLAG_AURA | EFFECTFLAG_NO_LOSS_MESSAGE);
+        PTarget->StatusEffectContainer->AddStatusEffect(PEffect, true);
+    };
+
+    if (!enemies)
+    {
+        PMaster->ForParty(apply);
+    }
+    else
+    {
+        m_POwner->loc.zone->ForEachMob([&](CMobEntity* PMob)
+        {
+            if (PMob->isDead() || distance(m_POwner->loc.p, PMob->loc.p) > range + PMob->m_ModelSize)
+            {
+                return;
+            }
+            bool engaged = false;
+            PMaster->ForParty([&](CBattleEntity* PMember)
+            {
+                if (PMember != nullptr && PMob->PEnmityContainer->HasID(PMember->id))
+                {
+                    engaged = true;
+                }
+            });
+            if (engaged)
+            {
+                apply(PMob);
+            }
+        });
     }
 }
 

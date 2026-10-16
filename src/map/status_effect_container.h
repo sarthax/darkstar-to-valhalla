@@ -74,6 +74,7 @@ public:
     void UpdateStatusIcons();                                   // пересчитываем иконки эффектов
     void CheckEffectsExpiry(time_point tick);
     void TickEffects(time_point tick);
+    void HandleAura(CStatusEffect* PAura);
     void TickRegen(time_point tick);
 
     void LoadStatusEffects();                                   // загружаем эффекты персонажа
@@ -90,6 +91,13 @@ public:
     uint8 GetActiveManeuvers();
     void RemoveOldestManeuver();
     void RemoveAllManeuvers();
+    uint8 GetActiveRuneCount();
+    std::vector<EFFECT> GetAllRuneEffects();
+    EFFECT GetHighestRuneEffect();
+    EFFECT GetNewestRuneEffect();
+    void RemoveOldestRune();
+    void RemoveNewestRune();
+    void RemoveAllRunes();
 
     void WakeUp(); // remove sleep effects
     bool IsAsleep();

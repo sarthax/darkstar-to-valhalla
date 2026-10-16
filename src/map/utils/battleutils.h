@@ -151,6 +151,7 @@ namespace battleutils
 
     int32				TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, PHYSICAL_ATTACK_TYPE attackType, int32 damage, bool isBlocked, uint8 slot, uint16 tpMultiplier, CBattleEntity* taChar, bool giveTPtoVictim, bool giveTPtoAttacker, bool isCounter = false);
     int32				TakeWeaponskillDamage(CCharEntity* PChar, CBattleEntity* PDefender, int32 damage, uint8 slot, bool primary, float tpMultiplier, uint16 bonusTP, float targetTPMultiplier);
+    int32				TakeSwipeLungeDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int32 damage);
     int32				TakeSkillchainDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int32 lastSkillDamage, CBattleEntity* taChar);
 
     bool                TryInterruptSpell(CBattleEntity* PAttacker, CBattleEntity* PDefender, CSpell* PSpell);
@@ -158,6 +159,7 @@ namespace battleutils
     void				HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefender, apAction_t* Action);
     uint16              CalculateSpikeDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, actionTarget_t* Action, uint16 damageTaken);
     bool                HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, actionTarget_t* Action, int32 damage);
+    bool                HandleParrySpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, actionTarget_t* Action);
     bool                HandleSpikesEquip(CBattleEntity* PAttacker, CBattleEntity* PDefender, actionTarget_t* Action, uint8 damage, SUBEFFECT spikesType, uint8 chance);
     void                HandleSpikesStatusEffect(CBattleEntity* PAttacker, CBattleEntity* PDefender, actionTarget_t* Action);
     void				HandleEnspell(CBattleEntity* PAttacker, CBattleEntity* PDefender, actionTarget_t* Action, bool isFirstSwing, CItemWeapon* weapon, int32 damage);
@@ -197,6 +199,7 @@ namespace battleutils
 
     int32               BreathDmgTaken(CBattleEntity* PDefender, int32 damage);
     int32               MagicDmgTaken(CBattleEntity* PDefender, int32 damage, ELEMENT element);
+    float               CheckLiementAbsorb(CBattleEntity* PDefender, uint8 element);
     int32               PhysicalDmgTaken(CBattleEntity* PDefender, int32 damage);
     int32               RangedDmgTaken(CBattleEntity* PDefender, int32 damage);
 

@@ -1005,6 +1005,14 @@ void CCharEntity::OnCastFinished(CMagicState& state, action_t& action)
     if (PSpell->tookEffect())
     {
         charutils::TrySkillUP(this, (SKILLTYPE)PSpell->getSkillType(), PTarget->GetMLevel());
+        if (PSpell->getSkillType() == SKILL_GEO)
+        {
+            CItemWeapon* PItem = static_cast<CItemWeapon*>(getEquip(SLOT_RANGED));
+            if (PItem && PItem->isType(ITEM_ARMOR) && PItem->getSkillType() == SKILL_HND)
+            {
+                charutils::TrySkillUP(this, SKILL_HND, PTarget->GetMLevel());
+            }
+        }
         if (PSpell->getSkillType() == SKILL_SNG)
         {
             CItemWeapon* PItem = static_cast<CItemWeapon*>(getEquip(SLOT_RANGED));

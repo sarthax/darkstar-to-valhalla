@@ -573,6 +573,32 @@ namespace battleutils
 
             damage += PAttacker->getMod(Mod::ENSPELL_DMG_BONUS);
         }
+        else if (Tier == 4) // Rune Enhancement (ported from LSB; multipliers tunable below)
+        {
+            static const double RUNE_MULT[4][2] = { { 0.0, 0.0 }, { 0.97, 1.30 }, { 1.40, 1.70 }, { 1.90, 2.20 } };
+            static const double RUNE_DPS_CAP = 21.0;
+            double runeDPS = 3.0 / 240.0; // no weapon / h2h
+            CItemWeapon* PMain = PAttacker->m_Weapons[SLOT_MAIN];
+            if (PMain != nullptr && PMain->getDelay() > 0)
+            {
+                runeDPS = (double)PMain->getDamage() * 1000.0 / (double)PMain->getDelay() /* delay is stored in ms */;
+            }
+            CItemWeapon* PSub = PAttacker->m_Weapons[SLOT_SUB];
+            if (PSub != nullptr && PSub->getSkillType() != SKILL_NON && PSub->getDamage() > 0)
+            {
+                runeDPS /= 2; // dual wield: DPS split between hands
+            }
+            runeDPS = std::min(runeDPS, RUNE_DPS_CAP);
+
+            EFFECT highest = PAttacker->StatusEffectContainer->GetHighestRuneEffect();
+            uint8 count = highest == EFFECT_NONE ? 0 : PAttacker->StatusEffectContainer->GetEffectsCount(highest);
+            if (count >= 1 && count <= 3)
+            {
+                double mn = floor(runeDPS * RUNE_MULT[count][0]);
+                double mx = floor(runeDPS * RUNE_MULT[count][1]);
+                damage = (int32)(mn + dsprand::GetRandomNumber(1.) * (mx - mn + 1));
+            }
+        }
 
         //matching day 10% bonus, matching weather 10% or 25% for double weather
         float dBonus = 1.0;
@@ -669,6 +695,21 @@ namespace battleutils
         }
 
         return damage;
+    }
+
+    // Battuta: static-damage spikes that only fire on a parry (slice run-geo-jobs)
+    bool HandleParrySpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, actionTarget_t* Action)
+    {
+        int32 spikesDmg = dsp_max(PDefender->getMod(Mod::PARRY_SPIKES_DMG), 0);
+        if (spikesDmg <= 0 || PDefender->getMod(Mod::PARRY_SPIKES) <= 0)
+        {
+            return false;
+        }
+        Action->spikesEffect = (SUBEFFECT)PDefender->getMod(Mod::PARRY_SPIKES);
+        Action->spikesMessage = 44;
+        Action->spikesParam = HandleStoneskin(PAttacker, (uint16)spikesDmg);
+        PAttacker->addHP(-Action->spikesParam);
+        return true;
     }
 
     bool HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, actionTarget_t* Action, int32 damage)
@@ -979,6 +1020,33 @@ namespace battleutils
             }
         }
 
+        // Rune Enhancement: active runes give an elemental additional effect (Blood Weapon still takes priority)
+        if (PAttacker->StatusEffectContainer->GetActiveRuneCount() > 0 && PAttacker->getMod(Mod::ENSPELL) != ENSPELL_BLOOD_WEAPON)
+        {
+            EFFECT r = EFFECT_NONE;
+            EFFECT highest = PAttacker->StatusEffectContainer->GetHighestRuneEffect();
+            r = (highest != EFFECT_NONE && PAttacker->StatusEffectContainer->GetEffectsCount(highest) == 1)
+                ? PAttacker->StatusEffectContainer->GetNewestRuneEffect() : highest;
+            if (r >= EFFECT_IGNIS && r <= EFFECT_TENEBRAE)
+            {
+                // Fire, Ice, Wind, Earth, Lightning, Water, Light, Dark
+                SUBEFFECT runeSub[8] = { SUBEFFECT_FIRE_DAMAGE, SUBEFFECT_ICE_DAMAGE, SUBEFFECT_WIND_DAMAGE, SUBEFFECT_EARTH_DAMAGE,
+                    SUBEFFECT_LIGHTNING_DAMAGE, SUBEFFECT_WATER_DAMAGE, SUBEFFECT_LIGHT_DAMAGE, SUBEFFECT_DARKNESS_DAMAGE };
+                // CalculateEnspellDamage element index: fire, earth, water, wind, ice, thunder, light, dark
+                uint8 runeElem[8] = { 0, 4, 3, 1, 5, 2, 6, 7 };
+                uint8 idx = (uint8)(r - EFFECT_IGNIS);
+                Action->additionalEffect = runeSub[idx];
+                Action->addEffectMessage = 163;
+                Action->addEffectParam = CalculateEnspellDamage(PAttacker, PDefender, 4, runeElem[idx]);
+                if (Action->addEffectParam < 0)
+                {
+                    Action->addEffectParam = -Action->addEffectParam;
+                    Action->addEffectMessage = 384;
+                }
+                PDefender->addHP(-Action->addEffectParam);
+                return;
+            }
+        }
         // Enspell overwrites weapon effects
         if (PAttacker->getMod(Mod::ENSPELL) > 0 && (PAttacker->getMod(Mod::ENSPELL_CHANCE) == 0 ||
             PAttacker->getMod(Mod::ENSPELL_CHANCE) > dsprand::GetRandomNumber(100)))
@@ -1794,6 +1862,7 @@ namespace battleutils
                 float agi = PDefender->AGI();
 
                 uint8 parryRate = dsp_cap((skill * 0.1f + (agi - dex) * 0.125f + 10.0f) * diff, 5, 25);
+                parryRate = dsp_cap(parryRate + PDefender->getMod(Mod::INQUARTATA), 0, 100);
 
                 // Issekigan grants parry rate bonus. From best available data, if you already capped out at 25% parry it grants another 25% bonus for ~50% parry rate
                 if (PDefender->objtype == TYPE_PC && PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_ISSEKIGAN)) {
@@ -3166,6 +3235,35 @@ namespace battleutils
         return PDefender->getMod(defMod);
     }
 
+    // Slice run-geo-jobs: Swipe/Lunge damage application (DSP has no takeDamage(); mirrors the tail of TakeSkillchainDamage)
+    int32 TakeSwipeLungeDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int32 damage)
+    {
+        DSP_DEBUG_BREAK_IF(PAttacker == nullptr);
+        DSP_DEBUG_BREAK_IF(PDefender == nullptr);
+
+        damage = dsp_cap(damage, -99999, 99999);
+        PDefender->addHP(-damage);
+
+        if (PAttacker->PMaster != nullptr)
+        {
+            PDefender->m_OwnerID.id = PAttacker->PMaster->id;
+            PDefender->m_OwnerID.targid = PAttacker->PMaster->targid;
+        }
+        else
+        {
+            PDefender->m_OwnerID.id = PAttacker->id;
+            PDefender->m_OwnerID.targid = PAttacker->targid;
+        }
+        PDefender->updatemask |= UPDATE_STATUS;
+
+        if (damage > 0)
+        {
+            PDefender->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
+            BindBreakCheck(PAttacker, PDefender);
+        }
+        return damage;
+    }
+
     int32 TakeSkillchainDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int32 lastSkillDamage, CBattleEntity* taChar)
     {
         DSP_DEBUG_BREAK_IF(PAttacker == nullptr);
@@ -4234,8 +4332,30 @@ namespace battleutils
         return damage;
     }
 
+    // Liement: element ids (1-8) packed in 4-bit nibbles of subpower; absorbs once, then expires.
+    float CheckLiementAbsorb(CBattleEntity* PDefender, uint8 element)
+    {
+        CStatusEffect* liement = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_LIEMENT);
+        if (liement == nullptr || element == 0)
+            return 1.0f;
+        uint16 bits = liement->GetSubPower();
+        uint8 count = 0;
+        for (int i = 0; i < 4; ++i)
+            if (((bits >> (i * 4)) & 0xF) == element)
+                count++;
+        if (count == 0)
+            return 1.0f;
+        float mult = (85 + count * liement->GetPower()) / 100.0f;
+        PDefender->StatusEffectContainer->DelStatusEffectSilent(EFFECT_LIEMENT);
+        return -mult;
+    }
+
     int32 MagicDmgTaken(CBattleEntity* PDefender, int32 damage, ELEMENT element)
     {
+        float liement = CheckLiementAbsorb(PDefender, (uint8)element);
+        if (liement < 0)
+            return (int32)(damage * liement);
+
         Mod absorb[8] = { Mod::FIRE_ABSORB, Mod::EARTH_ABSORB, Mod::WATER_ABSORB, Mod::WIND_ABSORB, Mod::ICE_ABSORB, Mod::LTNG_ABSORB, Mod::LIGHT_ABSORB, Mod::DARK_ABSORB };
         Mod nullarray[8] = { Mod::FIRE_NULL, Mod::EARTH_NULL, Mod::WATER_NULL, Mod::WIND_NULL, Mod::ICE_NULL, Mod::LTNG_NULL, Mod::LIGHT_NULL, Mod::DARK_NULL };
 

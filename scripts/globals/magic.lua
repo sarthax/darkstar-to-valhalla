@@ -631,6 +631,10 @@ end;
     end
 
     dmg = target:magicDmgTaken(dmg);
+    -- RUN: One for All flat magic damage reduction (slice run-geo-jobs)
+    if (dmg > 0 and target:hasStatusEffect(EFFECT_ONE_FOR_ALL)) then
+        dmg = math.max(dmg - target:getStatusEffect(EFFECT_ONE_FOR_ALL):getPower(), 0);
+    end
 
     if (dmg > 0) then
         dmg = dmg - target:getMod(MOD_PHALANX);

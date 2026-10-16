@@ -2067,6 +2067,17 @@ namespace charutils
         if (PItem && PItem == PChar->getEquip((SLOTTYPE)equipSlotID))
             return;
 
+        // swapping one ranged instrument/handbell for another keeps TP (as retail / LSB)
+        auto isInstrument = [](CItem* item)
+        {
+            if (item == nullptr || !item->isType(ITEM_WEAPON))
+                return false;
+            auto skill = ((CItemWeapon*)item)->getSkillType();
+            return skill == SKILL_STR || skill == SKILL_WND || skill == SKILL_HND;
+        };
+        const uint16 keptTP = PChar->health.tp;
+        const bool keepTP = equipSlotID == SLOT_RANGED && slotID != 0 && isInstrument(PChar->getEquip(SLOT_RANGED)) && isInstrument(PItem);
+
         if (slotID == 0)
         {
             CItemArmor* PSubItem = PChar->getEquip(SLOT_SUB);
@@ -2123,7 +2134,7 @@ namespace charutils
         }
         if (equipSlotID == SLOT_MAIN || equipSlotID == SLOT_RANGED || equipSlotID == SLOT_SUB)
         {
-            PChar->health.tp = 0;
+            PChar->health.tp = keepTP ? keptTP : 0;
             /*// fixes logging in with no h2h
             if(PChar->m_Weapons[SLOT_MAIN]->getDmgType() == DAMAGE_NONE && PChar->GetMJob() == JOB_MNK){
             PChar->m_Weapons[SLOT_MAIN] = itemutils::GetUnarmedH2HItem();
@@ -2487,8 +2498,6 @@ namespace charutils
             MERIT_SHIELD, MERIT_PARRYING, MERIT_DIVINE, MERIT_HEALING, MERIT_ENHANCING, MERIT_ENFEEBLING, MERIT_ELEMENTAL, MERIT_DARK, MERIT_SUMMONING, MERIT_NINJITSU, MERIT_SINGING,
             MERIT_STRING, MERIT_WIND, MERIT_BLUE, MERIT_GEO, MERIT_HANDBELL};
 
-        uint8 meritIndex = 0;
-
         for (int32 i = 0; i < 48; ++i)
         {
             //ignore unused skills
@@ -2568,8 +2577,13 @@ namespace charutils
                 }
             }
 
-            skillBonus += PChar->PMeritPoints->GetMeritValue(skillMerit[meritIndex], PChar);
-            meritIndex++;
+            // skillMerit starts at H2H (skill 1) and has no slots for skill 0 or 13-21
+            // (automaton skills 22-24 are slots 12-14), so map by skill id, not by loop count;
+            // the old running counter was shifted by one and ran past the end at Handbell (45).
+            if (i >= 1)
+            {
+                skillBonus += PChar->PMeritPoints->GetMeritValue(skillMerit[i <= 12 ? i - 1 : i - 10], PChar);
+            }
 
             skillBonus += PChar->getMod(static_cast<Mod>(i + 79));
 

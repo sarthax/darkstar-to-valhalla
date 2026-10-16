@@ -1232,6 +1232,10 @@ namespace petutils
         {
             petType = PETTYPE_AUTOMATON;
         }
+        else if (PetID == PETID_LUOPAN)
+        {
+            petType = PETTYPE_LUOPAN;
+        }
         CPetEntity* PPet = nullptr;
         if (petType == PETTYPE_AUTOMATON && PMaster->objtype == TYPE_PC)
         {
@@ -1335,6 +1339,17 @@ namespace petutils
             }
 
             PMaster->addModifier(Mod::AVATAR_PERPETUATION, PerpetuationCost(PetID, PPet->GetMLevel()));
+        }
+        else if (PPet->getPetType() == PETTYPE_LUOPAN)
+        {
+            // fixed hp from master level, never moves; Lua places it and handles decay
+            PPet->SetMLevel(PMaster->GetMLevel());
+            PPet->health.maxhp = (uint32)floor((250 * PPet->GetMLevel()) / 15);
+            PPet->health.hp = PPet->health.maxhp;
+            PPet->m_flags = 0x0000008B;
+            PPet->speed = 0;
+            // luopan spawns on the master, Lua moves it to the cast target
+            PPet->loc.p = PMaster->loc.p;
         }
         else if (PPet->getPetType() == PETTYPE_JUG_PET){
             PPet->m_Weapons[SLOT_MAIN]->setDelay(floor(1000.0f*(240.0f / 60.0f)));

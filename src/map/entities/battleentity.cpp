@@ -1244,6 +1244,22 @@ void CBattleEntity::OnCastFinished(CMagicState& state, action_t& action)
         {
             actionTarget.param = luautils::OnSpellCast(this, PTarget, PSpell);
 
+            // Embolden (slice run-geo-jobs): next white enhancing spell on the target gets x1.5 power, x0.5 duration.
+            // Not applied to pet casters. Factors are fixed here (no mod/job point scaling yet).
+            if (objtype != TYPE_PET && PSpell->getSpellGroup() == SPELLGROUP_WHITE && PSpell->getSkillType() == SKILL_ENH &&
+                actionTarget.param > 0 && actionTarget.param != EFFECT_EMBOLDEN && PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_EMBOLDEN))
+            {
+                CStatusEffect* PBuff = PTarget->StatusEffectContainer->GetStatusEffect((EFFECT)actionTarget.param);
+                if (PBuff != nullptr)
+                {
+                    luautils::OnEffectLose(PTarget, PBuff);
+                    PBuff->SetPower((uint16)(PBuff->GetPower() * 3 / 2));
+                    PBuff->SetDuration(PBuff->GetDuration() / 2);
+                    luautils::OnEffectGain(PTarget, PBuff);
+                }
+                PTarget->StatusEffectContainer->DelStatusEffectSilent(EFFECT_EMBOLDEN);
+            }
+
             // remove effects from damage
             if (PSpell->canTargetEnemy() && actionTarget.param > 0 && PSpell->dealsDamage())
             {
@@ -1416,6 +1432,10 @@ bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
 
                 battleutils::HandleTacticalParry(PTarget);
                 battleutils::HandleIssekiganEnmityBonus(PTarget, this);
+                if (PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_BATTUTA))
+                {
+                    battleutils::HandleParrySpikesDamage(this, PTarget, &actionTarget);
+                }
             }
             else if (attack.CheckAnticipated() || attack.CheckCounter())
             {
