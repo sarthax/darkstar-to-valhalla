@@ -28,3 +28,6 @@ ITEM_CANNOT_BE_OBTAINED_3 = 6383; -- You cannot obtain the %. Come back after so
 
 -- NPC Dialog
          MINNIFI_DIALOGUE = 10237; -- Come, ladies and gentlemen, and enjoy our delightful array of frrresh vegetables!
+
+-- Job unlock quests (client dialog.yml 7009; param 0 = geomancer, 1 = rune fencer)
+      YOU_CAN_NOW_BECOME = 7009; -- You can now become a geomancer/rune fencer!

@@ -9,6 +9,7 @@ require("scripts/globals/status");
 require("scripts/globals/settings");
 require("scripts/globals/abyssea_lights");
 require("scripts/globals/mog_tablets");
+require("scripts/globals/dances_with_luopans");
 
 -----------------------------------
 -- onEffectGain Action
@@ -16,6 +17,7 @@ require("scripts/globals/mog_tablets");
 
 function onEffectGain(target,effect)
     target:setAnimation(33);
+    DWL.onHealingGain(target);
     if (target:hasStatusEffect(EFFECT_VISITANT) and isAbysseaLightZone(target:getZoneID())) then
         displayAbysseaLights(target);
     end
@@ -30,6 +32,7 @@ function onEffectTick(target,effect)
     local healtime = effect:getTickCount();
 
     MOG_TABLET.onHealTick(target, healtime - 1); -- Swift Shoes Super Kupower
+    DWL.onHealingTick(target);
 
     if (healtime > 1) then
         -- curse II also known as "zombie"
@@ -60,5 +63,6 @@ end;
 
 function onEffectLose(target,effect)
     target:setAnimation(0);
+    DWL.onHealingLose(target);
     target:delStatusEffect(EFFECT_LEAVEGAME);
 end;
