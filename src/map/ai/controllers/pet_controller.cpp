@@ -53,6 +53,11 @@ void CPetController::DoRoamTick(time_point tick)
         return;
     }
 
+    // luopan sits where it was placed
+    if (PPet->getPetType() == PETTYPE_LUOPAN) {
+        return;
+    }
+
     //automaton, wyvern
     if (PPet->getPetType() == PETTYPE_WYVERN || PPet->getPetType() == PETTYPE_AUTOMATON) {
         if (PetIsHealing()) {
