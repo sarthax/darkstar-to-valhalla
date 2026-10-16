@@ -105,3 +105,9 @@ Valhalla is the merge target and may already contain its own versions of these f
 | 8 | Spell levels, effect/ability/mod ids | slice SQL | Id collisions with anything Valhalla added; see the `*_id_diff.csv` files. |
 
 Items 1 and 2 are the most likely to conflict, because Valhalla's behavior there differs from stock DSP.
+
+## Audit: Elemental Sforzo, Vivacious Pulse, Inspiration FC
+- Elemental Sforzo: matches LSB (UDMGMAGIC -100% in DSP units). Not ported: LSB's ONE_HOUR_RECAST recast reduction (no such mod in DSP).
+- Vivacious Pulse: added VIVACIOUS_PULSE_POTENCY (%), AUGMENTS_VIVACIOUS_PULSE random debuff removal. Job point scaling (HP and MP) still missing (getJobPointLevel stub).
+- Inspiration FC: now also applied on Vallation (LSB does both; was Valiance only). FC is packed in ward power, not a separate FAST_CAST effect as in LSB.
+- **Merit id bug fixed:** Inspiration read 0x0444 and Rayke 0x0442. DSP merit.h defines MCATEGORY_RUN_2 = 0x0440, colliding with SAM_1, so these read Samurai merits (Store TP, Warding Circle). Real LSB RUN_2 is 0x0D80 (inspiration 0x0D84, rayke 0x0D82), beyond DSP's MCATEGORY_COUNT. They now return 0 via RUNEFENCER.getRunMerit until the merit table is extended. RUN_1 (0x0700) merits also have no merits.sql rows. Wiring RUN merits is C++ plus SQL plus client packet work and may conflict with Valhalla.

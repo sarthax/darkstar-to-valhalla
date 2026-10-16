@@ -138,6 +138,13 @@ local function packRunes(runes)
     return packed;
 end
 
+-- RUN merits are NOT wired: DSP merit.h has RUN_2 = 0x0440, which collides with SAM_1, and the
+-- real RUN_2 category (LSB 0x0D80) is past MCATEGORY_COUNT. Reading 0x0444/0x0442 would return
+-- Samurai merits (Store TP / Warding Circle), so these return 0 until the merit table is extended.
+function RUNEFENCER.getRunMerit(player, name)
+    return 0;
+end
+
 local function forEachPackedRune(subpower, fn)
     local v = subpower;
     while (v > 0) do
@@ -189,7 +196,7 @@ function RUNEFENCER.useVallationValiance(player, target, ability, isValiance)
     local power = 15; -- percent per rune element (merits not wired)
     if (isValiance) then
         -- Inspiration: 10 fast cast per merit level plus ENHANCES_INSPIRATION; only on members who actually receive Valiance
-        local inspiration = player:getMerit(0x0444);
+        local inspiration = RUNEFENCER.getRunMerit(player, 'inspiration');
         local fc = inspiration + math.floor(inspiration / 10) * player:getMod(MOD_ENHANCES_INSPIRATION);
         for _, member in pairs(player:getParty()) do
             if (not member:hasStatusEffect(EFFECT_VALLATION)) then
@@ -198,7 +205,10 @@ function RUNEFENCER.useVallationValiance(player, target, ability, isValiance)
         end
     else
         target:delStatusEffectSilent(EFFECT_VALIANCE);
-        target:addStatusEffect(EFFECT_VALLATION, power, 0, 120, 0, packRunes(runes));
+        -- Inspiration also applies to Vallation (LSB), packed in power thousands
+        local inspiration = RUNEFENCER.getRunMerit(player, 'inspiration');
+        local fc = inspiration + math.floor(inspiration / 10) * player:getMod(MOD_ENHANCES_INSPIRATION);
+        target:addStatusEffect(EFFECT_VALLATION, power + 1000 * fc, 0, 120, 0, packRunes(runes));
     end
     return isValiance and EFFECT_VALIANCE or EFFECT_VALLATION;
 end
@@ -407,6 +417,21 @@ function RUNEFENCER.useVivaciousPulse(player, target, ability)
     if (tenebrae > 0) then
         target:addMP(math.floor(divine / 10) * (tenebrae + 1));
     end
+    -- AF3 head augment: remove one random removable debuff
+    if (target:getMod(MOD_AUGMENTS_VIVACIOUS_PULSE) > 0) then
+        local removable = { EFFECT_POISON, EFFECT_PARALYSIS, EFFECT_BLINDNESS, EFFECT_SILENCE, EFFECT_MUTE,
+            EFFECT_CURSE_I, EFFECT_CURSE_II, EFFECT_DOOM, EFFECT_PLAGUE, EFFECT_DISEASE, EFFECT_PETRIFICATION };
+        local have = {};
+        for _, e in ipairs(removable) do
+            if (target:hasStatusEffect(e)) then
+                table.insert(have, e);
+            end
+        end
+        if (#have > 0) then
+            target:delStatusEffect(have[math.random(1, #have)]);
+        end
+    end
+    heal = math.floor(heal * (100 + target:getMod(MOD_VIVACIOUS_PULSE_POTENCY)) / 100);
     heal = math.min(heal, target:getMaxHP() - target:getHP());
     target:restoreHP(heal);
     return heal;
@@ -501,7 +526,7 @@ function RUNEFENCER.useLiement(player, target, ability)
 end
 
 function RUNEFENCER.useRayke(player, target, ability)
-    local merit = player:getMerit(0x0442); -- MERIT_RAYKE = MCATEGORY_RUN_2 + 0x02 (merit.h)
+    local merit = RUNEFENCER.getRunMerit(player, 'rayke')
     local duration = 27 + merit + math.floor(player:getMod(MOD_RAYKE_DURATION) * merit / 3);
     local packed = packRunes(player:getAllRuneEffects());
     if (target:addStatusEffect(EFFECT_RAYKE, RUNEFENCER.RAYKE_RES, 0, duration, 0, packed)) then
