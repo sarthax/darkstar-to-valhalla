@@ -3,7 +3,7 @@
 Each pool = chance C (RATE, /1000) of dropping ONE item, picked by weight w/sum(w). Independent-row equivalent:
 itemRate = C * w / sum(w), rounded half up, min 1. Pools of the same NM are summed per item (separate rolls).
 Usage: py -3 tools/gen_voidwalker_oneof.py <lsb_server_base> [--write]
-Output: sql/slices/voidwalker/drops_oneof.sql (DELETE+INSERT per dropid, only the one_of items; named drops untouched).
+Output: sql/slices/voidwalker/all_zones.sql (+batallia_pilot.sql for 4590); append manually (DELETE+INSERT per dropid, only the one_of items; named drops untouched).
 """
 import glob, os, re, sys, yaml, collections
 RATE = dict(always=1000, very_common=240, common=150, uncommon=100, rare=50, very_rare=10)
@@ -44,5 +44,5 @@ for n in NMS:
     for iid, r in sorted(acc.items()):
         out.append("INSERT INTO `mob_droplist` VALUES (%d,0,0,1000,%d,%d);" % (did, iid, max(1, int(r + 0.5))))
 if "--write" in sys.argv:
-    open(os.path.join(dsp, "sql/slices/voidwalker/drops_oneof.sql"), "w").write("\n".join(out) + "\n")
+    open(os.path.join(dsp, "sql/slices/voidwalker/all_zones.sql (+batallia_pilot.sql for 4590); append manually"), "w").write("\n".join(out) + "\n")
 print("\n".join(rep)); print(len(out), "lines")

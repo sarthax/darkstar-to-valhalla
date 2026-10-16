@@ -11,6 +11,7 @@ Usage (from the dsp-branches root):
   py -3 tools/check_sql_id_collisions.py --all [--db]                           # full audit
 Exit code 1 on any finding. Run it BEFORE importing any slice SQL. Base files (sql/mob_*.sql) count as owners.
 """
+import subprocess
 import argparse, os, re, subprocess, sys, collections
 
 TABLES = {"mob_pools": "poolid", "mob_groups": "groupid", "mob_droplist": "dropid"}
@@ -48,6 +49,8 @@ def collect():
     """path -> {blobsha: (rows, dels)} across all local branches."""
     refs = git("for-each-ref", "--format=%(refname:short)", "refs/heads").decode().split()
     blobs = {}
+    # branches already merged into main are superseded by main's content
+    refs = [r for r in refs if r == "main" or subprocess.run(["git", "merge-base", "--is-ancestor", r, "main"]).returncode != 0]
     for r in refs:
         for line in git("ls-tree", "-r", r, "--", "sql").decode().splitlines():
             meta, path = line.split("\t", 1)
