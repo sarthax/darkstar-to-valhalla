@@ -4,7 +4,7 @@
 -- Verthandi/Yilbegan random ore/material drops are NOT ported yet. Spawn positions are placeholders: Lua moves NMs at zone init; !checknav pending.
 
 DELETE FROM `mob_spawn_points` WHERE mobid BETWEEN 17207711 AND 17207722;
-DELETE FROM `mob_groups` WHERE groupid BETWEEN 18780 AND 18791;
+DELETE FROM `mob_groups` WHERE groupid BETWEEN 18800 AND 18811;
 DELETE FROM `mob_pools` WHERE poolid BETWEEN 7125 AND 7135;
 DELETE FROM `mob_droplist` WHERE dropid BETWEEN 4587 AND 4590;
 
@@ -33,28 +33,28 @@ INSERT INTO `mob_droplist` VALUES (4590,0,0,1000,11633,50);
 INSERT INTO `mob_droplist` VALUES (4590,0,0,1000,14162,100);
 INSERT INTO `mob_droplist` VALUES (4590,0,0,1000,2878,150);
 
-INSERT INTO `mob_groups` VALUES (18780,7125,105,300,0,0,4400,0,80,80,0);
-INSERT INTO `mob_groups` VALUES (18781,7126,105,300,0,0,4400,0,80,80,0);
-INSERT INTO `mob_groups` VALUES (18782,7127,105,300,0,0,4400,0,80,80,0);
-INSERT INTO `mob_groups` VALUES (18783,7128,105,300,0,0,4400,0,80,80,0);
-INSERT INTO `mob_groups` VALUES (18784,7129,105,300,0,0,4400,0,80,80,0);
-INSERT INTO `mob_groups` VALUES (18785,7130,105,300,0,0,4400,0,80,80,0);
-INSERT INTO `mob_groups` VALUES (18786,7131,105,300,0,0,4400,0,80,80,0);
-INSERT INTO `mob_groups` VALUES (18787,7132,105,300,0,0,4400,0,80,80,0);
-INSERT INTO `mob_groups` VALUES (18788,7133,105,3600,0,4587,12900,0,82,82,0);
-INSERT INTO `mob_groups` VALUES (18789,7134,105,3600,0,4588,12900,0,82,82,0);
-INSERT INTO `mob_groups` VALUES (18790,7135,105,7200,0,4589,25500,0,85,85,0);
-INSERT INTO `mob_groups` VALUES (18791,4736,105,86400,0,4590,90000,5000,90,92,0);
+INSERT INTO `mob_groups` VALUES (18800,7125,105,300,0,0,4400,0,80,80,0);
+INSERT INTO `mob_groups` VALUES (18801,7126,105,300,0,0,4400,0,80,80,0);
+INSERT INTO `mob_groups` VALUES (18802,7127,105,300,0,0,4400,0,80,80,0);
+INSERT INTO `mob_groups` VALUES (18803,7128,105,300,0,0,4400,0,80,80,0);
+INSERT INTO `mob_groups` VALUES (18804,7129,105,300,0,0,4400,0,80,80,0);
+INSERT INTO `mob_groups` VALUES (18805,7130,105,300,0,0,4400,0,80,80,0);
+INSERT INTO `mob_groups` VALUES (18806,7131,105,300,0,0,4400,0,80,80,0);
+INSERT INTO `mob_groups` VALUES (18807,7132,105,300,0,0,4400,0,80,80,0);
+INSERT INTO `mob_groups` VALUES (18808,7133,105,3600,0,4587,12900,0,82,82,0);
+INSERT INTO `mob_groups` VALUES (18809,7134,105,3600,0,4588,12900,0,82,82,0);
+INSERT INTO `mob_groups` VALUES (18810,7135,105,7200,0,4589,25500,0,85,85,0);
+INSERT INTO `mob_groups` VALUES (18811,4736,105,86400,0,4590,90000,5000,90,92,0);
 
-INSERT INTO `mob_spawn_points` VALUES (17207722,'Lacus','Lacus',18780,-431,-31,441,0);
-INSERT INTO `mob_spawn_points` VALUES (17207721,'Thunor','Thunor',18781,-431,-31,441,0);
-INSERT INTO `mob_spawn_points` VALUES (17207720,'Beorht','Beorht',18782,-431,-31,441,0);
-INSERT INTO `mob_spawn_points` VALUES (17207719,'Pruina','Pruina',18783,-431,-31,441,0);
-INSERT INTO `mob_spawn_points` VALUES (17207718,'Puretos','Puretos',18784,-431,-31,441,0);
-INSERT INTO `mob_spawn_points` VALUES (17207717,'Eorthe','Eorthe',18785,-431,-31,441,0);
-INSERT INTO `mob_spawn_points` VALUES (17207716,'Deorc','Deorc',18786,-431,-31,441,0);
-INSERT INTO `mob_spawn_points` VALUES (17207715,'Aither','Aither',18787,-431,-31,441,0);
-INSERT INTO `mob_spawn_points` VALUES (17207714,'Skuld','Skuld',18788,-431,-31,441,0);
-INSERT INTO `mob_spawn_points` VALUES (17207713,'Urd','Urd',18789,-431,-31,441,0);
-INSERT INTO `mob_spawn_points` VALUES (17207712,'Verthandi','Verthandi',18790,-431,-31,441,0);
-INSERT INTO `mob_spawn_points` VALUES (17207711,'Yilbegan','Yilbegan',18791,-431,-31,441,0);
+INSERT INTO `mob_spawn_points` VALUES (17207722,'Lacus','Lacus',18800,-431,-31,441,0);
+INSERT INTO `mob_spawn_points` VALUES (17207721,'Thunor','Thunor',18801,-431,-31,441,0);
+INSERT INTO `mob_spawn_points` VALUES (17207720,'Beorht','Beorht',18802,-431,-31,441,0);
+INSERT INTO `mob_spawn_points` VALUES (17207719,'Pruina','Pruina',18803,-431,-31,441,0);
+INSERT INTO `mob_spawn_points` VALUES (17207718,'Puretos','Puretos',18804,-431,-31,441,0);
+INSERT INTO `mob_spawn_points` VALUES (17207717,'Eorthe','Eorthe',18805,-431,-31,441,0);
+INSERT INTO `mob_spawn_points` VALUES (17207716,'Deorc','Deorc',18806,-431,-31,441,0);
+INSERT INTO `mob_spawn_points` VALUES (17207715,'Aither','Aither',18807,-431,-31,441,0);
+INSERT INTO `mob_spawn_points` VALUES (17207714,'Skuld','Skuld',18808,-431,-31,441,0);
+INSERT INTO `mob_spawn_points` VALUES (17207713,'Urd','Urd',18809,-431,-31,441,0);
+INSERT INTO `mob_spawn_points` VALUES (17207712,'Verthandi','Verthandi',18810,-431,-31,441,0);
+INSERT INTO `mob_spawn_points` VALUES (17207711,'Yilbegan','Yilbegan',18811,-431,-31,441,0);
