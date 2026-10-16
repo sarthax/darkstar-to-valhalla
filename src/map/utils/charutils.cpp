@@ -2067,6 +2067,17 @@ namespace charutils
         if (PItem && PItem == PChar->getEquip((SLOTTYPE)equipSlotID))
             return;
 
+        // swapping one ranged instrument/handbell for another keeps TP (as retail / LSB)
+        auto isInstrument = [](CItem* item)
+        {
+            if (item == nullptr || !item->isType(ITEM_WEAPON))
+                return false;
+            auto skill = ((CItemWeapon*)item)->getSkillType();
+            return skill == SKILL_STR || skill == SKILL_WND || skill == SKILL_HND;
+        };
+        const uint16 keptTP = PChar->health.tp;
+        const bool keepTP = equipSlotID == SLOT_RANGED && slotID != 0 && isInstrument(PChar->getEquip(SLOT_RANGED)) && isInstrument(PItem);
+
         if (slotID == 0)
         {
             CItemArmor* PSubItem = PChar->getEquip(SLOT_SUB);
@@ -2123,7 +2134,7 @@ namespace charutils
         }
         if (equipSlotID == SLOT_MAIN || equipSlotID == SLOT_RANGED || equipSlotID == SLOT_SUB)
         {
-            PChar->health.tp = 0;
+            PChar->health.tp = keepTP ? keptTP : 0;
             /*// fixes logging in with no h2h
             if(PChar->m_Weapons[SLOT_MAIN]->getDmgType() == DAMAGE_NONE && PChar->GetMJob() == JOB_MNK){
             PChar->m_Weapons[SLOT_MAIN] = itemutils::GetUnarmedH2HItem();

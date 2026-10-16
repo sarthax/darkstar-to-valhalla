@@ -86,3 +86,6 @@ Job points absent in DSP (LSB reads them); unknown animation ids; client version
 - Impact: characters with skill-category merits get each bonus on the correct skill instead of the neighbouring one. Characters without skill merits are unaffected. Not tested in-game.
 - **Conflict risk:** the target server (Valhalla) was tested and does not show the shifting bug, so it has probably already fixed this function. The slice edit touches the same block and may conflict with, or double-apply on top of, their fix.
 - **Action before merge/push:** diff against Valhalla's `BuildingCharSkillsTable`. If theirs is correct, drop this slice's `charutils.cpp` change and keep only the Handbell SQL and `SKILL_HND`. Verify Handbell (45) handling matches theirs.
+
+## Also in this slice: keep TP when swapping ranged instruments (charutils.cpp EquipItem)
+- DSP zeroed TP on any main/sub/ranged equip. LSB keeps TP when swapping one string/wind instrument or handbell for another. `EquipItem` now captures TP and restores it for that case only. Not tested in-game; possible overlap with a Valhalla fix of the same defect (diff before merge).
