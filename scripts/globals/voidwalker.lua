@@ -107,7 +107,7 @@ local function mobsForAbyssites(zoneId, abyssites)
         if (data.mobs[ki] ~= nil) then
             for _, mobId in ipairs(data.mobs[ki]) do
                 local mob = GetMobByID(mobId);
-                if (mob ~= nil and mob:isAlive() and mob:getLocalVar(POPPED_BY) == 0) then
+                if (mob ~= nil and mob:getHP() > 0 and mob:getLocalVar(POPPED_BY) == 0) then
                     table.insert(results, { mobId = mobId, keyItem = ki });
                 end
             end
