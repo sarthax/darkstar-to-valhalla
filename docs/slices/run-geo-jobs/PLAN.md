@@ -68,3 +68,7 @@ Job points absent in DSP (LSB reads them); unknown animation ids; client version
 - Swipe/Lunge use DSP's Quick Draw pipeline (addBonusesAbility, applyResistanceAbility, adjustForTarget, takeAbilityDamage) rather than the C++ takeSwipeLungeDamage binding (left in, unused). Skill 0 passed to applyResistanceAbility; check accuracy in game. Message 110 from SQL unverified.
 - One for All is consumed in magic.lua finalMagicAdjustments.
 - Still open: Rayke (res-rank), Liement (absorb), Battuta, Embolden, Elemental Sforzo, Vivacious Pulse, Odyllic Subterfuge, Inspiration FC.
+
+## Battuta + Elemental Sforzo + Vivacious Pulse
+- C++: GetParryRate adds MOD_INQUARTATA; HandleParrySpikesDamage (flat damage, Stoneskin only, message 44) called from battleentity.cpp on parry when Battuta is up. Syntax-checked with cl /Zs only; not built or run.
+- Spikes subeffect display ids for gale/clod/deluge/death are as DSP status.lua defines them; unverified in client. Elemental scaling of spikes damage (LSB CalculateSpikeDamage) is not ported.

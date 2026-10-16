@@ -399,3 +399,34 @@ function RUNEFENCER.useVivaciousPulse(player, target, ability)
     target:restoreHP(heal);
     return heal;
 end
+
+-----------------------------------
+-- Battuta (slice run-geo-jobs)
+-- Engine side: INQUARTATA adds to parry rate; PARRY_SPIKES/_DMG fire on a parry
+-- (battleutils.cpp HandleParrySpikesDamage). Merits and ENHANCES_BATTUTA not wired.
+-----------------------------------
+RUNEFENCER.battutaSpikes =
+{
+    [EFFECT_IGNIS]    = SUBEFFECT_BLAZE_SPIKES,
+    [EFFECT_GELUS]    = SUBEFFECT_ICE_SPIKES,
+    [EFFECT_FLABRA]   = SUBEFFECT_GALE_SPIKES,
+    [EFFECT_TELLUS]   = SUBEFFECT_CLOD_SPIKES,
+    [EFFECT_SULPOR]   = SUBEFFECT_SHOCK_SPIKES,
+    [EFFECT_UNDA]     = SUBEFFECT_DELUGE_SPIKES,
+    [EFFECT_LUX]      = SUBEFFECT_REPRISAL,
+    [EFFECT_TENEBRAE] = SUBEFFECT_DEATH_SPIKES,
+};
+
+function RUNEFENCER.useBattuta(player, target, ability)
+    local spikesPower = 6 * target:getActiveRuneCount();
+    target:addStatusEffect(EFFECT_BATTUTA, 36, 0, 90, 0, spikesPower);
+    return EFFECT_BATTUTA;
+end
+
+function RUNEFENCER.onBattutaGain(target, effect)
+    effect:addMod(MOD_INQUARTATA, effect:getPower());
+    if (effect:getSubPower() > 0) then
+        effect:addMod(MOD_PARRY_SPIKES, RUNEFENCER.battutaSpikes[target:getHighestRuneEffect()]);
+        effect:addMod(MOD_PARRY_SPIKES_DMG, effect:getSubPower());
+    end
+end

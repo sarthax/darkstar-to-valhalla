@@ -671,6 +671,21 @@ namespace battleutils
         return damage;
     }
 
+    // Battuta: static-damage spikes that only fire on a parry (slice run-geo-jobs)
+    bool HandleParrySpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, actionTarget_t* Action)
+    {
+        int32 spikesDmg = dsp_max(PDefender->getMod(Mod::PARRY_SPIKES_DMG), 0);
+        if (spikesDmg <= 0 || PDefender->getMod(Mod::PARRY_SPIKES) <= 0)
+        {
+            return false;
+        }
+        Action->spikesEffect = (SUBEFFECT)PDefender->getMod(Mod::PARRY_SPIKES);
+        Action->spikesMessage = 44;
+        Action->spikesParam = HandleStoneskin(PAttacker, (uint16)spikesDmg);
+        PAttacker->addHP(-Action->spikesParam);
+        return true;
+    }
+
     bool HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, actionTarget_t* Action, int32 damage)
     {
         Action->spikesEffect = (SUBEFFECT)PDefender->getMod(Mod::SPIKES);
@@ -1794,6 +1809,7 @@ namespace battleutils
                 float agi = PDefender->AGI();
 
                 uint8 parryRate = dsp_cap((skill * 0.1f + (agi - dex) * 0.125f + 10.0f) * diff, 5, 25);
+                parryRate = dsp_cap(parryRate + PDefender->getMod(Mod::INQUARTATA), 0, 100);
 
                 // Issekigan grants parry rate bonus. From best available data, if you already capped out at 25% parry it grants another 25% bonus for ~50% parry rate
                 if (PDefender->objtype == TYPE_PC && PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_ISSEKIGAN)) {
