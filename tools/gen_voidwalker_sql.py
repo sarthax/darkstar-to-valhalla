@@ -76,7 +76,7 @@ def main(lsb, dsp):
                     spawns[mid] = e
                     tpl[e["template"]] = d["templates"][e["template"]]
 
-    pid, gid, did = 7008, 18178, 4591
+    pid, gid, did = 7100, 18500, 4591
     pools, drops, groups, sps, dels = [], [], [], [], []
     pool_of, drop_of = dict(PILOT_POOLS), dict(PILOT_DROPS)
     skipped = []
@@ -169,8 +169,8 @@ def main(lsb, dsp):
            ""]
     if used_ids:
         out.append("DELETE FROM `mob_spawn_points` WHERE mobid IN (%s);" % ",".join(map(str, used_ids)))
-    out.append("DELETE FROM `mob_groups` WHERE groupid BETWEEN 18178 AND %d;" % (gid - 1))
-    out.append("DELETE FROM `mob_pools` WHERE poolid BETWEEN 7008 AND %d;" % (pid - 1))
+    out.append("DELETE FROM `mob_groups` WHERE groupid BETWEEN 18500 AND %d;" % (gid - 1))
+    out.append("DELETE FROM `mob_pools` WHERE poolid BETWEEN 7100 AND %d;" % (pid - 1))
     out.append("DELETE FROM `mob_droplist` WHERE dropid BETWEEN 4591 AND %d;" % (did - 1))
     out += [""] + pools + [""] + drops + [""] + groups + [""] + sps
     open(os.path.join(dsp, "sql/slices/voidwalker/all_zones.sql"), "w", newline="\n").write("\n".join(out) + "\n")
