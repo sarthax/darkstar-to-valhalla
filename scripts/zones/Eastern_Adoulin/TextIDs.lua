@@ -8,3 +8,6 @@ ITEM_CANNOT_BE_OBTAINED = 6382; -- You cannot obtain the item <item> come back a
           HOMEPOINT_SET = 8285; -- Home point set!
 
 COMMON_SENSE_SURVIVAL = 13845; -- new survival guide registered (client ROM9/5/102.DAT, verified by POLUtils)
+
+-- Job unlock quests (client dialog.yml 7009; param 0 = geomancer, 1 = rune fencer)
+      YOU_CAN_NOW_BECOME = 7009; -- You can now become a geomancer/rune fencer!

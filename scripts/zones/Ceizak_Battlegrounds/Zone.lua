@@ -5,6 +5,7 @@
 -----------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/dances_with_luopans");
 package.loaded["scripts/zones/Ceizak_Battlegrounds/TextIDs"] = nil;
 require("scripts/zones/Ceizak_Battlegrounds/TextIDs");
 
@@ -13,6 +14,9 @@ require("scripts/zones/Ceizak_Battlegrounds/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
+    -- Ergon Locus circles (K-10 and I-8), Dances with Luopans
+    zone:registerRegion(1, 357, 11, -250, 0, 0, 0);
+    zone:registerRegion(2, 87, 8, 72, 0, 0, 0);
 end;
 
 -----------------------------------
@@ -32,6 +36,15 @@ end;
 -----------------------------------
 
 function onRegionEnter(player,region)
+    DWL.onLocusEnter(player); -- Dances with Luopans: Ergon Locus circles
+end;
+
+-----------------------------------
+-- onRegionLeave
+-----------------------------------
+
+function onRegionLeave(player,region)
+    DWL.onLocusLeave(player);
 end;
 
 -----------------------------------
