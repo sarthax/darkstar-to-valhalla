@@ -8,7 +8,7 @@ Rules: never invent ids (verify spell/item/csid/text ids from a fresh same-sessi
 ## Workstreams
 | # | Stream | Scope | Status |
 |---|---|---|---|
-| W1 | Geomantic Reservoirs | 30 reservoirs: 6 missing npc rows (zones 105,108,110,151,266 + 2nd in 111), fix 0,0,0 row in 102, per-zone scripts + shared `geomantic_reservoir.lua`, event 15000, text ids, level gate decision, skill-up proc | not started |
+| W1 | Geomantic Reservoirs | 30 reservoirs: 6 missing npc rows (zones 105,108,110,151,266 + 2nd in 111), fix 0,0,0 row in 102, per-zone scripts + shared `geomantic_reservoir.lua`, event 15000, text ids, level gate decision, skill-up proc | code done 2026-10-16, untested in game. No level gate (matches LSB); skill-up proc and helper entities not modeled |
 | W2 | Indi- scrolls | Already stocked (Ishvad/Eukalline). Optional: secondary Orb/BCNM drop sources, Indi-Poison quest reward | verified done |
 | W3 | RUN spell vendors | Audit DSP vendor stock vs wiki table (Hasim, Tya Padolih, Zafif, Brave Ox, Gekko, Regine/Kususu, Amalasanda, nation vendors...) and add missing rows | not started |
 | W4 | Drops/battlefields | BCNM/mob drops for Refresh, Phalanx, Ice Spikes, Temper, Orb-gated Indi- scrolls (mob_droplist/bcnm_loot; collision-check first) | not started |
