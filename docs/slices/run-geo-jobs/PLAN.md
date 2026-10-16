@@ -79,3 +79,10 @@ Job points absent in DSP (LSB reads them); unknown animation ids; client version
 - Inspiration: fast cast packed into Valiance power (thousands), applied as MOD_FASTCAST. Merit ids use literal 0x0444/0x0442 (RUN_2 category) and need merit-table rows to be nonzero.
 - Embolden: not done (per-spell enhancing-magic edits; needs a stronger source than guessing).
 - Embolden deferred: DSP has no central enhancing-spell hook (each white-magic buff script computes its own power/duration), so wiring needs edits to every white enhancing spell (x1.5 power, 0.5x duration, consumed after next cast). Ability/effect not added to avoid a visible no-op.
+
+## Risk: skill-merit indexing fix (charutils.cpp)
+- `BuildingCharSkillsTable` used a running counter (starting at skill 0) to index `skillMerit[]`, which is H2H-first. Every skill read the previous skill's merit slot, and Handbell (45) ran past the end of the array. This is the likely cause of the old "Handbell does not display correctly" note in `skill_ranks.sql`.
+- This slice maps by skill id instead (skill 1-12 -> slot id-1, skill 22+ -> slot id-10, skill 0 skipped), and re-enables the Handbell `skill_ranks` row.
+- Impact: characters with skill-category merits get each bonus on the correct skill instead of the neighbouring one. Characters without skill merits are unaffected. Not tested in-game.
+- **Conflict risk:** the target server (Valhalla) was tested and does not show the shifting bug, so it has probably already fixed this function. The slice edit touches the same block and may conflict with, or double-apply on top of, their fix.
+- **Action before merge/push:** diff against Valhalla's `BuildingCharSkillsTable`. If theirs is correct, drop this slice's `charutils.cpp` change and keep only the Handbell SQL and `SKILL_HND`. Verify Handbell (45) handling matches theirs.
