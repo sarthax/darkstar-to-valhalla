@@ -62,6 +62,7 @@ When a status effect is gained twice on a player. It can do one or more of the f
 #include "utils/petutils.h"
 #include "utils/puppetutils.h"
 #include "utils/battleutils.h"
+#include "enmity_container.h"
 
 /************************************************************************
 *                                                                       *
