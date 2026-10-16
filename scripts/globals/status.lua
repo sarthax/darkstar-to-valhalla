@@ -2052,8 +2052,9 @@ SKILL_STR = 41
 SKILL_WND = 42
 SKILL_BLU = 43
 SKILL_GEO = 44
+SKILL_HND = 45
 
--- 45~47 unused
+-- 46~47 unused
 
 -- Crafting Skills
 SKILL_FISHING      = 48

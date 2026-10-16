@@ -11,7 +11,7 @@ require("scripts/globals/status");
 GEOMANCER = {};
 
 GEOMANCER.LUOPAN_PETID       = 75;   -- pet_list row (geo_luopan_pet.sql)
-GEOMANCER.SKILL_HANDBELL     = 45;   -- client skill id, unused slot in DSP status.lua
+GEOMANCER.SKILL_HANDBELL     = SKILL_HND;
 GEOMANCER.INDI_BASE_DURATION = 180;  -- seconds
 GEOMANCER.LUOPAN_LIFETIME    = 600;  -- seconds
 GEOMANCER.WIDENED_AURA_SIZE  = 625;  -- AURA_SIZE mod while Widened Compass is up
