@@ -14,6 +14,7 @@ require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/globals/weather");
 require("scripts/globals/chocobo_digging");
+require("scripts/globals/voidwalker");
 
 fallenEggPositions = {
         [1] = {211.000, 24.000, 257.000},
@@ -124,6 +125,7 @@ end;
 -----------------------------------
 
 function onInitialize(zone)
+    voidwalker.zoneOnInit(zone);
     require("scripts/globals/mog_tablets");
     MOG_TABLET.onZoneInitialize(zone);
     local fallenEgg = GetNPCByID(17195583);

@@ -9,12 +9,14 @@ require("scripts/zones/Meriphataud_Mountains_[S]/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/zone");
+require("scripts/globals/voidwalker");
 
 -----------------------------------
 -- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
+    voidwalker.zoneOnInit(zone);
 end;
 
 -----------------------------------

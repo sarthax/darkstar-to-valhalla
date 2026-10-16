@@ -1,21 +1,28 @@
 -----------------------------------
--- Area: West Sarutabaruta
---  MOB: Krabkatoa
+--  Area: West Sarutabaruta
+--   NM:  Orcus (Voidwalker)
 -----------------------------------
 
+require("scripts/globals/voidwalker");
 require("scripts/globals/titles");
 
------------------------------------
--- onMobSpawn Action
------------------------------------
-
 function onMobSpawn(mob)
+    voidwalker.onMobSpawn(mob);
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
+function onMobFight(mob, target)
+    voidwalker.onMobFight(mob, target);
+end;
+
+function onMobDisengage(mob)
+    voidwalker.onMobDisengage(mob);
+end;
+
+function onMobDespawn(mob)
+    voidwalker.onMobDespawn(mob);
+end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(ORCUS_TROPHY_HUNTER);
+    if (player ~= nil) then player:addTitle(ORCUS_TROPHY_HUNTER); end
+    voidwalker.onMobDeath(mob, player, isKiller, BLACK_ABYSSITE);
 end;

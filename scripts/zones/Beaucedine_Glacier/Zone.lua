@@ -11,12 +11,14 @@ require("scripts/globals/missions");
 require("scripts/globals/icanheararainbow");
 require("scripts/globals/zone");
 require("scripts/globals/conquest");
+require("scripts/globals/voidwalker");
 
 -----------------------------------
 -- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
+    voidwalker.zoneOnInit(zone);
     require("scripts/globals/mog_tablets");
     MOG_TABLET.onZoneInitialize(zone);
     SetRegionalConquestOverseers(zone:getRegionID())

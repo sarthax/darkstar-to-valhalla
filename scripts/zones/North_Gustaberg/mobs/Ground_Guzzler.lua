@@ -1,14 +1,27 @@
 -----------------------------------
--- Area: North Gustaberg
---  MOB: Ground Guzzler
+--  Area: North Gustaberg
+--   NM:  Ground_Guzzler (Voidwalker)
 -----------------------------------
 
-require("scripts/globals/fieldsofvalor");
+require("scripts/globals/voidwalker");
+require("scripts/globals/titles");
 
------------------------------------
--- onMobDeath
------------------------------------
+function onMobSpawn(mob)
+    voidwalker.onMobSpawn(mob);
+end;
+
+function onMobFight(mob, target)
+    voidwalker.onMobFight(mob, target);
+end;
+
+function onMobDisengage(mob)
+    voidwalker.onMobDisengage(mob);
+end;
+
+function onMobDespawn(mob)
+    voidwalker.onMobDespawn(mob);
+end;
 
 function onMobDeath(mob, player, isKiller)
-    checkRegime(player,mob,16,1);
+    voidwalker.onMobDeath(mob, player, isKiller, COLORFUL_ABYSSITE);
 end;

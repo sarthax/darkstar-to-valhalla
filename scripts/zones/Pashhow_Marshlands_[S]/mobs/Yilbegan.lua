@@ -1,21 +1,28 @@
 -----------------------------------
--- Area:
---  VNM: Yilbegan
+--  Area: Pashhow Marshlands [S]
+--   NM:  Yilbegan (Voidwalker)
 -----------------------------------
 
+require("scripts/globals/voidwalker");
 require("scripts/globals/titles");
 
------------------------------------
--- onMobSpawn Action
------------------------------------
-
 function onMobSpawn(mob)
+    voidwalker.onMobSpawn(mob);
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
+function onMobFight(mob, target)
+    voidwalker.onMobFight(mob, target);
+end;
+
+function onMobDisengage(mob)
+    voidwalker.onMobDisengage(mob);
+end;
+
+function onMobDespawn(mob)
+    voidwalker.onMobDespawn(mob);
+end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(YILBEGAN_HIDEFLAYER);
+    if (player ~= nil) then player:addTitle(YILBEGAN_HIDEFLAYER); end
+    voidwalker.onMobDeath(mob, player, isKiller, nil);
 end;

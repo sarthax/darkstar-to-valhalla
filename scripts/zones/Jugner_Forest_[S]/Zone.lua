@@ -8,12 +8,14 @@ package.loaded["scripts/zones/Jugner_Forest_[S]/TextIDs"] = nil;
 
 require("scripts/globals/settings");
 require("scripts/zones/Jugner_Forest_[S]/TextIDs");
+require("scripts/globals/voidwalker");
 
 -----------------------------------
 -- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
+    voidwalker.zoneOnInit(zone);
 end;
 
 -----------------------------------

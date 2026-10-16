@@ -12,6 +12,7 @@ require("scripts/globals/zone");
 require("scripts/globals/icanheararainbow");
 require("scripts/globals/conquest");
 require("scripts/globals/chocobo_digging");
+require("scripts/globals/voidwalker");
 
 -----------------------------------
 -- Chocobo Digging vars
@@ -55,6 +56,7 @@ end;
 -----------------------------------
 
 function onInitialize(zone)
+    voidwalker.zoneOnInit(zone);
     require("scripts/globals/mog_tablets");
     MOG_TABLET.onZoneInitialize(zone);
     zone:registerRegion(1, -484, 10, 292, 0, 0, 0); -- Sets Mark for "Under Oath" Quest cutscene.

@@ -10,11 +10,13 @@ require("scripts/globals/settings");
 require("scripts/zones/East_Ronfaure_[S]/TextIDs");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
+require("scripts/globals/voidwalker");
 -----------------------------------
 -- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
+    voidwalker.zoneOnInit(zone);
 end;
 
 -----------------------------------
