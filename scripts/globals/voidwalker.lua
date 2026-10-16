@@ -297,7 +297,7 @@ function voidwalker.onHealing(player)
 
         mob:hideName(false);
         mob:untargetable(false);
-        mob:setStatus(STATUS_NORMAL);
+        mob:setStatus(STATUS_UPDATE); -- value 1 == C++ STATUS_MOB; NORMAL(0) shows a mob as a green NPC
         mob:updateClaim(player);
     elseif (near.distance >= 300) then
         player:messageSpecial(text.MOB_TOO_FAR, near.keyItem);
