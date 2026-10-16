@@ -573,6 +573,32 @@ namespace battleutils
 
             damage += PAttacker->getMod(Mod::ENSPELL_DMG_BONUS);
         }
+        else if (Tier == 4) // Rune Enhancement (ported from LSB; multipliers tunable below)
+        {
+            static const double RUNE_MULT[4][2] = { { 0.0, 0.0 }, { 0.97, 1.30 }, { 1.40, 1.70 }, { 1.90, 2.20 } };
+            static const double RUNE_DPS_CAP = 21.0;
+            double runeDPS = 3.0 / 240.0; // no weapon / h2h
+            CItemWeapon* PMain = PAttacker->m_Weapons[SLOT_MAIN];
+            if (PMain != nullptr && PMain->getDelay() > 0)
+            {
+                runeDPS = (double)PMain->getDamage() * 60.0 / (double)PMain->getDelay();
+            }
+            CItemWeapon* PSub = PAttacker->m_Weapons[SLOT_SUB];
+            if (PSub != nullptr && PSub->getSkillType() != SKILL_NON && PSub->getDamage() > 0)
+            {
+                runeDPS /= 2; // dual wield: DPS split between hands
+            }
+            runeDPS = std::min(runeDPS, RUNE_DPS_CAP);
+
+            EFFECT highest = PAttacker->StatusEffectContainer->GetHighestRuneEffect();
+            uint8 count = highest == EFFECT_NONE ? 0 : PAttacker->StatusEffectContainer->GetEffectsCount(highest);
+            if (count >= 1 && count <= 3)
+            {
+                double mn = floor(runeDPS * RUNE_MULT[count][0]);
+                double mx = floor(runeDPS * RUNE_MULT[count][1]);
+                damage = (int32)(mn + dsprand::GetRandomNumber(1.) * (mx - mn + 1));
+            }
+        }
 
         //matching day 10% bonus, matching weather 10% or 25% for double weather
         float dBonus = 1.0;
@@ -994,6 +1020,33 @@ namespace battleutils
             }
         }
 
+        // Rune Enhancement: active runes give an elemental additional effect (Blood Weapon still takes priority)
+        if (PAttacker->StatusEffectContainer->GetActiveRuneCount() > 0 && PAttacker->getMod(Mod::ENSPELL) != ENSPELL_BLOOD_WEAPON)
+        {
+            EFFECT r = EFFECT_NONE;
+            EFFECT highest = PAttacker->StatusEffectContainer->GetHighestRuneEffect();
+            r = (highest != EFFECT_NONE && PAttacker->StatusEffectContainer->GetEffectsCount(highest) == 1)
+                ? PAttacker->StatusEffectContainer->GetNewestRuneEffect() : highest;
+            if (r >= EFFECT_IGNIS && r <= EFFECT_TENEBRAE)
+            {
+                // Fire, Ice, Wind, Earth, Lightning, Water, Light, Dark
+                SUBEFFECT runeSub[8] = { SUBEFFECT_FIRE_DAMAGE, SUBEFFECT_ICE_DAMAGE, SUBEFFECT_WIND_DAMAGE, SUBEFFECT_EARTH_DAMAGE,
+                    SUBEFFECT_LIGHTNING_DAMAGE, SUBEFFECT_WATER_DAMAGE, SUBEFFECT_LIGHT_DAMAGE, SUBEFFECT_DARKNESS_DAMAGE };
+                // CalculateEnspellDamage element index: fire, earth, water, wind, ice, thunder, light, dark
+                uint8 runeElem[8] = { 0, 4, 3, 1, 5, 2, 6, 7 };
+                uint8 idx = (uint8)(r - EFFECT_IGNIS);
+                Action->additionalEffect = runeSub[idx];
+                Action->addEffectMessage = 163;
+                Action->addEffectParam = CalculateEnspellDamage(PAttacker, PDefender, 4, runeElem[idx]);
+                if (Action->addEffectParam < 0)
+                {
+                    Action->addEffectParam = -Action->addEffectParam;
+                    Action->addEffectMessage = 384;
+                }
+                PDefender->addHP(-Action->addEffectParam);
+                return;
+            }
+        }
         // Enspell overwrites weapon effects
         if (PAttacker->getMod(Mod::ENSPELL) > 0 && (PAttacker->getMod(Mod::ENSPELL_CHANCE) == 0 ||
             PAttacker->getMod(Mod::ENSPELL_CHANCE) > dsprand::GetRandomNumber(100)))

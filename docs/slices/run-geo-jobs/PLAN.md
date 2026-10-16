@@ -111,3 +111,9 @@ Items 1 and 2 are the most likely to conflict, because Valhalla's behavior there
 - Vivacious Pulse: added VIVACIOUS_PULSE_POTENCY (%), AUGMENTS_VIVACIOUS_PULSE random debuff removal. Job point scaling (HP and MP) still missing (getJobPointLevel stub).
 - Inspiration FC: now also applied on Vallation (LSB does both; was Valiance only). FC is packed in ward power, not a separate FAST_CAST effect as in LSB.
 - **Merit id bug fixed:** Inspiration read 0x0444 and Rayke 0x0442. DSP merit.h defines MCATEGORY_RUN_2 = 0x0440, colliding with SAM_1, so these read Samurai merits (Store TP, Warding Circle). Real LSB RUN_2 is 0x0D80 (inspiration 0x0D84, rayke 0x0D82), beyond DSP's MCATEGORY_COUNT. They now return 0 via RUNEFENCER.getRunMerit until the merit table is extended. RUN_1 (0x0700) merits also have no merits.sql rows. Wiring RUN merits is C++ plus SQL plus client packet work and may conflict with Valhalla.
+
+## Rune Enhancement (melee elemental additional effect)
+- Ported from LSB `CalculateEnspellDamage` Tier 4 into `src/map/utils/battleutils.cpp` (`Tier == 4` branch + rune block in `HandleEnspell`).
+- DPS = weapon damage * 60 / delay (cap 21, halved when dual wielding, 3/240 unarmed). Multipliers per rune count are in the static `RUNE_MULT` table (tunable).
+- Element: newest rune if highest count is 1, else highest. Runs before enspell/weapon effects, skipped for Blood Weapon.
+- **Valhalla risk:** `battleutils.cpp` is shared; the rune block sits at the top of the enspell chain in `HandleEnspell` and will conflict textually with any Valhalla edit there. Day/weather/resist scaling reuses the existing enspell code.
