@@ -59,7 +59,7 @@ function RUNEFENCER.checkHaveRunes(player)
     if (player:getActiveRuneCount() > 0) then
         return 0, 0;
     end
-    return 660, 0; -- REQUIRE_RUNE: message id UNVERIFIED against client
+    return 666, 0; -- REQUIRE_RUNE ("requires Rune Enchantment"); 660 is SAME_EFFECT_LUOPAN, same LSB msg table
 end
 
 function RUNEFENCER.useSwordplay(player, target, ability)
