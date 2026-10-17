@@ -115,7 +115,7 @@ function onEventFinish(player,csid,option)
                 0x1235,2097,2, -- Scroll of Blink
                 0x1202,585,2,  -- Scroll of Cure II
 
-                0x1237,360,3,  -- Scroll of Aquaveil
+                0x1237,400,3,  -- Scroll of Aquaveil
                 0x1210,990,3,  -- Scroll of Blindna
                 0x1207,1363,3, -- Scroll of Curaga
                 0x1201,61,3,   -- Scroll of Cure

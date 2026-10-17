@@ -723,6 +723,7 @@ enum class Mod
     WIND_RES_RANK             = 194,
     ELEMENTAL_CELERITY        = 901,
     CARDINAL_CHANT            = 959,
+    SPECIAL_ATTACK_EVASION    = 971, // Reduces enemy TP-move (special attack) hit rate by this amount (Foil)
 
     // 570 through 825 used by WS DMG mods these are not spares.
     // SPARE = 860, // stuff

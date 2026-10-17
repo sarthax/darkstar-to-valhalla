@@ -39,7 +39,8 @@ stock =
     0x1260,30967,    --Auspice
     0x1206,141137,    --Cure VI    (Not Implemented yet)
     0x122F,103882,    --Protect V    (Not Implemented yet)
-    0x1234,125069    --Shell V    (Not Implemented yet)
+    0x1234,125069,   --Shell V    (Not Implemented yet)
+    0x13CF,143451    --Crusade (RUN)
 }
 showShop(player, STATIC, stock);
 end; 

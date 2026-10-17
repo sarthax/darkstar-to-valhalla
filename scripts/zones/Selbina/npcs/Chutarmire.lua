@@ -39,7 +39,7 @@ stock = {0x12A0,5751,    -- Scroll of Stone II
      0x12DD,22680,    -- Scroll of Poison II
      0x12E7,12600,    -- Scroll of Bio II
      0x12E1,4644,    -- Scroll of Poisonga
-     0x12FB,8100}    -- Scroll of Shock Spikes
+     0x12FB,9000}    -- Scroll of Shock Spikes
  
 showShop(player, STATIC, stock);
 end; 

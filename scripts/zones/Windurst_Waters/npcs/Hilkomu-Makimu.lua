@@ -34,7 +34,7 @@ function onTrigger(player,npc)
         0x12AE,  7181,2,     --Scroll of Firaga
         0x12B3, 10948,2,     --Scroll of Blizzaga
         0x12C2, 15456,2,     --Scroll of Thundaga
-        0x12FB,  8280,2,     --Scroll of Shock Spikes
+        0x12FB,  9000,2,     --Scroll of Shock Spikes
 
         0x12A0,  5814,3,     --Scroll of Stone II
         0x12AA,  8100,3,     --Scroll of Water II

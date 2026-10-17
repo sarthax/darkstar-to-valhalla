@@ -41,7 +41,7 @@ function onTrigger(player,npc)
         0x1217,    82,3,     --Dia
         0x122b,   219,3,     --Protect
         0x1230,  1584,3,     --Shell
-        0x1237,   360,3      --Aquaveil
+        0x1237,   400,3      --Aquaveil
     }
     showNationShop(player, NATION_WINDURST, stock);
 
