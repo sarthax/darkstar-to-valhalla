@@ -47,3 +47,10 @@ Valhalla can add spells to a custom spell shop, so these sourceless/unconfirmed 
 - Regen III (RUN 70): no vendor listed on wiki.
 - Eight loot-less battlefields (Refresh/Phalanx/Ice Spikes sources) remain a general BCNM gap.
 - Not yet audited: En- spells, Embolden and other RUN-unique spells' sources.
+
+## W6 spell effects audit (2026-10-16)
+- Crusade (476): row re-enabled with RUN 88 (PLD 88 kept); new `spells/crusade.lua` applies EFFECT_ENMITY_BOOST power 30 / 300s (LSB params). Effect script already existed.
+- Temper (493): script and EFFECT_MULTI_STRIKES already existed; spell_list RUN level set to 99 (it was 0, so RUN could not learn it).
+- Foil (840): STILL BLOCKED. Row commented out; DSP has EFFECT_FOIL (568) but no SPECIAL_ATTACK_EVASION modifier (needs a C++ modifier.h entry + combat hook) and no effect script. Do not enable the row until the engine mod exists; the Ledericus scroll teaches nothing meanwhile.
+- Live SQL appended to w1_live.sql. Untested in game.
+- Remaining audit: Indi/Geo/Luopan, En-spells, Embolden, spikes.
