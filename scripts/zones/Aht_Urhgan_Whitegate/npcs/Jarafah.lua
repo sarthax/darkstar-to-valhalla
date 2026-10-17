@@ -4,6 +4,7 @@
 -- Standard Info NPC
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
+require("scripts/globals/event_storage");
 -----------------------------------
 
 require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
@@ -13,6 +14,7 @@ require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
+    EventStorage.onTrade(player,npc,trade);
 end; 
 
 -----------------------------------
@@ -20,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-player:startEvent(0x02BE);
+    EventStorage.onTrigger(player,npc);
 end; 
 
 -----------------------------------
@@ -37,6 +39,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
+    EventStorage.onEventFinish(player,csid,option);
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
