@@ -37,3 +37,13 @@ Unlock quests (feature/run-geo-unlock-quests), job abilities/stats (feature/run-
 - Indi-Poison: Dances with Luopans reward, already in feature/run-geo-unlock-quests.
 - RoE: DSP has NO Records of Eminence system (no scripts/globals/roe*, no server support). LSB RoE records 1281-1287 are level milestones; only two give spells: GEO 75 = Plate of Indi-Frailty (1282, retro), RUN 75 = Scroll of Crusade (1286, retro). Both are also obtainable elsewhere (Indi-Frailty: Eukalline vendor; Crusade: Brave Ox, added in W3). Building RoE is a separate large feature: out of scope, no quests needed.
 - Possible cheap substitute if wanted: grant the level-75 Crusade/Indi-Frailty once via a level-up hook. Not built; needs your call.
+
+## Custom spell shop backlog (tabled 2026-10-16)
+Valhalla can add spells to a custom spell shop, so these sourceless/unconfirmed spells are tabled for it rather than built from invented drops/quests:
+- Scroll of Temper (4705): no LSB/DSP source (Orb battlefield drops unverified).
+- Scroll of Ice Spikes (4858): only via BCNM/mob drops; wiki's Inside the Belly reward unconfirmed.
+- Orb-battlefield Indi- plates (Fade/Frailty/Gravity/Malaise/Vex secondary sources): shop-sold already at Eukalline; nothing missing.
+- Spells only from RoE (Indi-Frailty, Crusade): already vendor-sold; no gap.
+- Regen III (RUN 70): no vendor listed on wiki.
+- Eight loot-less battlefields (Refresh/Phalanx/Ice Spikes sources) remain a general BCNM gap.
+- Not yet audited: En- spells, Embolden and other RUN-unique spells' sources.
