@@ -8,6 +8,7 @@
 -- Auto-Script: Requires Verification (Verfied By Brawndo)
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
+require("scripts/globals/event_storage");
 -----------------------------------
 
 -----------------------------------
@@ -15,6 +16,7 @@ package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------
 
 function onTrade(player,npc,trade)
+    EventStorage.onTrade(player,npc,trade);
 end;
 
 -----------------------------------
@@ -22,7 +24,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x038e);
+    EventStorage.onTrigger(player,npc);
 end;
 
 -----------------------------------
@@ -39,6 +41,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
+    EventStorage.onEventFinish(player,csid,option);
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;

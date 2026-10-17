@@ -6,6 +6,7 @@
 -----------------------------------
 
 package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
+require("scripts/globals/event_storage");
 require("scripts/zones/Port_Jeuno/TextIDs");
 
 -----------------------------------
@@ -13,6 +14,7 @@ require("scripts/zones/Port_Jeuno/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
+    EventStorage.onTrade(player,npc,trade);
 end;
 
 -----------------------------------
@@ -20,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-
+    EventStorage.onTrigger(player,npc);
 end;
 
 -----------------------------------
@@ -37,6 +39,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
+    EventStorage.onEventFinish(player,csid,option);
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
