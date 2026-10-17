@@ -26,7 +26,10 @@ Slice status for this repository. The source of truth is [`docs/slices/STATUS.js
 | campaign-ops | active | `feature/campaign-ops`, `feature/WotG-campaign-ops` | `slice/campaign-ops-v1` | yes |
 | dev-tools-sqlcheck | final | `feature/dev-tools-sqlcheck` | `slice/dev-tools-sqlcheck-v1` | yes |
 | ephemeral-moogle | final | `feature/ephemeral-moogle` | `slice/ephemeral-moogle-v5` | yes |
+| event-storage | active | `feature/event-storage-npcs` | `slice/event-storage-v1` | yes |
+| ferry-deck-mobs | active | `feature/ferry-deck-mobs` | `slice/ferry-deck-mobs-v2` | yes |
 | gardening | final | `feature/mog-house-gardening` | `slice/gardening-v3` | yes |
+| geo-run-stat-grades | active | `feature/geo-run-stat-grades` | `slice/geo-run-stat-grades-v1` | yes |
 | heroines-holdfast | active | `feature/heroines-holdfast`, `feature/mumor-heroines-holdfast` | `slice/heroines-holdfast-v2` | yes |
 | homepoint-audit-fixes | review | `feature/homepoint-audit-fixes` | `slice/homepoint-audit-fixes-v2` | yes |
 | mog-house-2f-patio | final | `feature/mog-house-2f-patio` | `slice/mog-house-2f-patio-v1` | yes |
@@ -37,6 +40,9 @@ Slice status for this repository. The source of truth is [`docs/slices/STATUS.js
 | nyzul-alzadaal | final | `feature/nyzul-alzadaal` | `slice/nyzul-alzadaal-v1` | yes |
 | nyzul-investigation | final | `feature/nyzul-investigation` | `slice/nyzul-investigation-v1` | yes |
 | nyzul-uncharted-survey | final | `feature/nyzul-uncharted-survey` | `slice/nyzul-uncharted-survey-v1` | yes |
+| run-geo-jobs | active | `feature/run-geo-jobs` | `slice/run-geo-jobs-v1` | yes |
+| run-geo-spell-acquisition | active | `feature/run-geo-spell-acquisition` | `slice/run-geo-spell-acquisition-v1` | yes |
+| run-geo-unlock-quests | active | `feature/run-geo-unlock-quests` | `slice/run-geo-unlock-quests-v1` | yes |
 | salvage-arrapago | review | `feature/salvage-arrapago-v4` | `slice/salvage-arrapago-v4` | yes |
 | salvage-base | review | `feature/salvage-base-v2` | `slice/salvage-base-v2` | yes |
 | salvage-bhaflau | review | `feature/salvage-bhaflau-v4` | `slice/salvage-bhaflau-v4` | yes |
@@ -48,6 +54,7 @@ Slice status for this repository. The source of truth is [`docs/slices/STATUS.js
 | textids-256plus-survival-guides | final | `feature/textids-256plus-survival-guides` | `slice/textids-256plus-survival-guides-v1` | yes |
 | textids-sweep | final | `feature/textids-sweep` | `slice/textids-sweep-v1` | yes |
 | treasure-caskets | final | `feature/treasure-caskets-v3` | `slice/treasure-caskets-v14` | yes |
+| voidwalker | active | `feature/voidwalker` | `slice/voidwalker-v1` | yes |
 | voidwatch-officers | review | `feature/voidwatch-officers-v2` | `slice/voidwatch-officers-v6` | yes |
 | voidwatch-vwnm | review | `feature/voidwatch-vwnm-v3` | `slice/voidwatch-vwnm-v4` | yes |
 | vs2019-toolset | final | `feature/vs2019-toolset` | `slice/vs2019-toolset-v1` | yes |

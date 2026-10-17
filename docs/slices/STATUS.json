@@ -1,6 +1,6 @@
 {
  "_readme": "Slice status manifest. status: active (still being worked), final (finished, merged to main, branch kept as the slice's record), review (not merged to main). Seeded 2026-10-14 from the branch inventory; update status here when a slice is done. finalTag is the newest slice/* tag. Branch deletions and renames are recorded in docs/project-memory.",
- "generated": "2026-10-15",
+ "generated": "2026-10-17",
  "slices": {
   "abyssea-lights-pyxis": {
    "status": "active",
@@ -159,6 +159,26 @@
     "slice/ephemeral-moogle-v4"
    ]
   },
+  "event-storage": {
+   "status": "active",
+   "branch": "feature/event-storage-npcs",
+   "finalTag": "slice/event-storage-v1",
+   "finalDate": "2026-10-16",
+   "mergedToMain": true,
+   "versions": 1,
+   "supersededTags": []
+  },
+  "ferry-deck-mobs": {
+   "status": "active",
+   "branch": "feature/ferry-deck-mobs",
+   "finalTag": "slice/ferry-deck-mobs-v2",
+   "finalDate": "2026-10-16",
+   "mergedToMain": true,
+   "versions": 2,
+   "supersededTags": [
+    "slice/ferry-deck-mobs-v1"
+   ]
+  },
   "gardening": {
    "status": "final",
    "branch": "feature/mog-house-gardening",
@@ -170,6 +190,15 @@
     "slice/gardening-v1",
     "slice/gardening-v2"
    ]
+  },
+  "geo-run-stat-grades": {
+   "status": "active",
+   "branch": "feature/geo-run-stat-grades",
+   "finalTag": "slice/geo-run-stat-grades-v1",
+   "finalDate": "2026-10-16",
+   "mergedToMain": true,
+   "versions": 1,
+   "supersededTags": []
   },
   "heroines-holdfast": {
    "status": "active",
@@ -273,6 +302,33 @@
    "branch": "feature/nyzul-uncharted-survey",
    "finalTag": "slice/nyzul-uncharted-survey-v1",
    "finalDate": "2026-10-06",
+   "mergedToMain": true,
+   "versions": 1,
+   "supersededTags": []
+  },
+  "run-geo-jobs": {
+   "status": "active",
+   "branch": "feature/run-geo-jobs",
+   "finalTag": "slice/run-geo-jobs-v1",
+   "finalDate": "2026-10-16",
+   "mergedToMain": true,
+   "versions": 1,
+   "supersededTags": []
+  },
+  "run-geo-spell-acquisition": {
+   "status": "active",
+   "branch": "feature/run-geo-spell-acquisition",
+   "finalTag": "slice/run-geo-spell-acquisition-v1",
+   "finalDate": "2026-10-16",
+   "mergedToMain": true,
+   "versions": 1,
+   "supersededTags": []
+  },
+  "run-geo-unlock-quests": {
+   "status": "active",
+   "branch": "feature/run-geo-unlock-quests",
+   "finalTag": "slice/run-geo-unlock-quests-v1",
+   "finalDate": "2026-10-16",
    "mergedToMain": true,
    "versions": 1,
    "supersededTags": []
@@ -418,6 +474,15 @@
     "slice/treasure-caskets-v12",
     "slice/treasure-caskets-v13"
    ]
+  },
+  "voidwalker": {
+   "status": "active",
+   "branch": "feature/voidwalker",
+   "finalTag": "slice/voidwalker-v1",
+   "finalDate": "2026-10-16",
+   "mergedToMain": true,
+   "versions": 1,
+   "supersededTags": []
   },
   "voidwatch-officers": {
    "status": "review",
