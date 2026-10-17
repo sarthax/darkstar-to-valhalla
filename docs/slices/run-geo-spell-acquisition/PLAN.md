@@ -30,3 +30,10 @@ Unlock quests (feature/run-geo-unlock-quests), job abilities/stats (feature/run-
 - DSP already has bcnm_loot for Refresh/Ice Spikes/Phalanx: Under Observation (lootDropId 16), Jungle Boogymen (10), Amphibian Assault (156), plus Refresh/Ice Spikes in mob_droplist. No RUN/GEO-specific loot work needed for these.
 - Eight LSB battlefields that drop them (Royal Succession, Steamed Sprouts, Royal Jelly, Worm's Turn, Tails of Woe, Factory Rejects, Undying Promise, Legion XI) have lootDropId 0 in DSP bcnm_info: a general BCNM loot gap, not RUN/GEO. Out of scope unless asked (LSB weights/10 = DSP rolls, one bcnm_loot group per LSB group).
 - Scroll of Temper and Indi- plates dropped from Orb battlefields: LSB has NO such drop data (Indi plates only via Abyssea pyxis, ROE records, Dances with Luopans), so nothing to port; do not invent. Temper source stays open.
+
+## W5 audit: quests and RoE (2026-10-16)
+- Know One's Onions (Blaze Spikes, item 4857): present in DSP (Port_Windurst/Kohlo-Lakolo.lua adds 4857). Nothing to do.
+- Inside the Belly (wiki lists Ice Spikes as a reward): DSP Zaldon.lua has no 4858 and LSB Inside_the_Belly.lua has no Ice Spikes either. Unconfirmed wiki claim; do not build without a client/capture source. Ice Spikes already drops from BCNM/mobs (W4).
+- Indi-Poison: Dances with Luopans reward, already in feature/run-geo-unlock-quests.
+- RoE: DSP has NO Records of Eminence system (no scripts/globals/roe*, no server support). LSB RoE records 1281-1287 are level milestones; only two give spells: GEO 75 = Plate of Indi-Frailty (1282, retro), RUN 75 = Scroll of Crusade (1286, retro). Both are also obtainable elsewhere (Indi-Frailty: Eukalline vendor; Crusade: Brave Ox, added in W3). Building RoE is a separate large feature: out of scope, no quests needed.
+- Possible cheap substitute if wanted: grant the level-75 Crusade/Indi-Frailty once via a level-up hook. Not built; needs your call.
