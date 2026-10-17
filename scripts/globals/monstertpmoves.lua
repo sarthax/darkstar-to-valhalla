@@ -130,7 +130,7 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
     ratio = utils.clamp(ratio, 0, 4);
 
     --work out hit rate for mobs (bias towards them)
-    local hitrate = (acc*accmod) - eva + (lvldiff*2) + 75;
+    local hitrate = (acc*accmod) - eva + (lvldiff*2) + 75 - target:getMod(MOD_SPECIAL_ATTACK_EVASION);
 
     -- printf("acc: %f, eva: %f, hitrate: %f", acc, eva, hitrate);
     hitrate = utils.clamp(hitrate, 20, 95);

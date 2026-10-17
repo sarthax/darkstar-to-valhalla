@@ -51,6 +51,6 @@ Valhalla can add spells to a custom spell shop, so these sourceless/unconfirmed 
 ## W6 spell effects audit (2026-10-16)
 - Crusade (476): row re-enabled with RUN 88 (PLD 88 kept); new `spells/crusade.lua` applies EFFECT_ENMITY_BOOST power 30 / 300s (LSB params). Effect script already existed.
 - Temper (493): script and EFFECT_MULTI_STRIKES already existed; spell_list RUN level set to 99 (it was 0, so RUN could not learn it).
-- Foil (840): STILL BLOCKED. Row commented out; DSP has EFFECT_FOIL (568) but no SPECIAL_ATTACK_EVASION modifier (needs a C++ modifier.h entry + combat hook) and no effect script. Do not enable the row until the engine mod exists; the Ledericus scroll teaches nothing meanwhile.
+- Foil (840): ENABLED. New mod SPECIAL_ATTACK_EVASION=971 (modifier.h + status.lua; REQUIRES C++ rebuild), applied in monstertpmoves.lua MobPhysicalMove hit rate; effects/foil.lua (power 150, -3 per 3s tick, 30s) + spells/foil.lua. Only affects Lua mob TP moves. Mod id 971 is a free slot chosen locally (LSB id not in reference).
 - Live SQL appended to w1_live.sql. Untested in game.
 - Remaining audit: Indi/Geo/Luopan, En-spells, Embolden, spikes.

@@ -1418,6 +1418,7 @@ MOD_WATER_RES_RANK           = 197
 MOD_WIND_RES_RANK            = 194
 MOD_ELEMENTAL_CELERITY       = 901
 MOD_CARDINAL_CHANT           = 959
+MOD_SPECIAL_ATTACK_EVASION   = 971
 
 MOD_WEAPONSKILL_DAMAGE_BASE = 570 -- Specific to 1 Weaponskill: See modifier.h for how this is used
 MOD_ALL_WSDMG_ALL_HITS      = 840 -- Generic (all Weaponskills) damage, on all hits.
