@@ -53,4 +53,4 @@ Valhalla can add spells to a custom spell shop, so these sourceless/unconfirmed 
 - Temper (493): script and EFFECT_MULTI_STRIKES already existed; spell_list RUN level set to 99 (it was 0, so RUN could not learn it).
 - Foil (840): ENABLED. New mod SPECIAL_ATTACK_EVASION=971 (modifier.h + status.lua; REQUIRES C++ rebuild), applied in monstertpmoves.lua MobPhysicalMove hit rate; effects/foil.lua (power 150, -3 per 3s tick, 30s) + spells/foil.lua. Only affects Lua mob TP moves. Mod id 971 is a free slot chosen locally (LSB id not in reference).
 - Live SQL appended to w1_live.sql. Untested in game.
-- Remaining audit: Indi/Geo/Luopan, En-spells, Embolden, spikes.
+- Audit result: 39 spell_list rows now carry a RUN level, matching the 39 wiki RUN spell pages, and every one has a spell script. No RUN En-spells exist on the wiki list; Embolden is a job ability, not a spell. Indi/Geo/Luopan scripts were confirmed present earlier. Remaining: in-game test after C++ rebuild.
