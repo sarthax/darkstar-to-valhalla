@@ -7,6 +7,7 @@ package.loaded["scripts/zones/Open_sea_route_to_Al_Zahbi/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/zones/Open_sea_route_to_Al_Zahbi/TextIDs");
+require("scripts/globals/ferry");
 
 -----------------------------------
 --  onInitialize
@@ -20,6 +21,7 @@ end;
 -----------------------------------
 
 function onZoneIn(player,prevZone)
+    Ferry.onZoneIn(player);
 local cs = -1;    
     if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
         local position = math.random(-2,2) + 0.150;    
@@ -33,6 +35,7 @@ end;
 -----------------------------------
 
 function onTransportEvent(player,transport)
+    Ferry.onVoyageEnd(player);
     player:startEvent(0x0404);
     player:messageSpecial(DOCKING_IN_AL_ZAHBI);
 end;
