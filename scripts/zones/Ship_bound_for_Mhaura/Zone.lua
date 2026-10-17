@@ -8,6 +8,7 @@ package.loaded["scripts/zones/Ship_bound_for_Mhaura/TextIDs"] = nil;
 
 require("scripts/globals/settings");
 require("scripts/zones/Ship_bound_for_Mhaura/TextIDs");
+require("scripts/globals/ferry");
 
 -----------------------------------
 --  onInitialize
@@ -21,6 +22,7 @@ end;
 -----------------------------------
 
 function onZoneIn(player,prevZone)
+    Ferry.onZoneIn(player);
 local cs = -1;    
     if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
         local position = math.random(-2,2) + 0.150;    
@@ -34,6 +36,7 @@ end;
 -----------------------------------
 
 function onTransportEvent(player,transport)
+    Ferry.onVoyageEnd(player);
     player:startEvent(0x0200);
 end;
 

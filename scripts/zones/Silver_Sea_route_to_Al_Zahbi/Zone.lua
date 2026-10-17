@@ -7,6 +7,7 @@ package.loaded["scripts/zones/Silver_Sea_route_to_Al_Zahbi/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/zones/Silver_Sea_route_to_Al_Zahbi/TextIDs");
+require("scripts/globals/ferry");
 require("scripts/globals/settings");
 
 -----------------------------------
@@ -21,6 +22,7 @@ end;
 -----------------------------------
 
 function onZoneIn(player,prevZone)
+    Ferry.onZoneIn(player);
 local cs = -1;
 
     return cs;
@@ -38,6 +40,7 @@ end;
 -----------------------------------
 
 function onTransportEvent(player,transport)
+    Ferry.onVoyageEnd(player);
     player:startEvent(0x0401);
 end;
 

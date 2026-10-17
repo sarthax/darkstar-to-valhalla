@@ -9,6 +9,7 @@ package.loaded["scripts/zones/Ship_bound_for_Selbina/TextIDs"] = nil;
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/zones/Ship_bound_for_Selbina/TextIDs");
+require("scripts/globals/ferry");
 
 -----------------------------------
 --  onInitialize
@@ -22,6 +23,7 @@ end;
 -----------------------------------
 
 function onZoneIn(player,prevZone)
+    Ferry.onZoneIn(player);
     
     local cs = -1;
     
@@ -43,6 +45,7 @@ end;
 -----------------------------------
 
 function onTransportEvent(player,transport)
+    Ferry.onVoyageEnd(player);
     player:startEvent(0x00ff);
 end;
 
