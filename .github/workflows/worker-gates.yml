@@ -1,0 +1,72 @@
+name: worker-gates
+
+# Static gates for PRs from AI workers. Nothing here needs the live DB or client DATs.
+# DB-backed checks (check_npc_ids.py, check_mob_ids.py, --db collisions) stay local.
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  gates:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: false
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Lua tooling
+        run: sudo apt-get update && sudo apt-get install -y lua5.1
+
+      - name: List changed files
+        id: changed
+        run: |
+          git diff --name-only --diff-filter=ACMR origin/${{ github.base_ref }}...HEAD > changed.txt
+          echo "Changed files:"; cat changed.txt
+
+      - name: Forbidden paths
+        run: python3 tools/ci/forbidden_paths.py changed.txt
+
+      - name: Lua syntax (changed files)
+        run: |
+          rc=0
+          for f in $(grep -E '\.lua$' changed.txt); do
+            luac5.1 -p "$f" || rc=1
+          done
+          exit $rc
+
+      - name: SQL structure check (changed sql/*.sql dumps)
+        run: |
+          files=$(grep -E '^sql/[^/]+\.sql$' changed.txt || true)
+          if [ -n "$files" ]; then python3 tools/sqlcheck.py $files; else echo "no top-level sql dumps changed"; fi
+
+      - name: SQL id collision check (changed pool/group/droplist files)
+        run: |
+          # collect() scans local branches, so materialise every remote branch locally first
+          cur=$(git rev-parse --abbrev-ref HEAD)
+          for r in $(git for-each-ref --format='%(refname:short)' refs/remotes/origin | grep -v -E 'origin/(HEAD|pull)'); do
+            b=${r#origin/}
+            git show-ref --verify --quiet "refs/heads/$b" || git branch "$b" "$r" 2>/dev/null || true
+          done
+          rc=0
+          for f in $(grep -E '^sql/(slices/.+\.sql|mob_pools\.sql|mob_groups\.sql|mob_droplist\.sql)$' changed.txt); do
+            echo "== $f"; python3 tools/check_sql_id_collisions.py --file "$f" || rc=1
+          done
+          exit $rc
+
+      - name: Literal ids need a cited source
+        env:
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: python3 tools/ci/pr_id_literals.py "origin/${{ github.base_ref }}" HEAD
+
+      - name: Mixed-slice warning
+        run: python3 tools/ci/slice_scope.py changed.txt
