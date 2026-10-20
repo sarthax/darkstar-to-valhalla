@@ -17,7 +17,7 @@ labels: ready
 -
 
 ## Inputs (research pointers)
-<!-- Repo paths, mission_toolkit pull folders, capture CapLogs, wiki links. -->
+<!-- Repo paths, pulls pasted by Claude, committed capture CapLogs, wiki links. -->
 -
 
 ## Ids and coordinates supplied by Claude
