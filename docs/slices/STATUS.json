@@ -1,543 +1,552 @@
 {
- "_readme": "Slice status manifest. status: active (still being worked), final (finished, merged to main, branch kept as the slice's record), review (not merged to main). Seeded 2026-10-14 from the branch inventory; update status here when a slice is done. finalTag is the newest slice/* tag. Branch deletions and renames are recorded in docs/project-memory.",
- "generated": "2026-10-17",
- "slices": {
-  "abyssea-lights-pyxis": {
-   "status": "active",
-   "branch": "feature/abyssea-lights-pyxis",
-   "finalTag": "slice/abyssea-lights-pyxis-v2",
-   "finalDate": "2026-10-06",
-   "mergedToMain": true,
-   "versions": 2,
-   "supersededTags": [
-    "slice/abyssea-lights-pyxis-v1"
-   ]
-  },
-  "ah-charges-fix": {
-   "status": "final",
-   "branch": "feature/ah-charges-fix",
-   "finalTag": "slice/ah-charges-fix-v3",
-   "finalDate": "2026-10-06",
-   "mergedToMain": true,
-   "versions": 3,
-   "supersededTags": [
-    "slice/ah-charges-fix-v1",
-    "slice/ah-charges-fix-v2"
-   ]
-  },
-  "assault-gm-debug-tools": {
-   "status": "final",
-   "branch": "feature/assault-gm-debug-tools",
-   "finalTag": "slice/assault-gm-debug-tools-v1",
-   "finalDate": "2026-10-06",
-   "mergedToMain": true,
-   "versions": 1,
-   "supersededTags": []
-  },
-  "assault-ilrusi-atoll-missions-1-4": {
-   "status": "active",
-   "branch": "feature/assault-ilrusi-atoll-missions-1-4",
-   "finalTag": "slice/assault-ilrusi-atoll-missions-1-4-v1",
-   "finalDate": "2026-10-15",
-   "mergedToMain": true,
-   "versions": 1,
-   "supersededTags": []
-  },
-  "assault-lebros-cavern-missions-1-4": {
-   "status": "active",
-   "branch": "feature/assault-lebros-cavern-missions-1-4",
-   "finalTag": "slice/assault-lebros-cavern-missions-1-4-v1",
-   "finalDate": "2026-10-15",
-   "mergedToMain": true,
-   "versions": 1,
-   "supersededTags": []
-  },
-  "assault-leujaoam-sanctum-missions-1-4": {
-   "status": "active",
-   "branch": "feature/assault-leujaoam-sanctum-missions-1-4",
-   "finalTag": "slice/assault-leujaoam-sanctum-missions-1-4-v1",
-   "finalDate": "2026-10-15",
-   "mergedToMain": true,
-   "versions": 1,
-   "supersededTags": []
-  },
-  "assault-lockbox-appraisal": {
-   "status": "active",
-   "branch": "feature/assault-lockbox-appraisal",
-   "finalTag": "slice/assault-lockbox-appraisal-v1",
-   "finalDate": "2026-10-15",
-   "mergedToMain": true,
-   "versions": 1,
-   "supersededTags": []
-  },
-  "assault-mamool-ja-missions-1-4": {
-   "status": "active",
-   "branch": "feature/assault-mamool-ja-missions-1-4",
-   "finalTag": "slice/assault-mamool-ja-missions-1-4-v1",
-   "finalDate": "2026-10-15",
-   "mergedToMain": true,
-   "versions": 1,
-   "supersededTags": []
-  },
-  "assault-mercenary-ranks": {
-   "status": "active",
-   "branch": "feature/assault-mercenary-ranks",
-   "finalTag": "slice/assault-mercenary-ranks-v1",
-   "finalDate": "2026-10-15",
-   "mergedToMain": true,
-   "versions": 1,
-   "supersededTags": []
-  },
-  "assault-periqia-missions-1-4": {
-   "status": "active",
-   "branch": "feature/assault-periqia-missions-1-4",
-   "finalTag": "slice/assault-periqia-missions-1-4-v1",
-   "finalDate": "2026-10-15",
-   "mergedToMain": true,
-   "versions": 1,
-   "supersededTags": []
-  },
-  "assault-sql-fixes": {
-   "status": "final",
-   "branch": "feature/assault-sql-fixes",
-   "finalTag": "slice/assault-sql-fixes-v1",
-   "finalDate": "2026-10-06",
-   "mergedToMain": true,
-   "versions": 1,
-   "supersededTags": []
-  },
-  "assault-timeout-blackscreen-fix": {
-   "status": "final",
-   "branch": "feature/assault-timeout-blackscreen-fix",
-   "finalTag": "slice/assault-timeout-blackscreen-fix-v1",
-   "finalDate": "2026-10-06",
-   "mergedToMain": true,
-   "versions": 1,
-   "supersededTags": []
-  },
-  "base-debug-print": {
-   "status": "final",
-   "branch": "base/debug-print",
-   "finalTag": "slice/base-debug-print-v1",
-   "finalDate": "2026-10-06",
-   "mergedToMain": true,
-   "versions": 1,
-   "supersededTags": []
-  },
-  "campaign-ops": {
-   "status": "active",
-   "branch": "feature/campaign-ops",
-   "finalTag": "slice/campaign-ops-v1",
-   "finalDate": "2026-10-06",
-   "mergedToMain": true,
-   "versions": 1,
-   "supersededTags": [],
-   "alsoBranches": [
-    "feature/WotG-campaign-ops"
-   ]
-  },
-  "dev-tools-sqlcheck": {
-   "status": "final",
-   "branch": "feature/dev-tools-sqlcheck",
-   "finalTag": "slice/dev-tools-sqlcheck-v1",
-   "finalDate": "2026-10-06",
-   "mergedToMain": true,
-   "versions": 1,
-   "supersededTags": []
-  },
-  "ephemeral-moogle": {
-   "status": "final",
-   "branch": "feature/ephemeral-moogle",
-   "finalTag": "slice/ephemeral-moogle-v5",
-   "finalDate": "2026-10-11",
-   "mergedToMain": true,
-   "versions": 5,
-   "supersededTags": [
-    "slice/ephemeral-moogle-v1",
-    "slice/ephemeral-moogle-v2",
-    "slice/ephemeral-moogle-v3",
-    "slice/ephemeral-moogle-v4"
-   ]
-  },
-  "event-storage": {
-   "status": "active",
-   "branch": "feature/event-storage-npcs",
-   "finalTag": "slice/event-storage-v1",
-   "finalDate": "2026-10-16",
-   "mergedToMain": true,
-   "versions": 1,
-   "supersededTags": []
-  },
-  "ferry-deck-mobs": {
-   "status": "active",
-   "branch": "feature/ferry-deck-mobs",
-   "finalTag": "slice/ferry-deck-mobs-v2",
-   "finalDate": "2026-10-16",
-   "mergedToMain": true,
-   "versions": 2,
-   "supersededTags": [
-    "slice/ferry-deck-mobs-v1"
-   ]
-  },
-  "gardening": {
-   "status": "final",
-   "branch": "feature/mog-house-gardening",
-   "finalTag": "slice/gardening-v3",
-   "finalDate": "2026-10-06",
-   "mergedToMain": true,
-   "versions": 3,
-   "supersededTags": [
-    "slice/gardening-v1",
-    "slice/gardening-v2"
-   ]
-  },
-  "geo-run-stat-grades": {
-   "status": "active",
-   "branch": "feature/geo-run-stat-grades",
-   "finalTag": "slice/geo-run-stat-grades-v1",
-   "finalDate": "2026-10-16",
-   "mergedToMain": true,
-   "versions": 1,
-   "supersededTags": []
-  },
-  "heroines-holdfast": {
-   "status": "active",
-   "branch": "feature/heroines-holdfast",
-   "finalTag": "slice/heroines-holdfast-v2",
-   "finalDate": "2026-10-06",
-   "mergedToMain": true,
-   "versions": 2,
-   "supersededTags": [
-    "slice/heroines-holdfast-v1"
-   ],
-   "alsoBranches": [
-    "feature/mumor-heroines-holdfast"
-   ]
-  },
-  "homepoint-audit-fixes": {
-   "status": "review",
-   "branch": "feature/homepoint-audit-fixes",
-   "finalTag": "slice/homepoint-audit-fixes-v2",
-   "finalDate": "2026-10-11",
-   "mergedToMain": true,
-   "versions": 2,
-   "supersededTags": [
-    "slice/homepoint-audit-fixes-v1"
-   ]
-  },
-  "mog-house-2f-patio": {
-   "status": "final",
-   "branch": "feature/mog-house-2f-patio",
-   "finalTag": "slice/mog-house-2f-patio-v1",
-   "finalDate": "2026-10-06",
-   "mergedToMain": true,
-   "versions": 1,
-   "supersededTags": []
-  },
-  "mog-tablets-jugner-fix": {
-   "status": "active",
-   "branch": "feature/mog-tablets-jugner-fix",
-   "finalTag": "slice/mog-tablets-jugner-fix-v1",
-   "finalDate": "2026-10-13",
-   "mergedToMain": true,
-   "versions": 1,
-   "supersededTags": []
-  },
-  "mog-tablets-super-kupowers": {
-   "status": "active",
-   "branch": "feature/mog-tablets-super-kupowers-v3",
-   "finalTag": "slice/mog-tablets-super-kupowers-v3",
-   "finalDate": "2026-10-13",
-   "mergedToMain": true,
-   "versions": 3,
-   "supersededTags": [
-    "slice/mog-tablets-super-kupowers-v1",
-    "slice/mog-tablets-super-kupowers-v2"
-   ]
-  },
-  "moghancement": {
-   "status": "final",
-   "branch": "feature/mog-house-moghancement",
-   "finalTag": "slice/moghancement-v1",
-   "finalDate": "2026-10-06",
-   "mergedToMain": true,
-   "versions": 1,
-   "supersededTags": [],
-   "alsoBranches": [
-    "feature/moghancement"
-   ]
-  },
-  "npc-id-realign": {
-   "status": "final",
-   "branch": "feature/npc-id-realign-v3",
-   "finalTag": "slice/npc-id-realign-v3",
-   "finalDate": "2026-10-13",
-   "mergedToMain": true,
-   "versions": 3,
-   "supersededTags": [
-    "slice/npc-id-realign-v1",
-    "slice/npc-id-realign-v2"
-   ]
-  },
-  "nyzul-alzadaal": {
-   "status": "final",
-   "branch": "feature/nyzul-alzadaal",
-   "finalTag": "slice/nyzul-alzadaal-v1",
-   "finalDate": "2026-10-06",
-   "mergedToMain": true,
-   "versions": 1,
-   "supersededTags": []
-  },
-  "nyzul-investigation": {
-   "status": "final",
-   "branch": "feature/nyzul-investigation",
-   "finalTag": "slice/nyzul-investigation-v1",
-   "finalDate": "2026-10-06",
-   "mergedToMain": true,
-   "versions": 1,
-   "supersededTags": []
-  },
-  "nyzul-uncharted-survey": {
-   "status": "final",
-   "branch": "feature/nyzul-uncharted-survey",
-   "finalTag": "slice/nyzul-uncharted-survey-v1",
-   "finalDate": "2026-10-06",
-   "mergedToMain": true,
-   "versions": 1,
-   "supersededTags": []
-  },
-  "run-geo-jobs": {
-   "status": "active",
-   "branch": "feature/run-geo-jobs",
-   "finalTag": "slice/run-geo-jobs-v1",
-   "finalDate": "2026-10-16",
-   "mergedToMain": true,
-   "versions": 1,
-   "supersededTags": []
-  },
-  "run-geo-spell-acquisition": {
-   "status": "active",
-   "branch": "feature/run-geo-spell-acquisition",
-   "finalTag": "slice/run-geo-spell-acquisition-v1",
-   "finalDate": "2026-10-16",
-   "mergedToMain": true,
-   "versions": 1,
-   "supersededTags": []
-  },
-  "run-geo-unlock-quests": {
-   "status": "active",
-   "branch": "feature/run-geo-unlock-quests",
-   "finalTag": "slice/run-geo-unlock-quests-v1",
-   "finalDate": "2026-10-16",
-   "mergedToMain": true,
-   "versions": 1,
-   "supersededTags": []
-  },
-  "salvage-arrapago": {
-   "status": "review",
-   "branch": "feature/salvage-arrapago-v4",
-   "finalTag": "slice/salvage-arrapago-v4",
-   "finalDate": "2026-10-13",
-   "mergedToMain": true,
-   "versions": 4,
-   "supersededTags": [
-    "slice/salvage-arrapago-v1",
-    "slice/salvage-arrapago-v2",
-    "slice/salvage-arrapago-v3"
-   ]
-  },
-  "salvage-base": {
-   "status": "review",
-   "branch": "feature/salvage-base-v2",
-   "finalTag": "slice/salvage-base-v2",
-   "finalDate": "2026-10-13",
-   "mergedToMain": true,
-   "versions": 2,
-   "supersededTags": [
-    "slice/salvage-base-v1"
-   ]
-  },
-  "salvage-bhaflau": {
-   "status": "review",
-   "branch": "feature/salvage-bhaflau-v4",
-   "finalTag": "slice/salvage-bhaflau-v4",
-   "finalDate": "2026-10-13",
-   "mergedToMain": true,
-   "versions": 4,
-   "supersededTags": [
-    "slice/salvage-bhaflau-v1",
-    "slice/salvage-bhaflau-v2",
-    "slice/salvage-bhaflau-v3"
-   ]
-  },
-  "salvage-silversea": {
-   "status": "review",
-   "branch": "feature/salvage-silversea-v4",
-   "finalTag": "slice/salvage-silversea-v4",
-   "finalDate": "2026-10-13",
-   "mergedToMain": true,
-   "versions": 4,
-   "supersededTags": [
-    "slice/salvage-silversea-v1",
-    "slice/salvage-silversea-v2",
-    "slice/salvage-silversea-v3"
-   ]
-  },
-  "salvage-zhayolm": {
-   "status": "review",
-   "branch": "feature/salvage-zhayolm-v4",
-   "finalTag": "slice/salvage-zhayolm-v4",
-   "finalDate": "2026-10-13",
-   "mergedToMain": true,
-   "versions": 4,
-   "supersededTags": [
-    "slice/salvage-zhayolm-v1",
-    "slice/salvage-zhayolm-v2",
-    "slice/salvage-zhayolm-v3"
-   ]
-  },
-  "sunbreeze-event": {
-   "status": "review",
-   "branch": "feature/sunbreeze-event-v2",
-   "finalTag": "slice/sunbreeze-event-v1",
-   "finalDate": "2026-10-13",
-   "mergedToMain": true,
-   "versions": 2,
-   "supersededTags": [
-    "slice/mumor-sunbreeze-festival-v1"
-   ],
-   "alsoBranches": [
-    "feature/mumor-sunbreeze-festival"
-   ]
-  },
-  "survival-guides": {
-   "status": "final",
-   "branch": "feature/survival-guides-v3",
-   "finalTag": "slice/survival-guides-v4",
-   "finalDate": "2026-10-14",
-   "mergedToMain": true,
-   "versions": 3,
-   "supersededTags": [
-    "slice/survival-guides-v2",
-    "slice/survival-guides-v3"
-   ]
-  },
-  "symphonic-curator": {
-   "status": "final",
-   "branch": "feature/mog-house-symphonic-curator",
-   "finalTag": "slice/symphonic-curator-v1",
-   "finalDate": "2026-10-06",
-   "mergedToMain": true,
-   "versions": 1,
-   "supersededTags": [],
-   "alsoBranches": [
-    "feature/symphonic-curator"
-   ]
-  },
-  "textids-256plus-survival-guides": {
-   "status": "final",
-   "branch": "feature/textids-256plus-survival-guides",
-   "finalTag": "slice/textids-256plus-survival-guides-v1",
-   "finalDate": "2026-10-13",
-   "mergedToMain": true,
-   "versions": 1,
-   "supersededTags": []
-  },
-  "textids-sweep": {
-   "status": "final",
-   "branch": "feature/textids-sweep",
-   "finalTag": "slice/textids-sweep-v1",
-   "finalDate": "2026-10-06",
-   "mergedToMain": true,
-   "versions": 1,
-   "supersededTags": []
-  },
-  "treasure-caskets": {
-   "status": "final",
-   "branch": "feature/treasure-caskets-v3",
-   "finalTag": "slice/treasure-caskets-v14",
-   "finalDate": "2026-10-14",
-   "mergedToMain": true,
-   "versions": 14,
-   "supersededTags": [
-    "slice/treasure-caskets-v1",
-    "slice/treasure-caskets-v2",
-    "slice/treasure-caskets-v3",
-    "slice/treasure-caskets-v4",
-    "slice/treasure-caskets-v5",
-    "slice/treasure-caskets-v6",
-    "slice/treasure-caskets-v7",
-    "slice/treasure-caskets-v8",
-    "slice/treasure-caskets-v9",
-    "slice/treasure-caskets-v10",
-    "slice/treasure-caskets-v11",
-    "slice/treasure-caskets-v12",
-    "slice/treasure-caskets-v13"
-   ]
-  },
-  "voidwalker": {
-   "status": "active",
-   "branch": "feature/voidwalker",
-   "finalTag": "slice/voidwalker-v1",
-   "finalDate": "2026-10-16",
-   "mergedToMain": true,
-   "versions": 1,
-   "supersededTags": []
-  },
-  "voidwatch-officers": {
-   "status": "review",
-   "branch": "feature/voidwatch-officers-v2",
-   "finalTag": "slice/voidwatch-officers-v6",
-   "finalDate": "2026-10-13",
-   "mergedToMain": true,
-   "versions": 6,
-   "supersededTags": [
-    "slice/voidwatch-officers-v1",
-    "slice/voidwatch-officers-v2",
-    "slice/voidwatch-officers-v3",
-    "slice/voidwatch-officers-v4",
-    "slice/voidwatch-officers-v5"
-   ]
-  },
-  "voidwatch-vwnm": {
-   "status": "review",
-   "branch": "feature/voidwatch-vwnm-v3",
-   "finalTag": "slice/voidwatch-vwnm-v4",
-   "finalDate": "2026-10-13",
-   "mergedToMain": true,
-   "versions": 4,
-   "supersededTags": [
-    "slice/voidwatch-vwnm-v1",
-    "slice/voidwatch-vwnm-v2",
-    "slice/voidwatch-vwnm-v3"
-   ]
-  },
-  "vs2019-toolset": {
-   "status": "final",
-   "branch": "feature/vs2019-toolset",
-   "finalTag": "slice/vs2019-toolset-v1",
-   "finalDate": "2026-10-06",
-   "mergedToMain": true,
-   "versions": 1,
-   "supersededTags": []
-  },
-  "weapon-additional-effect-fixes": {
-   "status": "final",
-   "branch": "feature/weapon-additional-effect-fixes",
-   "finalTag": "slice/weapon-additional-effect-fixes-v1",
-   "finalDate": "2026-10-06",
-   "mergedToMain": true,
-   "versions": 1,
-   "supersededTags": []
-  },
-  "whitegate-set-fix": {
-   "status": "final",
-   "branch": "feature/whitegate-set-fix",
-   "finalTag": "slice/whitegate-set-fix-v1",
-   "finalDate": "2026-10-06",
-   "mergedToMain": true,
-   "versions": 1,
-   "supersededTags": []
+  "_readme": "Slice status manifest. status: active (still being worked), final (finished, merged to main, branch kept as the slice's record), review (not merged to main). Seeded 2026-10-14 from the branch inventory; update status here when a slice is done. finalTag is the newest slice/* tag. Branch deletions and renames are recorded in docs/project-memory.",
+  "generated": "2026-10-17",
+  "slices": {
+    "abyssea-lights-pyxis": {
+      "status": "active",
+      "branch": "feature/abyssea-lights-pyxis",
+      "finalTag": "slice/abyssea-lights-pyxis-v2",
+      "finalDate": "2026-10-06",
+      "mergedToMain": true,
+      "versions": 2,
+      "supersededTags": [
+        "slice/abyssea-lights-pyxis-v1"
+      ]
+    },
+    "ah-charges-fix": {
+      "status": "final",
+      "branch": "feature/ah-charges-fix",
+      "finalTag": "slice/ah-charges-fix-v3",
+      "finalDate": "2026-10-06",
+      "mergedToMain": true,
+      "versions": 3,
+      "supersededTags": [
+        "slice/ah-charges-fix-v1",
+        "slice/ah-charges-fix-v2"
+      ]
+    },
+    "assault-gm-debug-tools": {
+      "status": "final",
+      "branch": "feature/assault-gm-debug-tools",
+      "finalTag": "slice/assault-gm-debug-tools-v1",
+      "finalDate": "2026-10-06",
+      "mergedToMain": true,
+      "versions": 1,
+      "supersededTags": []
+    },
+    "assault-ilrusi-atoll-missions-1-4": {
+      "status": "active",
+      "branch": "feature/assault-ilrusi-atoll-missions-1-4",
+      "finalTag": "slice/assault-ilrusi-atoll-missions-1-4-v1",
+      "finalDate": "2026-10-15",
+      "mergedToMain": true,
+      "versions": 1,
+      "supersededTags": []
+    },
+    "assault-lebros-cavern-missions-1-4": {
+      "status": "active",
+      "branch": "feature/assault-lebros-cavern-missions-1-4",
+      "finalTag": "slice/assault-lebros-cavern-missions-1-4-v1",
+      "finalDate": "2026-10-15",
+      "mergedToMain": true,
+      "versions": 1,
+      "supersededTags": []
+    },
+    "assault-leujaoam-sanctum-missions-1-4": {
+      "status": "active",
+      "branch": "feature/assault-leujaoam-sanctum-missions-1-4",
+      "finalTag": "slice/assault-leujaoam-sanctum-missions-1-4-v1",
+      "finalDate": "2026-10-15",
+      "mergedToMain": true,
+      "versions": 1,
+      "supersededTags": []
+    },
+    "assault-lockbox-appraisal": {
+      "status": "active",
+      "branch": "feature/assault-lockbox-appraisal",
+      "finalTag": "slice/assault-lockbox-appraisal-v1",
+      "finalDate": "2026-10-15",
+      "mergedToMain": true,
+      "versions": 1,
+      "supersededTags": []
+    },
+    "assault-mamool-ja-missions-1-4": {
+      "status": "active",
+      "branch": "feature/assault-mamool-ja-missions-1-4",
+      "finalTag": "slice/assault-mamool-ja-missions-1-4-v1",
+      "finalDate": "2026-10-15",
+      "mergedToMain": true,
+      "versions": 1,
+      "supersededTags": []
+    },
+    "assault-mercenary-ranks": {
+      "status": "active",
+      "branch": "feature/assault-mercenary-ranks",
+      "finalTag": "slice/assault-mercenary-ranks-v1",
+      "finalDate": "2026-10-15",
+      "mergedToMain": true,
+      "versions": 1,
+      "supersededTags": []
+    },
+    "assault-periqia-missions-1-4": {
+      "status": "active",
+      "branch": "feature/assault-periqia-missions-1-4",
+      "finalTag": "slice/assault-periqia-missions-1-4-v1",
+      "finalDate": "2026-10-15",
+      "mergedToMain": true,
+      "versions": 1,
+      "supersededTags": []
+    },
+    "assault-sql-fixes": {
+      "status": "final",
+      "branch": "feature/assault-sql-fixes",
+      "finalTag": "slice/assault-sql-fixes-v1",
+      "finalDate": "2026-10-06",
+      "mergedToMain": true,
+      "versions": 1,
+      "supersededTags": []
+    },
+    "assault-timeout-blackscreen-fix": {
+      "status": "final",
+      "branch": "feature/assault-timeout-blackscreen-fix",
+      "finalTag": "slice/assault-timeout-blackscreen-fix-v1",
+      "finalDate": "2026-10-06",
+      "mergedToMain": true,
+      "versions": 1,
+      "supersededTags": []
+    },
+    "base-debug-print": {
+      "status": "final",
+      "branch": "base/debug-print",
+      "finalTag": "slice/base-debug-print-v1",
+      "finalDate": "2026-10-06",
+      "mergedToMain": true,
+      "versions": 1,
+      "supersededTags": []
+    },
+    "campaign-ops": {
+      "status": "active",
+      "branch": "feature/campaign-ops",
+      "finalTag": "slice/campaign-ops-v1",
+      "finalDate": "2026-10-06",
+      "mergedToMain": true,
+      "versions": 1,
+      "supersededTags": [],
+      "alsoBranches": [
+        "feature/WotG-campaign-ops"
+      ]
+    },
+    "dev-tools-sqlcheck": {
+      "status": "final",
+      "branch": "feature/dev-tools-sqlcheck",
+      "finalTag": "slice/dev-tools-sqlcheck-v1",
+      "finalDate": "2026-10-06",
+      "mergedToMain": true,
+      "versions": 1,
+      "supersededTags": []
+    },
+    "ephemeral-moogle": {
+      "status": "final",
+      "branch": "feature/ephemeral-moogle",
+      "finalTag": "slice/ephemeral-moogle-v5",
+      "finalDate": "2026-10-11",
+      "mergedToMain": true,
+      "versions": 5,
+      "supersededTags": [
+        "slice/ephemeral-moogle-v1",
+        "slice/ephemeral-moogle-v2",
+        "slice/ephemeral-moogle-v3",
+        "slice/ephemeral-moogle-v4"
+      ]
+    },
+    "event-storage": {
+      "status": "active",
+      "branch": "feature/event-storage-npcs",
+      "finalTag": "slice/event-storage-v1",
+      "finalDate": "2026-10-16",
+      "mergedToMain": true,
+      "versions": 1,
+      "supersededTags": []
+    },
+    "ferry-deck-mobs": {
+      "status": "active",
+      "branch": "feature/ferry-deck-mobs",
+      "finalTag": "slice/ferry-deck-mobs-v2",
+      "finalDate": "2026-10-16",
+      "mergedToMain": true,
+      "versions": 2,
+      "supersededTags": [
+        "slice/ferry-deck-mobs-v1"
+      ]
+    },
+    "gardening": {
+      "status": "final",
+      "branch": "feature/mog-house-gardening",
+      "finalTag": "slice/gardening-v3",
+      "finalDate": "2026-10-06",
+      "mergedToMain": true,
+      "versions": 3,
+      "supersededTags": [
+        "slice/gardening-v1",
+        "slice/gardening-v2"
+      ]
+    },
+    "geo-run-stat-grades": {
+      "status": "active",
+      "branch": "feature/geo-run-stat-grades",
+      "finalTag": "slice/geo-run-stat-grades-v1",
+      "finalDate": "2026-10-16",
+      "mergedToMain": true,
+      "versions": 1,
+      "supersededTags": []
+    },
+    "heroines-holdfast": {
+      "status": "active",
+      "branch": "feature/heroines-holdfast",
+      "finalTag": "slice/heroines-holdfast-v2",
+      "finalDate": "2026-10-06",
+      "mergedToMain": true,
+      "versions": 2,
+      "supersededTags": [
+        "slice/heroines-holdfast-v1"
+      ],
+      "alsoBranches": [
+        "feature/mumor-heroines-holdfast"
+      ]
+    },
+    "homepoint-audit-fixes": {
+      "status": "review",
+      "branch": "feature/homepoint-audit-fixes",
+      "finalTag": "slice/homepoint-audit-fixes-v2",
+      "finalDate": "2026-10-11",
+      "mergedToMain": true,
+      "versions": 2,
+      "supersededTags": [
+        "slice/homepoint-audit-fixes-v1"
+      ]
+    },
+    "mog-house-2f-patio": {
+      "status": "final",
+      "branch": "feature/mog-house-2f-patio",
+      "finalTag": "slice/mog-house-2f-patio-v1",
+      "finalDate": "2026-10-06",
+      "mergedToMain": true,
+      "versions": 1,
+      "supersededTags": []
+    },
+    "mog-tablets-jugner-fix": {
+      "status": "active",
+      "branch": "feature/mog-tablets-jugner-fix",
+      "finalTag": "slice/mog-tablets-jugner-fix-v1",
+      "finalDate": "2026-10-13",
+      "mergedToMain": true,
+      "versions": 1,
+      "supersededTags": []
+    },
+    "mog-tablets-super-kupowers": {
+      "status": "active",
+      "branch": "feature/mog-tablets-super-kupowers-v3",
+      "finalTag": "slice/mog-tablets-super-kupowers-v3",
+      "finalDate": "2026-10-13",
+      "mergedToMain": true,
+      "versions": 3,
+      "supersededTags": [
+        "slice/mog-tablets-super-kupowers-v1",
+        "slice/mog-tablets-super-kupowers-v2"
+      ]
+    },
+    "moghancement": {
+      "status": "final",
+      "branch": "feature/mog-house-moghancement",
+      "finalTag": "slice/moghancement-v1",
+      "finalDate": "2026-10-06",
+      "mergedToMain": true,
+      "versions": 1,
+      "supersededTags": [],
+      "alsoBranches": [
+        "feature/moghancement"
+      ]
+    },
+    "npc-id-realign": {
+      "status": "final",
+      "branch": "feature/npc-id-realign-v3",
+      "finalTag": "slice/npc-id-realign-v3",
+      "finalDate": "2026-10-13",
+      "mergedToMain": true,
+      "versions": 3,
+      "supersededTags": [
+        "slice/npc-id-realign-v1",
+        "slice/npc-id-realign-v2"
+      ]
+    },
+    "nyzul-alzadaal": {
+      "status": "final",
+      "branch": "feature/nyzul-alzadaal",
+      "finalTag": "slice/nyzul-alzadaal-v1",
+      "finalDate": "2026-10-06",
+      "mergedToMain": true,
+      "versions": 1,
+      "supersededTags": []
+    },
+    "nyzul-investigation": {
+      "status": "final",
+      "branch": "feature/nyzul-investigation",
+      "finalTag": "slice/nyzul-investigation-v1",
+      "finalDate": "2026-10-06",
+      "mergedToMain": true,
+      "versions": 1,
+      "supersededTags": []
+    },
+    "nyzul-uncharted-survey": {
+      "status": "final",
+      "branch": "feature/nyzul-uncharted-survey",
+      "finalTag": "slice/nyzul-uncharted-survey-v1",
+      "finalDate": "2026-10-06",
+      "mergedToMain": true,
+      "versions": 1,
+      "supersededTags": []
+    },
+    "run-geo-jobs": {
+      "status": "active",
+      "branch": "feature/run-geo-jobs",
+      "finalTag": "slice/run-geo-jobs-v1",
+      "finalDate": "2026-10-16",
+      "mergedToMain": true,
+      "versions": 1,
+      "supersededTags": []
+    },
+    "run-geo-spell-acquisition": {
+      "status": "active",
+      "branch": "feature/run-geo-spell-acquisition",
+      "finalTag": "slice/run-geo-spell-acquisition-v1",
+      "finalDate": "2026-10-16",
+      "mergedToMain": true,
+      "versions": 1,
+      "supersededTags": []
+    },
+    "run-geo-unlock-quests": {
+      "status": "active",
+      "branch": "feature/run-geo-unlock-quests",
+      "finalTag": "slice/run-geo-unlock-quests-v1",
+      "finalDate": "2026-10-16",
+      "mergedToMain": true,
+      "versions": 1,
+      "supersededTags": []
+    },
+    "salvage-arrapago": {
+      "status": "review",
+      "branch": "feature/salvage-arrapago-v4",
+      "finalTag": "slice/salvage-arrapago-v4",
+      "finalDate": "2026-10-13",
+      "mergedToMain": true,
+      "versions": 4,
+      "supersededTags": [
+        "slice/salvage-arrapago-v1",
+        "slice/salvage-arrapago-v2",
+        "slice/salvage-arrapago-v3"
+      ]
+    },
+    "salvage-base": {
+      "status": "review",
+      "branch": "feature/salvage-base-v2",
+      "finalTag": "slice/salvage-base-v2",
+      "finalDate": "2026-10-13",
+      "mergedToMain": true,
+      "versions": 2,
+      "supersededTags": [
+        "slice/salvage-base-v1"
+      ]
+    },
+    "salvage-bhaflau": {
+      "status": "review",
+      "branch": "feature/salvage-bhaflau-v4",
+      "finalTag": "slice/salvage-bhaflau-v4",
+      "finalDate": "2026-10-13",
+      "mergedToMain": true,
+      "versions": 4,
+      "supersededTags": [
+        "slice/salvage-bhaflau-v1",
+        "slice/salvage-bhaflau-v2",
+        "slice/salvage-bhaflau-v3"
+      ]
+    },
+    "salvage-silversea": {
+      "status": "review",
+      "branch": "feature/salvage-silversea-v4",
+      "finalTag": "slice/salvage-silversea-v4",
+      "finalDate": "2026-10-13",
+      "mergedToMain": true,
+      "versions": 4,
+      "supersededTags": [
+        "slice/salvage-silversea-v1",
+        "slice/salvage-silversea-v2",
+        "slice/salvage-silversea-v3"
+      ]
+    },
+    "salvage-zhayolm": {
+      "status": "review",
+      "branch": "feature/salvage-zhayolm-v4",
+      "finalTag": "slice/salvage-zhayolm-v4",
+      "finalDate": "2026-10-13",
+      "mergedToMain": true,
+      "versions": 4,
+      "supersededTags": [
+        "slice/salvage-zhayolm-v1",
+        "slice/salvage-zhayolm-v2",
+        "slice/salvage-zhayolm-v3"
+      ]
+    },
+    "sunbreeze-event": {
+      "status": "review",
+      "branch": "feature/sunbreeze-event-v2",
+      "finalTag": "slice/sunbreeze-event-v1",
+      "finalDate": "2026-10-13",
+      "mergedToMain": true,
+      "versions": 2,
+      "supersededTags": [
+        "slice/mumor-sunbreeze-festival-v1"
+      ],
+      "alsoBranches": [
+        "feature/mumor-sunbreeze-festival"
+      ]
+    },
+    "survival-guides": {
+      "status": "final",
+      "branch": "feature/survival-guides-v3",
+      "finalTag": "slice/survival-guides-v4",
+      "finalDate": "2026-10-14",
+      "mergedToMain": true,
+      "versions": 3,
+      "supersededTags": [
+        "slice/survival-guides-v2",
+        "slice/survival-guides-v3"
+      ]
+    },
+    "symphonic-curator": {
+      "status": "final",
+      "branch": "feature/mog-house-symphonic-curator",
+      "finalTag": "slice/symphonic-curator-v1",
+      "finalDate": "2026-10-06",
+      "mergedToMain": true,
+      "versions": 1,
+      "supersededTags": [],
+      "alsoBranches": [
+        "feature/symphonic-curator"
+      ]
+    },
+    "textids-256plus-survival-guides": {
+      "status": "final",
+      "branch": "feature/textids-256plus-survival-guides",
+      "finalTag": "slice/textids-256plus-survival-guides-v1",
+      "finalDate": "2026-10-13",
+      "mergedToMain": true,
+      "versions": 1,
+      "supersededTags": []
+    },
+    "textids-sweep": {
+      "status": "final",
+      "branch": "feature/textids-sweep",
+      "finalTag": "slice/textids-sweep-v1",
+      "finalDate": "2026-10-06",
+      "mergedToMain": true,
+      "versions": 1,
+      "supersededTags": []
+    },
+    "treasure-caskets": {
+      "status": "final",
+      "branch": "feature/treasure-caskets-v3",
+      "finalTag": "slice/treasure-caskets-v14",
+      "finalDate": "2026-10-14",
+      "mergedToMain": true,
+      "versions": 14,
+      "supersededTags": [
+        "slice/treasure-caskets-v1",
+        "slice/treasure-caskets-v2",
+        "slice/treasure-caskets-v3",
+        "slice/treasure-caskets-v4",
+        "slice/treasure-caskets-v5",
+        "slice/treasure-caskets-v6",
+        "slice/treasure-caskets-v7",
+        "slice/treasure-caskets-v8",
+        "slice/treasure-caskets-v9",
+        "slice/treasure-caskets-v10",
+        "slice/treasure-caskets-v11",
+        "slice/treasure-caskets-v12",
+        "slice/treasure-caskets-v13"
+      ]
+    },
+    "voidwalker": {
+      "status": "active",
+      "branch": "feature/voidwalker",
+      "finalTag": "slice/voidwalker-v1",
+      "finalDate": "2026-10-16",
+      "mergedToMain": true,
+      "versions": 1,
+      "supersededTags": []
+    },
+    "voidwatch-officers": {
+      "status": "review",
+      "branch": "feature/voidwatch-officers-v2",
+      "finalTag": "slice/voidwatch-officers-v6",
+      "finalDate": "2026-10-13",
+      "mergedToMain": true,
+      "versions": 6,
+      "supersededTags": [
+        "slice/voidwatch-officers-v1",
+        "slice/voidwatch-officers-v2",
+        "slice/voidwatch-officers-v3",
+        "slice/voidwatch-officers-v4",
+        "slice/voidwatch-officers-v5"
+      ]
+    },
+    "voidwatch-vwnm": {
+      "status": "review",
+      "branch": "feature/voidwatch-vwnm-v3",
+      "finalTag": "slice/voidwatch-vwnm-v4",
+      "finalDate": "2026-10-13",
+      "mergedToMain": true,
+      "versions": 4,
+      "supersededTags": [
+        "slice/voidwatch-vwnm-v1",
+        "slice/voidwatch-vwnm-v2",
+        "slice/voidwatch-vwnm-v3"
+      ]
+    },
+    "vs2019-toolset": {
+      "status": "final",
+      "branch": "feature/vs2019-toolset",
+      "finalTag": "slice/vs2019-toolset-v1",
+      "finalDate": "2026-10-06",
+      "mergedToMain": true,
+      "versions": 1,
+      "supersededTags": []
+    },
+    "weapon-additional-effect-fixes": {
+      "status": "final",
+      "branch": "feature/weapon-additional-effect-fixes",
+      "finalTag": "slice/weapon-additional-effect-fixes-v1",
+      "finalDate": "2026-10-06",
+      "mergedToMain": true,
+      "versions": 1,
+      "supersededTags": []
+    },
+    "whitegate-set-fix": {
+      "status": "final",
+      "branch": "feature/whitegate-set-fix",
+      "finalTag": "slice/whitegate-set-fix-v1",
+      "finalDate": "2026-10-06",
+      "mergedToMain": true,
+      "versions": 1,
+      "supersededTags": []
+    },
+    "chocobo-raising-core": {
+      "status": "in-progress",
+      "branch": "feature/chocobo-raising-core",
+      "finalTag": null,
+      "finalDate": null,
+      "mergedToMain": false,
+      "versions": 0,
+      "supersededTags": []
+    }
   }
- }
 }
