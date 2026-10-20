@@ -686,6 +686,20 @@ namespace charutils
 
         Sql_Query(SqlHandle, "UPDATE char_stats SET zoning = 0 WHERE charid = %u", PChar->id);
 
+        // Chocobo raising state. The column is absent until sql/slices/chocobo-raising-core/up.sql is applied.
+        if (Sql_Query(SqlHandle, "SELECT chocobo_user_data FROM char_pet WHERE charid = %u", PChar->id) != SQL_ERROR &&
+            Sql_NumRows(SqlHandle) != 0 &&
+            Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+        {
+            size_t chocoboLength = 0;
+            int8* chocoboData = nullptr;
+            Sql_GetData(SqlHandle, 0, &chocoboData, &chocoboLength);
+            if (chocoboData != nullptr)
+            {
+                memcpy(&PChar->m_chocoboUserData, chocoboData, (chocoboLength > sizeof(PChar->m_chocoboUserData) ? sizeof(PChar->m_chocoboUserData) : chocoboLength));
+            }
+        }
+
         if (zoning == 2)
             ShowDebug("Player <%s> logging in to zone <%u>\n", PChar->name.c_str(), PChar->getZone());
 

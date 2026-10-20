@@ -128,6 +128,15 @@ public:
     int32 addTreasure(lua_State*);          // Add item to directly to treasure pool
     int32 addItem(lua_State*);              // Add item to Entity inventory (additem(itemNumber,quantity))
     int32 hasItem(lua_State*);              // Check to see if Entity has item in inventory (hasItem(itemNumber))
+    int32 addItemExData(lua_State*);        // addItemExData(itemid, exdataTable[, silence]): add one item with raw exdata bytes
+    int32 saveItemExData(lua_State*);       // saveItemExData(location, slot): persist an item's in-memory exdata and resync client
+    int32 getChocoboRaisingInfo(lua_State*);   // getChocoboRaisingInfo(): raised chocobo row as table or nil
+    int32 setChocoboRaisingInfo(lua_State*);   // setChocoboRaisingInfo(table): upsert raised chocobo row
+    int32 deleteRaisedChocobo(lua_State*);     // deleteRaisedChocobo(): remove raised chocobo row
+    int32 getChocoboUserData(lua_State*);      // getChocoboUserData(): persistent chocobo raising state
+    int32 setChocoboUserData(lua_State*);      // setChocoboUserData(table): update flags/chocobosRaised
+    int32 registerChocobo(lua_State*);         // registerChocobo(table): store registered chocobo
+    int32 getFieldChocobo(lua_State*);         // getFieldChocobo(): registered chocobo properties or nil
     int32 addUsedItem(lua_State*);          // Add charged item with timer already on full cooldown
     int32 addTempItem(lua_State*);          // Add temp item to Entity Temp inventory
     int32 delItem(lua_State*);

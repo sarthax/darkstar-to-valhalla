@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS `char_pet` (
   `unlocked_attachments` blob,
   `equipped_attachments` blob,
   `adventuringfellowid` smallint(3) unsigned NOT NULL DEFAULT '0',
-  `chocoboid` int(11) unsigned NOT NULL DEFAULT '0',  
+  `chocoboid` int(11) unsigned NOT NULL DEFAULT '0',
+  `chocobo_user_data` blob,
   PRIMARY KEY (`charid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;

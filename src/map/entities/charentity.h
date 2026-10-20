@@ -158,6 +158,25 @@ typedef std::deque<CBasicPacket*> PacketList_t;
 typedef std::map<uint32, CBaseEntity*> SpawnIDList_t;
 typedef std::vector<EntityID_t> BazaarList_t;
 
+// Chocobo raising state that outlives any one chocobo. Stored as a blob in char_pet.chocobo_user_data.
+// Layout adapted from LandSandBoat (GPLv3); saved as raw bytes, so a new field must go in reserved.
+struct ChocoboUserData_t
+{
+    uint32 fieldChocobo; // ChocoboCustomProperties of the registered chocobo, 0 when none
+    uint32 flags;
+    uint16 chocobosRaised;
+    uint8  registeredAbility1;
+    uint8  registeredAbility2;
+    uint8  registeredStrength;
+    uint8  registeredEndurance;
+    uint8  registeredDiscernment;
+    uint8  registeredReceptivity;
+    uint8  registeredWeather;
+    uint8  silksSpeedBonus; // Speed added while Purple Race Silks are worn
+    uint8  reserved[14];
+};
+static_assert(sizeof(ChocoboUserData_t) == 32, "ChocoboUserData_t is persisted as a raw 32 byte blob");
+
 class CCharEntity : public CBattleEntity
 {
 public:
@@ -182,6 +201,7 @@ public:
     std::bitset<1024>	    m_SpellList;				    // список изученных заклинаний
     uint8					m_TitleList[94];				// список заслуженных завний
     uint8					m_Abilities[62];				// список текущих способностей
+    ChocoboUserData_t       m_chocoboUserData{};            // chocobo raising state (char_pet.chocobo_user_data)
     uint8					m_LearnedAbilities[46];			// learnable abilities (corsair rolls)
     std::bitset<49>         m_LearnedWeaponskills;          // learnable weaponskills
     uint8					m_TraitList[16];				// список постянно активных способностей в виде битовой маски

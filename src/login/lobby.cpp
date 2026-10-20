@@ -548,6 +548,12 @@ int32 lobbyview_parse(int32 fd)
             const char *pfmtQuery = "DELETE FROM chars WHERE charid = %i AND accid = %i";
             Sql_Query(SqlHandle, pfmtQuery, CharID, sd->accid);
 
+            // MyISAM has no cascade: remove the raised chocobo row only if the chars row was ours and is gone
+            if (Sql_AffectedRows(SqlHandle) == 1)
+            {
+                Sql_Query(SqlHandle, "DELETE FROM char_chocobos WHERE charid = %i", CharID);
+            }
+
             break;
         }
         case 0x1F:

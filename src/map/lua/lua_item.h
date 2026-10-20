@@ -71,6 +71,9 @@ public:
 
     int32 getSkillType(lua_State*);         // get skill type
     int32 getWeaponskillPoints(lua_State*); // get current ws points
+
+    int32 getExData(lua_State*);            // get raw m_extra bytes as a 1-indexed table (24 entries)
+    int32 setExData(lua_State*);            // overwrite m_extra bytes in memory from a table (persist with player:saveItemExData)
 };
 
 #endif

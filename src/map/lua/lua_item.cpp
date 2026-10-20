@@ -22,6 +22,7 @@ This file is part of DarkStar-server source code.
 */
 
 #include "lua_item.h"
+#include "../../common/showmsg.h"
 
 #include "../items/item.h"
 #include "../items/item_armor.h"
@@ -231,6 +232,45 @@ inline int32 CLuaItem::getWeaponskillPoints(lua_State* L)
 }
 //==========================================================//
 
+// Raw exdata access. Layout interpretation (e.g. chocobo egg/card bitfields) is done in Lua.
+inline int32 CLuaItem::getExData(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
+
+    lua_createtable(L, sizeof(m_PLuaItem->m_extra), 0);
+    for (uint32 i = 0; i < sizeof(m_PLuaItem->m_extra); ++i)
+    {
+        lua_pushinteger(L, m_PLuaItem->m_extra[i]);
+        lua_rawseti(L, -2, i + 1);
+    }
+    return 1;
+}
+
+inline int32 CLuaItem::setExData(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
+
+    if (!lua_istable(L, 1))
+    {
+        ShowWarning(CL_YELLOW"CLuaItem::setExData: argument 1 must be a table\n" CL_RESET);
+        lua_pushboolean(L, false);
+        return 1;
+    }
+    for (uint32 i = 0; i < sizeof(m_PLuaItem->m_extra); ++i)
+    {
+        lua_rawgeti(L, 1, i + 1);
+        if (lua_isnumber(L, -1))
+        {
+            m_PLuaItem->m_extra[i] = (uint8)lua_tointeger(L, -1);
+        }
+        lua_pop(L, 1);
+    }
+    lua_pushboolean(L, true);
+    return 1;
+}
+
+//==========================================================//
+
 const int8 CLuaItem::className[] = "CItem";
 
 Lunar<CLuaItem>::Register_t CLuaItem::methods[] =
@@ -250,6 +290,8 @@ Lunar<CLuaItem>::Register_t CLuaItem::methods[] =
     LUNAR_DECLARE_METHOD(CLuaItem,addMod),
     LUNAR_DECLARE_METHOD(CLuaItem,delMod),
     LUNAR_DECLARE_METHOD(CLuaItem,getAugment),
+    LUNAR_DECLARE_METHOD(CLuaItem,getExData),
+    LUNAR_DECLARE_METHOD(CLuaItem,setExData),
     LUNAR_DECLARE_METHOD(CLuaItem,getSkillType),
     LUNAR_DECLARE_METHOD(CLuaItem,getWeaponskillPoints),
     {nullptr,nullptr}

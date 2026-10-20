@@ -1,0 +1,36 @@
+-- chocobo-raising-core up: additive, idempotent. Back up first and dry-check live schema (MyISAM).
+CREATE TABLE IF NOT EXISTS `char_chocobos` (
+  `charid` int unsigned NOT NULL,
+  `first_name` varchar(15) NOT NULL,
+  `last_name` varchar(15) NOT NULL,
+  `sex` boolean NOT NULL,
+  `created` timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `last_update_age` tinyint unsigned NOT NULL,
+  `stage` tinyint unsigned NOT NULL,
+  `location` tinyint unsigned NOT NULL,
+  `color` tinyint unsigned NOT NULL,
+  `allele1` tinyint unsigned NOT NULL DEFAULT 0,
+  `allele2` tinyint unsigned NOT NULL DEFAULT 0,
+  `allele3` tinyint unsigned NOT NULL DEFAULT 0,
+  `strength` tinyint unsigned NOT NULL,
+  `endurance` tinyint unsigned NOT NULL,
+  `discernment` tinyint unsigned NOT NULL,
+  `receptivity` tinyint unsigned NOT NULL,
+  `affection` tinyint unsigned NOT NULL,
+  `energy` tinyint unsigned NOT NULL,
+  `satisfaction` tinyint unsigned NOT NULL,
+  `conditions` int unsigned NOT NULL,
+  `ability1` tinyint unsigned NOT NULL,
+  `ability2` tinyint unsigned NOT NULL,
+  `personality` tinyint unsigned NOT NULL,
+  `weather_preference` tinyint unsigned NOT NULL,
+  `hunger` tinyint unsigned NOT NULL,
+  `care_plan` int unsigned NOT NULL,
+  `held_item` int unsigned NOT NULL,
+  `locked_plan` tinyint unsigned NOT NULL DEFAULT 0,
+  `appearance` tinyint unsigned NOT NULL DEFAULT 0,
+  `walk_progress` int unsigned NOT NULL DEFAULT 0,
+  PRIMARY KEY (`charid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+ALTER TABLE `char_pet` ADD COLUMN IF NOT EXISTS `chocobo_user_data` blob;
