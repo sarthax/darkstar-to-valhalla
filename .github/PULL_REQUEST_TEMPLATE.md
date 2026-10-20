@@ -6,7 +6,7 @@
 
 ## ID sources
 <!-- REQUIRED if any entity id, CSID, TextID, pool/group/drop id or key item id was added or changed.
-     One line per id: <id> -> <where it came from: mission_toolkit pull path, CapLog, npc_list row, main file>.
+     One line per id: <id> -> <where it came from: pull supplied by Claude, committed CapLog, npc_list row, main file>.
      Unsourced ids must be replaced by TODO(ID needs Claude lookup) in the code and listed here.
      Write "n/a" only if no ids were touched. -->
 

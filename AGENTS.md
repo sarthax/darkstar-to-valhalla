@@ -17,7 +17,7 @@ Your job is to hand it a small, correct, reviewable branch. Read this whole file
 
 ### Never invent an ID
 - Every CSID, event id, message/dialog/TextID, mob id, NPC id, pool/group/drop id and key item id maps to a real client DAT entry or an existing DB row. A made-up id fails silently in game.
-- You may use an id only if you can cite where it came from in this repo or the repos you can read: a mission_toolkit pull (`dialog.yml`, `entities.yml`, events output), a capture CapLog, `sql/npc_list.sql`, `docs/slices/npc-id-realign/ID_SHIFTS.csv`, or a file already in `main`.
+- You may use an id only if you can cite where it came from in this repo or the repos you can read: an id table already committed in this repo, a pull pasted into the issue or PR by Claude (`dialog.yml` / `entities.yml` / events output from the mission toolkit, which are generated locally from the client DATs and are NOT stored in git), a committed capture CapLog, `sql/npc_list.sql`, `docs/slices/npc-id-realign/ID_SHIFTS.csv`, or a file already in `main`.
 - Cite each id and its source in the PR under **ID sources**. If you cannot source one, write `TODO(ID needs Claude lookup): <what is needed>` in the code and list it in the PR. Claude resolves it against a fresh client pull. Do not leave a placeholder that looks like a real number.
 - Key item ids drift heavily between LSB, Topaz and DSP. Never copy a key item id from another server's code.
 - If one id in a table is wrong, the whole table is suspect. Say so rather than patching one row.
@@ -66,7 +66,7 @@ You have no live server, no MariaDB, no client DATs and no navmesh. You cannot v
 - `docs/slices/npc-id-realign/ID_SHIFTS.csv` — id ledger from the npc id realign.
 - `sql/npc_list.sql`, `sql/mob_*.sql`, `sql/slices/` — live data definitions.
 - `tools/` — checkers (`check_sql_id_collisions.py`, `sqlcheck.py`) and `DBtool.py`.
-- The mission_toolkit repo — per-zone `dialog.yml` / `entities.yml` / events pulls and capture-derived data. This is the source of truth for ids and text you can reach.
+- The `sarthax/FFXI-Mission-Toolkit` repo — the tooling and code that generate id/dialog/entity pulls. The pulls themselves are produced locally from the client DATs and are not in git, so you cannot read real client ids there; ask for them via `TODO(ID needs Claude lookup)` or the issue's "Ids supplied by Claude" section. Committed capture fixtures under its `test_fixtures/` are readable.
 - The XiHeadless-DSP repo — headless client MCP; Claude uses it for smoke tests.
 
 ## Definition of done for a PR
