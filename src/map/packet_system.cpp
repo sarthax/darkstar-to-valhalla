@@ -1295,7 +1295,19 @@ void SmallPacket0x037(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
 void SmallPacket0x03A(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
-    CItemContainer* PItemContainer = PChar->getStorage(RBUFB(data, (0x04)));
+    // Reject unsupported container IDs before looking up or dereferencing storage.
+    // This also protects older clients from newer wardrobe location IDs.
+    const uint8 locationID = RBUFB(data, (0x04));
+    if (locationID >= MAX_CONTAINER_ID)
+    {
+        return;
+    }
+
+    CItemContainer* PItemContainer = PChar->getStorage(locationID);
+    if (PItemContainer == nullptr)
+    {
+        return;
+    }
 
     uint8 size = PItemContainer->GetSize();
 
