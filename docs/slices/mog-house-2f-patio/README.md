@@ -33,9 +33,12 @@ Unlock fires when `(mhflag & 0x07) == 0x07` and `(mhflag & 0x60) == 0` on zoning
 Quest setters (read-only verified): Kuu_Mohzolhi (1), Valah_Molkot (2), Ojha_Rhawash (4), Zona_Shodhun (8), Ahkk_Jharcham (16).
 
 ## Packet findings
-- 0x00A (zone-in): MH model id at +0xAA (u16). 1F = own nation (Windurst `0x0123`); 2F = `0x0267 + style`. +0xA8 = `0x02` on 2F enables the full exit menu.
+- 0x00A (zone-in): MH model id at +0xAA (u16). 1F = own nation (Windurst `0x0123`); 2F = `0x0267 + style`. +0xA8 (retail captures): `0x00` fresh character, `0x30` once any exit quest is done, `0x38` when all three are done, `|0x02` while on 2F.
+  +0xAE = exit set (1 SDO, 2 BAS, 3 WIN, 4 Jeuno, 5 Aht Urhgan); on 2F the exit bits are treated as set so the menu is never empty.
+  The client itself greys "Change floors" in a non-home-nation Mog House; no byte found that greys it in a locked *home* house (no retail sample).
 - 0x05E exit zoneline id `1903324538`: byte 0x16 = town, byte 0x17 = zone. **125 = go to 2F, 126 = go to 1F.** If the server refuses a request it
-  MUST still reply (`CMessageSystemPacket(0,0,2)` + `CCSPositionPacket`) or the client hangs on a black screen.
+  must not leave the client on its closed exit menu: a refused 2F request rezones into the same 1F (destination = current zone, flags unchanged).
+  (An earlier note said a message + position packet reply was required; that left the door with no menu and is superseded.)
 - 0x0CB Kind 5 = Remodel. Param2 615/616/617/618 = San d'Oria/Bastok/Windurst/Patio. Reply is standard message 293. Patio needs KI 3051.
 - The "2F requested without it being unlocked" / "remodeling 2F without it unlocked" warnings are intentional cheat-prevention checks, not bugs.
 
