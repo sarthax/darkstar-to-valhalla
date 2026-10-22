@@ -70,3 +70,9 @@ Status: **DESIGN, 2026-10-22. Nothing is implemented, no patched binary exists, 
 3. Approve adding Unicorn (x86 emulator) as a **local-only dev dependency** for the harness.
 
 **Local status 2026-10-21:** decision 2 input (menu DATs): partially checked, NOT resolved. No Wardrobe 5-8 text exists in `ROM/168/25`, `176/96`, `178/35`, `168/24`; `ROM/178/35.DAT` has blank entries `0x9D-0x9E` in the Mog container table; which menu DATs the builders at `0x1306E6`, `0x140224`, `0x140512`, `0x14088B`, `0x1484DD` load is unknown (needs disassembly). Repack tool check (risk 1): recompressed `.text` fits with 24,715 B headroom (see HANDOFF section 16). Decisions 1-3 remain open.
+
+**Owner decisions 2026-10-22 (written, in chat):**
+1. D1 (new PE sections): **approved** for development.
+2. D2 (single static sidecar): **approved, conditional on proof it works as intended** (reset and snapshot behavior must be demonstrated before it is relied on).
+3. UI scope: **C3b is the V1 goal**: menu options showing Mog Wardrobe 5-8 so usage is transparent to the user. **Fallback** if the UI changes cannot be met: banking via custom server commands, with zoning or resending packets to refresh inventory on bank switching. Menu-DAT dependency (step D) remains open.
+4. Unicorn emulator: **not yet answered** by the owner; stays open (the 2026-10-22 recommendation table is a recommendation, not an approval).
