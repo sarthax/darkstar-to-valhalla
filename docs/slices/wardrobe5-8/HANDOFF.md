@@ -236,3 +236,13 @@ Result:
 Restore: the client tree was diffed against the pre-test manifest. 39 files changed and 3 were new, all client runtime state (SYS bins, TEMP logs, USER config incl. the new `USER\554a` folder). Post-test copies are kept in `post_test_state`, the originals were restored and the new folder removed. Re-diff shows 0 differences, the DLL hash is unchanged and the HKLM PlayOnlineUS registry export is identical. Clone servers stopped.
 
 Not covered: a patched Wardrobe 5-8 client (none exists), trade/AH/treasure Rare checks, 0x037/0x0FA/0x0FB with crafted ids.
+
+## 23. Step D, interim finding: menu builders are data-driven (2026-10-22, read-only static analysis of the original DLL; Unicorn 2.1.4 + capstone 5.0.7 installed in the scratch venv only)
+
+Method: `.text` unpacked with Toolkit `pol1_unpack.py` (the on-disk `.text` is POL1-packed, so disassembling the raw file gives garbage), then capstone. RVAs below match the earlier findings (F11).
+- `0x1159A0(menu, newState, itemId)` is a menu **item-state setter**: it walks the item list at `menu+0x14`, finds the item of type 1 whose id (word at item+0x3A) equals `itemId`, and calls `0x1167B0(item, state)`. State 5 hides it. It is called from 276 sites.
+- The wardrobe builder at `0x1306D0` (vtable slot 0 of the class at `0x32A810`, RTTI pointer `0x1015FBD0`) tests capacity of the UI objects at `0x10621FE0/E4/E8` via `0xE8C60`; when 0 it hides items 3, 4, 5. Builders for the other gates follow the same pattern.
+- Conclusion: the entries are **items already present in a menu definition loaded at runtime** and are only hidden. A Wardrobe 5-8 entry therefore needs either (a) new item definitions in the menu resource (DAT, but no Wardrobe 5-8 text exists in the DATs checked so far), or (b) items injected into the live menu object by patched code (item struct size/layout still to be measured from `0x1167B0` and the item constructor). Which DAT feeds the menu object (`[owner+8]`, set outside the constructor at `0x15F5B2`, which zeroes it) is still **not identified**.
+- Feasibility: C3b is not ruled out, but route (b) is a larger patch than the capacity-gate change. Fallback remains server-side banking commands (owner decision 2026-10-22).
+
+Next (static, read-only): find the writer of `[owner+8]` and the menu-resource loader; measure the item struct; list the 4 Mog-wardrobe item ids actually present in the menu DAT.

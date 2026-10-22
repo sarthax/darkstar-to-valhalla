@@ -75,4 +75,4 @@ Status: **DESIGN, 2026-10-22. Nothing is implemented, no patched binary exists, 
 1. D1 (new PE sections): **approved** for development.
 2. D2 (single static sidecar): **approved, conditional on proof it works as intended** (reset and snapshot behavior must be demonstrated before it is relied on).
 3. UI scope: **C3b is the V1 goal**: menu options showing Mog Wardrobe 5-8 so usage is transparent to the user. **Fallback** if the UI changes cannot be met: banking via custom server commands, with zoning or resending packets to refresh inventory on bank switching. Menu-DAT dependency (step D) remains open.
-4. Unicorn emulator: **not yet answered** by the owner; stays open (the 2026-10-22 recommendation table is a recommendation, not an approval).
+4. Unicorn emulator: **approved** by the owner 2026-10-22 ("tooling is acceptable for testing to use Unicorn"), local-only dev dependency in the scratch venv, not committed.
