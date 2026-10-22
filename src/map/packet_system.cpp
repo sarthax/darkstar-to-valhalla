@@ -893,6 +893,9 @@ void SmallPacket0x028(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     uint8 container = RBUFB(data, (0x08));
     uint8    slotID = RBUFB(data, (0x09));
 
+    if (!IsValidContainerID(container, PChar->extendedStorage()))
+        return;
+
     CItem* PItem = PChar->getStorage(container)->GetItem(slotID);
 
     if (PItem != nullptr && !PItem->isSubType(ITEM_LOCKED))
@@ -926,8 +929,8 @@ void SmallPacket0x029(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     uint8  FromSlotID = RBUFB(data, (0x0A));
     uint8  ToSlotID = RBUFB(data, (0x0B));
 
-    if (ToLocationID >= MAX_CONTAINER_ID ||
-        FromLocationID >= MAX_CONTAINER_ID)
+    if (!IsValidContainerID(ToLocationID, PChar->extendedStorage()) ||
+        !IsValidContainerID(FromLocationID, PChar->extendedStorage()))
         return;
 
     CItem* PItem = PChar->getStorage(FromLocationID)->GetItem(FromSlotID);
@@ -1298,7 +1301,7 @@ void SmallPacket0x03A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     // Reject unsupported container IDs before looking up or dereferencing storage.
     // This also protects older clients from newer wardrobe location IDs.
     const uint8 locationID = RBUFB(data, (0x04));
-    if (locationID >= MAX_CONTAINER_ID)
+    if (!IsValidContainerID(locationID, PChar->extendedStorage()))
     {
         return;
     }
@@ -2450,7 +2453,7 @@ void SmallPacket0x050(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     uint8 equipSlotID = RBUFB(data, (0x05));        // charequip slot
     uint8 containerID = RBUFB(data, (0x06));     // container id
 
-    if (containerID != LOC_INVENTORY && containerID != LOC_WARDROBE && containerID != LOC_WARDROBE2 && containerID != LOC_WARDROBE3 && containerID != LOC_WARDROBE4)
+    if (!IsEquippableContainer(containerID, PChar->extendedStorage()))
         return;
 
     charutils::EquipItem(PChar, slotID, equipSlotID, containerID); //current
@@ -5128,6 +5131,9 @@ void SmallPacket0x0FA(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     uint8  row = RBUFB(data, (0x0B));
     uint8  rotation = RBUFB(data, (0x0C));
 
+    if (!IsValidContainerID(containerID, PChar->extendedStorage()))
+        return;
+
     CItemFurnishing* PItem = (CItemFurnishing*)PChar->getStorage(containerID)->GetItem(slotID);
 
     if (PItem != nullptr &&
@@ -5186,6 +5192,9 @@ void SmallPacket0x0FB(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
     uint8  slotID = RBUFB(data, (0x06));
     uint8 containerID = RBUFB(data, (0x07));
+
+    if (!IsValidContainerID(containerID, PChar->extendedStorage()))
+        return;
 
     CItemContainer* PItemContainer = PChar->getStorage(containerID);
 

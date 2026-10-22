@@ -8,6 +8,7 @@ Order: offline unit -> local build -> isolated DB fixtures -> XIHeadless -> supe
 
 ## 1. Offline unit tests (no server, no DB)
 - [x] Container ID table: legacy 0-12 unchanged; 13-16 valid only for extended sessions; >=17 rejected (`tests/wardrobe5-8/container_ids_test.cpp`, passing 2026-10-22; table only, not yet wired into each handler).
+- [x] (partial) container guards in 0x028/0x029/0x03A/0x050/0x0FA/0x0FB and the egress chokepoint (`inventory_guard_test.cpp`, passing). Remaining handlers listed in README.
 - [ ] `getStorage()` never returns null to a caller that dereferences it (0x029, 0x03A, 0x050, 0x1E/1F/20 builders, Lua bindings).
 - [ ] 0x1C builder: legacy = byte-identical to current output; extended = 18-container layout; unknown caps = legacy.
 - [ ] Capability: default LEGACY; spoofed/malformed handshake stays LEGACY; reset on zone/relog/session end.

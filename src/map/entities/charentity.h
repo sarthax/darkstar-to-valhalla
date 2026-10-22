@@ -217,6 +217,10 @@ public:
     uint8             GetGender();                  // узнаем пол персонажа
 
     void              clearPacketList();            // отчистка PacketList
+    // Wardrobes 5-8 / extended packets. false = legacy (2019) client; only the verified handshake may set it.
+    bool              extendedStorage() const { return m_extendedStorage; }
+    bool              m_extendedStorage = false;
+
     void              pushPacket(CBasicPacket*);    // добавление копии пакета в PacketList
     void              pushPacket(std::unique_ptr<CBasicPacket>);    // push packet to packet list
     bool			  isPacketListEmpty();          // проверка размера PacketList

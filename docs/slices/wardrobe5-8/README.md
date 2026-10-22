@@ -51,3 +51,10 @@ Server build/test baseline not yet run in this environment; deployed revision, M
 - PR #51 (0x03A validation) is merged into this branch by merge commit, so a legacy client cannot sort containers 13-16. If #51 later lands on `main` first, merging `main` here is a no-op for that hunk.
 - `IsValidContainerID(id, extendedSession)` added in `item_container.h`; first offline test: `tests/wardrobe5-8/container_ids_test.cpp` (passes: legacy IDs 0-12 fixed, 13-16 extended-only, >=17 never valid).
 - Client audit for the handshake: work order `CLIENT_AUDIT_WORKORDER.md`; inbound-registration scanner `tools/client_patch/wardrobe5-8/audit_inbound_registrations.py` (synthetic tests pass, never run on the real DLL). Server handshake code is blocked on its results.
+
+## Server validation (Milestone A/B, 2026-10-22)
+- `CCharEntity::m_extendedStorage` (default false; nothing sets it yet - only the verified handshake may). Ingress uses `IsValidContainerID` / `IsEquippableContainer`.
+- Handlers now validating container IDs: 0x028 (drop), 0x029 (move), 0x03A (sort), 0x050 (equip), 0x0FA, 0x0FB. 0x028, 0x0FA, 0x0FB had **no** guard before: ID >= 13 returned a null `getStorage()` and was dereferenced (existing bug, closed here). 0x0FD/0x0FE/0x0FF already restrict to Mog Safe / Mog Safe 2.
+- Egress: `CCharEntity::pushPacket` drops item packets 0x1E/0x1F/0x20 whose container is invalid for the session (`packets/inventory_guard.h`), with a warning. 0x1C remains the legacy 13-container builder.
+- Tests: `tests/wardrobe5-8/inventory_guard_test.cpp` links the real 0x1E builder; guard truth table over all 256 IDs and the equip table pass.
+- Not yet covered: trade (0x033/0x034), delivery box (0x04D), auction, shop, Lua bindings that take a container, equipment load at login for 13-16, `HasItem`-style helpers, `SendInventory` for extended sessions, sorting order. Each needs a read-through before extended mode can be enabled.

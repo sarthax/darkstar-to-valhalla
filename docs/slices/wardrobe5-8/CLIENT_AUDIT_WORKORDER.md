@@ -1,6 +1,6 @@
 # Client send/receive path audit - work order
 
-Status: **NOT RUN.** Needs the original `FFXiMain.dll` (SHA-256 `514653a2...f060f`), which is not available to the cloud session. Run on the owner's machine with the Toolkit research branch checked out, or hand the output back. Read-only; no DLL is modified, installed, or committed. Output is IDs/RVAs/booleans only.
+Status: **NOT RUN.** The DLL uploaded on 2026-10-22 is the Stage 3 build (SHA `53e91099...`), not the original, so it was not used. Needs the original `FFXiMain.dll` (SHA-256 `514653a2...f060f`), which is not available to the cloud session. Run on the owner's machine with the Toolkit research branch checked out, or hand the output back. Read-only; no DLL is modified, installed, or committed. Output is IDs/RVAs/booleans only.
 Purpose: choose packet IDs for `HANDSHAKE_DESIGN.md` and decide whether the patched client can send a custom packet at all. Known facts are cited from Toolkit's Stage 4 report; everything else is UNKNOWN until answered.
 
 ## Already known (Toolkit Stage 4)

@@ -57,6 +57,13 @@ inline bool IsValidContainerID(uint8 id, bool extendedSession)
     return id < (extendedSession ? MAX_CONTAINER_ID_EXTENDED : MAX_CONTAINER_ID);
 }
 
+// Containers an item may be equipped from. Wardrobes 5-8 only for extended sessions.
+inline bool IsEquippableContainer(uint8 id, bool extendedSession)
+{
+    return id == LOC_INVENTORY || id == LOC_WARDROBE || id == LOC_WARDROBE2 || id == LOC_WARDROBE3 || id == LOC_WARDROBE4 ||
+        (extendedSession && id >= LOC_WARDROBE5 && id <= LOC_WARDROBE8);
+}
+
 #define ERROR_SLOTID		255
 
 /************************************************************************
