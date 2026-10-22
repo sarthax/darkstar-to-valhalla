@@ -286,3 +286,12 @@ Consequence: the DAT swap proves nothing about the menu except that these files 
 
 ## 27. `/wardrobe5` with 2026-08 DATs (2026-10-22)
 Owner test: with the five 2026-08 DATs installed and the original DLL, `/wardrobe5` is silently ignored. The command list is evaluated by DLL code; the DAT name table alone does not enable it. No DAT-only route to Wardrobe 5-8 access exists; DLL patch (or server-side banking commands) is required. DATs restored, DLL hash `514653a2` unchanged.
+
+## 28. The Storage menu definition found (2026-10-22, static; supersedes the DAT conclusions in 23-25)
+
+- The wardrobe class (vtable `0x32A810`, singleton `[0x10565E0C]`) is the controller for menu resource **`menu    mnstorag`** (string at `0x103640DC`, opened via `0x10157C10`). Slot 6 (`0x1306E0`-area) opens it; the builder hides items 3/4/5 by capacity.
+- `mnstorag` lives in the big menu DATs (about 4 MB each; chunk name `mnst`, type 0x30): `ROM/119/51`, `91/15` (flag `01 05`), `0/1`, `118/111`, `176/75`, `178/14` (flag `01 02`). Which one the client loads for our install is not yet determined. The retail manifest holds a 2026-08 version only for `119/51` and `91/15` (fetched, SHA-256 `04101ec2...` and `27c2d2c7...`, in `retail_research`, not committed).
+- DAT chunk walk (16-byte header; size = `((u32@+4 >> 7) & 0x7FFFF) * 16`; type = low 7 bits) parses both files exactly. The `mnst` chunk is 528 B locally vs 848 B in 2026-08: **+320 B = 4 item records of 0x50 B**. Header count/cursor-wrap bytes go `05 -> 09`; items reference button textures `windowps803/804/993-995` locally and add `windowps1062..1065` (= the new Wardrobe 5-8 buttons, graphics rather than text).
+- Splice built (not installed): `retail_research/spliced/ROM/{119/51,91/15}.DAT` = local DAT with only the `mnst` chunk replaced by the 2026 one (chunk walk verified, sizes +320 B). Variant B `retail_research/spliced_wind/...` also swaps the `wind` texture chunk (type 0x31, 894 KB) so the 1062..1065 button graphics exist; unverified that it is a superset of the local textures.
+- Expected effect of the splice on the unpatched DLL: the four new rows appear (the builder only hides 3/4/5), selection of them is probably ignored (item dispatch handles ids 1-5). This is the cheapest live check of the menu route. DLL then needs: capacity gates for the four new items, and the item-activation dispatch (not yet located).
+- Client files were NOT touched in this step. Live test deferred (the owner's client is in use for another test).
