@@ -276,3 +276,10 @@ Owner guidance: Mog Wardrobe 5-8 arrived about Feb-Mar 2022; use the DAT version
 - Static check: the unpacked DLL `.text` contains no "wardrobe" string (ASCII or UTF-16), confirming the labels and elements live only in the DATs.
 
 Client test plan for the owner's return (not run; nothing in the client was touched): back up with the usual routine, overlay via XIPivot (preferred) or copy-with-backup, test the original DLL first with (1) whole 30260805_0 files, then (2) spliced files if (1) misrenders; manifest diff and DLL re-hash afterwards. Needs the owner present and a written go-ahead.
+
+## 26. Live DAT test result and CORRECTION to sections 24/25 (2026-10-22)
+
+Test: backed up the five DATs, installed the 2026-08 retail versions (hashes verified) next to the original DLL (`514653a2`), logged in on the test server. Result (owner screenshot): client loaded, Mog House menu rendered normally, **still only Mog Wardrobe 1-4**, no crash. DATs restored afterwards (hashes equal to the pre-test values, DLL unchanged).
+
+Correction: in `ROM/168/25`, `176/96`, `178/35`, `168/24` the `wardrobe2..8`/`recycle` records are **slash-command name tables** (`0d <id> <len> "/wardrobe5\0"`, neighbours `/mutebgm`, `/mount`), one file per language/variant, **not menu element definitions**. Sections 23-25 wrongly called them menu elements and "route (a)". Only `ROM/27/76` carries the `Mog Wardrobe 5..8` labels. The actual menu item definitions (and the help text "Remove or store items in your fourth Mog Wardrobe.") were not located: a plain/XOR-0x80 scan of the client's ROM tree finds the help string in no DAT, and `Mog Wardrobe 4` (XOR 0x80) only in `27/76` plus zone dialog files.
+Consequence: the DAT swap proves nothing about the menu except that these files are harmless to the Dec-2019 client. Menu entries for 5-8 still need the DLL side (builder at `0x1306D0` hides items by capacity and selects by `[esi+0x14]` via the table at `0x1013079c`/`0x101307b4`). Next: find where the menu items are created (the loader behind `[owner+8]`) and the help-text source before deciding C3b feasibility.
