@@ -265,3 +265,14 @@ Findings:
 - XIPivot-style overlay would avoid modifying the installed client's own DATs (XIPivot Ashita zip is already in `C:\ValhallaXI`); not yet tested.
 
 Open (needs client-side test, owner approval and backups): (1) whether the unpatched Dec-2019 DLL accepts the 2026 menu DATs without crashing or mis-rendering (menu DATs are shared by all menus, so a layout change since 2019 would break more than wardrobes); (2) which version of the retail DATs is safe to ship beyond the Dec-2019 client; (3) legal/distribution posture for redistributing the DATs vs having users fetch them with the downloader.
+
+## 25. Step D, DAT version choice and drift (2026-10-22, static, owner offline)
+
+Owner guidance: Mog Wardrobe 5-8 arrived about Feb-Mar 2022; use the DAT version that aligns closest; newer data we do not need (e.g. Recycle) should be avoided.
+- The manifest retains **no** version of the five menu DATs from Feb-Mar 2022. Retained: 30210706_0 (2021-07, no Wardrobe 5-8) and 30260805_0 (2026-08, has them). The closest retained version that contains Wardrobe 5-8 is therefore 30260805_0.
+- Name-set drift is larger local(Dec-2019) -> 2021-07 than 2021-07 -> 2026-08, so the 2021-07 files are no safer a base than the 2026 ones for the Dec-2019 DLL.
+- ROM/168/25.DAT, 2021-07 -> 2026-08, is a handful of inserts: 78 B at 0x270c = `wardrobe5`..`8` plus `recycle` (record shape `0d <id lo> <id hi> "/wardrobeN\0" 00 02 02`), 10 B "Aria", 160 B job-code entries, 17 B "Term Filter", plus small 1-byte replaces that look like count/offset fields. Wardrobe 5-8 ids are 0x0bcf..0x0bd2; Recycle is 0x0bd3 (type 09).
+- Consequence: a **surgical splice** is plausible (insert only the four wardrobe records, leave out recycle/Aria/Term Filter/job codes), but the count/offset fields must be understood first. Whole-file replacement drags in all other newer data.
+- Static check: the unpacked DLL `.text` contains no "wardrobe" string (ASCII or UTF-16), confirming the labels and elements live only in the DATs.
+
+Client test plan for the owner's return (not run; nothing in the client was touched): back up with the usual routine, overlay via XIPivot (preferred) or copy-with-backup, test the original DLL first with (1) whole 30260805_0 files, then (2) spliced files if (1) misrenders; manifest diff and DLL re-hash afterwards. Needs the owner present and a written go-ahead.
