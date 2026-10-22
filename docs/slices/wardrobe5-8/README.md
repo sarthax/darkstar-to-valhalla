@@ -50,3 +50,4 @@ Server build/test baseline not yet run in this environment; deployed revision, M
 - Not yet done: sorting, equip (0x050 still legacy-only), trade/delivery restrictions, Lua exposure, extended 0x1C and item packets, capability handshake.
 - PR #51 (0x03A validation) is merged into this branch by merge commit, so a legacy client cannot sort containers 13-16. If #51 later lands on `main` first, merging `main` here is a no-op for that hunk.
 - `IsValidContainerID(id, extendedSession)` added in `item_container.h`; first offline test: `tests/wardrobe5-8/container_ids_test.cpp` (passes: legacy IDs 0-12 fixed, 13-16 extended-only, >=17 never valid).
+- Client audit for the handshake: work order `CLIENT_AUDIT_WORKORDER.md`; inbound-registration scanner `tools/client_patch/wardrobe5-8/audit_inbound_registrations.py` (synthetic tests pass, never run on the real DLL). Server handshake code is blocked on its results.

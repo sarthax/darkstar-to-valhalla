@@ -42,7 +42,10 @@ Server's `PacketParser` table has 165 unregistered IDs in 0x00-0xFF and unregist
 ## Tests
 Offline (no server): hello parser rejects bad magic/proto/size/unknown patchset; state machine table test (every transition, default-deny, downgrade); packet builders: legacy 0x1C byte-identical to current output, extended layout correct, chokepoint drops 13-16 for legacy. Live (needs approval): unmodified client never receives 13-16 (capture); patched client vs vanilla server stays legacy; zone/relog/map-server-restart re-handshake; spoofed hello from a legacy client does not corrupt other sessions.
 
-## Open questions for the owner
+## Owner decisions (2026-10-22)
+All three accepted: threat model = accidents, not adversaries; allow-list by patch-set ID; run the client audit first. Audit work order: `CLIENT_AUDIT_WORKORDER.md` (not yet run; needs the DLL).
+
+## Open questions for the owner (answered above)
 1. Accept the "accident, not adversary" threat model?
 2. Allow-list by patch-set ID in conf (proposed), or a single boolean?
 3. OK to spend a Toolkit research task on the client send-path/ID audit before implementing server code?
