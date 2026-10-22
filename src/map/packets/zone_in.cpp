@@ -178,10 +178,23 @@ CZoneInPacket::CZoneInPacket(CCharEntity * PChar, int16 csid)
     if (PChar->m_moghouseID != 0)
     {
         WBUFB(data,(0x80)) = 1;
-        if (PChar->profile.mhflag & 0x40)
+        // Retail Mog House zone-ins (captures): 0x00 on a fresh character, 0x30 once any exit quest is done,
+        // 0x38 when all three are done (2F available), +0x02 while on 2F
+        uint16 mhflag = PChar->profile.mhflag;
+        uint8 doorFlags = 0x00;
+        if (mhflag & 0x1F)
         {
-            WBUFB(data,(0xA8)) = 0x02;                        // On 2F: full exit menu
+            doorFlags = 0x30;
         }
+        if ((mhflag & 0x20) || (mhflag & 0x07) == 0x07)
+        {
+            doorFlags = 0x38;
+        }
+        if (mhflag & 0x40)
+        {
+            doorFlags |= 0x02;
+        }
+        WBUFB(data,(0xA8)) = doorFlags;
         WBUFW(data,(0xAA)) = GetMogHouseID(PChar);            // Mog House id
         WBUFB(data,(0xAE)) = GetMogHouseFlag(PChar);          // Mog House leaving flag
     }
