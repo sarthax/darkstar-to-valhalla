@@ -527,6 +527,20 @@ namespace charutils
             PChar->getStorage(LOC_WARDROBE4)->AddBuff((uint8)Sql_GetIntData(SqlHandle, 9));
         }
 
+        // Wardrobes 5-8 capacity: separate query so an unmigrated schema (rollback) leaves the legacy load untouched.
+        // Missing columns or row => capacity 0 (containers stay empty and unusable).
+        fmtQuery = "SELECT wardrobe5, wardrobe6, wardrobe7, wardrobe8 FROM char_storage WHERE charid = %u;";
+
+        if (Sql_Query(SqlHandle, fmtQuery, PChar->id) != SQL_ERROR &&
+            Sql_NumRows(SqlHandle) != 0 &&
+            Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+        {
+            PChar->getStorage(LOC_WARDROBE5)->AddBuff((uint8)Sql_GetIntData(SqlHandle, 0));
+            PChar->getStorage(LOC_WARDROBE6)->AddBuff((uint8)Sql_GetIntData(SqlHandle, 1));
+            PChar->getStorage(LOC_WARDROBE7)->AddBuff((uint8)Sql_GetIntData(SqlHandle, 2));
+            PChar->getStorage(LOC_WARDROBE8)->AddBuff((uint8)Sql_GetIntData(SqlHandle, 3));
+        }
+
         fmtQuery = "SELECT face, race, size, head, body, hands, legs, feet, main, sub, ranged "
             "FROM char_look "
             "WHERE charid = %u;";
@@ -880,6 +894,13 @@ namespace charutils
             while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
             {
                 CItem* PItem = itemutils::GetItem(Sql_GetIntData(SqlHandle, 0));
+
+                if (PItem != nullptr && Sql_GetUIntData(SqlHandle, 1) >= MAX_CONTAINER_ID_EXTENDED)
+                {
+                    ShowWarning(CL_YELLOW"charutils::LoadInventory: char %u has an item in unknown container %u; skipped\n" CL_RESET, PChar->id, Sql_GetUIntData(SqlHandle, 1));
+                    delete PItem;
+                    PItem = nullptr;
+                }
 
                 if (PItem != nullptr)
                 {
@@ -3915,6 +3936,15 @@ namespace charutils
             PChar->getStorage(LOC_WARDROBE2)->GetSize(),
             PChar->getStorage(LOC_WARDROBE3)->GetSize(),
             PChar->getStorage(LOC_WARDROBE4)->GetSize(),
+            PChar->id);
+
+        // Separate statement: fails harmlessly (logged by Sql_Query) if the wardrobe5-8 migration is not applied.
+        Sql_Query(SqlHandle,
+            "UPDATE char_storage SET wardrobe5 = %u, wardrobe6 = %u, wardrobe7 = %u, wardrobe8 = %u WHERE charid = %u",
+            PChar->getStorage(LOC_WARDROBE5)->GetSize(),
+            PChar->getStorage(LOC_WARDROBE6)->GetSize(),
+            PChar->getStorage(LOC_WARDROBE7)->GetSize(),
+            PChar->getStorage(LOC_WARDROBE8)->GetSize(),
             PChar->id);
     }
 

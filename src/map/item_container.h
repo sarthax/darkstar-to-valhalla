@@ -40,10 +40,16 @@ enum CONTAINER_ID
     LOC_MOGSAFE2        = 9,
     LOC_WARDROBE2       = 10,
     LOC_WARDROBE3       = 11,
-    LOC_WARDROBE4       = 12
+    LOC_WARDROBE4       = 12,
+    // Wardrobes 5-8: server-side only. Never sent to, or accepted from, a 2019 (legacy) client.
+    LOC_WARDROBE5       = 13,
+    LOC_WARDROBE6       = 14,
+    LOC_WARDROBE7       = 15,
+    LOC_WARDROBE8       = 16
 };
 
-#define MAX_CONTAINER_ID	 13
+#define MAX_CONTAINER_ID	 13 // legacy (2019 client) container count: IDs 0-12. Do not raise.
+#define MAX_CONTAINER_ID_EXTENDED 17 // IDs 0-16, extended sessions only
 #define MAX_CONTAINER_SIZE	120
 #define ERROR_SLOTID		255
 

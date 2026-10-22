@@ -113,6 +113,10 @@ CCharEntity::CCharEntity()
     m_Wardrobe2 = std::make_unique<CItemContainer>(LOC_WARDROBE2);
     m_Wardrobe3 = std::make_unique<CItemContainer>(LOC_WARDROBE3);
     m_Wardrobe4 = std::make_unique<CItemContainer>(LOC_WARDROBE4);
+    m_Wardrobe5 = std::make_unique<CItemContainer>(LOC_WARDROBE5);
+    m_Wardrobe6 = std::make_unique<CItemContainer>(LOC_WARDROBE6);
+    m_Wardrobe7 = std::make_unique<CItemContainer>(LOC_WARDROBE7);
+    m_Wardrobe8 = std::make_unique<CItemContainer>(LOC_WARDROBE8);
 
     memset(&jobs, 0, sizeof(jobs));
     memset(&keys, 0, sizeof(keys));
@@ -337,9 +341,13 @@ CItemContainer* CCharEntity::getStorage(uint8 LocationID)
         case LOC_WARDROBE2:  return m_Wardrobe2.get();
         case LOC_WARDROBE3:  return m_Wardrobe3.get();
         case LOC_WARDROBE4:  return m_Wardrobe4.get();
+        case LOC_WARDROBE5:  return m_Wardrobe5.get();
+        case LOC_WARDROBE6:  return m_Wardrobe6.get();
+        case LOC_WARDROBE7:  return m_Wardrobe7.get();
+        case LOC_WARDROBE8:  return m_Wardrobe8.get();
     }
 
-    DSP_DEBUG_BREAK_IF(LocationID >= MAX_CONTAINER_ID);	// неразрешенный ID хранилища
+    DSP_DEBUG_BREAK_IF(LocationID >= MAX_CONTAINER_ID_EXTENDED);	// неразрешенный ID хранилища
     return 0;
 }
 

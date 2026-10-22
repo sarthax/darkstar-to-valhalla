@@ -370,6 +370,10 @@ private:
     std::unique_ptr<CItemContainer>   m_Wardrobe2;
     std::unique_ptr<CItemContainer>   m_Wardrobe3;
     std::unique_ptr<CItemContainer>   m_Wardrobe4;
+    std::unique_ptr<CItemContainer>   m_Wardrobe5;
+    std::unique_ptr<CItemContainer>   m_Wardrobe6;
+    std::unique_ptr<CItemContainer>   m_Wardrobe7;
+    std::unique_ptr<CItemContainer>   m_Wardrobe8;
 
     bool			m_isWeaponSkillKill;
     bool            m_isStyleLocked;

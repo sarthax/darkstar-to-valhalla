@@ -33,7 +33,7 @@ Original client gate: `FFXiMain.dll` 2,870,352 bytes, SHA-256 `514653a260c51eaec
 | # | Milestone | Status |
 |---|---|---|
 | 0 | Preflight, research import, branch and tracking docs | in progress |
-| A | Server storage + persistence + migration up/down | not started |
+| A | Server storage + persistence + migration up/down | in progress: containers 13-16, capacity load/save, `sql/slices/wardrobe5-8/up.sql`+`down.sql` done; syntax-checked and migration round-trip tested on a scratch MariaDB only. Not yet: item-move/sort/equip paths, unit tests, full build |
 | B | Legacy/extended packet handling, capability handshake, bounds review | not started |
 | C | Client patch design + tooling (offline) | not started |
 | D | Offline unit tests, then XIHeadless and live acceptance | not started |
@@ -41,3 +41,10 @@ Original client gate: `FFXiMain.dll` 2,870,352 bytes, SHA-256 `514653a260c51eaec
 
 ## Known gaps
 Server build/test baseline not yet run in this environment; deployed revision, MariaDB schema revision, client install state, and Stage 3 DLL restoration are unverified (need the owner's local machine). See `MANIFEST.md`.
+
+## Milestone A notes (2026-10-22)
+- `MAX_CONTAINER_ID` stays 13 on purpose: every existing guard and loop (0x029, Lua bindings, HasItem, augment pass) keeps legacy behavior. `MAX_CONTAINER_ID_EXTENDED` (17) is used only by `getStorage()` and the inventory load guard. Because `getStorage(13..16)` now returns a container instead of null, **PR #51's 0x03A check on `>= MAX_CONTAINER_ID` is what keeps a legacy client from sorting 13-16**; this feature must include it (or equivalent) before extended packets exist.
+- Capacities for Wardrobes 5-8 are loaded/saved by separate statements so an unmigrated schema leaves the legacy path unchanged. Default capacity 0.
+- Item rows in unknown containers (>= 17) are skipped with a warning at load instead of dereferencing null.
+- `down.sql` parks items in `char_inventory_w58_backup` and capacities in `char_storage_w58_backup`; `up.sql` restores both. Verified on a scratch DB (not the test DB): up twice (idempotent), down, up restores items and capacity.
+- Not yet done: sorting, equip (0x050 still legacy-only), trade/delivery restrictions, Lua exposure, extended 0x1C and item packets, capability handshake.
