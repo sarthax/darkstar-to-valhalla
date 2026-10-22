@@ -7,7 +7,7 @@ Order: offline unit -> local build -> isolated DB fixtures -> XIHeadless -> supe
 - [ ] Baseline on unmodified build: inventory, equip, zone, relog, persistence. Record results.
 
 ## 1. Offline unit tests (no server, no DB)
-- [ ] Container ID table: legacy 0-12 unchanged; 13-16 valid only for extended sessions; >=17 rejected everywhere.
+- [x] Container ID table: legacy 0-12 unchanged; 13-16 valid only for extended sessions; >=17 rejected (`tests/wardrobe5-8/container_ids_test.cpp`, passing 2026-10-22; table only, not yet wired into each handler).
 - [ ] `getStorage()` never returns null to a caller that dereferences it (0x029, 0x03A, 0x050, 0x1E/1F/20 builders, Lua bindings).
 - [ ] 0x1C builder: legacy = byte-identical to current output; extended = 18-container layout; unknown caps = legacy.
 - [ ] Capability: default LEGACY; spoofed/malformed handshake stays LEGACY; reset on zone/relog/session end.

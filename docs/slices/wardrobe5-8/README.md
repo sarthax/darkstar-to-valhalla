@@ -48,3 +48,5 @@ Server build/test baseline not yet run in this environment; deployed revision, M
 - Item rows in unknown containers (>= 17) are skipped with a warning at load instead of dereferencing null.
 - `down.sql` parks items in `char_inventory_w58_backup` and capacities in `char_storage_w58_backup`; `up.sql` restores both. Verified on a scratch DB (not the test DB): up twice (idempotent), down, up restores items and capacity.
 - Not yet done: sorting, equip (0x050 still legacy-only), trade/delivery restrictions, Lua exposure, extended 0x1C and item packets, capability handshake.
+- PR #51 (0x03A validation) is merged into this branch by merge commit, so a legacy client cannot sort containers 13-16. If #51 later lands on `main` first, merging `main` here is a no-op for that hunk.
+- `IsValidContainerID(id, extendedSession)` added in `item_container.h`; first offline test: `tests/wardrobe5-8/container_ids_test.cpp` (passes: legacy IDs 0-12 fixed, 13-16 extended-only, >=17 never valid).

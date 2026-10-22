@@ -51,6 +51,12 @@ enum CONTAINER_ID
 #define MAX_CONTAINER_ID	 13 // legacy (2019 client) container count: IDs 0-12. Do not raise.
 #define MAX_CONTAINER_ID_EXTENDED 17 // IDs 0-16, extended sessions only
 #define MAX_CONTAINER_SIZE	120
+// True if id is a container the given session type may reference. Legacy (2019) sessions: 0-12 only.
+inline bool IsValidContainerID(uint8 id, bool extendedSession)
+{
+    return id < (extendedSession ? MAX_CONTAINER_ID_EXTENDED : MAX_CONTAINER_ID);
+}
+
 #define ERROR_SLOTID		255
 
 /************************************************************************
