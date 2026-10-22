@@ -1,6 +1,10 @@
 # Mog Wardrobes 5-8 (December 2019 client) - V1
 
-**Status (2026-10-22): PLANNING. Nothing is implemented. Wardrobes 5-8 are NOT implemented until the complete feature passes real client/server acceptance (see `TEST_PLAN.md`).**
+> **START HERE (handoff):** `HANDOFF.md` (state, gaps, next steps) -> `LOCAL_AGENT_PROMPT.md` (prompt for the local agent) -> `ASSIGNMENT.md` (owner's verbatim directive).
+> Technical docs: `TEST_PLAN.md`, `HANDSHAKE_DESIGN.md`, `CLIENT_AUDIT_RESULTS.md`, `CLIENT_PATCH_DESIGN.md`, `CLIENT_ADDRESS_MAP.md`, `MANIFEST.md`. Evidence: `evidence/`. Tools: `tools/client_patch/wardrobe5-8/README.md`. Offline tests: `bash tests/wardrobe5-8/run_all.sh`.
+
+
+**Status (2026-10-22): IN PROGRESS - NOT ACCEPTED. Server side is written and offline-tested but has never been fully built or run; client side is research + design only (no patch code). Wardrobes 5-8 are NOT implemented until the complete feature passes real client/server acceptance (see `TEST_PLAN.md`). Current state and next steps: `HANDOFF.md`.**
 
 Branch of record: `feature/wardrobe5-8-v1` (cut from `main` @ `86d4467`). One cohesive feature: server C++/Lua/SQL, packet compatibility, client patch tooling, UI support, migration/rollback, docs and tests. It is not released or merged in pieces. Subordinate task branches (`codex/<issue>-<name>`) may feed it; the local integrator assembles reviewed work here. Owner personally approves integration and any live rollout.
 
@@ -32,11 +36,11 @@ Original client gate: `FFXiMain.dll` 2,870,352 bytes, SHA-256 `514653a260c51eaec
 ## Milestones
 | # | Milestone | Status |
 |---|---|---|
-| 0 | Preflight, research import, branch and tracking docs | in progress |
-| A | Server storage + persistence + migration up/down | in progress: containers 13-16, capacity load/save, `sql/slices/wardrobe5-8/up.sql`+`down.sql` done; syntax-checked and migration round-trip tested on a scratch MariaDB only. Not yet: item-move/sort/equip paths, unit tests, full build |
-| B | Legacy/extended packet handling, capability handshake, bounds review | not started |
-| C | Client patch design + tooling (offline) | design written (`CLIENT_PATCH_DESIGN.md`), owner decisions pending; no code |
-| D | Offline unit tests, then XIHeadless and live acceptance | not started |
+| 0 | Preflight, research import, branch and tracking docs | research import + branch/docs done; preflight items 5-7 need the local environment (`HANDOFF.md` s6) |
+| A | Server storage + persistence + migration up/down | written; migration round-trip tested on a scratch DB; C++ syntax-checked + unit-tested, never fully built/run |
+| B | Legacy/extended packet handling, capability handshake, bounds review | server side written (handshake off by default, ingress/egress guards); client side not started |
+| C | Client patch design + tooling (offline) | design + six audit tools done; patch tooling (C0) and patch code not started; owner decisions pending |
+| D | Offline unit tests, then XIHeadless and live acceptance | offline tests done (`tests/wardrobe5-8/run_all.sh`); XIHeadless/live acceptance not started |
 | E | Owner review and approval request | not started |
 
 ## Known gaps

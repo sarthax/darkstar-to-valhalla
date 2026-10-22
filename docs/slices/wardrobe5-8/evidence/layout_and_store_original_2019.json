@@ -1,0 +1,220 @@
+{
+ "status": "OK",
+ "source_sha256": "514653a260c51eaec25d88510e51a86fb2a4abd9867f53d5f45a9ccf840f060f",
+ "decoded_sha256": "af2126c057d86559bfad2e164f7f7fd0a26bbc89ab29ea9cbde5cea807c7d2b8",
+ "summary": {
+  "pe": {
+   "image_base": "0x10000000",
+   "entry_point_rva": "0xb93610",
+   "section_alignment": "0x1000",
+   "file_alignment": "0x200",
+   "size_of_image": "0xbc3000",
+   "size_of_headers": "0x1000",
+   "checksum": "0x0",
+   "dll_characteristics": "0x0",
+   "security_dir_rva": "0x0",
+   "reloc_dir": [
+    "0xbb6af0",
+    "0xc1f8"
+   ],
+   "sections": [
+    {
+     "name": ".text",
+     "va": "0x1000",
+     "vsize": "0x31cece",
+     "raw_ptr": "0x400",
+     "raw_size": "0x0",
+     "flags": "0xe0000080"
+    },
+    {
+     "name": ".rdata",
+     "va": "0x31e000",
+     "vsize": "0x25825",
+     "raw_ptr": "0x400",
+     "raw_size": "0x26000",
+     "flags": "0x40000040"
+    },
+    {
+     "name": ".data",
+     "va": "0x344000",
+     "vsize": "0x66a989",
+     "raw_ptr": "0x26400",
+     "raw_size": "0x84000",
+     "flags": "0xc0000040"
+    },
+    {
+     "name": ".data1",
+     "va": "0x9af000",
+     "vsize": "0x8e0",
+     "raw_ptr": "0xaa400",
+     "raw_size": "0x1000",
+     "flags": "0xc0000040"
+    },
+    {
+     "name": ".rsrc",
+     "va": "0x9b0000",
+     "vsize": "0x3140",
+     "raw_ptr": "0xab400",
+     "raw_size": "0x3200",
+     "flags": "0x40000040"
+    },
+    {
+     "name": "POL1",
+     "va": "0x9b4000",
+     "vsize": "0x1df6f8",
+     "raw_ptr": "0xae600",
+     "raw_size": "0x1df800",
+     "flags": "0xe0000040"
+    },
+    {
+     "name": ".reloc",
+     "va": "0xb94000",
+     "vsize": "0x2ece8",
+     "raw_ptr": "0x28de00",
+     "raw_size": "0x2ee00",
+     "flags": "0x42000040"
+    }
+   ],
+   "section_table_end": "0x348",
+   "spare_header_bytes": 184,
+   "overlay_bytes": 80
+  },
+  "text": {
+   "decoded_size": "0x31cece",
+   "end_rva": "0x31dece",
+   "tail_slack_to_page": "0x132",
+   "padding_runs_ge16": 10,
+   "padding_total_bytes": 246,
+   "largest_runs": [
+    {
+     "rva": "0x2ff9e0",
+     "length": 32,
+     "kind": "int3"
+    },
+    {
+     "rva": "0x195cb4",
+     "length": 32,
+     "kind": "zero"
+    },
+    {
+     "rva": "0xa472a",
+     "length": 28,
+     "kind": "zero"
+    },
+    {
+     "rva": "0xc6274",
+     "length": 28,
+     "kind": "zero"
+    },
+    {
+     "rva": "0x202c0",
+     "length": 21,
+     "kind": "zero"
+    },
+    {
+     "rva": "0x5cfbb",
+     "length": 21,
+     "kind": "zero"
+    },
+    {
+     "rva": "0x5fdd3",
+     "length": 21,
+     "kind": "zero"
+    },
+    {
+     "rva": "0x9486d",
+     "length": 21,
+     "kind": "zero"
+    },
+    {
+     "rva": "0xc899f",
+     "length": 21,
+     "kind": "zero"
+    },
+    {
+     "rva": "0xcf297",
+     "length": 21,
+     "kind": "zero"
+    }
+   ]
+  },
+  "store_pointer_slot_0x104cda08_writes": [
+   {
+    "rva": "0x3fa7",
+    "form": "mov [slot],edi"
+   },
+   {
+    "rva": "0xf6bc6",
+    "form": "mov [slot],eax"
+   },
+   {
+    "rva": "0xf6c1c",
+    "form": "mov [slot],imm32"
+   },
+   {
+    "rva": "0xf6c33",
+    "form": "mov [slot],eax"
+   },
+   {
+    "rva": "0xf6d4d",
+    "form": "mov [slot],eax"
+   },
+   {
+    "rva": "0xf6fe2",
+    "form": "mov [slot],eax"
+   },
+   {
+    "rva": "0xf70d6",
+    "form": "mov [slot],imm32"
+   },
+   {
+    "rva": "0xf7116",
+    "form": "mov [slot],esi"
+   },
+   {
+    "rva": "0xf7295",
+    "form": "mov [slot],esi"
+   },
+   {
+    "rva": "0xf73e1",
+    "form": "mov [slot],esi"
+   },
+   {
+    "rva": "0xf740e",
+    "form": "mov [slot],esi"
+   },
+   {
+    "rva": "0xf7694",
+    "form": "mov [slot],esi"
+   },
+   {
+    "rva": "0xf76ed",
+    "form": "mov [slot],esi"
+   },
+   {
+    "rva": "0xf8a55",
+    "form": "mov [slot],esi"
+   },
+   {
+    "rva": "0xf9b3c",
+    "form": "mov [slot],eax"
+   }
+  ],
+  "manager_pointer_slot_0x104cda04_writes": [
+   {
+    "rva": "0xf6bb3",
+    "form": "mov [slot],edi"
+   },
+   {
+    "rva": "0xf6fe7",
+    "form": "mov [slot],eax"
+   }
+  ],
+  "store_count_0x3b088_immediate_writes": [
+   {
+    "rva": "0xf6c01",
+    "value": 1
+   }
+  ]
+ }
+}

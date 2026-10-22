@@ -1,0 +1,134 @@
+# HANDOFF - Wardrobes 5-8 V1: cloud session -> local agent
+
+Written 2026-10-22 at the end of a cloud Claude Code session (`session_01GdoYTjFwqukcGepkVKnF9K`, repo checkout `/home/user/darkstar-to-valhalla` in a Linux sandbox). Everything on branch `feature/wardrobe5-8-v1` was produced **without a running server, a database of the owner's, a game client, or the DAT files**. Read this document completely before touching anything. Companion files: `LOCAL_AGENT_PROMPT.md` (copy-paste prompt), `ASSIGNMENT.md` (the owner's verbatim directive; it wins over anything here), `CLIENT_ADDRESS_MAP.md`, `evidence/`, and `tools/client_patch/wardrobe5-8/README.md`.
+
+## 0. TL;DR
+* Branch `feature/wardrobe5-8-v1` (pushed to `valhalla`) = `main@86d4467` + the feature. **Wardrobes 5-8 are NOT implemented/accepted.** Per the owner's rule, do not mark them implemented until real client/server acceptance passes.
+* **Server side is written** (containers 13-16, capacity persistence, reversible SQL migration, ingress/egress bounds, session-capability handshake, Lua/GM tooling) but has only been **syntax-checked and unit-tested offline**. It has never been fully built or run. First job: build it.
+* **Client side is research + design only.** No patch code, no patched binary, nothing run against a client. Six reproducible, SHA-gated audit tools plus evidence JSON exist. The design (`CLIENT_PATCH_DESIGN.md`) needs three owner decisions.
+* **No approval gate was crossed.** Nothing touched the owner's live/test server, DB or client install. The only database used was a throw-away MariaDB inside the cloud sandbox.
+* **Most valuable immediate unblockers only a local agent can do:** (1) full build + baseline regression, (2) the Phase-1 preflight items I could not do (deployed revision, schema revision, client hashes, Stage-3 DLL restoration), (3) answer whether the 2019 menu DATs define entries 13-16, (4) find the POL1 **repack** tool (the Toolkit research branch has none).
+
+## 1. Reading order
+| # | File | Why |
+|---|---|---|
+| 1 | `ASSIGNMENT.md` | Owner's authority, scope, approval gates |
+| 2 | this file | State, gaps, next steps |
+| 3 | `README.md` | Design, per-area findings, edge-case tables |
+| 4 | `TEST_PLAN.md` | Acceptance matrix (offline items done; live items open) |
+| 5 | `HANDSHAKE_DESIGN.md` | Capability handshake (server implemented) |
+| 6 | `CLIENT_AUDIT_RESULTS.md` | Verified client facts (inbound/outgoing path, equip sets, style lock) |
+| 7 | `CLIENT_PATCH_DESIGN.md` | Milestone C design, facts F1-F12, risks, owner decisions |
+| 8 | `CLIENT_ADDRESS_MAP.md` | Every address worth knowing, with notes |
+| 9 | `MANIFEST.md` | Revisions/hashes of what was tested |
+| 10 | `CLIENT_AUDIT_WORKORDER.md` | Original audit questions (Q1-Q5 answered) |
+
+## 2. Approval gates - status
+| Gate (from `ASSIGNMENT.md` Phase 5) | Status |
+|---|---|
+| 1. Apply migrations/mutations to the running test DB | **Not crossed.** `up.sql`/`down.sql` exist and were exercised only on a scratch DB inside the sandbox (synthetic rows) |
+| 2. Enable extended packets / experimental behaviour | **Not crossed.** Server code defaults OFF (`wardrobe58_enable: 0`, empty allow-list) |
+| 3. Install modified DLLs | **Not crossed.** No modified DLL exists |
+| 4. Destructive/persistent acceptance tests | **Not crossed.** None run |
+| 5. Merge to `main`, tag, deploy | **Not crossed.** No PR, no tag. `STATUS.json` has a `wardrobe5-8` entry (`active`, `mergedToMain:false`, `versions:0`) |
+Other actions taken: created and pushed the feature branch (the owner's Phase 3 instruction); merged PR #51's branch into the feature branch with a merge commit (see section 4). No force-pushes. No other branches modified.
+
+## 3. Owner statements during the session (chronological; quotes are verbatim)
+1. The assignment (`ASSIGNMENT.md`).
+2. "Copy conf files from DSp-Branch to connect to DB and server from our cloned DSP checkout. Continue" -> **nothing to copy**: `conf/*.conf` in the checkout (and on `master-dsp`) are identical tracked localhost defaults (`root/root@127.0.0.1:3306/dspdb`). The real settings exist only on the owner's machine. They must never be committed (AGENTS.md).
+3. "just to make sure you are not building a server with sql right?" -> confirmed: only syntax-only compiles and a throw-away DB in the sandbox.
+4. "no that's ok i just didn't want to impact dsp-fresh right now, but if we have backups and clones that's fine. continue" -> the owner has a local DSP install/DB called **dsp-fresh** they want protected. Treat it as live: use clones/backups for anything mutating, and still obtain explicit approval for gate items.
+5. Handshake design review: **accepted all three questions**: (a) threat model = accidents, not adversaries; (b) allow-list by patch-set ID in conf; (c) run the client audit before server handshake code.
+6. DLL uploads: the first uploaded file was `53e91099...c699c` (= the **Stage 3** build, not the original); the owner then supplied the real original (`514653a260c51eaec25d88510e51a86fb2a4abd9867f53d5f45a9ccf840f060f`) with "Sorry, this was original". Installed-client and Stage-3 restoration state is therefore **still unconfirmed**.
+7. Directions given in order: "yes, start on the server-side validation work" -> "implement the server-side handshake now" -> "finish the remaining server paths first" -> "Check latents and other edge cases" -> macros/style-lock question -> "look for where the client stores sets" -> "find the style-lock storage next" -> "start the client patch design" -> question about analysing a newer client -> "start with the old-DLL searches" -> this handoff request.
+8. **Unanswered owner decisions** (`CLIENT_PATCH_DESIGN.md` section 6): approve the new-PE-section approach and the single static sidecar; V1 UI scope (UI objects/item lists only vs also menu entries/windows/`/wardrobe5-8`); allow Unicorn as a local-only dev dependency. Also: the PR #51 handling (I merged its branch into the feature; the owner did not object, but did not explicitly confirm).
+
+## 4. Repository state
+* Base: `main` = `86d4467d446569c741d76d296e640c3b844ad844` (PR #54 merge). Feature branch pushed to `valhalla` (github.com/sarthax/darkstar-to-valhalla). Worktree was clean after every push.
+* **Remote naming:** in the sandbox `origin` pointed at the owner's fork URL `https://github.com/sarthax/darkstar-to-valhalla` (not upstream); I added `valhalla` with the same URL and pushed through it (AGENTS.md says push to `valhalla`). A stop-hook complained about a missing `origin/` tracking ref; harmless, fixed with `git fetch origin +refs/heads/feature/wardrobe5-8-v1:refs/remotes/origin/feature/wardrobe5-8-v1`. On the owner's machine, check what `valhalla`/`origin` really are.
+* The sandbox clone was shallow (depth 1, then 50 for a few branches); `git merge-base` and history views may need `git fetch --depth` or a fresh full clone.
+* **PR #51** (`fix/inventory-sort-invalid-container-20261018`, draft, open, +13/-1 in `packet_system.cpp`, "build and runtime tests have not been run"): merged into the feature branch as `d7b8c690` (merge commit, per AGENTS.md). If #51 lands on `main` first, merging `main` into the feature should be a no-op for that hunk. #57 (docs) and #54 (merged) are unrelated.
+* Commits on the branch after `86d4467` (oldest first): `0d37b28a` docs scaffold + STATUS; `063e4197` containers 13-16 + capacity persistence + migration; `d7b8c690` merge PR #51; `7ebebc2b` `IsValidContainerID` + test; `b4e7a50f` handshake design; `b5929820` audit work order + scanner; `12728715` ingress/egress validation; `fb06de83` audit Q1; `b4783dfd` audit Q2-Q5; `bb8a325d` server handshake; `e8da0421` remaining paths; `8646a73f` edge cases; `c9dcb243` macros/style-lock + 0x053 clamp; `48fde119` equip-set audit; `58c1c33b` style-lock storage; `b17ba645` patch design; `5d475589` UI/menu audit; plus the handoff commit(s) on top. `git log --oneline 86d4467..HEAD` is authoritative.
+* Changed non-doc files: `src/map/{item_container.h, packet_system.cpp, map.cpp, map.h, Makefile.in}`, `src/map/entities/charentity.{h,cpp}`, `src/map/utils/charutils.{h,cpp}`, `src/map/lua/lua_baseentity.cpp`, `src/map/ai/states/item_state.cpp`, new `src/map/packets/{inventory_guard.h, w58_handshake.h, w58_ack.h, w58_ack.cpp}`, `win32/vcxproj/DSGame-server.vcxproj{,.filters}`, `scripts/globals/status.lua`, `scripts/commands/delitem.lua`, `sql/slices/wardrobe5-8/{up,down}.sql`, `tests/wardrobe5-8/*`, `tools/client_patch/wardrobe5-8/*`.
+* Not touched: `conf/*.conf`, `navmeshes`, `master-dsp`, any other branch.
+
+## 5. What exists, with maturity
+| Area | What | Maturity |
+|---|---|---|
+| Containers 13-16 (`LOC_WARDROBE5..8`) | enums, `CCharEntity` members, `getStorage`, `MAX_CONTAINER_ID` kept at 13 (legacy), `MAX_CONTAINER_ID_EXTENDED` 17, `IsValidContainerID`, `IsEquippableContainer` | syntax-checked, unit-tested (table logic) |
+| Persistence | capacity load/save in separate statements; items load with unknown-container guard; reversible migration (parks items/equip/capacities) | migration exercised on scratch MariaDB 10.11 with repo table definitions; C++ not run |
+| Ingress validation | 0x028, 0x029, 0x037, 0x03A, 0x050, 0x051, 0x053, 0x0FA, 0x0FB; central helpers null-safe | compiled only. Fixed pre-existing unguarded handlers and two OOB-read/write classes (0x051 count, 0x053 count + `styleItems` index) |
+| Egress guard | `pushPacket` drops 0x1E/0x1F/0x20/0x50/0xFA for invalid containers and any packet ID >= 0x11F | unit-tested against real packet builders |
+| Handshake (server) | hello/ack packet `0x103`, allow-list by 8-byte patch-set ID, default deny, flag cleared at every zone-in, atomic flag, grant pushes ack + 13-16 items + re-announces worn gear | logic + ack bytes unit-tested; handler compiled only |
+| Ownership scans | `HasItem` etc. cover 0-16 (Rare items, style-lock validity) | compiled only |
+| Lua/GM | `LOC_WARDROBE5-8`, `changeContainerSize` accepts 13-16, `delItem/hasItem/getFreeSlotsCount` widened, `!delitem` to W8 | luac syntax-checked; not run |
+| Client research | static analysis of the **verified original** DLL: network path, packet formats, equip-set/style-lock storage, UI object model, menu gates | verified by disassembly + 6 reproducible tools; nothing executed |
+| Client patch | **design only** | none |
+
+## 6. What was NOT done (be explicit)
+**Phase 1 preflight items that need your machine:** (5) deployed map-server revision, MariaDB schema revision, build configuration, test tools; (6) installed client hash, all staged DLL hashes (only two files were seen in the sandbox: Stage 3 and the original), confirmation that the original DLL is restored after Stage 3; (7) baseline inventory/equip/zoning/relog/persistence behaviour.
+**Never done:** a full server build (only `g++ -fsyntax-only` of the changed files; `map.cpp` shows 3 Winsock errors on Linux that also occur on unmodified `main`); VS2019 build; running the server; XIHeadless; any CI run (the branch has no PR, so `worker-gates` has not necessarily run); any client run; any DAT inspection; any POL1 repack; any emulation. The repo `README.md` was not read in full (AGENTS.md and `docs/ai-pipeline/README.md` were). Toolkit PRs #1312/#1303 themselves were not read on GitHub - only the branch docs; the Toolkit repo was read-only in the sandbox.
+**Inferred, not proven:** same-thread safety of sending from the 0x1C handler; that all 15 store-pointer writers just re-activate store 0; `0x19FAD4` entry source; `USER` folder path of `es*.dat`; behaviour of the original client when listing a set that names Wardrobe 5-8 in its menu (the apply path is proven safe).
+
+## 7. Environment differences and gotchas
+* The sandbox was Linux/g++ 13; DSP's real build is VS2019 (`win32/vcxproj`) / `Makefile.in`. Expect MSVC-only compile issues (e.g. `std::atomic<bool>` as a class member default-initialised with braces, `uint8`/int conversions in `getStorage(LOC_WARDROBE5 + i)`, `std::array` comparisons). Fix, don't hack around.
+* Sandbox-only installs (do not assume they exist for you): `mariadb-server`, `libmariadb-dev`, `libzmq3-dev`, `liblua5.1-0-dev`, `lua5.1`, pip `capstone`, `pefile`. The **committed** tools need only Python 3 plus Toolkit's `pol1_unpack.py`; the committed C++ tests need only g++/MSVC.
+* `pol1_unpack.py` was taken from Toolkit research branch commit **`a6de1db8be8c52189acb89e53d9272e91365bbae`** (2026-10-21). The Toolkit docs quote an older head `71184c0e...`; the later commit adds docs. **That branch has no POL1 repack tool** (only unpack/compare/report); PR #1303's repack code must be located separately. `CLIENT_PATCH_DESIGN.md` assumes it exists - verify before relying on it.
+* Several source files use CRLF and tabs; I preserved each file's line endings with exact-match replacements. Do not run a formatter over them. Use explicit `git add <paths>`, never `git add -A` (navmeshes submodule); use `--ignore-submodules=all` with status/diff.
+* The ad-hoc disassembly in the session used Capstone against the decoded text kept in the sandbox scratchpad (not in git). The decoded text, the original DLL and any patched DLL must **never** be committed.
+* Offline test runner: `bash tests/wardrobe5-8/run_all.sh` (3 C++ programs, 5 Python suites, sqlcheck). Last run in the sandbox: all pass.
+
+## 8. Quick verification commands
+```
+git fetch valhalla feature/wardrobe5-8-v1 && git checkout feature/wardrobe5-8-v1
+git log --oneline 86d4467..HEAD
+bash tests/wardrobe5-8/run_all.sh                       # offline tests
+git diff --stat --ignore-submodules=all 86d4467..HEAD   # scope of change
+# client facts (need the ORIGINAL DLL + Toolkit commit a6de1db8 on PYTHONPATH):
+PYTHONPATH=<toolkit>/src python3 tools/client_patch/wardrobe5-8/audit_layout_and_store.py <FFXiMain.dll>
+```
+Every tool refuses any DLL whose SHA-256 is not `514653a2...f060f`; compare each output with the matching file in `evidence/`.
+
+## 9. Evidence and tool index
+| Evidence file (`evidence/`) | Tool | Test |
+|---|---|---|
+| `inbound_registrations_original_2019.json` | `audit_inbound_registrations.py` | `test_audit_inbound_registrations.py` |
+| `outgoing_packets_original_2019.json` | `audit_outgoing_packets.py` | `test_audit_outgoing_packets.py` |
+| `patch_surface_original_2019.json` | `audit_patch_surface.py` | `test_audit_patch_surface.py` |
+| `ui_containers_original_2019.json` | `audit_ui_containers.py` | `test_audit_ui_containers.py` |
+| `layout_and_store_original_2019.json` | `audit_layout_and_store.py` | `test_audit_layout_and_store.py` |
+Equip-set/style-lock findings and the network-path disassembly are documented with addresses in `CLIENT_AUDIT_RESULTS.md` and `CLIENT_ADDRESS_MAP.md` but are **not** covered by a tool; re-verify them by disassembling the listed addresses.
+
+## 10. Corrections made during the session (so you know which earlier statements changed)
+* Store-pointer writers: first scan said 5; a decoder flaw hid the `89 /r` forms; the exact-opcode scan says **15**. The first inbound-registration scanner over-reported (shared callbacks); it was replaced by the exact call-target version.
+* "Past the inbound table" memory: first called unknown; later found to be a timing interval at `mgr+0x3EDEC` (an out-of-table ID would call it).
+* `Set%03d` is a default set **name**, not a file name; the files are `es0.dat`..`es4.dat`.
+* The container UI objects were first thought possibly bespoke; they are one generic class (F9).
+* `up.sql` originally failed on a fresh DB (only ever tested after a `down`); fixed and retested. `down.sql` originally left `char_equip` rows pointing at containers 13-16; now parked.
+* The first DLL upload was the Stage 3 build, not the original; no analysis used it.
+
+## 11. Open items
+**Owner decisions:** see section 3.8. **Technical unknowns:** menu DAT contents for entries 13-16 (hard dependency for dedicated menu entries); POL1 repack tool and whether the repacked stream still fits; whether a new PE section is accepted by the launcher; classification of the ~100 inline layout sites and ~30 UI consumers per wardrobe object; the eleven whole-store `0x3B080` copies; command/handler table relocation; `USER` path of `es*.dat`; MariaDB version/engine of the real DB (`ADD COLUMN IF NOT EXISTS` needs MariaDB >= 10.0.2; unsupported on MySQL 5.x); whether `Begin()` returning NULL under load breaks the hello (design retries).
+
+## 12. Recommended next steps (in order; "G" = needs owner approval first)
+1. Read-only: check out the branch; read the docs; run `run_all.sh`.
+2. Read-only preflight (the missing Phase 1 items): `main` vs deployed revision, schema revision, build config, client hashes (original / installed / every staged DLL / Stage 3), restore-and-verify the original DLL. Report any mismatch before going further.
+3. Build the branch (VS2019 or Makefile) with the feature OFF; fix compile errors; run the existing regression suite and XIHeadless baseline against **main** and then the branch; they must match.
+4. Read-only: DAT question - run the dat-extractor/Toolkit tooling on the 2019 install: does the item-menu resource define entries 13-16 (labels "Wardrobe 5".."Wardrobe 8")? Also list the menu DATs the five builders use.
+5. Read-only/offline: locate the POL1 repack code (Toolkit PR #1303), do a **no-op repack of the original in scratch** and record whether size/hash match Stage 2 (`27636cc5...923d2c`). No installation.
+6. Offline: C1 - classify every inline layout site and UI consumer (inputs: `evidence/patch_surface_original_2019.json`, `ui_containers_original_2019.json`); record in a new `CLIENT_SITE_CLASSIFICATION.md`.
+7. G (dependency): build the Unicorn emulation harness described in `CLIENT_PATCH_DESIGN.md` section 4.
+8. G (gate 1/2/4): on a **clone** of the test DB, apply `up.sql`; run `TEST_PLAN.md` sections 3 and 6 with the feature flag on and a disposable character; a headless/fake extended client (XIHeadless) should send the `0x103` hello with an allow-listed patch-set; confirm legacy sessions never receive containers 13-16. Then `down.sql` rollback.
+9. G (gate 3): only after the owner approves the client design decisions and an isolated trial: C2/C3 implementation and a local client trial (original DLL restored and hash-checked afterwards).
+10. Final deliverables per `ASSIGNMENT.md` Phase 6; propose `slice/wardrobe5-8-v1` but do not create it.
+
+## 13. Never do
+Commit `conf/*.conf`, retail/patched DLLs, decoded code, credentials; force-push; delete the branch; merge to `main` or tag without the owner; install a DLL or run migrations on dsp-fresh or any shared DB without the matching gate approval; send containers 13-16 or the 18-container layout to an unverified client; mark the feature implemented before real acceptance.
+
+## 14. Session chronology (condensed)
+Preflight and research import -> branch + docs -> (conf request: nothing to copy) -> server storage/persistence/migration -> PR #51 merged into the feature, helper + tests -> handshake design (owner accepted) -> DLL mix-up resolved -> client audit Q1 (inbound table 0x11F, unchecked dispatcher), Q2-Q5 (send path via `Begin()`, ring slots, no per-packet crypto) -> server ingress/egress validation -> server handshake -> remaining server paths (use-item guard, ownership scans, equip re-announce, migration fixes) -> latent/edge cases -> macros and style lock (0x051/0x053 fixes) -> equip-set storage (`es*.dat`) -> style-lock storage -> client patch design -> newer-client discussion -> old-DLL UI object and menu-gate audit -> layout tool, address map, this handoff.
+
+## 15. Status log (append one line per future session)
+| Date | Agent | Summary | Tip commit |
+|---|---|---|---|
+| 2026-10-22 | cloud Claude Code | Initial V1 work + handoff (this file) | see `git log` |
