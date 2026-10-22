@@ -48,7 +48,7 @@ Outstanding defects, exact server and client hashes, evidence bundle, proposed t
 - [ ] Charged item (e.g. a ring with uses) worn from Wardrobe 5: equip, use, zone, relog; note whether the recast refresh targets the right slot (known weak spot, same for Wardrobes 1-4).
 - [ ] Ammo worn from Wardrobe 5: swing/shoot until empty; auto-unequip and DB row cleanup are correct.
 - [ ] Latent/set-bonus gear worn from Wardrobe 5 gives the same stats as the same gear from Wardrobe 1 (compare `!`-style stat dumps).
-- [ ] Equip set (0x051) with pieces from Wardrobes 1 and 5 on an extended session; the same set on a legacy session equips only legal pieces; a crafted 0x051 with count 255 reads no more than 16 entries.
+- [~] Equip set (0x051) with pieces from Wardrobes 1 and 5 on an extended session; the same set on a legacy session equips only legal pieces; a crafted 0x051 with count 255 reads no more than 16 entries.
 - [ ] Capacity shrink below occupied: items missing at login, gear unequipped, DB rows intact; restoring capacity brings them back.
 - [ ] Hello storm (> 8 in one zone-in) and replay; hello during zoning; relog and map-server change start legacy.
 - [ ] `!delitem` removes an item from Wardrobe 6; Rare item in Wardrobe 7 blocks AH/treasure/trade receipt.

@@ -206,3 +206,20 @@ Same servers and bot as section 19. Raw packets via `send_raw`: 0x050 body = `sl
 
 **Limits:** the Rare check covers only `!additem` into the bag with the duplicate in container 13. AH purchase, trade receipt, treasure-pool and quest `HasItem` checks were not run. I did not check that the client received the equip update, only the server state and DB. The legacy equip test covered one fixture item, one equip slot and one container id.
 **Still not covered:** trade, equip set (0x051), map-server restart persistence, `down.sql` with an extended session, crafted ids on 0x037/0x03A/0x050/0x0FA/0x0FB, a real patched client.
+
+## 21. Equip sets, restart persistence, rollback and crafted ids (2026-10-22, owner approved; clone `dspdb_w58_test` only)
+Servers: `coord-connect.exe` and `coord-game.exe` from `D:\Claude\w58-run-b2`, started and stopped by a local launcher (the exes were no longer being deleted). Same bot and fixtures as section 20.
+
+| Test | Result |
+|---|---|
+| 0x051 equip set, one entry (club, container 13), extended session | equipped; `char_equip (0, 1, 13)` |
+| 0x051 with count 255 plus entries naming containers 17, 200 and 255 | entries with those containers ignored; session alive. Zero-filled entries after the real ones act on slot 0 and un-equipped the main hand, which is how my crafted packet was built, not a bug in this slice. Reading is capped at 16 entries in source (`dsp_min(count, 16)`); the fixed-size packet makes a read past that impossible to show at runtime, so the cap is confirmed by source only |
+| 0x051 entries naming empty containers 15 and 16 | no state change |
+| Legacy session, 0x051 count 255 with containers 13, 14 and 17 | nothing equipped, DB unchanged, session alive |
+| Map and connect servers killed and restarted, then login | container 13 (4 items), 14 (empty) and the equip row `(0, 1, 13)` identical to before |
+| `down.sql` then `up.sql` on a DB holding extended-session data (club worn from 13, 5 items in 13 across two characters) | after down: all 13-16 rows and the equip row parked, columns dropped. After up: inventory, equip and capacities identical to before (diff empty), all three backup tables gone |
+| Crafted container ids 17, 18, 100, 200, 255 on 0x050 (slot 1 and slot 4) and 0x03A, both session types | inventory and equip state identical before and after; sessions alive |
+
+**Rare items, source only:** `charutils::HasItem` loops over all 17 storage ids regardless of client version, and it backs the item-add check (`charutils.cpp:1239`), the trade receipt check (`:1510`) and the treasure pool check (`treasure_pool.cpp:432`) plus Lua `hasItem`. A runtime trade or treasure test was not run; the only runtime Rare check is section 20 (`!additem`).
+**Limits:** my crafted 0x037 packets had a bad size, so the server dropped them before parsing and 0x037 is NOT covered; 0x0FA and 0x0FB were not sent; `down.sql` was run with the servers stopped and no old binary was started against the parked DB, so "old binary logs in cleanly after down" is untested.
+**Still not covered:** trade at runtime, AH, 0x037/0x0FA/0x0FB with crafted ids, an old binary against a rolled-back DB, a real patched client.
