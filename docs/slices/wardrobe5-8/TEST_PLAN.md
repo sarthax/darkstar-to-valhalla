@@ -42,7 +42,7 @@ Outstanding defects, exact server and client hashes, evidence bundle, proposed t
 - [ ] Rare item sitting in Wardrobe 5: AH purchase of the same item is refused; `HasItem`-based quest checks see it.
 - [ ] Use item from container 13+ as a legacy session is ignored (0x037); container >= 17 in 0x028/0x029/0x037/0x03A/0x050/0x0FA/0x0FB does not crash.
 - [ ] Trade/delivery/AH/shop cannot reach items in 13-16 (they must be moved to inventory first).
-- [ ] Migration on a COPY of the test DB: fresh up, up again, down (no live rows in container >= 13 in char_inventory or char_equip), up again restores items, gear and capacities. (Done on a scratch DB with synthetic rows 2026-10-22.)
+- [x] (partial, 2026-10-21 clone DB: up, down, up with one parked row and capacity restored) Migration on a COPY of the test DB: fresh up, up again, down (no live rows in container >= 13 in char_inventory or char_equip), up again restores items, gear and capacities. (Done on a scratch DB with synthetic rows 2026-10-22.)
 
 ## 7. Edge cases (added 2026-10-22; live, disposable characters)
 - [ ] Charged item (e.g. a ring with uses) worn from Wardrobe 5: equip, use, zone, relog; note whether the recast refresh targets the right slot (known weak spot, same for Wardrobes 1-4).
