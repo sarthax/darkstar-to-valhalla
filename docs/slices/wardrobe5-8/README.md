@@ -96,3 +96,12 @@ Method: grep of all `getStorage(`, `MAX_CONTAINER_ID`, `char_inventory`/`char_eq
 | Macro equip-set reply (0x116) | Echoes client-supplied bytes; ID 0x116 is < 0x11F; not server-derived, so no new hazard |
 | New characters / schema | `char_storage` defaults for Wardrobes 5-8 are 0; before the migration is applied the extra columns are simply not read |
 | Bazaar, synthesis, shop, trade, delivery, AH | Inventory-only; no change needed |
+
+### Macros (equip sets) and style lock (2026-10-22)
+| Feature | Verdict |
+|---|---|
+| Using an equip set (0x051) | Works for Wardrobes 5-8 on **extended** sessions; a legacy session only equips legal pieces (container list is per session). Count clamped to 16 |
+| Saving an equip set (0x052) | The server only echoes the client's own bytes back as 0x116 and never stores sets. Reads stay inside the 76-byte packet. No server issue; sets live on the client |
+| Style lock (0x053) | Style is by **item ID**; the packet's container byte is ignored. Validity needs `HasItem(appearance item)`, which now counts containers 0-16, so an appearance item sitting in Wardrobe 5-8 stays valid. (Before the `HasItem` widening it would have been dropped.) Deleting the last copy still un-styles correctly |
+| Existing bug fixed in 0x053 | The type-3 loop wrote `styleItems[equipSlotId]` (array of 16) with a client-supplied slot up to 255, and ran to a client-supplied count; now clamped to 16 entries and slot < 16 |
+| **Client-side open risk** | Where the 2019 client stores equip sets / style-lock sets, and whether the **unmodified** client validates a container ID when loading them, is unknown (Toolkit lists 11 fixed-size file transfers of unconfirmed purpose). A set saved by a patched client that names container 13-16 could be read by the original client if the DLL is swapped back. The rollback instructions must include removing those client files until this is audited |

@@ -2534,7 +2534,8 @@ void SmallPacket0x052(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 ************************************************************************/
 void SmallPacket0x053(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
-    uint8 count = RBUFB(data, (0x04));
+    // Fixed-size packet (0x44 = 136 bytes): 16 entries of 8 bytes from +0x08. The count byte is client-supplied.
+    uint8 count = dsp_min(RBUFB(data, (0x04)), 16);
     uint8 type = RBUFB(data, (0x05));
 
     if (type == 0 && PChar->getStyleLocked())
@@ -2558,8 +2559,11 @@ void SmallPacket0x053(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         for (int i = 0x08; i < 0x08 + (0x08 * count); i += 0x08) {
             uint8 slotId = RBUFB(data, i);
             uint8 equipSlotId = RBUFB(data, i + 0x01);
-            uint8 locationId = RBUFB(data, i + 0x02);
+            uint8 locationId = RBUFB(data, i + 0x02);   // unused: style is by item ID, ownership is checked in any container
             uint16 itemId = RBUFW(data, i + 0x04);
+
+            if (equipSlotId >= 16) // styleItems[16]: the slot index was client-supplied and unchecked
+                continue;
 
             auto PItem = itemutils::GetItem(itemId);
             if (PItem == nullptr || !(PItem->isType(ITEM_WEAPON) || PItem->isType(ITEM_ARMOR)))
