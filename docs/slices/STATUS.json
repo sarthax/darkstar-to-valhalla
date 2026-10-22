@@ -521,6 +521,15 @@
    "versions": 1,
    "supersededTags": []
   },
+  "wardrobe5-8": {
+   "status": "active",
+   "branch": "feature/wardrobe5-8-v1",
+   "finalTag": null,
+   "finalDate": null,
+   "mergedToMain": false,
+   "versions": 0,
+   "supersededTags": []
+  },
   "weapon-additional-effect-fixes": {
    "status": "final",
    "branch": "feature/weapon-additional-effect-fixes",

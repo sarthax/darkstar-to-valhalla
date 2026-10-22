@@ -1,0 +1,43 @@
+# Mog Wardrobes 5-8 (December 2019 client) - V1
+
+**Status (2026-10-22): PLANNING. Nothing is implemented. Wardrobes 5-8 are NOT implemented until the complete feature passes real client/server acceptance (see `TEST_PLAN.md`).**
+
+Branch of record: `feature/wardrobe5-8-v1` (cut from `main` @ `86d4467`). One cohesive feature: server C++/Lua/SQL, packet compatibility, client patch tooling, UI support, migration/rollback, docs and tests. It is not released or merged in pieces. Subordinate task branches (`codex/<issue>-<name>`) may feed it; the local integrator assembles reviewed work here. Owner personally approves integration and any live rollout.
+
+## Source research (Toolkit, `sarthax/FFXI-Mission-Toolkit`)
+Branch `research/2019-wardrobe-backport-gates-20261021` (PRs #1312 audit, #1303 POL1 repacking). Not merged to Toolkit `main`. Reports: `docs/reports/ffximain_2019_wardrobe_backport_stage4.md`, `wardrobe_2019_toolkit_research_closeout_handoff.md`, `wardrobe_2019_dsp_transition_readiness_2026-10-21.md`. Reusable binary tooling stays in Toolkit; only decisions, evidence references and implementation-relevant code/tests move here.
+
+Original client gate: `FFXiMain.dll` 2,870,352 bytes, SHA-256 `514653a260c51eaec25d88510e51a86fb2a4abd9867f53d5f45a9ccf840f060f`; POL1-decoded `.text` SHA-256 `af2126c057d86559bfad2e164f7f7fd0a26bbc89ab29ea9cbde5cea807c7d2b8`. No retail or modified DLL is ever committed.
+
+## Current DSP state (audited 2026-10-22, read-only)
+- `src/map/item_container.h`: `CONTAINER_ID` 0-12 (`LOC_WARDROBE`=8, `LOC_MOGSAFE2`=9, `LOC_WARDROBE2/3/4`=10/11/12); `MAX_CONTAINER_ID` 13; `MAX_CONTAINER_SIZE` 120. This matches the 2019 client's 13 containers and its mode numbering (9 is Mog Safe 2 / `/bank2`).
+- `charentity.cpp`: one `unique_ptr<CItemContainer>` per container; `getStorage()` is a switch that returns null for unknown IDs.
+- Persistence: `char_inventory(charid, location tinyint, slot, itemId, quantity, bazaar, signature, extra)`, PK (charid, location, slot) - new locations need no column change; capacities live in `char_storage` (`wardrobe`..`wardrobe4`, default 80).
+- `packets/inventory_size.cpp` (0x1C): 13 u8 sizes at +0x04, 13 u16 buffs at +0x14, size 0x1A. Matches the 2019 layout. A newer-client 18-container layout must never go to the 2019 client.
+- Hard-coded wardrobe lists to extend or guard: `SmallPacket0x050` (equip), `charutils.cpp` login container push, `charutils.cpp` equip/save paths, `lua_baseentity.cpp` (`MAX_CONTAINER_ID` loops), `scripts/globals/status.lua`.
+- Login version lock (`src/login/lobby.cpp`, `CLIENT_VER`) compares only the version string. A modified DLL reports the same string, so **it cannot serve as the extended-capability indicator**.
+- No existing work implements any part of Wardrobes 5-8 (grep of src, scripts, sql, docs; no related branch, tag or PR).
+
+## Dependencies and conflicts
+- PR #51 (`fix/inventory-sort-invalid-container-20261018`, draft, open): validates container ID and null storage in packet 0x03A. Touches `packet_system.cpp`. Not built or runtime-tested. V1 must include it (merge the branch into the feature, merge-commit style) or have it land first - owner decides. Also need the same audit for 0x1E/0x1F/0x20 and every `getStorage()` caller.
+- PR #54 merged; #57 is docs only. No other PR touches inventory.
+
+## Architecture (proposed; subject to review)
+**Storage.** IDs 13-16 = Wardrobe 5-8 (matches newer clients; ID 17 out of scope). Add `LOC_WARDROBE5..8`, `MAX_CONTAINER_ID_LEGACY` (13) and `MAX_CONTAINER_ID_EXTENDED` (17); keep legacy loops on the legacy constant so existing behavior is unchanged. `getStorage()` takes only IDs valid for the session. Capacity columns `wardrobe5..8` added to `char_storage` by reversible migration; `char_inventory` needs no change. Equipment from wardrobes 5-8 is allowed only for extended sessions.
+
+**Protocol.** Per-session `clientCaps` on `map_session_data_t`, default `LEGACY`. Legacy sessions see only containers 0-12 in 0x1C, login item push, 0x1D/0x1E/0x1F/0x20 and Lua-driven item messages; items stored in 13-16 stay on the server and are invisible, not lost. Extended mode needs an independently verified signal from the patched client (a handshake the unmodified client cannot produce; design pending, because the login version string is insufficient). Unknown or unverified clients get legacy. Experimental packet code is gated by a conf flag, default off. Reviewed ingress/egress bounds for every container-ID field.
+
+**Client (modified 2019 DLL).** Patch definitions and tooling in source control only (`tools/client_patch/wardrobe5-8/`, to be created); no binaries. Needs: per-store sidecar (4 x 81 x 44 = 14,256 bytes per store; legacy array ends at active-store +0x14D5C, immediately followed by the enumeration cursor, so it cannot be extended in place), manager switching/reset/teardown, `containerID < 13` guards (3 observed), 0x1C parse (13 u8 + 13 u16 -> extended), 0x1E/1F/20 bounds, four new slash commands plus mode objects (new modes 13-16; never reuse 9), the `mode-2` selector (2-12 today), and update/cleanup for the 13 UI-global objects at `0x10621FBC..0x10621FEC`. EVB file transfers (`0x3B080` bytes) must not be resized; whether they matter to server persistence is UNKNOWN. Gated on the exact SHA-256 above.
+
+## Milestones
+| # | Milestone | Status |
+|---|---|---|
+| 0 | Preflight, research import, branch and tracking docs | in progress |
+| A | Server storage + persistence + migration up/down | not started |
+| B | Legacy/extended packet handling, capability handshake, bounds review | not started |
+| C | Client patch design + tooling (offline) | not started |
+| D | Offline unit tests, then XIHeadless and live acceptance | not started |
+| E | Owner review and approval request | not started |
+
+## Known gaps
+Server build/test baseline not yet run in this environment; deployed revision, MariaDB schema revision, client install state, and Stage 3 DLL restoration are unverified (need the owner's local machine). See `MANIFEST.md`.
