@@ -68,3 +68,5 @@ Status: **DESIGN, 2026-10-22. Nothing is implemented, no patched binary exists, 
 1. Approve the **new-section** approach (D1) and the **single static sidecar** (D2).
 2. UI scope for V1: C3a only (UI objects, item lists, equipment screens and sets, no new menu entries or commands) or also C3b (menu entries, windows, `/wardrobe5-8`)? C3b additionally needs the client's menu DAT contents checked (we have none in this environment).
 3. Approve adding Unicorn (x86 emulator) as a **local-only dev dependency** for the harness.
+
+**Local status 2026-10-21:** decision 2 input (menu DATs): partially checked, NOT resolved. No Wardrobe 5-8 text exists in `ROM/168/25`, `176/96`, `178/35`, `168/24`; `ROM/178/35.DAT` has blank entries `0x9D-0x9E` in the Mog container table; which menu DATs the builders at `0x1306E6`, `0x140224`, `0x140512`, `0x14088B`, `0x1484DD` load is unknown (needs disassembly). Repack tool check (risk 1): recompressed `.text` fits with 24,715 B headroom (see HANDOFF section 16). Decisions 1-3 remain open.

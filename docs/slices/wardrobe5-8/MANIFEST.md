@@ -17,16 +17,16 @@ Updated 2026-10-22 (cloud session handoff). "Verified" = checked by a command in
 | Original, POL1-decoded `.text` | 3,264,206 | `af2126c057d86559bfad2e164f7f7fd0a26bbc89ab29ea9cbde5cea807c7d2b8` | tools check this prefix (`af2126c057d8`) |
 | Stage 2 no-op repack (Toolkit) | 2,870,352 | `27636cc595280ad46a401cf2d0159a651b80c39d912f5748784944604a923d2c` | not seen in the cloud session |
 | Stage 3 one-instruction repack (Toolkit) | 2,870,352 | `53e91099d0d773ccde227c53ad57986126d969751514b05e96d39210b6dc699c` | **was uploaded once as "original"**; not used for analysis |
-| Currently installed client DLL | ? | UNKNOWN | **local agent must hash** |
+| Currently installed client DLL | 2870352 | `514653a2...f060f` (original, restored 2026-10-21; Stage 3 was installed before) | local agent |
 | Other staged DLLs | ? | UNKNOWN | **local agent must hash** |
 | Patched output (V1) | - | none exists | - |
 
 ## Server / database
 | Item | Value |
 |---|---|
-| Deployed map-server revision / build hash | UNKNOWN - local agent |
-| MariaDB version, engine, schema revision | UNKNOWN - local agent. Migration tested only on MariaDB 10.11 (sandbox) with the repo's own `sql/char_*.sql` MyISAM definitions |
-| Build tested | **none (full build never run)**. Syntax-only (`g++ 13 -std=c++17 -fsyntax-only`) of: `charentity.cpp`, `charutils.cpp`, `packet_system.cpp`, `lua_baseentity.cpp`, `item_state.cpp`, `packets/*.cpp` touched. `map.cpp`: 3 pre-existing Winsock errors on Linux, identical on unmodified `main` |
+| Deployed map-server revision / build hash | Not recorded yet. Branch DSGame (feature OFF, VS2019 x64) sha256 `6625e487...973c`, 1,633,280 B; baseline compared it against the deployed 2026-10-16 DSGame on a clone DB |
+| MariaDB version, engine, schema revision | Local MariaDB 12.3.2, char tables MyISAM (local agent, 2026-10-21). Schema revision not recorded. Migration tested only on MariaDB 10.11 (sandbox) with the repo's own `sql/char_*.sql` MyISAM definitions |
+| Build tested | Full DSGame build with feature OFF succeeded locally 2026-10-21 (feature ON not built). Earlier note: Syntax-only (`g++ 13 -std=c++17 -fsyntax-only`) of: `charentity.cpp`, `charutils.cpp`, `packet_system.cpp`, `lua_baseentity.cpp`, `item_state.cpp`, `packets/*.cpp` touched. `map.cpp`: 3 pre-existing Winsock errors on Linux, identical on unmodified `main` |
 
 ## Tests that exist and passed in the cloud session (`bash tests/wardrobe5-8/run_all.sh`)
 `container_ids_test.cpp`, `inventory_guard_test.cpp` (links real `inventory_modify.cpp` + `char_equip.cpp`), `handshake_test.cpp` (links real `w58_ack.cpp`), five `test_audit_*.py` suites (synthetic bytes only), `tools/sqlcheck.py` on `up.sql`. Migration round-trip (fresh up, up again, down, down again, up) on a scratch DB with synthetic rows. Lua: `luac5.1 -p` on the two edited scripts.
