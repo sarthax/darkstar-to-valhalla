@@ -61,3 +61,21 @@ Server build/test baseline not yet run in this environment; deployed revision, M
 - **Client audit Q1 done** (`CLIENT_AUDIT_RESULTS.md`): inbound table = 0x11F entries, dispatcher unchecked -> server drops outbound IDs >= 0x11F; provisional ack ID 0x100. Outgoing-path questions Q2-Q6 still open and gate the handshake implementation.
 - **Client audit Q2-Q5 done (static)**: client has a real, lock-free send path (ring slots + `Begin()`), no per-packet crypto; hello/ack proposed as `0x103` both ways. Provisional GO for the handshake design; open items (6 dynamic Begin sites, code space for the patch, same-thread confirmation) listed in `CLIENT_AUDIT_RESULTS.md`. Nothing executed against a client.
 - **Server-side handshake implemented** (offline-tested; not built/run): `HANDSHAKE_DESIGN.md` "Implementation notes". Off by default (`wardrobe58_enable: 0`). Deviation: ack carries capacities instead of an extended 0x1C. Next: remaining ingress paths (trade/delivery/auction/shop/Lua) and the client patch design.
+
+## Server path audit (2026-10-22) - every container consumer in `src/map`
+Method: grep of all `getStorage(`, `MAX_CONTAINER_ID`, `char_inventory`/`char_equip` uses and every outbound packet builder that carries a container ID. Offline only (syntax-checked, unit-tested, scratch-DB migration); nothing built or run as a server.
+
+| Path | Result |
+|---|---|
+| Client-supplied container, validated against the session (`IsValidContainerID`) | 0x028 drop, 0x029 move, 0x037 use item (**was unguarded**), 0x03A sort, 0x050 equip (`IsEquippableContainer`), 0x0FA, 0x0FB (**were unguarded**). 0x0FC-0x0FF already restrict to Mog Safe 1/2 |
+| Ownership scans: extended range, independent of client version (a Rare item in Wardrobe 5 still counts) | AH Rare check (0x04E), `charutils::HasItem`, Lua `checkImbuedItems`, login augment pass |
+| Central helpers: null-safe for any container >= 17 | `AddItem`, `MoveItem`, `UpdateItem`, `EquipItem`, `EquipArmor`, `CItemState` ctor |
+| Inventory-only by construction (items in 13-16 cannot be traded, sold, delivered or auctioned until moved to the inventory) | trade 0x033/0x034/0x036, delivery 0x04D, AH 0x04E, shop 0x083-0x085 all address `LOC_INVENTORY` only |
+| Sorting | 0x03A works on any container via the container's own ID; DB update is generic |
+| Egress (legacy client withheld from containers >= 13 and from IDs >= 0x11F) | item packets 0x1E/0x1F/0x20, equip 0x50, furniture 0xFA, in `CCharEntity::pushPacket` |
+| Worn gear from 13-16 | `LoadEquip` restores it server-side (items load first). A legacy session never hears about it (0x50/0x1F dropped). After the handshake the server re-sends equip + lock packets for those slots. Rollback: `down.sql` parks `char_equip` rows with container 13-16 as well (an old binary would crash on them) |
+| Capacity grant | Lua `changeContainerSize(13..16, n)` now allowed (scripts only; max 80 via `AddBuff`) and refreshes the capacity for extended sessions. No GM command added; for a disposable test character: `UPDATE char_storage SET wardrobe5=80 WHERE charid=...` |
+| Zone-in | flag cleared at the top of `SmallPacket0x00A` (with `clearPacketList`) and again in 0x00C; `SendInventory` stays the legacy 13-container list |
+
+**Deliberately unchanged (legacy scope):** Lua `hasItem(id, loc)`, `delItem(id, qty, loc)`, `getFreeSlotCount(loc)` still clamp to 0-12, so scripts cannot address 13-16 by location (a plain `hasItem(id)` covers everything).
+**Not verified / open:** `latent_effect_container` and similar code was checked only for literal container uses, not by running; equip-dependent features (latents, set bonuses) for gear worn from 13-16 are untested; behavior under a real server, real DB and real client is untested; no GM command to grant capacity.

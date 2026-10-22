@@ -8,8 +8,9 @@ Pure functions on raw packet bytes so they can be tested offline (tests/wardrobe
 #include "../../common/cbasetypes.h"
 #include "../item_container.h"
 
-// Container ID carried by the item packets the 2019 client indexes directly (no <13 check on its side).
-// Offsets verified against the DSP packet builders and Toolkit Stage 4: 0x1E +0x08, 0x1F +0x0A, 0x20 +0x0E.
+// Container ID carried by the packets the 2019 client indexes directly (no <13 check on its side).
+// Offsets verified against the DSP packet builders and Toolkit Stage 4: 0x1E +0x08, 0x1F +0x0A, 0x20 +0x0E,
+// plus 0x50 +0x06 (CEquipPacket) and 0xFA +0x0D (CFurnitureInteractPacket).
 // Returns false for other packet types.
 inline bool InventoryPacketContainer(uint16 type, const uint8* data, uint8* container)
 {
@@ -18,6 +19,8 @@ inline bool InventoryPacketContainer(uint16 type, const uint8* data, uint8* cont
         case 0x1E: *container = data[0x08]; return true;
         case 0x1F: *container = data[0x0A]; return true;
         case 0x20: *container = data[0x0E]; return true;
+        case 0x50: *container = data[0x06]; return true;   // equip: the client indexes its records with this
+        case 0xFA: *container = data[0x0D]; return true;   // furniture interact
     }
     return false;
 }

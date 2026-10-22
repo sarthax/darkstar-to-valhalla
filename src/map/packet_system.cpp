@@ -227,6 +227,10 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
     PChar->clearPacketList();
 
+    // A zone-in always starts legacy; the patched client re-sends its hello (HANDSHAKE_DESIGN.md).
+    PChar->m_extendedStorage = false;
+    PChar->m_w58Hellos = 0;
+
     if (PChar->status == STATUS_DISAPPEAR)
     {
         if (PChar->loc.zone != nullptr)
@@ -1287,6 +1291,9 @@ void SmallPacket0x037(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     uint16 TargetID = RBUFW(data, (0x0C));
     uint8  SlotID = RBUFB(data, (0x0E));
     uint8  StorageID = RBUFB(data, (0x10));
+
+    if (!IsValidContainerID(StorageID, PChar->extendedStorage()))
+        return;
 
     if (PChar->UContainer->GetType() != UCONTAINER_USEITEM)
         PChar->PAI->UseItem(TargetID, StorageID, SlotID);
@@ -2352,7 +2359,8 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             {
                 if (PItem->getFlag() & ITEM_FLAG_RARE)
                 {
-                    for (uint8 LocID = 0; LocID < MAX_CONTAINER_ID; ++LocID)
+                    // ownership is server-side: Wardrobes 5-8 count whatever the client version
+                    for (uint8 LocID = 0; LocID < MAX_CONTAINER_ID_EXTENDED; ++LocID)
                     {
                         if (PChar->getStorage(LocID)->SearchItem(itemid) != ERROR_SLOTID)
                         {
@@ -6113,15 +6121,7 @@ void SmallPacket0x103(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
     PChar->m_extendedStorage = true; // only code path that sets it
 
-    uint8  sizes[4];
-    uint16 caps[4];
-    for (uint8 i = 0; i < 4; ++i)
-    {
-        CItemContainer* PContainer = PChar->getStorage(LOC_WARDROBE5 + i);
-        sizes[i] = 1 + PContainer->GetSize();
-        caps[i] = 1 + PContainer->GetBuff();
-    }
-    PChar->pushPacket(new CW58AckPacket(sizes, caps));
+    charutils::SendExtendedCapacity(PChar); // the ack
 
     // Upgrade push: only containers 13-16, never 0-12 (the legacy zone-in already sent those).
     for (uint8 loc = LOC_WARDROBE5; loc <= LOC_WARDROBE8; ++loc)
@@ -6134,6 +6134,16 @@ void SmallPacket0x103(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             {
                 PChar->pushPacket(new CInventoryItemPacket(PItem, loc, slotID));
             }
+        }
+    }
+    // Re-announce gear worn from Wardrobes 5-8: the legacy zone-in withheld it (egress guard).
+    for (uint8 i = 0; i < 16; ++i)
+    {
+        CItemArmor* PEquip = PChar->equip[i] != 0 ? PChar->getEquip((SLOTTYPE)i) : nullptr;
+        if (PEquip != nullptr && PChar->equipLoc[i] >= LOC_WARDROBE5)
+        {
+            PChar->pushPacket(new CEquipPacket(PChar->equip[i], i, PChar->equipLoc[i]));
+            PChar->pushPacket(new CInventoryAssignPacket(PEquip, INV_NODROP));
         }
     }
     PChar->pushPacket(new CInventoryFinishPacket());

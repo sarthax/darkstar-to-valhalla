@@ -41,6 +41,7 @@ This file is part of DarkStar-server source code.
 #include "../packets/char_abilities.h"
 #include "../packets/char_appearance.h"
 #include "../packets/char_equip.h"
+#include "../packets/w58_ack.h"
 #include "../packets/char_jobs.h"
 #include "../packets/char_job_extra.h"
 #include "../packets/char_health.h"
@@ -946,7 +947,7 @@ namespace charutils
 
         // apply augments
         // loop over each container
-        for (uint8 i = 0; i < MAX_CONTAINER_ID; ++i)
+        for (uint8 i = 0; i < MAX_CONTAINER_ID_EXTENDED; ++i)
         {
             CItemContainer* PItemContainer = PChar->getStorage(i);
 
@@ -1103,6 +1104,28 @@ namespace charutils
     *                                                                       *
     ************************************************************************/
 
+    /************************************************************************
+    *  Wardrobe 5-8 capacities (ack packet 0x103). Extended sessions only;  *
+    *  a legacy session never receives it.                                  *
+    ************************************************************************/
+
+    void SendExtendedCapacity(CCharEntity* PChar)
+    {
+        if (!PChar->extendedStorage())
+        {
+            return;
+        }
+        uint8  sizes[4];
+        uint16 caps[4];
+        for (uint8 i = 0; i < 4; ++i)
+        {
+            CItemContainer* PContainer = PChar->getStorage(LOC_WARDROBE5 + i);
+            sizes[i] = 1 + PContainer->GetSize();
+            caps[i] = 1 + PContainer->GetBuff();
+        }
+        PChar->pushPacket(new CW58AckPacket(sizes, caps));
+    }
+
     void SendInventory(CCharEntity* PChar)
     {
         auto pushContainer = [&](auto LocationID)
@@ -1177,6 +1200,10 @@ namespace charutils
 
     uint8 AddItem(CCharEntity* PChar, uint8 LocationID, uint16 ItemID, uint32 quantity, bool silence)
     {
+        if (!IsValidContainerID(LocationID, true))
+        {
+            return ERROR_SLOTID;
+        }
         if (PChar->getStorage(LocationID)->GetFreeSlotsCount() == 0 || quantity == 0)
         {
             return ERROR_SLOTID;
@@ -1281,7 +1308,7 @@ namespace charutils
 
     bool HasItem(CCharEntity* PChar, uint16 ItemID)
     {
-        for (uint8 LocID = 0; LocID < MAX_CONTAINER_ID; ++LocID)
+        for (uint8 LocID = 0; LocID < MAX_CONTAINER_ID_EXTENDED; ++LocID) // ownership is server-side, any client version
         {
             if (PChar->getStorage(LocID)->SearchItem(ItemID) != ERROR_SLOTID)
             {
@@ -1327,6 +1354,10 @@ namespace charutils
 
     uint8 MoveItem(CCharEntity* PChar, uint8 LocationID, uint8 SlotID, uint8 NewSlotID)
     {
+        if (!IsValidContainerID(LocationID, true))
+        {
+            return ERROR_SLOTID;
+        }
         CItemContainer* PItemContainer = PChar->getStorage(LocationID);
 
         if (PItemContainer->GetFreeSlotsCount() != 0)
@@ -1370,6 +1401,10 @@ namespace charutils
 
     uint32 UpdateItem(CCharEntity* PChar, uint8 LocationID, uint8 slotID, int32 quantity, bool force)
     {
+        if (!IsValidContainerID(LocationID, true))
+        {
+            return 0;
+        }
         CItem* PItem = PChar->getStorage(LocationID)->GetItem(slotID);
 
         if (PItem == nullptr)
@@ -1696,6 +1731,10 @@ namespace charutils
 
     bool EquipArmor(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID, uint8 containerID)
     {
+        if (!IsValidContainerID(containerID, true))
+        {
+            return false;
+        }
         CItemArmor* PItem = (CItemArmor*)PChar->getStorage(containerID)->GetItem(slotID);
         CItemArmor* oldItem = PChar->getEquip((SLOTTYPE)equipSlotID);
 
@@ -2083,6 +2122,10 @@ namespace charutils
 
     void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID, uint8 containerID)
     {
+        if (!IsValidContainerID(containerID, true))
+        {
+            return;
+        }
         CItemArmor* PItem = (CItemArmor*)PChar->getStorage(containerID)->GetItem(slotID);
 
         if (PItem && PItem == PChar->getEquip((SLOTTYPE)equipSlotID))

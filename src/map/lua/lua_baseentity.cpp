@@ -7238,12 +7238,13 @@ inline int32 CLuaBaseEntity::changeContainerSize(lua_State *L)
     {
         uint8 LocationID = (uint8)lua_tointeger(L, 1);
 
-        if (LocationID < MAX_CONTAINER_ID)
+        if (LocationID < MAX_CONTAINER_ID_EXTENDED) // scripts may size Wardrobes 5-8 (13-16); clients still see only what their version supports
         {
             CCharEntity* PChar = ((CCharEntity*)m_PBaseEntity);
 
             PChar->getStorage(LocationID)->AddBuff(lua_tointeger(L, 2));
             PChar->pushPacket(new CInventorySizePacket(PChar));
+            charutils::SendExtendedCapacity(PChar);
             charutils::SaveCharInventoryCapacity(PChar);
         }
         else
@@ -11609,7 +11610,7 @@ int32 CLuaBaseEntity::checkImbuedItems(lua_State* L)
 
     auto PChar {static_cast<CCharEntity*>(m_PBaseEntity)};
 
-    for (uint8 LocID = 0; LocID < MAX_CONTAINER_ID; ++LocID)
+    for (uint8 LocID = 0; LocID < MAX_CONTAINER_ID_EXTENDED; ++LocID) // ownership: includes Wardrobes 5-8
     {
         bool found = false;
         PChar->getStorage(LocID)->ForEachItem([&found](CItem* PItem)

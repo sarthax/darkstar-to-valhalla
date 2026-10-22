@@ -34,3 +34,12 @@ Order: offline unit -> local build -> isolated DB fixtures -> XIHeadless -> supe
 
 ## 5. Sign-off
 Outstanding defects, exact server and client hashes, evidence bundle, proposed tag `slice/wardrobe5-8-v1` (not created until owner approves).
+
+## 6. Server path acceptance (added 2026-10-22; all need a running server + disposable characters, owner approval for the DB)
+- [ ] Grant capacity via SQL/Lua to a disposable char; patched or XIHeadless-extended session: Wardrobe 5-8 show capacity; legacy session: nothing about 13-16 on the wire (capture).
+- [ ] Move item inventory <-> Wardrobe 5; stack split/merge; sort; persistence across zone, relog, map-server restart.
+- [ ] Equip from Wardrobe 5, zone, relog: gear still worn server-side; legacy client sees no 0x50 for it; after hello it does.
+- [ ] Rare item sitting in Wardrobe 5: AH purchase of the same item is refused; `HasItem`-based quest checks see it.
+- [ ] Use item from container 13+ as a legacy session is ignored (0x037); container >= 17 in 0x028/0x029/0x037/0x03A/0x050/0x0FA/0x0FB does not crash.
+- [ ] Trade/delivery/AH/shop cannot reach items in 13-16 (they must be moved to inventory first).
+- [ ] Migration on a COPY of the test DB: fresh up, up again, down (no live rows in container >= 13 in char_inventory or char_equip), up again restores items, gear and capacities. (Done on a scratch DB with synthetic rows 2026-10-22.)

@@ -47,6 +47,7 @@ namespace charutils
     void	SendQuestMissionLog(CCharEntity* PChar);
     void	SendKeyItems(CCharEntity* PChar);
     void	SendInventory(CCharEntity* PChar);
+    void	SendExtendedCapacity(CCharEntity* PChar);                   // Wardrobe 5-8 sizes to an extended session (no-op for legacy)
 
     void	CalculateStats(CCharEntity* PChar);
     void    UpdateSubJob(CCharEntity* PChar);

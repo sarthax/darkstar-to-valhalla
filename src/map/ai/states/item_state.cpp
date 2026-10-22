@@ -47,7 +47,8 @@ CItemState::CItemState(CCharEntity* PEntity, uint16 targid, uint8 loc, uint8 slo
     m_slot(slotid),
     m_PItem(nullptr)
 {
-    auto PItem = dynamic_cast<CItemUsable*>(m_PEntity->getStorage(loc)->GetItem(slotid));
+    CItemContainer* PContainer = m_PEntity->getStorage(loc);
+    auto PItem = PContainer ? dynamic_cast<CItemUsable*>(PContainer->GetItem(slotid)) : nullptr;
     m_PItem = PItem;
 
     if (m_PItem && m_PItem->isType(ITEM_USABLE))
