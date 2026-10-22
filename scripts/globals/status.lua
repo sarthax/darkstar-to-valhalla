@@ -1923,6 +1923,10 @@ LOC_MOGSAFE2        = 9
 LOC_WARDROBE2       = 10
 LOC_WARDROBE3       = 11
 LOC_WARDROBE4       = 12
+LOC_WARDROBE5       = 13 -- Wardrobes 5-8: server-side; extended (patched) clients only
+LOC_WARDROBE6       = 14
+LOC_WARDROBE7       = 15
+LOC_WARDROBE8       = 16
 
 ------------------------------------
 -- Spell Groups

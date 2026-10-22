@@ -24,6 +24,7 @@ This file is part of DarkStar-server source code.
 #ifndef _CHARENTITY_H
 #define _CHARENTITY_H
 
+#include <atomic>
 #include "../../common/cbasetypes.h"
 #include "../../common/mmo.h"
 
@@ -218,8 +219,9 @@ public:
 
     void              clearPacketList();            // отчистка PacketList
     // Wardrobes 5-8 / extended packets. false = legacy (2019) client; only the verified handshake may set it.
-    bool              extendedStorage() const { return m_extendedStorage; }
-    bool              m_extendedStorage = false;
+    // Atomic: pushPacket() can run on other threads than the one that grants/clears this (zone-in reset must be seen at once).
+    bool              extendedStorage() const { return m_extendedStorage.load(); }
+    std::atomic<bool> m_extendedStorage{ false };
     uint8             m_w58Hellos = 0;          // hellos seen since the last zone-in (throttle)
 
     void              pushPacket(CBasicPacket*);    // добавление копии пакета в PacketList

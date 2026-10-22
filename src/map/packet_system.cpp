@@ -2488,12 +2488,14 @@ void SmallPacket0x051(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     if (PChar->status != STATUS_NORMAL)
         return;
 
-    for (uint8 i = 0; i < RBUFB(data, (0x04)); i++)
+    // The packet is fixed-size (0x24 = 72 bytes): 16 entries of 4 bytes from +0x08. The count byte is client-supplied.
+    const uint8 entryCount = dsp_min(RBUFB(data, (0x04)), 16);
+    for (uint8 i = 0; i < entryCount; i++)
     {
         uint8 slotID = RBUFB(data, (0x08 + (0x04 * i)));        // inventory slot
         uint8 equipSlotID = RBUFB(data, (0x09 + (0x04 * i)));        // charequip slot
         uint8 containerID = RBUFB(data, (0x0A + (0x04 * i)));     // container id
-        if (containerID == LOC_INVENTORY || containerID == LOC_WARDROBE || containerID == LOC_WARDROBE2 || containerID == LOC_WARDROBE3 || containerID == LOC_WARDROBE4)
+        if (IsEquippableContainer(containerID, PChar->extendedStorage()))
         {
             charutils::EquipItem(PChar, slotID, equipSlotID, containerID);
         }

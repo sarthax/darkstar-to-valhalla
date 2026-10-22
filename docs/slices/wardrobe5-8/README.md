@@ -79,3 +79,20 @@ Method: grep of all `getStorage(`, `MAX_CONTAINER_ID`, `char_inventory`/`char_eq
 
 **Deliberately unchanged (legacy scope):** Lua `hasItem(id, loc)`, `delItem(id, qty, loc)`, `getFreeSlotCount(loc)` still clamp to 0-12, so scripts cannot address 13-16 by location (a plain `hasItem(id)` covers everything).
 **Not verified / open:** `latent_effect_container` and similar code was checked only for literal container uses, not by running; equip-dependent features (latents, set bonuses) for gear worn from 13-16 are untested; behavior under a real server, real DB and real client is untested; no GM command to grant capacity.
+
+## Edge cases and latents (2026-10-22) - read-through of the code, nothing executed
+| Case | Finding |
+|---|---|
+| Latent effects, gear sets, ammo swings, charged gear | Container-agnostic. `latent_effect_container.cpp` has no live container reference (the `getStorage` lines are commented out); everything reads gear through `getEquip()`/`equipLoc`. Ammo use and the auto-unequip when ammo runs out use `equipLoc`/`UpdateItem`, so they work from containers 13-16 unchanged |
+| **Equip-set packet 0x051** | **Fixed.** Had its own hard-coded five-container list, so extended sessions could never equip a set from Wardrobes 5-8; now `IsEquippableContainer`. Also **existing bug fixed**: the loop ran to a client-supplied count (up to 255) over a fixed 72-byte packet; now clamped to 16 entries |
+| Rare items | One source of truth: `HasItem` (now 0-16) is what `AddItem`, trade, treasure pool and the AH use. A Rare item in Wardrobe 5 blocks every way of receiving another |
+| GM tooling | `!delitem` stopped at Wardrobe 4 (would say "does not have item" for an owned item); now to Wardrobe 8. `LOC_WARDROBE5-8` added to `status.lua`. Lua `hasItem`/`delItem`/`getFreeSlotsCount` location args widened to 0-16 (server scripts only); `getItem`, `equipItem`, `getContainerSize` bindings no longer crash on a bad container |
+| Legacy session + gear worn from 13-16 (e.g. earlier patched session) | Withheld from the wire (0x50/0x1F dropped). If the player equips over that slot, the server unequips the old item normally; its unlock packet is dropped too. After a hello, the worn slots are re-announced |
+| Stale flag across threads | `m_extendedStorage` is now `std::atomic<bool>`: `pushPacket` runs on other threads than the zone-in reset |
+| Handshake abuse | Hello storm: 8 per zone-in then ignored. Replay: idempotent (re-ack, re-push). Hello while zoning: harmless, next `0x00A` clears the flag. Map-server change or relog: new character object, starts legacy. Same-zone teleports do not re-zone the client, so the flag correctly persists |
+| Capacity set back to 0 while items remain | `CItemContainer::InsertItem(item, slot)` **deletes the in-memory item** when `slot > size`. DB rows survive, so nothing is lost permanently, but at login those items do not load, and gear worn from there is not re-equipped; the next `SaveCharEquip` writes that slot as empty. **Pre-existing behavior for Wardrobes 1-4.** Consider refusing capacity decreases below the occupied count (not done) |
+| Item recasts (charged gear) | **Pre-existing**: `RECAST_ITEM` is keyed by slot number alone and refreshed against `LOC_INVENTORY`, so a charged item in any wardrobe can refresh the wrong inventory slot. Wardrobes 5-8 inherit this; not changed |
+| Item-type rules | Pre-existing parity: the server does not restrict wardrobes to equipment (the client UI does); Wardrobes 5-8 behave the same |
+| Macro equip-set reply (0x116) | Echoes client-supplied bytes; ID 0x116 is < 0x11F; not server-derived, so no new hazard |
+| New characters / schema | `char_storage` defaults for Wardrobes 5-8 are 0; before the migration is applied the extra columns are simply not read |
+| Bazaar, synthesis, shop, trade, delivery, AH | Inventory-only; no change needed |

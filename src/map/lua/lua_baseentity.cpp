@@ -1061,7 +1061,7 @@ int32 CLuaBaseEntity::delItem(lua_State* L)
 
     if (!lua_isnil(L, 3) && lua_isnumber(L, 3))
     {
-        if ((uint32)lua_tointeger(L, 3) < MAX_CONTAINER_ID)
+        if ((uint32)lua_tointeger(L, 3) < MAX_CONTAINER_ID_EXTENDED) // server-side range: includes Wardrobes 5-8
         {
             location = (uint32)lua_tointeger(L, 3);
         }
@@ -1187,7 +1187,7 @@ inline int32 CLuaBaseEntity::hasItem(lua_State *L)
         uint8  locationID = LOC_INVENTORY;
 
         locationID = (uint8)lua_tointeger(L, 2);
-        locationID = (locationID < MAX_CONTAINER_ID ? locationID : LOC_INVENTORY);
+        locationID = (locationID < MAX_CONTAINER_ID_EXTENDED ? locationID : LOC_INVENTORY);
 
         lua_pushboolean(L, PChar->getStorage(locationID)->SearchItem(ItemID) != ERROR_SLOTID);
         return 1;
@@ -1208,7 +1208,7 @@ inline int32 CLuaBaseEntity::getFreeSlotsCount(lua_State *L)
     if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
     {
         locationID = (uint8)lua_tointeger(L, 1);
-        locationID = (locationID < MAX_CONTAINER_ID ? locationID : LOC_INVENTORY);
+        locationID = (locationID < MAX_CONTAINER_ID_EXTENDED ? locationID : LOC_INVENTORY);
     }
 
     uint8 FreeSlots = ((CCharEntity*)m_PBaseEntity)->getStorage(locationID)->GetFreeSlotsCount();
@@ -1295,7 +1295,7 @@ inline int32 CLuaBaseEntity::getStorageItem(lua_State *L)
     CItem* PItem = nullptr;
 
     if (equipID == 255)
-        PItem = PChar->getStorage(container)->GetItem(slotID);
+        PItem = IsValidContainerID(container, true) ? PChar->getStorage(container)->GetItem(slotID) : nullptr;
     else
         PItem = PChar->getEquip((SLOTTYPE)equipID);
 
@@ -6403,6 +6403,8 @@ inline int32 CLuaBaseEntity::equipItem(lua_State *L)
         containerID = LOC_INVENTORY;
     else
         containerID = (uint8)lua_tointeger(L, 2);
+    if (!IsValidContainerID(containerID, true))
+        return 0;
     uint8 SLOT = PChar->getStorage(containerID)->SearchItem(itemID);
     CItemArmor* PItem;
 
@@ -7218,7 +7220,8 @@ inline int32 CLuaBaseEntity::getContainerSize(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
     CCharEntity* PChar = ((CCharEntity*)m_PBaseEntity);
-    lua_pushinteger(L, PChar->getStorage(lua_tointeger(L, 1))->GetSize());
+    CItemContainer* PContainer = IsValidContainerID((uint8)lua_tointeger(L, 1), true) ? PChar->getStorage((uint8)lua_tointeger(L, 1)) : nullptr;
+    lua_pushinteger(L, PContainer ? PContainer->GetSize() : 0);
     return 1;
 }
 
