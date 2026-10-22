@@ -63,3 +63,6 @@ Not wired (no key item id in DSP `keyitems.lua`; LSB ids shown for reference onl
 - Not committed in dsp-master.
 
 See `TEST_PLAN.md` for the live test checklist.
+
+## Street visibility fix (2026-10-22)
+The stock curator npc rows sit at the Mog House position (2,-1,-7.5) with status 0, so they were also standing in city streets (seen in Whitegate). Run `sql/slices/symphonic-curator/hide_street_curator.sql` (sets status 2, 11 rows; spawn code unhides it inside the Mog House). Re-run after any npc_list.sql reimport. Supersedes the name-matched `sunbreeze-2021-addon/hide_city_symphonic_curator.sql`, which missed Whitegate; the two are compatible.
