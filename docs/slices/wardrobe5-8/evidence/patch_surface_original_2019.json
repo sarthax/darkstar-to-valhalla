@@ -1,0 +1,218 @@
+{
+ "status": "OK",
+ "source_sha256": "514653a260c51eaec25d88510e51a86fb2a4abd9867f53d5f45a9ccf840f060f",
+ "decoded_sha256": "af2126c057d86559bfad2e164f7f7fd0a26bbc89ab29ea9cbde5cea807c7d2b8",
+ "summary": {
+  "record_base_0x9860": {
+   "count": 21,
+   "rvas": [
+    "0xe6af1",
+    "0xe6af9",
+    "0xe8782",
+    "0xe87e2",
+    "0xe8835",
+    "0xe887d",
+    "0xe8ec1",
+    "0xe8f64",
+    "0xe921b",
+    "0xe92f0",
+    "0xe9826",
+    "0xe9886",
+    "0xe988e",
+    "0xe9970",
+    "0xe9a52",
+    "0xf5c56",
+    "0x1c1e18",
+    "0x1c1e7c",
+    "0x1c1ebd",
+    "0x1c1f48",
+    "0x1c2008"
+   ]
+  },
+  "record_slot1_0x988c": {
+   "count": 17,
+   "rvas": [
+    "0x6920",
+    "0x948c4",
+    "0xe8b31",
+    "0xe8b86",
+    "0xe8c23",
+    "0x16975a",
+    "0x19fbbd",
+    "0x19fc1c",
+    "0x19fcc3",
+    "0x1e7fda",
+    "0x1e833f",
+    "0x1e8494",
+    "0x2131ae",
+    "0x21325c",
+    "0x2133ea",
+    "0x2134fe",
+    "0x21360d"
+   ]
+  },
+  "cap_u8_0x152ed": {
+   "count": 3,
+   "rvas": [
+    "0xe8c73",
+    "0xe97cf",
+    "0x1d4dcf"
+   ]
+  },
+  "cap_u16_0x152fa": {
+   "count": 2,
+   "rvas": [
+    "0xe8c96",
+    "0xe97e5"
+   ]
+  },
+  "cursor_0x14d5c": {
+   "count": 6,
+   "rvas": [
+    "0xe8860",
+    "0xe88a2",
+    "0xe88b7",
+    "0xe88c3",
+    "0xe88db",
+    "0xe88e2"
+   ]
+  },
+  "container_stride_0xdec": {
+   "count": 4,
+   "rvas": [
+    "0x40221",
+    "0x456c7",
+    "0x4c570",
+    "0xe8840"
+   ]
+  },
+  "store_size_0x3b080": {
+   "count": 11,
+   "rvas": [
+    "0x3fa2",
+    "0x40ed",
+    "0x418d",
+    "0x431c",
+    "0x43ba",
+    "0x4460",
+    "0x45b1",
+    "0x464e",
+    "0x46ee",
+    "0x478e",
+    "0x4819"
+   ]
+  },
+  "record_accessor_0xe87b0": {
+   "count": 45,
+   "rvas": [
+    "0x79c44",
+    "0x12ae9d",
+    "0x12c601",
+    "0x12cb26",
+    "0x12d6ca",
+    "0x12e0d4",
+    "0x12e678",
+    "0x12e763",
+    "0x12ec83",
+    "0x12f5e4",
+    "0x12f9d5",
+    "0x12fe33",
+    "0x130306",
+    "0x134e3b",
+    "0x13ba67",
+    "0x13bf44",
+    "0x14ae42",
+    "0x19f47b",
+    "0x19fad4",
+    "0x1c35ec",
+    "0x1c3a91",
+    "0x1c409d",
+    "0x1c479f",
+    "0x1c47d9",
+    "0x1c4a1c",
+    "0x1c4ed9",
+    "0x1ca212",
+    "0x1ca303",
+    "0x1ca4ef",
+    "0x1cb6b4",
+    "0x1cba11",
+    "0x1cdadb",
+    "0x1cdb77",
+    "0x1d970d",
+    "0x1da3b8",
+    "0x1da43f",
+    "0x1e851e",
+    "0x1fe56e",
+    "0x20688b",
+    "0x207183",
+    "0x20720c",
+    "0x207450",
+    "0x21290b",
+    "0x212a61",
+    "0x2130de"
+   ]
+  },
+  "cap_u8_getter_0xe8c60": {
+   "count": 36,
+   "rvas": [
+    "0xe6980",
+    "0xe8b35",
+    "0xe8b4e",
+    "0xe8b9f",
+    "0xe8c27",
+    "0xe8c43",
+    "0x1306e6",
+    "0x130706",
+    "0x130726",
+    "0x140224",
+    "0x140512",
+    "0x140534",
+    "0x140554",
+    "0x14088b",
+    "0x1408ca",
+    "0x1408ea",
+    "0x14090a",
+    "0x1484dd",
+    "0x14851c",
+    "0x14853c",
+    "0x14855c",
+    "0x14ad0f",
+    "0x19fbc1",
+    "0x19fc20",
+    "0x19fcc7",
+    "0x1d50bf",
+    "0x1e7fde",
+    "0x1e8343",
+    "0x1e8498",
+    "0x1e8504",
+    "0x1e91c5",
+    "0x1ea6be",
+    "0x1ea736",
+    "0x1fe55f",
+    "0x1fe5b7",
+    "0x2131b2"
+   ]
+  },
+  "cap_u16_getter_0xe8c80": {
+   "count": 3,
+   "rvas": [
+    "0x1c2aa2",
+    "0x1eb90a",
+    "0x1eb99a"
+   ]
+  },
+  "record_to_container_0xe8810": {
+   "count": 8,
+   "rvas": [
+    "0x1394cd",
+    "0x139510",
+    "0x1ea44d",
+    "0x1ea5cf",
+    "0x1eab48",
+    "0x1eac9c",
+    "0x1eb14f",
+    "0x1eb3f5"
+   ]
+  }
+ }
+}

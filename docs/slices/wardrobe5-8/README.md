@@ -35,7 +35,7 @@ Original client gate: `FFXiMain.dll` 2,870,352 bytes, SHA-256 `514653a260c51eaec
 | 0 | Preflight, research import, branch and tracking docs | in progress |
 | A | Server storage + persistence + migration up/down | in progress: containers 13-16, capacity load/save, `sql/slices/wardrobe5-8/up.sql`+`down.sql` done; syntax-checked and migration round-trip tested on a scratch MariaDB only. Not yet: item-move/sort/equip paths, unit tests, full build |
 | B | Legacy/extended packet handling, capability handshake, bounds review | not started |
-| C | Client patch design + tooling (offline) | not started |
+| C | Client patch design + tooling (offline) | design written (`CLIENT_PATCH_DESIGN.md`), owner decisions pending; no code |
 | D | Offline unit tests, then XIHeadless and live acceptance | not started |
 | E | Owner review and approval request | not started |
 
