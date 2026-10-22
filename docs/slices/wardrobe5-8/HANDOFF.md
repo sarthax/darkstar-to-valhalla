@@ -151,3 +151,16 @@ Preflight and research import -> branch + docs -> (conf request: nothing to copy
 - **Legacy session, feature ON** (branch DSGame, `wardrobe58_enable=1`, test patch-set `0102030405060708`): unmodified XIHeadless login. Containers 0-16 listed through the bot: 13 entries in inventory, 18 in the Mog Safe, nothing in 13-16. Zone change 235 -> 235 worked, inventory count unchanged. The container 13 row stayed in the DB. Limit: the bot reports what its parser shows, not a packet capture, so "nothing on the wire" is not independently proven.
 - **NOT done (item 9):** no extended session. XIHeadless cannot send a raw packet, so the `0x103` hello/ack path, the grant push of containers 13-16, equip and persistence for Wardrobe 5-8 are untested. Needs a send tool plus an ack parser in XIHeadless (C#), or a patched client; the latter is excluded by the approval.
 - **Test setup note:** the b2 run dir `map_port` must be 54230 (matches `zone_settings`); 55230 gives ConnectionReset on zone-in. The conf has the two wardrobe58 lines appended (backup `map_darkstar.conf.w58bak2`).
+
+## 18. Extended-session test on the clone DB (2026-10-21, owner approved)
+Tooling (local research copy `D:\Claude\FFXI-Tools\headless-research\xiheadless-dsp`, not committed here, built to `bin/Release/net9.0`, the existing `bin/mcp` build untouched): `IInventory.SendRaw`, MCP tools `send_raw`, `w58_hello` (patchset/magic/proto/flags overridable), `w58_ack`; parser case 0x103 stores the last ack. Driver: `xitest07`, clone DB `dspdb_w58_test`, branch DSGame with `wardrobe58_enable=1`, allow-list `0102030405060708`; DB rows: Wardrobe 5 cap 30 + item 4112 x3 in container 13, Wardrobe 6 cap 30 + 4112 x2 in container 14.
+| Step | Result |
+|---|---|
+| Legacy login, no hello | containers 13-16 empty at the client, ack count 0 |
+| Hello, patch-set `FFFF...` (not allow-listed) | refused (server log: "patch-set not allowed"), nothing sent, ack 0 |
+| Hello, bad magic / proto 2 | nothing sent, ack 0 |
+| Hello, allow-listed patch-set | ack received, 24 bytes: `W58A`, proto 1, flags 0, sizes `1F 1F 01 01`, caps `1F 1F 01 01` (u16 LE 31,31,1,1); items now visible in 13 and 14, 15/16 empty |
+| Zone 235 -> 106 without a new hello | no new ack/push (ack count stayed 1) |
+| Hello after the zone | granted again (ack count 2) |
+| DB after | rows in containers 13/14 unchanged (3 and 2) |
+**Open observations:** (1) the bot shows quantity 1 for both items although the DB has 3 and 2 and the server sets quantity on load and sends it in the item packet; cause not investigated (bot parser? a later packet? server path for 13-16?). (2) The bot's inventory view is not a packet capture and the bot keeps its client-side view of 13-16 after a zone, so "server stops sending after zoning" is shown by the ack/refusal behaviour, not by an emptied view. (3) Not covered: move/equip/sort/trade for 13-16, persistence across map restart, Rare-item checks, two-character isolation, `down.sql` with an extended session. (4) Item 9 as a real patched client is still untested.
