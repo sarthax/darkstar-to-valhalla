@@ -51,3 +51,21 @@ Hello wire format (20 bytes, N=5, header word `0x0A03`): `+4 magic 'W58H' u32`, 
 
 ## Method notes / limits
 Disassembly by Capstone (x86-32) on POL1-decoded `.text`, hand-read around each site. Static only: no execution, no proof that every path behaves as read. The scanner (`tools/client_patch/wardrobe5-8/audit_inbound_registrations.py`) is SHA-gated and covered by synthetic tests; a first heuristic version over-reported (shared callback hits) and was replaced by the exact call-target version.
+
+## Equipment sets (macros) - where they live and what the ORIGINAL client does with them (2026-10-22, static)
+Same input as above (verified original DLL). All addresses are decoded-`.text` RVAs / `.data` VAs.
+
+| Fact | Evidence | Confidence |
+|---|---|---|
+| Sets are stored **client-side** as `es0.dat` .. `es4.dat`: file name = `sprintf("%s%d%s", "es", n, ".dat")` (strings at VA `0x1036EFA4`, `0x1036EFAC`, `0x1036EEF0`; builder `0x1A0920`) | disassembly | verified |
+| 100 sets (index < `0x64`), 20 per file (index / 20 selects the file), **80-byte records** = 16-byte name (default `Set%03d`) + 16 entries x 4 bytes; loader `0x1A0970`, manager method `0x1A08B0`, pointer lookup `0x1A0EA0` | disassembly | verified |
+| Entry layout (4 bytes): byte0 = `(container << 2) \| flag` (flag 1 = equip, 2 = remove), byte1 = inventory slot, bytes 2-3 = item ID. Container therefore has 6 bits | `0x19FDA0`, `0x1A0051`, 0x52 sender `0xE2760` | verified |
+| Files are read/written through the client's user-file subsystem (`0x1B1940`, `0x1B1AC0`, `0x1B1BC0`), which uses the `USER` / `%s\%x` per-character folder strings. The exact directory was **not** traced | strings + call pattern | inferred |
+| Server never stores sets; 0x052 is a validation echo (`0x116`), and the client forwards the reply to a registered callback (`0xE31E0`) | handler + DSP code | verified |
+| Applying a set (`0x19FF80` -> 0x51 sender `0xE2800`, cap 16 entries) copies the stored slot and container into the packet only after the entry passes `0x19FDA0`, whose per-entry rules are: container must satisfy `0x19FB70` (**only {0, 8, 10, 11, 12}**), then `0x19FBA0` must find the item ID at (container, slot); otherwise it re-resolves the item with `0x19FCA0`, which begins `cmp container, 0xD; jge -> fail`. A container 13-16 entry therefore fails both checks and is dropped | disassembly | verified |
+| Other consumers of set containers: `0x19F47B` has its own `container < 13` guard; `0x1A0170` (find item by ID) loops containers 0-12 with a counter, skipping 3, never from file data; `0x19FAD4` takes container from entries the client built (source not traced); `0x19FC00` is only called from `0x1A0170` | disassembly | verified except `0x19FAD4` source |
+
+### Consequences
+1. **Swapping the original DLL back with `es*.dat` saved by a patched client is expected to be safe for applying sets**: entries naming Wardrobes 5-8 are silently dropped (the slot just stays empty). Not proven for every UI path (display/edit of a set; `0x19FAD4` source), so keep the precaution: back up `es*.dat` before the first patched-client run and restore them on rollback.
+2. **The patched client must extend the set module or sets using Wardrobes 5-8 will silently fail to equip.** Patch sites (all in the original, to be redirected to the Milestone C sidecar): `0x19FB70` (allowed-container list), `0x19FCA0` (`cmp 0xD`), `0x19F47B` (`cmp 0xD`), `0x1A0170` (loop bound `0xD`, extend to 17 and keep skipping 3), plus the record-array/capacity accesses in `0x19FBA0`, `0x19FC00`, `0x19FCA0` (`+0x988C`, `0xE8C60`). The 6-bit container field already holds 13-16.
+3. The 0x053 style-lock set path is separate and its client-side storage format is **not yet found** (server ignores the container byte there). Open item.

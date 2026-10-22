@@ -53,4 +53,4 @@ Outstanding defects, exact server and client hashes, evidence bundle, proposed t
 - [ ] Hello storm (> 8 in one zone-in) and replay; hello during zoning; relog and map-server change start legacy.
 - [ ] `!delitem` removes an item from Wardrobe 6; Rare item in Wardrobe 7 blocks AH/treasure/trade receipt.
 - [ ] Style lock using an appearance item stored only in Wardrobe 6: lock, zone, relog, delete the item -> style drops; crafted 0x053 with count 255 / equip slot 255 changes nothing outside `styleItems`.
-- [ ] Equip set containing Wardrobe 5 pieces saved on a patched client, then the ORIGINAL DLL restored: confirm what the original client does with the stored set (client audit item; do not run on a live character).
+- [ ] Equip set containing Wardrobe 5 pieces saved on a patched client, then the ORIGINAL DLL restored (on a copy of `es*.dat`, disposable character): static audit predicts the entries are dropped silently; confirm, and confirm the Equipment Set menu does not crash when listing such a set.
