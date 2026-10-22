@@ -1,0 +1,134 @@
+{
+ "status": "OK",
+ "source_sha256": "514653a260c51eaec25d88510e51a86fb2a4abd9867f53d5f45a9ccf840f060f",
+ "decoded_sha256": "af2126c057d86559bfad2e164f7f7fd0a26bbc89ab29ea9cbde5cea807c7d2b8",
+ "ui_object_init_calls": [
+  {
+   "container": 0,
+   "file": "is.dat",
+   "call_rva": "0xf7c2"
+  },
+  {
+   "container": 1,
+   "file": "bs.dat",
+   "call_rva": "0xf7d6"
+  },
+  {
+   "container": 2,
+   "file": "cl.dat",
+   "call_rva": "0xf7ee"
+  },
+  {
+   "container": 3,
+   "file": "ti.dat",
+   "call_rva": "0xf806"
+  },
+  {
+   "container": 4,
+   "file": "mb.dat",
+   "call_rva": "0xf81e"
+  },
+  {
+   "container": 5,
+   "file": "sb.dat",
+   "call_rva": "0xf836"
+  },
+  {
+   "container": 6,
+   "file": "sk.dat",
+   "call_rva": "0xf84e"
+  },
+  {
+   "container": 7,
+   "file": "ca.dat",
+   "call_rva": "0xf866"
+  },
+  {
+   "container": 8,
+   "file": "wr.dat",
+   "call_rva": "0xf87e"
+  },
+  {
+   "container": 10,
+   "file": "wr_2.dat",
+   "call_rva": "0xf896"
+  },
+  {
+   "container": 11,
+   "file": "wr_3.dat",
+   "call_rva": "0xf8ae"
+  },
+  {
+   "container": 12,
+   "file": "wr_4.dat",
+   "call_rva": "0xf8c6"
+  },
+  {
+   "container": 9,
+   "file": "b2.dat",
+   "call_rva": "0xf8de"
+  }
+ ],
+ "menu_gates": [
+  {
+   "cap_call_rva": "0x1306e6",
+   "entry_id": 3
+  },
+  {
+   "cap_call_rva": "0x130706",
+   "entry_id": 4
+  },
+  {
+   "cap_call_rva": "0x130726",
+   "entry_id": 5
+  },
+  {
+   "cap_call_rva": "0x140224",
+   "entry_id": 5
+  },
+  {
+   "cap_call_rva": "0x140512",
+   "entry_id": 15
+  },
+  {
+   "cap_call_rva": "0x140534",
+   "entry_id": 16
+  },
+  {
+   "cap_call_rva": "0x140554",
+   "entry_id": 17
+  },
+  {
+   "cap_call_rva": "0x14088b",
+   "entry_id": 4
+  },
+  {
+   "cap_call_rva": "0x1408ca",
+   "entry_id": 10
+  },
+  {
+   "cap_call_rva": "0x1408ea",
+   "entry_id": 11
+  },
+  {
+   "cap_call_rva": "0x14090a",
+   "entry_id": 12
+  },
+  {
+   "cap_call_rva": "0x1484dd",
+   "entry_id": 5
+  },
+  {
+   "cap_call_rva": "0x14851c",
+   "entry_id": 9
+  },
+  {
+   "cap_call_rva": "0x14853c",
+   "entry_id": 10
+  },
+  {
+   "cap_call_rva": "0x14855c",
+   "entry_id": 11
+  }
+ ]
+}
