@@ -167,3 +167,25 @@ Tooling (local research copy `D:\Claude\FFXI-Tools\headless-research\xiheadless-
 
 ### 18a. Quantity mismatch resolved (2026-10-21): test-fixture artefact, not a bug
 Item 4112 (potion) has `stackSize = 1` in `item_basic`, and `CItem::setQuantity` clamps to the stack size (`src/map/items/item.cpp:179`). The fixture rows (quantity 3 and 2) were therefore loaded as 1, and the server sent 1; the bot parser is correct. Existing behaviour for every container, unrelated to this slice. Use a stackable item (stackSize > 1) for quantity tests in 13-16. The invalid DB rows were left untouched on the clone.
+
+## 19. Move, persistence and crafted-container tests on the clone DB (2026-10-22, owner approved; clone `dspdb_w58_test` only)
+Servers: clone servers started by the testing coordinator (the local launcher kept losing its exes to an antivirus file shield, which the owner switched off temporarily). Same server build as sections 17-18 (game exe sha256 starts `6625e4871b6d`). Item: 4148 antidote (stackSize 12). Bot: XIHeadless research copy, raw 0x029 via `send_raw`.
+
+**Extended session (xitest07, hello granted, wardrobe5 and 6 capacity 30):**
+| Step | Result |
+|---|---|
+| `!additem 4148 5`, move 5 from bag to container 13 | OK; bag empty of 4148, container 13 slot 1 = 5; DB row `(13,1,4148,5)` |
+| Raw 0x029 container 13 -> bag, qty 2 | OK; bag has 2, container 13 has 3; DB `(0,..,2)` and `(13,..,3)` |
+| Raw 0x029 container 13 -> container 14, qty 1 | OK; 13 has 2, 14 has 1; DB matches |
+| Crafted 0x029 to 17, to 255, from 17, from 200, to 16 (empty), from 15 (empty) | no state change anywhere, DB identical, session alive and in zone |
+| Relog (new session) plus new hello | container 13 = 2, container 14 = 1, bag = 2; DB unchanged |
+
+**Legacy session (xitest06, feature on, no hello):**
+| Step | Result |
+|---|---|
+| Move 5 to container 13 | refused (bot ok=false); bag still 5, container 13 empty, DB `(0,..,5)` only |
+| Same six crafted container ids | no state change, session alive |
+| Relog | container 13 empty at the client, DB unchanged |
+
+Map server stayed up the whole time (process alive, no crash/assert lines in `map-server.log`).
+**Not covered yet:** equip and sort from 13-16, trade, Rare-item checks, two-character isolation, map-server restart persistence, `down.sql` with an extended session, a real patched client. The crafted-id test covered 0x029 only, not 0x037/0x03A/0x050/0x0FA/0x0FB.
