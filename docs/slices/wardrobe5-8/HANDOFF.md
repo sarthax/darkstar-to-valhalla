@@ -246,3 +246,22 @@ Method: `.text` unpacked with Toolkit `pol1_unpack.py` (the on-disk `.text` is P
 - Feasibility: C3b is not ruled out, but route (b) is a larger patch than the capacity-gate change. Fallback remains server-side banking commands (owner decision 2026-10-22).
 
 Next (static, read-only): find the writer of `[owner+8]` and the menu-resource loader; measure the item struct; list the 4 Mog-wardrobe item ids actually present in the menu DAT.
+
+## 24. Step D, retail DAT evidence (2026-10-22, owner approved: build downloader, read PlayOnline manifest, selective single-file downloads)
+
+Tooling: `mission_toolkit/tools/retail_fetch` built locally with `cargo build --release` (it had only ever run in CI). Files fetched with `ffxi-retail-selective --file <f> --version <v> --output D:\Claude\FFXI-Tools\retail_research` (isolated folder, **not** the installed client; the page's default root is inside the client, so use `--output` or set the root). Total transfer about 100 KB; no binaries beyond these five DATs; nothing committed.
+
+| File | Local (Valhalla client) | Retail 30210706_0 (2021-07) | Retail 30260805_0 (2026-08) | 30260805_0 SHA-256 |
+|---|---|---|---|---|
+| ROM/27/76.DAT (container names) | 17,824 B | 18,756 B, Wardrobe 1-4 | 19,076 B, **"Mog Wardrobe 5".."8" present** | `0d9a5d99...ade17d` |
+| ROM/168/25.DAT (menu) | 36,165 | 36,503, wardrobe..4 | 36,798, **`wardrobe5`..`wardrobe8` elements** | `da32340e...fb8d6` |
+| ROM/176/96.DAT (menu) | 37,263 | 37,601, ..4 | 37,862, **`wardrobe5`..`8`** | `d35af3a0...25ae7` |
+| ROM/178/35.DAT (menu) | 51,030 | 51,406, ..4 | 51,707, **`wardrobe5`..`8`** | `0c7d87f6...81158` |
+| ROM/168/24.DAT (menu) | 57,319 | 57,871, ..4 | 58,360, **`wardrobe5`..`8`** | `0ed51c61...405ca` |
+
+Findings:
+- The **only retained versions containing Wardrobe 5-8 are the 2026-08 ones**; the 2021-07 versions do not (checked in all five files).
+- The menu is built from these data-driven element definitions (`wardrobe`, `wardrobe2`..`4` in the Dec-2019 client; `wardrobe5`..`8` added in retail). This closes the "which DAT feeds the menu" gap for the **definitions and labels**; it makes route (a) of C3b viable: ship/overlay the five retail DATs, and the DLL patch only has to create the four UI objects and the gates (entries 13-16), not new menu data.
+- XIPivot-style overlay would avoid modifying the installed client's own DATs (XIPivot Ashita zip is already in `C:\ValhallaXI`); not yet tested.
+
+Open (needs client-side test, owner approval and backups): (1) whether the unpatched Dec-2019 DLL accepts the 2026 menu DATs without crashing or mis-rendering (menu DATs are shared by all menus, so a layout change since 2019 would break more than wardrobes); (2) which version of the retail DATs is safe to ship beyond the Dec-2019 client; (3) legal/distribution posture for redistributing the DATs vs having users fetch them with the downloader.
