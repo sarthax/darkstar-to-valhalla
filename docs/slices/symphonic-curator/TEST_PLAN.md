@@ -32,3 +32,7 @@ Tester fills in Result (PASS/FAIL/N-A) and notes. Use a NON-GM character (GM fla
 - Option -> song mapping mismatches (table is from LSB, unverified):
 - Retail event param layout differences:
 - Cities tested (of 10):
+
+## Street visibility check (after hide SQL)
+- [ ] Not visible outside: Whitegate (Aht Urhgan) near the Mog House door, Southern San d'Oria, Port Bastok, Windurst Woods; stand in the MH-door area of each and walk the streets.
+- [ ] Orchestrion installed: Curator still appears inside the Mog House after zoning in. No Orchestrion: absent.
