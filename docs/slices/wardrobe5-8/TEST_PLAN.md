@@ -30,7 +30,7 @@ Order: offline unit -> local build -> isolated DB fixtures -> XIHeadless -> supe
 ## 4. Client acceptance **[OWNER]** (modified DLL install, extended packets)
 - [ ] Unmodified 2019 client: only 13-container layout ever sent (packet capture/log).
 - [ ] Modified client: boot, connect, all menus, `/wardrobe5`..`/wardrobe8`, capacity display, item moves, equip, zone, relog, long-run stability, clean exit (teardown).
-- [ ] Rollback: restore original DLL by hash; session works with items intact.
+- [x] (2026-10-22, original DLL on clone server: login, zone, menu shows Wardrobe 1-4 only; DLL hash unchanged; see HANDOFF 22) Rollback: restore original DLL by hash; session works with items intact.
 
 ## 5. Sign-off
 Outstanding defects, exact server and client hashes, evidence bundle, proposed tag `slice/wardrobe5-8-v1` (not created until owner approves).

@@ -223,3 +223,16 @@ Servers: `coord-connect.exe` and `coord-game.exe` from `D:\Claude\w58-run-b2`, s
 **Rare items, source only:** `charutils::HasItem` loops over all 17 storage ids regardless of client version, and it backs the item-add check (`charutils.cpp:1239`), the trade receipt check (`:1510`) and the treasure pool check (`treasure_pool.cpp:432`) plus Lua `hasItem`. A runtime trade or treasure test was not run; the only runtime Rare check is section 20 (`!additem`).
 **Limits:** my crafted 0x037 packets had a bad size, so the server dropped them before parsing and 0x037 is NOT covered; 0x0FA and 0x0FB were not sent; `down.sql` was run with the servers stopped and no old binary was started against the parked DB, so "old binary logs in cleanly after down" is untested.
 **Still not covered:** trade at runtime, AH, 0x037/0x0FA/0x0FB with crafted ids, an old binary against a rolled-back DB, a real patched client.
+
+## 22. Legacy-client regression with the original FFXiMain.dll (2026-10-22, owner approved; clone `dspdb_w58_test` only)
+
+Setup: original, unmodified `FFXiMain.dll` (SHA-256 `514653a2...f060f`, verified before and after) through `xiloader.exe --server 127.0.0.1` against the clone servers (feature on, no 0x103 handshake, i.e. legacy session). Every touched client file was backed up first.
+
+Result:
+- Logins as xitest06 (clone char "Venthu") and the owner's personal char (cloned DB) both reached Bastok Markets. Map log: 0 error/assert/crash lines. Connect log: only the client-version warning (got 301912, expected 301709), not fatal.
+- Owner check in the real client: the menu shows only Mog Wardrobe 1-4 (no 5-8). Human check of the menu only; equip/move/sort in the real client were not exercised (covered by the XIHeadless tests in sections 19-21).
+- The xitest06 session ended with `map_cleanup: timed out` after the client was closed; nothing abnormal.
+
+Restore: the client tree was diffed against the pre-test manifest. 39 files changed and 3 were new, all client runtime state (SYS bins, TEMP logs, USER config incl. the new `USER\554a` folder). Post-test copies are kept in `post_test_state`, the originals were restored and the new folder removed. Re-diff shows 0 differences, the DLL hash is unchanged and the HKLM PlayOnlineUS registry export is identical. Clone servers stopped.
+
+Not covered: a patched Wardrobe 5-8 client (none exists), trade/AH/treasure Rare checks, 0x037/0x0FA/0x0FB with crafted ids.
