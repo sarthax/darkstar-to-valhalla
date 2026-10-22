@@ -2703,20 +2703,19 @@ void SmallPacket0x05E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             if (!(PChar->profile.mhflag & 0x20))
             {
                 ShowWarning(CL_YELLOW"SmallPacket0x5E: Mog House 2F requested without it being unlocked: %s\n" CL_RESET, PChar->GetName());
-                PChar->pushPacket(new CMessageSystemPacket(0, 0, 2));
-                PChar->pushPacket(new CCSPositionPacket(PChar));
-                PChar->status = STATUS_NORMAL;
-                return;
+                // The client has already left its exit menu for the floor change; replying with a position packet
+                // leaves the door with no menu. Rezone into the same 1F Mog House instead (flags unchanged).
             }
-            if (zone == 125)
+            else if (zone == 125)
             {
                 PChar->profile.mhflag |= 0x40;
+                charutils::SaveCharStats(PChar);
             }
             else
             {
                 PChar->profile.mhflag &= ~0x40;
+                charutils::SaveCharStats(PChar);
             }
-            charutils::SaveCharStats(PChar);
             PChar->loc.destination = PChar->getZone();
             memset(&PChar->loc.p, 0, sizeof(PChar->loc.p));
         }

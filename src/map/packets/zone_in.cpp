@@ -74,18 +74,24 @@ uint16 GetMogHouseID(CCharEntity* PChar)
 
 uint8 GetMogHouseFlag(CCharEntity* PChar)
 {
+    // On 2F the exit-quest bits may be unset (e.g. GM-unlocked); a 0 here leaves no way out, so treat them as set
+    uint16 mhflag = PChar->profile.mhflag;
+    if (mhflag & 0x40)
+    {
+        mhflag |= 0x0F;
+    }
     switch (zoneutils::GetCurrentRegion(PChar->getZone()))
     {
     case REGION_WEST_AHT_URHGAN:
-        if (PChar->profile.mhflag & 0x10) return 5;
+        if (mhflag & 0x10) return 5;
     case REGION_SANDORIA:
-        if (PChar->profile.mhflag & 0x01) return 1;
+        if (mhflag & 0x01) return 1;
     case REGION_BASTOK:
-        if (PChar->profile.mhflag & 0x02) return 2;
+        if (mhflag & 0x02) return 2;
     case REGION_WINDURST:
-        if (PChar->profile.mhflag & 0x04) return 3;
+        if (mhflag & 0x04) return 3;
     case REGION_JEUNO:
-        if (PChar->profile.mhflag & 0x08) return 4;
+        if (mhflag & 0x08) return 4;
     }
     return 0;
 }
