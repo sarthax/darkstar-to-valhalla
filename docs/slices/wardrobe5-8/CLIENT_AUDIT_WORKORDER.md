@@ -1,6 +1,6 @@
 # Client send/receive path audit - work order
 
-Status: **Q1 DONE, Q2-Q6 OPEN** (2026-10-22; results in `CLIENT_AUDIT_RESULTS.md`). The original DLL (SHA-256 `514653a2...f060f`) was supplied and verified; an earlier upload was the Stage 3 build and was not used. Read-only; no DLL is modified, installed, or committed. Output is IDs/RVAs/booleans only.
+Status: **Q1-Q5 DONE (static), Q6 not needed** (2026-10-22; results in `CLIENT_AUDIT_RESULTS.md`). The original DLL (SHA-256 `514653a2...f060f`) was supplied and verified; an earlier upload was the Stage 3 build and was not used. Read-only; no DLL is modified, installed, or committed. Output is IDs/RVAs/booleans only.
 Purpose: choose packet IDs for `HANDSHAKE_DESIGN.md` and decide whether the patched client can send a custom packet at all. Known facts are cited from Toolkit's Stage 4 report; everything else is UNKNOWN until answered.
 
 ## Already known (Toolkit Stage 4)
