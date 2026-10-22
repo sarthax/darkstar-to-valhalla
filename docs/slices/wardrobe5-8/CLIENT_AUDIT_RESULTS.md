@@ -68,4 +68,14 @@ Same input as above (verified original DLL). All addresses are decoded-`.text` R
 ### Consequences
 1. **Swapping the original DLL back with `es*.dat` saved by a patched client is expected to be safe for applying sets**: entries naming Wardrobes 5-8 are silently dropped (the slot just stays empty). Not proven for every UI path (display/edit of a set; `0x19FAD4` source), so keep the precaution: back up `es*.dat` before the first patched-client run and restore them on rollback.
 2. **The patched client must extend the set module or sets using Wardrobes 5-8 will silently fail to equip.** Patch sites (all in the original, to be redirected to the Milestone C sidecar): `0x19FB70` (allowed-container list), `0x19FCA0` (`cmp 0xD`), `0x19F47B` (`cmp 0xD`), `0x1A0170` (loop bound `0xD`, extend to 17 and keep skipping 3), plus the record-array/capacity accesses in `0x19FBA0`, `0x19FC00`, `0x19FCA0` (`+0x988C`, `0xE8C60`). The 6-bit container field already holds 13-16.
-3. The 0x053 style-lock set path is separate and its client-side storage format is **not yet found** (server ignores the container byte there). Open item.
+
+### Style lock - storage (found, 2026-10-22, static)
+| Fact | Evidence | Confidence |
+|---|---|---|
+| **The client has no separate style-lock file.** "Lock style with set N" (`0x1A02B0`) reads the same `es*.dat` equipment-set record (`0x1A01C0` copies the 16 entries), turns each equip entry into an 8-byte record (equip slot, slot = entry byte1, **container = entry byte0 >> 2**, item ID) and sends them as packet 0x53 type 3 through `0xE2870`. Flag-2 entries become zero records. It is rate-limited by `0x1A0150` (9000 ms) | disassembly `0x1A02B0..0x1A037A` | verified |
+| That path only copies bytes; it never indexes the client's item store with the container, and it applies no container filter. A stale entry naming Wardrobe 5-8 is therefore sent to the server unchanged and cannot corrupt the original client | same | verified |
+| The slot-type filter `0x1A01F0` accepts equip slots {0,1,2,3,4,5,6,7,8} (main, sub, ranged, ammo, head..feet) | disassembly | verified |
+| The other 0x53 sender `0xE2900` (two arguments: lock current look / unlock / query) is called from `0x1A044D`, `0x1A04C9`, `0x1A0535`, `0x1A0540` and carries no container | disassembly | verified |
+| **Server persistence is item-ID only**: `char_style(charid, head, body, hands, legs, feet, main, sub, ranged)` plus `chars.isstylelocked`; the packet's container byte is read and ignored (`SmallPacket0x053`). Ownership of the appearance item is checked with `HasItem` (containers 0-16) | `sql/char_style.sql`, `charutils.cpp` `SaveCharLook`, `hasValidStyle` | verified |
+
+Consequences: (a) rollback of the server and of the client DLL cannot strand a style-lock record: nothing persisted anywhere names a container; the only container-bearing client data is `es*.dat`, covered above. (b) The patched client needs **no extra patch for style lock itself**; selecting Wardrobe 5-8 pieces into a set uses the equip-set module patch sites listed above. (c) The server must keep ignoring the container byte in 0x053 and validating by item ID (it does).
