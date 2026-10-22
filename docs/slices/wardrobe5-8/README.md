@@ -58,3 +58,4 @@ Server build/test baseline not yet run in this environment; deployed revision, M
 - Egress: `CCharEntity::pushPacket` drops item packets 0x1E/0x1F/0x20 whose container is invalid for the session (`packets/inventory_guard.h`), with a warning. 0x1C remains the legacy 13-container builder.
 - Tests: `tests/wardrobe5-8/inventory_guard_test.cpp` links the real 0x1E builder; guard truth table over all 256 IDs and the equip table pass.
 - Not yet covered: trade (0x033/0x034), delivery box (0x04D), auction, shop, Lua bindings that take a container, equipment load at login for 13-16, `HasItem`-style helpers, `SendInventory` for extended sessions, sorting order. Each needs a read-through before extended mode can be enabled.
+- **Client audit Q1 done** (`CLIENT_AUDIT_RESULTS.md`): inbound table = 0x11F entries, dispatcher unchecked -> server drops outbound IDs >= 0x11F; provisional ack ID 0x100. Outgoing-path questions Q2-Q6 still open and gate the handshake implementation.

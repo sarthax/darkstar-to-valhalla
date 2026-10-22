@@ -1,0 +1,733 @@
+{
+ "status": "OK",
+ "source_sha256": "514653a260c51eaec25d88510e51a86fb2a4abd9867f53d5f45a9ccf840f060f",
+ "decoded_sha256": "af2126c057d86559bfad2e164f7f7fd0a26bbc89ab29ea9cbde5cea807c7d2b8",
+ "summary": {
+  "table_entries": 287,
+  "registration_calls": 84,
+  "unclassified_call_rvas": [
+   "0xddda6",
+   "0x110075"
+  ],
+  "registered_ids": [
+   "0x5",
+   "0x6",
+   "0x8",
+   "0x9",
+   "0xa",
+   "0xb",
+   "0xd",
+   "0xe",
+   "0x12",
+   "0x13",
+   "0x17",
+   "0x1c",
+   "0x1d",
+   "0x1e",
+   "0x1f",
+   "0x20",
+   "0x21",
+   "0x22",
+   "0x23",
+   "0x24",
+   "0x25",
+   "0x26",
+   "0x2b",
+   "0x2c",
+   "0x3c",
+   "0x3d",
+   "0x3e",
+   "0x3f",
+   "0x42",
+   "0x44",
+   "0x47",
+   "0x49",
+   "0x4f",
+   "0x50",
+   "0x69",
+   "0x6f",
+   "0x70",
+   "0x73",
+   "0x74",
+   "0x78",
+   "0x79",
+   "0x82",
+   "0x83",
+   "0x84",
+   "0x85",
+   "0x86",
+   "0x8c",
+   "0x8d",
+   "0xaa",
+   "0xab",
+   "0xac",
+   "0xad",
+   "0xae",
+   "0xb4",
+   "0xb5",
+   "0xb6",
+   "0xc8",
+   "0xc9",
+   "0xca",
+   "0xcc",
+   "0xd2",
+   "0xd3",
+   "0xdc",
+   "0xdd",
+   "0xde",
+   "0xdf",
+   "0xe0",
+   "0xe1",
+   "0xe2",
+   "0xf4",
+   "0xf5",
+   "0xf6",
+   "0x105",
+   "0x106",
+   "0x107",
+   "0x108",
+   "0x109",
+   "0x10a",
+   "0x116",
+   "0x117",
+   "0x11b",
+   "0x11c",
+   "0x11d"
+  ],
+  "null_registered_ids": [
+   "0xb6"
+  ],
+  "duplicate_ids": [
+   "0xb6"
+  ],
+  "ids_outside_table": [],
+  "unregistered_in_table": [
+   "0x0",
+   "0x1",
+   "0x2",
+   "0x3",
+   "0x4",
+   "0x7",
+   "0xc",
+   "0xf",
+   "0x10",
+   "0x11",
+   "0x14",
+   "0x15",
+   "0x16",
+   "0x18",
+   "0x19",
+   "0x1a",
+   "0x1b",
+   "0x27",
+   "0x28",
+   "0x29",
+   "0x2a",
+   "0x2d",
+   "0x2e",
+   "0x2f",
+   "0x30",
+   "0x31",
+   "0x32",
+   "0x33",
+   "0x34",
+   "0x35",
+   "0x36",
+   "0x37",
+   "0x38",
+   "0x39",
+   "0x3a",
+   "0x3b",
+   "0x40",
+   "0x41",
+   "0x43",
+   "0x45",
+   "0x46",
+   "0x48",
+   "0x4a",
+   "0x4b",
+   "0x4c",
+   "0x4d",
+   "0x4e",
+   "0x51",
+   "0x52",
+   "0x53",
+   "0x54",
+   "0x55",
+   "0x56",
+   "0x57",
+   "0x58",
+   "0x59",
+   "0x5a",
+   "0x5b",
+   "0x5c",
+   "0x5d",
+   "0x5e",
+   "0x5f",
+   "0x60",
+   "0x61",
+   "0x62",
+   "0x63",
+   "0x64",
+   "0x65",
+   "0x66",
+   "0x67",
+   "0x68",
+   "0x6a",
+   "0x6b",
+   "0x6c",
+   "0x6d",
+   "0x6e",
+   "0x71",
+   "0x72",
+   "0x75",
+   "0x76",
+   "0x77",
+   "0x7a",
+   "0x7b",
+   "0x7c",
+   "0x7d",
+   "0x7e",
+   "0x7f",
+   "0x80",
+   "0x81",
+   "0x87",
+   "0x88",
+   "0x89",
+   "0x8a",
+   "0x8b",
+   "0x8e",
+   "0x8f",
+   "0x90",
+   "0x91",
+   "0x92",
+   "0x93",
+   "0x94",
+   "0x95",
+   "0x96",
+   "0x97",
+   "0x98",
+   "0x99",
+   "0x9a",
+   "0x9b",
+   "0x9c",
+   "0x9d",
+   "0x9e",
+   "0x9f",
+   "0xa0",
+   "0xa1",
+   "0xa2",
+   "0xa3",
+   "0xa4",
+   "0xa5",
+   "0xa6",
+   "0xa7",
+   "0xa8",
+   "0xa9",
+   "0xaf",
+   "0xb0",
+   "0xb1",
+   "0xb2",
+   "0xb3",
+   "0xb7",
+   "0xb8",
+   "0xb9",
+   "0xba",
+   "0xbb",
+   "0xbc",
+   "0xbd",
+   "0xbe",
+   "0xbf",
+   "0xc0",
+   "0xc1",
+   "0xc2",
+   "0xc3",
+   "0xc4",
+   "0xc5",
+   "0xc6",
+   "0xc7",
+   "0xcb",
+   "0xcd",
+   "0xce",
+   "0xcf",
+   "0xd0",
+   "0xd1",
+   "0xd4",
+   "0xd5",
+   "0xd6",
+   "0xd7",
+   "0xd8",
+   "0xd9",
+   "0xda",
+   "0xdb",
+   "0xe3",
+   "0xe4",
+   "0xe5",
+   "0xe6",
+   "0xe7",
+   "0xe8",
+   "0xe9",
+   "0xea",
+   "0xeb",
+   "0xec",
+   "0xed",
+   "0xee",
+   "0xef",
+   "0xf0",
+   "0xf1",
+   "0xf2",
+   "0xf3",
+   "0xf7",
+   "0xf8",
+   "0xf9",
+   "0xfa",
+   "0xfb",
+   "0xfc",
+   "0xfd",
+   "0xfe",
+   "0xff",
+   "0x100",
+   "0x101",
+   "0x102",
+   "0x103",
+   "0x104",
+   "0x10b",
+   "0x10c",
+   "0x10d",
+   "0x10e",
+   "0x10f",
+   "0x110",
+   "0x111",
+   "0x112",
+   "0x113",
+   "0x114",
+   "0x115",
+   "0x118",
+   "0x119",
+   "0x11a",
+   "0x11e"
+  ],
+  "sites": [
+   {
+    "id": "0x5",
+    "handler_rva": "0xf7ee0",
+    "call_rva": "0xf6d8b"
+   },
+   {
+    "id": "0x6",
+    "handler_rva": "0xe5ca0",
+    "call_rva": "0xe5823"
+   },
+   {
+    "id": "0x8",
+    "handler_rva": "0xf7f10",
+    "call_rva": "0xf6d7f"
+   },
+   {
+    "id": "0x9",
+    "handler_rva": "0xf8f60",
+    "call_rva": "0xf6d97"
+   },
+   {
+    "id": "0xa",
+    "handler_rva": "0xf7f30",
+    "call_rva": "0xf6d67"
+   },
+   {
+    "id": "0xb",
+    "handler_rva": "0xf8950",
+    "call_rva": "0xf6d73"
+   },
+   {
+    "id": "0xd",
+    "handler_rva": "0xf8da0",
+    "call_rva": "0xf6dbb"
+   },
+   {
+    "id": "0xe",
+    "handler_rva": "0xf8e50",
+    "call_rva": "0xf6dca"
+   },
+   {
+    "id": "0x12",
+    "handler_rva": "0xe5b00",
+    "call_rva": "0xe57fc"
+   },
+   {
+    "id": "0x13",
+    "handler_rva": "0xe5b60",
+    "call_rva": "0xe5810"
+   },
+   {
+    "id": "0x17",
+    "handler_rva": "0xe0e60",
+    "call_rva": "0xe0b77"
+   },
+   {
+    "id": "0x1c",
+    "handler_rva": "0xe97c0",
+    "call_rva": "0xe85d7"
+   },
+   {
+    "id": "0x1d",
+    "handler_rva": "0xe99d0",
+    "call_rva": "0xe8633"
+   },
+   {
+    "id": "0x1e",
+    "handler_rva": "0xe9800",
+    "call_rva": "0xe85ee"
+   },
+   {
+    "id": "0x1f",
+    "handler_rva": "0xe9860",
+    "call_rva": "0xe8605"
+   },
+   {
+    "id": "0x20",
+    "handler_rva": "0xe9940",
+    "call_rva": "0xe861c"
+   },
+   {
+    "id": "0x21",
+    "handler_rva": "0xe9b00",
+    "call_rva": "0xe8661"
+   },
+   {
+    "id": "0x22",
+    "handler_rva": "0xe9b30",
+    "call_rva": "0xe8678"
+   },
+   {
+    "id": "0x23",
+    "handler_rva": "0xe9cc0",
+    "call_rva": "0xe868f"
+   },
+   {
+    "id": "0x24",
+    "handler_rva": "0xe9da0",
+    "call_rva": "0xe86eb"
+   },
+   {
+    "id": "0x25",
+    "handler_rva": "0xe9c70",
+    "call_rva": "0xe86a6"
+   },
+   {
+    "id": "0x26",
+    "handler_rva": "0xe9a10",
+    "call_rva": "0xe864a"
+   },
+   {
+    "id": "0x2b",
+    "handler_rva": "0xe9d80",
+    "call_rva": "0xe86bd"
+   },
+   {
+    "id": "0x2c",
+    "handler_rva": "0xe9d90",
+    "call_rva": "0xe86d4"
+   },
+   {
+    "id": "0x3c",
+    "handler_rva": "0xf5d40",
+    "call_rva": "0xf5af7"
+   },
+   {
+    "id": "0x3d",
+    "handler_rva": "0xf5e20",
+    "call_rva": "0xf5b0a"
+   },
+   {
+    "id": "0x3e",
+    "handler_rva": "0xf5e60",
+    "call_rva": "0xf5b1d"
+   },
+   {
+    "id": "0x3f",
+    "handler_rva": "0xf5e90",
+    "call_rva": "0xf5b30"
+   },
+   {
+    "id": "0x42",
+    "handler_rva": "0xddf60",
+    "call_rva": "0xdddba"
+   },
+   {
+    "id": "0x44",
+    "handler_rva": "0xf9d90",
+    "call_rva": "0xf6da3"
+   },
+   {
+    "id": "0x47",
+    "handler_rva": "0xe9640",
+    "call_rva": "0xe873a"
+   },
+   {
+    "id": "0x49",
+    "handler_rva": "0xe96e0",
+    "call_rva": "0xe874d"
+   },
+   {
+    "id": "0x4f",
+    "handler_rva": "0xe2ea0",
+    "call_rva": "0xe25a4"
+   },
+   {
+    "id": "0x50",
+    "handler_rva": "0xe2e60",
+    "call_rva": "0xe2577"
+   },
+   {
+    "id": "0x69",
+    "handler_rva": "0xf6de0",
+    "call_rva": "0xf6daf"
+   },
+   {
+    "id": "0x6f",
+    "handler_rva": "0xe1440",
+    "call_rva": "0xe1417"
+   },
+   {
+    "id": "0x70",
+    "handler_rva": "0xe1490",
+    "call_rva": "0xe142b"
+   },
+   {
+    "id": "0x73",
+    "handler_rva": "0xe9460",
+    "call_rva": "0xe8714"
+   },
+   {
+    "id": "0x74",
+    "handler_rva": "0xe94b0",
+    "call_rva": "0xe8727"
+   },
+   {
+    "id": "0x78",
+    "handler_rva": "0xf6120",
+    "call_rva": "0xf5ea7"
+   },
+   {
+    "id": "0x79",
+    "handler_rva": "0xf6230",
+    "call_rva": "0xf5eba"
+   },
+   {
+    "id": "0x82",
+    "handler_rva": "0xe82e0",
+    "call_rva": "0xe8148"
+   },
+   {
+    "id": "0x83",
+    "handler_rva": "0xe8200",
+    "call_rva": "0xe8130"
+   },
+   {
+    "id": "0x84",
+    "handler_rva": "0xe8380",
+    "call_rva": "0xe8176"
+   },
+   {
+    "id": "0x85",
+    "handler_rva": "0xe8360",
+    "call_rva": "0xe815f"
+   },
+   {
+    "id": "0x86",
+    "handler_rva": "0xe81a0",
+    "call_rva": "0xe818d"
+   },
+   {
+    "id": "0x8c",
+    "handler_rva": "0xe2140",
+    "call_rva": "0xe186a"
+   },
+   {
+    "id": "0x8d",
+    "handler_rva": "0xe2470",
+    "call_rva": "0xe1880"
+   },
+   {
+    "id": "0xaa",
+    "handler_rva": "0xed360",
+    "call_rva": "0xed2fa"
+   },
+   {
+    "id": "0xab",
+    "handler_rva": "0xe3480",
+    "call_rva": "0xe330a"
+   },
+   {
+    "id": "0xac",
+    "handler_rva": "0xe34b0",
+    "call_rva": "0xe3320"
+   },
+   {
+    "id": "0xad",
+    "handler_rva": "0xe34e0",
+    "call_rva": "0xe3336"
+   },
+   {
+    "id": "0xae",
+    "handler_rva": "0xe3580",
+    "call_rva": "0xe351a"
+   },
+   {
+    "id": "0xb4",
+    "handler_rva": "0xe23c0",
+    "call_rva": "0xe182a"
+   },
+   {
+    "id": "0xb5",
+    "handler_rva": "0x110030",
+    "call_rva": "0x110009"
+   },
+   {
+    "id": "0xb6",
+    "handler_rva": "0x1100f0",
+    "call_rva": "0x110018"
+   },
+   {
+    "id": "0xb6",
+    "handler_rva": null,
+    "call_rva": "0x110081"
+   },
+   {
+    "id": "0xc8",
+    "handler_rva": "0xe7240",
+    "call_rva": "0xe5d9b"
+   },
+   {
+    "id": "0xc9",
+    "handler_rva": "0xe2ed0",
+    "call_rva": "0xe2591"
+   },
+   {
+    "id": "0xca",
+    "handler_rva": "0x150c60",
+    "call_rva": "0xdd8e2"
+   },
+   {
+    "id": "0xcc",
+    "handler_rva": "0xe7b30",
+    "call_rva": "0xe5db1"
+   },
+   {
+    "id": "0xd2",
+    "handler_rva": "0xe9e00",
+    "call_rva": "0xe8701"
+   },
+   {
+    "id": "0xd3",
+    "handler_rva": "0xea250",
+    "call_rva": "0xe8763"
+   },
+   {
+    "id": "0xdc",
+    "handler_rva": "0xe6fd0",
+    "call_rva": "0xe5cf0"
+   },
+   {
+    "id": "0xdd",
+    "handler_rva": "0xe76e0",
+    "call_rva": "0xe5d0b"
+   },
+   {
+    "id": "0xde",
+    "handler_rva": "0xe79f0",
+    "call_rva": "0xe5d3f"
+   },
+   {
+    "id": "0xdf",
+    "handler_rva": "0xe7030",
+    "call_rva": "0xe5d59"
+   },
+   {
+    "id": "0xe0",
+    "handler_rva": "0xe7aa0",
+    "call_rva": "0xe5d6f"
+   },
+   {
+    "id": "0xe1",
+    "handler_rva": "0xe7b10",
+    "call_rva": "0xe5d85"
+   },
+   {
+    "id": "0xe2",
+    "handler_rva": "0xe78a0",
+    "call_rva": "0xe5d25"
+   },
+   {
+    "id": "0xf4",
+    "handler_rva": "0xf6750",
+    "call_rva": "0xf653a"
+   },
+   {
+    "id": "0xf5",
+    "handler_rva": "0xf67a0",
+    "call_rva": "0xf6550"
+   },
+   {
+    "id": "0xf6",
+    "handler_rva": "0xf6820",
+    "call_rva": "0xf6566"
+   },
+   {
+    "id": "0x105",
+    "handler_rva": "0xddb90",
+    "call_rva": "0xdd85a"
+   },
+   {
+    "id": "0x106",
+    "handler_rva": "0xddc10",
+    "call_rva": "0xdd874"
+   },
+   {
+    "id": "0x107",
+    "handler_rva": "0xddc20",
+    "call_rva": "0xdd88a"
+   },
+   {
+    "id": "0x108",
+    "handler_rva": "0xddc40",
+    "call_rva": "0xdd8a0"
+   },
+   {
+    "id": "0x109",
+    "handler_rva": "0xddc50",
+    "call_rva": "0xdd8b6"
+   },
+   {
+    "id": "0x10a",
+    "handler_rva": "0xddd20",
+    "call_rva": "0xdd8cc"
+   },
+   {
+    "id": "0x116",
+    "handler_rva": "0xe31e0",
+    "call_rva": "0xe25ba"
+   },
+   {
+    "id": "0x117",
+    "handler_rva": "0xe3210",
+    "call_rva": "0xe25d0"
+   },
+   {
+    "id": "0x11b",
+    "handler_rva": "0xe3290",
+    "call_rva": "0xe25e6"
+   },
+   {
+    "id": "0x11c",
+    "handler_rva": "0xe32c0",
+    "call_rva": "0xe25fc"
+   },
+   {
+    "id": "0x11d",
+    "handler_rva": "0xe7d30",
+    "call_rva": "0xe5dc7"
+   }
+  ]
+ }
+}

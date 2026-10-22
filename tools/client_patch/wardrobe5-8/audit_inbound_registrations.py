@@ -1,51 +1,72 @@
 #!/usr/bin/env python3
 """Read-only audit: enumerate inbound packet-handler registrations in the original 2019 FFXiMain.dll.
 
-Why: HANDSHAKE_DESIGN.md needs a server->client ack packet ID the unmodified client either ignores or
-never receives, and a clear picture of the client's inbound ID space. Output is scalar metadata only
-(packet IDs and RVAs). It never writes or prints code bytes, and refuses any DLL whose SHA-256 differs.
+Method (verified by hand-disassembly of the original, 2026-10-22):
+  * every registration is a call to the stub 0xF95D0 (jmp 0xF9590) or 0xF9590 directly, cdecl(id, handler);
+  * 0xF9590 stores handler at [mgr + id*4 + 0x3E970] and fails for id >= 0x11F  (table = 0x11F entries);
+  * the dispatcher (0xF79E9) indexes the same table with (word & 0x1FF) and NO bounds check.
+Output is scalar metadata only (IDs, RVAs). It never prints code bytes, and refuses any DLL whose SHA-256 differs.
 
-Usage (Windows or Linux; Toolkit research branch checked out):
+Usage (Toolkit research branch on the Python path):
   PYTHONPATH=<toolkit>/src python3 audit_inbound_registrations.py <original FFXiMain.dll>
 """
-import hashlib, json, re, sys
+import hashlib, json, struct, sys
 
 EXPECTED_SHA256 = "514653a260c51eaec25d88510e51a86fb2a4abd9867f53d5f45a9ccf840f060f"
-IMAGE_BASE = 0x10000000          # from the verified anchor: push 0x100E97C0 == RVA 0xE97C0
-# 68 <handler imm32> 6A <id imm8>      push handler ; push id
-# 68 <handler imm32> 68 <id imm32>     push handler ; push id (id >= 0x80)
-PATTERN = re.compile(rb"\x68(....)(?:\x6a(.)|\x68(....))", re.S)
+IMAGE_BASE = 0x10000000
+REGISTER_TARGETS = (0xF95D0, 0xF9590)   # stub, real function
+TABLE_ENTRIES = 0x11F
 
 
-def scan_registrations(decoded: bytes, decoded_rva: int = 0x1000, image_base: int = IMAGE_BASE) -> list:
-    """Return [{id, handler_rva, site_rva, followed_by_call}] for push-handler/push-id sequences.
+def scan_registrations(decoded: bytes, decoded_rva: int = 0x1000, targets=REGISTER_TARGETS) -> dict:
+    """Find direct calls to the register function and classify how (id, handler) were pushed.
 
-    A hit counts only if the handler VA lands inside decoded .text. `followed_by_call` flags an E8 call
-    within the next 8 bytes; hits without it are weaker evidence and reported, not hidden.
+    Accepts: [push handler|push 0] [rep stosd]? [push id8|push id32] [rep stosd]? call register.
+    Everything that does not match is listed in `unclassified` (never guessed).
     """
-    out = []
-    for m in PATTERN.finditer(decoded):
-        handler_rva = int.from_bytes(m.group(1), "little") - image_base
-        if not (decoded_rva <= handler_rva < decoded_rva + len(decoded)):
+    n, regs, unclassified = len(decoded), [], []
+    for o in range(10, n - 5):
+        if decoded[o] != 0xE8:
             continue
-        pid = m.group(2)[0] if m.group(2) is not None else int.from_bytes(m.group(3), "little")
-        if pid > 0x1FF:
+        tgt = decoded_rva + o + 5 + struct.unpack_from("<i", decoded, o + 1)[0]
+        if tgt not in targets:
             continue
-        tail = decoded[m.end():m.end() + 8]
-        out.append({"id": pid, "handler_rva": handler_rva, "site_rva": decoded_rva + m.start(),
-                    "followed_by_call": 0xE8 in tail})
-    return out
+        p = o
+        if decoded[p - 2:p] == b"\xf3\xab":
+            p -= 2
+        if decoded[p - 2] == 0x6A:
+            pid, p = decoded[p - 1], p - 2
+        elif decoded[p - 5] == 0x68:
+            pid, p = struct.unpack_from("<I", decoded, p - 4)[0], p - 5
+        else:
+            unclassified.append(decoded_rva + o); continue
+        if decoded[p - 2:p] == b"\xf3\xab":
+            p -= 2
+        if decoded[p - 5] == 0x68:
+            handler = struct.unpack_from("<I", decoded, p - 4)[0] - IMAGE_BASE
+        elif decoded[p - 2:p] == b"\x6a\x00":
+            handler = None   # explicit NULL: clears the entry
+        else:
+            unclassified.append(decoded_rva + o); continue
+        regs.append({"id": pid, "handler_rva": handler, "call_rva": decoded_rva + o})
+    return {"registrations": regs, "unclassified_call_rvas": unclassified}
 
 
-def summarize(regs: list) -> dict:
-    strong = [r for r in regs if r["followed_by_call"]]
-    ids = sorted({r["id"] for r in strong})
-    dup = sorted({i for i in ids if sum(1 for r in strong if r["id"] == i) > 1})
-    return {"registrations": len(regs), "strong": len(strong), "registered_ids": [hex(i) for i in ids],
-            "duplicate_ids": [hex(i) for i in dup],
-            "unregistered_ids_0x00_0xff": [hex(i) for i in range(0x100) if i not in ids],
-            "sites": [{"id": hex(r["id"]), "handler_rva": hex(r["handler_rva"]), "site_rva": hex(r["site_rva"]),
-                       "call": r["followed_by_call"]} for r in sorted(regs, key=lambda r: (r["id"], r["site_rva"]))]}
+def summarize(scan: dict) -> dict:
+    regs = scan["registrations"]
+    set_ids = sorted({r["id"] for r in regs if r["handler_rva"] is not None})
+    cleared = sorted({r["id"] for r in regs if r["handler_rva"] is None})
+    seen, dup = set(), set()
+    for r in regs:
+        (dup if r["id"] in seen else seen).add(r["id"])
+    out_of_table = sorted(i for i in seen if i >= TABLE_ENTRIES)
+    return {"table_entries": TABLE_ENTRIES, "registration_calls": len(regs),
+            "unclassified_call_rvas": [hex(x) for x in scan["unclassified_call_rvas"]],
+            "registered_ids": [hex(i) for i in set_ids], "null_registered_ids": [hex(i) for i in cleared],
+            "duplicate_ids": [hex(i) for i in sorted(dup)], "ids_outside_table": [hex(i) for i in out_of_table],
+            "unregistered_in_table": [hex(i) for i in range(TABLE_ENTRIES) if i not in seen],
+            "sites": [{"id": hex(r["id"]), "handler_rva": None if r["handler_rva"] is None else hex(r["handler_rva"]),
+                       "call_rva": hex(r["call_rva"])} for r in sorted(regs, key=lambda r: r["id"])]}
 
 
 def main(path: str) -> int:
@@ -57,9 +78,8 @@ def main(path: str) -> int:
         print(json.dumps({"status": "UNKNOWN_BUILD_FINGERPRINT", "sha256": sha, "expected": EXPECTED_SHA256}))
         return 2
     text = unpack_pol1(image)
-    regs = scan_registrations(text["bytes"], text["base_rva"])
     print(json.dumps({"status": "OK", "source_sha256": sha, "decoded_sha256": text.get("sha256"),
-                      "summary": summarize(regs)}, indent=1))
+                      "summary": summarize(scan_registrations(text["bytes"], text["base_rva"]))}, indent=1))
     return 0
 
 

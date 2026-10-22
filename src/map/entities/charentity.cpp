@@ -250,6 +250,12 @@ void CCharEntity::clearPacketList()
 void CCharEntity::pushPacket(CBasicPacket* packet)
 {
     // Egress chokepoint: a legacy client must never see containers outside 0-12.
+    if (packet != nullptr && !ClientInboundIdSafe(packet->id()))
+    {
+        ShowWarning(CL_YELLOW"CCharEntity::pushPacket: dropped packet 0x%03X for %s (id outside the client's handler table)\n" CL_RESET, packet->id(), GetName());
+        delete packet;
+        return;
+    }
     if (packet != nullptr && InventoryPacketBlocked(packet->id(), static_cast<uint8*>(*packet), m_extendedStorage))
     {
         ShowWarning(CL_YELLOW"CCharEntity::pushPacket: dropped inventory packet 0x%03X for %s (container not valid for this client)\n" CL_RESET, packet->id(), GetName());

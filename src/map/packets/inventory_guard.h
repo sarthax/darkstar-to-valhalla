@@ -22,6 +22,15 @@ inline bool InventoryPacketContainer(uint16 type, const uint8* data, uint8* cont
     return false;
 }
 
+// The 2019 client's inbound dispatcher (RVA 0xF79E9) indexes a 0x11F-entry handler table with (id & 0x1FF)
+// and does no bounds check: an ID of 0x11F-0x1FF reads past the table and calls whatever pointer is there.
+// Original DLL SHA-256 514653a2...f060f; see docs/slices/wardrobe5-8/CLIENT_AUDIT_RESULTS.md.
+#define CLIENT_INBOUND_ID_LIMIT 0x11F
+inline bool ClientInboundIdSafe(uint16 type)
+{
+    return type < CLIENT_INBOUND_ID_LIMIT;
+}
+
 // True if this packet must NOT be sent to a session with the given capability.
 inline bool InventoryPacketBlocked(uint16 type, const uint8* data, bool extendedSession)
 {

@@ -36,7 +36,10 @@ All traffic uses the existing encrypted map channel.
 - Lua-driven sends (`lua_baseentity.cpp` 0x1C push at ~7246) use the same chokepoint.
 - Items in 13-16 for a legacy session are invisible, not removed: not tradeable, not equippable, not counted in `HasItem`-style client-visible views (decide per consumer; listed in `TEST_PLAN.md`).
 
-## Packet ID selection (open)
+## Packet ID selection (partly resolved)
+**Update 2026-10-22 (`CLIENT_AUDIT_RESULTS.md`):** the client's inbound table has 0x11F entries and the dispatcher does not bounds-check, so `S2C_W58_ACK` must be < 0x11F; provisional `0x100`. Server now drops any outbound packet ID >= 0x11F. `C2S_W58_HELLO` still waits on the outgoing-path audit (Q2-Q6).
+
+Original analysis:
 Server's `PacketParser` table has 165 unregistered IDs in 0x00-0xFF and unregistered IDs fall to a default handler, so a free server ID is easy. The harder constraint is the client: the chosen ID must not be emitted/consumed by the 2019 client, and the patch needs a way to send a custom packet through the client's own send path. **Needs a Toolkit audit** (send-side builders, receive dispatch table bounds). If the client cannot be patched to send a packet safely, fallback is piggybacking the hello on an existing client packet's reserved bytes, which is worse (unmodified clients send those bytes) and would need a magic that cannot occur naturally.
 
 ## Tests

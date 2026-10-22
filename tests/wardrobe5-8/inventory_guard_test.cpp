@@ -38,6 +38,10 @@ int main()
       CHECK(!InventoryPacketBlocked(extOnly.id(), static_cast<uint8*>(extOnly), true));
       CHECK( InventoryPacketBlocked(bad.id(), static_cast<uint8*>(bad), true)); }
 
+    // Client handler table is 0x11F entries (IDs 0-0x11E); dispatcher does no bounds check.
+    for (int t = 0; t < 0x200; ++t) CHECK(ClientInboundIdSafe((uint16)t) == (t <= 0x11E));
+    CHECK(CLIENT_INBOUND_ID_LIMIT == 0x11F);
+
     // Equip table
     for (int id = 0; id < 256; ++id)
     {
