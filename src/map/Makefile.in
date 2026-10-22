@@ -22,7 +22,7 @@ MAP_OBJ = obj_map/map.o obj_map/baseentity.o obj_map/battleentity.o obj_map/char
      obj_map/packets/trade_update.o                                                                                                            \
      obj_map/packets/basic.o obj_map/packets/zone_in.o obj_map/packets/char_appearance.o obj_map/packets/downloading_data.o                    \
      obj_map/packets/char_jobs.o obj_map/packets/zone_visited.o obj_map/packets/server_message.o                                               \
-     obj_map/packets/inventory_assign.o obj_map/packets/inventory_modify.o obj_map/packets/inventory_finish.o obj_map/packets/furniture_interact.o                                  \
+     obj_map/packets/inventory_assign.o obj_map/packets/inventory_modify.o obj_map/packets/inventory_finish.o obj_map/packets/w58_ack.o obj_map/packets/furniture_interact.o                                  \
      obj_map/packets/char_equip.o obj_map/packets/inventory_item.o obj_map/packets/inventory_size.o                                            \
      obj_map/packets/char_skills.o obj_map/packets/conquest_map.o obj_map/packets/char_emotion.o                                               \
      obj_map/packets/quest_mission_log.o obj_map/packets/char_sync.o obj_map/packets/stop_downloading.o                                        \
@@ -62,7 +62,7 @@ MAP_H    = map.h baseentity.h battleentity.h charentity.h mobentity.h npcentity.
    spell.h trait.h treasure_pool.h universal_container.h weapon_skill.h region.h linkshell.h                                                   \
    packets/basic.h packets/zone_in.h packets/char_appearance.h packets/downloading_data.h                                                      \
    packets/char_jobs.h packets/zone_visited.h packets/server_message.h                                                                         \
-   packets/inventory_assign.h packets/inventory_modify.h packets/inventory_finish.h packets/furniture_interact.h                                                            \
+   packets/inventory_assign.h packets/inventory_modify.h packets/inventory_finish.h packets/inventory_guard.h packets/w58_ack.h packets/w58_handshake.h packets/furniture_interact.h                                                            \
    packets/inventory_item.h packets/char_equip.h packets/inventory_size.h                                                                      \
    packets/char_skills.h packets/conquest_map.h packets/char_emotion.h                                                                         \
    packets/quest_mission_log.h packets/char_sync.h packets/stop_downloading.h                                                                  \

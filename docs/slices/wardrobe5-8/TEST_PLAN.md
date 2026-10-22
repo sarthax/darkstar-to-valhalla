@@ -11,7 +11,8 @@ Order: offline unit -> local build -> isolated DB fixtures -> XIHeadless -> supe
 - [x] (partial) container guards in 0x028/0x029/0x03A/0x050/0x0FA/0x0FB and the egress chokepoint (`inventory_guard_test.cpp`, passing). Remaining handlers listed in README.
 - [ ] `getStorage()` never returns null to a caller that dereferences it (0x029, 0x03A, 0x050, 0x1E/1F/20 builders, Lua bindings).
 - [ ] 0x1C builder: legacy = byte-identical to current output; extended = 18-container layout; unknown caps = legacy.
-- [ ] Capability: default LEGACY; spoofed/malformed handshake stays LEGACY; reset on zone/relog/session end.
+- [x] (offline, logic only) Capability decision table: disabled/not-in-zone/throttled/bad length/magic/proto/flags/unknown or empty allow-list all refuse; one wrong patch-set byte refuses; ack bytes and header (`tests/wardrobe5-8/handshake_test.cpp`, passing).
+- [ ] Capability end to end: default LEGACY; spoofed/malformed handshake stays LEGACY; reset on zone/relog/session end (needs a running server).
 - [ ] Malformed requests (bad container/slot/quantity) fail safely without state change.
 - [ ] Migration SQL passes `tools/sqlcheck.py`; `up.sql` then `down.sql` restores schema on a scratch DB.
 

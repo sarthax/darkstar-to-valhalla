@@ -989,6 +989,8 @@ int32 map_config_default()
     map_config.ability_recast_multiplier = 1.0f;
     map_config.vanadiel_time_offset = 0;
     map_config.lightluggage_block = 4;
+    map_config.wardrobe58_enable = 0;
+    map_config.wardrobe58_patchsets = "";
     map_config.max_time_lastupdate = 60000;
     map_config.newstyle_skillups = 7;
     map_config.drop_rate_multiplier = 1.0f;
@@ -1084,6 +1086,14 @@ int32 map_config_read(const int8* cfgName)
         else if (strcmp(w1, "lightluggage_block") == 0)
         {
             map_config.lightluggage_block = atoi(w2);
+        }
+        else if (strcmp(w1, "wardrobe58_enable") == 0)
+        {
+            map_config.wardrobe58_enable = atoi(w2);
+        }
+        else if (strcmp(w1, "wardrobe58_patchsets") == 0)
+        {
+            map_config.wardrobe58_patchsets = w2;
         }
         else if (strcmp(w1, "ah_base_fee_single") == 0)
         {

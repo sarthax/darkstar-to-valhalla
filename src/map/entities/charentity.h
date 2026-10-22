@@ -220,6 +220,7 @@ public:
     // Wardrobes 5-8 / extended packets. false = legacy (2019) client; only the verified handshake may set it.
     bool              extendedStorage() const { return m_extendedStorage; }
     bool              m_extendedStorage = false;
+    uint8             m_w58Hellos = 0;          // hellos seen since the last zone-in (throttle)
 
     void              pushPacket(CBasicPacket*);    // добавление копии пакета в PacketList
     void              pushPacket(std::unique_ptr<CBasicPacket>);    // push packet to packet list

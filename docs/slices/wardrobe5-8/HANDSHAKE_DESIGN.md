@@ -1,6 +1,6 @@
 # Extended-capability handshake - design proposal (for owner review)
 
-Status: PROPOSAL, 2026-10-22. Not implemented. Packet IDs below are placeholders pending a client send/receive table audit.
+Status: SERVER SIDE IMPLEMENTED 2026-10-22 (offline-tested only; server not built or run; client side not started). Packet ID `0x103` both ways per `CLIENT_AUDIT_RESULTS.md`.
 
 ## Goal and threat model
 Guarantee the unmodified December 2019 client never receives container IDs 13-16 or the 18-container 0x1C layout, and that a patched client gets them only when both ends agree.
@@ -52,3 +52,17 @@ All three accepted: threat model = accidents, not adversaries; allow-list by pat
 1. Accept the "accident, not adversary" threat model?
 2. Allow-list by patch-set ID in conf (proposed), or a single boolean?
 3. OK to spend a Toolkit research task on the client send-path/ID audit before implementing server code?
+
+## Implementation notes (server side, 2026-10-22)
+Files: `src/map/packets/w58_handshake.h` (pure logic), `w58_ack.{h,cpp}` (ack packet), `SmallPacket0x103` in `packet_system.cpp`, config in `map.cpp/map.h`, tests `tests/wardrobe5-8/handshake_test.cpp`.
+
+**Config (map_darkstar.conf; defaults live in code, the tracked conf files are not edited):**
+```
+wardrobe58_enable:    0                      # default off. Handler is inert and silent when 0.
+wardrobe58_patchsets: 0102030405060708,...   # comma-separated 16-hex-char patch-set IDs. Empty = nobody is upgraded.
+```
+**Deviation from the protocol text above:** the ack carries the Wardrobe 5-8 sizes and capacities itself (4 x u8 `1+size`, 4 x u16 `1+buff`) instead of the server sending a variant 0x1C. Reason: the 2019 0x1C handler copies exactly 13+13 entries; a second, differently shaped 0x1C would force the patched client to special-case a packet the original code already owns, and any stray one reaching an unpatched client is a hazard. The ack is new code on both ends. The legacy 0x1C is never altered.
+**Decision order (`W58Decide`):** flag off -> not in zone -> throttle (8 per zone-in) -> length 20 -> magic -> proto 1 -> flags 0 -> patch-set on allow-list. Anything else is a refusal that keeps the session legacy; only the first refusal per zone-in is logged.
+**Lifetime:** `CCharEntity::m_extendedStorage` is cleared at the start of every `SmallPacket0x00C` (zone-in), before any inventory push, and the hello counter is reset; a patched client must hello after each zone-in. The flag is set in exactly one place (the grant branch of `SmallPacket0x103`). A new login is a new character object, so it starts legacy.
+**Grant action:** set flag, push ack, push item packets for containers 13-16 only, then `CInventoryFinishPacket`. The egress filter in `pushPacket` lets these through only because the flag is already set.
+**Not implemented yet:** client-side hello/ack handling and sidecar (Milestone C); runtime downgrade if the conf flag changes without restart (flag is read at startup); equipment load for items worn from 13-16; trade/delivery/auction/shop/Lua paths for extended sessions.

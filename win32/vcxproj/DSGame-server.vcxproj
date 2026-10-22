@@ -381,6 +381,9 @@
     <ClInclude Include="..\..\src\map\packets\instance_entry.h" />
     <ClInclude Include="..\..\src\map\packets\inventory_assign.h" />
     <ClInclude Include="..\..\src\map\packets\inventory_finish.h" />
+    <ClInclude Include="..\..\src\map\packets\inventory_guard.h" />
+    <ClInclude Include="..\..\src\map\packets\w58_ack.h" />
+    <ClInclude Include="..\..\src\map\packets\w58_handshake.h" />
     <ClInclude Include="..\..\src\map\packets\furniture_interact.h" />
     <ClInclude Include="..\..\src\map\packets\inventory_item.h" />
     <ClInclude Include="..\..\src\map\packets\inventory_modify.h" />
@@ -625,6 +628,7 @@
     <ClCompile Include="..\..\src\map\packets\instance_entry.cpp" />
     <ClCompile Include="..\..\src\map\packets\inventory_assign.cpp" />
     <ClCompile Include="..\..\src\map\packets\inventory_finish.cpp" />
+    <ClCompile Include="..\..\src\map\packets\w58_ack.cpp" />
     <ClCompile Include="..\..\src\map\packets\furniture_interact.cpp" />
     <ClCompile Include="..\..\src\map\packets\inventory_item.cpp" />
     <ClCompile Include="..\..\src\map\packets\inventory_modify.cpp" />

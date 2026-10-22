@@ -120,6 +120,8 @@ This file is part of DarkStar-server source code.
 #include "packets/inventory_finish.h"
 #include "packets/furniture_interact.h"
 #include "packets/inventory_item.h"
+#include "packets/w58_ack.h"
+#include "packets/w58_handshake.h"
 #include "packets/inventory_modify.h"
 #include "packets/inventory_size.h"
 #include "packets/lock_on.h"
@@ -325,6 +327,10 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
 void SmallPacket0x00C(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
+    // Every zone-in starts as a legacy session; a patched client must hello again to be upgraded (HANDSHAKE_DESIGN.md).
+    PChar->m_extendedStorage = false;
+    PChar->m_w58Hellos = 0;
+
     if (PChar->m_moghouseID != 0)
     {
         gardenutils::UpdateGardening(PChar, false);
@@ -6073,6 +6079,66 @@ void SmallPacket0x115(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 *                                                                       *
 ************************************************************************/
 
+
+/************************************************************************
+*                                                                       *
+*  Wardrobe 5-8 handshake (client hello). Inert unless                  *
+*  wardrobe58_enable=1. See docs/slices/wardrobe5-8/HANDSHAKE_DESIGN.md *
+*                                                                       *
+************************************************************************/
+
+void SmallPacket0x103(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
+{
+    if (!map_config.wardrobe58_enable)
+        return;
+
+    size_t rejected = 0;
+    const auto allow = W58ParseAllowList(map_config.wardrobe58_patchsets, &rejected);
+
+    const W58_VERDICT verdict = W58Decide(true, static_cast<uint8*>(data), data.length(), allow,
+        PChar->loc.zone != nullptr, PChar->m_w58Hellos);
+
+    if (PChar->m_w58Hellos < 255)
+        ++PChar->m_w58Hellos;
+
+    if (verdict != W58_GRANT)
+    {
+        if (PChar->m_w58Hellos == 1) // log the first refusal per zone-in only
+        {
+            ShowWarning(CL_YELLOW"SmallPacket0x103: Wardrobe 5-8 hello from %s refused: %s (%u malformed allow-list entries)\n" CL_RESET,
+                PChar->GetName(), W58VerdictName(verdict), (uint32)rejected);
+        }
+        return;
+    }
+
+    PChar->m_extendedStorage = true; // only code path that sets it
+
+    uint8  sizes[4];
+    uint16 caps[4];
+    for (uint8 i = 0; i < 4; ++i)
+    {
+        CItemContainer* PContainer = PChar->getStorage(LOC_WARDROBE5 + i);
+        sizes[i] = 1 + PContainer->GetSize();
+        caps[i] = 1 + PContainer->GetBuff();
+    }
+    PChar->pushPacket(new CW58AckPacket(sizes, caps));
+
+    // Upgrade push: only containers 13-16, never 0-12 (the legacy zone-in already sent those).
+    for (uint8 loc = LOC_WARDROBE5; loc <= LOC_WARDROBE8; ++loc)
+    {
+        CItemContainer* PContainer = PChar->getStorage(loc);
+        for (uint8 slotID = 0; slotID <= PContainer->GetSize(); ++slotID)
+        {
+            CItem* PItem = PContainer->GetItem(slotID);
+            if (PItem != nullptr)
+            {
+                PChar->pushPacket(new CInventoryItemPacket(PItem, loc, slotID));
+            }
+        }
+    }
+    PChar->pushPacket(new CInventoryFinishPacket());
+}
+
 void PacketParserInitialize()
 {
     for (uint16 i = 0; i < 512; ++i)
@@ -6171,6 +6237,7 @@ void PacketParserInitialize()
     PacketSize[0x0FD] = 0x00; PacketParser[0x0FD] = &SmallPacket0x0FD;
     PacketSize[0x0FE] = 0x00; PacketParser[0x0FE] = &SmallPacket0x0FE;
     PacketSize[0x0FF] = 0x00; PacketParser[0x0FF] = &SmallPacket0x0FF;
+    PacketSize[0x103] = 0x0A; PacketParser[0x103] = &SmallPacket0x103; // Wardrobe 5-8 hello (20 bytes)
     PacketSize[0x100] = 0x04; PacketParser[0x100] = &SmallPacket0x100;
     PacketSize[0x102] = 0x52; PacketParser[0x102] = &SmallPacket0x102;
     PacketSize[0x104] = 0x02; PacketParser[0x104] = &SmallPacket0x104;
