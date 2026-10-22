@@ -313,3 +313,10 @@ Owner test: with the five 2026-08 DATs installed and the original DLL, `/wardrob
 - **Consequence:** a client patch needs four new container objects plus extended switches at every site above. That is far larger than the 306-byte tail cave. It would need a new executable section, which crashed earlier builds, or a relocating loader.
 - **Open:** the 0x1C capacity handler and the `myroom` container-list builder were not located.
 - **Recommendation:** treat the client DLL route as high-cost. Fall back to the server-side banking commands (zone or packet resend), or approve a larger section-based patch effort.
+
+## 31. PAUSED (2026-10-22)
+
+- Client work paused by the owner: complexity, competing work. Server side is complete and tested; the feature stays on `feature/wardrobe5-8-v1` (valhalla).
+- **Environment reverted:** installed client `FFXiMain.dll` is the original (514653a2), `ROM/119/51.DAT` and `ROM/91/15.DAT` are original; `version.info` restored (`ENABLE_VER_LOCK: true`). Running DSConnect still holds the unlocked value until it is restarted. Local log `C:\w58_client.bin` is left in place (delete by hand). Backups remain in `C:\ValhallaXI_backup_w58_20261022\`.
+- **Resume plan (decided: section-based client patch):** (1) locate the Storage tab list builder (the `bank` menu object class vtable; the tab list is not built in 0x101D4E70, which only maps one container to its capacity global); (2) locate the 0x1C capacity handler; (3) create four container objects for 13-16 and extend each per-global switch (section 30); (4) code must stay position-independent (section 29). Static helpers are in `retail_research/dllpatch/` and the session scratchpad (`dis.py`, `x3.py`, `x5.py`).
+- **Fallback:** server banking commands plus zone or packet resend.
