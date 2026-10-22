@@ -189,3 +189,20 @@ Servers: clone servers started by the testing coordinator (the local launcher ke
 
 Map server stayed up the whole time (process alive, no crash/assert lines in `map-server.log`).
 **Not covered yet:** equip and sort from 13-16, trade, Rare-item checks, two-character isolation, map-server restart persistence, `down.sql` with an extended session, a real patched client. The crafted-id test covered 0x029 only, not 0x037/0x03A/0x050/0x0FA/0x0FB.
+
+## 20. Equip, sort, Rare and isolation tests on the clone DB (2026-10-22, owner approved; clone `dspdb_w58_test` only)
+Same servers and bot as section 19. Raw packets via `send_raw`: 0x050 body = `slot, equipSlot, container, 0`; 0x03A body = `container, 0, 0, 0`. Items: 17024 ash_club (all jobs, level 1, stack 1), 16534 onion_sword, 4148 antidote (stack 12), 12008 ravagers_mask (flags include Rare 0x8000). Character was WHM20; an earlier run with 16535 bronze_sword did not equip because the job cannot use it, so that run proves nothing and is not counted.
+
+| Step | Result |
+|---|---|
+| Extended: 0x050 main hand (equipSlot 0) from container 13 | `char_equip` row `(equipslotid 0, slotid 1, containerid 13)`; item stays in container 13 |
+| Extended: move the equipped item out of 13 (0x029 13 -> bag) | no change: item still in 13, equip row intact |
+| Extended: 0x050 with container 14, 15, 16 (empty slots) | no state change |
+| Relog, new hello | equip row and container contents unchanged |
+| Extended: 0x03A on container 13 with fragments `(slot10, 4148 x2)` and `(slot11, 4148 x4)` | merged to `(slot10, 4148 x6)`, DB matches; items of different ids were not reordered. DSP's sort only merges partial stacks, it never reorders, so this is existing behaviour |
+| Extended: `!additem 12008` while a Rare 12008 sits in container 13 | add refused; bag stays empty of 12008, container 13 keeps the single item |
+| Legacy (xitest06): DB row `(13, 1, 17024)` fixture, then 0x050 with container 13 and 0x03A on 13 | container 13 empty at the client, no equip row written, DB row untouched, nothing moved to the bag |
+| Isolation: xitest07's container-13 items vs xitest06 | xitest06 never saw them; xitest06's fixture row never appeared in xitest07's container 13; each character's DB rows stayed under its own charid |
+
+**Limits:** the Rare check covers only `!additem` into the bag with the duplicate in container 13. AH purchase, trade receipt, treasure-pool and quest `HasItem` checks were not run. I did not check that the client received the equip update, only the server state and DB. The legacy equip test covered one fixture item, one equip slot and one container id.
+**Still not covered:** trade, equip set (0x051), map-server restart persistence, `down.sql` with an extended session, crafted ids on 0x037/0x03A/0x050/0x0FA/0x0FB, a real patched client.

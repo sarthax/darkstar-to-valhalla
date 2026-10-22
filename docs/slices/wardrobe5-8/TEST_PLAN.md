@@ -38,8 +38,8 @@ Outstanding defects, exact server and client hashes, evidence bundle, proposed t
 ## 6. Server path acceptance (added 2026-10-22; all need a running server + disposable characters, owner approval for the DB)
 - [ ] Grant capacity via SQL/Lua to a disposable char; patched or XIHeadless-extended session: Wardrobe 5-8 show capacity; legacy session: nothing about 13-16 on the wire (capture).
 - [x] (partial, 2026-10-22 clone DB, XIHeadless: bag<->13 and 13<->14 move OK, legacy refused, crafted ids 16/17/200/255 safe on 0x029, persistence across relog; split/merge, sort, map-restart not done) Move item inventory <-> Wardrobe 5; stack split/merge; sort; persistence across zone, relog, map-server restart.
-- [ ] Equip from Wardrobe 5, zone, relog: gear still worn server-side; legacy client sees no 0x50 for it; after hello it does.
-- [ ] Rare item sitting in Wardrobe 5: AH purchase of the same item is refused; `HasItem`-based quest checks see it.
+- [~] Equip from Wardrobe 5, zone, relog: gear still worn server-side; legacy client sees no 0x50 for it; after hello it does. (partial 2026-10-22: server-side equip, persistence and legacy refusal verified on the clone DB, see HANDOFF s20; client 0x50 not checked)
+- [~] Rare item sitting in Wardrobe 5: AH purchase of the same item is refused; `HasItem`-based quest checks see it. (partial 2026-10-22: only !additem duplicate refused; AH and HasItem quest checks not run, see HANDOFF s20)
 - [ ] Use item from container 13+ as a legacy session is ignored (0x037); container >= 17 in 0x028/0x029/0x037/0x03A/0x050/0x0FA/0x0FB does not crash.
 - [ ] Trade/delivery/AH/shop cannot reach items in 13-16 (they must be moved to inventory first).
 - [x] (partial, 2026-10-21 clone DB: up, down, up with one parked row and capacity restored) Migration on a COPY of the test DB: fresh up, up again, down (no live rows in container >= 13 in char_inventory or char_equip), up again restores items, gear and capacities. (Done on a scratch DB with synthetic rows 2026-10-22.)
