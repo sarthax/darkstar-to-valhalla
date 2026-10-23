@@ -5110,6 +5110,7 @@ void SmallPacket0x0FA(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
     uint8  slotID = RBUFB(data, (0x06));
     uint8  containerID = RBUFB(data, (0x07));
+    uint8  floor = RBUFB(data, (0x08));
     uint8  col = RBUFB(data, (0x09));
     uint8  level = RBUFB(data, (0x0A));
     uint8  row = RBUFB(data, (0x0B));
@@ -5128,6 +5129,7 @@ void SmallPacket0x0FA(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
         bool wasInstalled = PItem->isInstalled();
         PItem->setInstalled(true);
+        PItem->setSecondFloor(floor != 0);
         PItem->setCol(col);
         PItem->setRow(row);
         PItem->setLevel(level);
@@ -5189,6 +5191,7 @@ void SmallPacket0x0FB(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         if (PItemContainer->GetFreeSlotsCount() >= RemovedSize)
         {
             PItem->setInstalled(false);
+            PItem->setSecondFloor(false);
             PItem->setCol(0);
             PItem->setRow(0);
             PItem->setLevel(0);

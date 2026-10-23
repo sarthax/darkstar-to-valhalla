@@ -557,7 +557,7 @@ void CCharEntity::LoadMoghancement()
 
 void CCharEntity::UpdateMoghancement()
 {
-    // Add up the aura of every installed piece of furniture, per element (DSP elements are 0-7)
+    // Add up the aura of every installed 1F piece of furniture, per element (DSP elements are 0-7); second floor furnishings do not contribute
     uint16 elements[8] = { 0 };
     for (auto containerID : { LOC_MOGSAFE, LOC_MOGSAFE2 })
     {
@@ -568,7 +568,7 @@ void CCharEntity::UpdateMoghancement()
             if (PItem != nullptr && PItem->isType(ITEM_FURNISHING))
             {
                 CItemFurnishing* PFurniture = static_cast<CItemFurnishing*>(PItem);
-                if (PFurniture->isInstalled() && PFurniture->getElement() < 8)
+                if (PFurniture->isInstalled() && !PFurniture->isSecondFloor() && PFurniture->getElement() < 8)
                 {
                     elements[PFurniture->getElement()] += PFurniture->getAura();
                 }
@@ -609,7 +609,7 @@ void CCharEntity::UpdateMoghancement()
                 if (PItem != nullptr && PItem->isType(ITEM_FURNISHING))
                 {
                     CItemFurnishing* PFurniture = static_cast<CItemFurnishing*>(PItem);
-                    if (PFurniture->isInstalled() && PFurniture->getElement() == dominantElement &&
+                    if (PFurniture->isInstalled() && !PFurniture->isSecondFloor() && PFurniture->getElement() == dominantElement &&
                         PFurniture->getAura() > bestAura && isFurnitureKeyItem(PFurniture->getMoghancement()))
                     {
                         bestAura          = PFurniture->getAura();
@@ -620,9 +620,9 @@ void CCharEntity::UpdateMoghancement()
         }
     }
 
-    if (newMoghancementID != 0)
+    // Shown every time the player finishes furnishing on 1F, as in Topaz; the retail capture (Moghouse 2F remodel) shows nothing on 2F
+    if (newMoghancementID != 0 && !(profile.mhflag & 0x40))
     {
-        // Shown every time the player finishes furnishing, as in Topaz
         pushPacket(new CMessageSpecialPacket(this, luautils::GetTextIDVariable(getZone(), "KEYITEM_OBTAINED"), newMoghancementID, 0, 0, 0, false));
     }
 
@@ -715,7 +715,7 @@ std::string CCharEntity::MoghancementDebug(const std::string& action, int32 valu
             if (PItem != nullptr && PItem->isType(ITEM_FURNISHING))
             {
                 CItemFurnishing* PFurniture = static_cast<CItemFurnishing*>(PItem);
-                if (PFurniture->isInstalled() && PFurniture->getElement() < 8)
+                if (PFurniture->isInstalled() && !PFurniture->isSecondFloor() && PFurniture->getElement() < 8)
                 {
                     elements[PFurniture->getElement()] += PFurniture->getAura();
                 }
