@@ -26,4 +26,4 @@ jobs:
       - name: Compile reference module and tests
         run: python3 -m py_compile tools/trust_policy_reference.py tools/test_trust_policy_reference.py
       - name: Run deterministic personality and tri-state contract tests
-        run: python3 -m unittest discover -s tools -p 'test_trust_policy_reference.py' -v
+        run: python3 tools/test_trust_policy_reference.py -v
