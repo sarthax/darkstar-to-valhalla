@@ -440,7 +440,7 @@
       "id": "skillchain_closer",
       "role": "damage",
       "name": "Patient chain closer",
-      "lsb_trust_source": "scripts/actions/spells/trust/ayame.lua",
+      "lsb_trust_source": "scripts/actions/spells/trust/tenzen.lua",
       "required_capabilities": [
         "tp_observation",
         "ws_property_lookup",
@@ -448,7 +448,7 @@
         "skillchain_target_window",
         "policy_action_arbiter"
       ],
-      "trust_behavior_gap": "LSB closer rule has known validity TODO; never assume window means valid closer",
+      "trust_behavior_gap": "Tenzen prefers TP retention and closer timing, but neither legal closing WS nor observed window is established on this DSP baseline",
       "verification_state": "NOT_TESTED"
     },
     {
