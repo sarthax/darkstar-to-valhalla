@@ -1,0 +1,35 @@
+name: Trust policy and adapter integration tests
+
+on:
+  pull_request:
+    branches: [main, "codex/68-trust-adapter-contract"]
+    paths:
+      - tools/trust_adapter_contract.py
+      - tools/trust_policy_reference.py
+      - tools/trust_policy_adapter_pipeline.py
+      - tools/test_trust_policy_adapter_integration.py
+      - docs/slices/trust-modernization/trust_personality_examples_v0.json
+      - .github/workflows/trust-policy-adapter-integration.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  synthetic-integrated-scenarios:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Syntax-check both references and integration
+        run: |
+          python3 -m py_compile tools/trust_adapter_contract.py tools/trust_policy_reference.py tools/trust_policy_adapter_pipeline.py tools/test_trust_policy_adapter_integration.py
+      - name: Run all three isolated synthetic suites
+        run: |
+          python3 tools/test_trust_policy_reference.py -v
+          python3 tools/test_trust_adapter_contract.py -v
+          python3 tools/test_trust_policy_adapter_integration.py -v
