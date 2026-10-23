@@ -124,13 +124,14 @@ def validate_profile(profile: Mapping[str, Any]) -> None:
                 _text(c["value"], "condition.value")
 
 
-def _validate_actor(actor: Mapping[str, Any], label: str) -> None:
+def _validate_actor(actor: Mapping[str, Any], label: str, enemy: bool = False) -> None:
     if not isinstance(actor, dict):
         raise ValueError(f"{label} must be an object")
-    if set(actor) != {
-        "id", "zone", "observed_ms", "alive", "roles",
-        "hp_pct", "mp_pct", "effects"
-    }:
+    keys = {"id", "zone", "observed_ms", "alive", "roles",
+            "hp_pct", "mp_pct", "effects"}
+    if enemy:
+        keys.add("casting")
+    if set(actor) != keys:
         raise ValueError(f"{label} has unexpected/missing keys")
     _text(actor["id"], f"{label}.id")
     _text(actor["zone"], f"{label}.zone")
@@ -176,7 +177,7 @@ def validate_snapshot(snapshot: Mapping[str, Any]) -> None:
         raise ValueError("duplicate party actor id")
     if snapshot["enemy"] is not None:
         enemy = snapshot["enemy"]
-        _validate_actor(enemy, "enemy")
+        _validate_actor(enemy, "enemy", enemy=True)
         if enemy["id"] in ids:
             raise ValueError("enemy and party actor identity collision")
         if set(enemy) != {
