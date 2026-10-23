@@ -620,9 +620,9 @@ void CCharEntity::UpdateMoghancement()
         }
     }
 
-    if (newMoghancementID != 0)
+    // Shown every time the player finishes furnishing on 1F, as in Topaz; the retail capture (Moghouse 2F remodel) shows nothing on 2F
+    if (newMoghancementID != 0 && !(profile.mhflag & 0x40))
     {
-        // Shown every time the player finishes furnishing, as in Topaz
         pushPacket(new CMessageSpecialPacket(this, luautils::GetTextIDVariable(getZone(), "KEYITEM_OBTAINED"), newMoghancementID, 0, 0, 0, false));
     }
 
