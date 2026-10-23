@@ -99,7 +99,7 @@ A real adapter will need **trusted game-derived provenance**, server control aut
 Use Python 3.11 standard library only. No DSP/MySQL/Windows/Ashita dependency:
 
 ```bash
-python3 -m unittest discover -s tools -p 'test_trust_policy_reference.py' -v
+python3 tools/test_trust_policy_reference.py -v
 ```
 
 The repo's default `worker-gates.yml` checks paths, Lua and SQL safety but **does not itself execute new Python tests**; this slice adds a dedicated, narrowly scoped GitHub Actions test workflow for the reference evaluator.
