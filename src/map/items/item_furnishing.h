@@ -119,12 +119,14 @@ public:
 	uint8	getAura();
 
     bool    isInstalled();
+    bool    isSecondFloor();
 	uint8	getCol();
 	uint8	getRow();
 	uint8	getLevel();
 	uint8	getRotation();
 
     void    setInstalled(bool installed);
+    void    setSecondFloor(bool secondFloor);
 	void	setStorage(uint8 storage);
 	void	setMoghancement(uint16 moghancement);
 	void	setElement(uint8 element);
