@@ -1,0 +1,470 @@
+{
+  "schema_version": "trust-role-capability-v0",
+  "source_revisions": {
+    "personal_dsp": "19f00e357b78fe17411ede523a1acd01fe865ee8",
+    "lsb": "ed34371b7477713c9db9b9758f92df597a65e4ab"
+  },
+  "source_boundary": "PERSONAL_DSP_IS_NOT_PRIVATE_VALHALLA",
+  "capabilities": [
+    {
+      "id": "actor_health",
+      "domain": "observation",
+      "status": "symbol_found",
+      "dsp_source": {
+        "path": "src/map/entities/battleentity.h",
+        "symbol": "GetHPP"
+      },
+      "adapter_requirement": "Validate Trust/ally identity and fresh HP sample",
+      "runtime_state": "NOT_VERIFIED"
+    },
+    {
+      "id": "party_lookup",
+      "domain": "party",
+      "status": "symbol_found",
+      "dsp_source": {
+        "path": "src/map/lua/lua_baseentity.h",
+        "symbol": "getPartyMember"
+      },
+      "adapter_requirement": "Generic party lookup is not confirmation Trusts appear correctly",
+      "runtime_state": "NOT_VERIFIED"
+    },
+    {
+      "id": "trust_roster",
+      "domain": "party",
+      "status": "trust_bridge_missing",
+      "dsp_source": {
+        "path": "src/map/party.cpp",
+        "symbol": "GetPartyInfo"
+      },
+      "adapter_requirement": "Requires dedicated Trust-aware roster and ordinary-pet separation",
+      "runtime_state": "NOT_VERIFIED"
+    },
+    {
+      "id": "friendly_target_legality",
+      "domain": "party",
+      "status": "trust_bridge_missing",
+      "dsp_source": {
+        "path": "src/map/entities/petentity.cpp",
+        "symbol": "ValidTarget"
+      },
+      "adapter_requirement": "Confirm Trust and ally legal spell/JA target semantics",
+      "runtime_state": "NOT_VERIFIED"
+    },
+    {
+      "id": "status_query",
+      "domain": "observation",
+      "status": "symbol_found",
+      "dsp_source": {
+        "path": "src/map/status_effect_container.h",
+        "symbol": "HasStatusEffect"
+      },
+      "adapter_requirement": "Require complete fresh status set to assert absence",
+      "runtime_state": "NOT_VERIFIED"
+    },
+    {
+      "id": "status_removal",
+      "domain": "action",
+      "status": "symbol_found",
+      "dsp_source": {
+        "path": "src/map/status_effect_container.h",
+        "symbol": "EraseStatusEffect"
+      },
+      "adapter_requirement": "Need correct approved cleanse action and result confirmation",
+      "runtime_state": "NOT_VERIFIED"
+    },
+    {
+      "id": "spell_precheck",
+      "domain": "action",
+      "status": "symbol_found",
+      "dsp_source": {
+        "path": "src/map/ai/states/magic_state.cpp",
+        "symbol": "CanCastSpell"
+      },
+      "adapter_requirement": "Must validate spell, recast, MP and target before action",
+      "runtime_state": "NOT_VERIFIED"
+    },
+    {
+      "id": "cast_outcome",
+      "domain": "evidence",
+      "status": "trust_bridge_missing",
+      "dsp_source": {
+        "path": "src/map/ai/states/magic_state.cpp",
+        "symbol": "MAGIC_USE"
+      },
+      "adapter_requirement": "MAGIC_USE hook not observed landed effect; add outcome correlation",
+      "runtime_state": "NOT_VERIFIED"
+    },
+    {
+      "id": "ability_dispatch",
+      "domain": "action",
+      "status": "symbol_found",
+      "dsp_source": {
+        "path": "src/map/ai/ai_container.h",
+        "symbol": "Internal_Ability"
+      },
+      "adapter_requirement": "Internal_Ability dispatch available; not a completion receipt",
+      "runtime_state": "NOT_VERIFIED"
+    },
+    {
+      "id": "ability_ready",
+      "domain": "action",
+      "status": "not_reviewed",
+      "dsp_source": null,
+      "adapter_requirement": "No Trust-specific ability/recast-readiness adapter reviewed",
+      "runtime_state": "NOT_VERIFIED"
+    },
+    {
+      "id": "enemy_cast_readback",
+      "domain": "observation",
+      "status": "trust_bridge_missing",
+      "dsp_source": {
+        "path": "src/map/ai/states/magic_state.cpp",
+        "symbol": "MAGIC_USE"
+      },
+      "adapter_requirement": "Need target-specific enemy windup and interruption facts",
+      "runtime_state": "NOT_VERIFIED"
+    },
+    {
+      "id": "enmity_owner",
+      "domain": "observation",
+      "status": "not_reviewed",
+      "dsp_source": null,
+      "adapter_requirement": "Trust-specific highest enmity target freshness not audited",
+      "runtime_state": "NOT_VERIFIED"
+    },
+    {
+      "id": "bard_effect_stack",
+      "domain": "job",
+      "status": "symbol_found",
+      "dsp_source": {
+        "path": "src/map/status_effect_container.h",
+        "symbol": "ApplyBardEffect"
+      },
+      "adapter_requirement": "Generic Bard status effect stacking only; no song choice/duration profile",
+      "runtime_state": "NOT_VERIFIED"
+    },
+    {
+      "id": "cor_effect_stack",
+      "domain": "job",
+      "status": "symbol_found",
+      "dsp_source": {
+        "path": "src/map/status_effect_container.h",
+        "symbol": "ApplyCorsairEffect"
+      },
+      "adapter_requirement": "Generic Corsair status application only; no roll choice or outcome",
+      "runtime_state": "NOT_VERIFIED"
+    },
+    {
+      "id": "cor_roll_result",
+      "domain": "job",
+      "status": "not_reviewed",
+      "dsp_source": null,
+      "adapter_requirement": "No validated per-roll dice total/lucky/bust observation path",
+      "runtime_state": "NOT_VERIFIED"
+    },
+    {
+      "id": "cor_double_up",
+      "domain": "job",
+      "status": "not_reviewed",
+      "dsp_source": null,
+      "adapter_requirement": "No validated Double-Up availability/bust/Fold result policy",
+      "runtime_state": "NOT_VERIFIED"
+    },
+    {
+      "id": "geo_luopan",
+      "domain": "job",
+      "status": "symbol_found",
+      "dsp_source": {
+        "path": "src/map/ai/controllers/pet_controller.cpp",
+        "symbol": "PETTYPE_LUOPAN"
+      },
+      "adapter_requirement": "Existing Luopan handling is not a Trust-specific GEO aura policy",
+      "runtime_state": "NOT_VERIFIED"
+    },
+    {
+      "id": "geo_indi_selection",
+      "domain": "job",
+      "status": "trust_bridge_missing",
+      "dsp_source": {
+        "path": "src/map/lua/lua_baseentity.h",
+        "symbol": "hasStatusEffect"
+      },
+      "adapter_requirement": "Need server-approved best Indi/Entrust selection and party aura source",
+      "runtime_state": "NOT_VERIFIED"
+    },
+    {
+      "id": "trust_pet_coexistence",
+      "domain": "party",
+      "status": "trust_bridge_missing",
+      "dsp_source": {
+        "path": "src/map/entities/charentity.h",
+        "symbol": "PPet"
+      },
+      "adapter_requirement": "Ensure multiple Trusts coexist with one ordinary pet/luopan",
+      "runtime_state": "NOT_VERIFIED"
+    },
+    {
+      "id": "tp_observation",
+      "domain": "observation",
+      "status": "symbol_found",
+      "dsp_source": {
+        "path": "src/map/lua/lua_baseentity.h",
+        "symbol": "getTP"
+      },
+      "adapter_requirement": "Generic TP read exists, verify Trust TP legality and status",
+      "runtime_state": "NOT_VERIFIED"
+    },
+    {
+      "id": "ws_property_lookup",
+      "domain": "combat",
+      "status": "symbol_found",
+      "dsp_source": {
+        "path": "src/map/lua/lua_baseentity.h",
+        "symbol": "getWSSkillchainProp"
+      },
+      "adapter_requirement": "Generic WS property query, not validation of learned/equipped Trust WS",
+      "runtime_state": "NOT_VERIFIED"
+    },
+    {
+      "id": "trust_ws_dispatch",
+      "domain": "combat",
+      "status": "trust_bridge_missing",
+      "dsp_source": {
+        "path": "src/map/ai/controllers/pet_controller.cpp",
+        "symbol": "CPetController"
+      },
+      "adapter_requirement": "Current generic pet controller disables ordinary WS; Trust-specific path needed",
+      "runtime_state": "NOT_VERIFIED"
+    },
+    {
+      "id": "skillchain_target_window",
+      "domain": "combat",
+      "status": "not_reviewed",
+      "dsp_source": null,
+      "adapter_requirement": "No Trust-compatible confirmed skillchain property+target+time window audited",
+      "runtime_state": "NOT_VERIFIED"
+    },
+    {
+      "id": "magic_burst_element",
+      "domain": "combat",
+      "status": "not_reviewed",
+      "dsp_source": null,
+      "adapter_requirement": "Need confirmed burst eligible element and current target/expiry",
+      "runtime_state": "NOT_VERIFIED"
+    },
+    {
+      "id": "trust_role_identity",
+      "domain": "party",
+      "status": "trust_bridge_missing",
+      "dsp_source": {
+        "path": "src/map/entities/petentity.h",
+        "symbol": "PETTYPE_TRUST"
+      },
+      "adapter_requirement": "Pet enum present; trusted named Trust role and owner collection unverified",
+      "runtime_state": "NOT_VERIFIED"
+    },
+    {
+      "id": "policy_action_arbiter",
+      "domain": "action",
+      "status": "trust_bridge_missing",
+      "dsp_source": {
+        "path": "src/map/ai/ai_container.h",
+        "symbol": "CanChangeState"
+      },
+      "adapter_requirement": "Needs per-Trust one-action reservation/outcome/cancellation beyond state precheck",
+      "runtime_state": "NOT_VERIFIED"
+    }
+  ],
+  "behaviors": [
+    {
+      "id": "healer_triage",
+      "role": "healer",
+      "name": "Emergency HP triage",
+      "lsb_trust_source": "scripts/actions/spells/trust/kupipi.lua",
+      "required_capabilities": [
+        "actor_health",
+        "party_lookup",
+        "trust_roster",
+        "friendly_target_legality",
+        "spell_precheck",
+        "cast_outcome",
+        "policy_action_arbiter"
+      ],
+      "trust_behavior_gap": "Prioritized party healing needs Trust roster, legal targets, observed cure results",
+      "verification_state": "NOT_TESTED"
+    },
+    {
+      "id": "healer_cleanse",
+      "role": "healer",
+      "name": "Debuff removal",
+      "lsb_trust_source": "scripts/actions/spells/trust/kupipi.lua",
+      "required_capabilities": [
+        "party_lookup",
+        "trust_roster",
+        "status_query",
+        "status_removal",
+        "friendly_target_legality",
+        "spell_precheck",
+        "cast_outcome"
+      ],
+      "trust_behavior_gap": "Requires specific status/clear spell compatibility and observed cure/clear",
+      "verification_state": "NOT_TESTED"
+    },
+    {
+      "id": "rdm_role_buffs",
+      "role": "support",
+      "name": "Haste/Refresh/Flurry recipient preference",
+      "lsb_trust_source": "scripts/actions/spells/trust/koru-moru.lua",
+      "required_capabilities": [
+        "party_lookup",
+        "trust_role_identity",
+        "trust_roster",
+        "status_query",
+        "friendly_target_legality",
+        "spell_precheck",
+        "cast_outcome"
+      ],
+      "trust_behavior_gap": "Recipient role and buff absences need complete status evidence",
+      "verification_state": "NOT_TESTED"
+    },
+    {
+      "id": "brd_song_maintenance",
+      "role": "support",
+      "name": "Bard song selection and upkeep",
+      "lsb_trust_source": "scripts/actions/spells/trust/joachim.lua",
+      "required_capabilities": [
+        "trust_role_identity",
+        "trust_roster",
+        "status_query",
+        "bard_effect_stack",
+        "spell_precheck",
+        "cast_outcome"
+      ],
+      "trust_behavior_gap": "Stacking exists but song override/time and party effect verification not established",
+      "verification_state": "NOT_TESTED"
+    },
+    {
+      "id": "cor_roll_maintenance",
+      "role": "support",
+      "name": "Corsair roll upkeep",
+      "lsb_trust_source": "scripts/actions/spells/trust/qultada.lua",
+      "required_capabilities": [
+        "trust_roster",
+        "status_query",
+        "cor_effect_stack",
+        "cor_roll_result",
+        "ability_dispatch",
+        "ability_ready",
+        "policy_action_arbiter"
+      ],
+      "trust_behavior_gap": "Roll selection/result, numeric dice and applied ally buff not confirmed",
+      "verification_state": "NOT_TESTED"
+    },
+    {
+      "id": "cor_double_up_policy",
+      "role": "support",
+      "name": "Double-Up and bust control",
+      "lsb_trust_source": "scripts/actions/spells/trust/qultada.lua",
+      "required_capabilities": [
+        "cor_roll_result",
+        "cor_double_up",
+        "ability_ready",
+        "policy_action_arbiter"
+      ],
+      "trust_behavior_gap": "LSB Qultada is a limited roll reference, not a Double-Up implementation",
+      "verification_state": "NOT_TESTED"
+    },
+    {
+      "id": "geo_indi_support",
+      "role": "support",
+      "name": "Geomancy and entrusted aura support",
+      "lsb_trust_source": "scripts/actions/spells/trust/sylvie_uc.lua",
+      "required_capabilities": [
+        "trust_roster",
+        "status_query",
+        "geo_luopan",
+        "geo_indi_selection",
+        "trust_pet_coexistence",
+        "spell_precheck",
+        "cast_outcome"
+      ],
+      "trust_behavior_gap": "Indi/Entrust and Luopan coexistence require Valhalla-specific path",
+      "verification_state": "NOT_TESTED"
+    },
+    {
+      "id": "tank_enmity",
+      "role": "tank",
+      "name": "Provoke and party defense",
+      "lsb_trust_source": "scripts/actions/spells/trust/trion.lua",
+      "required_capabilities": [
+        "trust_roster",
+        "enmity_owner",
+        "ability_dispatch",
+        "ability_ready",
+        "policy_action_arbiter"
+      ],
+      "trust_behavior_gap": "Needs role-specific enmity and ability authority, not just generic dispatch",
+      "verification_state": "NOT_TESTED"
+    },
+    {
+      "id": "tank_interrupt",
+      "role": "tank",
+      "name": "Reactive Flash/interrupt",
+      "lsb_trust_source": "scripts/actions/spells/trust/trion.lua",
+      "required_capabilities": [
+        "enemy_cast_readback",
+        "spell_precheck",
+        "friendly_target_legality",
+        "cast_outcome",
+        "policy_action_arbiter"
+      ],
+      "trust_behavior_gap": "Enemy cast windup vs successful interruption must be distinguished",
+      "verification_state": "NOT_TESTED"
+    },
+    {
+      "id": "skillchain_opener",
+      "role": "damage",
+      "name": "Ayame-style WS opener",
+      "lsb_trust_source": "scripts/actions/spells/trust/ayame.lua",
+      "required_capabilities": [
+        "tp_observation",
+        "ws_property_lookup",
+        "trust_ws_dispatch",
+        "policy_action_arbiter",
+        "skillchain_target_window"
+      ],
+      "trust_behavior_gap": "Valid opener and reserve decisions depend on known skill availability and party target",
+      "verification_state": "NOT_TESTED"
+    },
+    {
+      "id": "skillchain_closer",
+      "role": "damage",
+      "name": "Patient chain closer",
+      "lsb_trust_source": "scripts/actions/spells/trust/ayame.lua",
+      "required_capabilities": [
+        "tp_observation",
+        "ws_property_lookup",
+        "trust_ws_dispatch",
+        "skillchain_target_window",
+        "policy_action_arbiter"
+      ],
+      "trust_behavior_gap": "LSB closer rule has known validity TODO; never assume window means valid closer",
+      "verification_state": "NOT_TESTED"
+    },
+    {
+      "id": "magic_burst",
+      "role": "damage",
+      "name": "Shantotto II burst caster",
+      "lsb_trust_source": "scripts/actions/spells/trust/shantotto_ii.lua",
+      "required_capabilities": [
+        "magic_burst_element",
+        "skillchain_target_window",
+        "spell_precheck",
+        "cast_outcome",
+        "policy_action_arbiter"
+      ],
+      "trust_behavior_gap": "Burst element and effect need confirmed target-specific chain, not guesses",
+      "verification_state": "NOT_TESTED"
+    }
+  ]
+}
