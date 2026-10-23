@@ -1,0 +1,31 @@
+name: Trust role capability audit
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - docs/slices/trust-modernization/trust_role_capability_catalog_v0.json
+      - tools/trust_role_capability_audit.py
+      - tools/test_trust_role_capability_audit.py
+      - .github/workflows/trust-role-capability-audit.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-evidence-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile and test strict source-only contract
+        run: |
+          python3 -m py_compile tools/trust_role_capability_audit.py tools/test_trust_role_capability_audit.py
+          python3 tools/test_trust_role_capability_audit.py -v
+      - name: Emit non-runtime source gap report
+        run: python3 tools/trust_role_capability_audit.py
