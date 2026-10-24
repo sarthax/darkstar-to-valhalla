@@ -42,3 +42,9 @@ Source: `xi_tinkerer.parse_item_info` on our client `ROM/118/106.DAT` (`C:/Valha
 
 ## Draft: 18 new furnishings (patch only, 2026-10-23)
 `patch_new_furnishings_18.sql` holds item_basic + item_furnishing INSERTs (36 rows) for the 18 furnishings real in our client but absent from our tables (294, 3718-3728, 3732, 3735-3739). Converted from LSB to our columns (NoSale from flag 4096, element 0-based). Flags, aH and BaseSell are LSB values, unverified; not applied, nothing under `sql/` changed. Obtaining them (events/Adoulin) is not covered.
+
+## Audit follow-ups (2026-10-23, read-only)
+- **17 draft recipes**: all 17 inserted into a TEMPORARY copy of synth_recipes (rolled back, live untouched). No ingredient-set collisions with live recipes, no results already present, all results exist in item_basic.
+- **Draft ids vs live DB**: none of the 18-item patch ids, Moorish Idol, or the 70 missing-row ids already exist in live item_basic/item_furnishing. No collisions.
+- **295 / 396**: draft `patch_item_furnishing_295_396.sql` (295 moghancement 0 -> 2850; 396 storage 1 -> 2, element 2 -> 3 earth). Not applied.
+- **Not yet done**: sourcing the 40 blocked ingredients, synergy recipe drafts, remaining-vendor sweep. HQ results in the recipes still default to the NQ item (wiki lists none).
