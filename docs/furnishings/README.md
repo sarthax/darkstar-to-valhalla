@@ -18,3 +18,8 @@ Snapshot (2026-10-23): 389 furnishings, 201 have a source, 188 NO_SOURCE. Of the
 crafted 65, quest 35, goblin_box 24, npc_sale 19, event_other 13, starlight 11, harvest 10, untagged 6,
 login_campaign 2, sunbreeze 2, mog_garden 1. Of the 65 crafted: 7 are craftable with ingredients we
 already provide, 58 are blocked by missing ingredients (top blockers: Platinum Silk Thread, Mahogany Lumber, textile dyes, Light Chest).
+
+## Mission Toolkit synth-module check
+`furnishing_toolkit_check.csv` / `furnishing_recipe_ingredients_toolkit.csv` run every furnishing and every wiki recipe ingredient
+through `workbench.server_admin.synth.recipes.Availability` (vendor, guild shop, wired drop, BCNM, craft route, script ref).
+Statuses: ok / script (Lua mention only) / ah_only / missing. Ingredient names resolved by item_basic name with container prefixes stripped.
