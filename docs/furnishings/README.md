@@ -33,3 +33,9 @@ Reference: `D:\Claude\mission_toolkit\LandSandBoat` (full tree; `FFXI-Tools/Land
 
 ## Furnishings missing from item_furnishing (vs LSB, 2026-10-23)
 Ours has 389 rows, LSB 495; 106 are missing, none are ours-only. 70 already exist in our `item_basic` (draft: `patch_item_furnishing_missing_rows.sql`, not applied; element converted to our 0-based numbering). 36 (ids 3718-3756 mostly) are not in `item_basic` at all and need client-DAT verification before anything is drafted. Full list: `furnishings_missing_vs_lsb.csv`. Two shared rows differ from LSB: 295 (moghancement 0 vs 2850) and 396 (storage 1 vs 2).
+
+## Client DAT check of the 106 missing furnishings (read-only, 2026-10-23)
+Source: `xi_tinkerer.parse_item_info` on our client `ROM/118/106.DAT` (`C:/ValhallaXI/...`). Detail: `furnishings_missing_client_check.csv`.
+- **70 with an item_basic row:** all 70 exist in the client with real names (the 11 "differs" are only the client's abbreviated names, e.g. "Gr. Mahogany Bed"). The draft patch is supported by the client.
+- **36 without an item_basic row:** 18 are real in our client (294 Campfire; 3718-3728 Adoulinian Tomatoes + 10 statues; 3732 Crimson Chest, 3735 Aurum Coffer, 3736-3739 Well/Doll Stand/Eastern Umbrella/Autumn Tree). The other 18 (54 and 3740-3756) are placeholder "." entries, i.e. newer than our client; do not add them.
+- Not drafted: the 18 real ones need `item_basic` rows (flags, price, stack) first, which the DAT does not give; description/furnishing data are in the DAT.

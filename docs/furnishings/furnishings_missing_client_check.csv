@@ -1,0 +1,107 @@
+itemid,lsb_name,in_our_item_basic,client_name,client_furnishing,client_element,client_storage,status
+54,chocobo_commode,False,.,True,Undecided,1,name_DIFFERS
+100,okadomatsu,True,Okadomatsu,True,3,2,name_match
+278,cardian_statue,True,Cardian Statue,True,Air,1,name_match
+279,shadow_lord_statue_ii,True,S. Lord Statue II,True,7,4,name_DIFFERS
+280,shadow_lord_statue_iii,True,S. Lord Statue III,True,7,4,name_DIFFERS
+281,atomos_statue,True,Atomos Statue,True,7,4,name_match
+282,yovra_replica,True,Yovra Replica,True,Air,4,name_match
+284,goobbue_statue,True,Goobbue Statue,True,3,4,name_match
+286,nanaa_mihgo_statue,True,Nanaa Mihgo Statue,True,6,4,name_match
+287,nanaa_mihgo_statue_ii,True,Nanaa Mihgo S. II,True,6,4,name_DIFFERS
+294,campfire,False,Campfire,True,0,1,name_match
+348,marble_plaque,True,Marble Plaque,True,6,1,name_match
+398,red_mahogany_bed,True,Red Mahogany Bed,True,0,1,name_match
+399,blue_mahogany_bed,True,Blue Mahogany Bed,True,5,1,name_match
+400,green_mahogany_bed,True,Gr. Mahogany Bed,True,Air,1,name_DIFFERS
+401,yellow_mahogany_bed,True,Yell. Mahogany Bed,True,3,1,name_DIFFERS
+427,rococo_table,True,Rococo Table,True,5,10,name_match
+428,semainier,True,Semainier,True,7,35,name_match
+434,isula_sideboard,True,Isula Sideboard,True,Thunder,10,name_match
+435,jeunoan_dresser,True,Jeunoan Dresser,True,Thunder,55,name_match
+436,jeunoan_armoire,True,Jeunoan Armoire,True,Thunder,30,name_match
+437,floral_nightstand,True,Floral Nightstand,True,6,1,name_match
+439,planus_table,True,Planus Table,True,6,5,name_match
+442,gilded_chest,True,Gilded Chest,True,7,20,name_match
+443,aureous_chest,True,Aureous Chest,True,7,8,name_match
+444,luxurious_chest,True,Luxurious Chest,True,7,8,name_match
+446,gilded_shelf,True,Gilded Shelf,True,0,40,name_match
+447,mensa_lunata,True,Mensa Lunata,True,Air,11,name_match
+448,gueridon,True,Gueridon,True,Air,5,name_match
+449,personal_table,True,Personal Table,True,Air,7,name_match
+3590,puce_chest,True,Puce Chest,True,0,10,name_match
+3591,chest_of_marbled_drawers,True,Marbled Drawers,True,Air,45,name_DIFFERS
+3600,bongo_drum,True,Bongo Drum,True,3,1,name_match
+3608,fictile_pot,True,Fictile Pot,True,7,5,name_match
+3650,prinseggstarta,True,Prinseggstarta,True,6,1,name_match
+3651,harvest_pastry,True,Harvest Pastry,True,6,1,name_match
+3652,memorial_cake,True,Memorial Cake,True,Thunder,3,name_match
+3653,banquet_table,True,Banquet Table,True,0,5,name_match
+3654,tender_bouquet,True,Tender Bouquet,True,6,1,name_match
+3679,beastman_gonfalon,True,Beastman Gonfalon,True,7,5,name_match
+3680,copy_of_judgment_day,True,Judgment Day,True,Thunder,7,name_DIFFERS
+3681,alzadaal_table,True,Alzadaal Table,True,6,12,name_match
+3682,sproutling_board,True,Sproutling Board,True,6,1,name_match
+3683,forestdweller_board,True,Forest. Board,True,3,1,name_DIFFERS
+3684,princess_board,True,Princess Board,True,3,1,name_match
+3685,empress_board,True,Empress Board,True,Thunder,1,name_match
+3686,duelist_board,True,Duelist Board,True,0,1,name_match
+3687,crystal_board,True,Crystal Board,True,Air,1,name_match
+3688,dancer_board,True,Dancer Board,True,6,1,name_match
+3689,wizardess_board,True,Wizardess Board,True,7,1,name_match
+3690,fighter_board,True,Fighter Board,True,5,1,name_match
+3691,guardian_board,True,Guardian Board,True,1,1,name_match
+3692,stoic_board,True,Stoic Board,True,Air,1,name_match
+3693,lamb_carving,True,Lamb Carving,True,3,1,name_match
+3694,polished_lamb_carving,True,Pol. Lamb Carving,True,3,1,name_DIFFERS
+3696,kotatsu_table,True,Kotatsu Table,True,0,1,name_match
+3697,mandarin,True,Mandarin,True,5,1,name_match
+3698,cherry_tree,True,Cherry Tree,True,3,1,name_match
+3699,bathtub,True,Bathtub,True,5,1,name_match
+3700,shower_stand,True,Shower Stand,True,5,1,name_match
+3701,awning,True,Awning,True,Air,1,name_match
+3702,triangular_jalousie,True,Triangular Jalousie,True,Air,1,name_match
+3703,square_jalousie,True,Square Jalousie,True,Air,1,name_match
+3704,transom,True,Transom,True,Air,1,name_match
+3709,valance,True,Valance,True,Air,1,name_match
+3710,windurstian_sill,True,Windurstian Sill,True,Air,1,name_match
+3711,san_dorian_sill,True,San d'Orian Sill,True,Air,1,name_match
+3712,bastokan_sill,True,Bastokan Sill,True,Air,1,name_match
+3713,pot_of_wards,True,Pot of Wards,True,3,1,name_match
+3714,pot_of_white_clematis,True,White Clematis,True,3,1,name_DIFFERS
+3715,pot_of_pink_clematis,True,Pink Clematis,True,3,1,name_DIFFERS
+3717,birch_tree,True,Birch Tree,True,3,1,name_match
+3718,handful_of_adoulinian_tomatoes,False,Ado. Tomatoes,True,5,1,name_DIFFERS
+3719,prishe_statue_ii,False,Prishe Statue II,True,0,4,name_match
+3720,arciela_statue,False,Arciela Statue,True,1,4,name_match
+3721,iroha_statue,False,Iroha Statue,True,Air,4,name_match
+3722,lion_statue,False,Lion Statue,True,3,4,name_match
+3723,lilisette_statue,False,Lilisette Statue,True,Thunder,4,name_match
+3724,uka_statue,False,Uka Statue,True,6,4,name_match
+3725,cornelia_statue,False,Cornelia Statue,True,Air,4,name_match
+3726,aphmau_statue,False,Aphmau Statue,True,5,4,name_match
+3727,mumor_statue,False,Mumor Statue,True,6,4,name_match
+3728,ullegore_statue,False,Ullegore Statue,True,7,4,name_match
+3732,crimson_chest,False,Crimson Chest,True,5,1,name_match
+3735,aurum_coffer,False,Aurum Coffer,True,6,5,name_match
+3736,well,False,Well,True,5,80,name_match
+3737,doll_stand,False,Doll Stand,True,6,2,name_match
+3738,eastern_umbrella,False,Eastern Umbrella,True,5,1,name_match
+3739,autumn_tree,False,Autumn Tree,True,3,1,name_match
+3740,model_synergy_furnace,False,.,True,Undecided,1,name_DIFFERS
+3741,model_synergy_furnace_ii,False,.,True,Undecided,1,name_DIFFERS
+3742,painting_of_a_mercenary,False,.,True,Undecided,1,name_DIFFERS
+3743,moogle_bed,False,.,True,Undecided,1,name_DIFFERS
+3744,mandragora_pot,False,.,True,Undecided,1,name_DIFFERS
+3745,korrigan_pot,False,.,True,Undecided,1,name_DIFFERS
+3746,adenium_pot,False,.,True,Undecided,1,name_DIFFERS
+3747,citrullus_pot,False,.,True,Undecided,1,name_DIFFERS
+3748,leafkin_bed,False,.,True,Undecided,1,name_DIFFERS
+3749,chemistry_set,False,.,True,Undecided,1,name_DIFFERS
+3750,qiqirn_sack,False,.,True,Undecided,1,name_DIFFERS
+3751,besigiled_table,False,.,True,Undecided,1,name_DIFFERS
+3752,colibri_bed,False,.,True,Undecided,1,name_DIFFERS
+3753,painting_of_blueblade_fell,False,.,True,Undecided,1,name_DIFFERS
+3754,kagami_mochi,False,.,True,Undecided,1,name_DIFFERS
+3755,prismatic_chest,False,.,True,Undecided,1,name_DIFFERS
+3756,sachertorte,False,.,True,Undecided,1,name_DIFFERS
