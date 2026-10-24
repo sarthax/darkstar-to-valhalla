@@ -68,7 +68,8 @@ def main():
         f.write('-- ID is NULL (AUTO_INCREMENT). All HQ results default to the NQ item (wiki lists no distinct HQ).\n')
         for iid, name, row in sql:
             vals = ','.join('NULL' if i == 0 else str(v) for i, v in enumerate(row))
-            f.write(f"INSERT INTO `synth_recipes` VALUES ({vals}); -- {name} ({iid})\n")
+            ing_names = ', '.join(idname.get(v, '?') for v in row[13:21] if v)
+            f.write(f"INSERT INTO `synth_recipes` VALUES ({vals}); -- {name} ({iid}): {ing_names}\n")
     with open(a.out + '/furnishing_synth_recipes_DRAFT_report.csv', 'w', newline='', encoding='utf-8') as f:
         w = csv.writer(f); w.writerow(['itemid', 'name', 'result', 'craft', 'level']); w.writerows(rep)
     print(len(sql), 'drafted;', sum(1 for r in rep if r[2] != 'DRAFT'), 'skipped')
