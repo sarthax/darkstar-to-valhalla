@@ -30,3 +30,6 @@ Reference: `D:\Claude\mission_toolkit\LandSandBoat` (full tree; `FFXI-Tools/Land
 - **Venessa (Ru'Lude Gardens, 17772726):** ours is a stub (one `startEvent(0x2750)`). LSB also handles the 4 Promyvion ENM censers and 23 Vision/Image trades (Valorous Image -> Rheiyoh Leather, Grave -> Habu Skin, Beatific -> Tiger Eye, Ancient -> Oversized Fang, Virgin -> Super Cermet, plus 18 Vision -> earring/ring/rope/mantle). Not built: LSB uses csids 10064/10065/10066 and 10065/10066 are unverified against our client.
 - **Chocobo dyes (Chocobuck vendors):** no LSB implementation exists; needs the chocobo raising work (issue #55).
 - **Login campaign items (Kitchen Brick/Plate/Stove, kits):** LSB has an event system (`scripts/events/login_campaign*.lua`, Greeter Moogles); ours has none. The kitchen items are commented out in LSB's own data.
+
+## Furnishings missing from item_furnishing (vs LSB, 2026-10-23)
+Ours has 389 rows, LSB 495; 106 are missing, none are ours-only. 70 already exist in our `item_basic` (draft: `patch_item_furnishing_missing_rows.sql`, not applied; element converted to our 0-based numbering). 36 (ids 3718-3756 mostly) are not in `item_basic` at all and need client-DAT verification before anything is drafted. Full list: `furnishings_missing_vs_lsb.csv`. Two shared rows differ from LSB: 295 (moghancement 0 vs 2850) and 396 (storage 1 vs 2).
