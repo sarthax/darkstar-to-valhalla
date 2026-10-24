@@ -60,3 +60,6 @@ The 40 blocked ingredients fall into groups; none is fixed by a recipe or shop e
 ### Vendor sweep and synergy (2026-10-23, read-only)
 - **NPC shop sweep (name-based)**: parsed every LSB NPC shop script's `xi.item.NAME` stock lines, resolved via `enum/item.lua`. 21 furnishings are sold by LSB NPC shops (Justi, Ensasa, Gekko, Boytz, etc.); all 21 are already referenced in our scripts or guild_shops. No NPC-shop gap found (check is by id presence, not per-NPC price/stock).
 - **Synergy recipes**: only 1 furnishing has a synergy-only route, galley_kitchen (3585), and its toolkit status is blocked (missing ingredients). The server source has no synergy engine references, so no synergy recipe was drafted.
+
+## STATUS: UNFINISHED (2026-10-23)
+Analysis and draft patch SQL only. Nothing here is applied to `sql/` or the live DB, and no draft has been live-tested. Open: applying/reviewing the drafts, sourcing the 40 blocked ingredients, galley_kitchen synergy, Venessa, login campaign and chocobo dye vendors.
