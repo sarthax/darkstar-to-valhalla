@@ -920,9 +920,20 @@ namespace charutils
                     }
                     else if (PItem->getFlag() & (ITEM_FLAG_INSCRIBABLE))
                     {
-                        int8 EncodedString[13];
-                        EncodeStringSignature(Sql_GetData(SqlHandle, 5), EncodedString);
-                        PItem->setSignature(EncodedString);
+                        // The signature already lives in m_extra[0x0C..] (restored above). Re-encoding the
+                        // column over it is lossy and clobbers exdata (e.g. chocobo eggs), so only seed
+                        // the signature from the column when extra holds nothing there.
+                        bool extraHasSignatureBytes = false;
+                        for (size_t i = 0x0C; i < sizeof(PItem->m_extra); ++i)
+                        {
+                            extraHasSignatureBytes = extraHasSignatureBytes || PItem->m_extra[i] != 0;
+                        }
+                        if (!extraHasSignatureBytes)
+                        {
+                            int8 EncodedString[13];
+                            EncodeStringSignature(Sql_GetData(SqlHandle, 5), EncodedString);
+                            PItem->setSignature(EncodedString);
+                        }
                     }
 
                     if (PItem->isType(ITEM_FURNISHING) && (PItem->getLocationID() == LOC_MOGSAFE || PItem->getLocationID() == LOC_MOGSAFE2))
