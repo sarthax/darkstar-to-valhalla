@@ -4,14 +4,25 @@ Pre-step: back up the DB, dry-check live schema (MyISAM), then apply `up.sql`. R
 
 | # | Test | Expected | State |
 |---|------|----------|-------|
-| 1 | Build map-server | compiles | untested |
-| 2 | up.sql then down.sql then up.sql | idempotent, no errors | untested |
-| 3 | addItemExData + saveItemExData, relog, getExData | bytes identical | untested |
+| 1 | Build map-server | compiles | tested |
+| 2 | up.sql then down.sql then up.sql | idempotent, no errors | tested |
+| 3 | addItemExData + saveItemExData, relog, getExData | bytes identical | partial (FAIL for inscribable items, see runtime) |
 | 4 | Move/trade an item with exdata | bytes survive | untested |
-| 5 | setChocoboRaisingInfo, relog, getChocoboRaisingInfo | all fields round-trip | untested |
-| 6 | setChocoboUserData / registerChocobo, relog, get | values round-trip | untested |
+| 5 | setChocoboRaisingInfo, relog, getChocoboRaisingInfo | all fields round-trip | tested (after fix 0fa8cee06a) |
+| 6 | setChocoboUserData / registerChocobo, relog, get | values round-trip | tested |
 | 7 | Delete character | char_chocobos row gone | untested |
 | 8 | getChocoboRaisingInfo for char with none | nil | untested |
 | 9 | Existing item/trade/save paths | no regression | untested |
 
 Evidence goes in this file as `runtime:` / `test:` lines; nothing is `validated` without it.
+
+## Evidence (2026-10-24, xitest03, headless MCP, MariaDB 12.3.2, chocobo commits 1f40d60ebf + 0fa8cee06a)
+
+- runtime: build OK (game + connect, Release x64); only the git-version post-build step fails (exit 9009, unrelated).
+- runtime: up.sql applied to live dspdb_fresh after backing up char_pet; up/down/up/up on a scratch DB had no errors and the columns match sql/char_chocobos.sql (30 columns).
+- runtime: setChocoboRaisingInfo returned false on first run: MariaDB rejects FROM_UNIXTIME(0) ("Truncated incorrect unixtime value"). Fixed in 0fa8cee06a (NOW() when created is omitted; existing created kept). After the fix all 29 fields plus created are identical before and after relog.
+- runtime: setChocoboUserData and registerChocobo persisted: char_pet.chocobo_user_data = 41960000A5A50000410100..., readback identical after relog (flags 0xA5A5, chocobosRaised 321, field properties 3846). registerChocobo overwrites registered* stats from its own table (it does not read the raising row).
+- runtime: exdata set via addItemExData matches char_inventory.extra and the client's 0x020 readout (24 bytes). After relog a plain item (4096) is identical. chocobo_egg (2312) is NOT: bytes 17 and 23 changed (7F->40, A9->80) while the DB row is unchanged.
+- cause (source-read, not yet fixed): charutils::LoadInventory calls setSignature() for ITEM_FLAG_INSCRIBABLE items, which overwrites extdata bytes 12-23 with the encoded (empty) signature. An egg's data must live in bytes 0-11 or use the signature column.
+- not run: #4 move/trade, #7 char delete, #8 none->nil, #9 regression.
+
