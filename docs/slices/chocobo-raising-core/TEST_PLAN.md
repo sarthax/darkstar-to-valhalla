@@ -31,3 +31,6 @@ Evidence goes in this file as `runtime:` / `test:` lines; nothing is `validated`
 - not run: #7 char delete (lobby.cpp path needs a throwaway lobby char), #9 full regression pass.
 - runtime: #7 char delete: xitest08 char with a char_chocobos row deleted through the lobby (0x14 delete, result=3): chars row and char_chocobos row both gone; account re-provisioned afterwards.
 - static (not runtime): player-to-player trade. charutils::DoTrade copies a stack-1 item with itemutils::GetItem(PItem) (default copy constructors, so m_extra is carried) then AddItem(PTarget, ..., PNewItem). Headless has no player-trade tool, so this is unverified at runtime.
+- runtime: player-to-player trade (two bots, xitest03 -> xitest08, headless trade_player_* tools): a stack-1 plain item (4112) with all 24 exdata bytes set and an inscribable item (180) with bytes 0-11 set arrive on the receiver byte-identical in char_inventory.extra and the client 0x020 readout, and after relog. Sender slots are emptied.
+- note: chocobo_egg (2312) has ITEM_FLAG_EX (0x4000), so the server refuses to trade it between players (0x034 handler returns silently). Eggs move only via NPC trade (0x036); egg-to-player trade is not possible by design.
+- not run: #9 full regression pass beyond the paths exercised above.
