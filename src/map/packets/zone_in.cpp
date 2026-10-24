@@ -74,18 +74,24 @@ uint16 GetMogHouseID(CCharEntity* PChar)
 
 uint8 GetMogHouseFlag(CCharEntity* PChar)
 {
+    // On 2F the exit-quest bits may be unset (e.g. GM-unlocked); a 0 here leaves no way out, so treat them as set
+    uint16 mhflag = PChar->profile.mhflag;
+    if (mhflag & 0x40)
+    {
+        mhflag |= 0x0F;
+    }
     switch (zoneutils::GetCurrentRegion(PChar->getZone()))
     {
     case REGION_WEST_AHT_URHGAN:
-        if (PChar->profile.mhflag & 0x10) return 5;
+        if (mhflag & 0x10) return 5;
     case REGION_SANDORIA:
-        if (PChar->profile.mhflag & 0x01) return 1;
+        if (mhflag & 0x01) return 1;
     case REGION_BASTOK:
-        if (PChar->profile.mhflag & 0x02) return 2;
+        if (mhflag & 0x02) return 2;
     case REGION_WINDURST:
-        if (PChar->profile.mhflag & 0x04) return 3;
+        if (mhflag & 0x04) return 3;
     case REGION_JEUNO:
-        if (PChar->profile.mhflag & 0x08) return 4;
+        if (mhflag & 0x08) return 4;
     }
     return 0;
 }
@@ -172,10 +178,23 @@ CZoneInPacket::CZoneInPacket(CCharEntity * PChar, int16 csid)
     if (PChar->m_moghouseID != 0)
     {
         WBUFB(data,(0x80)) = 1;
-        if (PChar->profile.mhflag & 0x40)
+        // Retail Mog House zone-ins (captures): 0x00 on a fresh character, 0x30 once any exit quest is done,
+        // 0x38 when all three are done (2F available), +0x02 while on 2F
+        uint16 mhflag = PChar->profile.mhflag;
+        uint8 doorFlags = 0x00;
+        if (mhflag & 0x1F)
         {
-            WBUFB(data,(0xA8)) = 0x02;                        // On 2F: full exit menu
+            doorFlags = 0x30;
         }
+        if ((mhflag & 0x20) || (mhflag & 0x07) == 0x07)
+        {
+            doorFlags = 0x38;
+        }
+        if (mhflag & 0x40)
+        {
+            doorFlags |= 0x02;
+        }
+        WBUFB(data,(0xA8)) = doorFlags;
         WBUFW(data,(0xAA)) = GetMogHouseID(PChar);            // Mog House id
         WBUFB(data,(0xAE)) = GetMogHouseFlag(PChar);          // Mog House leaving flag
     }

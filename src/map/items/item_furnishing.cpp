@@ -51,6 +51,20 @@ bool CItemFurnishing::isInstalled()
     return WBUFB(m_extra, 0x01) & 0x40;
 }
 
+// Retail capture (Moghouse 2F remodel): the 0x0FA floor byte (0 = 1F, 1 = 2F) comes back as bit 0x01 next to the installed bit
+void CItemFurnishing::setSecondFloor(bool secondFloor)
+{
+    if (secondFloor)
+        WBUFB(m_extra, 0x01) |= 0x01;
+    else
+        WBUFB(m_extra, 0x01) &= ~0x01;
+}
+
+bool CItemFurnishing::isSecondFloor()
+{
+    return WBUFB(m_extra, 0x01) & 0x01;
+}
+
 void CItemFurnishing::setStorage(uint8 storage)
 {
 	m_storage = dsp_min(storage,80);

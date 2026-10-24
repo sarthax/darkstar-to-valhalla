@@ -24,3 +24,4 @@ Use a fresh non-GM character per nation where possible. Edit `mhflag` in DB only
 
 ## Record
 - Nation flag quests (Growing Flowers, A Lady's Heart, Flower Child) not played through; test with real quest completion when possible.
+- 2026-10-22 mhflag matrix tested in game (char Bastok-native): 0/2/3/5/6 no unlock CS, locked floor request returns to 1F, exits correct per set bit; 7 fires unlock CS only in home city (Bastok), 2F travel + exits work. Change floors is greyed by the client in non-home houses; not greyed in a locked home house (open, no retail sample).

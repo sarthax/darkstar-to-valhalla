@@ -2738,20 +2738,19 @@ void SmallPacket0x05E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             if (!(PChar->profile.mhflag & 0x20))
             {
                 ShowWarning(CL_YELLOW"SmallPacket0x5E: Mog House 2F requested without it being unlocked: %s\n" CL_RESET, PChar->GetName());
-                PChar->pushPacket(new CMessageSystemPacket(0, 0, 2));
-                PChar->pushPacket(new CCSPositionPacket(PChar));
-                PChar->status = STATUS_NORMAL;
-                return;
+                // The client has already left its exit menu for the floor change; replying with a position packet
+                // leaves the door with no menu. Rezone into the same 1F Mog House instead (flags unchanged).
             }
-            if (zone == 125)
+            else if (zone == 125)
             {
                 PChar->profile.mhflag |= 0x40;
+                charutils::SaveCharStats(PChar);
             }
             else
             {
                 PChar->profile.mhflag &= ~0x40;
+                charutils::SaveCharStats(PChar);
             }
-            charutils::SaveCharStats(PChar);
             PChar->loc.destination = PChar->getZone();
             memset(&PChar->loc.p, 0, sizeof(PChar->loc.p));
         }
@@ -5111,6 +5110,7 @@ void SmallPacket0x0FA(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
     uint8  slotID = RBUFB(data, (0x06));
     uint8  containerID = RBUFB(data, (0x07));
+    uint8  floor = RBUFB(data, (0x08));
     uint8  col = RBUFB(data, (0x09));
     uint8  level = RBUFB(data, (0x0A));
     uint8  row = RBUFB(data, (0x0B));
@@ -5129,6 +5129,7 @@ void SmallPacket0x0FA(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
         bool wasInstalled = PItem->isInstalled();
         PItem->setInstalled(true);
+        PItem->setSecondFloor(floor != 0);
         PItem->setCol(col);
         PItem->setRow(row);
         PItem->setLevel(level);
@@ -5190,6 +5191,7 @@ void SmallPacket0x0FB(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         if (PItemContainer->GetFreeSlotsCount() >= RemovedSize)
         {
             PItem->setInstalled(false);
+            PItem->setSecondFloor(false);
             PItem->setCol(0);
             PItem->setRow(0);
             PItem->setLevel(0);
