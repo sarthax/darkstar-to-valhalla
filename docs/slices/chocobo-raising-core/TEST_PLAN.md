@@ -26,3 +26,6 @@ Evidence goes in this file as `runtime:` / `test:` lines; nothing is `validated`
 - cause: charutils::LoadInventory calls setSignature() for ITEM_FLAG_INSCRIBABLE items, which overwrites extdata bytes 12-23 with the encoded (empty) signature. An egg's data must live in bytes 0-11 or use the signature column.
 - not run: #4 move/trade, #7 char delete, #8 none->nil, #9 regression.
 - runtime: after b16a391408 (load only seeds the signature from the column when extra[0x0C..] is empty) the chocobo_egg exdata is byte-identical before and after relog (080F161D...A2A9). Existing rows whose signature exists only in the column still get it.
+- runtime: #4 (move) chocobo_egg with bytes 0-11 = 01..0C moved main bag slot 17 -> container 5 slot 1 via move_to_container: char_inventory.extra and the client 0x020 readout are byte-identical after the move and after relog. Player-to-player trade not run (needs two bots).
+- runtime: #8 getChocoboRaisingInfo for a char with no char_chocobos row returns nil.
+- not run: #7 char delete (lobby.cpp path needs a throwaway lobby char), #9 full regression pass.
