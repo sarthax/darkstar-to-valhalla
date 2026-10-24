@@ -1,17 +1,4 @@
 itemid,name,result,craft,level
-122,amir_bed,DRAFT,goldsmithing,79
-123,athenienne,DRAFT,smithing,27
-124,wardrobe,DRAFT,woodworking,98
-125,reliquary,DRAFT,goldsmithing,72
-207,fire_lamp,DRAFT,goldsmithing,98
-208,ice_lamp,DRAFT,goldsmithing,98
-209,wind_lamp,DRAFT,goldsmithing,98
-210,earth_lamp,DRAFT,goldsmithing,98
-211,lightning_lamp,DRAFT,goldsmithing,98
-212,water_lamp,DRAFT,goldsmithing,98
-213,light_lamp,DRAFT,goldsmithing,98
-214,dark_lamp,DRAFT,goldsmithing,98
-321,mythril_bell,DRAFT,smithing,100
 331,winged_altar,DRAFT,woodworking,104
 332,winged_plaque,DRAFT,smithing,101
 343,harp_stool,DRAFT,woodworking,88

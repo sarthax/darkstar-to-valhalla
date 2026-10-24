@@ -24,6 +24,10 @@ def main():
         idname[i] = n; byname.setdefault(nk(sn or n), i); byname.setdefault(nk(n), i); byname.setdefault(nk(CONT.sub('', n, count=1)), i)
     targets = {int(r['itemid']): r for r in csv.DictReader(open(a.out + '/furnishing_toolkit_check.csv', encoding='utf-8'))
                if r['toolkit_status'] != 'ok' and r['wiki_recipe_verdict'] == 'craftable'}
+    for col in ('Result', 'ResultHQ1', 'ResultHQ2', 'ResultHQ3'):
+        cu.execute(f"select distinct {col} from synth_recipes where {col}>0")
+        for (r,) in cu.fetchall():
+            targets.pop(r, None)  # recipe already in DB (toolkit 'script' = ingredient gap, not a recipe gap)
     pages = {}
     with gzip.open(WIKI, 'rt', encoding='utf-8') as f:
         for line in f:
