@@ -1,0 +1,636 @@
+furnishing,furn_id,route,craft,ingredient,qty,ingredient_id,our_sources
+simple_bed,2,synth,Woodworking,Holly Lumber,2,714,"guild_shop,synth"
+simple_bed,2,synth,Woodworking,Lauan Lumber,2,706,"guild_shop,synth"
+simple_bed,2,synth,Woodworking,Grass Thread,1,817,"guild_shop,lua_ref,mob_drop,synth"
+simple_bed,2,synth,Woodworking,Grass Cloth,3,824,"bcnm_loot,guild_shop,mob_drop,synth"
+oak_bed,3,synth,Woodworking,Oak Lumber,4,716,"guild_shop,synth"
+oak_bed,3,synth,Woodworking,Linen Thread,1,819,"guild_shop,lua_shop,synth"
+oak_bed,3,synth,Woodworking,Linen Cloth,3,826,"bcnm_loot,guild_shop,mob_drop,synth"
+mahogany_bed,4,synth,Woodworking,Mahogany Lumber,4,,
+mahogany_bed,4,synth,Woodworking,Wool Thread,1,820,"guild_shop,mob_drop,synth"
+mahogany_bed,4,synth,Woodworking,Wool Cloth,3,827,"bcnm_loot,guild_shop,mob_drop,synth"
+bronze_bed,5,synth,Smithing,Bronze Ingot,4,649,"guild_shop,synth"
+bronze_bed,5,synth,Smithing,Cotton Cloth,2,825,"bcnm_loot,guild_shop,mob_drop,synth"
+bronze_bed,5,synth,Smithing,Grass Thread,1,817,"guild_shop,lua_ref,mob_drop,synth"
+bronze_bed,5,synth,Smithing,Saruta Cotton,1,834,"gardening,guild_shop,lua_ref,mob_drop,synth"
+nobles_bed,6,synth,Woodworking,Gold Ingot,1,745,"bcnm_loot,mob_drop,synth"
+nobles_bed,6,synth,Woodworking,Velvet Cloth,1,828,"guild_shop,lua_ref,lua_shop,mob_drop,synth"
+nobles_bed,6,synth,Woodworking,Mahogany Lumber,1,,
+nobles_bed,6,synth,Woodworking,Rosewood Lumber,3,,
+nobles_bed,6,synth,Woodworking,Gold Thread,1,823,"bcnm_loot,guild_shop,lua_ref,mob_drop,synth"
+nobles_bed,6,synth,Woodworking,Silk Cloth,1,829,"guild_shop,lua_ref,mob_drop,synth"
+royal_bed,8,synth,Woodworking,Ebony Lumber,1,719,"guild_shop,mob_drop,synth"
+royal_bed,8,synth,Woodworking,Gold Ingot,1,745,"bcnm_loot,mob_drop,synth"
+royal_bed,8,synth,Woodworking,Damascene Cloth,1,836,"bcnm_loot,lua_shop,mob_drop"
+royal_bed,8,synth,Woodworking,Mahogany Lumber,1,,
+royal_bed,8,synth,Woodworking,Ruby,1,786,"bcnm_loot,guild_shop,mob_drop,synth"
+royal_bed,8,synth,Woodworking,Gold Thread,1,823,"bcnm_loot,guild_shop,lua_ref,mob_drop,synth"
+royal_bed,8,synth,Woodworking,Silk Cloth,1,829,"guild_shop,lua_ref,mob_drop,synth"
+royal_bed,8,synth,Woodworking,Ancient Lumber,1,720,"lua_ref,lua_shop,synth"
+desk,21,synth,Woodworking,Lauan Lumber,1,706,"guild_shop,synth"
+desk,21,synth,Woodworking,Elm Lumber,1,707,"guild_shop,lua_ref,synth"
+desk,21,synth,Woodworking,Linen Cloth,1,826,"bcnm_loot,guild_shop,mob_drop,synth"
+workbench,22,synth,Woodworking,Lauan Lumber,4,706,"guild_shop,synth"
+maple_table,23,synth,Woodworking,Maple Lumber,4,708,"guild_shop,synth"
+oak_table,24,synth,Woodworking,Oak Lumber,4,716,"guild_shop,synth"
+tarutaru_desk,26,synth,Woodworking,Lauan Lumber,5,706,"guild_shop,synth"
+tarutaru_desk,26,synth,Woodworking,Linen Cloth,2,826,"bcnm_loot,guild_shop,mob_drop,synth"
+secretaire,29,synth,Woodworking,Mahogany Lumber,4,,
+bureau,30,synth,Woodworking,Darksteel Sheet,1,664,"bcnm_loot,guild_shop,synth"
+bureau,30,synth,Woodworking,Rosewood Lumber,2,,
+bureau,30,synth,Woodworking,Mahogany Lumber,2,,
+dresser,32,synth,Woodworking,Gold Ingot,1,745,"bcnm_loot,mob_drop,synth"
+dresser,32,synth,Woodworking,Velvet Cloth,1,828,"guild_shop,lua_ref,lua_shop,mob_drop,synth"
+dresser,32,synth,Woodworking,Mythril Sheet,1,663,"guild_shop,lua_ref,synth"
+dresser,32,synth,Woodworking,Rosewood Lumber,4,,
+dresser,32,synth,Woodworking,Gold Thread,1,823,"bcnm_loot,guild_shop,lua_ref,mob_drop,synth"
+millionaire_desk,33,synth,Goldsmithing,Ancient Lumber,1,720,"lua_ref,lua_shop,synth"
+millionaire_desk,33,synth,Goldsmithing,Darksteel Sheet,1,664,"bcnm_loot,guild_shop,synth"
+millionaire_desk,33,synth,Goldsmithing,Gold Sheet,2,752,synth
+millionaire_desk,33,synth,Goldsmithing,Granite,3,1465,"bcnm_loot,mob_drop"
+millionaire_desk,33,synth,Goldsmithing,Platinum Sheet,1,754,synth
+wicker_box,43,synth,Woodworking,Willow Lumber,1,712,"guild_shop,synth"
+wicker_box,43,synth,Woodworking,Rattan Lumber,3,721,"guild_shop,synth"
+wicker_box,43,synth,Woodworking,Ram Leather,1,851,"guild_shop,synth"
+coffer,49,synth,Woodworking,Brass Sheet,1,661,"guild_shop,lua_ref,synth"
+coffer,49,synth,Woodworking,Yew Lumber,5,713,"guild_shop,synth"
+coffer,49,synth,Woodworking,Rosewood Lumber,1,,
+chest,51,synth,Woodworking,Rattan Lumber,3,721,"guild_shop,synth"
+chest,51,synth,Woodworking,Lauan Lumber,2,706,"guild_shop,synth"
+cabinet,55,synth,Woodworking,Holly Lumber,1,714,"guild_shop,synth"
+cabinet,55,synth,Woodworking,Oak Lumber,4,716,"guild_shop,synth"
+cabinet,55,synth,Woodworking,Woodworking Kit 81,1,9485,
+commode,56,synth,Woodworking,Rosewood Lumber,5,,
+chiffonier,59,synth,Woodworking,Iron Sheet,2,662,"guild_shop,lua_shop,synth"
+chiffonier,59,synth,Woodworking,Rosewood Lumber,3,,
+armoire,61,synth,Woodworking,Ebony Lumber,7,719,"guild_shop,mob_drop,synth"
+armoire,61,synth,Woodworking,Gold Ingot,1,745,"bcnm_loot,mob_drop,synth"
+royal_bookshelf,76,synth,Woodworking,Brass Ingot,1,650,"lua_shop,mob_drop,synth"
+royal_bookshelf,76,synth,Woodworking,Mahogany Lumber,3,,
+royal_bookshelf,76,synth,Woodworking,Ebony Lumber,2,719,"guild_shop,mob_drop,synth"
+royal_bookshelf,76,synth,Woodworking,Lacquer Tree Lumber,2,,
+bookshelf,77,synth,Woodworking,Mahogany Lumber,3,,
+bookshelf,77,synth,Woodworking,Tufa,3,1588,guild_shop
+tarutaru_stool,92,synth,Woodworking,Elm Lumber,1,707,"guild_shop,lua_ref,synth"
+tarutaru_stool,92,synth,Woodworking,Lauan Lumber,1,706,"guild_shop,synth"
+tarutaru_stool,92,synth,Woodworking,Woodworking Kit 25,1,8809,
+water_barrel,95,synth,Woodworking,Iron Sheet,1,662,"guild_shop,lua_shop,synth"
+water_barrel,95,synth,Woodworking,Oak Lumber,3,716,"guild_shop,synth"
+beverage_barrel,96,synth,Woodworking,Water Barrel,1,95,"lua_shop,synth"
+beverage_barrel,96,synth,Woodworking,Oak Lumber,2,716,"guild_shop,synth"
+beverage_barrel,96,synth,Woodworking,Grape Juice,3,4441,synth
+bookholder,97,synth,Woodworking,Holly Lumber,1,714,"guild_shop,synth"
+bookholder,97,synth,Woodworking,Lauan Lumber,1,706,"guild_shop,synth"
+scimitar_cactus,98,synth,Woodworking,Iron Sheet,1,662,"guild_shop,lua_shop,synth"
+scimitar_cactus,98,synth,Woodworking,Red Gravel,1,1774,lua_shop
+scimitar_cactus,98,synth,Woodworking,Cactus Arm,1,1817,mob_drop
+scimitar_cactus,98,synth,Woodworking,Humus,1,17868,"mob_drop,synth"
+elshimo_palm,99,synth,Woodworking,Willow Log,1,695,"guild_shop,lua_shop"
+elshimo_palm,99,synth,Woodworking,Rattan Lumber,1,721,"guild_shop,synth"
+elshimo_palm,99,synth,Woodworking,Red Gravel,1,1774,lua_shop
+elshimo_palm,99,synth,Woodworking,Elshimo Coconut,1,5187,mob_drop
+elshimo_palm,99,synth,Woodworking,Humus,1,17868,"mob_drop,synth"
+flower_stand,102,synth,Woodworking,Yew Lumber,1,713,"guild_shop,synth"
+flower_stand,102,synth,Woodworking,Lauan Lumber,1,706,"guild_shop,synth"
+goldfish_bowl,103,synth,Woodworking,Bronze Ingot,1,649,"guild_shop,synth"
+goldfish_bowl,103,synth,Woodworking,Lauan Lumber,1,706,"guild_shop,synth"
+goldfish_bowl,103,synth,Woodworking,Crawler Calculus,1,1156,"lua_ref,mob_drop"
+goldfish_bowl,103,synth,Woodworking,Sieglinde Putty,1,1886,synth
+goldfish_bowl,103,synth,Woodworking,Glass Sheet,1,1887,synth
+goldfish_bowl,103,synth,Woodworking,Goldfish Set,1,1894,
+goldfish_bowl,103,synth,Woodworking,Tiny Goldfish,1,4310,
+goldfish_bowl,103,synth,Woodworking,Black Bubble-Eye,1,4311,
+tarutaru_folding_screen,104,synth,Woodworking,Rattan Lumber,3,721,"guild_shop,synth"
+tarutaru_folding_screen,104,synth,Woodworking,Parchment,3,917,"guild_shop,lua_ref,synth"
+freshwater_aquarium,120,synth,Woodworking,Petrified Log,1,703,"bcnm_loot,lua_ref,lua_shop,mob_drop"
+freshwater_aquarium,120,synth,Woodworking,Oak Lumber,1,716,"guild_shop,synth"
+freshwater_aquarium,120,synth,Woodworking,Sieglinde Putty,1,1886,synth
+freshwater_aquarium,120,synth,Woodworking,Glass Sheet,1,1887,synth
+freshwater_aquarium,120,synth,Woodworking,Freshwater Set,1,1895,synth
+freshwater_aquarium,120,synth,Woodworking,Pipira,3,4464,guild_shop
+saltwater_aquarium,121,synth,Woodworking,Oak Lumber,1,716,"guild_shop,synth"
+saltwater_aquarium,121,synth,Woodworking,Coral Fragment,1,887,"bcnm_loot,mob_drop,synth"
+saltwater_aquarium,121,synth,Woodworking,Sieglinde Putty,1,1886,synth
+saltwater_aquarium,121,synth,Woodworking,Glass Sheet,1,1887,synth
+saltwater_aquarium,121,synth,Woodworking,Saltwater Set,1,1896,synth
+saltwater_aquarium,121,synth,Woodworking,Moorish Idol,3,5121,
+amir_bed,122,synth,Goldsmithing,Aht Urhgan Brass Ingot,4,2418,synth
+amir_bed,122,synth,Goldsmithing,Bloodwood Lumber,1,,
+amir_bed,122,synth,Goldsmithing,Gold Brocade,1,1999,synth
+amir_bed,122,synth,Goldsmithing,Gold Thread,1,823,"bcnm_loot,guild_shop,lua_ref,mob_drop,synth"
+amir_bed,122,synth,Goldsmithing,Karakul Cloth,1,2288,"lua_ref,synth"
+athenienne,123,synth,Smithing,Iron Ingot,1,651,"bcnm_loot,guild_shop,synth"
+athenienne,123,synth,Smithing,Iron Sheet,1,662,"guild_shop,lua_shop,synth"
+athenienne,123,synth,Smithing,Maple Lumber,1,708,"guild_shop,synth"
+athenienne,123,synth,Smithing,Aht Urhgan Brass Ingot,1,2418,synth
+wardrobe,124,synth,Woodworking,Walnut Lumber,4,711,"guild_shop,synth"
+wardrobe,124,synth,Woodworking,Glass Sheet,1,1887,synth
+wardrobe,124,synth,Woodworking,Aht Urhgan Brass Ingot,1,2418,synth
+wardrobe,124,synth,Woodworking,Aht Urhgan Brass Sheet,2,2419,synth
+reliquary,125,synth,Goldsmithing,Aht Urhgan Brass Ingot,1,2418,synth
+reliquary,125,synth,Goldsmithing,Aht Urhgan Brass Sheet,2,2419,synth
+reliquary,125,synth,Goldsmithing,Dogwood Lumber,2,,
+reliquary,125,synth,Goldsmithing,Imperial Silk Cloth,1,,
+falsiam_vase,126,synth,Smithing,Darksteel Ingot,1,654,"bcnm_loot,lua_ref,mob_drop,synth"
+falsiam_vase,126,synth,Smithing,Mythril Ingot,1,653,"bcnm_loot,guild_shop,lua_ref,mob_drop,synth"
+falsiam_vase,126,synth,Smithing,Tin Ingot,1,659,synth
+coffee_table,127,synth,Woodworking,Gold Ingot,1,745,"bcnm_loot,mob_drop,synth"
+coffee_table,127,synth,Woodworking,Gold Thread,1,823,"bcnm_loot,guild_shop,lua_ref,mob_drop,synth"
+coffee_table,127,synth,Woodworking,Lancewood Lumber,3,,
+coffee_table,127,synth,Woodworking,Silver Brocade,1,1991,synth
+console,128,synth,Woodworking,Iron Sheet,2,662,"guild_shop,lua_shop,synth"
+console,128,synth,Woodworking,Dogwood Lumber,3,,
+marble_bed,130,synth,Goldsmithing,Aquamarine,1,791,"bcnm_loot,guild_shop,mob_drop,synth"
+marble_bed,130,synth,Goldsmithing,Gold Ingot,2,745,"bcnm_loot,mob_drop,synth"
+marble_bed,130,synth,Goldsmithing,Marble,2,1836,"mob_drop,synth"
+marble_bed,130,synth,Goldsmithing,Rainbow Thread,1,821,"bcnm_loot,mob_drop,synth"
+marble_bed,130,synth,Goldsmithing,Sarcenet Cloth,1,1280,mob_drop
+marble_bed,130,synth,Goldsmithing,Silk Cloth,1,829,"guild_shop,lua_ref,mob_drop,synth"
+star_globe,139,synth,Woodworking,Rosewood Lumber,1,,
+star_globe,139,synth,Woodworking,Garnet,1,790,"bcnm_loot,guild_shop,lua_ref,synth"
+star_globe,139,synth,Woodworking,Gold Thread,1,823,"bcnm_loot,guild_shop,lua_ref,mob_drop,synth"
+star_globe,139,synth,Woodworking,Animal Glue,1,937,"lua_ref,mob_drop,synth"
+star_globe,139,synth,Woodworking,Bast Parchment,2,1134,"guild_shop,synth"
+star_globe,139,synth,Woodworking,Wisteria Lumber,1,1414,mob_drop
+star_globe,139,synth,Woodworking,Lacquer Tree Lumber,1,,
+ngoma,143,synth,Woodworking,Divine Log,1,722,"bcnm_loot,mob_drop"
+ngoma,143,synth,Woodworking,Buffalo Leather,1,1629,"mob_drop,synth"
+caisson,144,synth,Woodworking,Bronze Sheet,2,660,"guild_shop,synth"
+caisson,144,synth,Woodworking,Chestnut Lumber,2,710,"guild_shop,synth"
+thurible,145,synth,Goldsmithing,Aht Urhgan Brass Sheet,3,2419,synth
+thurible,145,synth,Goldsmithing,Scintillant Ingot,1,2275,synth
+thurible,145,synth,Goldsmithing,Troll Bronze Ingot,1,2302,synth
+walahra_burner,146,synth,Goldsmithing,Ancient Lumber,1,720,"lua_ref,lua_shop,synth"
+walahra_burner,146,synth,Goldsmithing,Gold Ingot,1,745,"bcnm_loot,mob_drop,synth"
+walahra_burner,146,synth,Goldsmithing,Gold Sheet,2,752,synth
+walahra_burner,146,synth,Goldsmithing,Orichalcum Sheet,1,668,synth
+imperial_tapestry,147,synth,Leathercraft,Gold Ingot,1,745,"bcnm_loot,mob_drop,synth"
+imperial_tapestry,147,synth,Leathercraft,Turquoise,1,798,"bcnm_loot,lua_ref,synth"
+imperial_tapestry,147,synth,Leathercraft,Gold Thread,2,823,"bcnm_loot,guild_shop,lua_ref,mob_drop,synth"
+imperial_tapestry,147,synth,Leathercraft,Marid Hair,1,2166,"lua_shop,mob_drop"
+imperial_tapestry,147,synth,Leathercraft,Wamoura Cloth,1,2289,"lua_ref,synth"
+imperial_tapestry,147,synth,Leathercraft,Imperial Silk Cloth,2,,
+cartonnier,148,synth,Woodworking,Iron Sheet,2,662,"guild_shop,lua_shop,synth"
+cartonnier,148,synth,Woodworking,Mahogany Lumber,3,,
+cartonnier,148,synth,Woodworking,Bloodwood Lumber,1,,
+cartonnier,148,synth,Woodworking,Cassia Lumber,2,1762,bcnm_loot
+set_of_alchemists_tools,149,synth,Alchemy,Iron Ingot,1,651,"bcnm_loot,guild_shop,synth"
+set_of_alchemists_tools,149,synth,Alchemy,Parchment,1,917,"guild_shop,lua_ref,synth"
+set_of_alchemists_tools,149,synth,Alchemy,Glass Sheet,1,1887,synth
+set_of_alchemists_tools,149,synth,Alchemy,Triturator,1,2131,guild_shop
+set_of_alchemists_tools,149,synth,Alchemy,Colibri Feather,1,2150,mob_drop
+set_of_alchemists_tools,149,synth,Alchemy,Aht Urhgan Brass Ingot,1,2418,synth
+set_of_alchemists_tools,149,synth,Alchemy,Aht Urhgan Brass Sheet,1,2419,synth
+set_of_alchemists_tools,149,synth,Alchemy,Flint Glass Sheet,1,2460,synth
+leather_pot,150,synth,Leathercraft,Hickory Lumber,1,725,mob_drop
+leather_pot,150,synth,Leathercraft,Karakul Leather,1,879,"lua_ref,synth"
+leather_pot,150,synth,Leathercraft,Rheiyoh Leather,1,1768,
+leather_pot,150,synth,Leathercraft,Karakul Thread,1,2287,"guild_shop,synth"
+leather_pot,150,synth,Leathercraft,Kaolin,2,2475,mob_drop
+rook_banner,185,synth,Clothcraft,Dogwood Lumber,1,,
+rook_banner,185,synth,Clothcraft,Gold Ingot,1,745,"bcnm_loot,mob_drop,synth"
+rook_banner,185,synth,Clothcraft,Gold Thread,2,823,"bcnm_loot,guild_shop,lua_ref,mob_drop,synth"
+rook_banner,185,synth,Clothcraft,Silk Cloth,1,829,"guild_shop,lua_ref,mob_drop,synth"
+rook_banner,185,synth,Clothcraft,Rainbow Cloth,1,830,"bcnm_loot,mob_drop,synth"
+rook_banner,185,synth,Clothcraft,Pigeon's Blood Ruby,1,1271,mob_drop
+rook_banner,185,synth,Clothcraft,Siren's Macrame,1,1409,"lua_shop,synth"
+shield_plaque,186,synth,Goldsmithing,Brass Ingot,1,650,"lua_shop,mob_drop,synth"
+shield_plaque,186,synth,Goldsmithing,Gold Ingot,1,745,"bcnm_loot,mob_drop,synth"
+shield_plaque,186,synth,Goldsmithing,Gold Sheet,1,752,synth
+shield_plaque,186,synth,Goldsmithing,Mythril Sheet,1,663,"guild_shop,lua_ref,synth"
+shield_plaque,186,synth,Goldsmithing,Rhodonite,1,1634,"mob_drop,synth"
+shield_plaque,186,synth,Goldsmithing,Rosewood Lumber,1,,
+shield_plaque,186,synth,Goldsmithing,Scarlet Linen,1,1699,synth
+shield_plaque,186,synth,Goldsmithing,Turquoise,1,798,"bcnm_loot,lua_ref,synth"
+buckler_plaque,187,synth,Goldsmithing,Fluorite,2,810,"bcnm_loot,guild_shop,lua_shop,mob_drop,synth"
+buckler_plaque,187,synth,Goldsmithing,Mahogany Lumber,1,,
+buckler_plaque,187,synth,Goldsmithing,Mythril Ingot,1,653,"bcnm_loot,guild_shop,lua_ref,mob_drop,synth"
+buckler_plaque,187,synth,Goldsmithing,Platinum Ingot,1,746,"bcnm_loot,mob_drop,synth"
+buckler_plaque,187,synth,Goldsmithing,Platinum Sheet,1,754,synth
+buckler_plaque,187,synth,Goldsmithing,Rainbow Velvet,1,1996,synth
+buckler_plaque,187,synth,Goldsmithing,Silver Sheet,1,671,synth
+stuffed_big_one,195,synth,Woodworking,Mahogany Lumber,1,,
+stuffed_big_one,195,synth,Woodworking,Ebony Lumber,1,719,"guild_shop,mob_drop,synth"
+stuffed_big_one,195,synth,Woodworking,Gold Sheet,1,752,synth
+stuffed_big_one,195,synth,Woodworking,Saruta Cotton,1,834,"gardening,guild_shop,lua_ref,mob_drop,synth"
+stuffed_big_one,195,synth,Woodworking,Beeswax,1,913,"lua_ref,synth"
+stuffed_big_one,195,synth,Woodworking,Animal Glue,1,937,"lua_ref,mob_drop,synth"
+stuffed_big_one,195,synth,Woodworking,Beetle Blood,1,1110,"bcnm_loot,mob_drop"
+stuffed_big_one,195,synth,Woodworking,Titanic Sawfish,1,5120,lua_ref
+tsahyan_mask,200,synth,Woodworking,Darksteel Sheet,1,664,"bcnm_loot,guild_shop,synth"
+tsahyan_mask,200,synth,Woodworking,Ebony Lumber,2,719,"guild_shop,mob_drop,synth"
+tsahyan_mask,200,synth,Woodworking,Giant Bird Plume,3,843,"bcnm_loot,mob_drop,synth"
+tsahyan_mask,200,synth,Woodworking,Manticore Hair,1,1163,"mob_drop,synth"
+tsahyan_mask,200,synth,Woodworking,Avatar Blood,1,1626,mob_drop
+totem_pole,201,synth,Woodworking,Walnut Lumber,1,711,"guild_shop,synth"
+totem_pole,201,synth,Woodworking,Rosewood Lumber,3,,
+totem_pole,201,synth,Woodworking,White Rock,1,776,"bcnm_loot,gardening,guild_shop,lua_ref,lua_shop,mob_drop"
+totem_pole,201,synth,Woodworking,Manticore Hair,2,1163,"mob_drop,synth"
+totem_pole,201,synth,Woodworking,Wivre Horn,1,2426,mob_drop
+fire_lamp,207,synth,Goldsmithing,Aht Urhgan Brass Ingot,1,2418,synth
+fire_lamp,207,synth,Goldsmithing,Fire Ore,1,1255,"bcnm_loot,gardening,lua_shop,mob_drop"
+fire_lamp,207,synth,Goldsmithing,Scintillant Ingot,1,2275,synth
+ice_lamp,208,synth,Goldsmithing,Aht Urhgan Brass Ingot,1,2418,synth
+ice_lamp,208,synth,Goldsmithing,Ice Ore,1,1256,"bcnm_loot,gardening,lua_ref,mob_drop"
+ice_lamp,208,synth,Goldsmithing,Scintillant Ingot,1,2275,synth
+wind_lamp,209,synth,Goldsmithing,Aht Urhgan Brass Ingot,1,2418,synth
+wind_lamp,209,synth,Goldsmithing,Wind Ore,1,1257,"bcnm_loot,gardening,mob_drop"
+wind_lamp,209,synth,Goldsmithing,Scintillant Ingot,1,2275,synth
+earth_lamp,210,synth,Goldsmithing,Aht Urhgan Brass Ingot,1,2418,synth
+earth_lamp,210,synth,Goldsmithing,Earth Ore,1,1258,"bcnm_loot,gardening,mob_drop"
+earth_lamp,210,synth,Goldsmithing,Scintillant Ingot,1,2275,synth
+lightning_lamp,211,synth,Goldsmithing,Aht Urhgan Brass Ingot,1,2418,synth
+lightning_lamp,211,synth,Goldsmithing,Lightning Ore,1,1259,"bcnm_loot,gardening,mob_drop"
+lightning_lamp,211,synth,Goldsmithing,Scintillant Ingot,1,2275,synth
+water_lamp,212,synth,Goldsmithing,Aht Urhgan Brass Ingot,1,2418,synth
+water_lamp,212,synth,Goldsmithing,Water Ore,1,1260,"bcnm_loot,gardening,lua_ref,lua_shop,mob_drop"
+water_lamp,212,synth,Goldsmithing,Scintillant Ingot,1,2275,synth
+light_lamp,213,synth,Goldsmithing,Aht Urhgan Brass Ingot,1,2418,synth
+light_lamp,213,synth,Goldsmithing,Light Ore,1,1261,"bcnm_loot,gardening,lua_ref,mob_drop"
+light_lamp,213,synth,Goldsmithing,Scintillant Ingot,1,2275,synth
+dark_lamp,214,synth,Goldsmithing,Aht Urhgan Brass Ingot,1,2418,synth
+dark_lamp,214,synth,Goldsmithing,Dark Ore,1,1262,"bcnm_loot,gardening,lua_ref,mob_drop"
+dark_lamp,214,synth,Goldsmithing,Scintillant Ingot,1,2275,synth
+porcelain_flowerpot,216,synth,Alchemy,Cermet Chunk,1,931,"guild_shop,mob_drop,synth"
+brass_flowerpot,217,synth,Goldsmithing,Brass Sheet,3,661,"guild_shop,lua_ref,synth"
+fighting_fish_tank,222,synth,Woodworking,Bronze Ingot,1,649,"guild_shop,synth"
+fighting_fish_tank,222,synth,Woodworking,Lauan Lumber,1,706,"guild_shop,synth"
+fighting_fish_tank,222,synth,Woodworking,Crawler Calculus,1,1156,"lua_ref,mob_drop"
+fighting_fish_tank,222,synth,Woodworking,Sieglinde Putty,1,1886,synth
+fighting_fish_tank,222,synth,Woodworking,Glass Sheet,1,1887,synth
+fighting_fish_tank,222,synth,Woodworking,Goldfish Set,1,1894,
+fighting_fish_tank,222,synth,Woodworking,Lamp Marimo,1,2216,guild_shop
+fighting_fish_tank,222,synth,Woodworking,Betta,1,5139,
+river_aquarium,223,synth,Woodworking,Petrified Log,1,703,"bcnm_loot,lua_ref,lua_shop,mob_drop"
+river_aquarium,223,synth,Woodworking,Oak Lumber,1,716,"guild_shop,synth"
+river_aquarium,223,synth,Woodworking,Sieglinde Putty,1,1886,synth
+river_aquarium,223,synth,Woodworking,Glass Sheet,1,1887,synth
+river_aquarium,223,synth,Woodworking,Freshwater Set,1,1895,synth
+river_aquarium,223,synth,Woodworking,Kayabaligi,3,5460,"guild_shop,lua_shop"
+bay_aquarium,224,synth,Woodworking,Oak Lumber,1,716,"guild_shop,synth"
+bay_aquarium,224,synth,Woodworking,Coral Fragment,1,887,"bcnm_loot,mob_drop,synth"
+bay_aquarium,224,synth,Woodworking,Sieglinde Putty,1,1886,synth
+bay_aquarium,224,synth,Woodworking,Glass Sheet,1,1887,synth
+bay_aquarium,224,synth,Woodworking,Saltwater Set,1,1896,synth
+bay_aquarium,224,synth,Woodworking,Bibikibo,3,4314,guild_shop
+reef_aquarium,225,synth,Woodworking,Oak Lumber,1,716,"guild_shop,synth"
+reef_aquarium,225,synth,Woodworking,Coral Fragment,1,887,"bcnm_loot,mob_drop,synth"
+reef_aquarium,225,synth,Woodworking,Sieglinde Putty,1,1886,synth
+reef_aquarium,225,synth,Woodworking,Glass Sheet,1,1887,synth
+reef_aquarium,225,synth,Woodworking,Saltwater Set,1,1896,synth
+reef_aquarium,225,synth,Woodworking,Coral Butterfly,3,4580,mob_drop
+bonfire,295,synth,Woodworking,Beech Lumber,2,709,
+bonfire,295,synth,Woodworking,Firesand,1,947,"guild_shop,lua_ref,mob_drop,synth"
+bonfire,295,synth,Woodworking,Teak Lumber,1,2533,synth
+9-drawer_almirah,314,synth,Woodworking,Mahogany Lumber,4,,
+9-drawer_almirah,314,synth,Woodworking,Ebony Lumber,1,719,"guild_shop,mob_drop,synth"
+9-drawer_almirah,314,synth,Woodworking,Ancient Lumber,1,720,"lua_ref,lua_shop,synth"
+9-drawer_almirah,314,synth,Woodworking,Gold Thread,1,823,"bcnm_loot,guild_shop,lua_ref,mob_drop,synth"
+9-drawer_almirah,314,synth,Woodworking,Silk Cloth,1,829,"guild_shop,lua_ref,mob_drop,synth"
+6-drawer_almirah,315,synth,Woodworking,Mahogany Lumber,3,,
+6-drawer_almirah,315,synth,Woodworking,Ebony Lumber,1,719,"guild_shop,mob_drop,synth"
+6-drawer_almirah,315,synth,Woodworking,Ancient Lumber,1,720,"lua_ref,lua_shop,synth"
+6-drawer_almirah,315,synth,Woodworking,Gold Thread,1,823,"bcnm_loot,guild_shop,lua_ref,mob_drop,synth"
+6-drawer_almirah,315,synth,Woodworking,Silk Cloth,1,829,"guild_shop,lua_ref,mob_drop,synth"
+3-drawer_almirah,316,synth,Woodworking,Mahogany Lumber,2,,
+3-drawer_almirah,316,synth,Woodworking,Ebony Lumber,1,719,"guild_shop,mob_drop,synth"
+3-drawer_almirah,316,synth,Woodworking,Ancient Lumber,1,720,"lua_ref,lua_shop,synth"
+3-drawer_almirah,316,synth,Woodworking,Gold Thread,1,823,"bcnm_loot,guild_shop,lua_ref,mob_drop,synth"
+3-drawer_almirah,316,synth,Woodworking,Silk Cloth,1,829,"guild_shop,lua_ref,mob_drop,synth"
+bronze_rose,317,synth,Smithing,Imperial Wootz Ingot,1,686,synth
+bronze_rose,317,synth,Smithing,Drk. Adm. Sheet,1,2001,synth
+bronze_rose,317,synth,Smithing,Troll Bronze Sheet,1,2303,synth
+bronze_rose,317,synth,Smithing,Aht Urhgan Brass Ingot,1,2418,synth
+crystal_rose,318,synth,Alchemy,Scintillant Ingot,1,2275,synth
+crystal_rose,318,synth,Alchemy,Flint Glass Sheet,3,2460,synth
+shell_lamp,319,synth,Bonecraft,Uragnite Shell,1,1618,"mob_drop,synth"
+shell_lamp,319,synth,Bonecraft,Flint Glass Sheet,1,2460,synth
+shell_lamp,319,synth,Bonecraft,Kaolin,2,2475,mob_drop
+shell_lamp,319,synth,Bonecraft,Bomb Arm,1,17316,"lua_ref,mob_drop"
+mythril_bell,321,synth,Smithing,Mythril Ingot,4,653,"bcnm_loot,guild_shop,lua_ref,mob_drop,synth"
+mythril_bell,321,synth,Smithing,Tin Ingot,1,659,synth
+mythril_bell,321,synth,Smithing,Manticore Hair,1,1163,"mob_drop,synth"
+mythril_bell,321,synth,Smithing,Molybdenum Ingot,1,1711,"lua_shop,mob_drop,synth"
+mythril_bell,321,synth,Smithing,Scintillant Ingot,1,2275,synth
+horn_trophy,322,synth,Bonecraft,Wool Thread,1,820,"guild_shop,mob_drop,synth"
+horn_trophy,322,synth,Bonecraft,Buffalo Horn,2,1615,"mob_drop,synth"
+horn_trophy,322,synth,Bonecraft,Sheep Chammy,1,1998,synth
+horn_trophy,322,synth,Bonecraft,Teak Lumber,1,2533,synth
+yellow_hobby_bo,326,synth,Woodworking,Chestnut Lumber,1,710,"guild_shop,synth"
+yellow_hobby_bo,326,synth,Woodworking,Dogwood Lumber,1,,
+yellow_hobby_bo,326,synth,Woodworking,Hickory Lumber,1,725,mob_drop
+yellow_hobby_bo,326,synth,Woodworking,Onyx,2,799,"bcnm_loot,guild_shop,mob_drop,synth"
+yellow_hobby_bo,326,synth,Woodworking,Yellow Chocobo Dye,1,,
+red_hobby_bo,327,synth,Woodworking,Chestnut Lumber,1,710,"guild_shop,synth"
+red_hobby_bo,327,synth,Woodworking,Dogwood Lumber,1,,
+red_hobby_bo,327,synth,Woodworking,Hickory Lumber,1,725,mob_drop
+red_hobby_bo,327,synth,Woodworking,Onyx,2,799,"bcnm_loot,guild_shop,mob_drop,synth"
+red_hobby_bo,327,synth,Woodworking,Red Chocobo Dye,1,2380,
+black_hobby_bo,328,synth,Woodworking,Chestnut Lumber,1,710,"guild_shop,synth"
+black_hobby_bo,328,synth,Woodworking,Dogwood Lumber,1,,
+black_hobby_bo,328,synth,Woodworking,Hickory Lumber,1,725,mob_drop
+black_hobby_bo,328,synth,Woodworking,Onyx,2,799,"bcnm_loot,guild_shop,mob_drop,synth"
+black_hobby_bo,328,synth,Woodworking,Black Chocobo Dye,1,,
+blue_hobby_bo,329,synth,Woodworking,Chestnut Lumber,1,710,"guild_shop,synth"
+blue_hobby_bo,329,synth,Woodworking,Dogwood Lumber,1,,
+blue_hobby_bo,329,synth,Woodworking,Hickory Lumber,1,725,mob_drop
+blue_hobby_bo,329,synth,Woodworking,Onyx,2,799,"bcnm_loot,guild_shop,mob_drop,synth"
+blue_hobby_bo,329,synth,Woodworking,Blue Chocobo Dye,1,2381,
+green_hobby_bo,330,synth,Woodworking,Chestnut Lumber,1,710,"guild_shop,synth"
+green_hobby_bo,330,synth,Woodworking,Dogwood Lumber,1,,
+green_hobby_bo,330,synth,Woodworking,Hickory Lumber,1,725,mob_drop
+green_hobby_bo,330,synth,Woodworking,Onyx,2,799,"bcnm_loot,guild_shop,mob_drop,synth"
+green_hobby_bo,330,synth,Woodworking,Green Chocobo Dye,1,,
+winged_altar,331,synth,Woodworking,Mythril Ingot,1,653,"bcnm_loot,guild_shop,lua_ref,mob_drop,synth"
+winged_altar,331,synth,Woodworking,Platinum Ingot,1,746,"bcnm_loot,mob_drop,synth"
+winged_altar,331,synth,Woodworking,Orichalcum Ingot,1,747,"bcnm_loot,mob_drop,synth"
+winged_altar,331,synth,Woodworking,Ruby,1,786,"bcnm_loot,guild_shop,mob_drop,synth"
+winged_altar,331,synth,Woodworking,Gold Brocade,1,1999,synth
+winged_altar,331,synth,Woodworking,Teak Lumber,1,2533,synth
+winged_altar,331,synth,Woodworking,Jacaranda Lumber,2,,
+winged_plaque,332,synth,Smithing,Steel Sheet,2,666,"guild_shop,lua_shop,synth"
+winged_plaque,332,synth,Smithing,Blessed Mythril Sheet,2,667,synth
+winged_plaque,332,synth,Smithing,Orichalcum Sheet,1,668,synth
+winged_plaque,332,synth,Smithing,Platinum Sheet,1,754,synth
+winged_plaque,332,synth,Smithing,Sapphire,1,794,synth
+winged_plaque,332,synth,Smithing,Scintillant Ingot,1,2275,synth
+winged_balance,333,synth,Bonecraft,Orichalcum Chain,1,763,synth
+winged_balance,333,synth,Bonecraft,Pearl,1,792,"bcnm_loot,lua_ref,lua_shop,mob_drop,synth"
+winged_balance,333,synth,Bonecraft,Nidhogg Scales,1,865,mob_drop
+winged_balance,333,synth,Bonecraft,Southern Pearl,1,1274,"lua_shop,mob_drop"
+winged_balance,333,synth,Bonecraft,Angel Skin,1,1312,"bcnm_loot,lua_ref,mob_drop"
+winged_balance,333,synth,Bonecraft,Marid Tusk,1,2147,mob_drop
+winged_balance,333,synth,Bonecraft,Wivre Horn,1,2426,mob_drop
+winged_balance,333,synth,Bonecraft,Trumpet Shell,1,5466,"mob_drop,synth"
+harp_stool,343,synth,Woodworking,Mahogany Lumber,1,,
+harp_stool,343,synth,Woodworking,Walnut Lumber,1,711,"guild_shop,synth"
+harp_stool,343,synth,Woodworking,Wolf Felt,1,2010,"lua_ref,synth"
+royal_squires_bunk,349,synth,Woodworking,Iron Sheet,1,662,"guild_shop,lua_shop,synth"
+royal_squires_bunk,349,synth,Woodworking,Chestnut Lumber,1,710,"guild_shop,synth"
+royal_squires_bunk,349,synth,Woodworking,Walnut Lumber,1,711,"guild_shop,synth"
+royal_squires_bunk,349,synth,Woodworking,Ash Lumber,2,715,"guild_shop,synth"
+royal_squires_bunk,349,synth,Woodworking,Wool Cloth,2,827,"bcnm_loot,guild_shop,mob_drop,synth"
+royal_squires_bunk,349,synth,Woodworking,Sheep Wool,1,832,"guild_shop,mob_drop,synth"
+republican_legionnaires_bedding,350,synth,Smithing,Iron Ingot,1,651,"bcnm_loot,guild_shop,synth"
+republican_legionnaires_bedding,350,synth,Smithing,Steel Ingot,1,652,"bcnm_loot,guild_shop,mob_drop,synth"
+republican_legionnaires_bedding,350,synth,Smithing,Iron Sheet,2,662,"guild_shop,lua_shop,synth"
+republican_legionnaires_bedding,350,synth,Smithing,Chestnut Lumber,1,710,"guild_shop,synth"
+republican_legionnaires_bedding,350,synth,Smithing,Linen Cloth,2,826,"bcnm_loot,guild_shop,mob_drop,synth"
+republican_legionnaires_bedding,350,synth,Smithing,Saruta Cotton,1,834,"gardening,guild_shop,lua_ref,mob_drop,synth"
+federal_mercenarys_hammock,351,synth,Woodworking,Bamboo Stick,1,704,guild_shop
+federal_mercenarys_hammock,351,synth,Woodworking,Lauan Lumber,1,706,"guild_shop,synth"
+federal_mercenarys_hammock,351,synth,Woodworking,Holly Lumber,2,714,"guild_shop,synth"
+federal_mercenarys_hammock,351,synth,Woodworking,Rattan Lumber,3,721,"guild_shop,synth"
+federal_mercenarys_hammock,351,synth,Woodworking,Wisteria Lumber,1,1414,mob_drop
+half_partition,352,synth,Woodworking,Mahogany Lumber,6,,
+spence,353,synth,Woodworking,Hickory Lumber,2,725,mob_drop
+spence,353,synth,Woodworking,Teak Lumber,2,2533,synth
+spence,353,synth,Woodworking,Walnut Lumber,3,711,"guild_shop,synth"
+spence,353,synth,Woodworking,Darksteel Ingot,1,654,"bcnm_loot,lua_ref,mob_drop,synth"
+bookstack,354,synth,Woodworking,Walnut Lumber,3,711,"guild_shop,synth"
+bookstack,354,synth,Woodworking,Marble,3,1836,"mob_drop,synth"
+bread_crock,355,synth,Alchemy,Jadeite,1,784,"bcnm_loot,guild_shop,mob_drop,synth"
+bread_crock,355,synth,Alchemy,Grass Thread,2,817,"guild_shop,lua_ref,mob_drop,synth"
+bread_crock,355,synth,Alchemy,Kaolin,2,2475,mob_drop
+partition,357,synth,Woodworking,Mahogany Lumber,4,,
+partition,357,synth,Woodworking,Rattan Lumber,4,721,"guild_shop,synth"
+credenza,358,synth,Woodworking,Jacaranda Lumber,1,,
+credenza,358,synth,Woodworking,Rattan Lumber,3,721,"guild_shop,synth"
+credenza,358,synth,Woodworking,Teak Lumber,4,2533,synth
+bahut,359,synth,Woodworking,Walnut Lumber,5,711,"guild_shop,synth"
+bahut,359,synth,Woodworking,Rattan Lumber,3,721,"guild_shop,synth"
+bahut,359,synth,Woodworking,Woodworking Kit 40,1,8812,
+matka,360,synth,Alchemy,Karugo Clay,5,2563,
+gallipot,361,synth,Alchemy,Walnut Log,1,693,guild_shop
+gallipot,361,synth,Alchemy,Bamboo Stick,1,704,guild_shop
+gallipot,361,synth,Alchemy,Silica,1,1888,"mob_drop,synth"
+gallipot,361,synth,Alchemy,Djinn Ash,1,2549,mob_drop
+gallipot,361,synth,Alchemy,Karugo-Narugo Clay,4,,
+fluoro-flora,362,synth,Alchemy,Tufa,1,1588,guild_shop
+fluoro-flora,362,synth,Alchemy,Red Gravel,1,1774,lua_shop
+fluoro-flora,362,synth,Alchemy,Orobon Lure,1,2154,mob_drop
+fluoro-flora,362,synth,Alchemy,Wildgrass Seeds,1,2235,"lua_shop,mob_drop"
+fluoro-flora,362,synth,Alchemy,Super Ether,1,4136,"mob_drop,synth"
+fluoro-flora,362,synth,Alchemy,Humus,1,17868,"mob_drop,synth"
+amigo_cactus,363,synth,Woodworking,Cactus Arm,1,1817,mob_drop
+amigo_cactus,363,synth,Woodworking,Humus,1,17868,"mob_drop,synth"
+amigo_cactus,363,synth,Woodworking,Karugo Clay,1,2563,
+amigo_cactus,363,synth,Woodworking,Red Gravel,1,1774,lua_shop
+amigo_cactus,363,synth,Woodworking,Yellow Rock,1,771,"bcnm_loot,gardening,guild_shop,lua_ref,mob_drop,synth"
+amiga_cactus,364,synth,Woodworking,Cactus Arm,1,1817,mob_drop
+amiga_cactus,364,synth,Woodworking,Humus,1,17868,"mob_drop,synth"
+amiga_cactus,364,synth,Woodworking,Karugo Clay,1,2563,
+amiga_cactus,364,synth,Woodworking,Red Gravel,1,1774,lua_shop
+amiga_cactus,364,synth,Woodworking,Red Rock,1,769,"bcnm_loot,gardening,guild_shop,lua_ref,mob_drop"
+san_dorian_tea_set,368,synth,Alchemy,Silver Ingot,1,744,"bcnm_loot,guild_shop,lua_ref,mob_drop,synth"
+san_dorian_tea_set,368,synth,Alchemy,Angelstone,1,813,"guild_shop,synth"
+san_dorian_tea_set,368,synth,Alchemy,Kaolin,2,2475,mob_drop
+bastokan_tea_set,369,synth,Goldsmithing,Adaman Ingot,1,655,"bcnm_loot,mob_drop,synth"
+bastokan_tea_set,369,synth,Goldsmithing,Mythril Ingot,1,653,"bcnm_loot,guild_shop,lua_ref,mob_drop,synth"
+bastokan_tea_set,369,synth,Goldsmithing,Silver Ingot,1,744,"bcnm_loot,guild_shop,lua_ref,mob_drop,synth"
+windurstian_tea_set,370,synth,Woodworking,Jacaranda Lumber,1,,
+windurstian_tea_set,370,synth,Woodworking,Bast Parchment,1,1134,"guild_shop,synth"
+butterfly_cage,371,synth,Woodworking,Bronze Ingot,1,649,"guild_shop,synth"
+butterfly_cage,371,synth,Woodworking,Rattan Lumber,2,721,"guild_shop,synth"
+butterfly_cage,371,synth,Woodworking,Dogwood Lumber,1,,
+butterfly_cage,371,synth,Woodworking,White Butterfly,1,2770,
+cricket_cage,372,synth,Woodworking,Bronze Ingot,1,649,"guild_shop,synth"
+cricket_cage,372,synth,Woodworking,Rattan Lumber,2,721,"guild_shop,synth"
+cricket_cage,372,synth,Woodworking,Dogwood Lumber,1,,
+cricket_cage,372,synth,Woodworking,Bell Cricket,1,2771,
+glowfly_cage,373,synth,Woodworking,Bronze Ingot,1,649,"guild_shop,synth"
+glowfly_cage,373,synth,Woodworking,Rattan Lumber,2,721,"guild_shop,synth"
+glowfly_cage,373,synth,Woodworking,Dogwood Lumber,1,,
+glowfly_cage,373,synth,Woodworking,Glowfly,1,2772,
+parclose,374,synth,Woodworking,Mahogany Lumber,6,,
+parclose,374,synth,Woodworking,Teak Lumber,2,2533,synth
+blue_9-drawer_almirah,378,synth,Clothcraft,9-Drawer Almirah,1,314,synth
+blue_9-drawer_almirah,378,synth,Clothcraft,Gold Thread,1,823,"bcnm_loot,guild_shop,lua_ref,mob_drop,synth"
+blue_9-drawer_almirah,378,synth,Clothcraft,Blue Textile Dye,1,,
+blue_6-drawer_almirah,379,synth,Clothcraft,6-Drawer Almirah,1,315,synth
+blue_6-drawer_almirah,379,synth,Clothcraft,Gold Thread,1,823,"bcnm_loot,guild_shop,lua_ref,mob_drop,synth"
+blue_6-drawer_almirah,379,synth,Clothcraft,Blue Textile Dye,1,,
+blue_3-drawer_almirah,380,synth,Clothcraft,3-Drawer Almirah,1,316,"lua_shop,synth"
+blue_3-drawer_almirah,380,synth,Clothcraft,Gold Thread,1,823,"bcnm_loot,guild_shop,lua_ref,mob_drop,synth"
+blue_3-drawer_almirah,380,synth,Clothcraft,Blue Textile Dye,1,,
+green_9-drawer_almirah,381,synth,Clothcraft,9-Drawer Almirah,1,314,synth
+green_9-drawer_almirah,381,synth,Clothcraft,Gold Thread,1,823,"bcnm_loot,guild_shop,lua_ref,mob_drop,synth"
+green_9-drawer_almirah,381,synth,Clothcraft,Green Textile Dye,1,,
+green_6-drawer_almirah,382,synth,Clothcraft,6-Drawer Almirah,1,315,synth
+green_6-drawer_almirah,382,synth,Clothcraft,Gold Thread,1,823,"bcnm_loot,guild_shop,lua_ref,mob_drop,synth"
+green_6-drawer_almirah,382,synth,Clothcraft,Green Textile Dye,1,,
+green_3-drawer_almirah,383,synth,Clothcraft,3-Drawer Almirah,1,316,"lua_shop,synth"
+green_3-drawer_almirah,383,synth,Clothcraft,Gold Thread,1,823,"bcnm_loot,guild_shop,lua_ref,mob_drop,synth"
+green_3-drawer_almirah,383,synth,Clothcraft,Green Textile Dye,1,,
+yellow_9-drawer_almirah,384,synth,Clothcraft,9-Drawer Almirah,1,314,synth
+yellow_9-drawer_almirah,384,synth,Clothcraft,Gold Thread,1,823,"bcnm_loot,guild_shop,lua_ref,mob_drop,synth"
+yellow_9-drawer_almirah,384,synth,Clothcraft,Yellow Textile Dye,1,,
+yellow_6-drawer_almirah,385,synth,Clothcraft,6-Drawer Almirah,1,315,synth
+yellow_6-drawer_almirah,385,synth,Clothcraft,Gold Thread,1,823,"bcnm_loot,guild_shop,lua_ref,mob_drop,synth"
+yellow_6-drawer_almirah,385,synth,Clothcraft,Yellow Textile Dye,1,,
+yellow_3-drawer_almirah,386,synth,Clothcraft,3-Drawer Almirah,1,316,"lua_shop,synth"
+yellow_3-drawer_almirah,386,synth,Clothcraft,Gold Thread,1,823,"bcnm_loot,guild_shop,lua_ref,mob_drop,synth"
+yellow_3-drawer_almirah,386,synth,Clothcraft,Yellow Textile Dye,1,,
+white_9-drawer_almirah,387,synth,Clothcraft,9-Drawer Almirah,1,314,synth
+white_9-drawer_almirah,387,synth,Clothcraft,Gold Thread,1,823,"bcnm_loot,guild_shop,lua_ref,mob_drop,synth"
+white_9-drawer_almirah,387,synth,Clothcraft,White Textile Dye,1,,
+white_6-drawer_almirah,388,synth,Clothcraft,6-Drawer Almirah,1,315,synth
+white_6-drawer_almirah,388,synth,Clothcraft,Gold Thread,1,823,"bcnm_loot,guild_shop,lua_ref,mob_drop,synth"
+white_6-drawer_almirah,388,synth,Clothcraft,White Textile Dye,1,,
+white_3-drawer_almirah,389,synth,Clothcraft,3-Drawer Almirah,1,316,"lua_shop,synth"
+white_3-drawer_almirah,389,synth,Clothcraft,Gold Thread,1,823,"bcnm_loot,guild_shop,lua_ref,mob_drop,synth"
+white_3-drawer_almirah,389,synth,Clothcraft,White Textile Dye,1,,
+carmine_desk,390,synth,Clothcraft,Desk,1,21,"lua_ref,lua_shop,synth"
+carmine_desk,390,synth,Clothcraft,Red Textile Dye,1,2712,synth
+cerulean_desk,391,synth,Clothcraft,Desk,1,21,"lua_ref,lua_shop,synth"
+cerulean_desk,391,synth,Clothcraft,Blue Textile Dye,1,,
+myrtle_desk,392,synth,Clothcraft,Desk,1,21,"lua_ref,lua_shop,synth"
+myrtle_desk,392,synth,Clothcraft,Green Textile Dye,1,,
+ecru_desk,393,synth,Clothcraft,Desk,1,21,"lua_ref,lua_shop,synth"
+ecru_desk,393,synth,Clothcraft,White Textile Dye,1,,
+blue_tarutaru_desk,394,synth,Clothcraft,Tarutaru Desk,1,26,"guild_shop,lua_ref,synth"
+blue_tarutaru_desk,394,synth,Clothcraft,Blue Textile Dye,1,,
+green_tarutaru_desk,395,synth,Clothcraft,Tarutaru Desk,1,26,"guild_shop,lua_ref,synth"
+green_tarutaru_desk,395,synth,Clothcraft,Green Textile Dye,1,,
+yellow_tarutaru_desk,396,synth,Clothcraft,Tarutaru Desk,1,26,"guild_shop,lua_ref,synth"
+yellow_tarutaru_desk,396,synth,Clothcraft,Yellow Textile Dye,1,,
+white_tarutaru_desk,397,synth,Clothcraft,Tarutaru Desk,1,26,"guild_shop,lua_ref,synth"
+white_tarutaru_desk,397,synth,Clothcraft,White Textile Dye,1,,
+blue_nobles_bed,402,synth,Clothcraft,Noble's Bed,1,6,synth
+blue_nobles_bed,402,synth,Clothcraft,Gold Thread,1,823,"bcnm_loot,guild_shop,lua_ref,mob_drop,synth"
+blue_nobles_bed,402,synth,Clothcraft,Blue Textile Dye,1,,
+green_nobles_bed,403,synth,Clothcraft,Noble's Bed,1,6,synth
+green_nobles_bed,403,synth,Clothcraft,Gold Thread,1,823,"bcnm_loot,guild_shop,lua_ref,mob_drop,synth"
+green_nobles_bed,403,synth,Clothcraft,Green Textile Dye,1,,
+yellow_nobles_bed,404,synth,Clothcraft,Noble's Bed,1,6,synth
+yellow_nobles_bed,404,synth,Clothcraft,Gold Thread,1,823,"bcnm_loot,guild_shop,lua_ref,mob_drop,synth"
+yellow_nobles_bed,404,synth,Clothcraft,Yellow Textile Dye,1,,
+white_nobles_bed,405,synth,Clothcraft,Noble's Bed,1,6,synth
+white_nobles_bed,405,synth,Clothcraft,Gold Thread,1,823,"bcnm_loot,guild_shop,lua_ref,mob_drop,synth"
+white_nobles_bed,405,synth,Clothcraft,White Textile Dye,1,,
+blue_tarutaru_standing_screen,406,synth,Clothcraft,Tarutaru Folding Screen,1,104,"lua_ref,lua_shop,synth"
+blue_tarutaru_standing_screen,406,synth,Clothcraft,Blue Textile Dye,1,,
+green_tarutaru_standing_screen,407,synth,Clothcraft,Tarutaru Folding Screen,1,104,"lua_ref,lua_shop,synth"
+green_tarutaru_standing_screen,407,synth,Clothcraft,Green Textile Dye,1,,
+yellow_tarutaru_standing_screen,408,synth,Clothcraft,Tarutaru Folding Screen,1,104,"lua_ref,lua_shop,synth"
+yellow_tarutaru_standing_screen,408,synth,Clothcraft,Yellow Textile Dye,1,,
+white_tarutaru_standing_screen,409,synth,Clothcraft,Tarutaru Folding Screen,1,104,"lua_ref,lua_shop,synth"
+white_tarutaru_standing_screen,409,synth,Clothcraft,White Textile Dye,1,,
+red_round_table,410,synth,Woodworking,Lauan Lumber,1,706,"guild_shop,synth"
+red_round_table,410,synth,Woodworking,Linen Cloth,2,826,"bcnm_loot,guild_shop,mob_drop,synth"
+red_round_table,410,synth,Woodworking,Velvet Cloth,2,828,"guild_shop,lua_ref,lua_shop,mob_drop,synth"
+red_round_table,410,synth,Woodworking,Platinum Silk Thread,1,,
+red_round_table,410,synth,Woodworking,Teak Lumber,1,2533,synth
+red_round_table,410,synth,Woodworking,Red Textile Dye,1,2712,synth
+blue_round_table,411,synth,Woodworking,Lauan Lumber,1,706,"guild_shop,synth"
+blue_round_table,411,synth,Woodworking,Linen Cloth,2,826,"bcnm_loot,guild_shop,mob_drop,synth"
+blue_round_table,411,synth,Woodworking,Velvet Cloth,2,828,"guild_shop,lua_ref,lua_shop,mob_drop,synth"
+blue_round_table,411,synth,Woodworking,Platinum Silk Thread,1,,
+blue_round_table,411,synth,Woodworking,Teak Lumber,1,2533,synth
+blue_round_table,411,synth,Woodworking,Blue Textile Dye,1,,
+green_round_table,412,synth,Woodworking,Lauan Lumber,1,706,"guild_shop,synth"
+green_round_table,412,synth,Woodworking,Linen Cloth,2,826,"bcnm_loot,guild_shop,mob_drop,synth"
+green_round_table,412,synth,Woodworking,Velvet Cloth,2,828,"guild_shop,lua_ref,lua_shop,mob_drop,synth"
+green_round_table,412,synth,Woodworking,Platinum Silk Thread,1,,
+green_round_table,412,synth,Woodworking,Teak Lumber,1,2533,synth
+green_round_table,412,synth,Woodworking,Green Textile Dye,1,,
+yellow_round_table,413,synth,Woodworking,Lauan Lumber,1,706,"guild_shop,synth"
+yellow_round_table,413,synth,Woodworking,Linen Cloth,2,826,"bcnm_loot,guild_shop,mob_drop,synth"
+yellow_round_table,413,synth,Woodworking,Velvet Cloth,2,828,"guild_shop,lua_ref,lua_shop,mob_drop,synth"
+yellow_round_table,413,synth,Woodworking,Platinum Silk Thread,1,,
+yellow_round_table,413,synth,Woodworking,Teak Lumber,1,2533,synth
+yellow_round_table,413,synth,Woodworking,Yellow Textile Dye,1,,
+white_round_table,414,synth,Woodworking,Lauan Lumber,1,706,"guild_shop,synth"
+white_round_table,414,synth,Woodworking,Linen Cloth,2,826,"bcnm_loot,guild_shop,mob_drop,synth"
+white_round_table,414,synth,Woodworking,Velvet Cloth,2,828,"guild_shop,lua_ref,lua_shop,mob_drop,synth"
+white_round_table,414,synth,Woodworking,Platinum Silk Thread,1,,
+white_round_table,414,synth,Woodworking,Teak Lumber,1,2533,synth
+white_round_table,414,synth,Woodworking,White Textile Dye,1,,
+tavern_bench,423,synth,Woodworking,Mahogany Lumber,2,,
+tavern_bench,423,synth,Woodworking,Rosewood Lumber,2,,
+feasting_table,424,synth,Woodworking,Jacaranda Lumber,1,,
+feasting_table,424,synth,Woodworking,Teak Lumber,2,2533,synth
+feasting_table,424,synth,Woodworking,Gold Ingot,1,745,"bcnm_loot,mob_drop,synth"
+girandola,425,synth,Goldsmithing,Beeswax,2,913,"lua_ref,synth"
+girandola,425,synth,Goldsmithing,Gold Ingot,2,745,"bcnm_loot,mob_drop,synth"
+orchestrion,426,synth,Alchemy,Copy of Melodious Plans,1,3885,
+orchestrion,426,synth,Alchemy,Timbre Case Kit,1,3886,
+orchestrion,426,synth,Alchemy,Musichinery Kit,1,3887,
+red_storm_lantern,429,synth,Alchemy,Olive Oil,1,633,synth
+red_storm_lantern,429,synth,Alchemy,Brass Ingot,1,650,"lua_shop,mob_drop,synth"
+red_storm_lantern,429,synth,Alchemy,Silver Ingot,1,744,"bcnm_loot,guild_shop,lua_ref,mob_drop,synth"
+red_storm_lantern,429,synth,Alchemy,Silk Cloth,1,829,"guild_shop,lua_ref,mob_drop,synth"
+red_storm_lantern,429,synth,Alchemy,Glass Sheet,1,1887,synth
+red_storm_lantern,429,synth,Alchemy,Sailcloth,1,1997,"lua_ref,mob_drop,synth"
+red_storm_lantern,429,synth,Alchemy,Red Textile Dye,1,2712,synth
+blue_storm_lantern,430,synth,Alchemy,Olive Oil,1,633,synth
+blue_storm_lantern,430,synth,Alchemy,Brass Ingot,1,650,"lua_shop,mob_drop,synth"
+blue_storm_lantern,430,synth,Alchemy,Silver Ingot,1,744,"bcnm_loot,guild_shop,lua_ref,mob_drop,synth"
+blue_storm_lantern,430,synth,Alchemy,Silk Cloth,1,829,"guild_shop,lua_ref,mob_drop,synth"
+blue_storm_lantern,430,synth,Alchemy,Glass Sheet,1,1887,synth
+blue_storm_lantern,430,synth,Alchemy,Sailcloth,1,1997,"lua_ref,mob_drop,synth"
+blue_storm_lantern,430,synth,Alchemy,Blue Textile Dye,1,,
+green_storm_lantern,431,synth,Alchemy,Olive Oil,1,633,synth
+green_storm_lantern,431,synth,Alchemy,Brass Ingot,1,650,"lua_shop,mob_drop,synth"
+green_storm_lantern,431,synth,Alchemy,Silver Ingot,1,744,"bcnm_loot,guild_shop,lua_ref,mob_drop,synth"
+green_storm_lantern,431,synth,Alchemy,Silk Cloth,1,829,"guild_shop,lua_ref,mob_drop,synth"
+green_storm_lantern,431,synth,Alchemy,Glass Sheet,1,1887,synth
+green_storm_lantern,431,synth,Alchemy,Sailcloth,1,1997,"lua_ref,mob_drop,synth"
+green_storm_lantern,431,synth,Alchemy,Green Textile Dye,1,,
+yellow_storm_lantern,432,synth,Alchemy,Olive Oil,1,633,synth
+yellow_storm_lantern,432,synth,Alchemy,Brass Ingot,1,650,"lua_shop,mob_drop,synth"
+yellow_storm_lantern,432,synth,Alchemy,Silver Ingot,1,744,"bcnm_loot,guild_shop,lua_ref,mob_drop,synth"
+yellow_storm_lantern,432,synth,Alchemy,Silk Cloth,1,829,"guild_shop,lua_ref,mob_drop,synth"
+yellow_storm_lantern,432,synth,Alchemy,Glass Sheet,1,1887,synth
+yellow_storm_lantern,432,synth,Alchemy,Sailcloth,1,1997,"lua_ref,mob_drop,synth"
+yellow_storm_lantern,432,synth,Alchemy,Yellow Textile Dye,1,,
+white_storm_lantern,433,synth,Alchemy,Olive Oil,1,633,synth
+white_storm_lantern,433,synth,Alchemy,Brass Ingot,1,650,"lua_shop,mob_drop,synth"
+white_storm_lantern,433,synth,Alchemy,Silver Ingot,1,744,"bcnm_loot,guild_shop,lua_ref,mob_drop,synth"
+white_storm_lantern,433,synth,Alchemy,Silk Cloth,1,829,"guild_shop,lua_ref,mob_drop,synth"
+white_storm_lantern,433,synth,Alchemy,Glass Sheet,1,1887,synth
+white_storm_lantern,433,synth,Alchemy,Sailcloth,1,1997,"lua_ref,mob_drop,synth"
+white_storm_lantern,433,synth,Alchemy,White Textile Dye,1,,
+candelabrum,450,synth,Goldsmithing,Beeswax,3,913,"lua_ref,synth"
+candelabrum,450,synth,Goldsmithing,Brass Ingot,1,650,"lua_shop,mob_drop,synth"
+candelabrum,450,synth,Goldsmithing,Gold Ingot,3,745,"bcnm_loot,mob_drop,synth"
+candle_holder,459,synth,Goldsmithing,Beeswax,1,913,"lua_ref,synth"
+candle_holder,459,synth,Goldsmithing,Brass Ingot,3,650,"lua_shop,mob_drop,synth"
+candle_holder,459,synth,Goldsmithing,Gold Ingot,1,745,"bcnm_loot,mob_drop,synth"
+galley_kitchen,3585,synergy,Synergy,Kitchen Brick,1,9079,
+galley_kitchen,3585,synergy,Synergy,Kitchen Stove,1,9080,
+galley_kitchen,3585,synergy,Synergy,Kitchen Plate,1,9081,
+pot_of_red_viola,3586,synth,Woodworking,Red Rock,1,769,"bcnm_loot,gardening,guild_shop,lua_ref,mob_drop"
+pot_of_red_viola,3586,synth,Woodworking,Granite,1,1465,"bcnm_loot,mob_drop"
+pot_of_red_viola,3586,synth,Woodworking,Red Gravel,1,1774,lua_shop
+pot_of_red_viola,3586,synth,Woodworking,Wildgrass Seeds,1,2235,"lua_shop,mob_drop"
+pot_of_red_viola,3586,synth,Woodworking,Humus,1,17868,"mob_drop,synth"
+pot_of_blue_viola,3587,synth,Woodworking,Blue Rock,1,770,"bcnm_loot,gardening,guild_shop,lua_ref,mob_drop"
+pot_of_blue_viola,3587,synth,Woodworking,Granite,1,1465,"bcnm_loot,mob_drop"
+pot_of_blue_viola,3587,synth,Woodworking,Red Gravel,1,1774,lua_shop
+pot_of_blue_viola,3587,synth,Woodworking,Wildgrass Seeds,1,2235,"lua_shop,mob_drop"
+pot_of_blue_viola,3587,synth,Woodworking,Humus,1,17868,"mob_drop,synth"
+pot_of_yellow_viola,3588,synth,Woodworking,Yellow Rock,1,771,"bcnm_loot,gardening,guild_shop,lua_ref,mob_drop,synth"
+pot_of_yellow_viola,3588,synth,Woodworking,Granite,1,1465,"bcnm_loot,mob_drop"
+pot_of_yellow_viola,3588,synth,Woodworking,Red Gravel,1,1774,lua_shop
+pot_of_yellow_viola,3588,synth,Woodworking,Wildgrass Seeds,1,2235,"lua_shop,mob_drop"
+pot_of_yellow_viola,3588,synth,Woodworking,Humus,1,17868,"mob_drop,synth"
+pot_of_white_viola,3589,synth,Woodworking,White Rock,1,776,"bcnm_loot,gardening,guild_shop,lua_ref,lua_shop,mob_drop"
+pot_of_white_viola,3589,synth,Woodworking,Granite,1,1465,"bcnm_loot,mob_drop"
+pot_of_white_viola,3589,synth,Woodworking,Red Gravel,1,1774,lua_shop
+pot_of_white_viola,3589,synth,Woodworking,Wildgrass Seeds,1,2235,"lua_shop,mob_drop"
+pot_of_white_viola,3589,synth,Woodworking,Humus,1,17868,"mob_drop,synth"
+pot_of_white_viola,3589,synth,Woodworking,Woodworking Kit 60,1,8816,
+stepping_stool,3609,synth,Woodworking,Ebony Lumber,2,719,"guild_shop,mob_drop,synth"
+stepping_stool,3609,synth,Woodworking,Oak Lumber,3,716,"guild_shop,synth"
+celestial_globe,3676,synth,Alchemy,Comet Fragment,1,3451,
+celestial_globe,3676,synth,Alchemy,Puny Planet Kit,1,3452,
+celestial_globe,3676,synth,Alchemy,Cosmic Designs,1,3453,
+recital_bench,3678,synth,Woodworking,Hickory Lumber,1,725,mob_drop
+recital_bench,3678,synth,Woodworking,Ancient Lumber,1,720,"lua_ref,lua_shop,synth"
+recital_bench,3678,synth,Woodworking,Wolf Felt,1,2010,"lua_ref,synth"
+bulky_coffer,3730,synth,Woodworking,Gold Ore,1,737,"bcnm_loot,gardening,lua_ref,mob_drop"
+bulky_coffer,3730,synth,Woodworking,Light Chest,1,3729,
+azure_chest,3731,synth,Woodworking,Gold Ore,1,737,"bcnm_loot,gardening,lua_ref,mob_drop"
+azure_chest,3731,synth,Woodworking,Blue Textile Dye,1,,
+azure_chest,3731,synth,Woodworking,Light Chest,1,3729,
