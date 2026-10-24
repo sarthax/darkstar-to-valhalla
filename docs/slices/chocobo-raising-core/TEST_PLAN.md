@@ -6,7 +6,7 @@ Pre-step: back up the DB, dry-check live schema (MyISAM), then apply `up.sql`. R
 |---|------|----------|-------|
 | 1 | Build map-server | compiles | tested |
 | 2 | up.sql then down.sql then up.sql | idempotent, no errors | tested |
-| 3 | addItemExData + saveItemExData, relog, getExData | bytes identical | partial (FAIL for inscribable items, see runtime) |
+| 3 | addItemExData + saveItemExData, relog, getExData | bytes identical | tested (egg fixed in b16a391408) |
 | 4 | Move/trade an item with exdata | bytes survive | untested |
 | 5 | setChocoboRaisingInfo, relog, getChocoboRaisingInfo | all fields round-trip | tested (after fix 0fa8cee06a) |
 | 6 | setChocoboUserData / registerChocobo, relog, get | values round-trip | tested |
@@ -23,6 +23,6 @@ Evidence goes in this file as `runtime:` / `test:` lines; nothing is `validated`
 - runtime: setChocoboRaisingInfo returned false on first run: MariaDB rejects FROM_UNIXTIME(0) ("Truncated incorrect unixtime value"). Fixed in 0fa8cee06a (NOW() when created is omitted; existing created kept). After the fix all 29 fields plus created are identical before and after relog.
 - runtime: setChocoboUserData and registerChocobo persisted: char_pet.chocobo_user_data = 41960000A5A50000410100..., readback identical after relog (flags 0xA5A5, chocobosRaised 321, field properties 3846). registerChocobo overwrites registered* stats from its own table (it does not read the raising row).
 - runtime: exdata set via addItemExData matches char_inventory.extra and the client's 0x020 readout (24 bytes). After relog a plain item (4096) is identical. chocobo_egg (2312) is NOT: bytes 17 and 23 changed (7F->40, A9->80) while the DB row is unchanged.
-- cause (source-read, not yet fixed): charutils::LoadInventory calls setSignature() for ITEM_FLAG_INSCRIBABLE items, which overwrites extdata bytes 12-23 with the encoded (empty) signature. An egg's data must live in bytes 0-11 or use the signature column.
+- cause: charutils::LoadInventory calls setSignature() for ITEM_FLAG_INSCRIBABLE items, which overwrites extdata bytes 12-23 with the encoded (empty) signature. An egg's data must live in bytes 0-11 or use the signature column.
 - not run: #4 move/trade, #7 char delete, #8 none->nil, #9 regression.
-
+- runtime: after b16a391408 (load only seeds the signature from the column when extra[0x0C..] is empty) the chocobo_egg exdata is byte-identical before and after relog (080F161D...A2A9). Existing rows whose signature exists only in the column still get it.
