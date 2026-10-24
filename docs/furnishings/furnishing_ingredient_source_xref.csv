@@ -1,0 +1,40 @@
+ingredient,item_id,toolkit_status,used_by,our_lua_refs,wiki_flags,wiki_obtain
+Aht Urhgan Brass Ingot,2418,script,"amir_bed, athenienne, bronze_rose, dark_lamp, earth_lamp, fire_lamp, ice_lamp, light_lamp, lightning_lamp, reliquary, set_of_alchemists_tools, wardrobe, water_lamp, wind_lamp",,no wiki page,
+Aht Urhgan Brass Sheet,2419,script,"reliquary, set_of_alchemists_tools, thurible, wardrobe",,no wiki page,
+Beech Lumber,709,missing,bonfire,,,"Instance: Walk of Echoes, Squat Desk, Lituus, Darkwing, Kakko, Doom Tabar, Amazon Bow, Yukitsugu, Savate Fists, Dire Scythe, Cratus Sword, Guisarme, Supply Table, Supply Stand, Warmage's Pole, Alchemists' Stall"
+Bell Cricket,2771,missing,cricket_cage,,,"Quest Reward: SE, Sunbreeze Festival 2009"
+Betta,5139,missing,fighting_fish_tank,,"Can Use, NPC tradable",
+Black Bubble-Eye,4311,missing,goldfish_bowl,,no wiki page,
+Black Chocobo Dye,2383,missing,black_hobby_bo,,no wiki page,
+Blue Chocobo Dye,2381,missing,blue_hobby_bo,,Obtainable from Goblin Box,"NPC: Southern San d'Oria, 75 [[Chocobuck]]s, Bastok Mines, Windurst Woods"
+Blue Textile Dye,2706,missing,"azure_chest, blue_3-drawer_almirah, blue_6-drawer_almirah, blue_9-drawer_almirah, blue_nobles_bed, blue_round_table, blue_storm_lantern, blue_tarutaru_desk, blue_tarutaru_standing_screen, cerulean_des",,no wiki page,
+Comet Fragment,3451,missing,celestial_globe,,"CanSendPOL, Not vendorable, Not sendable, Exclusive","Quest Reward: S, Sunbreeze Festival 2011, Obtained from the ""Fun and Frolic"" mini-game (in hard mode) portion of the event when in possession of a [[Hikogami Yukata, Sunbreeze Festival 2012, Obtained from the ""Fun "
+Copy of Melodious Plans,3885,missing,orchestrion,,no wiki page,
+Coral Butterfly,4580,missing,reef_aquarium,,"Usable, NPC tradable","Quest Usage: MR, Monster Rearing, Used to Evolve Crab to Porter Crab"
+Cosmic Designs,3453,missing,celestial_globe,,"CanSendPOL, Not vendorable, Not sendable, Exclusive","Quest Reward: S, Sunbreeze Festival 2011, Obtained from the ""Superheroine Stage Show"" portion of the event when in possession of a [[Hikogami Yukata, Sunbreeze Festival 2012, Obtained from the ""Superheroine Stage S"
+Flint Glass Sheet,2460,missing,"crystal_rose, set_of_alchemists_tools, shell_lamp",,no wiki page,
+Glowfly,2772,missing,glowfly_cage,,,"Quest Reward: SE, Sunbreeze Festival 2009"
+Goldfish Set,1894,missing,"fighting_fish_tank, goldfish_bowl",,"CanSendPOL, Not vendorable, Not sendable, Exclusive","Quest Reward: se, :Category:Seasonal_Events#Sunbreeze_Festival{{!, Exchange 65 [[Goldfish Scooping]] points for the '''Other mystery box'''.<br/>See the latest [[Sunbreeze_Festival_Guide, Goldfish Bowl, Fighting Fi"
+Green Chocobo Dye,2382,missing,green_hobby_bo,,no wiki page,
+Kitchen Brick,9079,missing,galley_kitchen,,"Not vendorable, Not sendable, Exclusive, Rare","NPC: redeem, Port San d'Oria{{!, Purchasable only during appropriate [[Repeat Login Campaign]]s via spending accrued [[Login Points]]."
+Kitchen Plate,9081,missing,galley_kitchen,,"Not vendorable, Not sendable, Exclusive, Rare","NPC: redeem, Port San d'Oria{{!, Purchasable only during appropriate [[Repeat Login Campaign]]s via spending accrued [[Login Points]]."
+Kitchen Stove,9080,missing,galley_kitchen,,"Not vendorable, Not sendable, Exclusive, Rare","NPC: redeem, Port San d'Oria{{!, Purchasable only during appropriate [[Repeat Login Campaign]]s via spending accrued [[Login Points]]."
+Light Chest,3729,missing,"azure_chest, bulky_coffer",,Obtainable from Goblin Box,Notes:  Obtained from Chocobo Digging in Cape Teriggan. {{Item Used In Synth Table |Table Content= }}
+Moorish Idol,5121,missing,saltwater_aquarium,,"Usable, NPC tradable","NPC: Bibiki Bay, 2,142 [[Gil]]<br>[[Fishing]] Guild Merchant<br>Open from 1:00 - 18:00 daily"
+Musichinery Kit,3887,missing,orchestrion,,"Sendable within PoL account, Not vendorable, Not sendable, Exclusive, Rare","NPC: redeem, Port San d'Oria{{!, Purchasable only during appropriate [[Repeat Login Campaign]]s via spending accrued [[Login Points]]. || Quest Reward: s, Starlight Celebration 2012, Obtained as a prize for winning Windurst's mini-game in ""advanced mode."""
+Puny Planet Kit,3452,missing,celestial_globe,,"CanSendPOL, Not vendorable, Not sendable, Exclusive","Quest Reward: S, Sunbreeze Festival 2011, Obtained from the ""Goldfish Scooping"" portion of the event., Sunbreeze Festival 2012"
+Red Chocobo Dye,2380,missing,red_hobby_bo,,Obtainable from Goblin Box,"NPC: Southern San d'Oria, 75 [[Chocobuck]]s, Bastok Mines, Windurst Woods"
+Red Textile Dye,2712,missing,"carmine_desk, red_round_table, red_storm_lantern",,,"Quest Usage: Beneath the Mask, [[Gentle Tiger]] - [[Bastok Markets (S)]] (H-6), R. Storm Lantern, Red Mahogany Bed, Carmine Desk, Ebon Harness, Red Round Table, Mariner's Bed R, Chocobo Carvings"
+Rheiyoh Leather,1768,missing,leather_pot,,Obtainable from Goblin Box ,"NPC: redeem, Ru'Lude Gardens, Exchange a [[Valorous Image]]"
+Scintillant Ingot,2275,script,"crystal_rose, dark_lamp, earth_lamp, fire_lamp, ice_lamp, light_lamp, lightning_lamp, mythril_bell, thurible, water_lamp, wind_lamp, winged_plaque",, ,"Monster: Garlaige Citadel (S), The Eldieme Necropolis (S), Crawlers' Nest (S) || Instance: Rossweisse's Chamber, Siegrune's Chamber, Grimgerde's Chamber, Lamian Armlet, Medusa's Armlet, Gurfurlur's Helmet || Quest Usage: Q, Rune Fencer Relic Armor, {{ItemIcon, Crystal Rose, Gold Algol, Naigama, Jambiya, Blutkrallen, Ebon Mitts, Ebon Slops, Ebon Beret, Ebon Frock, Kyudogi, Shirogatana, Thurible, Dark Lamp, Earth Lamp, "
+Timbre Case Kit,3886,missing,orchestrion,,"Sendable within PoL account, Not vendorable, Not sendable, Exclusive, Rare","NPC: redeem, Port San d'Oria{{!, Purchasable only during appropriate [[Repeat Login Campaign]]s via spending accrued [[Login Points]]. || Quest Reward: s, Starlight Celebration 2012, Obtained as a prize for winning Bastok's mini-game in ""advanced mode."""
+Tiny Goldfish,4310,missing,goldfish_bowl,,"Usable, NPC tradeable",Notes:  * Acquired from fish scooping in the Sunbreeze Festivals. * Worth 1 point. 
+Titanic Sawfish,5120,missing,stuffed_big_one,,"Usable inside Mog Garden, Can Use, NPC tradable","Quest Usage: Q, Inside the Belly, 810 [[Gil]]"
+Troll Bronze Ingot,2302,missing,thurible,,no wiki page,
+Troll Bronze Sheet,2303,missing,bronze_rose,,no wiki page,
+White Butterfly,2770,missing,butterfly_cage,,,"Quest Reward: SE, Sunbreeze Festival 2009"
+Woodworking Kit 25,8809,missing,tarutaru_stool,,no wiki page,
+Woodworking Kit 40,8812,missing,bahut,,no wiki page,
+Woodworking Kit 60,8816,missing,pot_of_white_viola,,no wiki page,
+Woodworking Kit 81,9485,missing,cabinet,,no wiki page,
+Yellow Chocobo Dye,2379,missing,yellow_hobby_bo,,no wiki page,
