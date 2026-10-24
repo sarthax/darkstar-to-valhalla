@@ -57,6 +57,6 @@ The 40 blocked ingredients fall into groups; none is fixed by a recipe or shop e
 - **Drops/instances**: Scintillant Ingot (Garlaige/Eldieme/Crawlers' Nest [S] monsters), Beech Lumber (instances), Rheiyoh Leather (Valorous Image exchange, Ru'Lude).
 - **No wiki page / unknown** (do not guess): Aht Urhgan Brass Ingot/Sheet, Troll Bronze Ingot/Sheet, Flint Glass Sheet, Blue/Red Textile Dye, Copy of Melodious Plans, Woodworking Kits, Light Chest (chocobo digging, Cape Teriggan).
 
-### Not completed
-- **Synergy recipes**: not drafted.
-- **NPC-shop vendor sweep vs LSB**: attempted a script comparison, but numeric ids in shop Lua collide with prices/other numbers, so the output was noise and is discarded. Guild vendors were already swept earlier (only Bibiki gap). A reliable NPC-shop sweep needs enum-name parsing per shop.
+### Vendor sweep and synergy (2026-10-23, read-only)
+- **NPC shop sweep (name-based)**: parsed every LSB NPC shop script's `xi.item.NAME` stock lines, resolved via `enum/item.lua`. 21 furnishings are sold by LSB NPC shops (Justi, Ensasa, Gekko, Boytz, etc.); all 21 are already referenced in our scripts or guild_shops. No NPC-shop gap found (check is by id presence, not per-NPC price/stock).
+- **Synergy recipes**: only 1 furnishing has a synergy-only route, galley_kitchen (3585), and its toolkit status is blocked (missing ingredients). The server source has no synergy engine references, so no synergy recipe was drafted.
