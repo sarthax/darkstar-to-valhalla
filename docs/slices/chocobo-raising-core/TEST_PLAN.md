@@ -29,3 +29,5 @@ Evidence goes in this file as `runtime:` / `test:` lines; nothing is `validated`
 - runtime: #4 (move) chocobo_egg with bytes 0-11 = 01..0C moved main bag slot 17 -> container 5 slot 1 via move_to_container: char_inventory.extra and the client 0x020 readout are byte-identical after the move and after relog. Player-to-player trade not run (needs two bots).
 - runtime: #8 getChocoboRaisingInfo for a char with no char_chocobos row returns nil.
 - not run: #7 char delete (lobby.cpp path needs a throwaway lobby char), #9 full regression pass.
+- runtime: #7 char delete: xitest08 char with a char_chocobos row deleted through the lobby (0x14 delete, result=3): chars row and char_chocobos row both gone; account re-provisioned afterwards.
+- static (not runtime): player-to-player trade. charutils::DoTrade copies a stack-1 item with itemutils::GetItem(PItem) (default copy constructors, so m_extra is carried) then AddItem(PTarget, ..., PNewItem). Headless has no player-trade tool, so this is unverified at runtime.
