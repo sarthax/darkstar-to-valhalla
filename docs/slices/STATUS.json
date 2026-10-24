@@ -540,12 +540,12 @@
       "supersededTags": []
     },
     "chocobo-raising-core": {
-      "status": "in-progress",
+      "status": "review",
       "branch": "feature/chocobo-raising-core",
-      "finalTag": null,
-      "finalDate": null,
+      "finalTag": "slice/chocobo-raising-core-v1",
+      "finalDate": "2026-10-24",
       "mergedToMain": false,
-      "versions": 0,
+      "versions": 1,
       "supersededTags": []
     }
   }
