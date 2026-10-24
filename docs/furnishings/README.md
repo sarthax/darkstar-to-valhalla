@@ -48,3 +48,15 @@ Source: `xi_tinkerer.parse_item_info` on our client `ROM/118/106.DAT` (`C:/Valha
 - **Draft ids vs live DB**: none of the 18-item patch ids, Moorish Idol, or the 70 missing-row ids already exist in live item_basic/item_furnishing. No collisions.
 - **295 / 396**: draft `patch_item_furnishing_295_396.sql` (295 moghancement 0 -> 2850; 396 storage 1 -> 2, element 2 -> 3 earth). Not applied.
 - **Not yet done**: sourcing the 40 blocked ingredients, synergy recipe drafts, remaining-vendor sweep. HQ results in the recipes still default to the NQ item (wiki lists none).
+
+### Ingredient sourcing (2026-10-23, from furnishing_ingredient_source_xref.csv)
+The 40 blocked ingredients fall into groups; none is fixed by a recipe or shop edit alone:
+- **Event/campaign only** (Sunbreeze 2009-2012: Bell Cricket, Glowfly, White Butterfly, Tiny Goldfish, Goldfish Set, Comet Fragment, Cosmic Designs, Puny Planet Kit; Login Campaign: Kitchen Brick/Plate/Stove, Musichinery/Timbre Case Kit): need the event or campaign system.
+- **Chocobo dyes** (Red/Blue sold by NPC for Chocobucks per wiki; Yellow/Green/Black no wiki page): tied to chocobo raising (issue #55).
+- **Fishing/vendor**: Moorish Idol (Bibiki, patch already drafted), Titanic Sawfish, Betta, Black Bubble-Eye, Coral Butterfly.
+- **Drops/instances**: Scintillant Ingot (Garlaige/Eldieme/Crawlers' Nest [S] monsters), Beech Lumber (instances), Rheiyoh Leather (Valorous Image exchange, Ru'Lude).
+- **No wiki page / unknown** (do not guess): Aht Urhgan Brass Ingot/Sheet, Troll Bronze Ingot/Sheet, Flint Glass Sheet, Blue/Red Textile Dye, Copy of Melodious Plans, Woodworking Kits, Light Chest (chocobo digging, Cape Teriggan).
+
+### Not completed
+- **Synergy recipes**: not drafted.
+- **NPC-shop vendor sweep vs LSB**: attempted a script comparison, but numeric ids in shop Lua collide with prices/other numbers, so the output was noise and is discarded. Guild vendors were already swept earlier (only Bibiki gap). A reliable NPC-shop sweep needs enum-name parsing per shop.
