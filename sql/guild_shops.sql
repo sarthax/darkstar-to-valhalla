@@ -598,7 +598,6 @@ INSERT INTO `guild_shops` VALUES (519,4399,1350,5487,165,33,65);
 INSERT INTO `guild_shops` VALUES (519,4443,9,32,255,48,100);
 INSERT INTO `guild_shops` VALUES (519,4484,1350,1800,55,11,22);
 INSERT INTO `guild_shops` VALUES (519,4485,2172,13882,30,6,12);
-INSERT INTO `guild_shops` VALUES (519,5121,2142,14280,30,6,12); -- Moorish Idol: price per BG Wiki 2,142 gil + LSB buyMax 14280; stock numbers copied from Noble Lady (assumed)
 INSERT INTO `guild_shops` VALUES (519,17382,7081,8369,30,5,10);
 INSERT INTO `guild_shops` VALUES (519,17388,766,906,30,10,20);
 

@@ -26,7 +26,7 @@ Statuses: ok / script (Lua mention only) / ah_only / missing. Ingredient names r
 
 ## Vendor completeness check (vs LSB, 2026-10-23)
 Reference: `D:\Claude\mission_toolkit\LandSandBoat` (full tree; `FFXI-Tools/LandSandBoat` is assault-only).
-- **Bibiki Bay fishing guild (Mep_Nhapopoluko, guild 519):** ours = 11 of LSB's 12 stock rows; only Moorish Idol (5121) was missing. Live DB matches repo. Fixed in `sql/guild_shops.sql` (price 2142 min / 14280 max; stock numbers assumed). Moorish Idol is also fishable in ours (`fishing_fish`), so the toolkit "missing" was a false negative.
+- **Bibiki Bay fishing guild (Mep_Nhapopoluko, guild 519):** ours = 11 of LSB's 12 stock rows; only Moorish Idol (5121) was missing. Live DB matches repo. Patch drafted in `docs/furnishings/patch_bibiki_moorish_idol.sql` (not applied) (price 2142 min / 14280 max; stock numbers assumed). Moorish Idol is also fishable in ours (`fishing_fish`), so the toolkit "missing" was a false negative.
 - **Venessa (Ru'Lude Gardens, 17772726):** ours is a stub (one `startEvent(0x2750)`). LSB also handles the 4 Promyvion ENM censers and 23 Vision/Image trades (Valorous Image -> Rheiyoh Leather, Grave -> Habu Skin, Beatific -> Tiger Eye, Ancient -> Oversized Fang, Virgin -> Super Cermet, plus 18 Vision -> earring/ring/rope/mantle). Not built: LSB uses csids 10064/10065/10066 and 10065/10066 are unverified against our client.
 - **Chocobo dyes (Chocobuck vendors):** no LSB implementation exists; needs the chocobo raising work (issue #55).
 - **Login campaign items (Kitchen Brick/Plate/Stove, kits):** LSB has an event system (`scripts/events/login_campaign*.lua`, Greeter Moogles); ours has none. The kitchen items are commented out in LSB's own data.
