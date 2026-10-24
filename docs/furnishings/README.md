@@ -39,3 +39,6 @@ Source: `xi_tinkerer.parse_item_info` on our client `ROM/118/106.DAT` (`C:/Valha
 - **70 with an item_basic row:** all 70 exist in the client with real names (the 11 "differs" are only the client's abbreviated names, e.g. "Gr. Mahogany Bed"). The draft patch is supported by the client.
 - **36 without an item_basic row:** 18 are real in our client (294 Campfire; 3718-3728 Adoulinian Tomatoes + 10 statues; 3732 Crimson Chest, 3735 Aurum Coffer, 3736-3739 Well/Doll Stand/Eastern Umbrella/Autumn Tree). The other 18 (54 and 3740-3756) are placeholder "." entries, i.e. newer than our client; do not add them.
 - Not drafted: the 18 real ones need `item_basic` rows (flags, price, stack) first, which the DAT does not give; description/furnishing data are in the DAT.
+
+## Draft: 18 new furnishings (patch only, 2026-10-23)
+`patch_new_furnishings_18.sql` holds item_basic + item_furnishing INSERTs (36 rows) for the 18 furnishings real in our client but absent from our tables (294, 3718-3728, 3732, 3735-3739). Converted from LSB to our columns (NoSale from flag 4096, element 0-based). Flags, aH and BaseSell are LSB values, unverified; not applied, nothing under `sql/` changed. Obtaining them (events/Adoulin) is not covered.
