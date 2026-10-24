@@ -1196,8 +1196,14 @@ inline int32 CLuaBaseEntity::setChocoboRaisingInfo(lua_State* L)
 
     char buf[32];
     std::string columns = "charid, first_name, last_name, created";
-    std::string values = std::to_string(m_PBaseEntity->id) + ", '" + first + "', '" + last + "', FROM_UNIXTIME(" + std::to_string(created) + ")";
-    std::string updates = "first_name = VALUES(first_name), last_name = VALUES(last_name), created = VALUES(created)";
+    // FROM_UNIXTIME(0) is rejected by strict MariaDB; no created given => now, and keep an existing row's created.
+    std::string values = std::to_string(m_PBaseEntity->id) + ", '" + first + "', '" + last + "', " +
+        (created != 0 ? "FROM_UNIXTIME(" + std::to_string(created) + ")" : std::string("NOW()"));
+    std::string updates = "first_name = VALUES(first_name), last_name = VALUES(last_name)";
+    if (created != 0)
+    {
+        updates += ", created = VALUES(created)";
+    }
 
     for (uint32 i = 0; i < kChocoboNumericFieldCount; ++i)
     {
