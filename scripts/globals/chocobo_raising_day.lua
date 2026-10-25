@@ -835,6 +835,26 @@ function CR.handOver(player)
     CR.session[player:getID()] = nil;
 end
 
+-- 239: buy a chococard (300 gil, item 2339 male / 2342 female) from the trainer. The capture shows no
+-- Event Update reply, only the obtained message, and the same 24 exdata bytes as the retirement card.
+local CHOCOCARDS      = { [0] = 2339, [1] = 2342 };
+local CHOCOCARD_PRICE = 300;
+
+function CR.handleChococard(player, saved)
+    local text = ITEM_TEXT[player:getZoneID()];
+    local item = CHOCOCARDS[saved.sex];
+    if (text == nil or item == nil or player:getGil() < CHOCOCARD_PRICE) then
+        return;
+    end
+    if (player:getFreeSlotsCount() == 0) then
+        player:messageSpecial(text[2], item);
+        return;
+    end
+    player:delGil(CHOCOCARD_PRICE);
+    player:addItemExData(item, CR.packCard(saved, player:getRace()), false);
+    player:messageSpecial(text[1], item);
+end
+
 -- 96: the player chose to retire an adult chocobo.
 function CR.handleRetire(player, saved)
     local session = CR.session[player:getID()];

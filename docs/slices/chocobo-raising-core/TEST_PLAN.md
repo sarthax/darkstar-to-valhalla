@@ -86,4 +86,12 @@ Not done: hand-over events 843/518/751 (no capture), post-retire 817 params, man
 - No C++ rebuild was needed: `player:addItemExData(id, {24 bytes}, silent)` already exists (commit 21ed4b6809). `CR.packCard` builds the 24 bytes in Lua (STR/END/DSC/RCP bytes, DNA/ability/temperament/weather/gender/colour/size word, 12-byte 6-bit signature).
 - Offline: `packCard` reproduces the San d'Oria retire capture bytes for item 2313 exactly (`38 30 08 0B 88 00 08 11 ... 4F 6B 77 2F 9A 25 9E 90`, name EirSkd O8T18). Test: toolkit `tests/test_chocobo_card_pack.py`.
 - Live (2026-10-24, xitest03, Windurst Woods Pulonono): seeded the capture stats, retired, `char_inventory.extra` for 2313 = the capture bytes, byte for byte. Test: `tests/live/chocobo_raising/run_live.py retirement`.
-- Not done: chococard (2342) reuse of packCard.
+- Chococard moved to slice 8.
+
+## Slice 8 evidence: chococard (trainer option 239)
+
+- Captures: Raguza 2021-12-04 (Hantileon, event 823, option 239 -> "Obtained: Chococard (F)", item 0x0926 = 2342, gil 73916 -> 73616 = 300) and Raguza 2021-07-27 (Chococard (M), item 0x0923 = 2339). Item ids match LSB `item.lua` CHOCOCARD_M/F. The capture shows no Event Update reply for 239.
+- The F chococard exdata equals the retirement card bytes for the same bird, so `CR.handleChococard` reuses `CR.packCard`.
+- Not evidenced, so not built: the "not enough gil" message and any stage gate (the capture is an adult bird). Insufficient gil just does nothing.
+- Live (2026-10-24, Pulonono, xitest03): `run_live.py chococard` PASS: item 2342 exdata matches capture, 300 gil charged, chocobo kept.
+- Open: second sample (2339 bytes `16 1A 18 14 89 00 00 12 ... 43 6B 69 CA 80`) not yet checked against that bird's saved stats.

@@ -261,6 +261,7 @@ local VM_INTRO_PT_1   = 248;
 local VM_PLAYOUT      = 246;
 local VM_RETIRE       = 96;
 local VM_AFTER_RETIREMENT = 40;
+local VM_CHOCOCARD = 239;
 local VM_CARE_MENU    = 250;
 local VM_UNKNOWN_252  = 252;
 local VM_CARE_PLAN_ACKS = { [254] = true, [510] = true, [766] = true, [1022] = true };
@@ -511,6 +512,8 @@ local function handleMenuVM(player, option)
         CHOCOBO_RAISING.handleReport(player, saved, math.floor(option / 256));
     elseif (command == VM_RETIRE) then
         CHOCOBO_RAISING.handleRetire(player, saved);
+    elseif (command == VM_CHOCOCARD) then
+        CHOCOBO_RAISING.handleChococard(player, saved);
     elseif (command == VM_AFTER_RETIREMENT) then
         CHOCOBO_RAISING.handleAfterRetirement(player, saved);
     elseif (command == VM_PLAYOUT) then
