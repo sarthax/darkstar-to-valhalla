@@ -9,6 +9,7 @@
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
 
+require("scripts/globals/chocobo_raising");
 require("scripts/globals/settings");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
@@ -36,6 +37,9 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
+    if (CHOCOBO_RAISING.ownerTrigger(player, 'Lanqueron')) then
+        return;
+    end
     player:showText(npc, ITEM_DELIVERY_DIALOG);
     player:openSendBox();
 end;
@@ -45,6 +49,7 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
+    CHOCOBO_RAISING.ownerUpdate(player, csid, option, 'Lanqueron');
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;

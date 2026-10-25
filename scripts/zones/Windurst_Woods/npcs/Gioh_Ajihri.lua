@@ -6,6 +6,7 @@
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 -----------------------------------
 
+require("scripts/globals/chocobo_raising");
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
@@ -36,6 +37,9 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
+    if (CHOCOBO_RAISING.ownerTrigger(player, 'Gioh_Ajihri')) then
+        return;
+    end
 
 TwinstoneBonding = player:getQuestStatus(WINDURST,TWINSTONE_BONDING);
 Fame = player:getFameLevel(WINDURST);
@@ -61,6 +65,7 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
+    CHOCOBO_RAISING.ownerUpdate(player, csid, option, 'Gioh_Ajihri');
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;

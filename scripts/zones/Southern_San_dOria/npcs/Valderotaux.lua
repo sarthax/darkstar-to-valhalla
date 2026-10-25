@@ -6,6 +6,7 @@
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
+require("scripts/globals/chocobo_raising");
 require("scripts/zones/Southern_San_dOria/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
@@ -29,6 +30,9 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
+    if (CHOCOBO_RAISING.ownerTrigger(player, 'Valderotaux')) then
+        return;
+    end
     local lakesideMin = player:getQuestStatus(JEUNO,LAKESIDE_MINUET);
     local lakeProg = player:getVar("Lakeside_Minuet_Progress");
     if (lakeProg == 1) then
@@ -46,6 +50,7 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
+    CHOCOBO_RAISING.ownerUpdate(player, csid, option, 'Valderotaux');
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;

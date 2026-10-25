@@ -8,6 +8,7 @@
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 -----------------------------------
+require("scripts/globals/chocobo_raising");
 require("scripts/zones/Windurst_Woods/TextIDs");
 require("scripts/globals/quests");
 require("scripts/globals/titles");
@@ -26,6 +27,9 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
+    if (CHOCOBO_RAISING.ownerTrigger(player, 'Kororo')) then
+        return;
+    end
 
     local C2000 = player:getQuestStatus(WINDURST,THE_ALL_NEW_C_2000); --     previous quest in line
     local AGreetingCardian = player:getQuestStatus(WINDURST,A_GREETING_CARDIAN);
@@ -60,6 +64,7 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
+    CHOCOBO_RAISING.ownerUpdate(player, csid, option, 'Kororo');
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;

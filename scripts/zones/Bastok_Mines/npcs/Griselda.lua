@@ -7,6 +7,7 @@
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
 -----------------------------------
 
+require("scripts/globals/chocobo_raising");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
 require("scripts/zones/Bastok_Mines/TextIDs");
@@ -23,6 +24,9 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
+    if (CHOCOBO_RAISING.ownerTrigger(player, 'Griselda')) then
+        return;
+    end
 
     local WildcatBastok = player:getVar("WildcatBastok");
 
@@ -54,6 +58,7 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
+    CHOCOBO_RAISING.ownerUpdate(player, csid, option, 'Griselda');
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
