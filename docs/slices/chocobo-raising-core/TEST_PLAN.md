@@ -95,3 +95,15 @@ Not done: hand-over events 843/518/751 (no capture), post-retire 817 params, man
 - Not evidenced, so not built: the "not enough gil" message and any stage gate (the capture is an adult bird). Insufficient gil just does nothing.
 - Live (2026-10-24, Pulonono, xitest03): `run_live.py chococard` PASS: item 2342 exdata matches capture, 300 gil charged, chocobo kept.
 - Open: second sample (2339 bytes `16 1A 18 14 89 00 00 12 ... 43 6B 69 CA 80`) not yet checked against that bird's saved stats.
+
+## Full live pass 2026-10-24 (Pulonono, xitest03, slices 1-8 code)
+
+| Scenario | Result |
+|---|---|
+| day_report 6 / 30 / 65 / 130 (stage 2 / 4 / 6 / 7) | PASS |
+| retirement (card 2313 exdata = capture, plaque 309, row deleted) | PASS |
+| chococard (2342 exdata = capture, 300 gil, bird kept) | PASS |
+
+- No new Lua errors in the map-server log during the run (the old `getCharVar` and upsert errors are from earlier builds).
+- Harness fix: the first day 64 / 129 runs "failed" only because seed() makes the bird days-1 old and the old assertion hard-coded stage 4. Expected stage is now derived from the thresholds 4/19/29/43/64/129. No server bug.
+- NOT covered by this pass (no scenario yet): Hantileon and Zopago trainers (only Pulonono is driven), feeding (241), appearance (244), condition (251), care-plan edits, walk, mandatory ADULT_3/4 cutscene content (stage reached, scenes not inspected), insufficient gil / full bag paths, male chococard 2339, give-up flow, hand-over events 843/518/751.
