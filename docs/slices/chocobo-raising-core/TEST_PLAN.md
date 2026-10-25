@@ -106,4 +106,21 @@ Not done: hand-over events 843/518/751 (no capture), post-retire 817 params, man
 
 - No new Lua errors in the map-server log during the run (the old `getCharVar` and upsert errors are from earlier builds).
 - Harness fix: the first day 64 / 129 runs "failed" only because seed() makes the bird days-1 old and the old assertion hard-coded stage 4. Expected stage is now derived from the thresholds 4/19/29/43/64/129. No server bug.
-- NOT covered by this pass (no scenario yet): Hantileon and Zopago trainers (only Pulonono is driven), feeding (241), appearance (244), condition (251), care-plan edits, walk, mandatory ADULT_3/4 cutscene content (stage reached, scenes not inspected), insufficient gil / full bag paths, male chococard 2339, give-up flow, hand-over events 843/518/751.
+
+## Trainer matrix 2026-10-24/25 (3 trainers in parallel, accounts xitest04/05/06/07)
+
+`run_live.py` takes `TRAINER=pulonono|hantileon|zopago` and `ACCOUNT=xitest03..08` so streams run in parallel (one pool account per stream).
+
+| Scenario | Pulonono (241) | Hantileon (230) | Zopago (234) |
+|---|---|---|---|
+| menu (208, 252, 214, 244, 500, 251, 63220, 250, 215: each accepted, no Lua error) | PASS | PASS | PASS |
+| careplan (0xFE 852222 -> plan byte 0x51) | PASS | PASS | PASS |
+| feed (241: 2x gysahl 4545 traded, hunger 100 -> 150, greens consumed) | PASS | PASS | PASS |
+| chococard (2342 exdata = capture, 300 gil, bird kept) | PASS | PASS | PASS |
+| retirement (card 2313 exdata = capture, plaque 309, row deleted) | PASS | PASS | PASS |
+| day_report 30 (stage 4) | PASS | PASS | PASS |
+
+- Card size nibble (byte 7 bits 4-7) is the owner's race id, Galka 0. It differs per account (0x11 Hume, 0x01 Galka, 0x51 race 5), so the harness masks it and asserts it against `char_look.race`. The first Hantileon/Zopago retirement "failures" were this test mask, not the server.
+- Options 250 (care menu) and 215 (intro 3) end the trainer event; the menu scenario reopens it afterwards. The first Pulonono menu "failures" were an event-ordering problem in the harness.
+- Limits of what this proves: menu options are only shown to be accepted without a Lua error (reply bytes are not traced by the harness), and feeding is checked by hunger and item consumption, not by the glow/rank reply values from the capture.
+- NOT covered (no scenario yet): walk, mandatory ADULT_3/4 cuts, give-up before ADULT_1, insufficient gil / full bag.
