@@ -140,3 +140,15 @@ Not done: hand-over events 843/518/751 (no capture), post-retire 817 params, man
 - ADULT_3 (day 64): update [0,293,1,0,6,0,0,0] = location 1 *256 + cs 37, stage 6; matches our cs table. ADULT_1 scene (cs 35) also has p2=1 in the capture (ours sends 0, whistle quest not ported). Capture ends at day 126 retire, so cs 38 (ADULT_4) was never played in it.
 - Live: day_report 65 -> stage 6 PASS, 130 -> stage 7 PASS (earlier 64/129 FAILs were a stale harness expectation).
 - Not yet checked: walk flow, egg exdata vs capture. All 37 zips are already ingested in the toolkit DB.
+
+## Walks (2026-10-25, ported from the Complete Timeline [SandOria] capture)
+- Walk option = command 242 (0xF2), arg 42/43/44 = short/regular/long (10994/11250/11506). Reply p0 = the walk csid
+  (San d'Oria 298/299/300), p1 = (energyAfter<<8)|energyBefore, p2 = 7 when an item was found (p3 stays 0), p4 = stage,
+  p7 = weather of the walk zone. Not enough energy: p1 = -1.
+- Energy cost is NOT LSB's 25/33/50+0..5. Clear weather (0/1): short 23-24, regular 31-32, long 38. Other weather
+  (2/3/6/10/14): short 29-30, regular 39-40, long 47-48 (about x1.25).
+- The found item is handed over by Watch Over (0x30F2 = 12530): reply p1 = (after<<8)|before, p2 = 1, p3 = item. Watch Over
+  costs 4 energy in the capture (LSB says 5). Watch Over is not ported yet.
+- Gap: DSP Lua has no zone weather (no GetZone global, no CLuaZone:getWeather), so walks report weather 0 and always use
+  the clear-weather cost. Needs a small C++ binding.
+- Live: `run_live.py walk` passes (cost ranges, refusal when short of energy). Item find odds (33%) are LSB's, unverified.
