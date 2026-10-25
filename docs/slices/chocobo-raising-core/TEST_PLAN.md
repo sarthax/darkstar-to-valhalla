@@ -180,3 +180,13 @@ No capture covers meetings, clues, the clerk review or the owner questions; ever
 | Owner events and ask/guess options (18 owners) | LSB walks.chickOwners | Cahaurme right and wrong guess pass live (`chick_guess`); ask-option owners and the other 17 untested |
 | Guild-shop owners, Violitte map vendor forward | not ported | - |
 Run: `TRAINER=hantileon ACCOUNT=xitestNN py -3 run_live.py chick` (needs the toolkit worktree's run_live.py).
+
+## Telling stories (2026-10-25) - LSB GUESS values, no capture
+Code: `scripts/globals/chocobo_raising_story.lua`. Every outcome number is an LSB guess ("Guess from guides; no capture shows a story being learned"); change them there if evidence appears.
+| Item | Source | Live status |
+|---|---|---|
+| Care action 242 arg 50 (option 13042), story mask in p2, cutscene 50 + 256*location | LSB event_vm decoding | passes live (`story`, 2026-10-25, hantileon, xitest05) |
+| Command 50 (option story*256+50), reply p0 0 interested / 1 learned / 2 inspired | LSB | passes live (`story`, 2026-10-25, hantileon, xitest05) |
+| Energy cost 11 clear / 14 other | LSB careActionEnergy | passes live (`story`, 2026-10-25, hantileon, xitest05) |
+| Learn chance 25%, discernment need 64/96/64/160/64/64, +1 discernment per telling, 10-100 energy refund, inspired +2 stat | LSB guess | passes live (`story`, 2026-10-25, hantileon, xitest05) |
+Run: `TRAINER=hantileon ACCOUNT=xitestNN py -3 run_live.py story`.

@@ -35,5 +35,11 @@ Each as its own slice with captures or LSB-only notes recorded in TEST_PLAN.md.
 ## Slice 1 status (2026-10-25): stable clerks and Lost Chick
 Ported from LSB, no capture evidence except Windurst clerk csid 761 (client-confirmed) and key item 850 (client DAT).
 - Done: walk meetings (walk_progress), chick state, clues, clerk scripts (Arvilauge, Gonija, Kiria-Romaria), trainer report 852/542/766, owner hooks on 18 NPCs, third-meeting stories 837-840.
-- Live-tested: walk scenario still passes, scripts load without errors. NOT live-tested: meeting/clue replies, clerk review, owner guess, report.
+- Live-tested (see TEST_PLAN.md): walk finds a chick, Cahaurme right/wrong guess, Arvilauge clerk 846, Hantileon report 852. NOT live-tested: Bastok/Windurst clerks and reports, the other 17 owners, ask-option, story key items on the third meeting.
 - Not ported: guild-shop owners (Abd-al-Raziq, Azima, Kyaa Taali, Kopuro-Popuro, Peshi Yohnts, Ponono), Violitte map-vendor forward (595), clerk menu options beyond the opening event.
+
+## Slice 2 status (2026-10-25): telling stories (abilities)
+Meetings and the third-meeting story awards were already in slice 1. New: `scripts/globals/chocobo_raising_story.lua` (care action 242 arg 50, command 50).
+- **LSB GUESS, not evidence:** learn chance 25%, per-ability discernment thresholds (64/96/64/160/64/64), +1 discernment per telling, 10-100 energy refund, inspired stat table and +2 gain, 11/14 energy cost. All are commented in the file as guesses; change `CR.LEARN_CHANCE`, `STORY_DISCERNMENT`, `INSPIRED_STAT`, `INSPIRED_GAIN`, `STORY_COST` if a capture shows otherwise.
+- From LSB's client decoding (not captured either): the menu shape, story mask in p2, reply p0 0/1/2.
+- Not ported: competing and the Happy story from three wins (slice 5).
