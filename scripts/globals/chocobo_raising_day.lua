@@ -4,7 +4,7 @@
 -- event_playout.lua and event_vm.lua (handleReport/handlePlayout).
 -- Scene ids (location * 256 + offset) were checked against every 246 reply in the Chocobo Raising captures:
 -- offsets 0,2,3,8,33-38,53,59,62,64-66,69-71,74,77,79,80,84-86 all match the table below.
--- Not ported yet: handkerchief and whistle quest, random name at adult 3, retirement. Odds marked "guess" are
+-- Not ported yet: handkerchief (crying), whistle registration/recharge (the quest itself is in chocobo_raising_whistle.lua), random name at adult 3, retirement. Odds marked "guess" are
 -- LSB guesses with no capture behind them.
 -----------------------------------
 
@@ -466,6 +466,8 @@ local function advanceDay(state, day, events, effects)
     end
 
     if (grewTo == STAGE.ADULT_1) then
+        -- The whistle quest starts whatever else happens (LSB model.lua); applied in CR.initState.
+        table.insert(effects, { "whistleQuest", state.location });
         local indexes, highest = highestStats(state);
         state.appearance = 0;
         if (highest >= AVERAGE_STAT) then
@@ -598,6 +600,8 @@ function CR.initState(player, saved)
         for _, effect in ipairs(effects) do
             if (effect[1] == "addGil") then
                 player:addGil(effect[2]);
+            elseif (effect[1] == "whistleQuest") then
+                CR.startWhistleQuest(player, effect[2]);
             end
         end
     end
@@ -710,7 +714,8 @@ function CR.handlePlayout(player, saved, arg)
         end
     end
 
-    -- p2 would mention the open whistle quest on the adult 1 scene; the quest is not ported, so 0.
+    -- p2 makes the adult 1 scene mention the open whistle quest.
+    local whistleOpen = (csOffset == cs.ADOLESCENT_TO_ADULT_1) and CR.whistleQuestOpen(player) or 0;
     local fullName = saved.first_name .. saved.last_name;
     if (saved.first_name == "Chocobo" and saved.last_name == "Chocobo") then
         fullName = "Chocobo";
@@ -718,7 +723,7 @@ function CR.handlePlayout(player, saved, arg)
     player:updateEventString(fullName, saved.first_name, saved.last_name, saved.last_name, 0, 0, 0, 0, 0, 0, 0, 0);
 
     -- p6 is a byte that changes on egg days and p7 looks like the weather (captures vary); LSB sends 0 and 3.
-    player:updateEvent(#session.csList, location * 256 + csOffset, 0, entry[3], session.reportStage or saved.stage, 0, 0, 3);
+    player:updateEvent(#session.csList, location * 256 + csOffset, whistleOpen, entry[3], session.reportStage or saved.stage, 0, 0, 3);
 end
 
 -----------------------------------

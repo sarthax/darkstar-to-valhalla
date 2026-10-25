@@ -43,3 +43,9 @@ Meetings and the third-meeting story awards were already in slice 1. New: `scrip
 - **LSB GUESS, not evidence:** learn chance 25%, per-ability discernment thresholds (64/96/64/160/64/64), +1 discernment per telling, 10-100 energy refund, inspired stat table and +2 gain, 11/14 energy cost. All are commented in the file as guesses; change `CR.LEARN_CHANCE`, `STORY_DISCERNMENT`, `INSPIRED_STAT`, `INSPIRED_GAIN`, `STORY_COST` if a capture shows otherwise.
 - From LSB's client decoding (not captured either): the menu shape, story mask in p2, reply p0 0/1/2.
 - Not ported: competing and the Happy story from three wins (slice 5).
+
+## Slice 3 status (2026-10-25): Chocobo Whistle quest (quest part only)
+`scripts/globals/chocobo_raising_whistle.lua`. Growth to adult 1 queues a "whistleQuest" effect (applied in `CR.initState`); San d'Oria raisers start at SEARCH, others at SEE_HANTILEON (Hantileon scene 829). While SEARCH, walks reply p2=1 and command 88 (arg = walk length 1-3) answers whether the handkerchief hides on that length (rolled once, char var `ChocoboWhistleHidingWalk`); found -> FOUND + Handkerchief key item (DSP id 809) -> Hantileon scene 830, option 222 -> Chocobo Whistle (15533) -> DONE. Adult 1 growth scene sends p2=1 while the quest is open.
+- Evidence: events 829/830 exist in the zone 230 client DAT (829 on Hantileon). Command 88, option 222 and every reply shape are LSB-decoded, no capture.
+- Deviations from LSB: whistle is withheld (quest stays FOUND) when the bag is full instead of LSB's pending-whistle flag; the crying handkerchief mechanic is not ported so the plain Handkerchief is always the one found; progress lives in a char var (no user-flag store in DSP).
+- NOT ported (needs the mount, which DSP only stubs): whistle registration/recharge NPC events (844/845 San d'Oria, 525/533 Bastok Mines, 752/760 Windurst Woods), coupon, replacement purchase, riding your own chocobo. Windurst/Bastok raisers: scene 829 path untested.

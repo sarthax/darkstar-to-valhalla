@@ -33,6 +33,8 @@ function onTrigger(player,npc)
         player:startEvent(0x0335);
     elseif (chocoboOnTheLoose == 5) then
         player:startEvent(0x0336);
+    elseif (CHOCOBO_RAISING.whistleTrigger(player)) then
+        return;
     elseif (not CHOCOBO_RAISING.onTrigger(player,npc)) then
         -- Main menu is Phase 1b; keep the intro cutscene until it lands.
         player:startEvent(0x0331);

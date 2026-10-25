@@ -528,6 +528,8 @@ local function handleMenuVM(player, option)
     elseif (option == VM_CARE_MENU) then
         local info, mask = careScheduleReply(saved);
         player:updateEvent(250, info, 0, 0, 0, 0, 0, mask);
+    elseif (command == CHOCOBO_RAISING.WHISTLE_SEARCH_CMD) then
+        CHOCOBO_RAISING.handleWhistleSearch(player, saved, math.floor(option / 256));
     elseif (command == CHOCOBO_RAISING.TELL_STORY_CMD) then
         CHOCOBO_RAISING.handleStoryUpdate(player, saved, math.floor(option / 256));
     elseif (command == CHOCOBO_RAISING.WALK_CMD and math.floor(option / 256) == CHOCOBO_RAISING.TELL_STORY_ARG) then
@@ -548,6 +550,7 @@ local function handleMenuVM(player, option)
 end
 
 function CHOCOBO_RAISING.onEventUpdate(player, csid, option)
+    CHOCOBO_RAISING.whistleUpdate(player, csid, option);
     local zone  = player:getZoneID();
     local csids = CHOCOBO_RAISING.csids[zone];
     if (csids == nil) then
@@ -567,6 +570,7 @@ function CHOCOBO_RAISING.onEventUpdate(player, csid, option)
 end
 
 function CHOCOBO_RAISING.onEventFinish(player, csid, option, trade)
+    CHOCOBO_RAISING.whistleFinish(player, csid, option);
     CHOCOBO_RAISING.reportFinish(player, csid);
     local zone  = player:getZoneID();
     local csids = CHOCOBO_RAISING.csids[zone];
@@ -599,3 +603,4 @@ require("scripts/globals/chocobo_raising_day")
 require("scripts/globals/chocobo_raising_walk")
 require("scripts/globals/chocobo_raising_chick")
 require("scripts/globals/chocobo_raising_story")
+require("scripts/globals/chocobo_raising_whistle")

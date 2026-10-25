@@ -190,3 +190,13 @@ Code: `scripts/globals/chocobo_raising_story.lua`. Every outcome number is an LS
 | Energy cost 11 clear / 14 other | LSB careActionEnergy | passes live (`story`, 2026-10-25, hantileon, xitest05) |
 | Learn chance 25%, discernment need 64/96/64/160/64/64, +1 discernment per telling, 10-100 energy refund, inspired +2 stat | LSB guess | passes live (`story`, 2026-10-25, hantileon, xitest05) |
 Run: `TRAINER=hantileon ACCOUNT=xitestNN py -3 run_live.py story`.
+
+## Slice 3: Chocobo Whistle quest (LSB-only evidence)
+| Case | Result |
+|---|---|
+| Growth to adult 1 starts the quest at SEARCH (San d'Oria) | PASS live 2026-10-25 (`run_live.py whistle`) |
+| Wrong walk length answers "not here" | PASS live |
+| Right walk length: FOUND + Handkerchief key item 809 | PASS live |
+| Hantileon scene 830, option 222: whistle 15533, DONE | PASS live |
+| Scene 829 path (Bastok/Windurst raisers), full bag withhold | NOT tested |
+All reply shapes, command 88 and option 222 are LSB-decoded, no capture; events 829/830 exist in the zone 230 DAT.
