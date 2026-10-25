@@ -200,3 +200,10 @@ Run: `TRAINER=hantileon ACCOUNT=xitestNN py -3 run_live.py story`.
 | Hantileon scene 830, option 222: whistle 15533, DONE | PASS live |
 | Scene 829 path (Bastok/Windurst raisers), full bag withhold | NOT tested |
 All reply shapes, command 88 and option 222 are LSB-decoded, no capture; events 829/830 exist in the zone 230 DAT.
+
+## Slice 4: Finbarr breeding (LSB-only evidence, no captures)
+| Case | Scenario | Result |
+|---|---|---|
+| Buy ticket (plan byte, signature, 3500 gil) | breed_ticket | PASS 2026-10-25 |
+| Date, wait, bred egg with IsBred bit | breed_date | PASS 2026-10-25 |
+| Bred egg hatches with genes, ability, +8 strength | breed_hatch | PASS 2026-10-25 |
