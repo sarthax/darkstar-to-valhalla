@@ -7,7 +7,7 @@
 -- Watch Over (cmd 242 arg 48, 12530): reply (watchCsid, (after<<8)|before, 1 = item given, held item, stage, 0, 0, 1). Captured cost
 -- is 3 or 4 energy (LSB says 5), none for an egg (p1 = energy*257). Full bag = p2 2 is LSB's, not in the captures. The found item is only handed over by Watch Over (cmd 243), not by the walk itself.
 -- Cost: base + 0..1 in clear weather (weather 0/1 in the walk zone), base + 6/8/9 otherwise (captures: 23-24/29-30 short,
--- 31-32/39-40 regular, 38/47-48 long). Weather is the walk zone's; not available in DSP Lua yet, so it is always 0 (see walkWeather).
+-- 31-32/39-40 regular, 38/47-48 long). Weather is the walk zone's, via the GetZoneWeather global.
 -- Walk csids per trainer zone are the LSB csidTable short/regular/long entries; Bastok and Windurst have no capture.
 -----------------------------------
 
@@ -180,9 +180,11 @@ local WALK_ITEMS =
     },
 };
 
--- DSP has no Lua access to another zone's weather (no global GetZone, no CLuaZone:getWeather): always report clear,
--- which gives the low cost tier. Needs a CLuaZone:getWeather binding to reproduce the bad-weather cost and p8 weather.
+-- GetZoneWeather is a C++ global (luautils.cpp); 0 (none) when the walk zone is not loaded on this map server or on an older binary.
 local function walkWeather(zoneId)
+    if (GetZoneWeather ~= nil) then
+        return GetZoneWeather(zoneId);
+    end
     return 0;
 end
 
