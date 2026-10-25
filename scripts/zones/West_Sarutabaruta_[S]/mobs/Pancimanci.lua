@@ -69,6 +69,12 @@ function onMobSpawn(mob)
     -- [J wikiwiki.jp] monk-type: 2-3 attacks, counter/guard/kick; casts instantly (no cast time); immune to sleep (pool immunity)
     mob:setMod(MOD_COUNTER, 15);   -- [J] has counter; amount [D]
     mob:setMod(MOD_UFASTCAST, 100); -- [J] instant-cast spells
+    -- Very fast attack speed (user: 'incredibly fast', perhaps permanent Hundred Fists). [D] numbers, no capture:
+    -- haste ability 25% + 60% delay reduction (engine caps total reduction at 80%), plus multi-hit procs for the [J] '2-3 attacks'.
+    mob:setMod(MOD_HASTE_ABILITY, 256);
+    mob:setMod(MOD_DELAYP, -60);
+    mob:setMod(MOD_DOUBLE_ATTACK, 25);
+    mob:setMod(MOD_TRIPLE_ATTACK, 15);
 end;
 
 function onMobRoam(mob) tick(mob); end;
