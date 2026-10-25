@@ -2,39 +2,27 @@
 -- Area: Windurst Woods
 --  NPC: Pulonono
 -- Type: VCS Chocobo Trainer
--- !pos 130.124 -6.35 -119.341 241
+-- @zone 241
+-- !pos 130.124 -6.35 -119.341
 -----------------------------------
 
------------------------------------
--- onTrade Action
------------------------------------
+require("scripts/globals/chocobo_raising");
 
 function onTrade(player,npc,trade)
+    CHOCOBO_RAISING.onTrade(player,npc,trade);
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x02e5);
+    if (not CHOCOBO_RAISING.onTrigger(player,npc)) then
+        -- Main menu is Phase 1b; keep the intro cutscene until it lands.
+        player:startEvent(741);
+    end
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+    CHOCOBO_RAISING.onEventUpdate(player,csid,option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+    CHOCOBO_RAISING.onEventFinish(player,csid,option);
 end;
-
