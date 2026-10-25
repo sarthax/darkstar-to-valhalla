@@ -167,3 +167,16 @@ Checked against landsandboat-latest `hobbies/chocobo_raising` (`event_vm.lua`, `
 | Walk energy costs | Capture (23/31/38 +0..1, bad weather 29/39/47 +0..1) | LSB 24/32/38 and 30/40/48 differ slightly; capture kept |
 | Whistle-quest walk reply (p2 = 1, stores search distance) | LSB | Not ported: the whistle quest is not ported |
 | Trainer meetings, lost chick, stories on walks (p5/p6) | LSB `walks.walk` | Not ported |
+
+## Lost Chick and stable clerks (2026-10-25)
+No capture covers meetings, clues, the clerk review or the owner questions; everything below is LSB's unless noted.
+| Item | Source | Live status |
+|---|---|---|
+| Clerk csids 846 (San d'Oria) / 534 (Bastok) / 761 (Windurst) | LSB; 761 confirmed on the client | untested |
+| Trainer report csids 852 / 542 / 766 | LSB | untested |
+| Key item 850 Story of a Diligent Chocobo | client ROM/175/35.DAT | untested |
+| Meeting chance 21/15/18 %, item chance 18/26/15 % | LSB | walk reply path passes (`walk` scenario) |
+| Chick found on a short walk, packed in char var `ChocoboRaisingLostChick` | LSB | passes (`chick` scenario, owner and location valid) |
+| Owner events and ask/guess options (15 owners) | LSB walks.chickOwners | `chick` scenario written, owner step not yet passing |
+| Guild-shop owners, Violitte map vendor forward | not ported | - |
+Run: `TRAINER=hantileon ACCOUNT=xitestNN py -3 run_live.py chick` (needs the toolkit worktree's run_live.py).
