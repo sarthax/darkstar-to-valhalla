@@ -208,6 +208,7 @@ function CHOCOBO_RAISING.onTrade(player, npc, trade)
 
     if (saved == nil) then
         player:setLocalVar(TRADED_EGG_VAR, trade:getItemId(0));
+        CHOCOBO_RAISING.stashEgg(player, trade);
         player:startEvent(csids[3], VanadielTime(), 0, 0, 0, 0, 0, 0, location);
     else
         player:startEvent(csids[4], saved.location, 0, 0, 0, 0, 0, 0, location);
@@ -589,6 +590,7 @@ function CHOCOBO_RAISING.onEventFinish(player, csid, option, trade)
         end
 
         local newChoco = CHOCOBO_RAISING.newChocobo(player, eggId, CHOCOBO_RAISING.location[zone]);
+        CHOCOBO_RAISING.applyBredEgg(player, newChoco);
         -- tradeComplete takes the whole trade; onTrade already required exactly one egg.
         -- It returns nothing, so there is no failure branch to roll the row back on.
         if (player:setChocoboRaisingInfo(newChoco)) then
@@ -604,3 +606,4 @@ require("scripts/globals/chocobo_raising_walk")
 require("scripts/globals/chocobo_raising_chick")
 require("scripts/globals/chocobo_raising_story")
 require("scripts/globals/chocobo_raising_whistle")
+require("scripts/globals/chocobo_raising_breeding")

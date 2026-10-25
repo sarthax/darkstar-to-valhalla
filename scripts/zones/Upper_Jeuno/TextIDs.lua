@@ -10,6 +10,9 @@ ITEM_CANNOT_BE_OBTAINED = 6541; -- You cannot obtain the item <item>. Come back 
           HOMEPOINT_SET = 6674; -- Home point set!
 NOTHING_OUT_OF_ORDINARY = 6559; -- There is nothing out of the ordinary here.
 
+-- Finbarr (VCS Honeymoon), verified against the DSP client dialog for zone 244
+FINBARR_TRADE_TICKET_AND_CARDS = 11710; -- When you're ready, trade your ticket and both of the chocobo's chococards to me.
+
 -- Other Texts
 ITEM_DELIVERY_DIALOG = 8069; -- Delivering goods to residences everywhere!
 

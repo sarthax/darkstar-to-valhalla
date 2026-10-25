@@ -1,42 +1,24 @@
 -----------------------------------
 -- Area: Upper Jeuno
 -- NPC: Finbarr
--- Standard Info NPC
+-- VCS Honeymoon: chocobo breeding (scripts/globals/chocobo_raising_breeding.lua)
 -----------------------------------
 
 package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
 require("scripts/zones/Upper_Jeuno/TextIDs");
-
------------------------------------
--- onTrade Action
------------------------------------
+require("scripts/globals/chocobo_raising");
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+    CHOCOBO_RAISING.breedingTrade(player, npc, trade);
+end;
 
 function onTrigger(player,npc)
-player:startEvent(0x2777);
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
+    CHOCOBO_RAISING.breedingTrigger(player, npc);
+end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+    CHOCOBO_RAISING.breedingFinish(player, csid, option, GetNPCByID(17776821));
 end;
-

@@ -49,3 +49,9 @@ Meetings and the third-meeting story awards were already in slice 1. New: `scrip
 - Evidence: events 829/830 exist in the zone 230 client DAT (829 on Hantileon). Command 88, option 222 and every reply shape are LSB-decoded, no capture.
 - Deviations from LSB: whistle is withheld (quest stays FOUND) when the bag is full instead of LSB's pending-whistle flag; the crying handkerchief mechanic is not ported so the plain Handkerchief is always the one found; progress lives in a char var (no user-flag store in DSP).
 - NOT ported (needs the mount, which DSP only stubs): whistle registration/recharge NPC events (844/845 San d'Oria, 525/533 Bastok Mines, 752/760 Windurst Woods), coupon, replacement purchase, riding your own chocobo. Windurst/Bastok raisers: scene 829 path untested.
+
+## Slice 4 status (2026-10-25): Finbarr breeding (VCS Honeymoon)
+`scripts/globals/chocobo_raising_breeding.lua`, Finbarr.lua, Upper_Jeuno TextIDs 11710. Menu 10108 buys a ticket (plan 1-4), trading ticket + both chococards plays date 10102 and lays an egg for the next JST midnight (10105 wait, 10107 hand-over); a bred egg handed to a trainer keeps its genes/ability, rolls sex by plan and seeds the plan stat.
+- Evidence: events 10101-10108 on Finbarr and text 11710 exist in the zone 244 client DAT. Event params, exdata layouts and all numbers are LSB; no capture.
+- **LSB GUESS:** ticket price 3500, mutation 5%, ability inheritance 60%+3/rank, Sports/Jeuno 70% lean, male chance (Gourmet 70/Hiking 30), +8 seed, Sports/Hiking egg items. All commented in the file.
+- Live-tested (breed_ticket, breed_date, breed_hatch, Hantileon): all pass. Not tested: other plans/trainers, full bag, ticket menu options 2-4.
