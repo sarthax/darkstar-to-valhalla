@@ -46,3 +46,9 @@ Evidence goes in this file as `runtime:` / `test:` lines; nothing is `validated`
 
 - runtime: clicking Pulonono with a saved chocobo (location 3) starts main csid 742 via startEventString (first/last name x2, isTradeEvent 0, infoFlag 0, sex); no Lua errors in map log.
 - not verified: string packet contents (event_trace shows only 0x032), menu options (VM ops are not ported), growth report (infoFlag always 0), age/stage helpers unused yet.
+
+## Evidence P1b slice 2 (2026-10-24, xitest03, Pulonono, csid 742 menu VM)
+
+- runtime: with an open csid 742, option updates 208, 252, 248, 214, 215, 250 and 852222 (0xFE care plan, slot 0, length 5, type 1) were all accepted with no Lua errors and the event stayed active.
+- runtime: the 0xFE update persisted: char_chocobos.care_plan 0x70707070 -> 0x51707070 (slot 0 byte = length<<4 | type).
+- not verified: S>C 0x05C reply bytes (untraced) and exact menu flag values against captures; ops 40/46/216/221-223/240/241/243/244/246/251/256 are not ported; no growth report, so 248 always replies as "no report".

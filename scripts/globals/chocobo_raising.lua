@@ -236,6 +236,117 @@ function CHOCOBO_RAISING.onTrigger(player, npc)
     return true;
 end
 
+-----------------------------------
+-- Main menu VM (P1b slice 2): commands arrive as option & 0xFF, arg = option >> 8.
+-- Reply shapes follow LSB event_vm.lua and agree with retail captures 824/825.
+-----------------------------------
+
+local VM_CHECK_REPORT = 208;
+local VM_INTRO_PT_2   = 214;
+local VM_INTRO_PT_3   = 215;
+local VM_INTRO_PT_1   = 248;
+local VM_CARE_MENU    = 250;
+local VM_UNKNOWN_252  = 252;
+local VM_CARE_PLAN_ACKS = { [254] = true, [510] = true, [766] = true, [1022] = true };
+
+-- Menu bits are cleared (by subtracting 2^n) to enable an entry.
+local function enable(mask, bitIndex)
+    return mask - 2 ^ bitIndex;
+end
+
+local function introMenuFlags(saved)
+    local flags = 0xFFFFFFFF;
+    for i = 0, 2 do -- ask about condition, care for chocobo, set up care schedule
+        flags = enable(flags, i);
+    end
+
+    if (saved.stage > CHOCOBO_RAISING.stage.EGG and saved.first_name == "Chocobo" and saved.last_name == "Chocobo") then
+        flags = enable(flags, 3); -- name your chocobo
+    end
+
+    if (saved.stage >= CHOCOBO_RAISING.stage.ADULT_1) then
+        flags = enable(flags, 29); -- retire (not handled yet)
+    else
+        flags = enable(flags, 30); -- give up (not handled yet)
+    end
+
+    return enable(flags, 31); -- exit
+end
+
+local function careScheduleReply(saved)
+    local plan = saved.care_plan;
+    local info = 0;
+    for i = 0, 3 do
+        local byte = math.floor(plan / 2 ^ (24 - i * 8)) % 256;
+        local length, kind = math.floor(byte / 16), byte % 16;
+        info = info + length * 2 ^ (i * 8) + kind * 2 ^ (i * 8 + 3);
+    end
+
+    local mask = 0x7FFFFFFF;
+    local entries; -- basic care (0) always, more by stage
+    if (saved.stage >= CHOCOBO_RAISING.stage.CHICK) then
+        entries = { 0, 1, 2, 3 };
+    else
+        entries = { 0 };
+    end
+    if (saved.stage >= CHOCOBO_RAISING.stage.ADOLESCENT) then
+        for _, i in ipairs({ 4, 5, 6, 7, 8, 9 }) do table.insert(entries, i); end
+    end
+    if (saved.stage >= CHOCOBO_RAISING.stage.ADULT_1) then
+        for _, i in ipairs({ 10, 11, 12 }) do table.insert(entries, i); end
+    end
+    for _, i in ipairs(entries) do
+        mask = enable(mask, i);
+    end
+
+    return info, mask;
+end
+
+-- Option 0xFE: slot = bits 8-11, length = bits 16-18, type = bits 19-22. Persists the new plan.
+local function handleCarePlanUpdate(player, saved, option)
+    local slot   = math.floor(option / 2 ^ 8) % 16;
+    local length = math.floor(option / 2 ^ 16) % 8;
+    local kind   = math.floor(option / 2 ^ 19) % 16;
+
+    local shift  = 24 - slot * 8;
+    local byte   = length * 16 + kind;
+    local plan   = saved.care_plan;
+    local old    = math.floor(plan / 2 ^ shift) % 256;
+    saved.care_plan = plan - old * 2 ^ shift + byte * 2 ^ shift;
+
+    player:setChocoboRaisingInfo(saved);
+end
+
+local function handleMenuVM(player, option)
+    local saved = player:getChocoboRaisingInfo();
+    if (saved == nil) then
+        return;
+    end
+
+    local command = option % 256;
+    if (command == 0xFE) then
+        handleCarePlanUpdate(player, saved, option);
+        return;
+    end
+
+    if (option == VM_CHECK_REPORT) then
+        player:updateEvent(0, 0, 0, 0, saved.stage, 0, 0, 0); -- no report yet
+    elseif (option == VM_UNKNOWN_252) then
+        player:updateEvent(0, 1, 1, 1, saved.stage, 1, 1, 1);
+    elseif (option == VM_INTRO_PT_1) then
+        player:updateEvent(248, 0, 0, 0, saved.stage, 0, 0, 0); -- no report, no cutscene queue
+    elseif (option == VM_INTRO_PT_2) then
+        player:updateEvent(0, 0, 0, 0, 0, 0, 0, 0);
+    elseif (option == VM_INTRO_PT_3) then
+        player:updateEvent(introMenuFlags(saved), 0, 0, 0, 0, 0, 0, 0);
+    elseif (option == VM_CARE_MENU) then
+        local info, mask = careScheduleReply(saved);
+        player:updateEvent(250, info, 0, 0, 0, 0, 0, mask);
+    elseif (VM_CARE_PLAN_ACKS[option]) then
+        player:updateEvent(0, 0, 0, 0, 0, 0, 0, 0);
+    end
+end
+
 function CHOCOBO_RAISING.onEventUpdate(player, csid, option)
     local zone  = player:getZoneID();
     local csids = CHOCOBO_RAISING.csids[zone];
@@ -250,6 +361,8 @@ function CHOCOBO_RAISING.onEventUpdate(player, csid, option)
         if (saved ~= nil) then
             player:updateEvent(0, 0, 0, 0, saved.stage, 1, 0, 0);
         end
+    elseif (csid == csids[2]) then
+        handleMenuVM(player, option);
     end
 end
 
