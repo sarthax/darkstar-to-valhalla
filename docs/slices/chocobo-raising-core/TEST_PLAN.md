@@ -64,3 +64,11 @@ Evidence goes in this file as `runtime:` / `test:` lines; nothing is `validated`
 - Capture check: 241 reply = (10, glow 96, 0, 0, 1, 6, 0, 0) (Windurst capture Day 7-8); message ids resolved by text from freshly generated dialog.yml per zone.
 - Live test (headless, Windurst Woods Pulonono, chocobo stage 3, hunger 100): trade 2x gysahl greens (4545) opens event 742 (isTradeEvent = 8); option 241 -> hunger 150, gysahl consumed, no Lua errors.
 - Not verified on the wire: reply bytes compared only by reading against the capture; feed message ids matched by shape/text, not seen in a client.
+
+## Slice 5 - day rollover, growth report (248/208), playout (246), skip (504)
+
+Headless run (xitest03, Windurst Woods trainer csid 742), `created` moved back N days via SQL:
+- 6 days from egg: stage 1 -> 2, last_update_age 6. 208 replies `(0xFFFFFFFF, 208, 0, 0, stage, ...)`; 248 header `2151682049` decodes to first=1, days=4, last=4, bit31 (more records) set.
+- 246 playout: replies `(remaining, 768, ...)` then `(0, 801, ...)`: scene ids 3*256+0 and 3*256+33 (egg hatching), matching capture-verified offsets; stage switches to chick on the hatch scene.
+- 40 days: stage 4 (adult 1), 248 records advance one per request, 504 (arg 1) sets skip, the next 246 drains the non-mandatory queue and ends with `0xFFFFFFFF`.
+- Not tested: ADULT_3/4 mandatory scenes, gil payout, handkerchief/whistle, retirement. Odds marked "guess" in chocobo_raising_day.lua come from LSB and have no capture behind them. 246 p6/p7 use LSB's 0 and 3 (captures vary).

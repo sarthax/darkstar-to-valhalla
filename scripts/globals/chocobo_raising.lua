@@ -233,7 +233,12 @@ function CHOCOBO_RAISING.onTrigger(player, npc)
 
     -- Main menu. P1b slice 1 shows the state only: no growth report (infoFlag 0) and no menu VM yet.
     -- Params follow LSB onTrigger: strings, isTradeEvent, infoFlag, sex.
-    local infoFlag = 0;
+    local session;
+    saved, session = CHOCOBO_RAISING.initState(player, saved);
+    if (saved == nil) then
+        return true;
+    end
+    local infoFlag = CHOCOBO_RAISING.reportInfoFlag(session);
     player:startEventString(csids[2], saved.first_name, saved.last_name, saved.first_name, saved.last_name,
         0, infoFlag, saved.sex, 0, 0, 0, 0, 0);
     return true;
@@ -248,6 +253,7 @@ local VM_CHECK_REPORT = 208;
 local VM_INTRO_PT_2   = 214;
 local VM_INTRO_PT_3   = 215;
 local VM_INTRO_PT_1   = 248;
+local VM_PLAYOUT      = 246;
 local VM_CARE_MENU    = 250;
 local VM_UNKNOWN_252  = 252;
 local VM_CARE_PLAN_ACKS = { [254] = true, [510] = true, [766] = true, [1022] = true };
@@ -491,11 +497,13 @@ local function handleMenuVM(player, option)
     end
 
     if (option == VM_CHECK_REPORT) then
-        player:updateEvent(0, 0, 0, 0, saved.stage, 0, 0, 0); -- no report yet
+        CHOCOBO_RAISING.handleCheckReport(player, saved);
     elseif (option == VM_UNKNOWN_252) then
         player:updateEvent(0, 1, 1, 1, saved.stage, 1, 1, 1);
-    elseif (option == VM_INTRO_PT_1) then
-        player:updateEvent(248, 0, 0, 0, saved.stage, 0, 0, 0); -- no report, no cutscene queue
+    elseif (command == VM_INTRO_PT_1) then -- 248 = next report record, 504 (arg 1) = skip
+        CHOCOBO_RAISING.handleReport(player, saved, math.floor(option / 256));
+    elseif (command == VM_PLAYOUT) then
+        CHOCOBO_RAISING.handlePlayout(player, saved, math.floor(option / 256));
     elseif (option == VM_INTRO_PT_2) then
         player:updateEvent(0, 0, 0, 0, 0, 0, 0, 0);
     elseif (option == VM_INTRO_PT_3) then
@@ -559,3 +567,5 @@ function CHOCOBO_RAISING.onEventFinish(player, csid, option, trade)
         end
     end
 end
+
+require("scripts/globals/chocobo_raising_day")
