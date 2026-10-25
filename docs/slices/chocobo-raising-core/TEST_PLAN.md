@@ -79,7 +79,7 @@ Source: San d'Oria retire capture (option 24672 = command 96 arg 96 -> reply `(0
 Live headless test (Windurst Woods, stage-4 yellow chocobo, 96/244/40 then finish): card 2313 + plaque 309 received, `char_chocobos` row deleted. PASS.
 Bugs found by the live run: DSP has `getVar/setVar` (not `getCharVar`); `char_vars.varname` is 30 chars (owed-items var is `ChocoRetireItems`).
 Repeatable: `tests/live/chocobo_raising/run_live.py retirement` and `day_report [days]` in the mission toolkit (PR 1401 branch).
-Not done: card exdata (DSP addItem has none), hand-over events 843/518/751 (no capture), post-retire 817 params, mandatory ADULT_3/4 scenes need a live day-64/129 run, give-up flow, chococard 2342.
+Not done: hand-over events 843/518/751 (no capture), post-retire 817 params, mandatory ADULT_3/4 scenes need a live day-64/129 run, give-up flow, chococard 2342. (card exdata: done in slice 7)
 
 ## Slice 7 evidence: VCS card exdata
 
