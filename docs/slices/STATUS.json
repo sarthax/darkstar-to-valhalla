@@ -501,15 +501,16 @@
     },
     "voidwatch-vwnm": {
       "status": "review",
-      "branch": "feature/voidwatch-vwnm-v3",
-      "finalTag": "slice/voidwatch-vwnm-v4",
-      "finalDate": "2026-10-13",
+      "branch": "feature/voidwatch-vwnm-v5",
+      "finalTag": "slice/voidwatch-vwnm-v5",
+      "finalDate": "2026-10-25",
       "mergedToMain": true,
-      "versions": 4,
+      "versions": 5,
       "supersededTags": [
         "slice/voidwatch-vwnm-v1",
         "slice/voidwatch-vwnm-v2",
-        "slice/voidwatch-vwnm-v3"
+        "slice/voidwatch-vwnm-v3",
+        "slice/voidwatch-vwnm-v4"
       ]
     },
     "vs2019-toolset": {
