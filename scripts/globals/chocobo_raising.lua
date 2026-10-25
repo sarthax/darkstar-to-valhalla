@@ -525,6 +525,8 @@ local function handleMenuVM(player, option)
     elseif (option == VM_CARE_MENU) then
         local info, mask = careScheduleReply(saved);
         player:updateEvent(250, info, 0, 0, 0, 0, 0, mask);
+    elseif (command == CHOCOBO_RAISING.WALK_CMD) then
+        CHOCOBO_RAISING.handleWalk(player, saved, math.floor(option / 256));
     elseif (command == VM_FEED) then
         handleFeed(player, saved);
     elseif (command == VM_APPEARANCE) then
@@ -585,3 +587,4 @@ function CHOCOBO_RAISING.onEventFinish(player, csid, option, trade)
 end
 
 require("scripts/globals/chocobo_raising_day")
+require("scripts/globals/chocobo_raising_walk")
