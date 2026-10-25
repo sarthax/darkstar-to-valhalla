@@ -246,6 +246,10 @@ function CR.handleWalk(player, saved, arg)
     local before = saved.energy;
     saved.energy = before - cost;
 
+    if (CR.whistleWalkReply(player, saved, arg, csid, weather)) then
+        return;
+    end
+
     local pool = WALK_ITEMS[walkZone];
     local function pickItem()
         saved.held_item = pool[math.random(1, #pool)];
