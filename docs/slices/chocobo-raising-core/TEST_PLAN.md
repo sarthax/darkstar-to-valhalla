@@ -172,11 +172,11 @@ Checked against landsandboat-latest `hobbies/chocobo_raising` (`event_vm.lua`, `
 No capture covers meetings, clues, the clerk review or the owner questions; everything below is LSB's unless noted.
 | Item | Source | Live status |
 |---|---|---|
-| Clerk csids 846 (San d'Oria) / 534 (Bastok) / 761 (Windurst) | LSB; 761 confirmed on the client | untested |
-| Trainer report csids 852 / 542 / 766 | LSB | untested |
+| Clerk csids 846 (San d'Oria) / 534 (Bastok) / 761 (Windurst) | LSB; 761 confirmed on the client | 846 opens live (`chick_clerk`); 534/761 untested; review menu options untested |
+| Trainer report csids 852 / 542 / 766 | LSB | 852 shows and clears the result live (`chick_report`); 542/766 untested |
 | Key item 850 Story of a Diligent Chocobo | client ROM/175/35.DAT | untested |
 | Meeting chance 21/15/18 %, item chance 18/26/15 % | LSB | walk reply path passes (`walk` scenario) |
 | Chick found on a short walk, packed in char var `ChocoboRaisingLostChick` | LSB | passes (`chick` scenario, owner and location valid) |
-| Owner events and ask/guess options (15 owners) | LSB walks.chickOwners | `chick` scenario written, owner step not yet passing |
+| Owner events and ask/guess options (18 owners) | LSB walks.chickOwners | Cahaurme right and wrong guess pass live (`chick_guess`); ask-option owners and the other 17 untested |
 | Guild-shop owners, Violitte map vendor forward | not ported | - |
 Run: `TRAINER=hantileon ACCOUNT=xitestNN py -3 run_live.py chick` (needs the toolkit worktree's run_live.py).
