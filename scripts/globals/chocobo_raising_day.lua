@@ -725,8 +725,9 @@ end
 -- Retirement (capture "Detailed report 22-52 ... retire": San d'Oria, option 24672 = command 96, arg 96).
 -- Hands over a VCS registration card (2313) and the plaque of the chocobo's colour (309-313), both confirmed by
 -- the 0x020/0x02A packets of that capture (2313 and 309 for a yellow chocobo). The card's extra data (stats) is
--- NOT written: DSP addItem has no exdata, and the hand-over event ids (843/518/751) appear in no capture, so an
--- owed item is handed over directly on the next visit instead of through an event.
+-- The "Complete Timeline [SandOria]" capture (Day 119-126 + Retire) shows no hand-over event: each item arrives as a
+-- bare 0x020 straight after an outgoing 0x05B option (card 2313 at 07:21:09, plaque 309 at 07:21:31), so 843/518/751
+-- do not exist for this flow. The next trainer click is the plain intro (0x034 csid 817, params 1,0,5,0,0,0,3,1).
 -----------------------------------
 
 -- VCS registration card extra data (24 bytes), laid out as LSB's Exdata::ChocoboCard and verified byte for byte

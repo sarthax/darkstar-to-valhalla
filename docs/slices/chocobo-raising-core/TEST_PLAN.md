@@ -124,3 +124,19 @@ Not done: hand-over events 843/518/751 (no capture), post-retire 817 params, man
 - Options 250 (care menu) and 215 (intro 3) end the trainer event; the menu scenario reopens it afterwards. The first Pulonono menu "failures" were an event-ordering problem in the harness.
 - Limits of what this proves: menu options are only shown to be accepted without a Lua error (reply bytes are not traced by the harness), and feeding is checked by hunger and item consumption, not by the glow/rank reply values from the capture.
 - NOT covered (no scenario yet): walk, mandatory ADULT_3/4 cuts, give-up before ADULT_1, insufficient gil / full bag.
+
+## Chococard edge cases 2026-10-25 (Pulonono, xitest03, run tree dsp-branches on main)
+
+| Scenario | Result |
+|---|---|
+| chococard_broke (299 gil: no card, no gil charged) | PASS |
+| chococard_fullbag (inventory full: no card, gil stays 1000) | PASS |
+| chococard_male (item 2339, 300 gil; exdata printed, no male capture to compare) | PASS |
+
+- Male card exdata differs from the female one only in byte 7 (0x10 vs 0x11); no capture exists for the male bytes, so that value is unverified.
+
+## Capture findings 2026-10-25 (Complete Timeline [SandOria])
+- Retirement: no hand-over event. Card 2313 and plaque 309 arrive as bare 0x020 packets right after an outgoing 0x05B option (so 843/518/751 do not exist). Next trainer click is intro csid 817 params 1,0,5,0,0,0,3,1.
+- ADULT_3 (day 64): update [0,293,1,0,6,0,0,0] = location 1 *256 + cs 37, stage 6; matches our cs table. ADULT_1 scene (cs 35) also has p2=1 in the capture (ours sends 0, whistle quest not ported). Capture ends at day 126 retire, so cs 38 (ADULT_4) was never played in it.
+- Live: day_report 65 -> stage 6 PASS, 130 -> stage 7 PASS (earlier 64/129 FAILs were a stale harness expectation).
+- Not yet checked: walk flow, egg exdata vs capture. All 37 zips are already ingested in the toolkit DB.
