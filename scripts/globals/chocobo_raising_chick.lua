@@ -183,7 +183,7 @@ function CR.startClerk(player, location)
             p[3 + clue] = 1;
         end
     end
-    player:startEvent(CR.clerkCsid[player:getZoneID()], p[1], p[2], p[3], p[4], p[5], p[6], p[7], p[8], 0, 0);
+    player:startEvent(CR.clerkCsid[player:getZoneID()], p[1], p[2], p[3], p[4], p[5], p[6], p[7], p[8], 0);
 end
 
 -- Owners per location (LSB walks.chickOwners). ask = option offering the question inline, guess = option naming the owner.
@@ -241,7 +241,7 @@ end
 function CR.ownerTrigger(player, npcName)
     local _, _, owner = findOwner(player, npcName);
     if (owner ~= nil and owner.ask == nil) then
-        player:startEvent(owner.events[1], 1, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        player:startEvent(owner.events[1], 1, 0, 0, 0, 0, 0, 0, 0, 0);
         return true;
     end
     return false;
@@ -304,7 +304,7 @@ function CR.reportTrigger(player)
         return false;
     end
     local returned = chick.result == CR.chickResult.RETURNED and 1 or 0;
-    player:startEvent(CR.reportCsid[zone], 1 - returned, returned, 0, 0, 0, 0, 0, location, 0, 0);
+    player:startEvent(CR.reportCsid[zone], 1 - returned, returned, 0, 0, 0, 0, 0, location, 0);
     return true;
 end
 
