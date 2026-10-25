@@ -148,7 +148,7 @@ Not done: hand-over events 843/518/751 (no capture), post-retire 817 params, man
 - Energy cost is NOT LSB's 25/33/50+0..5. Clear weather (0/1): short 23-24, regular 31-32, long 38. Other weather
   (2/3/6/10/14): short 29-30, regular 39-40, long 47-48 (about x1.25).
 - The found item is handed over by Watch Over (0x30F2 = 12530): reply p1 = (after<<8)|before, p2 = 1, p3 = item. Watch Over
-  costs 4 energy in the capture (LSB says 5). Watch Over is not ported yet.
+  costs 3 or 4 energy (random) in the capture, none for an egg (LSB says 5). Ported; `run_live.py watch` passes.
 - Gap: DSP Lua has no zone weather (no GetZone global, no CLuaZone:getWeather), so walks report weather 0 and always use
   the clear-weather cost. Needs a small C++ binding.
 - Live: `run_live.py walk` passes (cost ranges, refusal when short of energy). Item find odds (33%) are LSB's, unverified.
