@@ -152,3 +152,18 @@ Not done: hand-over events 843/518/751 (no capture), post-retire 817 params, man
 - Gap: DSP Lua has no zone weather (no GetZone global, no CLuaZone:getWeather), so walks report weather 0 and always use
   the clear-weather cost. Needs a small C++ binding.
 - Live: `run_live.py walk` passes (cost ranges, refusal when short of energy). Item find odds (33%) are LSB's, unverified.
+
+### Walk behaviours without capture evidence: LSB audit (2026-10-25)
+Checked against landsandboat-latest `hobbies/chocobo_raising` (`event_vm.lua`, `walks.lua`, `constants.lua`).
+
+| Behaviour | Source | Status |
+|---|---|---|
+| Walk zone weather picks the energy tier and is sent as p7 | LSB `getWeatherInZone(walkZone)`; capture shows ~x1.25 tier | `GetZoneWeather` C++ global (0 if zone not loaded on this map server) |
+| Watch Over cost 3 clear / 4 otherwise, weather of the player's own zone (also p7) | LSB; capture shows 3 or 4 | LSB-backed, consistent with capture |
+| Item find chance 18/26/15 (short/regular/long) | LSB `eventChance[2]`, "at or below the captured rates" | Was a flat 33; now per-tier. LSB rolls trainer meetings first (21/15/18), not ported |
+| Item only found while no item held | LSB | Same |
+| Full bag: Watch Over p2 = 2, item kept | LSB | Same, LSB-only |
+| Short energy | LSB `0x80000000 \| careAction` in p1 | We send -1; neither is capture-confirmed for Watch Over |
+| Walk energy costs | Capture (23/31/38 +0..1, bad weather 29/39/47 +0..1) | LSB 24/32/38 and 30/40/48 differ slightly; capture kept |
+| Whistle-quest walk reply (p2 = 1, stores search distance) | LSB | Not ported: the whistle quest is not ported |
+| Trainer meetings, lost chick, stories on walks (p5/p6) | LSB `walks.walk` | Not ported |

@@ -15,7 +15,8 @@ CHOCOBO_RAISING = CHOCOBO_RAISING or {};
 local CR = CHOCOBO_RAISING;
 
 CR.WALK_CMD          = 242;
-CR.WALK_EVENT_CHANCE = 33; -- LSB value, the captures only show a handful of finds
+-- Percent chance of finding an item per walk arg: LSB's eventChance[2] for short/regular/long, 'at or below the captured rates'.
+CR.WALK_ITEM_CHANCE  = { [42] = 18, [43] = 26, [44] = 15 };
 
 -- [arg] = { clear cost, bad weather cost, location map key }
 local WALKS =
@@ -191,13 +192,15 @@ end
 local function handleWatchOver(player, saved, csid)
     local before = saved.energy;
     if (saved.stage == CR.stage.EGG) then
-        player:updateEvent(csid, before * 256 + before, 0, 0, saved.stage, 0, 0, 1);
+        player:updateEvent(csid, before * 256 + before, 0, 0, saved.stage, 0, 0, walkWeather(player:getZoneID()));
         return;
     end
 
-    local cost = 3 + math.random(0, 1);
+    -- LSB: 3 in clear weather, 4 otherwise, weather of the player's own zone (also p7). Matches the captured 3 or 4.
+    local weather = walkWeather(player:getZoneID());
+    local cost = (weather <= 1) and 3 or 4;
     if (before < cost) then
-        player:updateEvent(csid, -1, 0, 0, saved.stage, 0, 0, 1);
+        player:updateEvent(csid, -1, 0, 0, saved.stage, 0, 0, weather);
         return;
     end
     saved.energy = before - cost;
@@ -215,7 +218,7 @@ local function handleWatchOver(player, saved, csid)
         saved.held_item = 0;
     end
     player:setChocoboRaisingInfo(saved);
-    player:updateEvent(csid, saved.energy * 256 + before, giving, item, saved.stage, 0, 0, 1);
+    player:updateEvent(csid, saved.energy * 256 + before, giving, item, saved.stage, 0, 0, weather);
 end
 
 function CR.handleWalk(player, saved, arg)
@@ -244,7 +247,7 @@ function CR.handleWalk(player, saved, arg)
     saved.energy = before - cost;
 
     local found = 0;
-    if (saved.held_item == 0 and math.random(1, 100) <= CR.WALK_EVENT_CHANCE) then
+    if (saved.held_item == 0 and math.random(1, 100) <= CR.WALK_ITEM_CHANCE[arg]) then
         local pool = WALK_ITEMS[walkZone];
         saved.held_item = pool[math.random(1, #pool)];
         found = 7;
