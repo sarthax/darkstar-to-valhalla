@@ -4,6 +4,7 @@
 -- Standard Info NPC
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
+require("scripts/globals/chocobo_raising");
 require("scripts/zones/Bastok_Mines/TextIDs");
 
 -----------------------------------
@@ -18,6 +19,9 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
+    if (CHOCOBO_RAISING.ownerTrigger(player, 'Drangord')) then
+        return;
+    end
 player:startEvent(0x15);
 end; 
 
@@ -26,6 +30,7 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
+    CHOCOBO_RAISING.ownerUpdate(player, csid, option, 'Drangord');
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;

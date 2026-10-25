@@ -4,6 +4,7 @@
 -- Standard Merchant NPC
 -----------------------------------
 
+require("scripts/globals/chocobo_raising");
 require("scripts/globals/shop");
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
 require("scripts/zones/Bastok_Mines/TextIDs");
@@ -20,6 +21,9 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
+    if (CHOCOBO_RAISING.ownerTrigger(player, 'Deegis')) then
+        return;
+    end
     player:showText(npc,DEEGIS_SHOP_DIALOG);
 
     stock = {
@@ -50,6 +54,7 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
+    CHOCOBO_RAISING.ownerUpdate(player, csid, option, 'Deegis');
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;

@@ -183,8 +183,100 @@ function CR.startClerk(player, location)
             p[3 + clue] = 1;
         end
     end
-    p[2] = math.floor(player:getSkillLevel(SKILL_DIG) / 10);
     player:startEvent(CR.clerkCsid[player:getZoneID()], p[1], p[2], p[3], p[4], p[5], p[6], p[7], p[8], 0, 0);
+end
+
+-- Owners per location (LSB walks.chickOwners). ask = option offering the question inline, guess = option naming the owner.
+-- Owners without an ask option play their question event on trigger. Gaps (guild-shop owners) are not ported;
+-- Violitte's map vendor event (595) is not forwarded either.
+CR.chickOwners =
+{
+    [1] =
+    {
+        [1] = { npc = "Coderiant",   events = { 583 }, ask = 1, guess = 2 },
+        [2] = { npc = "Cahaurme",    events = { 847 }, guess = 1 },
+        [3] = { npc = "Victoire",    events = { 848 }, guess = 1 },
+        [4] = { npc = "Corua",       events = { 849 }, guess = 1 },
+        [5] = { npc = "Luthiaque",   events = { 658 }, ask = 1, guess = 2 },
+        [6] = { npc = "Lanqueron",   events = { 850 }, guess = 1 },
+        [7] = { npc = "Violitte",    events = { 851 }, guess = 2 },
+        [8] = { npc = "Valderotaux", events = { 58 },  ask = 1, guess = 2 },
+    },
+    [2] =
+    {
+        [1] = { npc = "Drangord",  events = { 21 },     ask = 1, guess = 2 },
+        [2] = { npc = "Deegis",    events = { 537 },    guess = 1 },
+        [3] = { npc = "Gray_Wolf", events = { 19 },     ask = 1, guess = 2 },
+        [4] = { npc = "Gerbaum",   events = { 22, 23 }, ask = 1, guess = 2 },
+        [5] = { npc = "Griselda",  events = { 538 },    guess = 1 },
+        [6] = { npc = "Galdeo",    events = { 539 },    guess = 1 },
+    },
+    [3] =
+    {
+        [2] = { npc = "Kapeh_Myohrye",       events = { 340 },           ask = 1, guess = 2 },
+        [4] = { npc = "Kororo",              events = { 277 },           ask = 2, guess = 3 },
+        [5] = { npc = "Gioh_Ajihri",         events = { 424 },           ask = 1, guess = 2 },
+        [6] = { npc = "Gottah_Maporushanoh", events = { 420, 483, 486 }, ask = 1, guess = 2 },
+    },
+};
+
+local function findOwner(player, npcName)
+    local location = CR.location[player:getZoneID()];
+    if (location == nil) then
+        return nil;
+    end
+    local chick = getChick(player);
+    if (chick.owner == 0 or chick.location ~= location) then
+        return nil;
+    end
+    for id, owner in pairs(CR.chickOwners[location]) do
+        if (owner.npc == npcName) then
+            return location, id, owner;
+        end
+    end
+    return nil;
+end
+
+-- Owner onTrigger hook: true when it started the owner's question event (the chick must be in this city).
+function CR.ownerTrigger(player, npcName)
+    local _, _, owner = findOwner(player, npcName);
+    if (owner ~= nil and owner.ask == nil) then
+        player:startEvent(owner.events[1], 1, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        return true;
+    end
+    return false;
+end
+
+-- Owner onEventUpdate hook: handles the ask and guess options of the owner's events.
+function CR.ownerUpdate(player, csid, option, npcName)
+    local location, ownerId, owner = findOwner(player, npcName);
+    if (owner == nil) then
+        return;
+    end
+    local mine = false;
+    for _, id in ipairs(owner.events) do
+        mine = mine or id == csid;
+    end
+    if (not mine) then
+        return;
+    end
+
+    local choice = bit.band(option, 0xFFFF);
+    if (choice == owner.ask) then
+        player:setLocalVar("ChocoboRaisingAsked", 1);
+        player:updateEvent(1, 1, 1);
+    elseif (choice == owner.guess) then
+        -- An inline event's own options share the guess value, so only the one after the ask counts.
+        if (owner.ask ~= nil) then
+            if (player:getLocalVar("ChocoboRaisingAsked") == 0) then
+                return;
+            end
+            player:setLocalVar("ChocoboRaisingAsked", 0);
+        end
+        local answer = CR.guessOwner(player, location, ownerId) and 1 or 0;
+        -- Each owner event reads the answer from a different param, so it goes in p0 to p2.
+        player:updateEvent(answer, answer, answer);
+    end
 end
 
 -- Guess at the owner: right ends the search with the diligent story, wrong ends it without. Returns true when right.

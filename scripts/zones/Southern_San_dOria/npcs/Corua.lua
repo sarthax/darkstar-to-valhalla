@@ -6,6 +6,7 @@
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
+require("scripts/globals/chocobo_raising");
 require("scripts/zones/Southern_San_dOria/TextIDs");
 require("scripts/globals/events/harvest_festivals");
 require("scripts/globals/settings");
@@ -34,6 +35,9 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
+    if (CHOCOBO_RAISING.ownerTrigger(player, 'Corua')) then
+        return;
+    end
 
         local RegionOwner = GetRegionOwner(RONFAURE);
 -- player:startEvent(0x0351) - are you the chicks owner
@@ -57,6 +61,7 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
+    CHOCOBO_RAISING.ownerUpdate(player, csid, option, 'Corua');
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;

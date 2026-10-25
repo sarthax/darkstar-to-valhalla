@@ -6,6 +6,7 @@
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
 
+require("scripts/globals/chocobo_raising");
 require("scripts/zones/Southern_San_dOria/TextIDs");
 require("scripts/globals/shop");
 
@@ -21,6 +22,9 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
+    if (CHOCOBO_RAISING.ownerTrigger(player, 'Victoire')) then
+        return;
+    end
     player:showText(npc,CARAUTIA_SHOP_DIALOG);
 
     local stock =
@@ -45,6 +49,7 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
+    CHOCOBO_RAISING.ownerUpdate(player, csid, option, 'Victoire');
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;

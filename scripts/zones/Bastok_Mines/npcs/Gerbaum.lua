@@ -5,6 +5,7 @@
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
 -----------------------------------
+require("scripts/globals/chocobo_raising");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
 require("scripts/globals/settings");
@@ -34,6 +35,9 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
+    if (CHOCOBO_RAISING.ownerTrigger(player, 'Gerbaum')) then
+        return;
+    end
 
 MineSweep = player:getQuestStatus(BASTOK,MINESWEEPER);
 
@@ -55,6 +59,7 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
+    CHOCOBO_RAISING.ownerUpdate(player, csid, option, 'Gerbaum');
     -- printf("CSID2: %u",csid);
     -- printf("RESULT2: %u",option);
 end;

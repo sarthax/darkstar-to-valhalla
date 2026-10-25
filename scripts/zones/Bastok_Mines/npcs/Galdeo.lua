@@ -4,6 +4,7 @@
 -- Only sells when Bastok controlls Li'Telor Region
 -----------------------------------
 
+require("scripts/globals/chocobo_raising");
 require("scripts/globals/shop");
 require("scripts/globals/mog_tablets");
 require("scripts/globals/conquest");
@@ -22,6 +23,9 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
+    if (CHOCOBO_RAISING.ownerTrigger(player, 'Galdeo')) then
+        return;
+    end
     RegionOwner = GetRegionOwner(LITELOR);
     if (RegionOwner ~= NATION_BASTOK and not MOG_TABLET.hasPower(MOG_TABLET.POWERS.BOUNTIFUL_BAZAAR)) then 
         player:showText(npc,GALDEO_CLOSED_DIALOG);
@@ -42,6 +46,7 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
+    CHOCOBO_RAISING.ownerUpdate(player, csid, option, 'Galdeo');
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
