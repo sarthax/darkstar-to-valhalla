@@ -108,6 +108,7 @@ namespace luautils
         lua_register(LuaHandle, "GetMobIDByJob", luautils::GetMobIDByJob);
         lua_register(LuaHandle, "WeekUpdateConquest", luautils::WeekUpdateConquest);
         lua_register(LuaHandle, "GetRegionOwner", luautils::GetRegionOwner);
+        lua_register(LuaHandle, "GetZoneWeather", luautils::GetZoneWeather);
         lua_register(LuaHandle, "GetRegionInfluence", luautils::GetRegionInfluence);
         lua_register(LuaHandle, "getNationRank", luautils::getNationRank);
         lua_register(LuaHandle, "getConquestBalance", luautils::getConquestBalance);
@@ -497,6 +498,16 @@ namespace luautils
         DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
         lua_pushinteger(L, conquest::GetRegionOwner((REGIONTYPE)lua_tointeger(L, 1)));
+        return 1;
+    }
+
+    // GetZoneWeather(zoneid): current weather of any zone on this map server, WEATHER_NONE (0) when it is not loaded here
+    int32 GetZoneWeather(lua_State* L)
+    {
+        DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+        CZone* PZone = zoneutils::GetZone((uint16)lua_tointeger(L, 1));
+        lua_pushinteger(L, PZone != nullptr ? PZone->GetWeather() : WEATHER_NONE);
         return 1;
     }
 

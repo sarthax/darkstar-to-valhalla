@@ -132,6 +132,7 @@ namespace luautils
     int32 GetMobIDByJob(lua_State*);                                            // Return mobid by job
     int32 WeekUpdateConquest(lua_State*);
     int32 GetRegionOwner(lua_State*);                                           // узнаем страну, владеющую текущим регионом
+    int32 GetZoneWeather(lua_State*);
     int32 GetRegionInfluence(lua_State*);                                       // Return influence graphics
     int32 getNationRank(lua_State* L);
     int32 getConquestBalance(lua_State* L);
