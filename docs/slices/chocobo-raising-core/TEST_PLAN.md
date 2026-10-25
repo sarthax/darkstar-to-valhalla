@@ -34,3 +34,10 @@ Evidence goes in this file as `runtime:` / `test:` lines; nothing is `validated`
 - runtime: player-to-player trade (two bots, xitest03 -> xitest08, headless trade_player_* tools): a stack-1 plain item (4112) with all 24 exdata bytes set and an inscribable item (180) with bytes 0-11 set arrive on the receiver byte-identical in char_inventory.extra and the client 0x020 readout, and after relog. Sender slots are emptied.
 - note: chocobo_egg (2312) has ITEM_FLAG_EX (0x4000), so the server refuses to trade it between players (0x034 handler returns silently). Eggs move only via NPC trade (0x036); egg-to-player trade is not possible by design.
 - not run: #9 full regression pass beyond the paths exercised above.
+
+## Evidence P1a (2026-10-24, xitest03, Pulonono npc 17764419 zone 241, commit f42de13454)
+
+- runtime: egg trade 2312 to Pulonono started csid 745 with params [VanadielTime,0,0,0,0,0,0,3]; onEventUpdate received option 252; finish with option 252 created a char_chocobos row (stage 1, location 3) and consumed the egg.
+- runtime: second egg trade with a chocobo present started rejection csid 748 (params [3,0,0,0,0,0,0,3]); update option 244 reached Lua; egg kept.
+- note: headless auto-finish watchdog (7 s grace) sends finish option 0 if an event lingers; drive trade -> update -> select back to back.
+- not verified: S>C 0x05C reply bytes (event_trace shows only inbound 0x032/0x034 and outbound 0x05B); Hantileon and Zopago trade paths; intro trigger csids.
