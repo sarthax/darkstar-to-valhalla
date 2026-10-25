@@ -5,7 +5,7 @@
 -- Reply: updateEvent(walkCsid, (energyAfter << 8) | energyBefore, 7 if an item was found, 0, stage, 0, 0, weather).
 -- Not enough energy: p1 = -1. The found item is only handed over by Watch Over (cmd 243), not by the walk itself.
 -- Cost: base + 0..1 in clear weather (weather 0/1 in the walk zone), base + 6/8/9 otherwise (captures: 23-24/29-30 short,
--- 31-32/39-40 regular, 38/47-48 long). Weather is the walk zone's, via CLuaZone:getWeather when the binding exists.
+-- 31-32/39-40 regular, 38/47-48 long). Weather is the walk zone's; not available in DSP Lua yet, so it is always 0 (see walkWeather).
 -- Walk csids per trainer zone are the LSB csidTable short/regular/long entries; Bastok and Windurst have no capture.
 -----------------------------------
 
@@ -178,11 +178,9 @@ local WALK_ITEMS =
     },
 };
 
+-- DSP has no Lua access to another zone's weather (no global GetZone, no CLuaZone:getWeather): always report clear,
+-- which gives the low cost tier. Needs a CLuaZone:getWeather binding to reproduce the bad-weather cost and p8 weather.
 local function walkWeather(zoneId)
-    local zone = GetZone(zoneId);
-    if (zone ~= nil and zone.getWeather ~= nil) then
-        return zone:getWeather();
-    end
     return 0;
 end
 
