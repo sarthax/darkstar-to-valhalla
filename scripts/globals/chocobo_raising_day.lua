@@ -729,6 +729,62 @@ end
 -- owed item is handed over directly on the next visit instead of through an event.
 -----------------------------------
 
+-- VCS registration card extra data (24 bytes), laid out as LSB's Exdata::ChocoboCard and verified byte for byte
+-- against the 0x020 packet of the San d'Oria retire capture (see tests/live/chocobo_raising in the mission toolkit).
+--   bytes 0-3: STR, END, DSC (trait:1 rp:4 rank:3), RCP (rp:5 rank:3)
+--   bytes 4-7: dna1:3 dna2:3 dna3:3 ability1:4 ability2:4 temperament:3 weather:4 gender:1 color:3 size:3 unknown:1
+--   bytes 12-23: name signature, 6 bits per character, little endian
+-- The card's size is the owner's jockey size: Galka 0, Hume M 1 ... Mithra 7, which is the race id except Galka (8).
+local APPEARANCE_TALONS, APPEARANCE_TAIL, APPEARANCE_BEAK = 0x01, 0x02, 0x04;
+local CARD_BYTES = 24;
+
+local function statByte(value, trait)
+    return bit.band(bit.rshift(value, 5) * 32 + bit.band(value, 0x1E) + (trait and 1 or 0), 0xFF);
+end
+
+-- Name signature: 0-9 -> 1-10, A-Z -> 11-36, a-z -> 37-62, anything else 0.
+function CR.encodeSignature(name)
+    local bytes = {};
+    for i = 1, 12 do bytes[i] = 0; end
+    for i = 1, math.min(15, #name) do
+        local c = string.byte(name, i);
+        local v = 0;
+        if (c >= 48 and c <= 57) then v = c - 48 + 1;
+        elseif (c >= 65 and c <= 90) then v = c - 65 + 11;
+        elseif (c >= 97 and c <= 122) then v = c - 97 + 37; end
+        for b = 0, 5 do
+            if (bit.band(bit.rshift(v, b), 1) == 1) then
+                local pos = (i - 1) * 6 + b;
+                local idx = math.floor(pos / 8) + 1;
+                bytes[idx] = bytes[idx] + 2 ^ (pos % 8);
+            end
+        end
+    end
+    return bytes;
+end
+
+function CR.packCard(saved, race)
+    local appearance = saved.appearance or 0;
+    local named = saved.first_name ~= "Chocobo" or saved.last_name ~= "Chocobo";
+    local size = (race == 8) and 0 or race;
+    local word = saved.allele1 + saved.allele2 * 8 + saved.allele3 * 64 + saved.ability1 * 512 + saved.ability2 * 8192
+        + saved.personality * 131072 + saved.weather_preference * 1048576 + saved.sex * 16777216
+        + saved.color * 33554432 + size * 268435456;
+    local card =
+    {
+        statByte(saved.strength,    bit.band(appearance, APPEARANCE_TALONS) ~= 0),
+        statByte(saved.endurance,   bit.band(appearance, APPEARANCE_TAIL) ~= 0),
+        statByte(saved.discernment, bit.band(appearance, APPEARANCE_BEAK) ~= 0),
+        saved.receptivity,
+    };
+    for i = 0, 3 do card[#card + 1] = math.floor(word / 2 ^ (8 * i)) % 256; end
+    for i = 1, 4 do card[#card + 1] = 0; end
+    for _, b in ipairs(CR.encodeSignature(named and (saved.first_name .. saved.last_name) or "Chocobo")) do
+        card[#card + 1] = b;
+    end
+    return card;
+end
+
 local OWED_VAR      = "ChocoRetireItems";
 local OWED_CARD     = 1;
 local OWED_PLAQUE   = 2;
@@ -765,7 +821,11 @@ function CR.handOver(player)
             end
             owed = bit.band(owed, bit.bnot(entry[1]));
             player:setVar(OWED_VAR, owed);
-            player:addItem(entry[2]);
+            if (entry[2] == ITEM_CARD) then
+                player:addItemExData(ITEM_CARD, CR.packCard(saved, player:getRace()), false);
+            else
+                player:addItem(entry[2]);
+            end
             player:messageSpecial(text[1], entry[2]);
         end
     end

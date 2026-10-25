@@ -80,3 +80,10 @@ Live headless test (Windurst Woods, stage-4 yellow chocobo, 96/244/40 then finis
 Bugs found by the live run: DSP has `getVar/setVar` (not `getCharVar`); `char_vars.varname` is 30 chars (owed-items var is `ChocoRetireItems`).
 Repeatable: `tests/live/chocobo_raising/run_live.py retirement` and `day_report [days]` in the mission toolkit (PR 1401 branch).
 Not done: card exdata (DSP addItem has none), hand-over events 843/518/751 (no capture), post-retire 817 params, mandatory ADULT_3/4 scenes need a live day-64/129 run, give-up flow, chococard 2342.
+
+## Slice 7 evidence: VCS card exdata
+
+- No C++ rebuild was needed: `player:addItemExData(id, {24 bytes}, silent)` already exists (commit 21ed4b6809). `CR.packCard` builds the 24 bytes in Lua (STR/END/DSC/RCP bytes, DNA/ability/temperament/weather/gender/colour/size word, 12-byte 6-bit signature).
+- Offline: `packCard` reproduces the San d'Oria retire capture bytes for item 2313 exactly (`38 30 08 0B 88 00 08 11 ... 4F 6B 77 2F 9A 25 9E 90`, name EirSkd O8T18). Test: toolkit `tests/test_chocobo_card_pack.py`.
+- Live (2026-10-24, xitest03, Windurst Woods Pulonono): seeded the capture stats, retired, `char_inventory.extra` for 2313 = the capture bytes, byte for byte. Test: `tests/live/chocobo_raising/run_live.py retirement`.
+- Not done: chococard (2342) reuse of packCard.
