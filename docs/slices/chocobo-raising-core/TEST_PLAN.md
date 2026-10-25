@@ -124,3 +124,13 @@ Not done: hand-over events 843/518/751 (no capture), post-retire 817 params, man
 - Options 250 (care menu) and 215 (intro 3) end the trainer event; the menu scenario reopens it afterwards. The first Pulonono menu "failures" were an event-ordering problem in the harness.
 - Limits of what this proves: menu options are only shown to be accepted without a Lua error (reply bytes are not traced by the harness), and feeding is checked by hunger and item consumption, not by the glow/rank reply values from the capture.
 - NOT covered (no scenario yet): walk, mandatory ADULT_3/4 cuts, give-up before ADULT_1, insufficient gil / full bag.
+
+## Chococard edge cases 2026-10-25 (Pulonono, xitest03, run tree dsp-branches on main)
+
+| Scenario | Result |
+|---|---|
+| chococard_broke (299 gil: no card, no gil charged) | PASS |
+| chococard_fullbag (inventory full: no card, gil stays 1000) | PASS |
+| chococard_male (item 2339, 300 gil; exdata printed, no male capture to compare) | PASS |
+
+- Male card exdata differs from the female one only in byte 7 (0x10 vs 0x11); no capture exists for the male bytes, so that value is unverified.
