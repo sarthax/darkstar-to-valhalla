@@ -3,7 +3,9 @@
 -- Ported from LandSandBoat hobbies/chocobo_raising event_vm.lua handleGoOnAWalk; energy costs, the p1 encoding and the
 -- walk csids come from the Complete Timeline [SandOria] capture, not from LSB (LSB's 25/33/50 + 0..5 does not match).
 -- Reply: updateEvent(walkCsid, (energyAfter << 8) | energyBefore, 7 if an item was found, 0, stage, 0, 0, weather).
--- Not enough energy: p1 = -1. The found item is only handed over by Watch Over (cmd 243), not by the walk itself.
+-- Not enough energy: p1 = -1.
+-- Watch Over (cmd 242 arg 48, 12530): reply (watchCsid, (after<<8)|before, 1 = item given, held item, stage, 0, 0, 1). Captured cost
+-- is 3 or 4 energy (LSB says 5), none for an egg (p1 = energy*257). Full bag = p2 2 is LSB's, not in the captures. The found item is only handed over by Watch Over (cmd 243), not by the walk itself.
 -- Cost: base + 0..1 in clear weather (weather 0/1 in the walk zone), base + 6/8/9 otherwise (captures: 23-24/29-30 short,
 -- 31-32/39-40 regular, 38/47-48 long). Weather is the walk zone's; not available in DSP Lua yet, so it is always 0 (see walkWeather).
 -- Walk csids per trainer zone are the LSB csidTable short/regular/long entries; Bastok and Windurst have no capture.
@@ -23,12 +25,12 @@ local WALKS =
     [44] = { 38, 47, "long"   },
 };
 
--- trainer zone -> walk csids { short, regular, long }
+-- trainer zone -> walk csids { short, regular, long, watch over }
 local WALK_CSIDS =
 {
-    [230] = { 298, 299, 300 },
-    [234] = { 554, 555, 556 },
-    [241] = { 810, 811, 812 },
+    [230] = { 298, 299, 300, 304 },
+    [234] = { 554, 555, 556, 560 },
+    [241] = { 810, 811, 812, 816 },
 };
 
 -- location (1 San d'Oria, 2 Bastok, 3 Windurst) -> walk zone
@@ -184,9 +186,43 @@ local function walkWeather(zoneId)
     return 0;
 end
 
+local function handleWatchOver(player, saved, csid)
+    local before = saved.energy;
+    if (saved.stage == CR.stage.EGG) then
+        player:updateEvent(csid, before * 256 + before, 0, 0, saved.stage, 0, 0, 1);
+        return;
+    end
+
+    local cost = 3 + math.random(0, 1);
+    if (before < cost) then
+        player:updateEvent(csid, -1, 0, 0, saved.stage, 0, 0, 1);
+        return;
+    end
+    saved.energy = before - cost;
+
+    local giving, item = 0, 0;
+    if (saved.held_item > 0) then
+        giving, item = 1, saved.held_item;
+        if (player:getFreeSlotsCount() == 0) then
+            giving = 2;
+        end
+    end
+
+    if (giving == 1) then
+        player:addItem(item);
+        saved.held_item = 0;
+    end
+    player:setChocoboRaisingInfo(saved);
+    player:updateEvent(csid, saved.energy * 256 + before, giving, item, saved.stage, 0, 0, 1);
+end
+
 function CR.handleWalk(player, saved, arg)
     local walk = WALKS[arg];
     local csids = WALK_CSIDS[player:getZoneID()];
+    if (arg == 48 and csids ~= nil) then
+        handleWatchOver(player, saved, csids[4]);
+        return;
+    end
     if (walk == nil or csids == nil) then
         return;
     end
