@@ -41,3 +41,8 @@ Evidence goes in this file as `runtime:` / `test:` lines; nothing is `validated`
 - runtime: second egg trade with a chocobo present started rejection csid 748 (params [3,0,0,0,0,0,0,3]); update option 244 reached Lua; egg kept.
 - note: headless auto-finish watchdog (7 s grace) sends finish option 0 if an event lingers; drive trade -> update -> select back to back.
 - not verified: S>C 0x05C reply bytes (event_trace shows only inbound 0x032/0x034 and outbound 0x05B); Hantileon and Zopago trade paths; intro trigger csids.
+
+## Evidence P1b slice 1 (2026-10-24, xitest03, Pulonono, uncommitted-run-tree copy of worktree Lua)
+
+- runtime: clicking Pulonono with a saved chocobo (location 3) starts main csid 742 via startEventString (first/last name x2, isTradeEvent 0, infoFlag 0, sex); no Lua errors in map log.
+- not verified: string packet contents (event_trace shows only 0x032), menu options (VM ops are not ported), growth report (infoFlag always 0), age/stage helpers unused yet.

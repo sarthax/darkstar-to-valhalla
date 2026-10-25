@@ -22,7 +22,21 @@ CHOCOBO_RAISING.location = { [230] = 1, [234] = 2, [241] = 3 };
 CHOCOBO_RAISING.OPT_TRADE     = 252;
 CHOCOBO_RAISING.OPT_REJECTION = 244;
 
-local STAGE_EGG  = 1;
+-- Growth constants (LSB scripts/globals/chocobo_raising.lua + hobbies/chocobo_raising/constants.lua)
+CHOCOBO_RAISING.stage =
+{
+    EGG = 1, CHICK = 2, ADOLESCENT = 3, ADULT_1 = 4, ADULT_2 = 5, ADULT_3 = 6, ADULT_4 = 7, -- ADULT_4 = retired
+};
+
+CHOCOBO_RAISING.dayLength        = 86400;
+CHOCOBO_RAISING.daysToChick      = 4;
+CHOCOBO_RAISING.daysToAdolescent = 19;
+CHOCOBO_RAISING.daysToAdult1     = 29;
+CHOCOBO_RAISING.daysToAdult2     = 43;
+CHOCOBO_RAISING.daysToAdult3     = 64;
+CHOCOBO_RAISING.daysToAdult4     = 129;
+
+local STAGE_EGG  = CHOCOBO_RAISING.stage.EGG;
 local MAX_HUNGER = 255;
 local COLOR_YELLOW, COLOR_BLACK, COLOR_BLUE, COLOR_RED, COLOR_GREEN = 0, 1, 2, 3, 4;
 local ALL_COLORS = { COLOR_YELLOW, COLOR_BLACK, COLOR_BLUE, COLOR_RED, COLOR_GREEN };
@@ -151,6 +165,23 @@ function CHOCOBO_RAISING.newChocobo(player, eggId, location)
     };
 end
 
+-- Age in days: the day the egg was handed in is day 1, capped at retirement.
+function CHOCOBO_RAISING.ageOf(saved)
+    local age = math.floor((os.time() - saved.created) / CHOCOBO_RAISING.dayLength) + 1;
+    return math.min(age, CHOCOBO_RAISING.daysToAdult4 + 1);
+end
+
+function CHOCOBO_RAISING.ageToStage(age)
+    local limits = { CHOCOBO_RAISING.daysToChick, CHOCOBO_RAISING.daysToAdolescent, CHOCOBO_RAISING.daysToAdult1,
+                     CHOCOBO_RAISING.daysToAdult2, CHOCOBO_RAISING.daysToAdult3, CHOCOBO_RAISING.daysToAdult4 };
+    for stage, limit in ipairs(limits) do
+        if (age <= limit) then
+            return stage;
+        end
+    end
+    return CHOCOBO_RAISING.stage.ADULT_4;
+end
+
 local function isEgg(trade)
     if (trade:getSlotCount() ~= 1 or trade:getItemCount() ~= 1) then
         return false;
@@ -197,8 +228,12 @@ function CHOCOBO_RAISING.onTrigger(player, npc)
         return true;
     end
 
-    -- Main menu (csid main) is Phase 1b.
-    return false;
+    -- Main menu. P1b slice 1 shows the state only: no growth report (infoFlag 0) and no menu VM yet.
+    -- Params follow LSB onTrigger: strings, isTradeEvent, infoFlag, sex.
+    local infoFlag = 0;
+    player:startEventString(csids[2], saved.first_name, saved.last_name, saved.first_name, saved.last_name,
+        0, infoFlag, saved.sex, 0, 0, 0, 0, 0);
+    return true;
 end
 
 function CHOCOBO_RAISING.onEventUpdate(player, csid, option)
