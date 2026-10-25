@@ -58,3 +58,9 @@ Evidence goes in this file as `runtime:` / `test:` lines; nothing is `validated`
 - runtime: with an open csid 742, option updates 244 (appearance), 251 (condition), 500 and 63220 (command 244 with args) were accepted with no Lua errors and the event stayed active.
 - not verified: S>C 0x05C reply bytes and the rank mapping (LSB numberToRank always returns 0, so 32 points per rank is a guess); capture 824/825 replies for 244/251 were not compared.
 - not ported: feeding (241), event playout (246), growth report, skip report (504).
+
+## P1b slice 4 evidence: feeding (menu option 241)
+
+- Capture check: 241 reply = (10, glow 96, 0, 0, 1, 6, 0, 0) (Windurst capture Day 7-8); message ids resolved by text from freshly generated dialog.yml per zone.
+- Live test (headless, Windurst Woods Pulonono, chocobo stage 3, hunger 100): trade 2x gysahl greens (4545) opens event 742 (isTradeEvent = 8); option 241 -> hunger 150, gysahl consumed, no Lua errors.
+- Not verified on the wire: reply bytes compared only by reading against the capture; feed message ids matched by shape/text, not seen in a client.

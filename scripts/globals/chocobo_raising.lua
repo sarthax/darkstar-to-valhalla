@@ -196,8 +196,11 @@ end
 function CHOCOBO_RAISING.onTrade(player, npc, trade)
     local zone  = player:getZoneID();
     local csids = CHOCOBO_RAISING.csids[zone];
-    if (csids == nil or not isEgg(trade)) then
+    if (csids == nil) then
         return false;
+    end
+    if (not isEgg(trade)) then
+        return CHOCOBO_RAISING.onFoodTrade(player, csids, trade);
     end
 
     local location = CHOCOBO_RAISING.location[zone];
@@ -300,6 +303,113 @@ local function appearanceReply(player, saved)
     end
 end
 
+-- Feeding (P1b slice 4). Ids resolved by name from item_basic in dspdb_fresh;
+-- gysahl greens 4545 also matches the retail capture's 241 menu reply.
+-- { hunger, energy, glow }; glow ids are LSB chocoboRaising.glow (RED 96..GREEN 99).
+local GLOW_RED, GLOW_BLUE, GLOW_YELLOW, GLOW_GREEN = 96, 97, 98, 99;
+local VALID_FOODS =
+{
+    [4545] = { 25, 0, GLOW_RED },    [5605] = { 25, 0, GLOW_RED },    [5606] = { 25, 0, GLOW_RED },
+    [2211] = { 25, 0, GLOW_RED },    [2208] = { 25, 0, GLOW_RED },    [2210] = { 25, 0, GLOW_RED },
+    [2209] = { 25, 0, GLOW_RED },    [5607] = { 25, 0, GLOW_RED },    [4389] = { 25, 0, GLOW_RED },
+    [5608] = { 25, 0, GLOW_BLUE },   [534]  = { 25, 0, GLOW_YELLOW }, [2202] = { 25, 0, GLOW_YELLOW },
+    [2201] = { 25, 0, GLOW_YELLOW }, [2206] = { 50, 100, GLOW_YELLOW }, [2345] = { 25, 100, GLOW_YELLOW },
+    [2197] = { 25, 0, GLOW_YELLOW }, [2203] = { 25, 0, GLOW_BLUE },   [2205] = { 25, 0, GLOW_YELLOW },
+    [2204] = { 25, 0, GLOW_BLUE },   [2346] = { 25, 0, GLOW_GREEN },  [2207] = { 25, 0, GLOW_GREEN },
+    [2569] = { 25, 0, GLOW_GREEN },  [2568] = { 25, 0, GLOW_GREEN },  [2343] = { 25, 0, GLOW_GREEN },
+};
+
+-- condition bit -> foods that cure it (LSB conditionsHealedByItems)
+local CURE_FOODS =
+{
+    [0] = { 2201, 2207 }, [1] = { 2201, 2207 }, [2] = { 2202, 2207 }, [3] = { 534, 2207 },
+    [4] = { 2207 }, [5] = { 2207 }, [6] = { 2207 },
+};
+
+-- Message ids verified by text against dialog.yml pulled with mission_toolkit.py for each zone
+-- (LSB ids drift on this client): STILL_EGG "You cannot feed a chocobo that has not hatched yet.",
+-- ITEM "${number: 1}: ${item-singular: 0[2]}" (param0 = item id, param1 = list position).
+local FEED_TEXT =
+{
+    [230] = { STILL_EGG = 10708, ITEM = 11791 }, -- Southern San d'Oria
+    [234] = { STILL_EGG = 12822, ITEM = 13905 }, -- Bastok Mines
+    [241] = { STILL_EGG = 10596, ITEM = 11679 }, -- Windurst Woods
+};
+
+local VM_FEED = 241;
+local foodGiven = {}; -- charid -> list of item ids, set by onTrade, used by the 241 option
+
+local function clamp(v, lo, hi)
+    return math.max(lo, math.min(hi, v));
+end
+
+local function handleFeed(player, saved)
+    local list = foodGiven[player:getID()];
+    if (list == nil or #list == 0) then
+        return;
+    end
+    player:confirmTrade();
+    for idx, itemId in ipairs(list) do
+        local food = VALID_FOODS[itemId];
+        local text = FEED_TEXT[player:getZoneID()];
+        if (text ~= nil) then
+            player:messageSpecial(text.ITEM, itemId, idx);
+        end
+        for cond, cures in pairs(CURE_FOODS) do
+            if (hasBit(saved.conditions, cond)) then
+                for _, cure in ipairs(cures) do
+                    if (cure == itemId) then
+                        saved.conditions = saved.conditions - 2 ^ cond;
+                    end
+                end
+            end
+        end
+        saved.hunger = clamp(saved.hunger + food[1], 0, 255);
+        saved.energy = clamp(saved.energy + food[2], 0, 100);
+        local glow = #list > 1 and GLOW_GREEN or food[3];
+        player:updateEvent(10, glow, 0, 0, 0, numberToRank(saved.hunger), 0, 0);
+    end
+    foodGiven[player:getID()] = nil;
+    player:setChocoboRaisingInfo(saved);
+end
+
+-- Food trade to a chocobo that already exists: valid foods are confirmed and the main menu opens
+-- with isTradeEvent = 8; the 241 option then feeds. Invalid items are returned untouched.
+function CHOCOBO_RAISING.onFoodTrade(player, csids, trade)
+    local zone  = player:getZoneID();
+    local saved = player:getChocoboRaisingInfo();
+    if (saved == nil or saved.location ~= CHOCOBO_RAISING.location[zone]) then
+        return false;
+    end
+    if (saved.stage == CHOCOBO_RAISING.stage.EGG) then
+        local text = FEED_TEXT[zone];
+        if (text ~= nil) then
+            player:messageSpecial(text.STILL_EGG);
+        end
+        return true;
+    end
+
+    local list = {};
+    for slot = 0, trade:getSlotCount() - 1 do
+        local id = trade:getItemId(slot);
+        if (VALID_FOODS[id] ~= nil) then
+            local qty = trade:getSlotQty(slot);
+            trade:confirmItem(slot, qty);
+            for _ = 1, qty do
+                table.insert(list, id);
+            end
+        end
+    end
+    if (#list == 0) then
+        return false;
+    end
+
+    foodGiven[player:getID()] = list;
+    player:startEventString(csids[2], saved.first_name, saved.last_name, saved.first_name, saved.last_name,
+        8, 0, saved.sex, 0, 0, 0, 0, 0);
+    return true;
+end
+
 -- Menu bits are cleared (by subtracting 2^n) to enable an entry.
 local function enable(mask, bitIndex)
     return mask - 2 ^ bitIndex;
@@ -393,6 +503,8 @@ local function handleMenuVM(player, option)
     elseif (option == VM_CARE_MENU) then
         local info, mask = careScheduleReply(saved);
         player:updateEvent(250, info, 0, 0, 0, 0, 0, mask);
+    elseif (command == VM_FEED) then
+        handleFeed(player, saved);
     elseif (command == VM_APPEARANCE) then
         appearanceReply(player, saved);
     elseif (command == VM_CONDITION) then
