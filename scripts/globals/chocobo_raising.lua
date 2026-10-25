@@ -217,6 +217,9 @@ end
 
 -- Returns true when the chocobo trainer logic handled the click.
 function CHOCOBO_RAISING.onTrigger(player, npc)
+    if (CHOCOBO_RAISING.reportTrigger(player)) then
+        return true;
+    end
     local zone  = player:getZoneID();
     local csids = CHOCOBO_RAISING.csids[zone];
     local saved = player:getChocoboRaisingInfo();
@@ -559,6 +562,7 @@ function CHOCOBO_RAISING.onEventUpdate(player, csid, option)
 end
 
 function CHOCOBO_RAISING.onEventFinish(player, csid, option, trade)
+    CHOCOBO_RAISING.reportFinish(player, csid);
     local zone  = player:getZoneID();
     local csids = CHOCOBO_RAISING.csids[zone];
     if (csids == nil) then
@@ -588,3 +592,4 @@ end
 
 require("scripts/globals/chocobo_raising_day")
 require("scripts/globals/chocobo_raising_walk")
+require("scripts/globals/chocobo_raising_chick")

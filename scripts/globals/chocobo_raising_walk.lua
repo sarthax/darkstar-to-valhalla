@@ -246,13 +246,13 @@ function CR.handleWalk(player, saved, arg)
     local before = saved.energy;
     saved.energy = before - cost;
 
-    local found = 0;
-    if (saved.held_item == 0 and math.random(1, 100) <= CR.WALK_ITEM_CHANCE[arg]) then
-        local pool = WALK_ITEMS[walkZone];
+    local pool = WALK_ITEMS[walkZone];
+    local function pickItem()
         saved.held_item = pool[math.random(1, #pool)];
-        found = 7;
+        return true;
     end
+    local meeting = CR.walkMeeting(player, saved, arg, location, pickItem);
 
     player:setChocoboRaisingInfo(saved);
-    player:updateEvent(csid, saved.energy * 256 + before, found, 0, saved.stage, 0, 0, weather);
+    player:updateEvent(csid, saved.energy * 256 + before, meeting.event, meeting.data, saved.stage, meeting.trainer, meeting.meeting, weather);
 end
