@@ -31,3 +31,9 @@ Whistle quest and its ADULT_1 / walk replies; trainer meetings, stories and the 
 4. Breeding at Finbarr.
 5. Competing, then Dietmund.
 Each as its own slice with captures or LSB-only notes recorded in TEST_PLAN.md.
+
+## Slice 1 status (2026-10-25): stable clerks and Lost Chick
+Ported from LSB, no capture evidence except Windurst clerk csid 761 (client-confirmed) and key item 850 (client DAT).
+- Done: walk meetings (walk_progress), chick state, clues, clerk scripts (Arvilauge, Gonija, Kiria-Romaria), trainer report 852/542/766, owner hooks on 18 NPCs, third-meeting stories 837-840.
+- Live-tested: walk scenario still passes, scripts load without errors. NOT live-tested: meeting/clue replies, clerk review, owner guess, report.
+- Not ported: guild-shop owners (Abd-al-Raziq, Azima, Kyaa Taali, Kopuro-Popuro, Peshi Yohnts, Ponono), Violitte map-vendor forward (595), clerk menu options beyond the opening event.
