@@ -64,6 +64,7 @@
 #include "../packets/guild_menu_buy.h"
 #include "../packets/instance_entry.h"
 #include "../packets/inventory_finish.h"
+#include "../packets/inventory_item.h"
 #include "../packets/inventory_modify.h"
 #include "../packets/inventory_size.h"
 #include "../packets/key_items.h"
@@ -92,6 +93,7 @@
 #include "../utils/gardenutils.h"
 #include "../utils/instanceutils.h"
 #include "../utils/itemutils.h"
+#include "../utils/mountutils.h"
 #include "../guild.h"
 #include "../utils/guildutils.h"
 #include "../utils/puppetutils.h"
@@ -966,6 +968,432 @@ inline int32 CLuaBaseEntity::addItem(lua_State *L)
 }
 
 //==========================================================//
+
+inline int32 CLuaBaseEntity::addItemExData(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+    uint16 itemID = (uint16)lua_tointeger(L, 1);
+    bool silence = (!lua_isnil(L, 3) && lua_isboolean(L, 3)) ? lua_toboolean(L, 3) != 0 : false;
+    uint8 SlotID = ERROR_SLOTID;
+
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+    if (PChar->getStorage(LOC_INVENTORY)->GetFreeSlotsCount() != 0)
+    {
+        CItem* PItem = itemutils::GetItem(itemID);
+        if (PItem != nullptr)
+        {
+            PItem->setQuantity(1);
+            if (lua_istable(L, 2))
+            {
+                for (uint32 i = 0; i < sizeof(PItem->m_extra); ++i)
+                {
+                    lua_rawgeti(L, 2, i + 1);
+                    if (lua_isnumber(L, -1))
+                    {
+                        PItem->m_extra[i] = (uint8)lua_tointeger(L, -1);
+                    }
+                    lua_pop(L, 1);
+                }
+            }
+            SlotID = charutils::AddItem(PChar, LOC_INVENTORY, PItem, silence);
+        }
+        else
+        {
+            ShowWarning(CL_YELLOW"addItemExData: Item <%i> is not found in a database\n" CL_RESET, itemID);
+        }
+    }
+    lua_pushboolean(L, (SlotID != ERROR_SLOTID));
+    return 1;
+}
+
+//==========================================================//
+
+inline int32 CLuaBaseEntity::saveItemExData(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1) || lua_isnil(L, 2) || !lua_isnumber(L, 2));
+
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+    uint8 LocationID = (uint8)lua_tointeger(L, 1);
+    uint8 SlotID = (uint8)lua_tointeger(L, 2);
+
+    CItemContainer* PContainer = PChar->getStorage(LocationID);
+    CItem* PItem = (PContainer != nullptr) ? PContainer->GetItem(SlotID) : nullptr;
+    if (PItem == nullptr)
+    {
+        lua_pushboolean(L, false);
+        return 1;
+    }
+
+    int8 extra[sizeof(PItem->m_extra) * 2 + 1];
+    Sql_EscapeStringLen(SqlHandle, extra, (const char*)PItem->m_extra, sizeof(PItem->m_extra));
+
+    const int8* Query =
+        "UPDATE char_inventory "
+        "SET extra = '%s' "
+        "WHERE charid = %u AND location = %u AND slot = %u;";
+
+    bool ok = Sql_Query(SqlHandle, Query, extra, PChar->id, LocationID, SlotID) != SQL_ERROR;
+    if (ok)
+    {
+        PChar->pushPacket(new CInventoryItemPacket(PItem, LocationID, SlotID));
+        PChar->pushPacket(new CInventoryFinishPacket());
+    }
+    lua_pushboolean(L, ok);
+    return 1;
+}
+
+//==========================================================//
+
+//==========================================================//
+// Chocobo raising persistence. Ported from LandSandBoat (GPLv3) to the DSP Lunar binding.
+// Schema: sql/char_chocobos.sql, sql/char_pet.sql (chocobo_user_data). Apply sql/slices/chocobo-raising-core/up.sql first.
+//==========================================================//
+
+namespace
+{
+    // Numeric char_chocobos columns, in table order. Read and written by name so Lua sees the same keys as LandSandBoat.
+    const char* const kChocoboNumericFields[] =
+    {
+        "sex", "last_update_age", "stage", "location", "color",
+        "allele1", "allele2", "allele3",
+        "strength", "endurance", "discernment", "receptivity",
+        "affection", "energy", "satisfaction", "conditions",
+        "ability1", "ability2", "personality", "weather_preference", "hunger",
+        "care_plan", "held_item", "locked_plan", "appearance", "walk_progress"
+    };
+    const uint32 kChocoboNumericFieldCount = sizeof(kChocoboNumericFields) / sizeof(kChocoboNumericFields[0]);
+
+    // stage defaults to 1 like LandSandBoat; every other numeric field defaults to 0.
+    uint32 chocoboTableNumber(lua_State* L, int tableIdx, const char* key, uint32 def)
+    {
+        lua_getfield(L, tableIdx, key);
+        uint32 value = def;
+        if (lua_isnumber(L, -1))
+        {
+            value = (uint32)lua_tonumber(L, -1);
+        }
+        lua_pop(L, 1);
+        return value;
+    }
+
+    std::string chocoboTableString(lua_State* L, int tableIdx, const char* key, const char* def)
+    {
+        lua_getfield(L, tableIdx, key);
+        std::string value = def;
+        if (lua_isstring(L, -1))
+        {
+            value = lua_tostring(L, -1);
+        }
+        lua_pop(L, 1);
+        // varchar(15) columns
+        if (value.size() > 15)
+        {
+            value.resize(15);
+        }
+        return value;
+    }
+
+    std::string chocoboEscape(const std::string& in)
+    {
+        std::string out(in.size() * 2 + 1, '\0');
+        Sql_EscapeStringLen(SqlHandle, &out[0], in.c_str(), in.size());
+        out.resize(strlen(out.c_str()));
+        return out;
+    }
+
+    bool saveChocoboUserData(CCharEntity* PChar)
+    {
+        int8 blob[sizeof(PChar->m_chocoboUserData) * 2 + 1];
+        Sql_EscapeStringLen(SqlHandle, blob, (const int8*)&PChar->m_chocoboUserData, sizeof(PChar->m_chocoboUserData));
+
+        // An upsert so a missing char_pet row cannot drop the write.
+        const int8* Query =
+            "INSERT INTO char_pet (charid, chocobo_user_data) VALUES (%u, '%s') "
+            "ON DUPLICATE KEY UPDATE chocobo_user_data = VALUES(chocobo_user_data);";
+
+        if (Sql_Query(SqlHandle, Query, PChar->id, blob) == SQL_ERROR)
+        {
+            ShowError(CL_RED"Failed to save chocobo user data (%s)\n" CL_RESET, PChar->GetName());
+            return false;
+        }
+        return true;
+    }
+}
+
+// getChocoboRaisingInfo(): returns the raised chocobo row as a table, or nil when none exists
+inline int32 CLuaBaseEntity::getChocoboRaisingInfo(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+
+    if (m_PBaseEntity->objtype != TYPE_PC)
+    {
+        ShowWarning(CL_YELLOW"CLuaBaseEntity::getChocoboRaisingInfo() - Entity is not a PC.\n" CL_RESET);
+        lua_pushnil(L);
+        return 1;
+    }
+
+    std::string query = "SELECT first_name, last_name, UNIX_TIMESTAMP(created)";
+    for (uint32 i = 0; i < kChocoboNumericFieldCount; ++i)
+    {
+        query += ", ";
+        query += kChocoboNumericFields[i];
+    }
+    query += " FROM char_chocobos WHERE charid = %u LIMIT 1";
+
+    if (Sql_Query(SqlHandle, query.c_str(), m_PBaseEntity->id) == SQL_ERROR ||
+        Sql_NumRows(SqlHandle) == 0 ||
+        Sql_NextRow(SqlHandle) != SQL_SUCCESS)
+    {
+        lua_pushnil(L);
+        return 1;
+    }
+
+    lua_createtable(L, 0, kChocoboNumericFieldCount + 4);
+
+    lua_pushinteger(L, m_PBaseEntity->id);
+    lua_setfield(L, -2, "charid");
+
+    const int8* first = Sql_GetData(SqlHandle, 0);
+    lua_pushstring(L, first != nullptr ? first : "");
+    lua_setfield(L, -2, "first_name");
+
+    const int8* last = Sql_GetData(SqlHandle, 1);
+    lua_pushstring(L, last != nullptr ? last : "");
+    lua_setfield(L, -2, "last_name");
+
+    lua_pushinteger(L, Sql_GetUIntData(SqlHandle, 2));
+    lua_setfield(L, -2, "created");
+
+    for (uint32 i = 0; i < kChocoboNumericFieldCount; ++i)
+    {
+        lua_pushinteger(L, Sql_GetUIntData(SqlHandle, 3 + i));
+        lua_setfield(L, -2, kChocoboNumericFields[i]);
+    }
+    return 1;
+}
+
+// setChocoboRaisingInfo(table): upserts the raised chocobo row; returns true on success
+inline int32 CLuaBaseEntity::setChocoboRaisingInfo(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+
+    if (m_PBaseEntity->objtype != TYPE_PC || !lua_istable(L, 1))
+    {
+        ShowWarning(CL_YELLOW"CLuaBaseEntity::setChocoboRaisingInfo() - Entity is not a PC, or argument 1 is not a table.\n" CL_RESET);
+        lua_pushboolean(L, false);
+        return 1;
+    }
+
+    const std::string first = chocoboEscape(chocoboTableString(L, 1, "first_name", "Chocobo"));
+    const std::string last = chocoboEscape(chocoboTableString(L, 1, "last_name", "Chocobo"));
+    const uint32 created = chocoboTableNumber(L, 1, "created", 0);
+
+    char buf[32];
+    std::string columns = "charid, first_name, last_name, created";
+    // FROM_UNIXTIME(0) is rejected by strict MariaDB; no created given => now, and keep an existing row's created.
+    std::string values = std::to_string(m_PBaseEntity->id) + ", '" + first + "', '" + last + "', " +
+        (created != 0 ? "FROM_UNIXTIME(" + std::to_string(created) + ")" : std::string("NOW()"));
+    std::string updates = "first_name = VALUES(first_name), last_name = VALUES(last_name)";
+    if (created != 0)
+    {
+        updates += ", created = VALUES(created)";
+    }
+
+    for (uint32 i = 0; i < kChocoboNumericFieldCount; ++i)
+    {
+        const char* name = kChocoboNumericFields[i];
+        const uint32 def = (strcmp(name, "stage") == 0) ? 1 : 0;
+        snprintf(buf, sizeof(buf), "%u", chocoboTableNumber(L, 1, name, def));
+
+        columns += ", ";
+        columns += name;
+        values += ", ";
+        values += buf;
+        updates += ", ";
+        updates += name;
+        updates += " = VALUES(";
+        updates += name;
+        updates += ")";
+    }
+
+    // Names are already escaped; keep them out of the printf format string.
+    const std::string query = "INSERT INTO char_chocobos (" + columns + ") VALUES (" + values + ") ON DUPLICATE KEY UPDATE " + updates + ";";
+
+    const bool ok = Sql_QueryStr(SqlHandle, query.c_str()) != SQL_ERROR;
+    if (!ok)
+    {
+        ShowError(CL_RED"setChocoboRaisingInfo: upsert failed for charid %u\n" CL_RESET, m_PBaseEntity->id);
+    }
+    lua_pushboolean(L, ok);
+    return 1;
+}
+
+// deleteRaisedChocobo(): removes the raised chocobo row; returns true on success
+inline int32 CLuaBaseEntity::deleteRaisedChocobo(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+
+    if (m_PBaseEntity->objtype != TYPE_PC)
+    {
+        ShowWarning(CL_YELLOW"CLuaBaseEntity::deleteRaisedChocobo() - Entity is not a PC.\n" CL_RESET);
+        lua_pushboolean(L, false);
+        return 1;
+    }
+
+    lua_pushboolean(L, Sql_Query(SqlHandle, "DELETE FROM char_chocobos WHERE charid = %u LIMIT 1;", m_PBaseEntity->id) != SQL_ERROR);
+    return 1;
+}
+
+// getChocoboUserData(): chocobo raising state that outlives any one chocobo
+inline int32 CLuaBaseEntity::getChocoboUserData(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+
+    if (m_PBaseEntity->objtype != TYPE_PC)
+    {
+        lua_pushnil(L);
+        return 1;
+    }
+
+    const ChocoboUserData_t& data = ((CCharEntity*)m_PBaseEntity)->m_chocoboUserData;
+
+    lua_createtable(L, 0, 10);
+    const struct { const char* key; uint32 value; } fields[] =
+    {
+        { "flags", data.flags },
+        { "chocobosRaised", data.chocobosRaised },
+        { "registeredAbility1", data.registeredAbility1 },
+        { "registeredAbility2", data.registeredAbility2 },
+        { "registeredStrength", data.registeredStrength },
+        { "registeredEndurance", data.registeredEndurance },
+        { "registeredDiscernment", data.registeredDiscernment },
+        { "registeredReceptivity", data.registeredReceptivity },
+        { "registeredWeather", data.registeredWeather },
+        { "silksSpeedBonus", data.silksSpeedBonus }
+    };
+    for (const auto& f : fields)
+    {
+        lua_pushinteger(L, f.value);
+        lua_setfield(L, -2, f.key);
+    }
+    return 1;
+}
+
+// setChocoboUserData({ flags = n, chocobosRaised = n }): fields left out keep their values
+inline int32 CLuaBaseEntity::setChocoboUserData(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+
+    if (m_PBaseEntity->objtype != TYPE_PC || !lua_istable(L, 1))
+    {
+        ShowWarning(CL_YELLOW"CLuaBaseEntity::setChocoboUserData() - Entity is not a PC, or argument 1 is not a table.\n" CL_RESET);
+        lua_pushboolean(L, false);
+        return 1;
+    }
+
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+    ChocoboUserData_t& data = PChar->m_chocoboUserData;
+
+    data.flags = chocoboTableNumber(L, 1, "flags", data.flags);
+    data.chocobosRaised = (uint16)std::min<uint32>(chocoboTableNumber(L, 1, "chocobosRaised", data.chocobosRaised), 0xFFFF);
+
+    lua_pushboolean(L, saveChocoboUserData(PChar));
+    return 1;
+}
+
+// registerChocobo({ color, largeBeak, fullTail, largeTalons, speed, minutes, ability1, ... })
+// Stores the registered chocobo in the user-data blob. Does NOT change the mount model sent to the client
+// (the mount packet phase is separate); values beyond a field's width are clamped.
+inline int32 CLuaBaseEntity::registerChocobo(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+
+    if (m_PBaseEntity->objtype != TYPE_PC || !lua_istable(L, 1))
+    {
+        ShowWarning(CL_YELLOW"CLuaBaseEntity::registerChocobo() - Entity is not a PC, or argument 1 is not a table.\n" CL_RESET);
+        lua_pushboolean(L, false);
+        return 1;
+    }
+
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+    auto flag = [&](const char* key) -> uint32
+    {
+        lua_getfield(L, 1, key);
+        uint32 v = lua_toboolean(L, -1) ? 1 : 0;
+        lua_pop(L, 1);
+        return v;
+    };
+
+    ChocoboCustomProperties props = {};
+    props.largeBeak = flag("largeBeak");
+    props.fullTail = flag("fullTail");
+    props.largeTalons = flag("largeTalons");
+    props.color = std::min<uint32>(chocoboTableNumber(L, 1, "color", 0), 4);
+    props.speed = std::min<uint32>(chocoboTableNumber(L, 1, "speed", 0), 0x7F);
+    props.minutes = std::min<uint32>(chocoboTableNumber(L, 1, "minutes", 0), 0x3F);
+
+    auto byteField = [&](const char* key) -> uint8
+    {
+        return (uint8)std::min<uint32>(chocoboTableNumber(L, 1, key, 0), 0xFF);
+    };
+
+    ChocoboUserData_t& data = PChar->m_chocoboUserData;
+    data.fieldChocobo = props.properties;
+    data.registeredAbility1 = byteField("ability1");
+    data.registeredAbility2 = byteField("ability2");
+    data.registeredStrength = byteField("strength");
+    data.registeredEndurance = byteField("endurance");
+    data.registeredDiscernment = byteField("discernment");
+    data.registeredReceptivity = byteField("receptivity");
+    data.registeredWeather = byteField("weather");
+    data.silksSpeedBonus = byteField("silksSpeedBonus");
+
+    lua_pushboolean(L, saveChocoboUserData(PChar));
+    return 1;
+}
+
+// getFieldChocobo(): appearance, speed and minutes of the registered chocobo, or nil when none is registered
+inline int32 CLuaBaseEntity::getFieldChocobo(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+
+    if (m_PBaseEntity->objtype != TYPE_PC || ((CCharEntity*)m_PBaseEntity)->m_chocoboUserData.fieldChocobo == 0)
+    {
+        lua_pushnil(L);
+        return 1;
+    }
+
+    const uint32 raw = ((CCharEntity*)m_PBaseEntity)->m_chocoboUserData.fieldChocobo;
+    ChocoboCustomProperties props = {};
+    props.properties = raw;
+
+    lua_createtable(L, 0, 7);
+    lua_pushinteger(L, props.color);
+    lua_setfield(L, -2, "color");
+    lua_pushboolean(L, props.largeBeak != 0);
+    lua_setfield(L, -2, "largeBeak");
+    lua_pushboolean(L, props.fullTail != 0);
+    lua_setfield(L, -2, "fullTail");
+    lua_pushboolean(L, props.largeTalons != 0);
+    lua_setfield(L, -2, "largeTalons");
+    lua_pushinteger(L, props.speed);
+    lua_setfield(L, -2, "speed");
+    lua_pushinteger(L, props.minutes);
+    lua_setfield(L, -2, "minutes");
+    lua_pushinteger(L, raw);
+    lua_setfield(L, -2, "properties");
+    return 1;
+}
+
+//==========================================================//
+
 
 inline int32 CLuaBaseEntity::addUsedItem(lua_State *L)
 {
@@ -11824,6 +12252,15 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMaxMP),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addTreasure),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addItem),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,addItemExData),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,saveItemExData),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getChocoboRaisingInfo),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,setChocoboRaisingInfo),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,deleteRaisedChocobo),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getChocoboUserData),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,setChocoboUserData),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,registerChocobo),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getFieldChocobo),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addUsedItem),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addTempItem),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,delItem),

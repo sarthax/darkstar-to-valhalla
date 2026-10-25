@@ -10,12 +10,14 @@ package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 
 require("scripts/zones/Southern_San_dOria/TextIDs");
 require("scripts/globals/quests");
+require("scripts/globals/chocobo_raising");
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
+    CHOCOBO_RAISING.onTrade(player,npc,trade);
 end;
 
 -----------------------------------
@@ -31,7 +33,8 @@ function onTrigger(player,npc)
         player:startEvent(0x0335);
     elseif (chocoboOnTheLoose == 5) then
         player:startEvent(0x0336);
-    else
+    elseif (not CHOCOBO_RAISING.onTrigger(player,npc)) then
+        -- Main menu is Phase 1b; keep the intro cutscene until it lands.
         player:startEvent(0x0331);
     end
 end;
@@ -41,6 +44,7 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
+    CHOCOBO_RAISING.onEventUpdate(player,csid,option);
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
@@ -50,6 +54,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
+    CHOCOBO_RAISING.onEventFinish(player,csid,option);
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
