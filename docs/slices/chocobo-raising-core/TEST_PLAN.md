@@ -72,3 +72,11 @@ Headless run (xitest03, Windurst Woods trainer csid 742), `created` moved back N
 - 246 playout: replies `(remaining, 768, ...)` then `(0, 801, ...)`: scene ids 3*256+0 and 3*256+33 (egg hatching), matching capture-verified offsets; stage switches to chick on the hatch scene.
 - 40 days: stage 4 (adult 1), 248 records advance one per request, 504 (arg 1) sets skip, the next 246 drains the non-mandatory queue and ends with `0xFFFFFFFF`.
 - Not tested: ADULT_3/4 mandatory scenes, gil payout, handkerchief/whistle, retirement. Odds marked "guess" in chocobo_raising_day.lua come from LSB and have no capture behind them. 246 p6/p7 use LSB's 0 and 3 (captures vary).
+
+## Slice 6: retirement flow (evidence 2026-10-24)
+
+Source: San d'Oria retire capture (option 24672 = command 96 arg 96 -> reply `(0, location*256+96, 0,0,7,0,0,0)`, then 244, then 40; card 2313 and yellow plaque 309 obtained at finish).
+Live headless test (Windurst Woods, stage-4 yellow chocobo, 96/244/40 then finish): card 2313 + plaque 309 received, `char_chocobos` row deleted. PASS.
+Bugs found by the live run: DSP has `getVar/setVar` (not `getCharVar`); `char_vars.varname` is 30 chars (owed-items var is `ChocoRetireItems`).
+Repeatable: `tests/live/chocobo_raising/run_live.py retirement` and `day_report [days]` in the mission toolkit (PR 1401 branch).
+Not done: card exdata (DSP addItem has none), hand-over events 843/518/751 (no capture), post-retire 817 params, mandatory ADULT_3/4 scenes need a live day-64/129 run, give-up flow, chococard 2342.

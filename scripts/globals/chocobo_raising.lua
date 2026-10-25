@@ -233,6 +233,11 @@ function CHOCOBO_RAISING.onTrigger(player, npc)
 
     -- Main menu. P1b slice 1 shows the state only: no growth report (infoFlag 0) and no menu VM yet.
     -- Params follow LSB onTrigger: strings, isTradeEvent, infoFlag, sex.
+    if (CHOCOBO_RAISING.hasOwedItems(player)) then
+        CHOCOBO_RAISING.handOver(player);
+        return true;
+    end
+
     local session;
     saved, session = CHOCOBO_RAISING.initState(player, saved);
     if (saved == nil) then
@@ -254,6 +259,8 @@ local VM_INTRO_PT_2   = 214;
 local VM_INTRO_PT_3   = 215;
 local VM_INTRO_PT_1   = 248;
 local VM_PLAYOUT      = 246;
+local VM_RETIRE       = 96;
+local VM_AFTER_RETIREMENT = 40;
 local VM_CARE_MENU    = 250;
 local VM_UNKNOWN_252  = 252;
 local VM_CARE_PLAN_ACKS = { [254] = true, [510] = true, [766] = true, [1022] = true };
@@ -502,6 +509,10 @@ local function handleMenuVM(player, option)
         player:updateEvent(0, 1, 1, 1, saved.stage, 1, 1, 1);
     elseif (command == VM_INTRO_PT_1) then -- 248 = next report record, 504 (arg 1) = skip
         CHOCOBO_RAISING.handleReport(player, saved, math.floor(option / 256));
+    elseif (command == VM_RETIRE) then
+        CHOCOBO_RAISING.handleRetire(player, saved);
+    elseif (command == VM_AFTER_RETIREMENT) then
+        CHOCOBO_RAISING.handleAfterRetirement(player, saved);
     elseif (command == VM_PLAYOUT) then
         CHOCOBO_RAISING.handlePlayout(player, saved, math.floor(option / 256));
     elseif (option == VM_INTRO_PT_2) then
@@ -549,7 +560,9 @@ function CHOCOBO_RAISING.onEventFinish(player, csid, option, trade)
         return;
     end
 
-    if (csid == csids[3] and option == CHOCOBO_RAISING.OPT_TRADE) then
+    if (csid == csids[2]) then
+        CHOCOBO_RAISING.onMenuFinish(player);
+    elseif (csid == csids[3] and option == CHOCOBO_RAISING.OPT_TRADE) then
         local eggId = player:getLocalVar(TRADED_EGG_VAR);
         player:setLocalVar(TRADED_EGG_VAR, 0);
 

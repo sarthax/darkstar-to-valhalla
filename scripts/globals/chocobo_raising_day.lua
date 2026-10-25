@@ -667,6 +667,10 @@ function CR.handleReport(player, saved, arg)
     local outcome = bit.band(totals.gil, 0xFFFF) + totals.good * 65536 + totals.poor * 16777216;
 
     local retirement = hasRetirement({ record }) and 1 or 0;
+    if (retirement == 1) then
+        session.retiring   = true;
+        session.rewardCard = true;
+    end
     local named = isNamed(saved);
     if (saved.last_name == "" and session.reportStage < STAGE.ADULT_3) then
         named = 0;
@@ -715,6 +719,96 @@ function CR.handlePlayout(player, saved, arg)
 
     -- p6 is a byte that changes on egg days and p7 looks like the weather (captures vary); LSB sends 0 and 3.
     player:updateEvent(#session.csList, location * 256 + csOffset, 0, entry[3], session.reportStage or saved.stage, 0, 0, 3);
+end
+
+-----------------------------------
+-- Retirement (capture "Detailed report 22-52 ... retire": San d'Oria, option 24672 = command 96, arg 96).
+-- Hands over a VCS registration card (2313) and the plaque of the chocobo's colour (309-313), both confirmed by
+-- the 0x020/0x02A packets of that capture (2313 and 309 for a yellow chocobo). The card's extra data (stats) is
+-- NOT written: DSP addItem has no exdata, and the hand-over event ids (843/518/751) appear in no capture, so an
+-- owed item is handed over directly on the next visit instead of through an event.
+-----------------------------------
+
+local OWED_VAR      = "ChocoRetireItems";
+local OWED_CARD     = 1;
+local OWED_PLAQUE   = 2;
+local ITEM_CARD     = 2313;
+local PLAQUES       = { [0] = 309, [1] = 310, [2] = 312, [3] = 311, [4] = 313 }; -- yellow, black, blue, red, green
+local RETIRE_ARG    = 96;
+
+-- Zone TextIDs, read from scripts/zones/<zone>/TextIDs.lua: { ITEM_OBTAINED, ITEM_CANNOT_BE_OBTAINED }.
+local ITEM_TEXT =
+{
+    [230] = { 6432, 6426 },
+    [234] = { 6388, 6382 },
+    [241] = { 6547, 6541 },
+};
+
+function CR.hasOwedItems(player)
+    return player:getVar(OWED_VAR) ~= 0;
+end
+
+-- Gives what fits, card first. The chocobo stays until both are handed over.
+function CR.handOver(player)
+    local saved = player:getChocoboRaisingInfo();
+    local owed  = player:getVar(OWED_VAR);
+    local text  = ITEM_TEXT[player:getZoneID()];
+    if (saved == nil or owed == 0 or text == nil) then
+        return;
+    end
+
+    for _, entry in ipairs({ { OWED_CARD, ITEM_CARD }, { OWED_PLAQUE, PLAQUES[saved.color] } }) do
+        if (bit.band(owed, entry[1]) ~= 0) then
+            if (player:getFreeSlotsCount() == 0) then
+                player:messageSpecial(text[2], entry[2]);
+                return;
+            end
+            owed = bit.band(owed, bit.bnot(entry[1]));
+            player:setVar(OWED_VAR, owed);
+            player:addItem(entry[2]);
+            player:messageSpecial(text[1], entry[2]);
+        end
+    end
+
+    player:setVar(OWED_VAR, 0);
+    player:deleteRaisedChocobo();
+    CR.session[player:getID()] = nil;
+end
+
+-- 96: the player chose to retire an adult chocobo.
+function CR.handleRetire(player, saved)
+    local session = CR.session[player:getID()];
+    if (session == nil) then
+        session = { report = {}, csList = {}, skipping = false };
+        CR.session[player:getID()] = session;
+    end
+    session.retiring   = true;
+    session.rewardCard = true;
+    player:updateEvent(0, saved.location * 256 + RETIRE_ARG, 0, 0, STAGE.ADULT_4, 0, 0, 0);
+end
+
+-- 40: after the retirement scene; p1 is the chocobo's colour (0 for yellow in the capture).
+function CR.handleAfterRetirement(player, saved)
+    player:updateEvent(saved.color, 0, 0, 0, 0, 0, 0, 0);
+end
+
+-- Menu event finished: complete a retirement started by 96 or by the retirement report scene.
+function CR.onMenuFinish(player)
+    local session = CR.session[player:getID()];
+    if (session == nil or not session.retiring) then
+        return;
+    end
+    local saved = player:getChocoboRaisingInfo();
+    if (saved == nil) then
+        return;
+    end
+    session.retiring = false;
+    if (session.rewardCard and not CR.hasOwedItems(player)) then
+        saved.stage = STAGE.ADULT_4;
+        player:setChocoboRaisingInfo(saved);
+        player:setVar(OWED_VAR, OWED_CARD + OWED_PLAQUE);
+    end
+    CR.handOver(player);
 end
 
 return CR;
