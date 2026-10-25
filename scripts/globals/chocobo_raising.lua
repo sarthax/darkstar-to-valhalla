@@ -249,6 +249,57 @@ local VM_CARE_MENU    = 250;
 local VM_UNKNOWN_252  = 252;
 local VM_CARE_PLAN_ACKS = { [254] = true, [510] = true, [766] = true, [1022] = true };
 
+local VM_APPEARANCE = 244;
+local VM_CONDITION  = 251;
+
+-- LSB's numberToRank never leaves rank 0 (ipairs over a keyed table), so the
+-- intended 32-points-per-rank mapping is used here. Unverified against retail.
+local function numberToRank(value)
+    return math.min(7, math.floor(value / 32));
+end
+
+local function affectionRank(value)
+    return math.min(7, math.floor(value / 32));
+end
+
+local function hasBit(value, bitIndex)
+    return math.floor(value / 2 ^ bitIndex) % 2 == 1;
+end
+
+-- condition bit (constants.lua conditions) -> condition reply bit
+local CONDITION_REPLY_BITS = { [3] = 0, [2] = 1, [0] = 2, [8] = 4, [1] = 6, [5] = 7, [4] = 8, [7] = 9, [6] = 10, [11] = 12, [12] = 12, [13] = 13 };
+
+local function conditionReply(saved)
+    local arg1 = numberToRank(saved.strength) + numberToRank(saved.endurance) * 256 +
+        numberToRank(saved.discernment) * 65536 + numberToRank(saved.receptivity) * 16777216;
+    local arg2 = affectionRank(saved.affection) + saved.hunger * 65536;
+    local arg3 = saved.personality + saved.weather_preference * 16 + saved.ability1 * 256 +
+        saved.ability2 * 4096 + saved.stage * 65536;
+    local arg4 = 0;
+    local seen = {};
+    for cond, replyBit in pairs(CONDITION_REPLY_BITS) do
+        if (hasBit(saved.conditions, cond) and not seen[replyBit]) then
+            seen[replyBit] = true;
+            arg4 = arg4 + 2 ^ replyBit;
+        end
+    end
+    return arg1, arg2, arg3, arg4;
+end
+
+local function appearanceReply(player, saved)
+    local stage = saved.stage;
+    if (stage == CHOCOBO_RAISING.stage.EGG) then
+        player:updateEvent(COLOR_YELLOW, 0, 0, 0, stage, 0, 0, 0);
+    elseif (stage < CHOCOBO_RAISING.stage.ADOLESCENT) then
+        player:updateEvent(COLOR_YELLOW, 0, 0, 0, stage, saved.sex, 0, 0);
+    elseif (stage < CHOCOBO_RAISING.stage.ADULT_1) then
+        player:updateEvent(saved.color, 0, 0, 0, stage, saved.sex, 0, 0);
+    else
+        player:updateEvent(saved.color, saved.discernment >= 128 and 1 or 0,
+            saved.strength >= 128 and 1 or 0, saved.endurance >= 128 and 1 or 0, stage, saved.sex, 0, 0);
+    end
+end
+
 -- Menu bits are cleared (by subtracting 2^n) to enable an entry.
 local function enable(mask, bitIndex)
     return mask - 2 ^ bitIndex;
@@ -342,6 +393,11 @@ local function handleMenuVM(player, option)
     elseif (option == VM_CARE_MENU) then
         local info, mask = careScheduleReply(saved);
         player:updateEvent(250, info, 0, 0, 0, 0, 0, mask);
+    elseif (command == VM_APPEARANCE) then
+        appearanceReply(player, saved);
+    elseif (command == VM_CONDITION) then
+        local a1, a2, a3, a4 = conditionReply(saved);
+        player:updateEvent(VM_CONDITION, a1, a2, a3, a4, 0, 0, 0);
     elseif (VM_CARE_PLAN_ACKS[option]) then
         player:updateEvent(0, 0, 0, 0, 0, 0, 0, 0);
     end

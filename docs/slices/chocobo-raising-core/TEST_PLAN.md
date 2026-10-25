@@ -52,3 +52,9 @@ Evidence goes in this file as `runtime:` / `test:` lines; nothing is `validated`
 - runtime: with an open csid 742, option updates 208, 252, 248, 214, 215, 250 and 852222 (0xFE care plan, slot 0, length 5, type 1) were all accepted with no Lua errors and the event stayed active.
 - runtime: the 0xFE update persisted: char_chocobos.care_plan 0x70707070 -> 0x51707070 (slot 0 byte = length<<4 | type).
 - not verified: S>C 0x05C reply bytes (untraced) and exact menu flag values against captures; ops 40/46/216/221-223/240/241/243/244/246/251/256 are not ported; no growth report, so 248 always replies as "no report".
+
+## Evidence P1b slice 3 (2026-10-24, xitest03, Pulonono, csid 742 menu VM)
+
+- runtime: with an open csid 742, option updates 244 (appearance), 251 (condition), 500 and 63220 (command 244 with args) were accepted with no Lua errors and the event stayed active.
+- not verified: S>C 0x05C reply bytes and the rank mapping (LSB numberToRank always returns 0, so 32 points per rank is a guess); capture 824/825 replies for 244/251 were not compared.
+- not ported: feeding (241), event playout (246), growth report, skip report (504).
