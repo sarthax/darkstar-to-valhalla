@@ -207,3 +207,7 @@ All reply shapes, command 88 and option 222 are LSB-decoded, no capture; events 
 | Buy ticket (plan byte, signature, 3500 gil) | breed_ticket | PASS 2026-10-25 |
 | Date, wait, bred egg with IsBred bit | breed_date | PASS 2026-10-25 |
 | Bred egg hatches with genes, ability, +8 strength | breed_hatch | PASS 2026-10-25 |
+
+## Slice 5: competing and Dietmund (LSB-only evidence, no captures)
+- `run_live.py compete`: refused before rivals met and when short of energy, cost 27-34, wins counter, key item 841 on the third win.
+- `run_live.py dietmund`: no meeting before Save My Son, met after `!completequest jeuno save_my_son`, flag set.

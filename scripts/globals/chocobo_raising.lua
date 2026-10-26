@@ -536,6 +536,8 @@ local function handleMenuVM(player, option)
     elseif (command == CHOCOBO_RAISING.WALK_CMD and math.floor(option / 256) == CHOCOBO_RAISING.TELL_STORY_ARG) then
         -- care action cutscenes are the action number plus 256 per location (298 = 42 + 256 in San d'Oria)
         CHOCOBO_RAISING.handleTellStory(player, saved, CHOCOBO_RAISING.TELL_STORY_ARG + 256 * saved.location);
+    elseif (command == CHOCOBO_RAISING.WALK_CMD and math.floor(option / 256) == CHOCOBO_RAISING.COMPETE_ARG) then
+        CHOCOBO_RAISING.handleCompete(player, saved, CHOCOBO_RAISING.COMPETE_ARG + 256 * saved.location);
     elseif (command == CHOCOBO_RAISING.WALK_CMD) then
         CHOCOBO_RAISING.handleWalk(player, saved, math.floor(option / 256));
     elseif (command == VM_FEED) then
@@ -607,3 +609,4 @@ require("scripts/globals/chocobo_raising_chick")
 require("scripts/globals/chocobo_raising_story")
 require("scripts/globals/chocobo_raising_whistle")
 require("scripts/globals/chocobo_raising_breeding")
+require("scripts/globals/chocobo_raising_compete")
