@@ -1,0 +1,29 @@
+name: Trust adapter contract tests
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - tools/trust_adapter_contract.py
+      - tools/test_trust_adapter_contract.py
+      - docs/slices/trust-modernization/trust_adapter_field_crosswalk_v0.csv
+      - .github/workflows/trust-adapter-contract.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  adapter-reference-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Syntax compile
+        run: python3 -m py_compile tools/trust_adapter_contract.py tools/test_trust_adapter_contract.py
+      - name: Isolated pure adapter contract tests
+        run: python3 tools/test_trust_adapter_contract.py -v
