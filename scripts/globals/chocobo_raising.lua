@@ -5,6 +5,7 @@
 -----------------------------------
 
 require("scripts/globals/status");
+require("scripts/globals/chocobo_raising_names");
 
 CHOCOBO_RAISING = {};
 
@@ -496,6 +497,37 @@ local function handleCarePlanUpdate(player, saved, option)
     player:setChocoboRaisingInfo(saved);
 end
 
+-- Option 0xFF: first-name index = bits 8-17, last-name index = bits 18-27 (into CHOCOBO_NAMES).
+local VM_FORCED_NAMING = 216;
+
+local function handleNamingUpdate(player, saved, option)
+    local fname = CHOCOBO_NAMES[bit.band(0x3FF, bit.rshift(option, 8))];
+    local lname = CHOCOBO_NAMES[bit.band(0x3FF, bit.rshift(option, 18))];
+    if (fname == nil or lname == nil) then
+        print(string.format("ERROR! chocobo naming lookup failed for %s (option %d)", player:getName(), option));
+        return;
+    end
+
+    local full = fname .. " " .. lname;
+    if (string.len(full) > 16) then
+        print(string.format("ERROR! %s chose a chocobo name that is too long: %s", player:getName(), full));
+        return;
+    elseif (CHOCOBO_BANNED_NAMES[full]) then
+        print(string.format("ERROR! %s chose a banned chocobo name: %s", player:getName(), full));
+        return;
+    end
+
+    saved.first_name = fname;
+    saved.last_name  = lname;
+    player:setChocoboRaisingInfo(saved);
+
+    if (fname == "Chocobo" and lname == "Chocobo") then
+        player:updateEvent(1, 1, 1, 1, 1, 1, 1, 1);
+    else
+        player:updateEvent(0, 0, 0, 0, 0, 0, 0, 0);
+    end
+end
+
 local function handleMenuVM(player, option)
     local saved = player:getChocoboRaisingInfo();
     if (saved == nil) then
@@ -503,7 +535,10 @@ local function handleMenuVM(player, option)
     end
 
     local command = option % 256;
-    if (command == 0xFE) then
+    if (command == 0xFF) then
+        handleNamingUpdate(player, saved, option);
+        return;
+    elseif (command == 0xFE) then
         handleCarePlanUpdate(player, saved, option);
         return;
     end
@@ -549,7 +584,7 @@ local function handleMenuVM(player, option)
     elseif (command == VM_CONDITION) then
         local a1, a2, a3, a4 = conditionReply(saved);
         player:updateEvent(VM_CONDITION, a1, a2, a3, a4, 0, 0, 0);
-    elseif (VM_CARE_PLAN_ACKS[option]) then
+    elseif (option == VM_FORCED_NAMING or VM_CARE_PLAN_ACKS[option]) then
         player:updateEvent(0, 0, 0, 0, 0, 0, 0, 0);
     end
 end
