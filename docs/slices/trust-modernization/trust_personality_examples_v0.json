@@ -1,0 +1,135 @@
+{
+  "schema_version": "trust-policy-reference-v0",
+  "profiles": [
+    {
+      "id": "healer_triage_v0",
+      "version": 1,
+      "source": "LSB Kupipi/Yoran triage ideas; synthetic reference only",
+      "rules": [
+        {
+          "id": "emergency_cure",
+          "priority": 10,
+          "target": "lowest_hp_party",
+          "conditions": [
+            {
+              "op": "hp_at_most",
+              "value": 25
+            }
+          ],
+          "action": "cure"
+        },
+        {
+          "id": "regular_cure",
+          "priority": 20,
+          "target": "lowest_hp_party",
+          "conditions": [
+            {
+              "op": "hp_at_most",
+              "value": 75
+            }
+          ],
+          "action": "cure"
+        },
+        {
+          "id": "owner_regen",
+          "priority": 30,
+          "target": "owner",
+          "conditions": [
+            {
+              "op": "status_absent",
+              "value": "regen"
+            }
+          ],
+          "action": "regen"
+        }
+      ]
+    },
+    {
+      "id": "defensive_tank_v0",
+      "version": 1,
+      "source": "LSB Trion reactive tank ideas; synthetic reference only",
+      "rules": [
+        {
+          "id": "interrupt_spell",
+          "priority": 10,
+          "target": "enemy",
+          "conditions": [
+            {
+              "op": "enemy_casting"
+            }
+          ],
+          "action": "flash"
+        },
+        {
+          "id": "defensive_stance",
+          "priority": 20,
+          "target": "self",
+          "conditions": [
+            {
+              "op": "enemy_casting"
+            },
+            {
+              "op": "status_absent",
+              "value": "sentinel"
+            }
+          ],
+          "action": "sentinel"
+        },
+        {
+          "id": "establish_enmity",
+          "priority": 30,
+          "target": "enemy",
+          "conditions": [
+            {
+              "op": "target_alive"
+            }
+          ],
+          "action": "provoke"
+        }
+      ]
+    },
+    {
+      "id": "support_upkeep_v0",
+      "version": 1,
+      "source": "LSB Koru-Moru role-target buff ideas; synthetic reference only",
+      "rules": [
+        {
+          "id": "emergency_rescue",
+          "priority": 10,
+          "target": "lowest_hp_party",
+          "conditions": [
+            {
+              "op": "hp_at_most",
+              "value": 35
+            }
+          ],
+          "action": "cure"
+        },
+        {
+          "id": "haste_frontline",
+          "priority": 20,
+          "target": "melee",
+          "conditions": [
+            {
+              "op": "status_absent",
+              "value": "haste"
+            }
+          ],
+          "action": "haste"
+        },
+        {
+          "id": "refresh_casters",
+          "priority": 30,
+          "target": "caster",
+          "conditions": [
+            {
+              "op": "status_absent",
+              "value": "refresh"
+            }
+          ],
+          "action": "refresh"
+        }
+      ]
+    }
+  ]
+}
