@@ -200,6 +200,9 @@ function CHOCOBO_RAISING.onTrade(player, npc, trade)
     if (csids == nil) then
         return false;
     end
+    if (CHOCOBO_RAISING.whistleTrade(player, trade)) then
+        return true;
+    end
     if (not isEgg(trade)) then
         return CHOCOBO_RAISING.onFoodTrade(player, csids, trade);
     end
@@ -591,6 +594,7 @@ end
 
 function CHOCOBO_RAISING.onEventUpdate(player, csid, option)
     CHOCOBO_RAISING.whistleUpdate(player, csid, option);
+    CHOCOBO_RAISING.whistleTradeUpdate(player, csid, option);
     local zone  = player:getZoneID();
     local csids = CHOCOBO_RAISING.csids[zone];
     if (csids == nil) then
@@ -611,6 +615,7 @@ end
 
 function CHOCOBO_RAISING.onEventFinish(player, csid, option, trade)
     CHOCOBO_RAISING.whistleFinish(player, csid, option);
+    CHOCOBO_RAISING.whistleTradeFinish(player, csid, option);
     CHOCOBO_RAISING.reportFinish(player, csid);
     local zone  = player:getZoneID();
     local csids = CHOCOBO_RAISING.csids[zone];
@@ -645,5 +650,6 @@ require("scripts/globals/chocobo_raising_walk")
 require("scripts/globals/chocobo_raising_chick")
 require("scripts/globals/chocobo_raising_story")
 require("scripts/globals/chocobo_raising_whistle")
+require("scripts/globals/chocobo_raising_whistle_trade")
 require("scripts/globals/chocobo_raising_breeding")
 require("scripts/globals/chocobo_raising_compete")
