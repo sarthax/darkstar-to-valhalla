@@ -3,7 +3,7 @@
 -- Event ids come from the client DATs (844/845 San d'Oria, 525/533 Bastok Mines, 752/760 Windurst Woods; 525 decompiled:
 -- param 0 = hidden-entry mask, item 15533 = the whistle). Options and prices follow LandSandBoat
 -- hobbies/chocobo_raising/whistle.lua (LSB GUESS: no capture on file). Showing a card never takes it.
--- Whistle charges come from the CLuaItem getCurrentCharges/getMaxCharges bindings (C++). NOT PORTED: riding with the registered stats.
+-- Whistle charges come from the CLuaItem getCurrentCharges/getMaxCharges bindings (C++). Riding uses the registered stats (speed in battleentity.cpp GetSpeed, minutes in chocobo_whistle.lua); NOT PORTED: the personal-chocobo mount model.
 -----------------------------------
 
 CHOCOBO_RAISING = CHOCOBO_RAISING or {};
@@ -76,14 +76,14 @@ local function cardChocobo(b)
     };
 end
 
--- Riding speed percent 80 + 2.5/rank (max 8 ranks), minutes 17 + 4/rank (max 7); Gallop (1) / Canter (2) add a rank (LSB constants).
+-- Riding speed stored = 80 * (80 + 2.5/rank)% (the mount runs at half of it) (max 8 ranks), minutes 17 + 4/rank (max 7); Gallop (1) / Canter (2) add a rank (LSB constants).
 local function registration(c)
     local sRanks = math.min(math.floor(c.strength / 32) + ((c.ability1 == 1 or c.ability2 == 1) and 1 or 0), 8);
     local eRanks = math.floor(c.endurance / 32) + ((c.ability1 == 2 or c.ability2 == 2) and 1 or 0);
     return
     {
         color = c.color, largeBeak = c.appearance % 8 >= 4, fullTail = c.appearance % 4 >= 2, largeTalons = c.appearance % 2 == 1,
-        speed = math.max(math.floor(80 + 2.5 * sRanks), 2),
+        speed = math.max(math.floor(80 * (80 + 2.5 * sRanks) / 100), 2), -- percent of the rental speed 80 (LSB MOUNT_SPEED)
         minutes = math.floor(17 + 4 * math.min(eRanks, 7)),
         ability1 = c.ability1, ability2 = c.ability2, strength = c.strength, endurance = c.endurance,
         discernment = c.discernment, receptivity = c.receptivity, weather = c.weather,
