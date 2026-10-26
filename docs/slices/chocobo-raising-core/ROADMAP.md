@@ -17,9 +17,9 @@ Trainer (Hantileon/Zopago/Pulonono) event, eggs, aging to adult 3, menu and even
 ## Quests
 | Quest | LSB | DSP |
 |---|---|---|
-| Chocobo Whistle (hidden) | `hiddenQuests/Chocobo_Whistle.lua`, `whistle.lua` | Not ported |
-| Lost Chick (hidden) | `hiddenQuests/Lost_Chick.lua`, `walks.lua` | Not ported |
-| Save My Son (Jeuno) | Gates Dietmund on long walks | Quest id exists; Dietmund meeting not ported |
+| Chocobo Whistle (hidden) | `hiddenQuests/Chocobo_Whistle.lua`, `whistle.lua` | Ported (slice 3, quest part) |
+| Lost Chick (hidden) | `hiddenQuests/Lost_Chick.lua`, `walks.lua` | Ported (slice 1) |
+| Save My Son (Jeuno) | Gates Dietmund on long walks | Dietmund meeting ported (slice 5) |
 
 ## Not ported (engine)
 Whistle quest and its ADULT_1 / walk replies; trainer meetings, stories and the abilities they teach; competing; breeding (Finbarr); handkerchief scene; random name at adult 3; ADULT_4 (cs 38, never captured); several VM ops; Bastok/Windurst captures.
@@ -42,7 +42,7 @@ Ported from LSB, no capture evidence except Windurst clerk csid 761 (client-conf
 Meetings and the third-meeting story awards were already in slice 1. New: `scripts/globals/chocobo_raising_story.lua` (care action 242 arg 50, command 50).
 - **LSB GUESS, not evidence:** learn chance 25%, per-ability discernment thresholds (64/96/64/160/64/64), +1 discernment per telling, 10-100 energy refund, inspired stat table and +2 gain, 11/14 energy cost. All are commented in the file as guesses; change `CR.LEARN_CHANCE`, `STORY_DISCERNMENT`, `INSPIRED_STAT`, `INSPIRED_GAIN`, `STORY_COST` if a capture shows otherwise.
 - From LSB's client decoding (not captured either): the menu shape, story mask in p2, reply p0 0/1/2.
-- Not ported: competing and the Happy story from three wins (slice 5).
+- Competing and the Happy story were added in slice 5.
 
 ## Slice 3 status (2026-10-25): Chocobo Whistle quest (quest part only)
 `scripts/globals/chocobo_raising_whistle.lua`. Growth to adult 1 queues a "whistleQuest" effect (applied in `CR.initState`); San d'Oria raisers start at SEARCH, others at SEE_HANTILEON (Hantileon scene 829). While SEARCH, walks reply p2=1 and command 88 (arg = walk length 1-3) answers whether the handkerchief hides on that length (rolled once, char var `ChocoboWhistleHidingWalk`); found -> FOUND + Handkerchief key item (DSP id 809) -> Hantileon scene 830, option 222 -> Chocobo Whistle (15533) -> DONE. Adult 1 growth scene sends p2=1 while the quest is open.
