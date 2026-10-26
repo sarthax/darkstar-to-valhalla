@@ -4,7 +4,7 @@
 -- event_playout.lua and event_vm.lua (handleReport/handlePlayout).
 -- Scene ids (location * 256 + offset) were checked against every 246 reply in the Chocobo Raising captures:
 -- offsets 0,2,3,8,33-38,53,59,62,64-66,69-71,74,77,79,80,84-86 all match the table below.
--- Not ported yet: handkerchief (crying), whistle registration/recharge (the quest itself is in chocobo_raising_whistle.lua), random name at adult 3, retirement. Odds marked "guess" are
+-- Not ported yet: handkerchief (crying), whistle recharge (quest: chocobo_raising_whistle.lua, card menu: chocobo_raising_whistle_trade.lua), random name at adult 3, retirement. Odds marked "guess" are
 -- LSB guesses with no capture behind them.
 -----------------------------------
 
