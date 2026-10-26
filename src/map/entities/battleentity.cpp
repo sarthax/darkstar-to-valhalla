@@ -30,6 +30,8 @@
 #include "../utils/battleutils.h"
 #include "../items/item_weapon.h"
 #include "../status_effect_container.h"
+#include "../utils/mountutils.h"
+#include "charentity.h"
 #include "../recast_container.h"
 #include "../ai/ai_container.h"
 #include "../ai/states/attack_state.h"
@@ -195,7 +197,23 @@ int32 CBattleEntity::GetMaxMP()
 
 uint8 CBattleEntity::GetSpeed()
 {
-    return (animation == ANIMATION_CHOCOBO ? 40 + map_config.speed_mod : dsp_cap(speed * (100 + getMod(Mod::MOVE)) / 100, UINT8_MIN, UINT8_MAX));
+    if (animation == ANIMATION_CHOCOBO)
+    {
+        // A registered (personal) chocobo rides at its own speed. Stored speed is relative to the rental speed of 2 * 40
+        // (LandSandBoat MOUNT_SPEED 80, sent to the client halved); 0 means registered before speeds were stored.
+        if (objtype == TYPE_PC)
+        {
+            CStatusEffect* PMounted = StatusEffectContainer->GetStatusEffect(EFFECT_MOUNTED);
+            ChocoboCustomProperties chocobo = {};
+            chocobo.properties = ((CCharEntity*)this)->m_chocoboUserData.fieldChocobo;
+            if (PMounted && (PMounted->GetSubPower() & kPersonalChocoboFlag) && chocobo.speed > 0)
+            {
+                return chocobo.speed / 2 + map_config.speed_mod;
+            }
+        }
+        return 40 + map_config.speed_mod;
+    }
+    return dsp_cap(speed * (100 + getMod(Mod::MOVE)) / 100, UINT8_MIN, UINT8_MAX);
 }
 
 bool CBattleEntity::CanRest()

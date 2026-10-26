@@ -56,4 +56,7 @@ struct ChocoboCustomProperties
 
 static_assert(sizeof(ChocoboCustomProperties) == sizeof(uint32), "ChocoboCustomProperties must stay one 32 bit word");
 
+// StatusEffect subpower of EFFECT_MOUNTED marking a ride on the player's registered chocobo (LandSandBoat value).
+constexpr uint16 kPersonalChocoboFlag = 0x40;
+
 #endif
