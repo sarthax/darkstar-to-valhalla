@@ -36,7 +36,7 @@ Each as its own slice with captures or LSB-only notes recorded in TEST_PLAN.md.
 Ported from LSB, no capture evidence except Windurst clerk csid 761 (client-confirmed) and key item 850 (client DAT).
 - Done: walk meetings (walk_progress), chick state, clues, clerk scripts (Arvilauge, Gonija, Kiria-Romaria), trainer report 852/542/766, owner hooks on 18 NPCs, third-meeting stories 837-840.
 - Live-tested (see TEST_PLAN.md): walk finds a chick, Cahaurme right/wrong guess, Arvilauge clerk 846, Hantileon report 852. NOT live-tested: Bastok/Windurst clerks and reports, the other 17 owners, ask-option, story key items on the third meeting.
-- Not ported: guild-shop owners (Abd-al-Raziq, Azima, Kyaa Taali, Kopuro-Popuro, Peshi Yohnts, Ponono), Violitte map-vendor forward (595), clerk menu options beyond the opening event.
+- Not ported: guild-shop owners (Abd-al-Raziq, Azima, Kyaa Taali, Kopuro-Popuro, Peshi Yohnts, Ponono), Violitte map-vendor forward (595).
 
 ## Slice 2 status (2026-10-25): telling stories (abilities)
 Meetings and the third-meeting story awards were already in slice 1. New: `scripts/globals/chocobo_raising_story.lua` (care action 242 arg 50, command 50).
@@ -69,3 +69,6 @@ Meetings and the third-meeting story awards were already in slice 1. New: `scrip
 
 ## Guild-shop chick owners: blocked
 Abd-al-Raziq, Azima, Kyaa Taali, Kopuro-Popuro, Peshi Yohnts and Ponono ask inside their guild shop events. LSB itself has these as TODO (events unconfirmed), so they cannot be ported without a capture or a DAT decode of the shop events. Do not guess the event ids.
+
+## Stable clerks: complete (2026-10-26)
+LSB's three clerks only start the review event (846/534/761) with the dig-skill and clue params; they have no onEventUpdate/onEventFinish, so the client handles the menu itself. DSP matches that. Server-side tests pass for all three; real-client check of Gonija is pending.
