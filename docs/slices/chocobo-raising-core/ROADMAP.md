@@ -54,7 +54,7 @@ Meetings and the third-meeting story awards were already in slice 1. New: `scrip
 `scripts/globals/chocobo_raising_breeding.lua`, Finbarr.lua, Upper_Jeuno TextIDs 11710. Menu 10108 buys a ticket (plan 1-4), trading ticket + both chococards plays date 10102 and lays an egg for the next JST midnight (10105 wait, 10107 hand-over); a bred egg handed to a trainer keeps its genes/ability, rolls sex by plan and seeds the plan stat.
 - Evidence: events 10101-10108 on Finbarr and text 11710 exist in the zone 244 client DAT. Event params, exdata layouts and all numbers are LSB; no capture.
 - **LSB GUESS:** ticket price 3500, mutation 5%, ability inheritance 60%+3/rank, Sports/Jeuno 70% lean, male chance (Gourmet 70/Hiking 30), +8 seed, Sports/Hiking egg items. All commented in the file.
-- Live-tested (breed_ticket, breed_date, breed_hatch, Hantileon): all pass. Ticket plans 2-4 live-tested (2026-10-26). Not tested: other plans through the date/hatch, other trainers, full bag.
+- Live-tested (breed_ticket, breed_date, breed_hatch, Hantileon): all pass. Ticket plans 2-4, dates and egg hand-over for plans 2-4, hatch with Zopago and Pulonono, and the full-bag hand-over (egg stays pending) live-tested 2026-10-26.
 
 
 ## Slice 5 status (2026-10-25): competing and Dietmund
