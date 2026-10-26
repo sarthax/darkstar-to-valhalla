@@ -15,7 +15,7 @@ local CR = CHOCOBO_RAISING;
 
 CR.CHICK_VAR = "ChocoboRaisingLostChick";
 
-CR.trainer = { PULONONO = 1, ZOPAGO = 2, HANTILEON = 3, BRUTUS = 4, RIVALS = 5 };
+CR.trainer = { PULONONO = 1, ZOPAGO = 2, HANTILEON = 3, BRUTUS = 4, RIVALS = 5, DIETMUND = 6 };
 local T = CR.trainer;
 
 -- walk reply p2 values
@@ -134,6 +134,10 @@ function CR.walkMeeting(player, saved, arg, location, pickItem)
         local roll = math.random(1, 100);
         if (roll <= meetChance) then
             local list = TRAINERS[location][arg];
+            if (arg == 44 and CR.canMeetDietmund ~= nil and CR.canMeetDietmund(player)) then
+                list = { unpack(list) };
+                table.insert(list, T.DIETMUND);
+            end
             met = list[math.random(1, #list)];
         elseif (roll <= meetChance + CHANCE[arg][2] and saved.held_item == 0) then
             if (pickItem()) then
@@ -148,6 +152,12 @@ function CR.walkMeeting(player, saved, arg, location, pickItem)
         chick.location = location;
         result.event   = E.LOST_CHICK;
         chickChanged   = true;
+    end
+
+    if (met == T.DIETMUND) then
+        player:setVar(CR.DIETMUND_VAR, 1); -- LSB: one meeting only, no clue and no meeting count
+        result.trainer = met;
+        return result;
     end
 
     if (met ~= nil) then
