@@ -22,7 +22,7 @@ Trainer (Hantileon/Zopago/Pulonono) event, eggs, aging to adult 3, menu and even
 | Save My Son (Jeuno) | Gates Dietmund on long walks | Dietmund meeting ported (slice 5) |
 
 ## Not ported (engine)
-Whistle quest and its ADULT_1 / walk replies; trainer meetings, stories and the abilities they teach; competing; breeding (Finbarr); handkerchief scene; random name at adult 3; ADULT_4 (cs 38, never captured); several VM ops; Bastok/Windurst captures.
+Whistle quest and its ADULT_1 / walk replies; trainer meetings, stories and the abilities they teach; competing; breeding (Finbarr); handkerchief scene; ADULT_4 (cs 38, never captured); several VM ops; Bastok/Windurst captures.
 
 ## Suggested order
 1. Stable clerks plus Lost Chick (walks already roll the event; needs `walkTrainer` meetings and clerk review).
@@ -63,3 +63,9 @@ Meetings and the third-meeting story awards were already in slice 1. New: `scrip
 - **LSB GUESS:** 50% win chance (`WIN_CHANCE`), rival names, costs. Commented in the file.
 - Menu command 243 (care menu mask) is now answered by `CR.handleCareMenu`: reply `(0x7FFFFFFF minus offered bits, energy)`, verified byte for byte against captured masks for chick/adolescent/adult, with and without the rivals met (care_menu scenario).
 - Live-tested (compete, dietmund, Hantileon): pass. Dietmund's and the race scene client events were not checked in a DAT pull.
+
+## Naming (2026-10-25)
+`chocobo_raising_names.lua` holds the client name table (LSB indices, banned set). Menu option 0xFF (first index bits 8-17, last bits 18-27) is validated and saved by `handleNamingUpdate`; 216 (forced naming) is acked; an unnamed chocobo is named by the trainer (random 5-8 letter first name) at the adult 2 -> 3 scene. Live scenarios `naming` and `forced_name` (the latter flaky on the first run of a batch). Care plan (0xFE) was already wired.
+
+## Guild-shop chick owners: blocked
+Abd-al-Raziq, Azima, Kyaa Taali, Kopuro-Popuro, Peshi Yohnts and Ponono ask inside their guild shop events. LSB itself has these as TODO (events unconfirmed), so they cannot be ported without a capture or a DAT decode of the shop events. Do not guess the event ids.
