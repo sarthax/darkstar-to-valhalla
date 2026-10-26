@@ -43,7 +43,7 @@ local STORY_KI = { 837, 838, 839, 840, 841, 850, 809 };
 local WINS_SHIFT = 12;
 
 local function usage(player)
-    player:PrintToPlayer("!chocobo info | age <days> | set <field> <v> | cond <bit> <0|1> | meet <1-6> <0-3> | wins <0-3> | var <name> {v} | ki <id> <add|del> | delete");
+    player:PrintToPlayer("!chocobo <sub> {a} {b}: info | age <days> | set <field> <v> | cond <bit> <0|1> | meet <1-6> <0-3> | wins <0-3> | var <name> {v} | ki <id> <add|del> | delete");
 end
 
 local function varName(name)
