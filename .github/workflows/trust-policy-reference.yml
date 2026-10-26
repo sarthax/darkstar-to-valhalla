@@ -1,0 +1,29 @@
+name: Trust policy reference tests
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - tools/trust_policy_reference.py
+      - tools/test_trust_policy_reference.py
+      - docs/slices/trust-modernization/trust_personality_examples_v0.json
+      - .github/workflows/trust-policy-reference.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  reference-unit-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile reference module and tests
+        run: python3 -m py_compile tools/trust_policy_reference.py tools/test_trust_policy_reference.py
+      - name: Run deterministic personality and tri-state contract tests
+        run: python3 tools/test_trust_policy_reference.py -v
