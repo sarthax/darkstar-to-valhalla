@@ -186,6 +186,7 @@ end
 function CR.startClerk(player, location)
     local chick = getChick(player);
     local p = { 0, 0, 0, 0, 0, 0, 0, 0 };
+    p[2] = math.floor(player:getSkillLevel(SKILL_DIG) / 10);
     if (chick.owner ~= 0 and chick.location == location and chick.clues > 0) then
         p[1] = 1;
         p[7] = chick.owner;
