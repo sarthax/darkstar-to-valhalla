@@ -61,5 +61,5 @@ Meetings and the third-meeting story awards were already in slice 1. New: `scrip
 `scripts/globals/chocobo_raising_compete.lua`, plus Dietmund in `chocobo_raising_chick.lua`. Care action 52 (cmd 242 arg 52): needs adolescence and the rivals met once; costs 27 (clear) or 34 energy, +1 affection, boredom cured at rollover, wins counted in walk_progress bits 12-13, key item 841 (Happy story) on the third win. The long walk can meet Dietmund (trainer 6) once after Save My Son, tracked by char var `ChocoboMetDietmund`; no clue or meeting count.
 - Evidence: all shapes and numbers are LSB; no capture.
 - **LSB GUESS:** 50% win chance (`WIN_CHANCE`), rival names, costs. Commented in the file.
-- Gap: DSP does not answer menu command 243 (care menu mask), so compete shows before the rivals are met; the handler refuses it instead.
+- Menu command 243 (care menu mask) is now answered by `CR.handleCareMenu`: reply `(0x7FFFFFFF minus offered bits, energy)`, verified byte for byte against captured masks for chick/adolescent/adult, with and without the rivals met (care_menu scenario).
 - Live-tested (compete, dietmund, Hantileon): pass. Dietmund's and the race scene client events were not checked in a DAT pull.
