@@ -28,6 +28,7 @@ This file is part of DarkStar-server source code.
 #include "../items/item_armor.h"
 #include "../items/item_weapon.h"
 #include "../items/item_general.h"
+#include "../items/item_usable.h"
 
 
 CLuaItem::CLuaItem(lua_State* L)
@@ -120,6 +121,24 @@ inline int32 CLuaItem::isType(lua_State* L)
     uint8 type = lua_tointeger(L, 1);
 
     lua_pushboolean(L, m_PLuaItem->isType((ITEM_TYPE)type));
+    return 1;
+}
+
+inline int32 CLuaItem::getCurrentCharges(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
+
+    CItemUsable* PUsable = m_PLuaItem->isType(ITEM_USABLE) ? (CItemUsable*)m_PLuaItem : nullptr;
+    lua_pushinteger(L, PUsable ? PUsable->getCurrentCharges() : 0);
+    return 1;
+}
+
+inline int32 CLuaItem::getMaxCharges(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
+
+    CItemUsable* PUsable = m_PLuaItem->isType(ITEM_USABLE) ? (CItemUsable*)m_PLuaItem : nullptr;
+    lua_pushinteger(L, PUsable ? PUsable->getMaxCharges() : 0);
     return 1;
 }
 
@@ -285,6 +304,8 @@ Lunar<CLuaItem>::Register_t CLuaItem::methods[] =
     LUNAR_DECLARE_METHOD(CLuaItem,getWornItem),
     LUNAR_DECLARE_METHOD(CLuaItem,isType),
     LUNAR_DECLARE_METHOD(CLuaItem,isSubType),
+    LUNAR_DECLARE_METHOD(CLuaItem,getCurrentCharges),
+    LUNAR_DECLARE_METHOD(CLuaItem,getMaxCharges),
     LUNAR_DECLARE_METHOD(CLuaItem,getName),
     LUNAR_DECLARE_METHOD(CLuaItem,getMod),
     LUNAR_DECLARE_METHOD(CLuaItem,addMod),
