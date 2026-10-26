@@ -73,3 +73,35 @@ function CR.handleCompete(player, saved, csid)
     player:updateEventString(full, name, "", "", 0, 0, 0, 0, 0, 0, 0, 0);
     player:updateEvent(csid, saved.energy * 256 + before, result, 0, saved.stage, 0, 0, weather);
 end
+
+-- Cmd 243: care menu mask. Reply (0x7FFFFFFF minus the offered bits, energy, 0...).
+-- Captures (Windurst/San d'Oria raisers) match this rule: chick 0x7FFFFFEA, adolescent 0x7FFFFFC8 (0x7FFFFFC0 with
+-- the rivals met), adult 0x7FFFFF88 (0x7FFFFF80 with the rivals met), egg 0x7FFFFFFE.
+-- { bit, first stage, care action }; the care actions are the cmd 242 args.
+local CARE_MENU =
+{
+    { 0, CR.stage.EGG,       48 }, -- happy to see you
+    { 1, CR.stage.ADOLESCENT, 50 }, -- story
+    { 2, CR.stage.CHICK,     51 }, -- hangs head in shame
+    { 3, CR.stage.ADOLESCENT, 52 }, -- compete
+    { 4, CR.stage.CHICK,     42 }, -- short walk
+    { 5, CR.stage.ADOLESCENT, 43 }, -- regular walk
+    { 6, CR.stage.ADULT_1,   44 }, -- long walk
+};
+local SLEEPING_OK = { [48] = true, [51] = true };
+
+function CR.handleCareMenu(player, saved)
+    local sleeping = bit.band(saved.conditions, bit.lshift(1, CR.conditions.SLEEPING)) ~= 0;
+    local runaway  = bit.band(saved.conditions, bit.lshift(1, CR.conditions.RUN_AWAY)) ~= 0;
+    local mask = 0x7FFFFFFF;
+    for _, entry in ipairs(CARE_MENU) do
+        local offered = saved.stage >= entry[2] and not runaway and (not sleeping or SLEEPING_OK[entry[3]] == true);
+        if (offered and entry[3] == CR.COMPETE_ARG) then
+            offered = CR.canCompete(saved);
+        end
+        if (offered) then
+            mask = mask - bit.lshift(1, entry[1]);
+        end
+    end
+    player:updateEvent(mask, saved.energy, 0, 0, 0, 0, 0, 0);
+end
