@@ -57,6 +57,8 @@ public:
     int32 getSlotID(lua_State*);            // get the slot id
     int32 getWornItem(lua_State*);          // check if the item has been used
 
+    int32 getCurrentCharges(lua_State*);    // charges left on a usable item (0 otherwise)
+    int32 getMaxCharges(lua_State*);        // max charges of a usable item (0 otherwise)
     int32 isType(lua_State*);               // check the item type
     int32 isSubType(lua_State*);            // check the item's sub type
 

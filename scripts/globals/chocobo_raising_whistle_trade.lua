@@ -3,8 +3,7 @@
 -- Event ids come from the client DATs (844/845 San d'Oria, 525/533 Bastok Mines, 752/760 Windurst Woods; 525 decompiled:
 -- param 0 = hidden-entry mask, item 15533 = the whistle). Options and prices follow LandSandBoat
 -- hobbies/chocobo_raising/whistle.lua (LSB GUESS: no capture on file). Showing a card never takes it.
--- NOT PORTED: recharging a used whistle (needs the item's charge count, which DSP's Lua cannot read), so a bare whistle
--- trade is left alone; riding with the registered stats.
+-- Whistle charges come from the CLuaItem getCurrentCharges/getMaxCharges bindings (C++). NOT PORTED: riding with the registered stats.
 -----------------------------------
 
 CHOCOBO_RAISING = CHOCOBO_RAISING or {};
@@ -25,6 +24,8 @@ CR.tradeEvents =
     [241] = { 752, 760, 6547, 6541, 6552 },
 };
 local EV = CR.tradeEvents;
+local rechargePrice = {}; -- player id -> gil owed for the whistle in the open trade
+local RECHARGE_PER_CHARGE, OPT_PAY_RECHARGE = 400, 220;
 local shownCard = {}; -- player id -> exdata of the card being shown (DSP has no player:getTrade())
 
 local function questDone(player)
@@ -115,12 +116,28 @@ function CR.whistleTrade(player, trade)
         player:startEventString(ev[1], name, name, name, name, cardMenuMask(player));
         return true;
     end
-    if (#items == 2 and trade:getItemCount() == 2 and ((items[1].id == ITEM_WHISTLE and items[2].id == ITEM_COUPON)
-        or (items[2].id == ITEM_WHISTLE and items[1].id == ITEM_COUPON))) then
-        -- LSB GUESS: the whistle's used charges can't be read, so the event is told 1 used charge and price 0 (coupon pays).
-        if (not player:tradeComplete()) then return true; end
-        player:addItem(ITEM_WHISTLE);
-        player:startEvent(ev[2], 1, 0);
+    local whistleSlot, hasCoupon = nil, false;
+    for _, it in ipairs(items) do
+        if (it.id == ITEM_WHISTLE) then whistleSlot = it.slot; elseif (it.id == ITEM_COUPON) then hasCoupon = true; end
+    end
+    if (whistleSlot ~= nil and (#items == 1 or (#items == 2 and hasCoupon)) and trade:getItemCount() == #items) then
+        -- LSB GUESS: price = 400 gil per used charge; a coupon pays it by swapping in a fresh whistle
+        local whistle = trade:getItem(whistleSlot);
+        local used = math.max(whistle:getMaxCharges() - whistle:getCurrentCharges(), 0);
+        if (used == 0) then
+            if (hasCoupon) then return false; end -- a full whistle keeps its coupon; nothing to recharge
+            rechargePrice[player:getID()] = 0;
+            player:startEvent(ev[2], 0, 0);
+            return true;
+        end
+        if (hasCoupon) then
+            if (not player:tradeComplete()) then return true; end
+            player:addItem(ITEM_WHISTLE);
+            player:startEvent(ev[2], used, 0);
+            return true;
+        end
+        rechargePrice[player:getID()] = used * RECHARGE_PER_CHARGE;
+        player:startEvent(ev[2], used, used * RECHARGE_PER_CHARGE);
         return true;
     end
     return false;
@@ -145,7 +162,25 @@ end
 
 function CR.whistleTradeFinish(player, csid, option)
     local ev = EV[player:getZoneID()];
-    if (ev == nil or csid ~= ev[1]) then return; end
+    if (ev == nil) then return; end
+    if (csid == ev[2]) then
+        local price = rechargePrice[player:getID()];
+        rechargePrice[player:getID()] = nil;
+        if (price ~= nil) then
+            if (option == OPT_PAY_RECHARGE and price > 0) then
+                if (player:getGil() < price) then
+                    player:messageSpecial(ev[5]);
+                elseif (player:tradeComplete()) then
+                    player:delGil(price);
+                    player:addItem(ITEM_WHISTLE);
+                    return;
+                end
+            end
+            player:confirmTrade();
+        end
+        return;
+    end
+    if (csid ~= ev[1]) then return; end
     local b = shownCard[player:getID()];
     shownCard[player:getID()] = nil;
     if (b ~= nil) then
