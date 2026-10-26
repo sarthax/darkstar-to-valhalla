@@ -716,6 +716,16 @@ function CR.handlePlayout(player, saved, arg)
 
     -- p2 makes the adult 1 scene mention the open whistle quest.
     local whistleOpen = (csOffset == cs.ADOLESCENT_TO_ADULT_1) and CR.whistleQuestOpen(player) or 0;
+    -- Unnamed by adult 3: the trainer picks a 5-8 letter first name (indices 168-762, gaps skipped).
+    if (csOffset == cs.ADULT_2_TO_ADULT_3 and saved.first_name == "Chocobo" and saved.last_name == "Chocobo") then
+        local name = nil;
+        while (name == nil) do
+            name = CHOCOBO_NAMES[math.random(168, 762)];
+        end
+        saved.first_name = name;
+        saved.last_name  = "";
+        player:setChocoboRaisingInfo(saved);
+    end
     local fullName = saved.first_name .. saved.last_name;
     if (saved.first_name == "Chocobo" and saved.last_name == "Chocobo") then
         fullName = "Chocobo";
