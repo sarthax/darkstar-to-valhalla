@@ -131,7 +131,7 @@ function CR.whistleTrade(player, trade)
             return true;
         end
         if (hasCoupon) then
-            if (not player:tradeComplete()) then return true; end
+            player:tradeComplete();
             player:addItem(ITEM_WHISTLE);
             player:startEvent(ev[2], used, 0);
             return true;
@@ -170,7 +170,8 @@ function CR.whistleTradeFinish(player, csid, option)
             if (option == OPT_PAY_RECHARGE and price > 0) then
                 if (player:getGil() < price) then
                     player:messageSpecial(ev[5]);
-                elseif (player:tradeComplete()) then
+                else
+                    player:tradeComplete();
                     player:delGil(price);
                     player:addItem(ITEM_WHISTLE);
                     return;
