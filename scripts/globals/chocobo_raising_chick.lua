@@ -198,8 +198,8 @@ function CR.startClerk(player, location)
 end
 
 -- Owners per location (LSB walks.chickOwners). ask = option offering the question inline, guess = option naming the owner.
--- Owners without an ask option play their question event on trigger. Gaps (guild-shop owners) are not ported;
--- Violitte's map vendor event (595) is not forwarded either.
+-- Owners without an ask option play their question event on trigger. Gaps (guild-shop owners) are not ported.
+-- Violitte's map vendor event (595 = 0x253) is handled by her own Violitte.lua, so LSB's mapVendorEvent forward is not needed.
 CR.chickOwners =
 {
     [1] =

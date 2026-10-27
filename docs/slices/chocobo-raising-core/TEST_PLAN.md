@@ -178,7 +178,7 @@ No capture covers meetings, clues, the clerk review or the owner questions; ever
 | Meeting chance 21/15/18 %, item chance 18/26/15 % | LSB | walk reply path passes (`walk` scenario) |
 | Chick found on a short walk, packed in char var `ChocoboRaisingLostChick` | LSB | passes (`chick` scenario, owner and location valid) |
 | Owner events and ask/guess options (18 owners) | LSB walks.chickOwners | Cahaurme right and wrong guess pass live (`chick_guess`); ask-option owners and the other 17 untested |
-| Guild-shop owners, Violitte map vendor forward | not ported | - |
+| Guild-shop owners | not ported | - |
 Run: `TRAINER=hantileon ACCOUNT=xitestNN py -3 run_live.py chick` (needs the toolkit worktree's run_live.py).
 
 ## Telling stories (2026-10-25) - LSB GUESS values, no capture
