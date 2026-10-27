@@ -29,6 +29,7 @@
 
 #include "../entities/charentity.h"
 #include "../utils/itemutils.h"
+#include "../utils/mountutils.h"
 #include "../status_effect_container.h"
 
 CCharPacket::CCharPacket(CCharEntity * PChar, ENTITYUPDATE type, uint8 updatemask)
@@ -111,7 +112,13 @@ CCharPacket::CCharPacket(CCharEntity * PChar, ENTITYUPDATE type, uint8 updatemas
 
                 WBUFW(data, (0x30)) = PChar->m_Costum;
 
-                WBUFL(data, (0x34)) = 0x010CA248; // black chocobo
+                // Rental chocobo word (decodes as black, large talons, full tail). A ride on the registered chocobo
+                // sends its own ChocoboCustomProperties word instead; the layout was checked by decoding this captured word.
+                CStatusEffect* PMounted = PChar->StatusEffectContainer->GetStatusEffect(EFFECT_MOUNTED);
+                if (PMounted && PChar->animation == ANIMATION_CHOCOBO && (PMounted->GetSubPower() & kPersonalChocoboFlag) && PChar->m_chocoboUserData.fieldChocobo != 0)
+                    WBUFL(data, (0x34)) = PChar->m_chocoboUserData.fieldChocobo;
+                else
+                    WBUFL(data, (0x34)) = 0x010CA248; // black chocobo
             }
             if (PChar->PPet != nullptr)
             {

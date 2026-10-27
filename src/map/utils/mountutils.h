@@ -27,7 +27,7 @@
 
 // Packed appearance/speed/time word for a personal (raised) chocobo.
 // Bit layout is from LandSandBoat and is NOT yet verified against this client build (CLIENT_VER 30170905_5);
-// it is only used to store and round-trip registerChocobo()/getFieldChocobo() data until the mount
+// it is also sent in packet 0x00D during a personal ride (the rental constant 0x010CA248 decodes sensibly under it); the mount
 // packet phase validates it against a capture.
 struct ChocoboCustomProperties
 {
