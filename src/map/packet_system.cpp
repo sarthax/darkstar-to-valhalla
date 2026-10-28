@@ -55,6 +55,7 @@ This file is part of DarkStar-server source code.
 #include "linkshell.h"
 #include "map.h"
 #include "entities/mobentity.h"
+#include "enmity_container.h"
 #include "entities/npcentity.h"
 #include "entities/charentity.h"
 #include "spell.h"
