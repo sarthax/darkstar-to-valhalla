@@ -878,6 +878,20 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_WAIT_LONGER));
                 return;
             }
+            // Your mount refuses while a monster has enmity on you (Topaz/LSB hasEnmity; main has no notoriety
+            // container, so ask the zone's mobs directly).
+            bool hasEnmity = false;
+            PChar->loc.zone->ForEachMob([&](CMobEntity* PMob)
+            {
+                if (!hasEnmity && PMob->PEnmityContainer && PMob->PEnmityContainer->HasID(PChar->id))
+                    hasEnmity = true;
+            });
+            if (hasEnmity)
+            {
+                PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, 339)); // "Your mount refuses"
+                return;
+            }
+
             // MountID 0 is the chocobo: a registered (personal) one rides for its stored minutes and carries the
             // personal flag that GetSpeed/0x00D key off (LSB behaviour); anything else is the 30 minute rental.
             ChocoboCustomProperties chocobo = {};
