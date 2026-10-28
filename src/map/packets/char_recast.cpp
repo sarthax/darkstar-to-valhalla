@@ -35,7 +35,7 @@ This file is part of DarkStar-server source code.
 CCharRecastPacket::CCharRecastPacket(CCharEntity* PChar)
 {
     this->type = 0x19;
-    this->size = 0x7F;
+    this->size = 0x82;   // 31 timers (0x04..0xFB) + mount recast/id (0xFC..0x103)
 
     uint8 count = 0;
 
@@ -45,7 +45,12 @@ CCharRecastPacket::CCharRecastPacket(CCharEntity* PChar)
     {
         uint32 recasttime = (recast.RecastTime == 0 ? 0 : ((recast.RecastTime - (time(nullptr) - recast.TimeStamp))));
 
-        if (recast.ID != 0)
+        if (recast.ID == 256)   // mount recast: client reads it from its own field, not the 8-bit timer list
+        {
+            WBUFL(data, (0xFC)) = recasttime;
+            WBUFL(data, (0x100)) = 256;
+        }
+        else if (recast.ID != 0)
         {
             WBUFL(data, (0x0C + count * 8) ) = recasttime;
             WBUFB(data, (0x0F + count * 8) ) = recast.ID;
