@@ -98,6 +98,7 @@ This file is part of DarkStar-server source code.
 #include "packets/char_health.h"
 #include "packets/char_recast.h"
 #include "packets/char_mounts.h"
+#include "utils/mountutils.h"
 #include "packets/char_skills.h"
 #include "packets/char_spells.h"
 #include "packets/char_stats.h"
@@ -855,7 +856,10 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     {
         uint8 MountID = RBUFB(data, (0x0C));
 
-        if (PChar->animation != ANIMATION_NONE)
+        if (MountID > 3108 - 3072) // LSB bound: mount key items 3072..3108
+            return;
+
+        if (PChar->animation != ANIMATION_NONE || PChar->StatusEffectContainer->HasPreventActionEffect())
         {
             PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_CANNOT_PERFORM_ACTION));
         }
@@ -874,7 +878,13 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_WAIT_LONGER));
                 return;
             }
-            PChar->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_MOUNTED, EFFECT_MOUNTED, (MountID ? MountID + 1 : 0), 0, 1800), true);
+            // MountID 0 is the chocobo: a registered (personal) one rides for its stored minutes and carries the
+            // personal flag that GetSpeed/0x00D key off (LSB behaviour); anything else is the 30 minute rental.
+            ChocoboCustomProperties chocobo = {};
+            chocobo.properties = PChar->m_chocoboUserData.fieldChocobo;
+            const bool personal = MountID == 0 && chocobo.minutes > 0;
+            PChar->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_MOUNTED, EFFECT_MOUNTED, (MountID ? MountID + 1 : 0), 0,
+                personal ? chocobo.minutes * 60 : 1800, 0, personal ? kPersonalChocoboFlag : 0), true);
             PChar->PRecastContainer->Add(RECAST_ABILITY, 256, 60);
             PChar->pushPacket(new CCharRecastPacket(PChar));
         }
