@@ -35,7 +35,9 @@ This file is part of DarkStar-server source code.
 CCharRecastPacket::CCharRecastPacket(CCharEntity* PChar)
 {
     this->type = 0x19;
-    this->size = 0x82;   // 31 timers (0x04..0xFB) + mount recast/id (0xFC..0x103)
+    // 31 timers (0x04..0xFB) + mount recast/id (0xFC..0x103) = 260 bytes. This byte is size/2 << 1 and its lowest bit
+    // is bit 8 of the packet id, so it must be odd (0x83) or the id goes out as 0x019 instead of 0x119.
+    this->size = 0x83;
 
     uint8 count = 0;
 
