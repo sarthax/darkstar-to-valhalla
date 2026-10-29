@@ -69,6 +69,7 @@ Meetings and the third-meeting story awards were already in slice 1. New: `scrip
 
 ## Guild-shop chick owners: blocked
 Abd-al-Raziq, Azima, Kyaa Taali, Kopuro-Popuro, Peshi Yohnts and Ponono ask inside their guild shop events. LSB itself has these as TODO (events unconfirmed), so they cannot be ported without a capture or a DAT decode of the shop events. Do not guess the event ids.
+Live probe 2026-10-27 (`guild_probe` scenario, headless client, seeded chick): the existing scripts start only the shop events 120 (Abd-al-Raziq), 122 (Azima), 285 (Kopuro-Popuro, a plain talk event), 10011 (Ponono), 10016 (Peshi Yohnts), 10020 (Kyaa Taali). Update options 1/2/100 changed nothing, since the headless client cannot choose the real ask menu entry. The real ask/guess option values need a real client (temporary option logging in the NPC `onEventUpdate`) or a capture.
 
 ## Stable clerks: complete (2026-10-26)
 LSB's three clerks only start the review event (846/534/761) with the dig-skill and clue params; they have no onEventUpdate/onEventFinish, so the client handles the menu itself. DSP matches that. Server-side tests pass for all three; real-client check of Gonija is pending.
